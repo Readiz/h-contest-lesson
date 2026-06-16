@@ -28,9 +28,9 @@ jobs:
 
       - name: Generate lesson bundle
         run: |
-          node <<'NODE'
-          const fs = require('fs/promises');
-          const path = require('path');
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
 
           const apiBase = 'https://h.readiz.com/api';
           const siteBase = 'https://readiz.github.io/h-contest-lesson';
@@ -61,10 +61,9 @@ jobs:
             return base;
           }
 
-          function collectAssetNames(lessonId, markdown) {
+          function collectAssetNames(markdown) {
             const names = new Set();
-            const encodedLessonId = lessonId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const apiPattern = new RegExp(`/api/lessons/${encodedLessonId}/assets/([^\\s)\"']+)`, 'g');
+            const apiPattern = /\/api\/lessons\/[a-z0-9-]+\/assets\/([^\s)\"']+)/g;
             const relativePattern = /(?:^|[\s(\"'])lesson-assets\/([^\s)\"']+)/g;
             for (const match of markdown.matchAll(apiPattern)) {
               names.add(cleanAssetName(match[1]));
@@ -101,6 +100,7 @@ jobs:
           await fs.rm(path.join(root, 'lessons'), { recursive: true, force: true });
           await fs.rm(path.join(root, 'bundle'), { recursive: true, force: true });
           await fs.rm(path.join(root, '.bootstrap'), { force: true });
+          await fs.rm(path.join(root, '.trigger'), { force: true });
           await fs.writeFile(path.join(root, '.nojekyll'), '');
           await fs.writeFile(path.join(root, 'lessons.json'), `${JSON.stringify({ lessons }, null, 2)}\n`);
 
@@ -134,7 +134,7 @@ jobs:
             await fs.writeFile(path.join(lessonDir, 'config.json'), `${JSON.stringify(config, null, 2)}\n`);
             await fs.writeFile(path.join(lessonDir, filename), `${toStaticMarkdown(lesson.lessonId, detail.content).replace(/\s*$/, '')}\n`);
 
-            for (const assetName of collectAssetNames(lesson.lessonId, detail.content)) {
+            for (const assetName of collectAssetNames(detail.content)) {
               const assetBytes = await fetchBytes(`${apiBase}/lessons/${encodeURIComponent(lesson.lessonId)}/assets/${encodeURIComponent(assetName)}`);
               await fs.writeFile(path.join(assetsDir, assetName), assetBytes);
             }
