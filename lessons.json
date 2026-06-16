@@ -107,21 +107,6 @@
       ]
     },
     {
-      "lessonId": "tree-advanced",
-      "title": "트리 심화: 분할 기법",
-      "description": "트리 기본 성질 위에서 센트로이드 분할, Heavy-Light Decomposition, Euler Tour, LCA 같은 심화 도구를 연결해 익힙니다.",
-      "summary": "Euler Tour, LCA, 센트로이드 분할, Heavy-Light Decomposition, small-to-large까지 이어지는 트리 심화",
-      "order": 23,
-      "tags": [
-        "tree",
-        "centroid-decomposition",
-        "heavy-light-decomposition",
-        "lca",
-        "euler-tour",
-        "practice"
-      ]
-    },
-    {
       "lessonId": "dijkstra",
       "title": "Dijkstra 최단거리",
       "description": "음수 간선이 없는 그래프에서 한 시작점으로부터 각 정점까지의 최단거리를 구하는 Dijkstra 알고리즘을 익힙니다.",
@@ -178,11 +163,26 @@
       ]
     },
     {
+      "lessonId": "tree-advanced",
+      "title": "트리 심화: 분할 기법",
+      "description": "트리 기본 성질 위에서 센트로이드 분할, Heavy-Light Decomposition, Euler Tour, LCA 같은 심화 도구를 연결해 익힙니다.",
+      "summary": "Euler Tour, LCA, 센트로이드 분할, Heavy-Light Decomposition, small-to-large까지 이어지는 트리 심화",
+      "order": 45,
+      "tags": [
+        "tree",
+        "centroid-decomposition",
+        "heavy-light-decomposition",
+        "lca",
+        "euler-tour",
+        "practice"
+      ]
+    },
+    {
       "lessonId": "treap",
       "title": "Treap",
       "description": "이진 탐색 트리와 heap 우선순위를 합쳐 기대 O(log n)에 삽입, 삭제, 순위 질의를 처리하는 Treap을 익힙니다.",
       "summary": "BST 조건, random priority, split/merge, k번째 원소와 순위 질의까지 이어지는 Treap 입문",
-      "order": 45,
+      "order": 50,
       "tags": [
         "treap",
         "binary-search-tree",

@@ -10,10 +10,19 @@ The public API is generated from or synchronized with this repository.
 
 Pull requests should edit this repository directly. For details, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-When adding a new lesson, update these files together:
+When adding a new lesson, update these source files:
 
 - `lessons/<lessonId>/lesson.md`
 - `lessons.json`
+
+Then regenerate derived files:
+
+```bash
+python3 scripts/generate_catalog.py
+```
+
+Generated files:
+
 - `README.md`
 - `index.html`
 
@@ -28,9 +37,9 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md)
 - [Union-Find 알고리즘](lessons/union-find/lesson.md)
 - [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md)
-- [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [Dijkstra 최단거리](lessons/dijkstra/lesson.md)
 - [Sqrt Decomposition](lessons/sqrt-decomposition/lesson.md)
 - [Fenwick Tree](lessons/fenwick-tree/lesson.md)
 - [Segment Tree](lessons/segment-tree/lesson.md)
+- [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [Treap](lessons/treap/lesson.md)

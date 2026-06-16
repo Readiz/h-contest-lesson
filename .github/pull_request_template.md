@@ -21,12 +21,13 @@
 
 새 레슨 추가 시:
 
-- [ ] `lessons/<lessonId>/lesson.md`를 추가했습니다.
-- [ ] `lessons.json`에 레슨 항목을 추가했습니다.
-- [ ] `README.md`의 Lessons 목록에 추가했습니다.
-- [ ] `index.html`의 목록에 추가했습니다.
+- [ ] `lessons/<lessonId>/lesson.md`를 추가하거나 수정했습니다.
+- [ ] `lessons.json`의 title, description, summary, order, tags를 갱신했습니다.
+- [ ] `python3 scripts/generate_catalog.py`를 실행했습니다.
+- [ ] `python3 scripts/validate_lessons.py`를 실행했습니다.
 - [ ] `lesson.md`의 H1 제목과 `lessons.json`의 title이 일치합니다.
-- [ ] `order` 값이 기존 레슨 순서와 충돌하지 않습니다.
+- [ ] 이미지와 내부 링크가 깨지지 않습니다.
+- [ ] C++ 코드 예제의 문법을 확인했습니다.
 
 ## 관련 Issue
 

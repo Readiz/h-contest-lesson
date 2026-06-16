@@ -111,6 +111,8 @@ void update(int node, int start, int end, int idx, long long newValue) {
 
 아래 구현은 0-indexed 배열에서 구간 합과 점 업데이트를 처리합니다.
 
+아래 구현은 `values`가 비어 있지 않다고 가정합니다. 대회 문제에서는 보통 `n >= 1`이 입력 제한으로 주어지지만, 라이브러리처럼 재사용하려면 생성자뿐 아니라 `query`, `update`에서도 빈 배열 처리를 따로 넣어야 합니다.
+
 ```cpp
 #include <vector>
 using namespace std;

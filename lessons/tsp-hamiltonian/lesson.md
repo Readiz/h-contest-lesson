@@ -362,9 +362,15 @@ vector<int> nearestNeighborRoute(int n, const vector<vector<long long>>& cost) {
         int best = -1;
         for (int next = 0; next < n; ++next) {
             if (used[next]) continue;
+            if (cost[current][next] == INF) continue;
+
             if (best == -1 || cost[current][next] < cost[current][best]) {
                 best = next;
             }
+        }
+
+        if (best == -1) {
+            return {}; // 더 이상 갈 수 있는 미방문 정점이 없음
         }
 
         current = best;
@@ -372,10 +378,16 @@ vector<int> nearestNeighborRoute(int n, const vector<vector<long long>>& cost) {
         used[current] = true;
     }
 
+    if (cost[current][0] == INF) {
+        return {}; // 시작점으로 돌아올 수 없음
+    }
+
     route.push_back(0);
     return route;
 }
 ```
+
+빈 `vector`가 반환되면 nearest neighbor 방식으로는 유효한 tour를 만들지 못했다는 뜻입니다. 완전 그래프가 아닌 TSP에서는 초기해 생성 단계에서도 없는 간선을 반드시 건너뛰어야 합니다.
 
 이 방법은 빠르고 구현이 쉽지만, 눈앞의 가까운 정점을 고르다가 나중에 비싼 간선을 강제로 탈 수 있습니다. 그래서 초기해로 쓰고, 이후 개선을 붙이는 편이 좋습니다.
 
