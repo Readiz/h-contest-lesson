@@ -33,7 +33,7 @@ jobs:
           import path from 'node:path';
 
           const apiBase = 'https://h.readiz.com/api';
-          const siteBase = 'https://readiz.github.io/h-contest-lesson';
+          const siteBase = 'https://blog.readiz.com/h-contest-lesson';
           const root = process.cwd();
 
           async function fetchJson(url) {
