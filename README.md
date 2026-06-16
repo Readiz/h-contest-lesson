@@ -2,7 +2,7 @@
 
 This repository is the GitHub Pages source for h-contest algorithm lessons.
 
-- Manifest: https://readiz.github.io/h-contest-lesson/lessons.json
+- Manifest: https://blog.readiz.com/h-contest-lesson/lessons.json
 - Generated from: https://h.readiz.com/api/lessons
 
 ## Lessons
