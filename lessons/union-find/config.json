@@ -1,0 +1,15 @@
+{
+  "lessonId": "union-find",
+  "title": "Union-Find 알고리즘",
+  "description": "서로소 집합을 빠르게 합치고 조회하는 Union-Find의 구조와 최적화를 익힙니다.",
+  "summary": "find, union, 경로 압축, 크기 기준 합치기, 대표별 값 집계까지 한 번에 정리",
+  "order": 20,
+  "tags": [
+    "union-find",
+    "disjoint-set",
+    "connected-components",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

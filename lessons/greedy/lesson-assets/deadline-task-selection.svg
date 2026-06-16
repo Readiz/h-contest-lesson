@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="380" viewBox="0 0 920 380" role="img" aria-labelledby="title desc">
+  <title id="title">마감 과제 선택의 최저 점수 제거</title>
+  <desc id="desc">마감일까지 가능한 개수를 넘으면 선택 집합에서 가장 점수가 작은 과제를 제거한다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="920" height="380" rx="18" fill="#ffffff"/>
+  <rect x="28" y="28" width="864" height="324" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
+    <text x="56" y="72" fill="#0f172a" font-size="24" font-weight="800">마감 과제 선택: 넘치면 가장 작은 점수를 버린다</text>
+    <text x="56" y="100" fill="#475569" font-size="15">마감일 순서로 후보를 넣고, 가능한 개수를 넘는 순간 손해가 가장 작은 과제를 포기한다.</text>
+
+    <g>
+      <rect x="56" y="138" width="238" height="154" rx="14" fill="#ecfeff" stroke="#67e8f9"/>
+      <text x="175" y="169" text-anchor="middle" fill="#0e7490" font-size="17" font-weight="800">후보에 넣기</text>
+      <rect x="82" y="194" width="56" height="52" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="110" y="215" text-anchor="middle" fill="#1d4ed8" font-size="12" font-weight="800">과제 가</text>
+      <text x="110" y="237" text-anchor="middle" fill="#1d4ed8" font-size="16" font-weight="800">40</text>
+      <rect x="150" y="194" width="56" height="52" rx="12" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="178" y="215" text-anchor="middle" fill="#b91c1c" font-size="12" font-weight="800">과제 나</text>
+      <text x="178" y="237" text-anchor="middle" fill="#b91c1c" font-size="16" font-weight="800">10</text>
+      <rect x="218" y="194" width="56" height="52" rx="12" fill="#dcfce7" stroke="#86efac"/>
+      <text x="246" y="215" text-anchor="middle" fill="#15803d" font-size="12" font-weight="800">과제 다</text>
+      <text x="246" y="237" text-anchor="middle" fill="#15803d" font-size="16" font-weight="800">70</text>
+    </g>
+
+    <path d="M 312 214 H 362" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="382" y="138" width="174" height="154" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+      <text x="469" y="169" text-anchor="middle" fill="#c2410c" font-size="17" font-weight="800">제약 확인</text>
+      <text x="469" y="199" text-anchor="middle" fill="#475569" font-size="14">마감 2까지</text>
+      <text x="469" y="221" text-anchor="middle" fill="#475569" font-size="14">최대 2개 가능</text>
+      <rect x="424" y="238" width="90" height="30" rx="15" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="469" y="258" text-anchor="middle" fill="#b91c1c" font-size="13" font-weight="800">3개라서 초과</text>
+    </g>
+
+    <path d="M 574 214 H 624" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+
+    <g>
+      <rect x="644" y="138" width="220" height="154" rx="14" fill="#ecfdf5" stroke="#86efac"/>
+      <text x="754" y="169" text-anchor="middle" fill="#047857" font-size="17" font-weight="800">가장 작은 점수 제거</text>
+      <rect x="680" y="198" width="56" height="52" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="708" y="230" text-anchor="middle" fill="#1d4ed8" font-size="16" font-weight="800">40</text>
+      <rect x="772" y="198" width="56" height="52" rx="12" fill="#dcfce7" stroke="#86efac"/>
+      <text x="800" y="230" text-anchor="middle" fill="#15803d" font-size="16" font-weight="800">70</text>
+      <rect x="708" y="262" width="92" height="24" rx="12" fill="#fef2f2" stroke="#fecaca"/>
+      <text x="754" y="279" text-anchor="middle" fill="#b91c1c" font-size="12" font-weight="800">10은 포기</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "lessonId": "segment-tree",
+  "title": "Segment Tree",
+  "description": "배열 구간 정보를 트리로 나누어 점 업데이트, 구간 질의, lazy 구간 업데이트를 처리하는 방법을 익힙니다.",
+  "summary": "bottom-up, top-down 재귀, lazy propagation까지 이어지는 Segment Tree 입문",
+  "order": 40,
+  "tags": [
+    "segment-tree",
+    "range-query",
+    "lazy-propagation",
+    "data-structure",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">휴리스틱 개선 루프</title>
+  <desc id="desc">초기해에서 시작해 변경, 점수 계산, 채택 또는 복구, 최고 답 저장으로 이어지는 반복 구조</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#345166"/>
+    </marker>
+    <style>
+      .box { fill: #f8fafc; stroke: #345166; stroke-width: 2; rx: 12; }
+      .accent { fill: #e7f1ee; stroke: #2f6f5e; }
+      .warn { fill: #fff5df; stroke: #996515; }
+      .text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; font-size: 22px; font-weight: 700; text-anchor: middle; }
+      .sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #52616f; font-size: 15px; text-anchor: middle; }
+      .line { stroke: #345166; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .soft { stroke: #7b8794; stroke-width: 2.5; fill: none; marker-end: url(#arrow); stroke-dasharray: 7 7; }
+    </style>
+  </defs>
+  <rect x="38" y="92" width="150" height="92" class="box"/>
+  <text x="113" y="130" class="text">초기해</text>
+  <text x="113" y="157" class="sub">빠른 그리디</text>
+  <rect x="230" y="92" width="150" height="92" class="box"/>
+  <text x="305" y="130" class="text">변경</text>
+  <text x="305" y="157" class="sub">move / swap</text>
+  <rect x="422" y="92" width="150" height="92" class="box accent"/>
+  <text x="497" y="130" class="text">점수 계산</text>
+  <text x="497" y="157" class="sub">score(next)</text>
+  <rect x="614" y="92" width="150" height="92" class="box warn"/>
+  <text x="689" y="130" class="text">채택 판단</text>
+  <text x="689" y="157" class="sub">좋거나 가끔 나쁘면</text>
+  <rect x="806" y="92" width="116" height="92" class="box accent"/>
+  <text x="864" y="130" class="text">최고 답</text>
+  <text x="864" y="157" class="sub">best 저장</text>
+  <path d="M188 138 H224" class="line"/>
+  <path d="M380 138 H416" class="line"/>
+  <path d="M572 138 H608" class="line"/>
+  <path d="M764 138 H800" class="line"/>
+  <path d="M689 184 C689 250 305 250 305 190" class="soft"/>
+  <path d="M864 184 C864 316 113 316 113 190" class="soft"/>
+  <rect x="292" y="270" width="426" height="24" fill="#ffffff"/>
+  <text x="505" y="285" class="sub">채택하면 current 갱신, 거절하면 rollback 후 다시 변경</text>
+  <rect x="372" y="321" width="256" height="24" fill="#ffffff"/>
+  <text x="500" y="336" class="sub">제한 반복 횟수 안에서 루프를 계속 돈다</text>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "lessonId": "sorting",
+  "title": "정렬 알고리즘",
+  "description": "정렬 기준, 안정성, 시간 복잡도, 정수 전용 정렬까지 문제 풀이에 필요한 정렬 감각을 익힙니다.",
+  "summary": "정렬 기준 세우기, 안정 정렬, counting sort, radix sort로 이어지는 정렬 입문",
+  "order": 5,
+  "tags": [
+    "sorting",
+    "stable-sort",
+    "counting-sort",
+    "radix-sort",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

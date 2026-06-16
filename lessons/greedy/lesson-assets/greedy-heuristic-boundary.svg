@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">그리디와 휴리스틱의 경계</title>
+  <desc id="desc">그리디가 정확한 알고리즘으로 성립하는 경우와 휴리스틱 설계로 넘어가는 경우를 비교한다.</desc>
+  <defs>
+    <marker id="arrow-boundary" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="920" height="360" rx="18" fill="#ffffff"/>
+  <rect x="30" y="30" width="860" height="300" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
+    <text x="56" y="72" fill="#0f172a" font-size="24" font-weight="800">정확한 그리디와 휴리스틱의 차이</text>
+    <text x="56" y="100" fill="#475569" font-size="15">같은 지역 선택이라도, 확정 가능성을 증명할 수 있는지가 갈림길이다.</text>
+
+    <rect x="70" y="168" width="300" height="116" rx="14" fill="#ecfdf5" stroke="#86efac"/>
+    <text x="220" y="201" text-anchor="middle" fill="#047857" font-size="19" font-weight="800">정확한 그리디</text>
+    <text x="220" y="228" text-anchor="middle" fill="#334155" font-size="14">현재 선택을 확정해도</text>
+    <text x="220" y="248" text-anchor="middle" fill="#334155" font-size="14">최적해 하나는 남아 있다</text>
+    <text x="220" y="272" text-anchor="middle" fill="#047857" font-size="13" font-weight="800">증명: 교환, 앞서기, 하한</text>
+
+    <rect x="550" y="168" width="300" height="116" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+    <text x="700" y="201" text-anchor="middle" fill="#c2410c" font-size="19" font-weight="800">휴리스틱 속 그리디</text>
+    <text x="700" y="228" text-anchor="middle" fill="#334155" font-size="14">현재 선택은 좋아 보이지만</text>
+    <text x="700" y="248" text-anchor="middle" fill="#334155" font-size="14">최적성은 보장하지 못한다</text>
+    <text x="700" y="272" text-anchor="middle" fill="#c2410c" font-size="13" font-weight="800">활용: 초기해, 후보 정렬, 개선 탐색</text>
+
+    <rect x="386" y="116" width="148" height="44" rx="16" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="460" y="135" text-anchor="middle" fill="#1d4ed8" font-size="13" font-weight="800">교환 불가</text>
+    <text x="460" y="153" text-anchor="middle" fill="#1d4ed8" font-size="13" font-weight="800">반례 존재</text>
+    <path d="M 392 226 C 430 226, 490 226, 528 226" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-boundary)"/>
+  </g>
+</svg>

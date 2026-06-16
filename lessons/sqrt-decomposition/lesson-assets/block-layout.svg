@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="280" viewBox="0 0 960 280" role="img" aria-labelledby="title desc">
+  <title id="title">Sqrt decomposition block layout</title>
+  <desc id="desc">An array split into four contiguous blocks, each block storing a summary value.</desc>
+  <rect width="960" height="280" fill="#f8fafc"/>
+  <text x="48" y="54" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">배열을 sqrt(n) 크기 블록으로 나누기</text>
+  <text x="48" y="86" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">각 원소는 원본 배열에 남기고, 블록마다 합 같은 요약값을 따로 저장합니다.</text>
+  <g transform="translate(48 120)">
+    <g font-family="Arial, sans-serif" font-size="14" text-anchor="middle">
+      <rect x="0" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+      <rect x="84" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+      <rect x="168" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+      <rect x="252" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+      <rect x="356" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+      <rect x="440" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+      <rect x="524" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+      <rect x="608" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+      <rect x="712" y="0" width="80" height="54" rx="8" fill="#fef3c7" stroke="#d97706"/>
+      <rect x="796" y="0" width="80" height="54" rx="8" fill="#fef3c7" stroke="#d97706"/>
+      <text x="40" y="32" fill="#1e3a8a">a[0]</text>
+      <text x="124" y="32" fill="#1e3a8a">a[1]</text>
+      <text x="208" y="32" fill="#1e3a8a">a[2]</text>
+      <text x="292" y="32" fill="#1e3a8a">a[3]</text>
+      <text x="396" y="32" fill="#14532d">a[4]</text>
+      <text x="480" y="32" fill="#14532d">a[5]</text>
+      <text x="564" y="32" fill="#14532d">a[6]</text>
+      <text x="648" y="32" fill="#14532d">a[7]</text>
+      <text x="752" y="32" fill="#78350f">a[8]</text>
+      <text x="836" y="32" fill="#78350f">a[9]</text>
+    </g>
+    <g font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+      <path d="M0 78 H332" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+      <path d="M356 78 H688" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M712 78 H876" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
+      <text x="166" y="112" fill="#1e3a8a">block 0 summary</text>
+      <text x="522" y="112" fill="#14532d">block 1 summary</text>
+      <text x="794" y="112" fill="#78350f">block 2 summary</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "lessonId": "graph-tree-basics",
+  "title": "그래프와 트리 기본 성질",
+  "description": "그래프 표현, DFS/BFS, 트리 지름, 센트로이드, 최소 신장 트리까지 문제 풀이에 자주 나오는 기본 성질을 정리합니다.",
+  "summary": "인접 리스트, 트리의 n-1 간선 성질, 지름, 센트로이드, MST를 한 번에 정리",
+  "order": 22,
+  "tags": [
+    "graph",
+    "tree",
+    "diameter",
+    "centroid",
+    "mst",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

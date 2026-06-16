@@ -1,0 +1,16 @@
+{
+  "lessonId": "sqrt-decomposition",
+  "title": "Sqrt Decomposition",
+  "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",
+  "summary": "구간 합, 점 업데이트, 블록 크기 선택, lazy 블록 갱신까지 이어지는 sqrt decomposition 입문",
+  "order": 30,
+  "tags": [
+    "sqrt-decomposition",
+    "range-query",
+    "block",
+    "data-structure",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

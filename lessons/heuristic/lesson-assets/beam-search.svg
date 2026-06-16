@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">Beam Search 후보 유지</title>
+  <desc id="desc">각 깊이에서 여러 후보를 확장한 뒤 점수가 높은 일부 후보만 다음 깊이로 남기는 구조</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#475467"/>
+    </marker>
+    <style>
+      .node { fill: #f8fafc; stroke: #475467; stroke-width: 2; }
+      .keep { fill: #e7f1ee; stroke: #2f6f5e; stroke-width: 3; }
+      .drop { fill: #f2f4f7; stroke: #98a2b3; stroke-width: 2; stroke-dasharray: 6 5; }
+      .line { stroke: #98a2b3; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+      .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; font-size: 20px; font-weight: 700; text-anchor: middle; }
+      .small { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #52616f; font-size: 15px; text-anchor: middle; }
+      .score { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; font-size: 14px; text-anchor: middle; }
+    </style>
+  </defs>
+  <text x="120" y="44" class="label">depth 0</text>
+  <text x="360" y="44" class="label">depth 1</text>
+  <text x="610" y="44" class="label">depth 2</text>
+  <text x="840" y="44" class="label">top K</text>
+  <circle cx="120" cy="205" r="34" class="keep"/>
+  <text x="120" y="210" class="score">start</text>
+  <path d="M154 196 C210 146 250 112 305 98" class="line"/>
+  <path d="M154 205 C216 205 250 205 305 205" class="line"/>
+  <path d="M154 214 C210 264 250 298 305 312" class="line"/>
+  <circle cx="340" cy="92" r="32" class="keep"/>
+  <text x="340" y="97" class="score">91</text>
+  <circle cx="340" cy="205" r="32" class="keep"/>
+  <text x="340" y="210" class="score">88</text>
+  <circle cx="340" cy="318" r="32" class="drop"/>
+  <text x="340" y="323" class="score">72</text>
+  <path d="M372 92 C430 88 468 80 526 74" class="line"/>
+  <path d="M372 92 C430 116 468 132 526 150" class="line"/>
+  <path d="M372 205 C430 198 468 190 526 184" class="line"/>
+  <path d="M372 205 C430 232 468 248 526 266" class="line"/>
+  <circle cx="560" cy="70" r="30" class="keep"/>
+  <text x="560" y="75" class="score">107</text>
+  <circle cx="560" cy="150" r="30" class="keep"/>
+  <text x="560" y="155" class="score">103</text>
+  <circle cx="560" cy="185" r="30" class="drop" transform="translate(0 72)"/>
+  <text x="560" y="262" class="score">94</text>
+  <circle cx="560" cy="338" r="30" class="drop"/>
+  <text x="560" y="343" class="score">81</text>
+  <path d="M590 70 C665 80 710 98 775 116" class="line"/>
+  <path d="M590 150 C665 158 710 170 775 188" class="line"/>
+  <rect x="780" y="88" width="120" height="58" class="keep" rx="12"/>
+  <text x="840" y="112" class="score">남김</text>
+  <text x="840" y="132" class="small">score 107</text>
+  <rect x="780" y="164" width="120" height="58" class="keep" rx="12"/>
+  <text x="840" y="188" class="score">남김</text>
+  <text x="840" y="208" class="small">score 103</text>
+  <rect x="780" y="250" width="120" height="58" class="drop" rx="12"/>
+  <text x="840" y="274" class="score">버림</text>
+  <text x="840" y="294" class="small">K 밖 후보</text>
+  <text x="480" y="388" class="small">각 단계에서 후보를 넓게 만들고, 점수가 높은 K개만 다음 단계로 보낸다.</text>
+</svg>

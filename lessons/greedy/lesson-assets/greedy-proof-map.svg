@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">그리디 알고리즘 판단 흐름</title>
+  <desc id="desc">그리디 선택, 반례 확인, 정당성 패턴, 구현 패턴으로 이어지는 흐름도</desc>
+  <rect width="920" height="360" rx="18" fill="#ffffff"/>
+  <rect x="24" y="24" width="872" height="312" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
+    <text x="46" y="66" fill="#0f172a" font-size="25" font-weight="800">그리디는 기준보다 정당성이 먼저다</text>
+    <text x="46" y="94" fill="#475569" font-size="15">좋아 보이는 선택을 찾은 뒤, 그 선택을 지금 확정해도 되는지 증명한다.</text>
+    <g transform="translate(50 138)">
+      <rect width="170" height="92" rx="14" fill="#ecfeff" stroke="#67e8f9"/>
+      <text x="85" y="34" text-anchor="middle" fill="#0e7490" font-size="17" font-weight="800">선택 단위</text>
+      <text x="85" y="62" text-anchor="middle" fill="#334155" font-size="13">무엇을 하나씩</text>
+      <text x="85" y="80" text-anchor="middle" fill="#334155" font-size="13">확정할 것인가?</text>
+    </g>
+    <g transform="translate(260 138)">
+      <rect width="170" height="92" rx="14" fill="#fefce8" stroke="#fde047"/>
+      <text x="85" y="34" text-anchor="middle" fill="#a16207" font-size="17" font-weight="800">그리디 기준</text>
+      <text x="85" y="62" text-anchor="middle" fill="#334155" font-size="13">가장 빠른 것?</text>
+      <text x="85" y="80" text-anchor="middle" fill="#334155" font-size="13">가장 싼 것?</text>
+    </g>
+    <g transform="translate(470 138)">
+      <rect width="170" height="92" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
+      <text x="85" y="34" text-anchor="middle" fill="#c2410c" font-size="17" font-weight="800">반례 확인</text>
+      <text x="85" y="62" text-anchor="middle" fill="#334155" font-size="13">작은 입력에서</text>
+      <text x="85" y="80" text-anchor="middle" fill="#334155" font-size="13">깨지는가?</text>
+    </g>
+    <g transform="translate(680 138)">
+      <rect width="170" height="92" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+      <text x="85" y="34" text-anchor="middle" fill="#1d4ed8" font-size="17" font-weight="800">정당성 패턴</text>
+      <text x="85" y="62" text-anchor="middle" fill="#334155" font-size="13">앞서기 / 증거</text>
+      <text x="85" y="80" text-anchor="middle" fill="#334155" font-size="13">/ 교환</text>
+    </g>
+    <path d="M226 184 H248" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M436 184 H458" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M646 184 H668" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="170" y="270" width="580" height="38" rx="19" fill="#0f172a"/>
+    <text x="460" y="294" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="700">정당성이 보이면 정렬, 힙, 선택 집합 같은 구현 패턴을 붙인다</text>
+  </g>
+</svg>

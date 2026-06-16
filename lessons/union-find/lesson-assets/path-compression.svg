@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">경로 압축 전후</title>
+  <desc id="desc">긴 부모 체인이 find 이후 대표를 직접 가리키는 별 모양 구조로 바뀐다.</desc>
+  <defs>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+  <rect width="960" height="420" rx="18" fill="#ffffff"/>
+  <rect x="28" y="28" width="904" height="364" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
+    <text x="58" y="72" fill="#0f172a" font-size="25" font-weight="800">경로 압축은 긴 체인을 대표로 바로 연결한다</text>
+    <text x="58" y="102" fill="#475569" font-size="15">find가 지나간 원소들의 parent를 대표로 바꾸어 다음 조회를 빠르게 만든다.</text>
+
+    <rect x="62" y="132" width="396" height="242" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="260" y="176" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="800">압축 전</text>
+    <text x="260" y="200" text-anchor="middle" fill="#64748b" font-size="13">find(4)는 부모를 차례로 따라간다</text>
+    <g stroke="#475569" stroke-width="3" fill="none" marker-end="url(#arrow-slate)">
+      <line x1="374" y1="270" x2="350" y2="270"/>
+      <line x1="300" y1="270" x2="276" y2="270"/>
+      <line x1="226" y1="270" x2="202" y2="270"/>
+      <line x1="152" y1="270" x2="128" y2="270"/>
+    </g>
+    <g font-size="16" font-weight="800" text-anchor="middle" fill="#0f172a">
+      <circle cx="102" cy="270" r="23" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+      <text x="102" y="276">0</text>
+      <circle cx="176" cy="270" r="23" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+      <text x="176" y="276">1</text>
+      <circle cx="250" cy="270" r="23" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+      <text x="250" y="276">2</text>
+      <circle cx="324" cy="270" r="23" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+      <text x="324" y="276">3</text>
+      <circle cx="398" cy="270" r="23" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+      <text x="398" y="276">4</text>
+    </g>
+    <rect x="146" y="326" width="228" height="34" rx="17" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="260" y="348" text-anchor="middle" fill="#475569" font-size="13" font-weight="800">4 -> 3 -> 2 -> 1 -> 0</text>
+
+    <path d="M 476 260 C 506 260, 524 260, 554 260" fill="none" stroke="#16a34a" stroke-width="4" marker-end="url(#arrow-green)"/>
+    <text x="515" y="238" text-anchor="middle" fill="#15803d" font-size="15" font-weight="800">find(4)</text>
+
+    <rect x="578" y="132" width="320" height="242" rx="14" fill="#ffffff" stroke="#bbf7d0"/>
+    <text x="738" y="176" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="800">압축 후</text>
+    <text x="738" y="200" text-anchor="middle" fill="#64748b" font-size="13">지나간 원소가 대표를 직접 가리킨다</text>
+    <g stroke="#16a34a" stroke-width="3" fill="none" marker-end="url(#arrow-green)">
+      <path d="M 646 307 C 670 290, 695 272, 713 260"/>
+      <path d="M 713 300 C 718 288, 722 278, 726 270"/>
+      <path d="M 763 300 C 758 288, 754 278, 750 270"/>
+      <path d="M 830 307 C 806 290, 781 272, 763 260"/>
+    </g>
+    <g font-size="16" font-weight="800" text-anchor="middle" fill="#0f172a">
+      <circle cx="738" cy="242" r="25" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+      <text x="738" y="248">0</text>
+      <circle cx="628" cy="320" r="22" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="628" y="326">1</text>
+      <circle cx="704" cy="320" r="22" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="704" y="326">2</text>
+      <circle cx="772" cy="320" r="22" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="772" y="326">3</text>
+      <circle cx="848" cy="320" r="22" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+      <text x="848" y="326">4</text>
+    </g>
+    <rect x="638" y="350" width="200" height="22" rx="11" fill="#ecfdf5" stroke="#bbf7d0"/>
+    <text x="738" y="366" text-anchor="middle" fill="#15803d" font-size="12" font-weight="800">parent[1..4] = 0</text>
+  </g>
+</svg>

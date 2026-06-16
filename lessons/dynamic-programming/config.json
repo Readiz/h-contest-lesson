@@ -1,0 +1,21 @@
+{
+  "lessonId": "dynamic-programming",
+  "title": "동적 계획법",
+  "description": "큰 문제를 겹치는 부분문제로 나누어 저장하며 푸는 동적 계획법의 상태 설계, 전이, 순회 순서와 대표 기법을 익힙니다.",
+  "summary": "메모이제이션, bottom-up, 배낭, LIS, 구간 DP, 트리 DP, 비트마스크 DP, digit DP까지 이어지는 DP 입문",
+  "order": 18,
+  "tags": [
+    "dynamic-programming",
+    "dp",
+    "memoization",
+    "knapsack",
+    "lis",
+    "interval-dp",
+    "tree-dp",
+    "bitmask-dp",
+    "digit-dp",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

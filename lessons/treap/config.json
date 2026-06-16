@@ -1,0 +1,17 @@
+{
+  "lessonId": "treap",
+  "title": "Treap",
+  "description": "이진 탐색 트리와 heap 우선순위를 합쳐 기대 O(log n)에 삽입, 삭제, 순위 질의를 처리하는 Treap을 익힙니다.",
+  "summary": "BST 조건, random priority, split/merge, k번째 원소와 순위 질의까지 이어지는 Treap 입문",
+  "order": 45,
+  "tags": [
+    "treap",
+    "binary-search-tree",
+    "randomized",
+    "order-statistics",
+    "data-structure",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

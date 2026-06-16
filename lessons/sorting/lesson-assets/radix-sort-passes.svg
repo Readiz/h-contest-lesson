@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">16비트 radix sort 흐름</title>
+  <desc id="desc">32비트 정수를 하위 16비트와 상위 16비트로 나누어 두 번 안정 정렬하는 흐름</desc>
+  <rect width="920" height="360" rx="0" fill="#f8fafc"/>
+  <text x="48" y="56" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="25" font-weight="800" fill="#0f172a">32비트 정수를 16비트씩 나누어 정렬한다</text>
+  <text x="48" y="88" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="15" fill="#475569">낮은 자리부터 안정 정렬하면, 높은 자리가 같을 때 낮은 자리 순서가 유지된다.</text>
+
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
+    <rect x="56" y="130" width="222" height="78" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="167" y="162" text-anchor="middle" font-size="18" font-weight="800" fill="#0f172a">원본 값</text>
+    <text x="167" y="190" text-anchor="middle" font-size="14" fill="#475569">[상위 16비트 | 하위 16비트]</text>
+
+    <path d="M294 169H402" fill="none" stroke="#64748b" stroke-width="3"/>
+    <path d="M402 169l-13-8v16z" fill="#64748b"/>
+    <text x="348" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">1st pass</text>
+
+    <rect x="418" y="118" width="224" height="104" rx="8" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
+    <text x="530" y="150" text-anchor="middle" font-size="18" font-weight="800" fill="#155e75">하위 16비트</text>
+    <text x="530" y="176" text-anchor="middle" font-size="15" fill="#155e75">stable counting sort</text>
+    <text x="530" y="201" text-anchor="middle" font-size="13" fill="#0f766e">낮은 자리 순서 생성</text>
+
+    <path d="M658 169H766" fill="none" stroke="#64748b" stroke-width="3"/>
+    <path d="M766 169l-13-8v16z" fill="#64748b"/>
+    <text x="712" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">2nd pass</text>
+
+    <rect x="56" y="254" width="222" height="58" rx="8" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
+    <text x="167" y="288" text-anchor="middle" font-size="16" font-weight="800" fill="#854d0e">bucket 0부터 65535까지</text>
+
+    <rect x="418" y="254" width="224" height="58" rx="8" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
+    <text x="530" y="288" text-anchor="middle" font-size="16" font-weight="800" fill="#854d0e">각 pass마다 cnt 초기화</text>
+
+    <rect x="782" y="118" width="92" height="104" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+    <text x="828" y="152" text-anchor="middle" font-size="17" font-weight="800" fill="#166534">상위</text>
+    <text x="828" y="175" text-anchor="middle" font-size="17" font-weight="800" fill="#166534">16비트</text>
+    <text x="828" y="200" text-anchor="middle" font-size="13" fill="#15803d">전체 정렬</text>
+
+    <path d="M167 222v22" fill="none" stroke="#ca8a04" stroke-width="2"/>
+    <path d="M530 222v22" fill="none" stroke="#ca8a04" stroke-width="2"/>
+  </g>
+</svg>

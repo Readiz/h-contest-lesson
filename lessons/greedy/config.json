@@ -1,0 +1,16 @@
+{
+  "lessonId": "greedy",
+  "title": "그리디 알고리즘",
+  "description": "쉬운 반례부터 대표 증명 패턴까지, 그리디 선택이 왜 최적해로 이어지는지 익힙니다.",
+  "summary": "거스름돈, 회의실 배정, 강의실 배정, 마감 문제로 보는 그리디 입문",
+  "order": 10,
+  "tags": [
+    "greedy",
+    "greedy-stays-ahead",
+    "certificate",
+    "exchange-argument",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

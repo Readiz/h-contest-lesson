@@ -1,0 +1,196 @@
+{
+  "lessons": [
+    {
+      "lessonId": "sorting",
+      "title": "정렬 알고리즘",
+      "description": "정렬 기준, 안정성, 시간 복잡도, 정수 전용 정렬까지 문제 풀이에 필요한 정렬 감각을 익힙니다.",
+      "summary": "정렬 기준 세우기, 안정 정렬, counting sort, radix sort로 이어지는 정렬 입문",
+      "order": 5,
+      "tags": [
+        "sorting",
+        "stable-sort",
+        "counting-sort",
+        "radix-sort",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "greedy",
+      "title": "그리디 알고리즘",
+      "description": "쉬운 반례부터 대표 증명 패턴까지, 그리디 선택이 왜 최적해로 이어지는지 익힙니다.",
+      "summary": "거스름돈, 회의실 배정, 강의실 배정, 마감 문제로 보는 그리디 입문",
+      "order": 10,
+      "tags": [
+        "greedy",
+        "greedy-stays-ahead",
+        "certificate",
+        "exchange-argument",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "heuristic",
+      "title": "휴리스틱 알고리즘",
+      "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 익힙니다.",
+      "summary": "점수 함수, 초기해, 지역 탐색, 담금질 기법, 시간 관리와 실험 로그까지 이어지는 휴리스틱 입문",
+      "order": 15,
+      "tags": [
+        "heuristic",
+        "optimization",
+        "local-search",
+        "simulated-annealing",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "dynamic-programming",
+      "title": "동적 계획법",
+      "description": "큰 문제를 겹치는 부분문제로 나누어 저장하며 푸는 동적 계획법의 상태 설계, 전이, 순회 순서와 대표 기법을 익힙니다.",
+      "summary": "메모이제이션, bottom-up, 배낭, LIS, 구간 DP, 트리 DP, 비트마스크 DP, digit DP까지 이어지는 DP 입문",
+      "order": 18,
+      "tags": [
+        "dynamic-programming",
+        "dp",
+        "memoization",
+        "knapsack",
+        "lis",
+        "interval-dp",
+        "tree-dp",
+        "bitmask-dp",
+        "digit-dp",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "tsp-hamiltonian",
+      "title": "TSP와 해밀턴 경로",
+      "description": "모든 정점을 한 번씩 방문하는 해밀턴 경로와 TSP를 완전탐색, 비트마스크 DP, 휴리스틱 개선으로 연결해 익힙니다.",
+      "summary": "해밀턴 경로/사이클, TSP 완전탐색, Held-Karp DP, 경로 복원, nearest neighbor와 2-opt 휴리스틱까지 한 번에 정리",
+      "order": 19,
+      "tags": [
+        "tsp",
+        "hamiltonian-path",
+        "hamiltonian-cycle",
+        "bitmask-dp",
+        "held-karp",
+        "heuristic",
+        "two-opt",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "union-find",
+      "title": "Union-Find 알고리즘",
+      "description": "서로소 집합을 빠르게 합치고 조회하는 Union-Find의 구조와 최적화를 익힙니다.",
+      "summary": "find, union, 경로 압축, 크기 기준 합치기, 대표별 값 집계까지 한 번에 정리",
+      "order": 20,
+      "tags": [
+        "union-find",
+        "disjoint-set",
+        "connected-components",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "graph-tree-basics",
+      "title": "그래프와 트리 기본 성질",
+      "description": "그래프 표현, DFS/BFS, 트리 지름, 센트로이드, 최소 신장 트리까지 문제 풀이에 자주 나오는 기본 성질을 정리합니다.",
+      "summary": "인접 리스트, 트리의 n-1 간선 성질, 지름, 센트로이드, MST를 한 번에 정리",
+      "order": 22,
+      "tags": [
+        "graph",
+        "tree",
+        "diameter",
+        "centroid",
+        "mst",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "tree-advanced",
+      "title": "트리 심화: 분할 기법",
+      "description": "트리 기본 성질 위에서 센트로이드 분할, Heavy-Light Decomposition, Euler Tour, LCA 같은 심화 도구를 연결해 익힙니다.",
+      "summary": "Euler Tour, LCA, 센트로이드 분할, Heavy-Light Decomposition, small-to-large까지 이어지는 트리 심화",
+      "order": 23,
+      "tags": [
+        "tree",
+        "centroid-decomposition",
+        "heavy-light-decomposition",
+        "lca",
+        "euler-tour",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "dijkstra",
+      "title": "Dijkstra 최단거리",
+      "description": "음수 간선이 없는 그래프에서 한 시작점으로부터 각 정점까지의 최단거리를 구하는 Dijkstra 알고리즘을 익힙니다.",
+      "summary": "거리 확정, relax, 우선순위 큐, 음수 간선 금지 조건까지 이어지는 Dijkstra 입문",
+      "order": 25,
+      "tags": [
+        "dijkstra",
+        "shortest-path",
+        "graph",
+        "priority-queue",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "sqrt-decomposition",
+      "title": "Sqrt Decomposition",
+      "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",
+      "summary": "구간 합, 점 업데이트, 블록 크기 선택, lazy 블록 갱신까지 이어지는 sqrt decomposition 입문",
+      "order": 30,
+      "tags": [
+        "sqrt-decomposition",
+        "range-query",
+        "block",
+        "data-structure",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "fenwick-tree",
+      "title": "Fenwick Tree",
+      "description": "배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.",
+      "summary": "prefix 합, lowbit, 점 업데이트, 구간 합, lower_bound까지 이어지는 Fenwick Tree 입문",
+      "order": 35,
+      "tags": [
+        "fenwick-tree",
+        "binary-indexed-tree",
+        "prefix-sum",
+        "range-query",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "segment-tree",
+      "title": "Segment Tree",
+      "description": "배열 구간 정보를 트리로 나누어 점 업데이트, 구간 질의, lazy 구간 업데이트를 처리하는 방법을 익힙니다.",
+      "summary": "bottom-up, top-down 재귀, lazy propagation까지 이어지는 Segment Tree 입문",
+      "order": 40,
+      "tags": [
+        "segment-tree",
+        "range-query",
+        "lazy-propagation",
+        "data-structure",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "treap",
+      "title": "Treap",
+      "description": "이진 탐색 트리와 heap 우선순위를 합쳐 기대 O(log n)에 삽입, 삭제, 순위 질의를 처리하는 Treap을 익힙니다.",
+      "summary": "BST 조건, random priority, split/merge, k번째 원소와 순위 질의까지 이어지는 Treap 입문",
+      "order": 45,
+      "tags": [
+        "treap",
+        "binary-search-tree",
+        "randomized",
+        "order-statistics",
+        "data-structure",
+        "practice"
+      ]
+    }
+  ]
+}

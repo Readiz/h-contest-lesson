@@ -1,0 +1,19 @@
+{
+  "lessonId": "tsp-hamiltonian",
+  "title": "TSP와 해밀턴 경로",
+  "description": "모든 정점을 한 번씩 방문하는 해밀턴 경로와 TSP를 완전탐색, 비트마스크 DP, 휴리스틱 개선으로 연결해 익힙니다.",
+  "summary": "해밀턴 경로/사이클, TSP 완전탐색, Held-Karp DP, 경로 복원, nearest neighbor와 2-opt 휴리스틱까지 한 번에 정리",
+  "order": 19,
+  "tags": [
+    "tsp",
+    "hamiltonian-path",
+    "hamiltonian-cycle",
+    "bitmask-dp",
+    "held-karp",
+    "heuristic",
+    "two-opt",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

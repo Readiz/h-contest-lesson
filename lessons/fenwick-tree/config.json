@@ -1,0 +1,16 @@
+{
+  "lessonId": "fenwick-tree",
+  "title": "Fenwick Tree",
+  "description": "배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.",
+  "summary": "prefix 합, lowbit, 점 업데이트, 구간 합, lower_bound까지 이어지는 Fenwick Tree 입문",
+  "order": 35,
+  "tags": [
+    "fenwick-tree",
+    "binary-indexed-tree",
+    "prefix-sum",
+    "range-query",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

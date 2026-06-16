@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="380" viewBox="0 0 920 380" role="img" aria-labelledby="title desc">
+  <title id="title">강의실 배정의 하한 증거</title>
+  <desc id="desc">동시에 진행되는 강의 수가 필요한 강의실 수의 하한이 됨을 보여준다.</desc>
+  <rect width="920" height="380" rx="18" fill="#ffffff"/>
+  <rect x="28" y="28" width="864" height="324" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
+    <text x="56" y="72" fill="#0f172a" font-size="24" font-weight="800">강의실 배정: 동시에 겹치는 수가 하한</text>
+    <text x="56" y="100" fill="#475569" font-size="15">새 방이 필요한 순간에는 이미 진행 중인 강의 수만큼 방이 반드시 필요하다.</text>
+
+    <line x1="90" y1="286" x2="830" y2="286" stroke="#94a3b8" stroke-width="2"/>
+    <g fill="#64748b" font-size="12" text-anchor="middle">
+      <text x="120" y="310">1</text>
+      <text x="220" y="310">2</text>
+      <text x="320" y="310">3</text>
+      <text x="420" y="310">4</text>
+      <text x="520" y="310">5</text>
+      <text x="620" y="310">6</text>
+      <text x="720" y="310">7</text>
+      <text x="820" y="310">8</text>
+    </g>
+
+    <rect x="302" y="124" width="56" height="150" rx="10" fill="#dbeafe" opacity="0.55"/>
+    <line x1="330" y1="116" x2="330" y2="286" stroke="#2563eb" stroke-width="3" stroke-dasharray="8 7"/>
+    <rect x="258" y="116" width="144" height="38" rx="19" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="330" y="141" text-anchor="middle" fill="#1d4ed8" font-size="14" font-weight="800">동시 3개 진행</text>
+
+    <g stroke-width="18" stroke-linecap="round">
+      <line x1="120" y1="174" x2="380" y2="174" stroke="#2563eb"/>
+      <line x1="220" y1="210" x2="520" y2="210" stroke="#10b981"/>
+      <line x1="300" y1="246" x2="620" y2="246" stroke="#f97316"/>
+      <line x1="620" y1="174" x2="780" y2="174" stroke="#94a3b8"/>
+    </g>
+    <g font-size="13" font-weight="800" text-anchor="end">
+      <text x="104" y="179" fill="#1d4ed8">강의 1</text>
+      <text x="204" y="215" fill="#047857">강의 2</text>
+      <text x="284" y="251" fill="#c2410c">강의 3</text>
+      <text x="604" y="179" fill="#475569">강의 4</text>
+    </g>
+
+    <rect x="662" y="208" width="176" height="66" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="750" y="234" text-anchor="middle" fill="#0f172a" font-size="16" font-weight="800">증거</text>
+    <text x="750" y="257" text-anchor="middle" fill="#475569" font-size="14">최소 3개 방 필요</text>
+  </g>
+</svg>

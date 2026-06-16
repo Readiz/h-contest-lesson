@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">교환 논증 개요</title>
+  <desc id="desc">최적해의 한 선택을 그리디 선택으로 바꿔도 답이 나빠지지 않음을 보인다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <linearGradient id="panel" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+  </defs>
+  <rect width="920" height="360" rx="18" fill="#ffffff"/>
+  <rect x="18" y="18" width="884" height="324" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
+  <rect x="36" y="44" width="360" height="248" rx="14" fill="url(#panel)" stroke="#cbd5e1"/>
+  <rect x="524" y="44" width="360" height="248" rx="14" fill="url(#panel)" stroke="#cbd5e1"/>
+  <text x="216" y="82" text-anchor="middle" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">어떤 최적해</text>
+  <text x="704" y="82" text-anchor="middle" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="20" font-weight="700" fill="#0f172a">바꾼 최적해</text>
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="18" font-weight="700">
+    <rect x="82" y="130" width="70" height="70" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="117" y="172" text-anchor="middle" fill="#1d4ed8">A</text>
+    <rect x="174" y="130" width="70" height="70" rx="12" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="209" y="172" text-anchor="middle" fill="#b91c1c">X</text>
+    <rect x="266" y="130" width="70" height="70" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="301" y="172" text-anchor="middle" fill="#1d4ed8">B</text>
+    <rect x="570" y="130" width="70" height="70" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="605" y="172" text-anchor="middle" fill="#1d4ed8">A</text>
+    <rect x="662" y="130" width="70" height="70" rx="12" fill="#dcfce7" stroke="#86efac"/>
+    <text x="697" y="172" text-anchor="middle" fill="#15803d">G</text>
+    <rect x="754" y="130" width="70" height="70" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="789" y="172" text-anchor="middle" fill="#1d4ed8">B</text>
+  </g>
+  <path d="M 406 166 C 442 166, 476 166, 510 166" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="460" y="136" text-anchor="middle" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="16" font-weight="700" fill="#2563eb">교환</text>
+  <text x="216" y="242" text-anchor="middle" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="15" fill="#475569">최적해가 그리디 선택 대신 X를 사용</text>
+  <text x="704" y="242" text-anchor="middle" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="15" fill="#475569">X를 G로 바꿔도 답은 나빠지지 않음</text>
+  <rect x="306" y="310" width="308" height="28" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="460" y="330" text-anchor="middle" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="14" font-weight="700" fill="#1d4ed8">이제 그리디 선택을 확정해도 된다</text>
+</svg>

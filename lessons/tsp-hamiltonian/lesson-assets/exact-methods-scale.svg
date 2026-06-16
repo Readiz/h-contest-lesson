@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">TSP와 해밀턴 경로 접근 선택</title>
+  <desc id="desc">입력 크기에 따라 완전탐색, 비트마스크 DP, 휴리스틱으로 접근이 바뀌는 흐름도</desc>
+  <rect width="920" height="360" fill="#ffffff"/>
+  <rect x="24" y="24" width="872" height="312" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#334155"/>
+    </marker>
+  </defs>
+  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
+    <text x="50" y="66" fill="#0f172a" font-size="25" font-weight="800">정확한 풀이와 휴리스틱의 경계는 입력 크기가 만든다</text>
+    <text x="50" y="96" fill="#475569" font-size="15">작은 입력에서는 순서를 전부 보고, 중간 입력에서는 같은 상태를 합치고, 큰 입력에서는 좋은 답을 개선한다.</text>
+
+    <g transform="translate(58 144)">
+      <rect width="220" height="116" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+      <text x="110" y="33" text-anchor="middle" fill="#1d4ed8" font-size="18" font-weight="800">완전탐색</text>
+      <text x="110" y="63" text-anchor="middle" fill="#334155" font-size="14">모든 순열 시험</text>
+      <text x="110" y="88" text-anchor="middle" fill="#0f172a" font-size="15" font-weight="800">O(n!)</text>
+      <text x="110" y="108" text-anchor="middle" fill="#64748b" font-size="12">n &lt;= 10 안팎</text>
+    </g>
+
+    <g transform="translate(350 144)">
+      <rect width="220" height="116" rx="14" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+      <text x="110" y="33" text-anchor="middle" fill="#166534" font-size="18" font-weight="800">비트마스크 DP</text>
+      <text x="110" y="63" text-anchor="middle" fill="#334155" font-size="14">방문 집합과 마지막 정점</text>
+      <text x="110" y="88" text-anchor="middle" fill="#0f172a" font-size="15" font-weight="800">O(2^n n^2)</text>
+      <text x="110" y="108" text-anchor="middle" fill="#64748b" font-size="12">n &lt;= 20 안팎</text>
+    </g>
+
+    <g transform="translate(642 144)">
+      <rect width="220" height="116" rx="14" fill="#fff7ed" stroke="#fed7aa" stroke-width="2"/>
+      <text x="110" y="33" text-anchor="middle" fill="#c2410c" font-size="18" font-weight="800">휴리스틱</text>
+      <text x="110" y="63" text-anchor="middle" fill="#334155" font-size="14">초기해와 지역 개선</text>
+      <text x="110" y="88" text-anchor="middle" fill="#0f172a" font-size="15" font-weight="800">최적 보장 없음</text>
+      <text x="110" y="108" text-anchor="middle" fill="#64748b" font-size="12">큰 n, 점수형 문제</text>
+    </g>
+
+    <path d="M290 202 H334" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M582 202 H626" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <rect x="144" y="292" width="632" height="30" rx="15" fill="#0f172a"/>
+    <text x="460" y="312" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">정확도 요구와 n 제한을 먼저 보고, 그 다음 구현 방식을 고른다</text>
+  </g>
+</svg>
