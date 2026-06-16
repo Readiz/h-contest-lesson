@@ -1,0 +1,28 @@
+name: 오탈자/표현 수정
+description: 오탈자, 맞춤법, 문장 표현 개선을 제안합니다.
+title: "[Typo] "
+labels: ["typo", "good first issue"]
+body:
+  - type: input
+    id: lesson
+    attributes:
+      label: 레슨 파일
+      placeholder: "예: lessons/dijkstra/lesson.md"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: 현재 문장
+      description: 문제가 있는 문장을 적어 주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 제안 문장
+      description: 어떻게 바꾸면 좋을까요?
+    validations:
+      required: true

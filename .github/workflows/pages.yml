@@ -1,4 +1,4 @@
-name: Generate and Deploy GitHub Pages
+name: Deploy GitHub Pages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  generate-and-deploy:
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -23,138 +23,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          python-version: "3.12"
 
-      - name: Generate lesson bundle
-        run: |
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs/promises';
-          import path from 'node:path';
-
-          const apiBase = 'https://h.readiz.com/api';
-          const siteBase = 'https://blog.readiz.com/h-contest-lesson';
-          const root = process.cwd();
-
-          async function fetchJson(url) {
-            const response = await fetch(url);
-            if (!response.ok) {
-              throw new Error(`${url} returned ${response.status}`);
-            }
-            return response.json();
-          }
-
-          async function fetchBytes(url) {
-            const response = await fetch(url);
-            if (!response.ok) {
-              throw new Error(`${url} returned ${response.status}`);
-            }
-            return Buffer.from(await response.arrayBuffer());
-          }
-
-          function cleanAssetName(value) {
-            const parsed = decodeURIComponent(String(value || '').split(/[?#]/, 1)[0]);
-            const base = path.posix.basename(parsed);
-            if (!/^[A-Za-z0-9._-]+$/.test(base)) {
-              throw new Error(`Unsafe asset name: ${value}`);
-            }
-            return base;
-          }
-
-          function collectAssetNames(markdown) {
-            const names = new Set();
-            const apiPattern = /\/api\/lessons\/[a-z0-9-]+\/assets\/([^\s)\"']+)/g;
-            const relativePattern = /(?:^|[\s(\"'])lesson-assets\/([^\s)\"']+)/g;
-            for (const match of markdown.matchAll(apiPattern)) {
-              names.add(cleanAssetName(match[1]));
-            }
-            for (const match of markdown.matchAll(relativePattern)) {
-              names.add(cleanAssetName(match[1]));
-            }
-            return [...names].sort((a, b) => a.localeCompare(b));
-          }
-
-          function toStaticMarkdown(lessonId, markdown) {
-            return markdown.replaceAll(`/api/lessons/${lessonId}/assets/`, 'lesson-assets/');
-          }
-
-          function lessonManifestEntry(lesson) {
-            return {
-              lessonId: lesson.lessonId,
-              title: lesson.title,
-              description: lesson.description || '',
-              summary: lesson.summary || '',
-              order: Number.isFinite(Number(lesson.order)) ? Number(lesson.order) : 0,
-              tags: Array.isArray(lesson.tags) ? lesson.tags : [],
-            };
-          }
-
-          const listPayload = await fetchJson(`${apiBase}/lessons`);
-          if (!listPayload.ok || !Array.isArray(listPayload.lessons)) {
-            throw new Error('Lesson list API returned an unexpected payload');
-          }
-
-          const lessons = listPayload.lessons.map(lessonManifestEntry)
-            .sort((a, b) => a.order - b.order || a.title.localeCompare(b.title) || a.lessonId.localeCompare(b.lessonId));
-
-          await fs.rm(path.join(root, 'lessons'), { recursive: true, force: true });
-          await fs.rm(path.join(root, 'bundle'), { recursive: true, force: true });
-          await fs.rm(path.join(root, '.bootstrap'), { force: true });
-          await fs.rm(path.join(root, '.trigger'), { force: true });
-          await fs.writeFile(path.join(root, '.nojekyll'), '');
-          await fs.writeFile(path.join(root, 'lessons.json'), `${JSON.stringify({ lessons }, null, 2)}\n`);
-
-          let readme = '# h-contest lesson content\n\nThis repository is the GitHub Pages source for h-contest algorithm lessons.\n\n';
-          readme += `- Manifest: ${siteBase}/lessons.json\n`;
-          readme += `- Generated from: ${apiBase}/lessons\n\n`;
-          readme += '## Lessons\n\n';
-
-          let index = '<!doctype html>\n<html lang="ko">\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>h-contest lessons</title>\n<style>body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:880px;margin:40px auto;padding:0 20px;line-height:1.55}code{background:#f2f2f2;padding:2px 4px;border-radius:4px}a{color:#0b63ce}</style>\n<h1>h-contest lessons</h1>\n<p><a href="lessons.json">lessons.json</a></p>\n<ul>\n';
-
-          for (const lesson of lessons) {
-            const detail = await fetchJson(`${apiBase}/lessons/${encodeURIComponent(lesson.lessonId)}`);
-            if (!detail.ok || typeof detail.content !== 'string') {
-              throw new Error(`Lesson detail API returned an unexpected payload: ${lesson.lessonId}`);
-            }
-            const lessonDir = path.join(root, 'lessons', lesson.lessonId);
-            const assetsDir = path.join(lessonDir, 'lesson-assets');
-            await fs.mkdir(assetsDir, { recursive: true });
-
-            const filename = detail.filename || 'lesson.md';
-            const config = {
-              lessonId: lesson.lessonId,
-              title: detail.title || lesson.title,
-              description: detail.description || lesson.description || '',
-              summary: detail.summary || lesson.summary || '',
-              order: Number.isFinite(Number(detail.order)) ? Number(detail.order) : lesson.order,
-              tags: Array.isArray(detail.tags) ? detail.tags : lesson.tags,
-              contentFile: filename,
-              assetsDir: 'lesson-assets',
-            };
-            await fs.writeFile(path.join(lessonDir, 'config.json'), `${JSON.stringify(config, null, 2)}\n`);
-            await fs.writeFile(path.join(lessonDir, filename), `${toStaticMarkdown(lesson.lessonId, detail.content).replace(/\s*$/, '')}\n`);
-
-            for (const assetName of collectAssetNames(detail.content)) {
-              const assetBytes = await fetchBytes(`${apiBase}/lessons/${encodeURIComponent(lesson.lessonId)}/assets/${encodeURIComponent(assetName)}`);
-              await fs.writeFile(path.join(assetsDir, assetName), assetBytes);
-            }
-
-            readme += `- [${lesson.title}](lessons/${lesson.lessonId}/${filename})\n`;
-            index += `<li><a href="lessons/${lesson.lessonId}/${filename}">${lesson.title}</a> <code>${lesson.lessonId}</code></li>\n`;
-          }
-
-          index += '</ul>\n</html>\n';
-          await fs.writeFile(path.join(root, 'README.md'), readme);
-          await fs.writeFile(path.join(root, 'index.html'), index);
-          NODE
-
-      - name: Commit generated lesson files
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Generate lesson bundle" || true
-          git push
+      - name: Validate lessons
+        run: python scripts/validate_lessons.py
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

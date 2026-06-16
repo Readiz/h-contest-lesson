@@ -1,9 +1,23 @@
 # h-contest lesson content
 
-This repository is the GitHub Pages source for h-contest algorithm lessons.
+This repository is the source of truth for h-contest algorithm lessons.
+The public API is generated from or synchronized with this repository.
 
-- Manifest: https://blog.readiz.com/h-contest-lesson/lessons.json
-- Generated from: https://h.readiz.com/api/lessons
+- Published manifest: https://blog.readiz.com/h-contest-lesson/lessons.json
+- API mirror: https://h.readiz.com/api/lessons
+
+## Contributing
+
+Pull requests should edit this repository directly. For details, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+When adding a new lesson, update these files together:
+
+- `lessons/<lessonId>/lesson.md`
+- `lessons.json`
+- `README.md`
+- `index.html`
+
+If the lesson uses images or other local assets, add them under `lessons/<lessonId>/lesson-assets/`.
 
 ## Lessons
 

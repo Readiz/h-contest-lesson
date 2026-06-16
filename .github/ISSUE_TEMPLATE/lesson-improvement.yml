@@ -1,0 +1,42 @@
+name: 레슨 개선 제안
+description: 기존 레슨의 설명, 코드, 예제, 이미지 개선을 제안합니다.
+title: "[Lesson] "
+labels: ["lesson", "needs-review"]
+body:
+  - type: input
+    id: lesson
+    attributes:
+      label: 레슨 파일
+      placeholder: "예: lessons/dynamic-programming/lesson.md"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 개선 종류
+      options:
+        - 설명 보강
+        - 코드 예제 수정
+        - 예제 추가
+        - 시간 복잡도/조건 보강
+        - 자주 하는 실수 추가
+        - 이미지/링크 수정
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 현재 문제점
+      description: 어떤 부분이 헷갈리거나 잘못되었나요?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 제안 내용
+      description: 어떻게 고치면 좋을지 적어 주세요.
+    validations:
+      required: true
