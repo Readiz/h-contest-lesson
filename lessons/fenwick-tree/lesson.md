@@ -180,8 +180,13 @@ FenwickTree(const vector<long long>& values) {
 
 모든 값이 음수가 아니면, Fenwick Tree로 "prefix 합이 처음으로 target 이상이 되는 위치"도 찾을 수 있습니다.
 
+실전에서는 `target <= 0`이거나 `target > prefixSum(n)`인 경우를 먼저 정해야 합니다. 보통 `target <= 0`이면 1을 반환하거나 잘못된 입력으로 처리하고, `target > prefixSum(n)`이면 `n + 1` 또는 `-1`을 반환하도록 약속합니다. 아래 코드는 범위를 벗어난 target에 대해 `n + 1`까지 반환할 수 있게 둡니다.
+
 ```cpp
 int lowerBound(long long target) const {
+    if (target <= 0) return 1;
+    if (target > prefixSum(n)) return n + 1;
+
     int idx = 0;
     int bit = 1;
     while ((bit << 1) <= n) bit <<= 1;

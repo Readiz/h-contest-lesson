@@ -118,6 +118,13 @@ int lca(int a, int b) {
 
 `LOG`는 `2^LOG > n`이 되도록 잡습니다. `n <= 200000`이면 `LOG = 20`보다 `19`가 딱 맞지만, 여유 있게 `20` 또는 `21`을 쓰는 식입니다.
 
+루트의 부모는 보통 자기 자신으로 둡니다. 예를 들어 `root = 0`이면 아래처럼 호출합니다. 루트 부모를 `-1`로 둘 경우에는 `up[u][k]`를 계산할 때 `-1` 접근을 막는 별도 처리가 필요합니다.
+
+```cpp
+depth[0] = 0;
+dfsLca(0, 0, tree);
+```
+
 ## 4. 센트로이드 분할
 
 센트로이드는 제거했을 때 남는 모든 컴포넌트 크기가 전체의 절반 이하인 정점입니다. 센트로이드 분할은 이 정점을 루트처럼 잡아 트리를 균형 있게 쪼개고, 각 조각에서 다시 센트로이드를 찾는 방법입니다.
@@ -260,6 +267,26 @@ void decompose(int u, int chainHead, const vector<vector<int>>& tree) {
         if (v == parent[u] || v == heavy[u]) continue;
         decompose(v, v, tree);
     }
+}
+```
+
+처음 빌드할 때는 모든 배열을 초기화하고, 루트의 부모를 자기 자신으로 둔 뒤 시작합니다.
+
+```cpp
+void buildHld(const vector<vector<int>>& tree, int root = 0) {
+    int n = (int)tree.size();
+
+    parent.assign(n, -1);
+    depth.assign(n, 0);
+    heavy.assign(n, -1);
+    head.assign(n, -1);
+    pos.assign(n, -1);
+    sub.assign(n, 0);
+
+    currentPos = 0;
+    parent[root] = root;
+    dfsHld(root, tree);
+    decompose(root, root, tree);
 }
 ```
 

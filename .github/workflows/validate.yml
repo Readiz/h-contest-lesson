@@ -18,4 +18,4 @@ jobs:
           python-version: "3.12"
 
       - name: Validate lessons
-        run: python scripts/validate_lessons.py
+        run: python3 scripts/validate_lessons.py
