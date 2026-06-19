@@ -57,6 +57,21 @@
       ]
     },
     {
+      "lessonId": "priority-queue-heap",
+      "title": "우선순위 큐와 힙",
+      "description": "가장 크거나 작은 후보를 빠르게 꺼내는 우선순위 큐와, 이를 구현하는 힙의 원리와 실전 패턴을 익힙니다.",
+      "summary": "binary heap, min-heap, max-heap, custom comparator, lazy deletion, 스케줄링과 상위 K개 유지 패턴까지 이어지는 우선순위 큐 입문",
+      "order": 14,
+      "tags": [
+        "priority-queue",
+        "heap",
+        "scheduler",
+        "greedy",
+        "data-structure",
+        "practice"
+      ]
+    },
+    {
       "lessonId": "heuristic",
       "title": "휴리스틱 알고리즘",
       "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 익힙니다.",
@@ -146,6 +161,21 @@
         "diameter",
         "centroid",
         "mst",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "topological-sort-dag",
+      "title": "위상 정렬과 DAG DP",
+      "description": "방향 비순환 그래프에서 의존 관계를 만족하는 순서를 만들고, 그 순서 위에서 DP를 계산하는 방법을 익힙니다.",
+      "summary": "indegree, Kahn 알고리즘, DFS 위상 정렬, 사이클 판정, DAG 최장/최단 경로 DP까지 이어지는 의존 그래프 입문",
+      "order": 24,
+      "tags": [
+        "topological-sort",
+        "dag",
+        "graph",
+        "dp",
+        "dependency",
         "practice"
       ]
     },
