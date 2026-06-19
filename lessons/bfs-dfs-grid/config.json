@@ -1,0 +1,17 @@
+{
+  "lessonId": "bfs-dfs-grid",
+  "title": "BFS/DFS와 격자 탐색",
+  "description": "그래프와 격자에서 방문 체크, 연결 요소, 최단 칸 수, flood fill을 처리하는 BFS와 DFS 기본기를 익힙니다.",
+  "summary": "큐 BFS, 재귀/반복 DFS, 방문 배열, 격자 방향 배열, 연결 요소, 최단거리, 다중 시작점 BFS까지 이어지는 탐색 입문",
+  "order": 21,
+  "tags": [
+    "bfs",
+    "dfs",
+    "grid",
+    "shortest-path",
+    "connected-components",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

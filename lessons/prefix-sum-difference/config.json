@@ -1,0 +1,16 @@
+{
+  "lessonId": "prefix-sum-difference",
+  "title": "누적합과 차분 배열",
+  "description": "구간 합을 빠르게 구하는 누적합, 여러 구간 업데이트를 한 번에 반영하는 차분 배열, 2차원 누적합까지 익힙니다.",
+  "summary": "1차원 누적합, 차분 배열, 2차원 누적합, imos 방식으로 이어지는 구간 처리 입문",
+  "order": 7,
+  "tags": [
+    "prefix-sum",
+    "difference-array",
+    "2d-prefix-sum",
+    "range-query",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

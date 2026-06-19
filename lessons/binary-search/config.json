@@ -1,0 +1,16 @@
+{
+  "lessonId": "binary-search",
+  "title": "이분 탐색과 파라메트릭 서치",
+  "description": "정렬된 배열에서 위치를 찾는 이분 탐색부터, 답의 범위를 줄여 가는 파라메트릭 서치까지 익힙니다.",
+  "summary": "lower_bound, upper_bound, 반열린 구간, 단조 판정 함수, 정답 이분 탐색으로 이어지는 이분 탐색 입문",
+  "order": 12,
+  "tags": [
+    "binary-search",
+    "parametric-search",
+    "lower-bound",
+    "monotonic",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}
