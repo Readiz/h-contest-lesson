@@ -15,6 +15,20 @@
       ]
     },
     {
+      "lessonId": "prefix-sum-difference",
+      "title": "누적합과 차분 배열",
+      "description": "구간 합을 빠르게 구하는 누적합, 여러 구간 업데이트를 한 번에 반영하는 차분 배열, 2차원 누적합까지 익힙니다.",
+      "summary": "1차원 누적합, 차분 배열, 2차원 누적합, imos 방식으로 이어지는 구간 처리 입문",
+      "order": 7,
+      "tags": [
+        "prefix-sum",
+        "difference-array",
+        "2d-prefix-sum",
+        "range-query",
+        "practice"
+      ]
+    },
+    {
       "lessonId": "greedy",
       "title": "그리디 알고리즘",
       "description": "쉬운 반례부터 대표 증명 패턴까지, 그리디 선택이 왜 최적해로 이어지는지 익힙니다.",
@@ -25,6 +39,20 @@
         "greedy-stays-ahead",
         "certificate",
         "exchange-argument",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "binary-search",
+      "title": "이분 탐색과 파라메트릭 서치",
+      "description": "정렬된 배열에서 위치를 찾는 이분 탐색부터, 답의 범위를 줄여 가는 파라메트릭 서치까지 익힙니다.",
+      "summary": "lower_bound, upper_bound, 반열린 구간, 단조 판정 함수, 정답 이분 탐색으로 이어지는 이분 탐색 입문",
+      "order": 12,
+      "tags": [
+        "binary-search",
+        "parametric-search",
+        "lower-bound",
+        "monotonic",
         "practice"
       ]
     },
@@ -87,6 +115,21 @@
       "tags": [
         "union-find",
         "disjoint-set",
+        "connected-components",
+        "practice"
+      ]
+    },
+    {
+      "lessonId": "bfs-dfs-grid",
+      "title": "BFS/DFS와 격자 탐색",
+      "description": "그래프와 격자에서 방문 체크, 연결 요소, 최단 칸 수, flood fill을 처리하는 BFS와 DFS 기본기를 익힙니다.",
+      "summary": "큐 BFS, 재귀/반복 DFS, 방문 배열, 격자 방향 배열, 연결 요소, 최단거리, 다중 시작점 BFS까지 이어지는 탐색 입문",
+      "order": 21,
+      "tags": [
+        "bfs",
+        "dfs",
+        "grid",
+        "shortest-path",
         "connected-components",
         "practice"
       ]

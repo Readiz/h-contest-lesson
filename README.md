@@ -31,11 +31,14 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 ## Lessons
 
 - [정렬 알고리즘](lessons/sorting/lesson.md)
+- [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md)
 - [그리디 알고리즘](lessons/greedy/lesson.md)
+- [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md)
 - [휴리스틱 알고리즘](lessons/heuristic/lesson.md)
 - [동적 계획법](lessons/dynamic-programming/lesson.md)
 - [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md)
 - [Union-Find 알고리즘](lessons/union-find/lesson.md)
+- [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md)
 - [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md)
 - [Dijkstra 최단거리](lessons/dijkstra/lesson.md)
 - [Sqrt Decomposition](lessons/sqrt-decomposition/lesson.md)
