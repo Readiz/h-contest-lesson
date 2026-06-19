@@ -1,0 +1,17 @@
+{
+  "lessonId": "priority-queue-heap",
+  "title": "우선순위 큐와 힙",
+  "description": "가장 크거나 작은 후보를 빠르게 꺼내는 우선순위 큐와, 이를 구현하는 힙의 원리와 실전 패턴을 익힙니다.",
+  "summary": "binary heap, min-heap, max-heap, custom comparator, lazy deletion, 스케줄링과 상위 K개 유지 패턴까지 이어지는 우선순위 큐 입문",
+  "order": 14,
+  "tags": [
+    "priority-queue",
+    "heap",
+    "scheduler",
+    "greedy",
+    "data-structure",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

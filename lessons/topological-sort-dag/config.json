@@ -1,0 +1,17 @@
+{
+  "lessonId": "topological-sort-dag",
+  "title": "위상 정렬과 DAG DP",
+  "description": "방향 비순환 그래프에서 의존 관계를 만족하는 순서를 만들고, 그 순서 위에서 DP를 계산하는 방법을 익힙니다.",
+  "summary": "indegree, Kahn 알고리즘, DFS 위상 정렬, 사이클 판정, DAG 최장/최단 경로 DP까지 이어지는 의존 그래프 입문",
+  "order": 24,
+  "tags": [
+    "topological-sort",
+    "dag",
+    "graph",
+    "dp",
+    "dependency",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}
