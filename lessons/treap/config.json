@@ -1,12 +1,14 @@
 {
   "lessonId": "treap",
-  "title": "Treap",
-  "description": "이진 탐색 트리와 heap 우선순위를 합쳐 기대 O(log n)에 삽입, 삭제, 순위 질의를 처리하는 Treap을 익힙니다.",
-  "summary": "BST 조건, random priority, split/merge, k번째 원소와 순위 질의까지 이어지는 Treap 입문",
+  "title": "BST 계열: AVL, Splay, Treap",
+  "description": "일반 BST의 한계와 균형 유지 방법을 이해하고, AVL Tree, Splay Tree, Treap의 차이와 활용 기준을 익힙니다.",
+  "summary": "BST 기본 성질, 회전, AVL 균형 조건, Splay 상각 분석 관점, Treap split/merge와 순위 질의까지 이어지는 BST 계열 정리",
   "order": 50,
   "tags": [
     "treap",
     "binary-search-tree",
+    "avl-tree",
+    "splay-tree",
     "randomized",
     "order-statistics",
     "data-structure",
