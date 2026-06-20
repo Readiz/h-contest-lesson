@@ -131,6 +131,36 @@
         "local-search",
         "simulated-annealing",
         "practice"
+      ],
+      "pages": [
+        {
+          "pageId": "modeling-and-scoring",
+          "title": "문제 모델링과 점수 함수",
+          "description": "휴리스틱이 필요한 상황, 상태 표현, 점수 함수 설계를 정리합니다.",
+          "order": 10,
+          "file": "pages/modeling-and-scoring.md"
+        },
+        {
+          "pageId": "search-strategies",
+          "title": "초기해와 지역 탐색",
+          "description": "초기해 구성, 지역 탐색, 나쁜 이동 수용 전략을 다룹니다.",
+          "order": 20,
+          "file": "pages/search-strategies.md"
+        },
+        {
+          "pageId": "beam-and-time",
+          "title": "Beam Search와 시간 관리",
+          "description": "Beam Search, 무작위 재시도, 제한 시간 관리 방법을 정리합니다.",
+          "order": 30,
+          "file": "pages/beam-and-time.md"
+        },
+        {
+          "pageId": "experiments-and-checklist",
+          "title": "실험 로그와 점검",
+          "description": "실험 로그, 개선 연산, 정확한 알고리즘과의 결합, 최종 점검을 모았습니다.",
+          "order": 40,
+          "file": "pages/experiments-and-checklist.md"
+        }
       ]
     },
     {
@@ -169,6 +199,29 @@
         "heuristic",
         "two-opt",
         "practice"
+      ],
+      "pages": [
+        {
+          "pageId": "search-and-dp",
+          "title": "완전탐색과 비트마스크 DP",
+          "description": "그래프 표현, 완전탐색, 해밀턴 경로 DP, Held-Karp DP를 정리합니다.",
+          "order": 10,
+          "file": "pages/search-and-dp.md"
+        },
+        {
+          "pageId": "restore-and-memory",
+          "title": "경로 복원과 메모리",
+          "description": "경로/사이클 차이, 경로 복원, 메모리 최적화 판단 기준을 다룹니다.",
+          "order": 20,
+          "file": "pages/restore-and-memory.md"
+        },
+        {
+          "pageId": "heuristic-and-choices",
+          "title": "휴리스틱 개선과 선택 기준",
+          "description": "큰 입력에서 쓰는 nearest neighbor, 2-opt, 근사와 선택 순서를 정리합니다.",
+          "order": 30,
+          "file": "pages/heuristic-and-choices.md"
+        }
       ]
     },
     {
@@ -325,6 +378,36 @@
         "order-statistics",
         "data-structure",
         "practice"
+      ],
+      "pages": [
+        {
+          "pageId": "bst-and-rotation",
+          "title": "BST와 회전 기본기",
+          "description": "BST 기본 연산, inorder 순회, 회전, 균형 필요성을 정리합니다.",
+          "order": 10,
+          "file": "pages/bst-and-rotation.md"
+        },
+        {
+          "pageId": "balanced-bst",
+          "title": "AVL과 Splay Tree",
+          "description": "AVL 회전과 Splay Tree의 회전 패턴 및 특징을 다룹니다.",
+          "order": 20,
+          "file": "pages/balanced-bst.md"
+        },
+        {
+          "pageId": "treap-core",
+          "title": "Treap 핵심 연산",
+          "description": "Treap 노드 구조, merge, split, 삽입과 삭제를 정리합니다.",
+          "order": 30,
+          "file": "pages/treap-core.md"
+        },
+        {
+          "pageId": "order-statistics-and-implicit",
+          "title": "순위, 전체 구현, Implicit Treap",
+          "description": "순위 질의, 전체 구현, Implicit Treap, 구조 비교와 실수 포인트를 모았습니다.",
+          "order": 40,
+          "file": "pages/order-statistics-and-implicit.md"
+        }
       ]
     }
   ]

@@ -27,7 +27,7 @@ Pull requests should edit this repository directly. For details, see [CONTRIBUTI
 When adding a new lesson, update these source files:
 
 - `lessons/<lessonId>/lesson.md`
-- `lessons.json` (`folderId` included)
+- `lessons.json` (`folderId` included, optional `pages` included)
 
 Then regenerate derived files:
 
@@ -74,6 +74,14 @@ def sort_key(item: dict) -> tuple[int, str, str]:
     )
 
 
+def page_sort_key(item: dict) -> tuple[int, str, str]:
+    return (
+        item["order"],
+        item["title"],
+        item.get("pageId", ""),
+    )
+
+
 def load_catalog() -> tuple[list[dict], list[dict]]:
     data = json.loads(LESSONS_JSON.read_text(encoding="utf-8"))
     folders = sorted(data.get("folders", []), key=sort_key)
@@ -107,6 +115,10 @@ def build_readme(folders: list[dict], lessons: list[dict]) -> str:
             lesson_id = lesson["lessonId"]
             title = lesson["title"]
             lines.append(f"- [{title}](lessons/{lesson_id}/lesson.md)\n")
+            for page in sorted(lesson.get("pages", []), key=page_sort_key):
+                lines.append(
+                    f"  - [{page['title']}](lessons/{lesson_id}/{page['file']})\n"
+                )
         lines.append("\n")
     return f"{''.join(lines).rstrip()}\n"
 
@@ -129,8 +141,21 @@ def build_index(folders: list[dict], lessons: list[dict]) -> str:
             lesson_title = escape(lesson["title"], quote=True)
             lines.append(
                 f'<li><a href="lessons/{lesson_id}/lesson.md">{lesson_title}</a> '
-                f"<code>{lesson_id}</code></li>\n"
+                f"<code>{lesson_id}</code>"
             )
+            pages = sorted(lesson.get("pages", []), key=page_sort_key)
+            if pages:
+                lines.append("\n<ul>\n")
+                for page in pages:
+                    page_title = escape(page["title"], quote=True)
+                    page_file = escape(page["file"], quote=True)
+                    page_id = escape(page["pageId"], quote=True)
+                    lines.append(
+                        f'<li><a href="lessons/{lesson_id}/{page_file}">{page_title}</a> '
+                        f"<code>{page_id}</code></li>\n"
+                    )
+                lines.append("</ul>\n")
+            lines.append("</li>\n")
         lines.append("</ul>\n</section>\n")
     lines.append("</html>\n")
     return "".join(lines)

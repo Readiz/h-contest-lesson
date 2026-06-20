@@ -13,7 +13,7 @@ Pull requests should edit this repository directly. For details, see [CONTRIBUTI
 When adding a new lesson, update these source files:
 
 - `lessons/<lessonId>/lesson.md`
-- `lessons.json` (`folderId` included)
+- `lessons.json` (`folderId` included, optional `pages` included)
 
 Then regenerate derived files:
 
@@ -44,8 +44,15 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 - [그리디 알고리즘](lessons/greedy/lesson.md)
 - [휴리스틱 알고리즘](lessons/heuristic/lesson.md)
+  - [문제 모델링과 점수 함수](lessons/heuristic/pages/modeling-and-scoring.md)
+  - [초기해와 지역 탐색](lessons/heuristic/pages/search-strategies.md)
+  - [Beam Search와 시간 관리](lessons/heuristic/pages/beam-and-time.md)
+  - [실험 로그와 점검](lessons/heuristic/pages/experiments-and-checklist.md)
 - [동적 계획법](lessons/dynamic-programming/lesson.md)
 - [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md)
+  - [완전탐색과 비트마스크 DP](lessons/tsp-hamiltonian/pages/search-and-dp.md)
+  - [경로 복원과 메모리](lessons/tsp-hamiltonian/pages/restore-and-memory.md)
+  - [휴리스틱 개선과 선택 기준](lessons/tsp-hamiltonian/pages/heuristic-and-choices.md)
 
 ### 그래프와 트리
 
@@ -68,3 +75,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Segment Tree](lessons/segment-tree/lesson.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
+  - [BST와 회전 기본기](lessons/treap/pages/bst-and-rotation.md)
+  - [AVL과 Splay Tree](lessons/treap/pages/balanced-bst.md)
+  - [Treap 핵심 연산](lessons/treap/pages/treap-core.md)
+  - [순위, 전체 구현, Implicit Treap](lessons/treap/pages/order-statistics-and-implicit.md)

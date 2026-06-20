@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LESSONS_JSON = ROOT / "lessons.json"
 LESSON_ID_RE = re.compile(r"^[a-z0-9](?:[a-z0-9-]{1,62}[a-z0-9])?$")
 FOLDER_ID_RE = LESSON_ID_RE
+PAGE_ID_RE = LESSON_ID_RE
 IMAGE_LINK_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 FENCE_RE = re.compile(r"^```(.*)$")
@@ -50,7 +51,7 @@ def strip_anchor(link: str) -> str:
     return link.split("#", 1)[0]
 
 
-def validate_local_link(base_path: Path, lesson_id: str, link: str) -> None:
+def validate_local_link(base_path: Path, lesson_id: str, link: str, safe_root: Path) -> None:
     link = strip_anchor(link)
     if not link:
         return
@@ -58,11 +59,15 @@ def validate_local_link(base_path: Path, lesson_id: str, link: str) -> None:
         return
 
     local_link = normalize_local_link(link)
-    if local_link.is_absolute() or ".." in local_link.parts:
+    if local_link.is_absolute():
         fail(f"unsafe local link in {lesson_id}: {link}")
 
     target = base_path.parent / local_link
-    if not target.exists():
+    resolved_target = target.resolve()
+    resolved_root = safe_root.resolve()
+    if resolved_target != resolved_root and resolved_root not in resolved_target.parents:
+        fail(f"unsafe local link in {lesson_id}: {link}")
+    if not resolved_target.exists():
         fail(f"missing local link target in {lesson_id}: {link}")
 
 
@@ -106,6 +111,43 @@ def validate_folder_entry(folder: object) -> dict:
     return folder
 
 
+def validate_page_file_path(value: object, lesson_id: str, page_id: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        fail(f"file is required for {lesson_id}/{page_id}")
+
+    file_path = Path(value.strip())
+    if file_path.is_absolute() or ".." in file_path.parts:
+        fail(f"unsafe file path for {lesson_id}/{page_id}: {value!r}")
+    if not file_path.parts or any(not part for part in file_path.parts):
+        fail(f"invalid file path for {lesson_id}/{page_id}: {value!r}")
+    if file_path.suffix != ".md":
+        fail(f"page file must be a markdown file for {lesson_id}/{page_id}: {value!r}")
+
+    return file_path.as_posix()
+
+
+def validate_page_entry(page: object, lesson_id: str) -> dict:
+    if not isinstance(page, dict):
+        fail(f"each page entry must be an object for {lesson_id}")
+
+    page_id = page.get("pageId")
+    title = page.get("title")
+    description = page.get("description")
+    order = page.get("order")
+
+    if not isinstance(page_id, str) or not PAGE_ID_RE.fullmatch(page_id):
+        fail(f"invalid pageId for {lesson_id}: {page_id!r}")
+    if not isinstance(title, str) or not title.strip():
+        fail(f"title is required for {lesson_id}/{page_id}")
+    if not isinstance(description, str) or not description.strip():
+        fail(f"description is required for {lesson_id}/{page_id}")
+    if not isinstance(order, int):
+        fail(f"order must be an integer for {lesson_id}/{page_id}")
+
+    page["file"] = validate_page_file_path(page.get("file"), lesson_id, page_id)
+    return page
+
+
 def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     if not isinstance(lesson, dict):
         fail("each lesson entry must be an object")
@@ -117,6 +159,7 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     order = lesson.get("order")
     folder_id = lesson.get("folderId")
     tags = lesson.get("tags")
+    pages_raw = lesson.get("pages", [])
 
     if not isinstance(lesson_id, str) or not LESSON_ID_RE.fullmatch(lesson_id):
         fail(f"invalid lessonId: {lesson_id!r}")
@@ -134,6 +177,28 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
         fail(f"tags must be a non-empty array for {lesson_id}")
     if not all(isinstance(tag, str) and tag.strip() for tag in tags):
         fail(f"tags must contain only non-empty strings for {lesson_id}")
+    if not isinstance(pages_raw, list):
+        fail(f"pages must be an array for {lesson_id}")
+
+    pages = [validate_page_entry(page, lesson_id) for page in pages_raw]
+    sorted_pages = sorted(
+        pages,
+        key=lambda page: (page["order"], page["title"], page["pageId"]),
+    )
+    if pages != sorted_pages:
+        fail(f"pages must be sorted by order, title, pageId for {lesson_id}")
+
+    seen_page_ids: set[str] = set()
+    seen_page_orders: set[int] = set()
+    for page in pages:
+        page_id = page["pageId"]
+        page_order = page["order"]
+        if page_id in seen_page_ids:
+            fail(f"duplicated pageId for {lesson_id}: {page_id}")
+        seen_page_ids.add(page_id)
+        if page_order in seen_page_orders:
+            fail(f"duplicated page order for {lesson_id}: {page_order}")
+        seen_page_orders.add(page_order)
 
     return lesson
 
@@ -201,6 +266,7 @@ def main() -> None:
         seen_orders.add(order)
 
         lesson_path = ROOT / "lessons" / lesson_id / "lesson.md"
+        lesson_root = ROOT / "lessons" / lesson_id
         if not lesson_path.exists():
             fail(f"missing lesson file: {lesson_path.relative_to(ROOT)}")
 
@@ -212,10 +278,30 @@ def main() -> None:
         validate_code_fences(markdown, lesson_id)
 
         for link in markdown_asset_links(markdown):
-            validate_local_link(lesson_path, lesson_id, link)
+            validate_local_link(lesson_path, lesson_id, link, lesson_root)
 
         for link in markdown_regular_links(markdown):
-            validate_local_link(lesson_path, lesson_id, link)
+            validate_local_link(lesson_path, lesson_id, link, lesson_root)
+
+        for page in lesson.get("pages", []):
+            page_id = page["pageId"]
+            page_path = ROOT / "lessons" / lesson_id / page["file"]
+            if not page_path.exists():
+                fail(f"missing lesson page file: {page_path.relative_to(ROOT)}")
+
+            page_markdown = page_path.read_text(encoding="utf-8")
+            page_h1 = first_h1(page_markdown)
+            if not page_h1:
+                fail(f"missing page title for {lesson_id}/{page_id}")
+
+            link_context = f"{lesson_id}/{page_id}"
+            validate_code_fences(page_markdown, link_context)
+
+            for link in markdown_asset_links(page_markdown):
+                validate_local_link(page_path, link_context, link, lesson_root)
+
+            for link in markdown_regular_links(page_markdown):
+                validate_local_link(page_path, link_context, link, lesson_root)
 
     validate_generated_files()
 
