@@ -28,6 +28,16 @@ Generated files:
 
 If the lesson uses images or other local assets, add them under `lessons/<lessonId>/lesson-assets/`.
 
+## 학습 로드맵
+
+처음 보는 주제라면 아래 순서로 훑는 것을 권장합니다. 이미 익숙한 내용은 건너뛰고, 각 레슨의 `prerequisites`와 `nextLessons` 메타데이터를 참고해 앞뒤 개념을 확인하세요.
+
+1. 입문 1단계: 복잡도 감각, 정렬, 누적합, 이분 탐색, 투 포인터
+2. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
+3. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
+4. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
+5. 심화 확장: Flow, 문자열, 수학 심화, 기하, 오프라인 쿼리
+
 ## Lessons
 
 ### 기본기
@@ -36,7 +46,9 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 - [정렬 알고리즘](lessons/sorting/lesson.md)
 - [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md)
+- [투 포인터와 슬라이딩 윈도우](lessons/two-pointers-sliding-window/lesson.md)
 - [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md)
+- [좌표 압축](lessons/coordinate-compression/lesson.md)
 
 ### 전략과 최적화
 
@@ -60,6 +72,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 - [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md)
 - [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md)
+- [0-1 BFS](lessons/zero-one-bfs/lesson.md)
 - [위상 정렬과 DAG DP](lessons/topological-sort-dag/lesson.md)
 - [Dijkstra 최단거리](lessons/dijkstra/lesson.md)
 
@@ -79,3 +92,9 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [AVL과 Splay Tree](lessons/treap/pages/balanced-bst.md)
   - [Treap 핵심 연산](lessons/treap/pages/treap-core.md)
   - [순위, 전체 구현, Implicit Treap](lessons/treap/pages/order-statistics-and-implicit.md)
+
+### 수학
+
+모듈러 연산, 정수론, 조합론처럼 경우의 수와 수식 처리에 필요한 개념입니다.
+
+- [모듈러 연산과 빠른 거듭제곱](lessons/modular-arithmetic/lesson.md)

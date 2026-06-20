@@ -23,6 +23,12 @@
       "title": "자료구조",
       "description": "우선순위 큐, Union-Find, 구간 자료구조, 균형 트리 계열을 모았습니다.",
       "order": 40
+    },
+    {
+      "folderId": "math",
+      "title": "수학",
+      "description": "모듈러 연산, 정수론, 조합론처럼 경우의 수와 수식 처리에 필요한 개념입니다.",
+      "order": 50
     }
   ],
   "lessons": [
@@ -39,7 +45,19 @@
         "counting-sort",
         "radix-sort",
         "practice"
-      ]
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 35,
+      "prerequisites": [],
+      "nextLessons": [
+        "prefix-sum-difference",
+        "binary-search",
+        "coordinate-compression"
+      ],
+      "relatedLessons": [
+        "two-pointers-sliding-window"
+      ],
+      "pages": []
     },
     {
       "lessonId": "prefix-sum-difference",
@@ -54,7 +72,19 @@
         "2d-prefix-sum",
         "range-query",
         "practice"
-      ]
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 40,
+      "prerequisites": [],
+      "nextLessons": [
+        "two-pointers-sliding-window",
+        "fenwick-tree",
+        "segment-tree"
+      ],
+      "relatedLessons": [
+        "sqrt-decomposition"
+      ],
+      "pages": []
     },
     {
       "lessonId": "greedy",
@@ -69,6 +99,48 @@
         "certificate",
         "exchange-argument",
         "practice"
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "sorting"
+      ],
+      "nextLessons": [
+        "priority-queue-heap",
+        "dynamic-programming"
+      ],
+      "relatedLessons": [
+        "heuristic"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "two-pointers-sliding-window",
+      "title": "투 포인터와 슬라이딩 윈도우",
+      "description": "정렬된 배열의 양끝 포인터, 조건을 만족하는 연속 구간, 빈도 관리가 필요한 슬라이딩 윈도우를 익힙니다.",
+      "summary": "양끝 포인터, 같은 방향 투 포인터, 최소/최대 구간, 빈도 배열과 map으로 이어지는 구간 탐색 입문",
+      "order": 11,
+      "folderId": "basics",
+      "tags": [
+        "two-pointers",
+        "sliding-window",
+        "monotonic",
+        "range",
+        "practice"
+      ],
+      "pages": [],
+      "level": "beginner",
+      "estimatedMinutes": 40,
+      "prerequisites": [
+        "sorting",
+        "prefix-sum-difference"
+      ],
+      "nextLessons": [
+        "binary-search",
+        "coordinate-compression"
+      ],
+      "relatedLessons": [
+        "prefix-sum-difference"
       ]
     },
     {
@@ -84,6 +156,50 @@
         "lower-bound",
         "monotonic",
         "practice"
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "sorting"
+      ],
+      "nextLessons": [
+        "coordinate-compression",
+        "dynamic-programming"
+      ],
+      "relatedLessons": [
+        "two-pointers-sliding-window"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "coordinate-compression",
+      "title": "좌표 압축",
+      "description": "값의 범위는 크지만 서로 다른 값의 개수가 작을 때 정렬과 lower_bound로 안전한 압축 인덱스를 만드는 방법을 익힙니다.",
+      "summary": "정렬, unique, lower_bound, 원래 값 복원, Fenwick Tree와 Segment Tree 연결까지 이어지는 압축 기법",
+      "order": 13,
+      "folderId": "basics",
+      "tags": [
+        "coordinate-compression",
+        "sorting",
+        "lower-bound",
+        "range-query",
+        "practice"
+      ],
+      "pages": [],
+      "level": "beginner",
+      "estimatedMinutes": 35,
+      "prerequisites": [
+        "sorting",
+        "binary-search"
+      ],
+      "nextLessons": [
+        "fenwick-tree",
+        "segment-tree",
+        "sqrt-decomposition"
+      ],
+      "relatedLessons": [
+        "sorting",
+        "fenwick-tree"
       ]
     },
     {
@@ -100,7 +216,20 @@
         "greedy",
         "data-structure",
         "practice"
-      ]
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 40,
+      "prerequisites": [
+        "sorting"
+      ],
+      "nextLessons": [
+        "dijkstra",
+        "meldable-heap"
+      ],
+      "relatedLessons": [
+        "greedy"
+      ],
+      "pages": []
     },
     {
       "lessonId": "meldable-heap",
@@ -116,7 +245,20 @@
         "priority-queue",
         "data-structure",
         "practice"
-      ]
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "priority-queue-heap",
+        "union-find"
+      ],
+      "nextLessons": [
+        "treap"
+      ],
+      "relatedLessons": [
+        "priority-queue-heap"
+      ],
+      "pages": []
     },
     {
       "lessonId": "heuristic",
@@ -161,6 +303,43 @@
           "order": 40,
           "file": "pages/experiments-and-checklist.md"
         }
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 80,
+      "prerequisites": [
+        "greedy",
+        "dynamic-programming"
+      ],
+      "nextLessons": [
+        "tsp-hamiltonian"
+      ],
+      "relatedLessons": [
+        "tsp-hamiltonian"
+      ]
+    },
+    {
+      "lessonId": "modular-arithmetic",
+      "title": "모듈러 연산과 빠른 거듭제곱",
+      "description": "큰 경우의 수와 곱셈을 안전하게 다루기 위한 나머지 연산, 빠른 거듭제곱, 모듈러 역원을 익힙니다.",
+      "summary": "mod 덧셈/뺄셈/곱셈, 음수 처리, binary exponentiation, Fermat 역원으로 이어지는 수학 기본기",
+      "order": 17,
+      "folderId": "math",
+      "tags": [
+        "modular-arithmetic",
+        "fast-power",
+        "number-theory",
+        "combinatorics",
+        "practice"
+      ],
+      "pages": [],
+      "level": "beginner",
+      "estimatedMinutes": 45,
+      "prerequisites": [],
+      "nextLessons": [
+        "dynamic-programming"
+      ],
+      "relatedLessons": [
+        "topological-sort-dag"
       ]
     },
     {
@@ -181,7 +360,22 @@
         "bitmask-dp",
         "digit-dp",
         "practice"
-      ]
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 90,
+      "prerequisites": [
+        "prefix-sum-difference",
+        "binary-search",
+        "modular-arithmetic"
+      ],
+      "nextLessons": [
+        "tsp-hamiltonian",
+        "topological-sort-dag"
+      ],
+      "relatedLessons": [
+        "greedy"
+      ],
+      "pages": []
     },
     {
       "lessonId": "tsp-hamiltonian",
@@ -222,6 +416,18 @@
           "order": 30,
           "file": "pages/heuristic-and-choices.md"
         }
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "dynamic-programming",
+        "graph-tree-basics"
+      ],
+      "nextLessons": [
+        "heuristic"
+      ],
+      "relatedLessons": [
+        "tree-advanced"
       ]
     },
     {
@@ -236,7 +442,17 @@
         "disjoint-set",
         "connected-components",
         "practice"
-      ]
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 35,
+      "prerequisites": [],
+      "nextLessons": [
+        "graph-tree-basics"
+      ],
+      "relatedLessons": [
+        "meldable-heap"
+      ],
+      "pages": []
     },
     {
       "lessonId": "bfs-dfs-grid",
@@ -252,7 +468,19 @@
         "shortest-path",
         "connected-components",
         "practice"
-      ]
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 55,
+      "prerequisites": [],
+      "nextLessons": [
+        "zero-one-bfs",
+        "dijkstra",
+        "graph-tree-basics"
+      ],
+      "relatedLessons": [
+        "topological-sort-dag"
+      ],
+      "pages": []
     },
     {
       "lessonId": "graph-tree-basics",
@@ -268,6 +496,48 @@
         "centroid",
         "mst",
         "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "bfs-dfs-grid",
+        "union-find"
+      ],
+      "nextLessons": [
+        "tree-advanced",
+        "topological-sort-dag",
+        "dijkstra"
+      ],
+      "relatedLessons": [
+        "tsp-hamiltonian"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "zero-one-bfs",
+      "title": "0-1 BFS",
+      "description": "간선 비용이 0 또는 1인 그래프에서 deque로 Dijkstra보다 가볍게 최단거리를 구하는 방법을 익힙니다.",
+      "summary": "비용 0은 deque 앞, 비용 1은 뒤에 넣는 BFS와 Dijkstra 사이의 최단거리 기법",
+      "order": 23,
+      "folderId": "graphs",
+      "tags": [
+        "zero-one-bfs",
+        "bfs",
+        "shortest-path",
+        "deque",
+        "practice"
+      ],
+      "pages": [],
+      "level": "intermediate",
+      "estimatedMinutes": 35,
+      "prerequisites": [
+        "bfs-dfs-grid"
+      ],
+      "nextLessons": [
+        "dijkstra"
+      ],
+      "relatedLessons": [
+        "bfs-dfs-grid"
       ]
     },
     {
@@ -284,7 +554,20 @@
         "dp",
         "dependency",
         "practice"
-      ]
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "bfs-dfs-grid",
+        "dynamic-programming"
+      ],
+      "nextLessons": [
+        "dijkstra"
+      ],
+      "relatedLessons": [
+        "graph-tree-basics"
+      ],
+      "pages": []
     },
     {
       "lessonId": "dijkstra",
@@ -299,7 +582,20 @@
         "graph",
         "priority-queue",
         "practice"
-      ]
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "bfs-dfs-grid",
+        "priority-queue-heap"
+      ],
+      "nextLessons": [
+        "zero-one-bfs"
+      ],
+      "relatedLessons": [
+        "graph-tree-basics"
+      ],
+      "pages": []
     },
     {
       "lessonId": "sqrt-decomposition",
@@ -314,7 +610,20 @@
         "block",
         "data-structure",
         "practice"
-      ]
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "prefix-sum-difference"
+      ],
+      "nextLessons": [
+        "fenwick-tree",
+        "segment-tree"
+      ],
+      "relatedLessons": [
+        "coordinate-compression"
+      ],
+      "pages": []
     },
     {
       "lessonId": "fenwick-tree",
@@ -329,7 +638,20 @@
         "prefix-sum",
         "range-query",
         "practice"
-      ]
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "prefix-sum-difference",
+        "coordinate-compression"
+      ],
+      "nextLessons": [
+        "segment-tree"
+      ],
+      "relatedLessons": [
+        "sqrt-decomposition"
+      ],
+      "pages": []
     },
     {
       "lessonId": "segment-tree",
@@ -344,7 +666,20 @@
         "lazy-propagation",
         "data-structure",
         "practice"
-      ]
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "prefix-sum-difference"
+      ],
+      "nextLessons": [
+        "tree-advanced"
+      ],
+      "relatedLessons": [
+        "fenwick-tree",
+        "sqrt-decomposition"
+      ],
+      "pages": []
     },
     {
       "lessonId": "tree-advanced",
@@ -360,7 +695,20 @@
         "lca",
         "euler-tour",
         "practice"
-      ]
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "graph-tree-basics",
+        "segment-tree"
+      ],
+      "nextLessons": [
+        "treap"
+      ],
+      "relatedLessons": [
+        "tsp-hamiltonian"
+      ],
+      "pages": []
     },
     {
       "lessonId": "treap",
@@ -408,6 +756,17 @@
           "order": 40,
           "file": "pages/order-statistics-and-implicit.md"
         }
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "binary-search",
+        "sorting"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "segment-tree",
+        "tree-advanced"
       ]
     }
   ]

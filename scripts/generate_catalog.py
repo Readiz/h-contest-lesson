@@ -42,6 +42,16 @@ Generated files:
 
 If the lesson uses images or other local assets, add them under `lessons/<lessonId>/lesson-assets/`.
 
+## 학습 로드맵
+
+처음 보는 주제라면 아래 순서로 훑는 것을 권장합니다. 이미 익숙한 내용은 건너뛰고, 각 레슨의 `prerequisites`와 `nextLessons` 메타데이터를 참고해 앞뒤 개념을 확인하세요.
+
+1. 입문 1단계: 복잡도 감각, 정렬, 누적합, 이분 탐색, 투 포인터
+2. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
+3. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
+4. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
+5. 심화 확장: Flow, 문자열, 수학 심화, 기하, 오프라인 쿼리
+
 ## Lessons
 
 """

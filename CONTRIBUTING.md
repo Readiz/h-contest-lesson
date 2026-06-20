@@ -48,7 +48,7 @@ lessons/<new-lesson-id>/lesson.md
 lessons.json
 ```
 
-`lessons.json`에는 새 레슨이 들어갈 `folderId`를 함께 지정합니다. 하위 페이지가 있으면 `pageId`, `title`, `description`, `order`, `file`을 가진 `pages` 배열을 추가합니다. 기존 폴더에 맞지 않는 주제라면 `folders` 배열에 새 폴더를 추가하고, `folderId`, `title`, `description`, `order`를 함께 작성합니다.
+`lessons.json`에는 새 레슨이 들어갈 `folderId`, `level`, `estimatedMinutes`, `prerequisites`, `nextLessons`, `relatedLessons`를 함께 지정합니다. 하위 페이지가 있으면 `pageId`, `title`, `description`, `order`, `file`을 가진 `pages` 배열을 추가합니다. 기존 폴더에 맞지 않는 주제라면 `folders` 배열에 새 폴더를 추가하고, `folderId`, `title`, `description`, `order`를 함께 작성합니다.
 
 이미지가 필요하면 아래 디렉터리에 추가합니다.
 
@@ -103,11 +103,15 @@ ZeroOneBFS
 5. 시간 복잡도
 6. 자주 하는 실수
 7. 문제를 볼 때 체크할 조건
+8. 대표 문제로 연결하기
+9. 연습 문제
+
+h-contest 문제 링크를 넣을 때는 `/practice/<PROBLEM_ID>` 형식을 사용합니다. 운영 화면에서는 h-contest에 로그인한 사용자에게만 이 링크가 실제 문제 진입 링크로 활성화됩니다.
 
 ## PR 전에 확인할 것
 
 - `lessons/<lessonId>/lesson.md`를 추가하거나 수정했나요?
-- `lessons.json`의 title, description, summary, order, folderId, tags, pages를 갱신했나요?
+- `lessons.json`의 title, description, summary, order, folderId, level, estimatedMinutes, prerequisites, nextLessons, relatedLessons, tags, pages를 갱신했나요?
 - `python3 scripts/generate_catalog.py`를 실행했나요?
 - `python3 scripts/validate_lessons.py`를 실행했나요?
 - `lesson.md`의 H1 제목과 `lessons.json`의 title이 일치하나요?

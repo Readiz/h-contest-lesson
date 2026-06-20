@@ -12,9 +12,14 @@ LESSONS_JSON = ROOT / "lessons.json"
 LESSON_ID_RE = re.compile(r"^[a-z0-9](?:[a-z0-9-]{1,62}[a-z0-9])?$")
 FOLDER_ID_RE = LESSON_ID_RE
 PAGE_ID_RE = LESSON_ID_RE
-IMAGE_LINK_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
+IMAGE_LINK_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 FENCE_RE = re.compile(r"^```(.*)$")
+LESSON_LEVELS = {"beginner", "intermediate", "advanced"}
+LESSON_REFERENCE_FIELDS = ("prerequisites", "nextLessons", "relatedLessons")
+HCONTEST_PROBLEM_ROUTE_RE = re.compile(
+    r"^/practice/[A-Z0-9]{8,16}(?:/(?:editorial|submissions/[0-9]+))?$",
+)
 
 
 def fail(message: str) -> None:
@@ -29,7 +34,14 @@ def first_h1(markdown: str) -> str | None:
 
 
 def markdown_asset_links(markdown: str) -> list[str]:
-    return [match.group(1) for match in IMAGE_LINK_RE.finditer(markdown)]
+    return [match.group(2) for match in IMAGE_LINK_RE.finditer(markdown)]
+
+
+def validate_image_alt_text(markdown: str, lesson_id: str) -> None:
+    for match in IMAGE_LINK_RE.finditer(markdown):
+        alt = match.group(1).strip()
+        if not alt:
+            fail(f"empty image alt text in {lesson_id}: {match.group(2)}")
 
 
 def markdown_regular_links(markdown: str) -> list[str]:
@@ -39,6 +51,11 @@ def markdown_regular_links(markdown: str) -> list[str]:
 def is_external_or_embedded_link(link: str) -> bool:
     parsed = urlparse(link)
     return parsed.scheme in {"http", "https", "data", "blob", "mailto"}
+
+
+def is_hcontest_problem_route_link(link: str) -> bool:
+    parsed = urlparse(link)
+    return not parsed.scheme and HCONTEST_PROBLEM_ROUTE_RE.fullmatch(parsed.path) is not None
 
 
 def normalize_local_link(link: str) -> Path:
@@ -56,6 +73,8 @@ def validate_local_link(base_path: Path, lesson_id: str, link: str, safe_root: P
     if not link:
         return
     if is_external_or_embedded_link(link):
+        return
+    if is_hcontest_problem_route_link(link):
         return
 
     local_link = normalize_local_link(link)
@@ -148,6 +167,23 @@ def validate_page_entry(page: object, lesson_id: str) -> dict:
     return page
 
 
+def validate_lesson_reference_list(value: object, lesson_id: str, field_name: str) -> list[str]:
+    if not isinstance(value, list):
+        fail(f"{field_name} must be an array for {lesson_id}")
+    refs: list[str] = []
+    seen_refs: set[str] = set()
+    for raw_ref in value:
+        if not isinstance(raw_ref, str) or not LESSON_ID_RE.fullmatch(raw_ref):
+            fail(f"invalid {field_name} reference for {lesson_id}: {raw_ref!r}")
+        if raw_ref == lesson_id:
+            fail(f"{field_name} must not reference itself for {lesson_id}")
+        if raw_ref in seen_refs:
+            fail(f"duplicated {field_name} reference for {lesson_id}: {raw_ref}")
+        refs.append(raw_ref)
+        seen_refs.add(raw_ref)
+    return refs
+
+
 def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     if not isinstance(lesson, dict):
         fail("each lesson entry must be an object")
@@ -158,6 +194,8 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     summary = lesson.get("summary")
     order = lesson.get("order")
     folder_id = lesson.get("folderId")
+    level = lesson.get("level")
+    estimated_minutes = lesson.get("estimatedMinutes")
     tags = lesson.get("tags")
     pages_raw = lesson.get("pages", [])
 
@@ -173,12 +211,19 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
         fail(f"order must be an integer for {lesson_id}")
     if not isinstance(folder_id, str) or folder_id not in folder_ids:
         fail(f"folderId must reference a folder for {lesson_id}: {folder_id!r}")
+    if not isinstance(level, str) or level not in LESSON_LEVELS:
+        fail(f"level must be one of {sorted(LESSON_LEVELS)} for {lesson_id}: {level!r}")
+    if not isinstance(estimated_minutes, int) or estimated_minutes <= 0:
+        fail(f"estimatedMinutes must be a positive integer for {lesson_id}")
     if not isinstance(tags, list) or not tags:
         fail(f"tags must be a non-empty array for {lesson_id}")
     if not all(isinstance(tag, str) and tag.strip() for tag in tags):
         fail(f"tags must contain only non-empty strings for {lesson_id}")
     if not isinstance(pages_raw, list):
         fail(f"pages must be an array for {lesson_id}")
+
+    for field_name in LESSON_REFERENCE_FIELDS:
+        lesson[field_name] = validate_lesson_reference_list(lesson.get(field_name), lesson_id, field_name)
 
     pages = [validate_page_entry(page, lesson_id) for page in pages_raw]
     sorted_pages = sorted(
@@ -201,6 +246,15 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
         seen_page_orders.add(page_order)
 
     return lesson
+
+
+def validate_lesson_references(lessons: list[dict], lesson_ids: set[str]) -> None:
+    for lesson in lessons:
+        lesson_id = lesson["lessonId"]
+        for field_name in LESSON_REFERENCE_FIELDS:
+            for ref in lesson[field_name]:
+                if ref not in lesson_ids:
+                    fail(f"{field_name} for {lesson_id} references missing lessonId: {ref}")
 
 
 def validate_generated_files() -> None:
@@ -276,6 +330,7 @@ def main() -> None:
             fail(f"title mismatch for {lesson_id}: lessons.json={title!r}, h1={h1!r}")
 
         validate_code_fences(markdown, lesson_id)
+        validate_image_alt_text(markdown, lesson_id)
 
         for link in markdown_asset_links(markdown):
             validate_local_link(lesson_path, lesson_id, link, lesson_root)
@@ -296,6 +351,7 @@ def main() -> None:
 
             link_context = f"{lesson_id}/{page_id}"
             validate_code_fences(page_markdown, link_context)
+            validate_image_alt_text(page_markdown, link_context)
 
             for link in markdown_asset_links(page_markdown):
                 validate_local_link(page_path, link_context, link, lesson_root)
@@ -303,6 +359,7 @@ def main() -> None:
             for link in markdown_regular_links(page_markdown):
                 validate_local_link(page_path, link_context, link, lesson_root)
 
+    validate_lesson_references(lessons, seen_ids)
     validate_generated_files()
 
     print(f"OK: {len(lessons)} lessons validated")

@@ -22,7 +22,7 @@
 새 레슨 추가 시:
 
 - [ ] `lessons/<lessonId>/lesson.md`를 추가하거나 수정했습니다.
-- [ ] `lessons.json`의 title, description, summary, order, tags를 갱신했습니다.
+- [ ] `lessons.json`의 title, description, summary, order, folderId, level, estimatedMinutes, prerequisites, nextLessons, relatedLessons, tags를 갱신했습니다.
 - [ ] `python3 scripts/generate_catalog.py`를 실행했습니다.
 - [ ] `python3 scripts/validate_lessons.py`를 실행했습니다.
 - [ ] `lesson.md`의 H1 제목과 `lessons.json`의 title이 일치합니다.
