@@ -48,4 +48,4 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Fenwick Tree](lessons/fenwick-tree/lesson.md)
 - [Segment Tree](lessons/segment-tree/lesson.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
-- [Treap](lessons/treap/lesson.md)
+- [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
