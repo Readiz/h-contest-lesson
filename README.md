@@ -32,11 +32,12 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 처음 보는 주제라면 아래 순서로 훑는 것을 권장합니다. 이미 익숙한 내용은 건너뛰고, 각 레슨의 `prerequisites`와 `nextLessons` 메타데이터를 참고해 앞뒤 개념을 확인하세요.
 
-1. 입문 1단계: 복잡도 감각, 정렬, 누적합, 이분 탐색, 투 포인터
-2. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
-3. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
-4. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
-5. 심화 확장: Flow, 문자열, 수학 심화, 기하, 오프라인 쿼리
+1. 입문 0단계: 복잡도 감각, 대회용 C++ 기본기
+2. 입문 1단계: 정렬, 누적합, 이분 탐색, 투 포인터
+3. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
+4. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
+5. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
+6. 심화 확장: Flow, 문자열, 수학 심화, 기하, 오프라인 쿼리
 
 ## Lessons
 
@@ -44,6 +45,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 정렬, 누적합, 이분 탐색처럼 문제 풀이의 출발점이 되는 개념입니다.
 
+- [복잡도와 입력 크기 감각](lessons/complexity-input-size/lesson.md)
+- [대회용 C++ 기본기](lessons/cpp-contest-basics/lesson.md)
 - [정렬 알고리즘](lessons/sorting/lesson.md)
 - [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md)
 - [투 포인터와 슬라이딩 윈도우](lessons/two-pointers-sliding-window/lesson.md)

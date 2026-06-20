@@ -33,6 +33,64 @@
   ],
   "lessons": [
     {
+      "lessonId": "complexity-input-size",
+      "title": "복잡도와 입력 크기 감각",
+      "description": "입력 제한을 보고 가능한 시간 복잡도와 메모리 사용량을 빠르게 가늠하는 기본 감각을 익힙니다.",
+      "summary": "n의 크기, 시간 제한, 메모리 제한을 보고 완전탐색, 정렬, 선형 풀이, 로그 풀이 중 가능한 후보를 좁히는 입문 레슨",
+      "order": 1,
+      "folderId": "basics",
+      "tags": [
+        "complexity",
+        "input-size",
+        "time-limit",
+        "memory-limit",
+        "practice"
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 30,
+      "prerequisites": [],
+      "nextLessons": [
+        "cpp-contest-basics",
+        "sorting",
+        "prefix-sum-difference",
+        "binary-search"
+      ],
+      "relatedLessons": [
+        "dynamic-programming"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "cpp-contest-basics",
+      "title": "대회용 C++ 기본기",
+      "description": "빠른 입출력, STL 컨테이너, long long, overflow, 디버깅 출력처럼 알고리즘 구현 전에 필요한 C++ 기본기를 정리합니다.",
+      "summary": "대회용 C++ 템플릿, vector/string/pair/struct, long long과 overflow, 컨테이너 선택, 디버깅 습관까지 이어지는 구현 기본기",
+      "order": 3,
+      "folderId": "basics",
+      "tags": [
+        "cpp",
+        "io",
+        "stl",
+        "overflow",
+        "debugging",
+        "practice"
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 35,
+      "prerequisites": [
+        "complexity-input-size"
+      ],
+      "nextLessons": [
+        "sorting",
+        "bfs-dfs-grid",
+        "dynamic-programming"
+      ],
+      "relatedLessons": [
+        "priority-queue-heap"
+      ],
+      "pages": []
+    },
+    {
       "lessonId": "sorting",
       "title": "정렬 알고리즘",
       "description": "정렬 기준, 안정성, 시간 복잡도, 정수 전용 정렬까지 문제 풀이에 필요한 정렬 감각을 익힙니다.",
@@ -48,7 +106,10 @@
       ],
       "level": "beginner",
       "estimatedMinutes": 35,
-      "prerequisites": [],
+      "prerequisites": [
+        "complexity-input-size",
+        "cpp-contest-basics"
+      ],
       "nextLessons": [
         "prefix-sum-difference",
         "binary-search",
@@ -75,7 +136,9 @@
       ],
       "level": "beginner",
       "estimatedMinutes": 40,
-      "prerequisites": [],
+      "prerequisites": [
+        "complexity-input-size"
+      ],
       "nextLessons": [
         "two-pointers-sliding-window",
         "fenwick-tree",
