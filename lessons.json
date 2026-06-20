@@ -1,4 +1,30 @@
 {
+  "folders": [
+    {
+      "folderId": "basics",
+      "title": "기본기",
+      "description": "정렬, 누적합, 이분 탐색처럼 문제 풀이의 출발점이 되는 개념입니다.",
+      "order": 10
+    },
+    {
+      "folderId": "strategy",
+      "title": "전략과 최적화",
+      "description": "그리디, 동적 계획법, 휴리스틱처럼 풀이 방향을 정하는 사고 도구입니다.",
+      "order": 20
+    },
+    {
+      "folderId": "graphs",
+      "title": "그래프와 트리",
+      "description": "탐색, 최단거리, DAG, 트리 구조를 다루는 그래프 계열 개념입니다.",
+      "order": 30
+    },
+    {
+      "folderId": "data-structures",
+      "title": "자료구조",
+      "description": "우선순위 큐, Union-Find, 구간 자료구조, 균형 트리 계열을 모았습니다.",
+      "order": 40
+    }
+  ],
   "lessons": [
     {
       "lessonId": "sorting",
@@ -6,6 +32,7 @@
       "description": "정렬 기준, 안정성, 시간 복잡도, 정수 전용 정렬까지 문제 풀이에 필요한 정렬 감각을 익힙니다.",
       "summary": "정렬 기준 세우기, 안정 정렬, counting sort, radix sort로 이어지는 정렬 입문",
       "order": 5,
+      "folderId": "basics",
       "tags": [
         "sorting",
         "stable-sort",
@@ -20,6 +47,7 @@
       "description": "구간 합을 빠르게 구하는 누적합, 여러 구간 업데이트를 한 번에 반영하는 차분 배열, 2차원 누적합까지 익힙니다.",
       "summary": "1차원 누적합, 차분 배열, 2차원 누적합, imos 방식으로 이어지는 구간 처리 입문",
       "order": 7,
+      "folderId": "basics",
       "tags": [
         "prefix-sum",
         "difference-array",
@@ -34,6 +62,7 @@
       "description": "쉬운 반례부터 대표 증명 패턴까지, 그리디 선택이 왜 최적해로 이어지는지 익힙니다.",
       "summary": "거스름돈, 회의실 배정, 강의실 배정, 마감 문제로 보는 그리디 입문",
       "order": 10,
+      "folderId": "strategy",
       "tags": [
         "greedy",
         "greedy-stays-ahead",
@@ -48,6 +77,7 @@
       "description": "정렬된 배열에서 위치를 찾는 이분 탐색부터, 답의 범위를 줄여 가는 파라메트릭 서치까지 익힙니다.",
       "summary": "lower_bound, upper_bound, 반열린 구간, 단조 판정 함수, 정답 이분 탐색으로 이어지는 이분 탐색 입문",
       "order": 12,
+      "folderId": "basics",
       "tags": [
         "binary-search",
         "parametric-search",
@@ -62,6 +92,7 @@
       "description": "가장 크거나 작은 후보를 빠르게 꺼내는 우선순위 큐와, 이를 구현하는 힙의 원리와 실전 패턴을 익힙니다.",
       "summary": "binary heap, min-heap, max-heap, custom comparator, lazy deletion, 스케줄링과 상위 K개 유지 패턴까지 이어지는 우선순위 큐 입문",
       "order": 14,
+      "folderId": "data-structures",
       "tags": [
         "priority-queue",
         "heap",
@@ -77,6 +108,7 @@
       "description": "두 힙을 빠르게 합치는 meld 연산을 중심으로 Leftist Heap과 Skew Heap의 구조와 구현을 익힙니다.",
       "summary": "mergeable priority queue, Leftist Heap, Skew Heap, meld 연산, lazy deletion 대안까지 이어지는 힙 심화",
       "order": 15,
+      "folderId": "data-structures",
       "tags": [
         "meldable-heap",
         "leftist-heap",
@@ -92,6 +124,7 @@
       "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 익힙니다.",
       "summary": "점수 함수, 초기해, 지역 탐색, 담금질 기법, 시간 관리와 실험 로그까지 이어지는 휴리스틱 입문",
       "order": 16,
+      "folderId": "strategy",
       "tags": [
         "heuristic",
         "optimization",
@@ -106,6 +139,7 @@
       "description": "큰 문제를 겹치는 부분문제로 나누어 저장하며 푸는 동적 계획법의 상태 설계, 전이, 순회 순서와 대표 기법을 익힙니다.",
       "summary": "메모이제이션, bottom-up, 배낭, LIS, 구간 DP, 트리 DP, 비트마스크 DP, digit DP까지 이어지는 DP 입문",
       "order": 18,
+      "folderId": "strategy",
       "tags": [
         "dynamic-programming",
         "dp",
@@ -125,6 +159,7 @@
       "description": "모든 정점을 한 번씩 방문하는 해밀턴 경로와 TSP를 완전탐색, 비트마스크 DP, 휴리스틱 개선으로 연결해 익힙니다.",
       "summary": "해밀턴 경로/사이클, TSP 완전탐색, Held-Karp DP, 경로 복원, nearest neighbor와 2-opt 휴리스틱까지 한 번에 정리",
       "order": 19,
+      "folderId": "strategy",
       "tags": [
         "tsp",
         "hamiltonian-path",
@@ -142,6 +177,7 @@
       "description": "서로소 집합을 빠르게 합치고 조회하는 Union-Find의 구조와 최적화를 익힙니다.",
       "summary": "find, union, 경로 압축, 크기 기준 합치기, 대표별 값 집계까지 한 번에 정리",
       "order": 20,
+      "folderId": "data-structures",
       "tags": [
         "union-find",
         "disjoint-set",
@@ -155,6 +191,7 @@
       "description": "그래프와 격자에서 방문 체크, 연결 요소, 최단 칸 수, flood fill을 처리하는 BFS와 DFS 기본기를 익힙니다.",
       "summary": "큐 BFS, 재귀/반복 DFS, 방문 배열, 격자 방향 배열, 연결 요소, 최단거리, 다중 시작점 BFS까지 이어지는 탐색 입문",
       "order": 21,
+      "folderId": "graphs",
       "tags": [
         "bfs",
         "dfs",
@@ -170,6 +207,7 @@
       "description": "그래프 표현, DFS/BFS, 트리 지름, 센트로이드, 최소 신장 트리까지 문제 풀이에 자주 나오는 기본 성질을 정리합니다.",
       "summary": "인접 리스트, 트리의 n-1 간선 성질, 지름, 센트로이드, MST를 한 번에 정리",
       "order": 22,
+      "folderId": "graphs",
       "tags": [
         "graph",
         "tree",
@@ -185,6 +223,7 @@
       "description": "방향 비순환 그래프에서 의존 관계를 만족하는 순서를 만들고, 그 순서 위에서 DP를 계산하는 방법을 익힙니다.",
       "summary": "indegree, Kahn 알고리즘, DFS 위상 정렬, 사이클 판정, DAG 최장/최단 경로 DP까지 이어지는 의존 그래프 입문",
       "order": 24,
+      "folderId": "graphs",
       "tags": [
         "topological-sort",
         "dag",
@@ -200,6 +239,7 @@
       "description": "음수 간선이 없는 그래프에서 한 시작점으로부터 각 정점까지의 최단거리를 구하는 Dijkstra 알고리즘을 익힙니다.",
       "summary": "거리 확정, relax, 우선순위 큐, 음수 간선 금지 조건까지 이어지는 Dijkstra 입문",
       "order": 25,
+      "folderId": "graphs",
       "tags": [
         "dijkstra",
         "shortest-path",
@@ -214,6 +254,7 @@
       "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",
       "summary": "구간 합, 점 업데이트, 블록 크기 선택, lazy 블록 갱신까지 이어지는 sqrt decomposition 입문",
       "order": 30,
+      "folderId": "data-structures",
       "tags": [
         "sqrt-decomposition",
         "range-query",
@@ -228,6 +269,7 @@
       "description": "배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.",
       "summary": "prefix 합, lowbit, 점 업데이트, 구간 합, lower_bound까지 이어지는 Fenwick Tree 입문",
       "order": 35,
+      "folderId": "data-structures",
       "tags": [
         "fenwick-tree",
         "binary-indexed-tree",
@@ -242,6 +284,7 @@
       "description": "배열 구간 정보를 트리로 나누어 점 업데이트, 구간 질의, lazy 구간 업데이트를 처리하는 방법을 익힙니다.",
       "summary": "bottom-up, top-down 재귀, lazy propagation까지 이어지는 Segment Tree 입문",
       "order": 40,
+      "folderId": "data-structures",
       "tags": [
         "segment-tree",
         "range-query",
@@ -256,6 +299,7 @@
       "description": "트리 기본 성질 위에서 센트로이드 분할, Heavy-Light Decomposition, Euler Tour, LCA 같은 심화 도구를 연결해 익힙니다.",
       "summary": "Euler Tour, LCA, 센트로이드 분할, Heavy-Light Decomposition, small-to-large까지 이어지는 트리 심화",
       "order": 45,
+      "folderId": "data-structures",
       "tags": [
         "tree",
         "centroid-decomposition",
@@ -271,6 +315,7 @@
       "description": "일반 BST의 한계와 균형 유지 방법을 이해하고, AVL Tree, Splay Tree, Treap의 차이와 활용 기준을 익힙니다.",
       "summary": "BST 기본 성질, 회전, AVL 균형 조건, Splay 상각 분석 관점, Treap split/merge와 순위 질의까지 이어지는 BST 계열 정리",
       "order": 50,
+      "folderId": "data-structures",
       "tags": [
         "treap",
         "binary-search-tree",

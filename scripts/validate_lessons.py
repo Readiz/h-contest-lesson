@@ -10,6 +10,7 @@ from urllib.parse import unquote, urlparse
 ROOT = Path(__file__).resolve().parents[1]
 LESSONS_JSON = ROOT / "lessons.json"
 LESSON_ID_RE = re.compile(r"^[a-z0-9](?:[a-z0-9-]{1,62}[a-z0-9])?$")
+FOLDER_ID_RE = LESSON_ID_RE
 IMAGE_LINK_RE = re.compile(r"!\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 FENCE_RE = re.compile(r"^```(.*)$")
@@ -84,7 +85,28 @@ def validate_code_fences(markdown: str, lesson_id: str) -> None:
         fail(f"unclosed code fence in {lesson_id}")
 
 
-def validate_manifest_entry(lesson: object) -> dict:
+def validate_folder_entry(folder: object) -> dict:
+    if not isinstance(folder, dict):
+        fail("each folder entry must be an object")
+
+    folder_id = folder.get("folderId")
+    title = folder.get("title")
+    description = folder.get("description")
+    order = folder.get("order")
+
+    if not isinstance(folder_id, str) or not FOLDER_ID_RE.fullmatch(folder_id):
+        fail(f"invalid folderId: {folder_id!r}")
+    if not isinstance(title, str) or not title.strip():
+        fail(f"title is required for folder {folder_id}")
+    if not isinstance(description, str) or not description.strip():
+        fail(f"description is required for folder {folder_id}")
+    if not isinstance(order, int):
+        fail(f"order must be an integer for folder {folder_id}")
+
+    return folder
+
+
+def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     if not isinstance(lesson, dict):
         fail("each lesson entry must be an object")
 
@@ -93,6 +115,7 @@ def validate_manifest_entry(lesson: object) -> dict:
     description = lesson.get("description")
     summary = lesson.get("summary")
     order = lesson.get("order")
+    folder_id = lesson.get("folderId")
     tags = lesson.get("tags")
 
     if not isinstance(lesson_id, str) or not LESSON_ID_RE.fullmatch(lesson_id):
@@ -105,6 +128,8 @@ def validate_manifest_entry(lesson: object) -> dict:
         fail(f"summary is required for {lesson_id}")
     if not isinstance(order, int):
         fail(f"order must be an integer for {lesson_id}")
+    if not isinstance(folder_id, str) or folder_id not in folder_ids:
+        fail(f"folderId must reference a folder for {lesson_id}: {folder_id!r}")
     if not isinstance(tags, list) or not tags:
         fail(f"tags must be a non-empty array for {lesson_id}")
     if not all(isinstance(tag, str) and tag.strip() for tag in tags):
@@ -123,12 +148,35 @@ def validate_generated_files() -> None:
 
 def main() -> None:
     data = json.loads(LESSONS_JSON.read_text(encoding="utf-8"))
+    folders_raw = data.get("folders")
     lessons_raw = data.get("lessons")
 
+    if not isinstance(folders_raw, list):
+        fail("lessons.json must contain a folders array")
     if not isinstance(lessons_raw, list):
         fail("lessons.json must contain a lessons array")
 
-    lessons = [validate_manifest_entry(lesson) for lesson in lessons_raw]
+    folders = [validate_folder_entry(folder) for folder in folders_raw]
+    sorted_folders = sorted(
+        folders,
+        key=lambda folder: (folder["order"], folder["title"], folder["folderId"]),
+    )
+    if folders != sorted_folders:
+        fail("folders must be sorted by order, title, folderId")
+
+    seen_folder_ids: set[str] = set()
+    seen_folder_orders: set[int] = set()
+    for folder in folders:
+        folder_id = folder["folderId"]
+        order = folder["order"]
+        if folder_id in seen_folder_ids:
+            fail(f"duplicated folderId: {folder_id}")
+        seen_folder_ids.add(folder_id)
+        if order in seen_folder_orders:
+            fail(f"duplicated folder order: {order}")
+        seen_folder_orders.add(order)
+
+    lessons = [validate_manifest_entry(lesson, seen_folder_ids) for lesson in lessons_raw]
     sorted_lessons = sorted(
         lessons,
         key=lambda lesson: (lesson["order"], lesson["title"], lesson["lessonId"]),

@@ -27,7 +27,7 @@ Pull requests should edit this repository directly. For details, see [CONTRIBUTI
 When adding a new lesson, update these source files:
 
 - `lessons/<lessonId>/lesson.md`
-- `lessons.json`
+- `lessons.json` (`folderId` included)
 
 Then regenerate derived files:
 
@@ -52,53 +52,95 @@ INDEX_PREFIX = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>h-contest lessons</title>
-<style>body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:880px;margin:40px auto;padding:0 20px;line-height:1.55}code{background:#f2f2f2;padding:2px 4px;border-radius:4px}a{color:#0b63ce}</style>
+<style>body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:880px;margin:40px auto;padding:0 20px 48px;line-height:1.55;color:#172033}code{background:#f2f2f2;padding:2px 4px;border-radius:4px}a{color:#0b63ce}section{margin-top:28px}h2{margin:0 0 6px;font-size:22px}p{margin:0 0 10px;color:#526070}ul{margin-top:8px}</style>
 <h1>h-contest lessons</h1>
 <p><a href="lessons.json">lessons.json</a></p>
-<ul>
 """
 
 
-def load_lessons() -> list[dict]:
-    data = json.loads(LESSONS_JSON.read_text(encoding="utf-8"))
-    lessons = data["lessons"]
-    return sorted(
-        lessons,
-        key=lambda lesson: (
-            lesson["order"],
-            lesson["title"],
-            lesson["lessonId"],
-        ),
+FALLBACK_FOLDER = {
+    "folderId": "uncategorized",
+    "title": "기타",
+    "description": "아직 폴더가 지정되지 않은 레슨입니다.",
+    "order": 9999,
+}
+
+
+def sort_key(item: dict) -> tuple[int, str, str]:
+    return (
+        item["order"],
+        item["title"],
+        item.get("lessonId", item.get("folderId", "")),
     )
 
 
-def build_readme(lessons: list[dict]) -> str:
+def load_catalog() -> tuple[list[dict], list[dict]]:
+    data = json.loads(LESSONS_JSON.read_text(encoding="utf-8"))
+    folders = sorted(data.get("folders", []), key=sort_key)
+    lessons = sorted(data["lessons"], key=sort_key)
+    used_folder_ids = {lesson.get("folderId", FALLBACK_FOLDER["folderId"]) for lesson in lessons}
+    known_folder_ids = {folder["folderId"] for folder in folders}
+    if used_folder_ids - known_folder_ids:
+        folders.append(FALLBACK_FOLDER)
+    return folders, lessons
+
+
+def group_lessons_by_folder(lessons: list[dict]) -> dict[str, list[dict]]:
+    grouped: dict[str, list[dict]] = {}
+    for lesson in lessons:
+        folder_id = lesson.get("folderId", FALLBACK_FOLDER["folderId"])
+        grouped.setdefault(folder_id, []).append(lesson)
+    return grouped
+
+
+def build_readme(folders: list[dict], lessons: list[dict]) -> str:
     lines = [README_HEADER]
-    for lesson in lessons:
-        lesson_id = lesson["lessonId"]
-        title = lesson["title"]
-        lines.append(f"- [{title}](lessons/{lesson_id}/lesson.md)\n")
-    return "".join(lines)
+    grouped = group_lessons_by_folder(lessons)
+    for folder in folders:
+        folder_lessons = grouped.get(folder["folderId"], [])
+        if not folder_lessons:
+            continue
+        lines.append(f"### {folder['title']}\n\n")
+        if folder.get("description"):
+            lines.append(f"{folder['description']}\n\n")
+        for lesson in folder_lessons:
+            lesson_id = lesson["lessonId"]
+            title = lesson["title"]
+            lines.append(f"- [{title}](lessons/{lesson_id}/lesson.md)\n")
+        lines.append("\n")
+    return f"{''.join(lines).rstrip()}\n"
 
 
-def build_index(lessons: list[dict]) -> str:
+def build_index(folders: list[dict], lessons: list[dict]) -> str:
     lines = [INDEX_PREFIX]
-    for lesson in lessons:
-        lesson_id = escape(lesson["lessonId"], quote=True)
-        title = escape(lesson["title"], quote=True)
-        lines.append(
-            f'<li><a href="lessons/{lesson_id}/lesson.md">{title}</a> '
-            f"<code>{lesson_id}</code></li>\n"
-        )
-    lines.append("</ul>\n</html>\n")
+    grouped = group_lessons_by_folder(lessons)
+    for folder in folders:
+        folder_lessons = grouped.get(folder["folderId"], [])
+        if not folder_lessons:
+            continue
+        title = escape(folder["title"], quote=True)
+        description = escape(folder.get("description", ""), quote=True)
+        lines.append(f"<section>\n<h2>{title}</h2>\n")
+        if description:
+            lines.append(f"<p>{description}</p>\n")
+        lines.append("<ul>\n")
+        for lesson in folder_lessons:
+            lesson_id = escape(lesson["lessonId"], quote=True)
+            lesson_title = escape(lesson["title"], quote=True)
+            lines.append(
+                f'<li><a href="lessons/{lesson_id}/lesson.md">{lesson_title}</a> '
+                f"<code>{lesson_id}</code></li>\n"
+            )
+        lines.append("</ul>\n</section>\n")
+    lines.append("</html>\n")
     return "".join(lines)
 
 
 def expected_files() -> dict[Path, str]:
-    lessons = load_lessons()
+    folders, lessons = load_catalog()
     return {
-        README: build_readme(lessons),
-        INDEX: build_index(lessons),
+        README: build_readme(folders, lessons),
+        INDEX: build_index(folders, lessons),
     }
 
 

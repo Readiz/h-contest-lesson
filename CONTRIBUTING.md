@@ -40,6 +40,8 @@ lessons/<new-lesson-id>/lesson.md
 lessons.json
 ```
 
+`lessons.json`에는 새 레슨이 들어갈 `folderId`를 함께 지정합니다. 기존 폴더에 맞지 않는 주제라면 `folders` 배열에 새 폴더를 추가하고, `folderId`, `title`, `description`, `order`를 함께 작성합니다.
+
 이미지가 필요하면 아래 디렉터리에 추가합니다.
 
 ```text
@@ -97,7 +99,7 @@ ZeroOneBFS
 ## PR 전에 확인할 것
 
 - `lessons/<lessonId>/lesson.md`를 추가하거나 수정했나요?
-- `lessons.json`의 title, description, summary, order, tags를 갱신했나요?
+- `lessons.json`의 title, description, summary, order, folderId, tags를 갱신했나요?
 - `python3 scripts/generate_catalog.py`를 실행했나요?
 - `python3 scripts/validate_lessons.py`를 실행했나요?
 - `lesson.md`의 H1 제목과 `lessons.json`의 title이 일치하나요?
