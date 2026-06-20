@@ -72,11 +72,26 @@
       ]
     },
     {
+      "lessonId": "meldable-heap",
+      "title": "Meldable Heap",
+      "description": "두 힙을 빠르게 합치는 meld 연산을 중심으로 Leftist Heap과 Skew Heap의 구조와 구현을 익힙니다.",
+      "summary": "mergeable priority queue, Leftist Heap, Skew Heap, meld 연산, lazy deletion 대안까지 이어지는 힙 심화",
+      "order": 15,
+      "tags": [
+        "meldable-heap",
+        "leftist-heap",
+        "skew-heap",
+        "priority-queue",
+        "data-structure",
+        "practice"
+      ]
+    },
+    {
       "lessonId": "heuristic",
       "title": "휴리스틱 알고리즘",
       "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 익힙니다.",
       "summary": "점수 함수, 초기해, 지역 탐색, 담금질 기법, 시간 관리와 실험 로그까지 이어지는 휴리스틱 입문",
-      "order": 15,
+      "order": 16,
       "tags": [
         "heuristic",
         "optimization",
