@@ -35,6 +35,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [그리디 알고리즘](lessons/greedy/lesson.md)
 - [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md)
 - [우선순위 큐와 힙](lessons/priority-queue-heap/lesson.md)
+- [Meldable Heap](lessons/meldable-heap/lesson.md)
 - [휴리스틱 알고리즘](lessons/heuristic/lesson.md)
 - [동적 계획법](lessons/dynamic-programming/lesson.md)
 - [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md)
