@@ -13,26 +13,32 @@
 - `gcd-extended-euclid-crt`: gcd, extended Euclid, 일반 CRT, SPF sieve를 정수론 심화 레슨으로 공개했습니다. 남은 수학 심화는 조합론, 행렬 거듭제곱, FFT/NTT 쪽으로 이어갑니다.
 - `testing-and-stress`: edge case, brute force, random stress, 성능 테스트를 풀이 검증 레슨으로 공개했습니다.
 - `proof-and-invariants`: invariant, exchange argument, monotonicity, DP 증명 틀, counterexample를 풀이 정당성 레슨으로 공개했습니다.
+- `trie-aho-corasick`: KMP/Z 이후 문자열 다중 패턴 매칭으로 이어지는 Trie, 실패 링크, 출력 전파, 각 패턴별 등장 집계를 공개했습니다. 남은 문자열 심화는 Suffix Array/LCP 이후 suffix automaton 후보로 이어갑니다.
+- `suffix-array-lcp`: suffix 정렬, Kasai LCP, 패턴 검색, 반복/서로 다른 부분 문자열 계산을 문자열 심화 레슨으로 공개했습니다. 남은 문자열 심화는 suffix automaton 후보로 이어갑니다.
+- `min-cost-flow`: Max Flow 이후 비용이 붙은 유량 모델로 이어지는 residual cost, shortest augmenting path, assignment 모델링을 공개했습니다. 남은 그래프 심화는 Floyd-Warshall과 matching/cover duality 후보로 이어갑니다.
+- `rotating-calipers`: Convex Hull 이후 antipodal pair, hull 지름, 폭 계산으로 이어지는 기하 심화 레슨을 공개했습니다. 남은 기하 심화는 sweep line geometry 후보로 이어갑니다.
+- `sparse-table-rmq`: 정적 배열의 RMQ, idempotent 연산, LCP RMQ, Euler Tour LCA 연결을 자료구조 심화 레슨으로 공개했습니다. 남은 자료구조 확장은 persistent segment tree 후보로 이어갑니다.
+- `combinatorics-ncr`: factorial 기반 nCr, 포함-배제, Lucas 정리를 모듈러 조합론 레슨으로 공개했습니다. 남은 수학 심화는 matrix exponentiation과 FFT/NTT 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `trie-aho-corasick` | Trie, 다중 패턴 매칭, Aho-Corasick | TODO: 문자열 다중 패턴 `/practice/...` 문제 필요 |
-| 2 | `suffix-array-lcp` | Suffix Array, LCP, suffix 기반 문자열 질의 | TODO: suffix 구조 `/practice/...` 문제 필요 |
-| 3 | `min-cost-flow` | 비용이 있는 Flow, shortest augmenting path | TODO: Min-Cost Flow `/practice/...` 문제 필요 |
-| 4 | `rotating-calipers` | Convex Hull 위의 지름, 폭, antipodal pair | TODO: 기하 심화 `/practice/...` 문제 필요 |
-| 5 | `combinatorics-ncr` | nCr, inclusion-exclusion, Lucas/CRT 조합론 | TODO: 조합론 `/practice/...` 문제 필요 |
+| 1 | `persistent-segment-tree` | 버전이 있는 Segment Tree, k번째 수 질의 | TODO: persistent 자료구조 `/practice/...` 문제 필요 |
+| 2 | `suffix-automaton` | 모든 부분 문자열을 상태로 압축하는 문자열 automaton | TODO: suffix automaton `/practice/...` 문제 필요 |
+| 3 | `floyd-warshall` | 모든 정점 쌍 최단거리, transitive closure | TODO: APSP `/practice/...` 문제 필요 |
+| 4 | `matrix-exponentiation` | 선형 점화식, 그래프 walk 수, 행렬 빠른 거듭제곱 | TODO: 행렬 거듭제곱 `/practice/...` 문제 필요 |
+| 5 | `fft-ntt` | 다항식 곱셈, convolution, NTT | TODO: convolution `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `trie-aho-corasick`, `suffix-array-lcp` |
-| 그래프 심화 | `floyd-warshall`, `min-cost-flow` |
-| 자료구조/오프라인 | `persistent-segment-tree`, `sparse-table-rmq` |
-| 수학 심화 | `combinatorics-ncr`, `matrix-exponentiation`, `fft-ntt` |
-| 기하 | `rotating-calipers`, `sweep-line-geometry` |
+| 문자열 | `suffix-automaton` |
+| 그래프 심화 | `floyd-warshall`, `matching-cover-duality` |
+| 자료구조/오프라인 | `persistent-segment-tree` |
+| 수학 심화 | `matrix-exponentiation`, `fft-ntt` |
+| 기하 | `sweep-line-geometry` |
 
 ## 공개 레슨으로 올리기 전 조건
 

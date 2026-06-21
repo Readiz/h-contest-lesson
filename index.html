@@ -530,8 +530,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></h3>
+<code class="lesson-id">min-cost-flow</code>
+</div>
+<p class="lesson-description">용량과 비용이 함께 있는 flow에서 정해진 유량을 최소 비용으로 보내는 shortest augmenting path 모델링을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">75분</span>
+</div>
+<div class="tag-list">
+<span class="tag">min-cost-flow</span>
+<span class="tag">flow</span>
+<span class="tag">shortest-path</span>
+<span class="tag">assignment</span>
+<span class="tag">graph</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
 </article>
 </div>
 </section>
@@ -621,8 +643,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></h3>
+<code class="lesson-id">sparse-table-rmq</code>
+</div>
+<p class="lesson-description">업데이트가 없는 배열에서 구간 최솟값, gcd, LCP RMQ를 빠르게 처리하는 Sparse Table을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">45분</span>
+</div>
+<div class="tag-list">
+<span class="tag">sparse-table</span>
+<span class="tag">rmq</span>
+<span class="tag">range-query</span>
+<span class="tag">lcp</span>
+<span class="tag">static-query</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -664,7 +708,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
 <ul class="page-list">
 <li><a href="lessons/segment-tree/pages/basic-range-query.md">기본 구간 질의</a> <code>basic-range-query</code></li>
 <li><a href="lessons/segment-tree/pages/bottom-up-implementation.md">Bottom-up 구현</a> <code>bottom-up-implementation</code></li>
@@ -771,8 +815,50 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/two-pointers-sliding-window/lesson.md">투 포인터와 슬라이딩 윈도우</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></h3>
+<code class="lesson-id">trie-aho-corasick</code>
+</div>
+<p class="lesson-description">여러 문자열을 Trie에 저장하고 실패 링크를 붙여 다중 패턴 매칭을 선형 시간에 처리하는 방법을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">60분</span>
+</div>
+<div class="tag-list">
+<span class="tag">trie</span>
+<span class="tag">aho-corasick</span>
+<span class="tag">multi-pattern-matching</span>
+<span class="tag">automaton</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/bfs-dfs-grid/lesson.md">BFS/DFS와 격자 탐색</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></h3>
+<code class="lesson-id">suffix-array-lcp</code>
+</div>
+<p class="lesson-description">모든 suffix를 사전순으로 정렬하고 LCP 배열로 반복 부분 문자열, 패턴 검색, 부분 문자열 개수를 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">65분</span>
+</div>
+<div class="tag-list">
+<span class="tag">suffix-array</span>
+<span class="tag">lcp</span>
+<span class="tag">string</span>
+<span class="tag">doubling</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
 </article>
 </div>
 </section>
@@ -799,8 +885,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></h3>
+<code class="lesson-id">rotating-calipers</code>
+</div>
+<p class="lesson-description">Convex Hull 위에서 antipodal pair를 선형 시간에 훑어 지름, 폭, 가장 먼 두 점 문제를 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+</div>
+<div class="tag-list">
+<span class="tag">geometry</span>
+<span class="tag">rotating-calipers</span>
+<span class="tag">convex-hull</span>
+<span class="tag">diameter</span>
+<span class="tag">antipodal-pair</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/two-pointers-sliding-window/lesson.md">투 포인터와 슬라이딩 윈도우</a></p>
 </article>
 </div>
 </section>
@@ -826,7 +934,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> 없음</p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a></p>
 </article>
 <article class="lesson-card">
@@ -848,8 +956,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></h3>
+<code class="lesson-id">combinatorics-ncr</code>
+</div>
+<p class="lesson-description">모듈러 조합 계산, 포함-배제, Lucas 정리로 경우의 수 문제를 체계적으로 세는 방법을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">65분</span>
+</div>
+<div class="tag-list">
+<span class="tag">combinatorics</span>
+<span class="tag">ncr</span>
+<span class="tag">inclusion-exclusion</span>
+<span class="tag">lucas-theorem</span>
+<span class="tag">modular-arithmetic</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
 </article>
 </div>
 </section>

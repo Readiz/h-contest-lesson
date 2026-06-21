@@ -94,6 +94,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md)
 - [SCC와 2-SAT](lessons/scc-2sat/lesson.md)
 - [Max Flow, Min Cut, Bipartite Matching](lessons/max-flow-min-cut/lesson.md)
+- [Min-Cost Flow](lessons/min-cost-flow/lesson.md)
 
 ### 자료구조
 
@@ -103,6 +104,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Meldable Heap](lessons/meldable-heap/lesson.md)
 - [Union-Find 알고리즘](lessons/union-find/lesson.md)
 - [Sqrt Decomposition](lessons/sqrt-decomposition/lesson.md)
+- [Sparse Table과 RMQ](lessons/sparse-table-rmq/lesson.md)
 - [Fenwick Tree](lessons/fenwick-tree/lesson.md)
 - [Segment Tree](lessons/segment-tree/lesson.md)
   - [기본 구간 질의](lessons/segment-tree/pages/basic-range-query.md)
@@ -122,12 +124,15 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 패턴 매칭, 해싱, Trie, suffix 구조처럼 문자열을 빠르게 비교하고 탐색하는 개념입니다.
 
 - [문자열 매칭: KMP, Z, Rolling Hash](lessons/string-matching-kmp-z/lesson.md)
+- [Trie와 Aho-Corasick](lessons/trie-aho-corasick/lesson.md)
+- [Suffix Array와 LCP](lessons/suffix-array-lcp/lesson.md)
 
 ### 기하
 
 CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기본 개념입니다.
 
 - [기하 기본: CCW, 선분 교차, Convex Hull](lessons/geometry-ccw-segment-intersection/lesson.md)
+- [Rotating Calipers](lessons/rotating-calipers/lesson.md)
 
 ### 수학
 
@@ -135,3 +140,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 
 - [모듈러 연산과 빠른 거듭제곱](lessons/modular-arithmetic/lesson.md)
 - [정수론 심화: GCD, Extended Euclid, CRT, Sieve](lessons/gcd-extended-euclid-crt/lesson.md)
+- [조합론: nCr, 포함-배제, Lucas](lessons/combinatorics-ncr/lesson.md)
