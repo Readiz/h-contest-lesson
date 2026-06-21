@@ -4,6 +4,8 @@
 
 이 레슨은 알고리즘 레슨을 따라가기 전에 익혀 두면 좋은 대회용 C++ 습관을 정리합니다. 문법 전체를 다루기보다, 문제 풀이에서 자주 막히는 부분에 집중합니다.
 
+> 이 레슨은 `#include <bits/stdc++.h>`, STL 컨테이너, C++17 표준 라이브러리를 사용할 수 있는 일반적인 C++ 알고리즘 대회 환경을 기준으로 합니다. 일부 h-contest 휴리스틱/제한 환경에서는 STL이나 C 표준 헤더 사용이 제한될 수 있으므로, 그런 문제에서는 휴리스틱 레슨의 고정 배열/직접 구현 방식을 따릅니다.
+
 ## 0. 선수 지식과 이어지는 레슨
 
 - 선수 지식: 변수, 조건문, 반복문, 함수
@@ -251,9 +253,9 @@ bool inside(int r, int c, int h, int w) {
 
 ## 10. 연습 문제
 
-| 단계 | 문제 | 목표 |
-| --- | --- | --- |
-| 입문 | 배열 합과 최댓값 출력 | 빠른 입출력, `vector`, `long long` 합계 |
-| 표준 | 값과 인덱스를 함께 정렬하기 | `pair`, `struct`, comparator 작성 |
-| 응용 | 여러 컨테이너로 후보 관리 | `queue`, `priority_queue`, `set`의 선택 기준 확인 |
-| 함정 | 큰 수 곱셈과 1-index 입력 처리 | overflow와 인덱스 변환 실수 줄이기 |
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 배열 합과 최댓값 출력 문제 추가 | 빠른 입출력, `vector`, `long long` 합계 | `ios::sync_with_stdio(false)` |
+| 표준 | TODO: 값과 인덱스를 함께 정렬하는 문제 추가 | `pair`, `struct`, comparator 작성 | comparator, tie-break |
+| 응용 | TODO: 여러 컨테이너로 후보 관리하는 문제 추가 | `queue`, `priority_queue`, `set`의 선택 기준 확인 | container choice |
+| 함정 | TODO: 큰 수 곱셈과 1-index 입력 처리 문제 추가 | overflow와 인덱스 변환 실수 줄이기 | `1LL`, 0-index |

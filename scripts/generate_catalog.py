@@ -24,6 +24,8 @@ The public API is generated from or synchronized with this repository.
 
 Pull requests should edit this repository directly. For details, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+Planned topics and missing practice-problem links are tracked in [ROADMAP.md](ROADMAP.md).
+
 When adding a new lesson, update these source files:
 
 - `lessons/<lessonId>/lesson.md`
@@ -33,6 +35,7 @@ Then regenerate derived files:
 
 ```bash
 python3 scripts/generate_catalog.py
+python3 scripts/validate_lessons.py
 ```
 
 Generated files:
@@ -51,7 +54,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 3. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
 4. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
 5. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
-6. 심화 확장: Flow, 문자열, 수학 심화, 기하, 오프라인 쿼리
+6. 심화 확장: 문자열 매칭, SCC/2-SAT, Flow, 정수론 심화, 기하, 오프라인 쿼리, 검증/증명
 
 ## Lessons
 

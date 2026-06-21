@@ -91,3 +91,12 @@ void swapAssignedMachines(const Problem& p, State& s, int taskA, int taskB) {
 8. 파라미터를 어떤 입력 묶음으로 비교할 것인가?
 
 이 질문들이 정리되면, 휴리스틱은 막연한 감이 아니라 반복해서 개선할 수 있는 실험 가능한 풀이가 됩니다.
+
+## 17. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | [맨해튼 TSP](/practice/TSPTESTX) | 순열 해와 점수 함수를 만들고 초기해를 개선 | nearest neighbor, 2-opt |
+| 표준 | [맨해튼 해밀턴 경로](/practice/HAMPATHX) | 시작점 고정 경로와 순회 문제 차이 확인 | path, permutation |
+| 응용 | [물류 주문 배정](/practice/ALLOCATE) | 제약을 만족하는 배정과 거리 점수 개선 | assignment, inventory |
+| 함정 | [작업 스케줄링](/practice/SCHEDULX) | 지역 탐색이 특정 seed에만 맞춰지는 문제 점검 | load balance, seed |

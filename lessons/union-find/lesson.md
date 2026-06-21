@@ -274,6 +274,13 @@ unite(a, d);
 
 ## 14. 연습 문제
 
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | 아래 손 추적 예제 | `find`, `unite`, component 개수 변화를 직접 따라가기 | path compression |
+| 표준 | [모임으로 나뉜 팀](/practice/TEAMSIZE) | 모임 기록을 같은 컴포넌트로 합치고 팀 크기 집계 | DSU, component size |
+| 응용 | TODO: Kruskal MST 문제 추가 | 비용 순서대로 간선을 보며 사이클 방지 | Kruskal |
+| 함정 | TODO: rollback이 필요한 오프라인 연결성 문제 추가 | 일반 Union-Find로 삭제를 처리할 수 없는 조건 확인 | rollback DSU |
+
 아래 연산을 손으로 따라가 보세요.
 
 ```text

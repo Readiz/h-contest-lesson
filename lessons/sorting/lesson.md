@@ -227,9 +227,9 @@ void radix_sort_u32(int n, unsigned int values[]) {
 
 ## 9. 연습 문제
 
-| 단계 | 문제 | 목표 |
-| --- | --- | --- |
-| 입문 | 값과 인덱스를 함께 정렬하기 | 동률 처리와 comparator 작성 |
-| 표준 | [정수 정렬 함수](/practice/SORTTEST) | 입력 크기와 값 범위를 보고 radix sort 선택 |
-| 응용 | 좌표 압축 전처리 | 정렬 결과를 압축 인덱스로 연결 |
-| 함정 | 안정성이 필요한 다중 기준 정렬 | `sort`와 `stable_sort`의 선택 기준 확인 |
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 값과 인덱스를 함께 정렬하는 문제 추가 | 동률 처리와 comparator 작성 | comparator, tie-break |
+| 표준 | [정수 정렬 함수](/practice/SORTTEST) | 입력 크기와 값 범위를 보고 radix sort 선택 | radix sort, value range |
+| 응용 | TODO: 좌표 압축 전처리 문제 추가 | 정렬 결과를 압축 인덱스로 연결 | sort + unique |
+| 함정 | TODO: 안정성이 필요한 다중 기준 정렬 문제 추가 | `sort`와 `stable_sort`의 선택 기준 확인 | stable sort |

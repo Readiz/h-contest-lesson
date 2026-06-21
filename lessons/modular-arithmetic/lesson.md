@@ -162,9 +162,9 @@ long long comb(int n, int r, long long mod) {
 
 ## 11. 연습 문제
 
-| 단계 | 문제 | 목표 |
-| --- | --- | --- |
-| 입문 | 큰 피보나치 수를 mod로 출력 | DP 전이마다 mod 적용 |
-| 표준 | `a^b mod M` | 빠른 거듭제곱 구현 |
-| 응용 | 여러 `nCr` 질의 | factorial과 inverse factorial 전처리 |
-| 함정 | 포함-배제 경우의 수 | 음수 나머지 정규화 |
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 큰 피보나치 수를 mod로 출력하는 문제 추가 | DP 전이마다 mod 적용 | mod 덧셈 |
+| 표준 | TODO: `a^b mod M` 문제 추가 | 빠른 거듭제곱 구현 | binary exponentiation |
+| 응용 | TODO: 여러 `nCr` 질의 문제 추가 | factorial과 inverse factorial 전처리 | Fermat inverse |
+| 함정 | TODO: 포함-배제 경우의 수 문제 추가 | 음수 나머지 정규화 | negative modulo |

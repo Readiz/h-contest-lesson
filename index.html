@@ -213,7 +213,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a></p>
 </article>
 <article class="lesson-card">
@@ -234,7 +234,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/tsp-hamiltonian/lesson.md">TSP와 해밀턴 경로</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/tsp-hamiltonian/lesson.md">TSP와 해밀턴 경로</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/tsp-hamiltonian/lesson.md">TSP와 해밀턴 경로</a></p>
 <ul class="page-list">
 <li><a href="lessons/heuristic/pages/modeling-and-scoring.md">문제 모델링과 점수 함수</a> <code>modeling-and-scoring</code></li>
@@ -268,6 +268,13 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a> <a href="lessons/binary-search/lesson.md">이분 탐색과 파라메트릭 서치</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/tsp-hamiltonian/lesson.md">TSP와 해밀턴 경로</a> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a></p>
+<ul class="page-list">
+<li><a href="lessons/dynamic-programming/pages/state-and-transition.md">상태와 전이</a> <code>state-and-transition</code></li>
+<li><a href="lessons/dynamic-programming/pages/knapsack-and-lis.md">배낭과 LIS</a> <code>knapsack-and-lis</code></li>
+<li><a href="lessons/dynamic-programming/pages/interval-tree-bitmask.md">구간, 트리, 비트마스크 DP</a> <code>interval-tree-bitmask</code></li>
+<li><a href="lessons/dynamic-programming/pages/digit-dp-and-optimization.md">Digit DP와 최적화 감각</a> <code>digit-dp-and-optimization</code></li>
+<li><a href="lessons/dynamic-programming/pages/practice-set.md">연습 문제</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -297,6 +304,50 @@ p{margin:0;color:var(--muted)}
 <li><a href="lessons/tsp-hamiltonian/pages/restore-and-memory.md">경로 복원과 메모리</a> <code>restore-and-memory</code></li>
 <li><a href="lessons/tsp-hamiltonian/pages/heuristic-and-choices.md">휴리스틱 개선과 선택 기준</a> <code>heuristic-and-choices</code></li>
 </ul>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></h3>
+<code class="lesson-id">testing-and-stress</code>
+</div>
+<p class="lesson-description">edge case, brute force, random generator, 빠른 풀이와 느린 풀이 비교로 제출 전 오답 가능성을 줄이는 검증 습관을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">45분</span>
+</div>
+<div class="tag-list">
+<span class="tag">testing</span>
+<span class="tag">stress-test</span>
+<span class="tag">brute-force</span>
+<span class="tag">debugging</span>
+<span class="tag">counterexample</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></h3>
+<code class="lesson-id">proof-and-invariants</code>
+</div>
+<p class="lesson-description">이분 탐색, 그리디, DP, 자료구조 풀이에서 invariant, exchange argument, monotonicity, counterexample로 정당성을 점검합니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">45분</span>
+</div>
+<div class="tag-list">
+<span class="tag">proof</span>
+<span class="tag">invariant</span>
+<span class="tag">exchange-argument</span>
+<span class="tag">monotonicity</span>
+<span class="tag">counterexample</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a> <a href="lessons/binary-search/lesson.md">이분 탐색과 파라메트릭 서치</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
 </article>
 </div>
 </section>
@@ -347,6 +398,11 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/bfs-dfs-grid/lesson.md">BFS/DFS와 격자 탐색</a> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/tsp-hamiltonian/lesson.md">TSP와 해밀턴 경로</a></p>
+<ul class="page-list">
+<li><a href="lessons/graph-tree-basics/pages/representation-and-traversal.md">표현과 기본 탐색</a> <code>representation-and-traversal</code></li>
+<li><a href="lessons/graph-tree-basics/pages/tree-diameter-centroid.md">트리 지름과 센트로이드</a> <code>tree-diameter-centroid</code></li>
+<li><a href="lessons/graph-tree-basics/pages/mst-kruskal-prim.md">최소 신장 트리</a> <code>mst-kruskal-prim</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -388,7 +444,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/bfs-dfs-grid/lesson.md">BFS/DFS와 격자 탐색</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a></p>
 </article>
 <article class="lesson-card">
@@ -409,8 +465,73 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/bfs-dfs-grid/lesson.md">BFS/DFS와 격자 탐색</a> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/zero-one-bfs/lesson.md">0-1 BFS</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/zero-one-bfs/lesson.md">0-1 BFS</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a></h3>
+<code class="lesson-id">bellman-ford-negative-cycle</code>
+</div>
+<p class="lesson-description">음수 간선이 있는 그래프에서 최단거리를 계산하고, 시작점에서 도달 가능한 음수 사이클을 판정하는 Bellman-Ford 알고리즘을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">55분</span>
+</div>
+<div class="tag-list">
+<span class="tag">bellman-ford</span>
+<span class="tag">negative-cycle</span>
+<span class="tag">shortest-path</span>
+<span class="tag">graph</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a> <a href="lessons/zero-one-bfs/lesson.md">0-1 BFS</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a></h3>
+<code class="lesson-id">scc-2sat</code>
+</div>
+<p class="lesson-description">방향 그래프의 강한 연결 요소를 구하고, implication graph로 2-SAT 만족 가능성을 판정하는 방법을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+</div>
+<div class="tag-list">
+<span class="tag">scc</span>
+<span class="tag">strongly-connected-components</span>
+<span class="tag">2-sat</span>
+<span class="tag">implication-graph</span>
+<span class="tag">directed-graph</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a></h3>
+<code class="lesson-id">max-flow-min-cut</code>
+</div>
+<p class="lesson-description">용량이 있는 방향 그래프에서 최대 유량을 구하고, residual graph로 min cut과 bipartite matching 모델링을 연결해 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">80분</span>
+</div>
+<div class="tag-list">
+<span class="tag">max-flow</span>
+<span class="tag">min-cut</span>
+<span class="tag">dinic</span>
+<span class="tag">bipartite-matching</span>
+<span class="tag">graph</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
 </article>
 </div>
 </section>
@@ -542,8 +663,14 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
+<ul class="page-list">
+<li><a href="lessons/segment-tree/pages/basic-range-query.md">기본 구간 질의</a> <code>basic-range-query</code></li>
+<li><a href="lessons/segment-tree/pages/bottom-up-implementation.md">Bottom-up 구현</a> <code>bottom-up-implementation</code></li>
+<li><a href="lessons/segment-tree/pages/lazy-propagation.md">Lazy Propagation</a> <code>lazy-propagation</code></li>
+<li><a href="lessons/segment-tree/pages/monoid-and-lazy-composition.md">Monoid와 Lazy 합성</a> <code>monoid-and-lazy-composition</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -597,6 +724,84 @@ p{margin:0;color:var(--muted)}
 <li><a href="lessons/treap/pages/order-statistics-and-implicit.md">순위, 전체 구현, Implicit Treap</a> <code>order-statistics-and-implicit</code></li>
 </ul>
 </article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></h3>
+<code class="lesson-id">offline-queries</code>
+</div>
+<p class="lesson-description">질의를 재정렬하거나 되돌릴 수 있는 상태를 이용해 Mo&#x27;s Algorithm, DSU Rollback, Parallel Binary Search를 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">75분</span>
+</div>
+<div class="tag-list">
+<span class="tag">offline-queries</span>
+<span class="tag">mos-algorithm</span>
+<span class="tag">dsu-rollback</span>
+<span class="tag">parallel-binary-search</span>
+<span class="tag">data-structure</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/binary-search/lesson.md">이분 탐색과 파라메트릭 서치</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
+</article>
+</div>
+</section>
+<section>
+<h2>문자열</h2>
+<p class="folder-description">패턴 매칭, 해싱, Trie, suffix 구조처럼 문자열을 빠르게 비교하고 탐색하는 개념입니다.</p>
+<div class="lesson-grid">
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></h3>
+<code class="lesson-id">string-matching-kmp-z</code>
+</div>
+<p class="lesson-description">긴 텍스트에서 패턴을 빠르게 찾고 부분 문자열을 비교하기 위한 KMP, Z algorithm, rolling hash의 선택 기준과 구현을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">65분</span>
+</div>
+<div class="tag-list">
+<span class="tag">string</span>
+<span class="tag">kmp</span>
+<span class="tag">z-algorithm</span>
+<span class="tag">rolling-hash</span>
+<span class="tag">pattern-matching</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/two-pointers-sliding-window/lesson.md">투 포인터와 슬라이딩 윈도우</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
+</article>
+</div>
+</section>
+<section>
+<h2>기하</h2>
+<p class="folder-description">CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기본 개념입니다.</p>
+<div class="lesson-grid">
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a></h3>
+<code class="lesson-id">geometry-ccw-segment-intersection</code>
+</div>
+<p class="lesson-description">정수 좌표에서 외적 부호로 방향을 판정하고, 선분 교차와 convex hull을 안정적으로 구현하는 기하 기본기를 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">60분</span>
+</div>
+<div class="tag-list">
+<span class="tag">geometry</span>
+<span class="tag">ccw</span>
+<span class="tag">cross-product</span>
+<span class="tag">segment-intersection</span>
+<span class="tag">convex-hull</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+</article>
 </div>
 </section>
 <section>
@@ -621,8 +826,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> 없음</p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a></h3>
+<code class="lesson-id">gcd-extended-euclid-crt</code>
+</div>
+<p class="lesson-description">gcd, 확장 유클리드 알고리즘, 일반 모듈러 역원, CRT, 최소 소인수 전처리로 정수론 문제를 확장해 풉니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">65분</span>
+</div>
+<div class="tag-list">
+<span class="tag">number-theory</span>
+<span class="tag">gcd</span>
+<span class="tag">extended-euclid</span>
+<span class="tag">crt</span>
+<span class="tag">sieve</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
 </article>
 </div>
 </section>

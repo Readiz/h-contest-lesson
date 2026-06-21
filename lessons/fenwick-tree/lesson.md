@@ -230,3 +230,27 @@ Fenwick Tree는 prefix로 바꿀 수 있는 연산에 강합니다.
 | 메모리 | `O(n)` | 보통 `O(4n)` 또는 `O(2n)` |
 
 Fenwick Tree는 "prefix 합을 빠르게 관리하는 도구"로 생각하면 실수가 줄어듭니다. 구간 합, 빈도 누적, 순위 찾기처럼 prefix 관점이 선명하면 좋은 선택입니다.
+
+## 11. 자주 하는 실수
+
+- 내부 인덱스가 1-indexed라는 점을 잊고 0을 업데이트하면 무한 루프가 날 수 있습니다.
+- 구간 합 `sum(l, r)`에서 `prefixSum(l - 1)`을 빼지 않아 왼쪽 밖의 값이 섞입니다.
+- 값이 음수일 수 있는데 `lowerBound`를 쓰면 prefix 합 단조성이 깨집니다.
+- 점 대입을 `add(idx, newValue)`로 처리해 기존 값이 누적됩니다.
+
+## 12. 문제를 볼 때 체크할 조건
+
+1. prefix 합 두 개의 차이로 구간 값을 만들 수 있는가?
+2. 업데이트가 점에 값을 더하는 형태인가?
+3. 빈도 누적으로 k번째 원소나 순위를 찾아야 하는가?
+4. 최솟값/최댓값처럼 역연산이 어려운 질의는 아닌가?
+5. 입력 인덱스와 내부 인덱스 기준을 통일했는가?
+
+## 13. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 점 업데이트 + prefix 합 문제 추가 | `add`와 `prefixSum` 구현 | lowbit, 1-index |
+| 표준 | TODO: 점 업데이트 + 구간 합 문제 추가 | `sum(r) - sum(l - 1)` 패턴 익히기 | range sum |
+| 응용 | TODO: inversion count 문제 추가 | 좌표 압축과 빈도 Fenwick 결합 | compression, frequency |
+| 함정 | TODO: k번째 원소 찾기 문제 추가 | prefix 합이 단조일 때만 lower_bound 사용 | Fenwick lower_bound |

@@ -146,9 +146,9 @@ long long countInversions(const vector<int>& a) {
 
 ## 10. 연습 문제
 
-| 단계 | 문제 | 목표 |
-| --- | --- | --- |
-| 입문 | 값 목록을 압축해 원래 순서로 출력 | 정렬 + unique + lower_bound 적용 |
-| 표준 | inversion count | 압축과 Fenwick Tree 연결 |
-| 응용 | 구간 칠하기와 전체 길이 계산 | 실제 좌표 간격을 별도로 곱하기 |
-| 함정 | [정수 정렬 함수](/practice/SORTTEST) | 값 범위와 입력 크기를 보고 정렬 전략 구분 |
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 값 목록을 압축해 원래 순서로 출력하는 문제 추가 | 정렬 + unique + lower_bound 적용 | `unique`, `lower_bound` |
+| 표준 | TODO: inversion count 문제 추가 | 압축과 Fenwick Tree 연결 | 압축 인덱스, 누적 빈도 |
+| 응용 | TODO: 구간 칠하기와 전체 길이 계산 문제 추가 | 실제 좌표 간격을 별도로 곱하기 | 좌표 간격, sweep |
+| 함정 | [정수 정렬 함수](/practice/SORTTEST) | 값 범위와 입력 크기를 보고 정렬 전략 구분 | 값 범위, 정렬 전략 |
