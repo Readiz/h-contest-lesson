@@ -10,6 +10,8 @@ The public API is generated from or synchronized with this repository.
 
 Pull requests should edit this repository directly. For details, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+Planned topics and missing practice-problem links are tracked in [ROADMAP.md](ROADMAP.md).
+
 When adding a new lesson, update these source files:
 
 - `lessons/<lessonId>/lesson.md`
@@ -19,6 +21,7 @@ Then regenerate derived files:
 
 ```bash
 python3 scripts/generate_catalog.py
+python3 scripts/validate_lessons.py
 ```
 
 Generated files:
@@ -32,11 +35,12 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 처음 보는 주제라면 아래 순서로 훑는 것을 권장합니다. 이미 익숙한 내용은 건너뛰고, 각 레슨의 `prerequisites`와 `nextLessons` 메타데이터를 참고해 앞뒤 개념을 확인하세요.
 
-1. 입문 1단계: 복잡도 감각, 정렬, 누적합, 이분 탐색, 투 포인터
-2. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
-3. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
-4. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
-5. 심화 확장: Flow, 문자열, 수학 심화, 기하, 오프라인 쿼리
+1. 입문 0단계: 복잡도 감각, 대회용 C++ 기본기
+2. 입문 1단계: 정렬, 누적합, 이분 탐색, 투 포인터
+3. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
+4. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
+5. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
+6. 심화 확장: 문자열 매칭, SCC/2-SAT, Flow, 정수론 심화, 기하, 오프라인 쿼리, 검증/증명
 
 ## Lessons
 
@@ -44,6 +48,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 정렬, 누적합, 이분 탐색처럼 문제 풀이의 출발점이 되는 개념입니다.
 
+- [복잡도와 입력 크기 감각](lessons/complexity-input-size/lesson.md)
+- [대회용 C++ 기본기](lessons/cpp-contest-basics/lesson.md)
 - [정렬 알고리즘](lessons/sorting/lesson.md)
 - [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md)
 - [투 포인터와 슬라이딩 윈도우](lessons/two-pointers-sliding-window/lesson.md)
@@ -61,10 +67,17 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [Beam Search와 시간 관리](lessons/heuristic/pages/beam-and-time.md)
   - [실험 로그와 점검](lessons/heuristic/pages/experiments-and-checklist.md)
 - [동적 계획법](lessons/dynamic-programming/lesson.md)
+  - [상태와 전이](lessons/dynamic-programming/pages/state-and-transition.md)
+  - [배낭과 LIS](lessons/dynamic-programming/pages/knapsack-and-lis.md)
+  - [구간, 트리, 비트마스크 DP](lessons/dynamic-programming/pages/interval-tree-bitmask.md)
+  - [Digit DP와 최적화 감각](lessons/dynamic-programming/pages/digit-dp-and-optimization.md)
+  - [연습 문제](lessons/dynamic-programming/pages/practice-set.md)
 - [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md)
   - [완전탐색과 비트마스크 DP](lessons/tsp-hamiltonian/pages/search-and-dp.md)
   - [경로 복원과 메모리](lessons/tsp-hamiltonian/pages/restore-and-memory.md)
   - [휴리스틱 개선과 선택 기준](lessons/tsp-hamiltonian/pages/heuristic-and-choices.md)
+- [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
+- [Proof와 Invariant](lessons/proof-and-invariants/lesson.md)
 
 ### 그래프와 트리
 
@@ -72,9 +85,15 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 
 - [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md)
 - [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md)
+  - [표현과 기본 탐색](lessons/graph-tree-basics/pages/representation-and-traversal.md)
+  - [트리 지름과 센트로이드](lessons/graph-tree-basics/pages/tree-diameter-centroid.md)
+  - [최소 신장 트리](lessons/graph-tree-basics/pages/mst-kruskal-prim.md)
 - [0-1 BFS](lessons/zero-one-bfs/lesson.md)
 - [위상 정렬과 DAG DP](lessons/topological-sort-dag/lesson.md)
 - [Dijkstra 최단거리](lessons/dijkstra/lesson.md)
+- [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md)
+- [SCC와 2-SAT](lessons/scc-2sat/lesson.md)
+- [Max Flow, Min Cut, Bipartite Matching](lessons/max-flow-min-cut/lesson.md)
 
 ### 자료구조
 
@@ -86,15 +105,33 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Sqrt Decomposition](lessons/sqrt-decomposition/lesson.md)
 - [Fenwick Tree](lessons/fenwick-tree/lesson.md)
 - [Segment Tree](lessons/segment-tree/lesson.md)
+  - [기본 구간 질의](lessons/segment-tree/pages/basic-range-query.md)
+  - [Bottom-up 구현](lessons/segment-tree/pages/bottom-up-implementation.md)
+  - [Lazy Propagation](lessons/segment-tree/pages/lazy-propagation.md)
+  - [Monoid와 Lazy 합성](lessons/segment-tree/pages/monoid-and-lazy-composition.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
   - [BST와 회전 기본기](lessons/treap/pages/bst-and-rotation.md)
   - [AVL과 Splay Tree](lessons/treap/pages/balanced-bst.md)
   - [Treap 핵심 연산](lessons/treap/pages/treap-core.md)
   - [순위, 전체 구현, Implicit Treap](lessons/treap/pages/order-statistics-and-implicit.md)
+- [오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search](lessons/offline-queries/lesson.md)
+
+### 문자열
+
+패턴 매칭, 해싱, Trie, suffix 구조처럼 문자열을 빠르게 비교하고 탐색하는 개념입니다.
+
+- [문자열 매칭: KMP, Z, Rolling Hash](lessons/string-matching-kmp-z/lesson.md)
+
+### 기하
+
+CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기본 개념입니다.
+
+- [기하 기본: CCW, 선분 교차, Convex Hull](lessons/geometry-ccw-segment-intersection/lesson.md)
 
 ### 수학
 
 모듈러 연산, 정수론, 조합론처럼 경우의 수와 수식 처리에 필요한 개념입니다.
 
 - [모듈러 연산과 빠른 거듭제곱](lessons/modular-arithmetic/lesson.md)
+- [정수론 심화: GCD, Extended Euclid, CRT, Sieve](lessons/gcd-extended-euclid-crt/lesson.md)

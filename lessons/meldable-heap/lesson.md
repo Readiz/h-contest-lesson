@@ -392,3 +392,12 @@ if (a->key < b->key) {
 5. pointer ownership과 메모리 관리까지 감당할 가치가 있는가?
 
 이 조건에 맞으면 Meldable Heap을 고려합니다. 단순히 하나의 우선순위 큐만 쓰는 문제라면 표준 `priority_queue`가 더 안전하고 빠른 선택입니다.
+
+## 16. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 두 heap meld 연산 추적 문제 추가 | Leftist Heap의 오른쪽 경로와 `dist` 갱신 이해 | meld, leftist heap |
+| 표준 | TODO: 그룹별 최소값 조회 문제 추가 | Union-Find와 heap meld 결합 | DSU, component heap |
+| 응용 | TODO: 여러 우선순위 큐 병합 문제 추가 | `priority_queue` small-to-large와 meldable heap 비교 | small-to-large |
+| 함정 | TODO: 소유권 이전 실수 확인 문제 추가 | meld 후 원본 heap을 비워 구조 공유 방지 | ownership |

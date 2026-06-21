@@ -395,3 +395,12 @@ vector<long long> shortestPathDag(
 5. 위상 순서 위에서 최장거리, 최단거리, 경로 수, 완료 시간 같은 DP를 계산해야 하는가?
 
 이 조건들이 보이면 위상 정렬을 먼저 떠올립니다. 단순히 그래프를 모두 방문하는 문제라면 BFS/DFS가 더 맞고, 가중치 최단거리라면 Dijkstra나 DAG 최단거리 조건을 따로 확인합니다.
+
+## 16. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 작업 순서 출력 문제 추가 | indegree 0 정점부터 처리하는 Kahn 알고리즘 구현 | topological order |
+| 표준 | TODO: 사이클이면 불가능 판정 문제 추가 | `order.size() == n` 검사 | cycle detection |
+| 응용 | TODO: DAG 최장/최단 경로 문제 추가 | 위상 순서 위에서 DP 전이 | DAG DP |
+| 함정 | TODO: 사전순 위상 정렬 문제 추가 | 큐 대신 우선순위 큐로 tie-break 처리 | priority queue |

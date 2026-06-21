@@ -415,3 +415,38 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
 센트로이드 분할과 HLD는 둘 다 트리를 쪼개지만 목적이 다릅니다. 센트로이드 분할은 트리를 균형 있게 줄여 거리 후보를 압축하고, HLD는 경로를 배열 구간으로 압축합니다.
 
 정리하면, subtree는 Euler Tour, 경로는 HLD, 거리 후보는 센트로이드 분할로 먼저 분류하면 됩니다. 그 뒤 필요한 연산이 합인지 최댓값인지, 업데이트가 있는지에 따라 Fenwick Tree나 Segment Tree를 붙이면 됩니다.
+
+## 11. 시간 복잡도
+
+| 기법 | 전처리 | 질의/업데이트 |
+| --- | --- | --- |
+| Euler Tour + Fenwick/Segment Tree | `O(n)` | `O(log n)` |
+| LCA binary lifting | `O(n log n)` | `O(log n)` |
+| Centroid Decomposition | `O(n log n)` | 보통 `O(log n)` |
+| Heavy-Light Decomposition | `O(n)` | 경로당 `O(log^2 n)` 또는 구현에 따라 `O(log n)` |
+| small-to-large | 전체 `O(n log n)` 수준 | subtree 집계 문제에 따라 다름 |
+
+## 12. 자주 하는 실수
+
+- Euler Tour에서 subtree 구간의 오른쪽 끝을 `tin[u] + sub[u] - 1`로 잡지 않습니다.
+- LCA 전처리 루프에서 없는 조상을 참조합니다.
+- HLD에서 간선 값을 더 깊은 정점 위치에 저장한다는 규칙을 잊습니다.
+- Centroid Decomposition의 "이미 제거한 centroid" 표시를 빼먹어 같은 정점을 다시 처리합니다.
+- small-to-large에서 작은 컨테이너를 큰 컨테이너로 합치지 않아 `O(n^2)`가 됩니다.
+
+## 13. 문제를 볼 때 체크할 조건
+
+1. subtree 전체를 배열 구간처럼 다룰 수 있는가?
+2. 두 정점의 LCA나 거리가 반복해서 필요한가?
+3. 경로 업데이트/질의가 많아 HLD가 필요한가?
+4. 특정 정점 집합까지의 거리 후보를 빠르게 관리해야 하는가?
+5. subtree마다 색/값 빈도를 모두 모아야 하는가?
+
+## 14. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: subtree 합 질의 문제 추가 | Euler Tour로 subtree를 연속 구간으로 변환 | `tin`, `subtree` |
+| 표준 | TODO: LCA와 거리 질의 문제 추가 | binary lifting 전처리와 깊이 맞추기 | LCA, depth |
+| 응용 | TODO: 경로 질의 문제 추가 | HLD로 경로를 여러 구간으로 분해 | chain, segment tree |
+| 함정 | TODO: 센트로이드 분할 거리 후보 문제 추가 | 제거된 centroid 표시와 거리 캐시 관리 | centroid decomposition |

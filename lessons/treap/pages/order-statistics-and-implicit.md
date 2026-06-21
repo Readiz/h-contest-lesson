@@ -255,3 +255,12 @@ sequence를 동적으로 자르고 붙여야 한다.
 6. 직접 구현할 만큼 자료구조가 문제의 핵심인가?
 
 이 질문을 통과하면 BST 계열을 직접 구현할 이유가 생깁니다. 그중 대회 코드에서 가장 균형 잡힌 선택은 보통 Treap입니다.
+
+## 21. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: BST inorder 순회 문제 추가 | key 순서와 subtree 구조 확인 | inorder |
+| 표준 | TODO: k번째 원소/순위 질의 문제 추가 | subtree size 갱신과 `kth` 구현 | order statistics |
+| 응용 | TODO: 구간 뒤집기 Implicit Treap 문제 추가 | split/merge와 lazy reverse 결합 | implicit treap |
+| 함정 | TODO: 중복 key 처리 문제 추가 | key 중복 허용 정책과 tie-break 설계 | duplicate key |

@@ -20,6 +20,9 @@ LESSON_REFERENCE_FIELDS = ("prerequisites", "nextLessons", "relatedLessons")
 HCONTEST_PROBLEM_ROUTE_RE = re.compile(
     r"^/practice/[A-Z0-9]{8,16}(?:/(?:editorial|submissions/[0-9]+))?$",
 )
+PRACTICE_HEADING_RE = re.compile(r"^#{2,3}\s+.*연습 문제\s*$")
+PRACTICE_TABLE_HEADER = "| 단계 | 문제 | 목표 | 힌트 키워드 |"
+TODO_RE = re.compile(r"\bTODO\b")
 
 
 def fail(message: str) -> None:
@@ -107,6 +110,79 @@ def validate_code_fences(markdown: str, lesson_id: str) -> None:
 
     if inside:
         fail(f"unclosed code fence in {lesson_id}")
+
+
+def validate_compile_check_blocks(markdown: str, lesson_id: str) -> None:
+    inside = False
+    info = ""
+    block_lines: list[str] = []
+    start_line = 0
+
+    for line_no, line in enumerate(markdown.splitlines(), start=1):
+        match = FENCE_RE.match(line)
+        if match:
+            if not inside:
+                inside = True
+                info = match.group(1).strip()
+                block_lines = []
+                start_line = line_no
+            else:
+                tokens = set(info.split())
+                lang = info.split()[0] if info.split() else ""
+                if lang in {"cpp", "c++"} and "compile-check" in tokens:
+                    code = "\n".join(block_lines)
+                    try:
+                        result = subprocess.run(
+                            ["c++", "-std=c++17", "-fsyntax-only", "-x", "c++", "-"],
+                            input=code,
+                            text=True,
+                            capture_output=True,
+                            check=False,
+                        )
+                    except FileNotFoundError:
+                        fail("c++ compiler is required for cpp compile-check blocks")
+                    if result.returncode != 0:
+                        detail = result.stderr.strip().splitlines()
+                        first_error = detail[0] if detail else "unknown compiler error"
+                        fail(f"cpp compile-check failed in {lesson_id}:{start_line}: {first_error}")
+                inside = False
+            continue
+
+        if inside:
+            block_lines.append(line)
+
+
+def practice_sections(markdown: str) -> list[str]:
+    lines = markdown.splitlines()
+    sections: list[str] = []
+    current: list[str] | None = None
+    for line in lines:
+        if PRACTICE_HEADING_RE.match(line):
+            if current:
+                sections.append("\n".join(current))
+            current = [line]
+            continue
+        if current is not None and line.startswith("## ") and not PRACTICE_HEADING_RE.match(line):
+            sections.append("\n".join(current))
+            current = None
+            continue
+        if current is not None:
+            current.append(line)
+    if current:
+        sections.append("\n".join(current))
+    return sections
+
+
+def validate_practice_section(markdown: str, lesson_id: str) -> None:
+    sections = practice_sections(markdown)
+    if not sections:
+        fail(f"missing practice section for {lesson_id}")
+
+    combined = "\n\n".join(sections)
+    if PRACTICE_TABLE_HEADER not in combined:
+        fail(f"practice table must include hint keyword column for {lesson_id}")
+    if "/practice/" not in combined and TODO_RE.search(combined) is None:
+        fail(f"practice section must include a /practice/ link or TODO for {lesson_id}")
 
 
 def validate_folder_entry(folder: object) -> dict:
@@ -330,6 +406,7 @@ def main() -> None:
             fail(f"title mismatch for {lesson_id}: lessons.json={title!r}, h1={h1!r}")
 
         validate_code_fences(markdown, lesson_id)
+        validate_compile_check_blocks(markdown, lesson_id)
         validate_image_alt_text(markdown, lesson_id)
 
         for link in markdown_asset_links(markdown):
@@ -338,6 +415,8 @@ def main() -> None:
         for link in markdown_regular_links(markdown):
             validate_local_link(lesson_path, lesson_id, link, lesson_root)
 
+        lesson_markdown_parts = [markdown]
+
         for page in lesson.get("pages", []):
             page_id = page["pageId"]
             page_path = ROOT / "lessons" / lesson_id / page["file"]
@@ -345,12 +424,14 @@ def main() -> None:
                 fail(f"missing lesson page file: {page_path.relative_to(ROOT)}")
 
             page_markdown = page_path.read_text(encoding="utf-8")
+            lesson_markdown_parts.append(page_markdown)
             page_h1 = first_h1(page_markdown)
             if not page_h1:
                 fail(f"missing page title for {lesson_id}/{page_id}")
 
             link_context = f"{lesson_id}/{page_id}"
             validate_code_fences(page_markdown, link_context)
+            validate_compile_check_blocks(page_markdown, link_context)
             validate_image_alt_text(page_markdown, link_context)
 
             for link in markdown_asset_links(page_markdown):
@@ -358,6 +439,8 @@ def main() -> None:
 
             for link in markdown_regular_links(page_markdown):
                 validate_local_link(page_path, link_context, link, lesson_root)
+
+        validate_practice_section("\n\n".join(lesson_markdown_parts), lesson_id)
 
     validate_lesson_references(lessons, seen_ids)
     validate_generated_files()

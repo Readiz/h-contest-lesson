@@ -363,3 +363,12 @@ if (!pq.empty()) {
 5. 같은 우선순위일 때 tie-break가 필요한가?
 
 이 조건에 맞으면 우선순위 큐를 먼저 고려합니다. 중간 삭제나 순위 질의가 많아지면 `set`, `multiset`, Fenwick Tree, Segment Tree 같은 다른 자료구조와 비교합니다.
+
+## 15. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 입문 | TODO: 최댓값을 계속 꺼내는 문제 추가 | `priority_queue<int>` 기본 동작 확인 | max heap |
+| 표준 | TODO: 최솟값 후보를 계속 고르는 스케줄링 문제 추가 | min-heap comparator와 빈 큐 처리 | min heap, comparator |
+| 응용 | TODO: stale entry를 버리는 문제 추가 | 외부 값 변경 후 새 값을 push하고 오래된 항목 제거 | lazy deletion |
+| 함정 | TODO: 같은 우선순위 tie-break 문제 추가 | `{priority, id}`로 중복과 순서 구분 | tie-break |
