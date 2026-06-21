@@ -414,6 +414,7 @@
       "prerequisites": [],
       "nextLessons": [
         "dynamic-programming",
+        "combinatorics-ncr",
         "gcd-extended-euclid-crt",
         "string-matching-kmp-z"
       ],
@@ -812,9 +813,39 @@
       "prerequisites": [
         "scc-2sat"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "min-cost-flow"
+      ],
       "relatedLessons": [
         "graph-tree-basics",
+        "priority-queue-heap"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "min-cost-flow",
+      "title": "Min-Cost Flow",
+      "description": "용량과 비용이 함께 있는 flow에서 정해진 유량을 최소 비용으로 보내는 shortest augmenting path 모델링을 익힙니다.",
+      "summary": "Residual cost, SPFA 기반 shortest augmenting path, assignment 모델링, potential 최적화 판단까지 이어지는 비용 flow 심화",
+      "order": 29,
+      "folderId": "graphs",
+      "tags": [
+        "min-cost-flow",
+        "flow",
+        "shortest-path",
+        "assignment",
+        "graph",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "max-flow-min-cut",
+        "bellman-ford-negative-cycle"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "dijkstra",
         "priority-queue-heap"
       ],
       "pages": []
@@ -839,11 +870,42 @@
         "prefix-sum-difference"
       ],
       "nextLessons": [
+        "sparse-table-rmq",
         "fenwick-tree",
         "segment-tree"
       ],
       "relatedLessons": [
         "coordinate-compression"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "sparse-table-rmq",
+      "title": "Sparse Table과 RMQ",
+      "description": "업데이트가 없는 배열에서 구간 최솟값, gcd, LCP RMQ를 빠르게 처리하는 Sparse Table을 익힙니다.",
+      "summary": "2^k 길이 구간 전처리, idempotent 연산의 O(1) RMQ, LCP 배열과 LCA 연결까지 이어지는 정적 구간 질의 레슨",
+      "order": 32,
+      "folderId": "data-structures",
+      "tags": [
+        "sparse-table",
+        "rmq",
+        "range-query",
+        "lcp",
+        "static-query",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "sqrt-decomposition"
+      ],
+      "nextLessons": [
+        "offline-queries"
+      ],
+      "relatedLessons": [
+        "suffix-array-lcp",
+        "segment-tree",
+        "tree-advanced"
       ],
       "pages": []
     },
@@ -900,7 +962,8 @@
       ],
       "relatedLessons": [
         "fenwick-tree",
-        "sqrt-decomposition"
+        "sqrt-decomposition",
+        "sparse-table-rmq"
       ],
       "pages": [
         {
@@ -1042,10 +1105,67 @@
         "cpp-contest-basics",
         "modular-arithmetic"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "trie-aho-corasick",
+        "suffix-array-lcp"
+      ],
       "relatedLessons": [
         "two-pointers-sliding-window",
         "sorting"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "trie-aho-corasick",
+      "title": "Trie와 Aho-Corasick",
+      "description": "여러 문자열을 Trie에 저장하고 실패 링크를 붙여 다중 패턴 매칭을 선형 시간에 처리하는 방법을 익힙니다.",
+      "summary": "Trie 삽입과 접두사 탐색, Aho-Corasick 실패 링크, 출력 전파, 각 패턴별 등장 횟수 집계까지 이어지는 문자열 심화 레슨",
+      "order": 56,
+      "folderId": "strings",
+      "tags": [
+        "trie",
+        "aho-corasick",
+        "multi-pattern-matching",
+        "automaton",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "string-matching-kmp-z",
+        "bfs-dfs-grid"
+      ],
+      "nextLessons": [
+        "suffix-array-lcp"
+      ],
+      "relatedLessons": [
+        "dynamic-programming"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "suffix-array-lcp",
+      "title": "Suffix Array와 LCP",
+      "description": "모든 suffix를 사전순으로 정렬하고 LCP 배열로 반복 부분 문자열, 패턴 검색, 부분 문자열 개수를 처리합니다.",
+      "summary": "Doubling 방식 Suffix Array, Kasai LCP, 패턴 검색, 서로 다른 부분 문자열 수와 여러 문자열 공통 부분 문자열까지 정리",
+      "order": 57,
+      "folderId": "strings",
+      "tags": [
+        "suffix-array",
+        "lcp",
+        "string",
+        "doubling",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "string-matching-kmp-z",
+        "sorting"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "trie-aho-corasick"
       ],
       "pages": []
     },
@@ -1070,9 +1190,37 @@
         "sorting",
         "cpp-contest-basics"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "rotating-calipers"
+      ],
       "relatedLessons": [
         "complexity-input-size"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "rotating-calipers",
+      "title": "Rotating Calipers",
+      "description": "Convex Hull 위에서 antipodal pair를 선형 시간에 훑어 지름, 폭, 가장 먼 두 점 문제를 처리합니다.",
+      "summary": "볼록 다각형의 antipodal pair, 회전하는 포인터, hull 지름과 폭 계산, collinear 처리 주의점까지 이어지는 기하 심화",
+      "order": 61,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "rotating-calipers",
+        "convex-hull",
+        "diameter",
+        "antipodal-pair",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "geometry-ccw-segment-intersection"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "two-pointers-sliding-window"
       ],
       "pages": []
     },
@@ -1096,9 +1244,38 @@
       "prerequisites": [
         "modular-arithmetic"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "combinatorics-ncr"
+      ],
       "relatedLessons": [
         "complexity-input-size"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "combinatorics-ncr",
+      "title": "조합론: nCr, 포함-배제, Lucas",
+      "description": "모듈러 조합 계산, 포함-배제, Lucas 정리로 경우의 수 문제를 체계적으로 세는 방법을 익힙니다.",
+      "summary": "factorial과 inverse factorial nCr, 포함-배제 부호 처리, Lucas 정리와 큰 n 조합 계산까지 이어지는 수학 심화",
+      "order": 63,
+      "folderId": "math",
+      "tags": [
+        "combinatorics",
+        "ncr",
+        "inclusion-exclusion",
+        "lucas-theorem",
+        "modular-arithmetic",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "modular-arithmetic"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "gcd-extended-euclid-crt",
+        "dynamic-programming"
       ],
       "pages": []
     },
