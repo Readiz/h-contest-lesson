@@ -115,6 +115,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [4정점 construction trace](lessons/gomory-hu-tree/pages/construct-trace.md)
 - [Dynamic MST](lessons/dynamic-mst/lesson.md)
 - [Global Min Cut](lessons/global-min-cut/lesson.md)
+- [Cut Sparsification](lessons/cut-sparsification/lesson.md)
+- [Global Min Cut Applications](lessons/global-min-cut-applications/lesson.md)
 
 ### 자료구조
 
@@ -149,6 +151,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Euler Tour Tree](lessons/euler-tour-tree/lesson.md)
 - [Persistent Union-Find](lessons/persistent-union-find/lesson.md)
 - [Rollback Techniques](lessons/rollback-techniques/lesson.md)
+- [Retroactive Data Structures](lessons/retroactive-data-structures/lesson.md)
 
 ### 문자열
 
@@ -167,6 +170,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Suffix Array 응용 패턴](lessons/suffix-array-applications/lesson.md)
 - [Border Automaton](lessons/border-automaton/lesson.md)
 - [Suffix Automaton Applications](lessons/suffix-automaton-applications/lesson.md)
+- [Generalized Suffix Automaton](lessons/generalized-suffix-automaton/lesson.md)
+- [Palindrome Query Structures](lessons/palindrome-query-structures/lesson.md)
 
 ### 기하
 
