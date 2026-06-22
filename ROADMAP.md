@@ -79,16 +79,21 @@
 - `rollback-techniques`: Rollback DSU를 중심으로 snapshot, segment tree over time, 상태 변경 기록 패턴을 공개했습니다. 남은 오프라인 심화는 retroactive data structure 후보로 이어갑니다.
 - `dirichlet-convolution`: 약수 관계 위 convolution, divisor zeta transform, Mobius inverse, multiplicative function 관점을 공개했습니다. 남은 수학 심화는 multiplicative function sieve 후보로 이어갑니다.
 - `convex-dp-modeling`: DP 최적화 적용 전 convex, Monge, argmin 단조 조건을 모델링하고 검증하는 관점을 공개했습니다. 남은 DP 최적화는 CHT variants와 parametric DP 후보로 이어갑니다.
+- `minkowski-sum`: 두 convex polygon의 edge vector merge, reflected polygon 충돌 판정, support function 관점을 기하 심화로 공개했습니다. 남은 기하 심화는 rotating calipers applications와 shape-distance 모델링 후보로 이어갑니다.
+- `rotating-calipers-applications`: width, tangent, convex polygon distance, minimum rectangle처럼 calipers를 지름 밖으로 확장하는 응용 관점을 공개했습니다.
+- `multiplicative-functions`: prime power 공식과 linear sieve로 `phi`, `mu`, `tau` 같은 multiplicative function을 계산하는 정수론 심화를 공개했습니다. 남은 수학 심화는 summatory number theory 후보로 이어갑니다.
+- `markov-decision-process`: 상태, 행동, 확률 전이, 보상을 가진 MDP와 Bellman update/value iteration을 공개했습니다. 남은 확률/전략 심화는 imperfect information과 POMDP 후보로 이어갑니다.
+- `imperfect-information-search`: information set, belief update, determinization의 한계, information set MCTS를 게임 탐색 심화로 공개했습니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `minkowski-sum` | convex polygon Minkowski sum and distance modeling | TODO: Minkowski sum `/practice/...` 문제 필요 |
-| 2 | `rotating-calipers-applications` | width, tangent, antipodal pair applications | TODO: rotating calipers applications `/practice/...` 문제 필요 |
-| 3 | `multiplicative-functions` | linear sieve for multiplicative arithmetic functions | TODO: multiplicative function `/practice/...` 문제 필요 |
-| 4 | `markov-decision-process` | stochastic state transition and value iteration | TODO: Markov decision process `/practice/...` 문제 필요 |
-| 5 | `imperfect-information-search` | hidden information game search and belief state modeling | TODO: imperfect-information search `/practice/...` 문제 필요 |
+| 1 | `generalized-suffix-automaton` | multiple-string suffix automaton construction and occurrence aggregation | TODO: generalized suffix automaton `/practice/...` 문제 필요 |
+| 2 | `palindrome-query-structures` | palindrome radius, eertree, hashing, and range palindrome query structures | TODO: palindrome query `/practice/...` 문제 필요 |
+| 3 | `cut-sparsification` | preserving cut values with smaller graph certificates | TODO: cut sparsification `/practice/...` 문제 필요 |
+| 4 | `global-min-cut-applications` | cut tree/cactus-style reasoning and repeated global cut modeling | TODO: global min cut applications `/practice/...` 문제 필요 |
+| 5 | `retroactive-data-structures` | operations inserted in the past and time-indexed data structure design | TODO: retroactive data structure `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 

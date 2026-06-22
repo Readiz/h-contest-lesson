@@ -1808,6 +1808,8 @@
         "geometry-ccw-segment-intersection"
       ],
       "nextLessons": [
+        "minkowski-sum",
+        "rotating-calipers-applications",
         "sweep-line-geometry"
       ],
       "relatedLessons": [
@@ -1955,7 +1957,9 @@
         "line-arrangement",
         "voronoi-delaunay"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "minkowski-sum"
+      ],
       "relatedLessons": [
         "geometry-ccw-segment-intersection",
         "sweep-line-geometry",
@@ -2293,7 +2297,8 @@
         "combinatorics-ncr"
       ],
       "nextLessons": [
-        "game-theory-grundy"
+        "game-theory-grundy",
+        "markov-decision-process"
       ],
       "relatedLessons": [
         "matrix-exponentiation",
@@ -2353,7 +2358,8 @@
         "testing-and-stress"
       ],
       "nextLessons": [
-        "monte-carlo-tree-search"
+        "monte-carlo-tree-search",
+        "imperfect-information-search"
       ],
       "relatedLessons": [
         "proof-and-invariants",
@@ -2383,7 +2389,10 @@
         "probability-expected-value",
         "heuristic"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "markov-decision-process",
+        "imperfect-information-search"
+      ],
       "relatedLessons": [
         "game-theory-grundy",
         "testing-and-stress"
@@ -3163,7 +3172,9 @@
         "gcd-extended-euclid-crt",
         "combinatorics-ncr"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "multiplicative-functions"
+      ],
       "relatedLessons": [
         "modular-arithmetic",
         "linear-basis-applications"
@@ -3196,6 +3207,155 @@
       "relatedLessons": [
         "slope-trick",
         "monge-smawk"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "minkowski-sum",
+      "title": "Minkowski Sum",
+      "description": "두 convex polygon의 모든 점 합을 edge vector merge로 계산하고 충돌 판정과 거리 모델링으로 연결합니다.",
+      "summary": "Minkowski sum 정의, convex polygon edge merge, reflected polygon 충돌 판정, support function과 configuration space 관점을 다루는 기하 심화 레슨",
+      "order": 111,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "minkowski-sum",
+        "convex-polygon",
+        "collision-detection",
+        "support-function",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "rotating-calipers",
+        "half-plane-intersection",
+        "geometry-ccw-segment-intersection"
+      ],
+      "nextLessons": [
+        "rotating-calipers-applications"
+      ],
+      "relatedLessons": [
+        "sweep-line-geometry",
+        "voronoi-delaunay"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "rotating-calipers-applications",
+      "title": "Rotating Calipers Applications",
+      "description": "지름 계산을 넘어 width, tangent, 두 convex polygon 거리, 최소 감싸는 직사각형으로 calipers를 확장합니다.",
+      "summary": "support direction이 회전할 때 포인터가 단조롭게 움직이는 성질로 width, tangent, convex polygon distance, minimum rectangle을 모델링하는 기하 응용 레슨",
+      "order": 112,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "rotating-calipers",
+        "minimum-width",
+        "tangent",
+        "convex-distance",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "rotating-calipers",
+        "minkowski-sum",
+        "closest-pair-sweep"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "half-plane-intersection",
+        "line-arrangement"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "multiplicative-functions",
+      "title": "Multiplicative Functions",
+      "description": "서로소 곱에서 값이 분리되는 산술 함수를 prime power 공식과 linear sieve로 계산합니다.",
+      "summary": "Euler phi, Mobius, divisor count 같은 multiplicative function을 prime power 공식과 linear sieve 상태 관리로 한 번에 계산하는 정수론 심화 레슨",
+      "order": 113,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "number-theory",
+        "multiplicative-function",
+        "linear-sieve",
+        "dirichlet-convolution",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "dirichlet-convolution",
+        "mobius-inversion",
+        "gcd-extended-euclid-crt"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "modular-arithmetic",
+        "combinatorics-ncr"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "markov-decision-process",
+      "title": "Markov Decision Process",
+      "description": "상태, 행동, 확률 전이, 보상을 가진 의사결정 모델에서 Bellman 최적식과 value iteration을 익힙니다.",
+      "summary": "확률 전이와 선택이 함께 있는 문제를 MDP로 모델링하고 finite horizon DP, value iteration, policy 저장 기준을 다루는 확률적 전략 레슨",
+      "order": 114,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "expected-value",
+        "mdp",
+        "value-iteration",
+        "policy",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "probability-expected-value",
+        "monte-carlo-tree-search",
+        "minimax-alpha-beta"
+      ],
+      "nextLessons": [
+        "imperfect-information-search"
+      ],
+      "relatedLessons": [
+        "game-theory-grundy",
+        "convex-dp-modeling"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "imperfect-information-search",
+      "title": "Imperfect Information Search",
+      "description": "숨은 상태와 관측 가능한 정보를 분리해 belief update, determinization, information set MCTS를 모델링합니다.",
+      "summary": "상대 패나 hidden state가 있는 탐색에서 information set, belief state, determinization의 한계, information set MCTS를 다루는 게임 탐색 심화 레슨",
+      "order": 115,
+      "folderId": "math",
+      "tags": [
+        "game-tree",
+        "imperfect-information",
+        "belief-state",
+        "mcts",
+        "search",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "minimax-alpha-beta",
+        "monte-carlo-tree-search",
+        "markov-decision-process"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "heuristic",
+        "probability-expected-value"
       ],
       "pages": []
     }
