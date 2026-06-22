@@ -844,7 +844,8 @@
         "max-flow-min-cut"
       ],
       "nextLessons": [
-        "min-cost-flow"
+        "min-cost-flow",
+        "general-matching"
       ],
       "relatedLessons": [
         "scc-2sat",
@@ -912,11 +913,39 @@
       "pages": []
     },
     {
+      "lessonId": "general-matching",
+      "title": "General Matching",
+      "description": "이분 그래프가 아닌 일반 무향 그래프에서 Edmonds blossom으로 최대 matching을 찾는 방법을 익힙니다.",
+      "summary": "augmenting path, odd cycle blossom 수축, base/parent 관리, 최대 cardinality matching 구현과 weighted matching과의 경계까지 이어지는 일반 matching 레슨",
+      "order": 32,
+      "folderId": "graphs",
+      "tags": [
+        "matching",
+        "blossom",
+        "general-graph",
+        "augmenting-path",
+        "graph",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 80,
+      "prerequisites": [
+        "matching-cover-duality",
+        "max-flow-min-cut"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "flow-with-lower-bound",
+        "scc-2sat"
+      ],
+      "pages": []
+    },
+    {
       "lessonId": "floyd-warshall",
       "title": "Floyd-Warshall",
       "description": "모든 정점 쌍 최단거리와 도달 가능성을 중간 정점 DP로 처리하는 Floyd-Warshall 알고리즘을 익힙니다.",
       "summary": "APSP, transitive closure, 경로 복원, 음수 사이클 영향 점검까지 이어지는 작은 그래프 최단거리 레슨",
-      "order": 32,
+      "order": 33,
       "folderId": "graphs",
       "tags": [
         "floyd-warshall",
@@ -944,7 +973,7 @@
       "title": "Sqrt Decomposition",
       "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",
       "summary": "구간 합, 점 업데이트, 블록 크기 선택, lazy 블록 갱신까지 이어지는 sqrt decomposition 입문",
-      "order": 33,
+      "order": 34,
       "folderId": "data-structures",
       "tags": [
         "sqrt-decomposition",
@@ -973,7 +1002,7 @@
       "title": "Sparse Table과 RMQ",
       "description": "업데이트가 없는 배열에서 구간 최솟값, gcd, LCP RMQ를 빠르게 처리하는 Sparse Table을 익힙니다.",
       "summary": "2^k 길이 구간 전처리, idempotent 연산의 O(1) RMQ, LCP 배열과 LCA 연결까지 이어지는 정적 구간 질의 레슨",
-      "order": 34,
+      "order": 35,
       "folderId": "data-structures",
       "tags": [
         "sparse-table",
@@ -1003,7 +1032,7 @@
       "title": "Fenwick Tree",
       "description": "배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.",
       "summary": "prefix 합, lowbit, 점 업데이트, 구간 합, lower_bound까지 이어지는 Fenwick Tree 입문",
-      "order": 35,
+      "order": 36,
       "folderId": "data-structures",
       "tags": [
         "fenwick-tree",
@@ -1170,11 +1199,42 @@
         "coordinate-compression"
       ],
       "nextLessons": [
+        "wavelet-matrix",
         "offline-queries"
       ],
       "relatedLessons": [
         "segment-tree",
         "sqrt-decomposition"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "wavelet-matrix",
+      "title": "Wavelet Matrix",
+      "description": "level별 bitvector와 rank 변환으로 정적 배열의 kth, rank, frequency 질의를 처리하는 Wavelet Matrix를 익힙니다.",
+      "summary": "bitvector rank, level별 안정 분할, 구간 kth와 countLess, 좌표 압축과 Wavelet Tree와의 차이까지 이어지는 정적 range query 심화",
+      "order": 44,
+      "folderId": "data-structures",
+      "tags": [
+        "wavelet-matrix",
+        "rank",
+        "range-query",
+        "order-statistics",
+        "succinct",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "wavelet-tree",
+        "coordinate-compression"
+      ],
+      "nextLessons": [
+        "offline-queries"
+      ],
+      "relatedLessons": [
+        "persistent-segment-tree",
+        "sparse-table-rmq"
       ],
       "pages": []
     },
@@ -1519,8 +1579,38 @@
         "sweep-line-geometry",
         "geometry-ccw-segment-intersection"
       ],
+      "nextLessons": [
+        "line-arrangement"
+      ],
+      "relatedLessons": [
+        "rotating-calipers"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "line-arrangement",
+      "title": "Line Arrangement",
+      "description": "직선의 중복, 평행, 교점을 정확히 다루며 arrangement 영역 수와 sweep 확장 관점을 익힙니다.",
+      "summary": "직선 정규화, rational 교점 dedup, 새 직선이 추가하는 영역 수, 선분 arrangement와 Euler formula 연결까지 이어지는 기하 심화",
+      "order": 64,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "line-arrangement",
+        "intersection",
+        "sweep-line",
+        "rational",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "sweep-line-geometry",
+        "closest-pair-sweep"
+      ],
       "nextLessons": [],
       "relatedLessons": [
+        "geometry-ccw-segment-intersection",
         "rotating-calipers"
       ],
       "pages": []
@@ -1530,7 +1620,7 @@
       "title": "정수론 심화: GCD, Extended Euclid, CRT, Sieve",
       "description": "gcd, 확장 유클리드 알고리즘, 일반 모듈러 역원, CRT, 최소 소인수 전처리로 정수론 문제를 확장해 풉니다.",
       "summary": "유클리드 알고리즘, extended gcd, 합성수 mod 역원, 일반 CRT, smallest prime factor sieve까지 이어지는 정수론 심화",
-      "order": 64,
+      "order": 65,
       "folderId": "math",
       "tags": [
         "number-theory",
@@ -1558,7 +1648,7 @@
       "title": "조합론: nCr, 포함-배제, Lucas",
       "description": "모듈러 조합 계산, 포함-배제, Lucas 정리로 경우의 수 문제를 체계적으로 세는 방법을 익힙니다.",
       "summary": "factorial과 inverse factorial nCr, 포함-배제 부호 처리, Lucas 정리와 큰 n 조합 계산까지 이어지는 수학 심화",
-      "order": 65,
+      "order": 66,
       "folderId": "math",
       "tags": [
         "combinatorics",
@@ -1590,7 +1680,7 @@
       "title": "Matrix Exponentiation",
       "description": "선형 점화식과 상태 전이를 행렬로 만들고 빠른 거듭제곱으로 큰 반복 횟수를 처리합니다.",
       "summary": "상태 벡터, companion matrix, 행렬 빠른 거듭제곱, 그래프 walk 수와 affine transform까지 이어지는 수학/DP 레슨",
-      "order": 66,
+      "order": 67,
       "folderId": "math",
       "tags": [
         "matrix-exponentiation",
@@ -1608,6 +1698,7 @@
         "combinatorics-ncr"
       ],
       "nextLessons": [
+        "linear-recurrence-kitamasa",
         "fft-ntt"
       ],
       "relatedLessons": [
@@ -1617,11 +1708,41 @@
       "pages": []
     },
     {
+      "lessonId": "linear-recurrence-kitamasa",
+      "title": "Linear Recurrence와 Kitamasa",
+      "description": "선형 점화식을 characteristic polynomial로 줄여 `O(K^2 log N)`에 n번째 항을 계산하는 Kitamasa 방식을 익힙니다.",
+      "summary": "characteristic polynomial, `x^n mod P(x)` 계수, 초기항 선형 결합, Berlekamp-Massey/Bostan-Mori 연결까지 이어지는 선형 점화식 심화",
+      "order": 68,
+      "folderId": "math",
+      "tags": [
+        "linear-recurrence",
+        "kitamasa",
+        "characteristic-polynomial",
+        "fast-power",
+        "modular-arithmetic",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "matrix-exponentiation",
+        "modular-arithmetic"
+      ],
+      "nextLessons": [
+        "fft-ntt"
+      ],
+      "relatedLessons": [
+        "formal-power-series",
+        "combinatorics-ncr"
+      ],
+      "pages": []
+    },
+    {
       "lessonId": "fft-ntt",
       "title": "FFT와 NTT",
       "description": "다항식 곱셈과 convolution을 FFT/NTT로 빠르게 계산하고, pair count와 generating function 모델링으로 연결합니다.",
       "summary": "Convolution 신호 찾기, NTT 구현, FFT/NTT 선택 기준, 빈도 배열 pair count 모델링까지 이어지는 다항식 곱셈 레슨",
-      "order": 67,
+      "order": 69,
       "folderId": "math",
       "tags": [
         "fft",
@@ -1636,7 +1757,8 @@
       "prerequisites": [
         "modular-arithmetic",
         "combinatorics-ncr",
-        "matrix-exponentiation"
+        "matrix-exponentiation",
+        "linear-recurrence-kitamasa"
       ],
       "nextLessons": [
         "formal-power-series"
@@ -1651,7 +1773,7 @@
       "title": "Formal Power Series",
       "description": "다항식을 계수열로 다루며 미분, 적분, 역원 같은 FPS 기본 연산과 생성함수 모델링을 익힙니다.",
       "summary": "FPS 계수 표현, derivative/integral, truncate, Newton iteration 기반 polynomial inverse, 생성함수 연결까지 이어지는 polynomial 심화 레슨",
-      "order": 68,
+      "order": 70,
       "folderId": "math",
       "tags": [
         "formal-power-series",
@@ -1681,7 +1803,7 @@
       "title": "FPS Log와 Exp",
       "description": "Formal Power Series에서 log, exp, power 연산의 조건과 Newton iteration 흐름, 생성함수 응용을 익힙니다.",
       "summary": "FPS log 공식, exp Newton iteration, polynomial power, OGF/EGF 구분과 구현 전제 조건까지 이어지는 polynomial 심화",
-      "order": 69,
+      "order": 71,
       "folderId": "math",
       "tags": [
         "formal-power-series",
@@ -1709,7 +1831,7 @@
       "title": "확률과 기대값",
       "description": "확률 분포와 기대값 DP를 세우고, DAG 전이와 순환 전이, 모듈러 확률 처리를 구분해 익힙니다.",
       "summary": "확률 DP, 기대값 식, 기대값의 선형성, 순환 상태의 연립방정식, 모듈러 확률 표현까지 이어지는 수학/DP 레슨",
-      "order": 70,
+      "order": 72,
       "folderId": "math",
       "tags": [
         "probability",
@@ -1740,7 +1862,7 @@
       "title": "Game Theory와 Grundy Number",
       "description": "Impartial game에서 win/lose DP와 Grundy number를 계산하고, 여러 독립 게임의 xor 합성으로 승패를 판정합니다.",
       "summary": "terminal losing, mex, Sprague-Grundy theorem, 여러 게임 xor, misere play 주의점까지 이어지는 게임 이론 입문",
-      "order": 71,
+      "order": 73,
       "folderId": "math",
       "tags": [
         "game-theory",
@@ -1770,7 +1892,7 @@
       "title": "Minimax와 Alpha-Beta Pruning",
       "description": "두 플레이어 game tree에서 minimax 값을 계산하고 alpha-beta pruning으로 불필요한 가지를 줄이는 방법을 익힙니다.",
       "summary": "terminal/evaluation 정의, minimax 재귀, alpha-beta cutoff, move ordering, depth-limited search와 transposition 주의점까지 이어지는 게임 탐색 레슨",
-      "order": 72,
+      "order": 74,
       "folderId": "math",
       "tags": [
         "minimax",
@@ -1786,10 +1908,41 @@
         "game-theory-grundy",
         "testing-and-stress"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "monte-carlo-tree-search"
+      ],
       "relatedLessons": [
         "proof-and-invariants",
         "heuristic"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "monte-carlo-tree-search",
+      "title": "Monte Carlo Tree Search",
+      "description": "UCB 기반 선택, rollout, backpropagation으로 큰 game tree에서 좋은 수를 통계적으로 찾는 MCTS를 익힙니다.",
+      "summary": "selection, expansion, simulation, backpropagation, UCB score, rollout policy와 minimax와의 비교까지 이어지는 확률적 게임 탐색 레슨",
+      "order": 75,
+      "folderId": "math",
+      "tags": [
+        "mcts",
+        "uct",
+        "game-tree",
+        "randomized",
+        "heuristic",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "minimax-alpha-beta",
+        "probability-expected-value",
+        "heuristic"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "game-theory-grundy",
+        "testing-and-stress"
       ],
       "pages": []
     },
@@ -1798,7 +1951,7 @@
       "title": "오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search",
       "description": "질의를 재정렬하거나 되돌릴 수 있는 상태를 이용해 Mo's Algorithm, DSU Rollback, Parallel Binary Search를 익힙니다.",
       "summary": "정적 구간 질의의 Mo's Algorithm, 시간 분기 처리를 위한 DSU rollback, 여러 답을 동시에 찾는 parallel binary search 정리",
-      "order": 73,
+      "order": 76,
       "folderId": "data-structures",
       "tags": [
         "offline-queries",
@@ -1827,7 +1980,7 @@
       "title": "Testing과 Stress Test",
       "description": "edge case, brute force, random generator, 빠른 풀이와 느린 풀이 비교로 제출 전 오답 가능성을 줄이는 검증 습관을 익힙니다.",
       "summary": "예제 이후의 edge case 설계, brute force oracle, random stress loop, 반례 재현, 성능 테스트까지 이어지는 풀이 검증 레슨",
-      "order": 74,
+      "order": 77,
       "folderId": "strategy",
       "tags": [
         "testing",
@@ -1857,7 +2010,7 @@
       "title": "Proof와 Invariant",
       "description": "이분 탐색, 그리디, DP, 자료구조 풀이에서 invariant, exchange argument, monotonicity, counterexample로 정당성을 점검합니다.",
       "summary": "반복문 invariant, 이분 탐색 단조성, 그리디 exchange argument, DP 증명 틀, counterexample 탐색까지 이어지는 풀이 증명 레슨",
-      "order": 75,
+      "order": 78,
       "folderId": "strategy",
       "tags": [
         "proof",
@@ -1888,7 +2041,7 @@
       "title": "Divide and Conquer DP Optimization",
       "description": "최적 분할점 단조성을 이용해 layer DP의 후보 범위를 줄이는 divide-and-conquer DP optimization을 익힙니다.",
       "summary": "구간 분할 DP, opt 단조성, 재귀적 후보 범위 축소, cost 계산과 적용 조건 검증까지 이어지는 DP 최적화 레슨",
-      "order": 76,
+      "order": 79,
       "folderId": "strategy",
       "tags": [
         "divide-and-conquer-dp",
@@ -1919,7 +2072,7 @@
       "title": "Knuth Optimization",
       "description": "Interval DP에서 최적 분할점의 단조 범위를 이용해 `O(N^3)` 전이를 `O(N^2)`로 줄이는 Knuth Optimization을 익힙니다.",
       "summary": "구간 DP 전이, opt monotonicity, `opt[l][r-1]..opt[l+1][r]` 후보 범위, 파일 합치기와 적용 조건 점검까지 이어지는 DP 최적화",
-      "order": 77,
+      "order": 80,
       "folderId": "strategy",
       "tags": [
         "knuth-optimization",
@@ -1948,7 +2101,7 @@
       "title": "Monge와 SMAWK",
       "description": "Monge array와 totally monotone matrix의 row minimum 단조성을 이용해 SMAWK와 monotone optimization을 이해합니다.",
       "summary": "Monge inequality, totally monotone matrix, monotone row minima, SMAWK column reduction과 DP 최적화 연결까지 이어지는 고급 최적화 레슨",
-      "order": 78,
+      "order": 81,
       "folderId": "strategy",
       "tags": [
         "monge",

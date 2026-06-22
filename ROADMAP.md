@@ -39,28 +39,33 @@
 - `monge-smawk`: Monge inequality, totally monotone row minima, SMAWK column reduction을 DP 최적화 심화로 공개했습니다.
 - `fps-log-exp`: FPS log, exp, power 연산 조건과 Newton iteration 흐름을 polynomial 심화로 공개했습니다. 남은 수학 심화는 선형 점화식 고속 계산 후보로 이어갑니다.
 - `minimax-alpha-beta`: game tree minimax, alpha-beta pruning, move ordering을 게임 탐색 레슨으로 공개했습니다. 남은 게임/탐색 심화는 MCTS 후보로 이어갑니다.
+- `general-matching`: 일반 무향 그래프의 maximum cardinality matching과 Edmonds blossom 수축을 공개했습니다. 남은 그래프 심화는 dominator tree나 weighted matching 후보로 이어갑니다.
+- `wavelet-matrix`: level별 bitvector rank로 kth/count 질의를 처리하는 Wavelet Matrix를 공개했습니다. 남은 succinct 자료구조 심화는 bitvector 후보로 이어갑니다.
+- `line-arrangement`: 직선 정규화, rational 교점 dedup, arrangement 영역 수와 선분 sweep 확장 관점을 공개했습니다. 남은 기하 심화는 Voronoi/Delaunay나 half-plane 후보로 이어갑니다.
+- `linear-recurrence-kitamasa`: characteristic polynomial과 Kitamasa 방식으로 선형 점화식의 n번째 항을 계산하는 수학 심화를 공개했습니다. 남은 polynomial 심화는 multipoint/Bostan-Mori 후보로 이어갑니다.
+- `monte-carlo-tree-search`: UCB, rollout, backpropagation을 이용한 확률적 게임 탐색을 공개했습니다. 남은 게임/탐색 심화는 Markov decision process 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `general-matching` | blossom, 일반 그래프 matching, alternating forest | TODO: blossom/general matching `/practice/...` 문제 필요 |
-| 2 | `wavelet-matrix` | Wavelet Matrix, rank/select, kth/frequency 질의 | TODO: wavelet matrix `/practice/...` 문제 필요 |
-| 3 | `line-arrangement` | line arrangement, sweep intersection, planar subdivision 관점 | TODO: line arrangement `/practice/...` 문제 필요 |
-| 4 | `linear-recurrence-kitamasa` | Kitamasa, Bostan-Mori, 선형 점화식 빠른 계산 | TODO: linear recurrence `/practice/...` 문제 필요 |
-| 5 | `monte-carlo-tree-search` | MCTS, UCB, rollout 기반 game tree search | TODO: MCTS `/practice/...` 문제 필요 |
+| 1 | `suffix-palindrome-applications` | suffix automaton/array와 palindromic tree 응용 패턴 | TODO: suffix-palindrome `/practice/...` 문제 필요 |
+| 2 | `dominator-tree` | flow graph, immediate dominator, Lengauer-Tarjan | TODO: dominator tree `/practice/...` 문제 필요 |
+| 3 | `succinct-bitvector` | rank/select, compressed bitvector, wavelet 구조 기반 | TODO: succinct bitvector `/practice/...` 문제 필요 |
+| 4 | `multipoint-evaluation` | subproduct tree, polynomial evaluation/interpolation | TODO: multipoint evaluation `/practice/...` 문제 필요 |
+| 5 | `alien-optimization` | Lagrangian relaxation, slope trick 관점의 DP 최적화 | TODO: alien optimization `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `suffix-palindrome-applications`, `lyndon-factorization` |
-| 그래프 심화 | `general-matching`, `dominator-tree` |
-| 자료구조/오프라인 | `wavelet-matrix`, `succinct-bitvector` |
-| 수학 심화 | `linear-recurrence-kitamasa`, `multipoint-evaluation` |
+| 그래프 심화 | `dominator-tree`, `weighted-matching` |
+| 자료구조/오프라인 | `succinct-bitvector`, `persistent-lazy-segment-tree` |
+| 수학 심화 | `multipoint-evaluation`, `bostan-mori` |
 | DP 최적화 | `alien-optimization`, `lagrangian-relaxation` |
-| 기하 | `line-arrangement`, `voronoi-delaunay` |
-| 게임/탐색 | `monte-carlo-tree-search`, `markov-decision-process` |
+| 기하 | `voronoi-delaunay`, `half-plane-intersection` |
+| 게임/탐색 | `markov-decision-process`, `imperfect-information-search` |
 
 ## 공개 레슨으로 올리기 전 조건
 
