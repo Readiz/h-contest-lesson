@@ -1139,7 +1139,9 @@
         "scc-2sat",
         "greedy"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "dynamic-connectivity"
+      ],
       "relatedLessons": [
         "min-cost-flow",
         "weighted-matching",
@@ -1170,6 +1172,7 @@
       "nextLessons": [
         "persistent-segment-tree",
         "persistent-lazy-segment-tree",
+        "dynamic-segment-tree",
         "tree-advanced",
         "offline-queries"
       ],
@@ -1446,6 +1449,7 @@
         "treap"
       ],
       "nextLessons": [
+        "dynamic-segment-tree",
         "offline-queries"
       ],
       "relatedLessons": [
@@ -1743,7 +1747,9 @@
         "suffix-automaton",
         "lyndon-factorization"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "runs-periodicity"
+      ],
       "relatedLessons": [
         "trie-aho-corasick",
         "suffix-palindrome-applications",
@@ -2253,7 +2259,9 @@
         "multipoint-evaluation",
         "combinatorics-ncr"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "linear-basis-xor"
+      ],
       "relatedLessons": [
         "formal-power-series",
         "bostan-mori",
@@ -2581,10 +2589,153 @@
         "divide-and-conquer-dp-optimization",
         "monge-smawk"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "slope-trick"
+      ],
       "relatedLessons": [
         "convex-hull-trick-li-chao",
         "proof-and-invariants"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "runs-periodicity",
+      "title": "Runs와 문자열 주기",
+      "description": "문자열의 period, border, run을 이용해 반복 구조를 판정하고 maximal 반복 구간을 해석하는 문자열 심화 개념입니다.",
+      "summary": "prefix function 기반 minimal period, border chain, Fine-Wilf 직관, run의 maximal 반복 조건으로 이어지는 문자열 반복 구조 레슨",
+      "order": 91,
+      "folderId": "strings",
+      "tags": [
+        "strings",
+        "periodicity",
+        "runs",
+        "border",
+        "prefix-function",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "string-matching-kmp-z",
+        "suffix-array-lcp",
+        "suffix-tree-ukkonen"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "lyndon-factorization",
+        "suffix-palindrome-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "dynamic-connectivity",
+      "title": "Dynamic Connectivity",
+      "description": "간선 추가와 삭제가 섞인 그래프 연결성 질의를 시간축 Segment Tree와 Rollback DSU로 오프라인 처리합니다.",
+      "summary": "edge active interval, segment tree over time, rollback DSU, online dynamic connectivity와의 선택 기준을 다루는 그래프 심화 레슨",
+      "order": 92,
+      "folderId": "graphs",
+      "tags": [
+        "graphs",
+        "dynamic-connectivity",
+        "rollback-dsu",
+        "offline-query",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "union-find",
+        "offline-queries",
+        "link-cut-tree"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "directed-mst",
+        "flow-with-lower-bound",
+        "tree-advanced"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "dynamic-segment-tree",
+      "title": "Dynamic Segment Tree",
+      "description": "좌표 범위가 매우 크고 실제 접근 지점이 적은 상황에서 필요한 node만 생성하는 sparse Segment Tree를 익힙니다.",
+      "summary": "큰 좌표 범위의 range add/range sum, lazy node 생성, 좌표 압축과의 비교, persistent 결합 주의점을 다루는 자료구조 심화 레슨",
+      "order": 93,
+      "folderId": "data-structures",
+      "tags": [
+        "segment-tree",
+        "dynamic-segment-tree",
+        "sparse",
+        "lazy-propagation",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "segment-tree",
+        "coordinate-compression"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "persistent-segment-tree",
+        "persistent-lazy-segment-tree",
+        "link-cut-tree"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "linear-basis-xor",
+      "title": "XOR Linear Basis",
+      "description": "정수를 GF(2) 벡터로 보고 xor 조합의 최댓값, 표현 가능성, rank와 경우의 수를 처리하는 기법입니다.",
+      "summary": "bitwise Gaussian elimination, maximum xor, representability, rank와 subset xor count, graph cycle xor 응용을 다루는 수학 심화 레슨",
+      "order": 94,
+      "folderId": "math",
+      "tags": [
+        "xor",
+        "linear-basis",
+        "gaussian-elimination",
+        "bitwise",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 40,
+      "prerequisites": [
+        "modular-arithmetic",
+        "proof-and-invariants",
+        "polynomial-interpolation"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "combinatorics-ncr",
+        "game-theory-grundy"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "slope-trick",
+      "title": "Slope Trick",
+      "description": "Convex piecewise-linear 비용 함수를 두 heap과 lazy shift로 관리해 절댓값/hinge 기반 DP를 최적화합니다.",
+      "summary": "hinge function, 절댓값 비용, two heap invariant, lazy shift, convex DP 적용 조건을 설명하는 DP 최적화 심화 레슨",
+      "order": 95,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "slope-trick",
+        "convexity",
+        "priority-queue",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "alien-optimization",
+        "convex-hull-trick-li-chao"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "monge-smawk",
+        "divide-and-conquer-dp-optimization"
       ],
       "pages": []
     }

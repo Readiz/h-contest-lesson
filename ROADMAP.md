@@ -59,26 +59,31 @@
 - `link-cut-tree`: access, makeroot, link/cut, path aggregate를 splay 기반 dynamic tree 자료구조로 공개했습니다. 남은 자료구조 심화는 dynamic segment tree 후보로 이어갑니다.
 - `polynomial-interpolation`: Lagrange interpolation, consecutive x 최적화, finite difference, 계수 복원 관점을 polynomial 심화로 공개했습니다. 남은 수학 심화는 linear basis/xor 후보로 이어갑니다.
 - `half-plane-intersection`: 반평면 표현, angle sort, deque intersection, bounding box와 Voronoi cell 연결을 기하 심화로 공개했습니다. 남은 기하 심화는 Minkowski sum 후보로 이어갑니다.
+- `runs-periodicity`: 문자열 period, border chain, Fine-Wilf 직관, run의 maximal 반복 조건을 문자열 심화로 공개했습니다. 남은 문자열 심화는 suffix array 응용 후보로 이어갑니다.
+- `dynamic-connectivity`: 간선 활성 구간, 시간축 Segment Tree, Rollback DSU로 오프라인 동적 연결성 질의를 처리하는 그래프 심화를 공개했습니다. 남은 그래프 심화는 Gomory-Hu Tree 후보로 이어갑니다.
+- `dynamic-segment-tree`: 큰 좌표 범위에서 필요한 node만 만드는 sparse Segment Tree와 lazy range update를 공개했습니다. 남은 자료구조 심화는 Euler Tour Tree 후보로 이어갑니다.
+- `linear-basis-xor`: GF(2) 기저로 maximum xor, 표현 가능성, rank와 그래프 cycle xor를 다루는 수학 심화를 공개했습니다. 남은 수학 심화는 Mobius inversion 후보로 이어갑니다.
+- `slope-trick`: convex piecewise-linear 비용 함수를 두 heap과 lazy shift로 관리하는 DP 최적화 심화를 공개했습니다. 남은 DP 최적화는 convex cost flow 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `runs-periodicity` | runs theorem, string period, border structure | TODO: runs/periodicity `/practice/...` 문제 필요 |
-| 2 | `dynamic-connectivity` | offline/online dynamic graph connectivity | TODO: dynamic connectivity `/practice/...` 문제 필요 |
-| 3 | `dynamic-segment-tree` | sparse coordinate range query/update | TODO: dynamic segment tree `/practice/...` 문제 필요 |
-| 4 | `linear-basis-xor` | xor linear basis, maximum xor, rank | TODO: xor basis `/practice/...` 문제 필요 |
-| 5 | `slope-trick` | convex piecewise-linear DP optimization | TODO: slope trick `/practice/...` 문제 필요 |
+| 1 | `suffix-array-applications` | suffix array/LCP 응용 패턴 | TODO: suffix array applications `/practice/...` 문제 필요 |
+| 2 | `gomory-hu-tree` | all-pairs min cut tree | TODO: Gomory-Hu Tree `/practice/...` 문제 필요 |
+| 3 | `euler-tour-tree` | online dynamic forest connectivity | TODO: Euler Tour Tree `/practice/...` 문제 필요 |
+| 4 | `mobius-inversion` | divisor lattice inclusion-exclusion | TODO: Mobius inversion `/practice/...` 문제 필요 |
+| 5 | `convex-cost-flow` | convex cost modeling with min-cost flow | TODO: convex cost flow `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `runs-periodicity`, `suffix-array-applications` |
-| 그래프 심화 | `dynamic-connectivity`, `gomory-hu-tree` |
-| 자료구조/오프라인 | `dynamic-segment-tree`, `euler-tour-tree` |
-| 수학 심화 | `linear-basis-xor`, `mobius-inversion` |
-| DP 최적화 | `slope-trick`, `convex-cost-flow` |
+| 문자열 | `suffix-array-applications`, `border-automaton` |
+| 그래프 심화 | `gomory-hu-tree`, `dynamic-mst` |
+| 자료구조/오프라인 | `euler-tour-tree`, `persistent-union-find` |
+| 수학 심화 | `mobius-inversion`, `linear-basis-applications` |
+| DP 최적화 | `convex-cost-flow`, `min-plus-convolution` |
 | 기하 | `minkowski-sum`, `rotating-calipers-applications` |
 | 게임/탐색 | `markov-decision-process`, `imperfect-information-search` |
 
