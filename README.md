@@ -104,6 +104,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [General Matching](lessons/general-matching/lesson.md)
 - [Floyd-Warshall](lessons/floyd-warshall/lesson.md)
 - [Dominator Tree](lessons/dominator-tree/lesson.md)
+- [Weighted Matching](lessons/weighted-matching/lesson.md)
 
 ### 자료구조
 
@@ -121,6 +122,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [Lazy Propagation](lessons/segment-tree/pages/lazy-propagation.md)
   - [Monoid와 Lazy 합성](lessons/segment-tree/pages/monoid-and-lazy-composition.md)
 - [Persistent Segment Tree](lessons/persistent-segment-tree/lesson.md)
+- [Persistent Lazy Segment Tree](lessons/persistent-lazy-segment-tree/lesson.md)
 - [Convex Hull Trick과 Li Chao Tree](lessons/convex-hull-trick-li-chao/lesson.md)
 - [Wavelet Tree](lessons/wavelet-tree/lesson.md)
 - [Wavelet Matrix](lessons/wavelet-matrix/lesson.md)
@@ -143,6 +145,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Suffix Automaton](lessons/suffix-automaton/lesson.md)
 - [Palindromic Tree](lessons/palindromic-tree/lesson.md)
 - [Suffix와 Palindrome 응용](lessons/suffix-palindrome-applications/lesson.md)
+- [Lyndon Factorization](lessons/lyndon-factorization/lesson.md)
 
 ### 기하
 
@@ -153,6 +156,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Sweep Line Geometry](lessons/sweep-line-geometry/lesson.md)
 - [Closest Pair Sweep](lessons/closest-pair-sweep/lesson.md)
 - [Line Arrangement](lessons/line-arrangement/lesson.md)
+- [Voronoi와 Delaunay](lessons/voronoi-delaunay/lesson.md)
 
 ### 수학
 
@@ -167,6 +171,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Formal Power Series](lessons/formal-power-series/lesson.md)
 - [FPS Log와 Exp](lessons/fps-log-exp/lesson.md)
 - [Multipoint Evaluation](lessons/multipoint-evaluation/lesson.md)
+- [Bostan-Mori](lessons/bostan-mori/lesson.md)
 - [확률과 기대값](lessons/probability-expected-value/lesson.md)
 - [Game Theory와 Grundy Number](lessons/game-theory-grundy/lesson.md)
 - [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md)
