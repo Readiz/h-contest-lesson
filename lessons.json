@@ -814,6 +814,7 @@
         "scc-2sat"
       ],
       "nextLessons": [
+        "matching-cover-duality",
         "min-cost-flow"
       ],
       "relatedLessons": [
@@ -823,11 +824,40 @@
       "pages": []
     },
     {
+      "lessonId": "matching-cover-duality",
+      "title": "Matching과 Cover Duality",
+      "description": "이분 매칭에서 minimum vertex cover와 maximum independent set, DAG path cover로 이어지는 duality 모델링을 익힙니다.",
+      "summary": "이분 매칭, Konig theorem, alternating path 기반 vertex cover 복원, maximum independent set, DAG minimum path cover까지 이어지는 matching 심화",
+      "order": 29,
+      "folderId": "graphs",
+      "tags": [
+        "bipartite-matching",
+        "vertex-cover",
+        "konig-theorem",
+        "independent-set",
+        "path-cover",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "max-flow-min-cut"
+      ],
+      "nextLessons": [
+        "min-cost-flow"
+      ],
+      "relatedLessons": [
+        "scc-2sat",
+        "topological-sort-dag"
+      ],
+      "pages": []
+    },
+    {
       "lessonId": "min-cost-flow",
       "title": "Min-Cost Flow",
       "description": "용량과 비용이 함께 있는 flow에서 정해진 유량을 최소 비용으로 보내는 shortest augmenting path 모델링을 익힙니다.",
       "summary": "Residual cost, SPFA 기반 shortest augmenting path, assignment 모델링, potential 최적화 판단까지 이어지는 비용 flow 심화",
-      "order": 29,
+      "order": 30,
       "folderId": "graphs",
       "tags": [
         "min-cost-flow",
@@ -848,6 +878,7 @@
       ],
       "relatedLessons": [
         "dijkstra",
+        "matching-cover-duality",
         "priority-queue-heap"
       ],
       "pages": []
@@ -857,7 +888,7 @@
       "title": "Floyd-Warshall",
       "description": "모든 정점 쌍 최단거리와 도달 가능성을 중간 정점 DP로 처리하는 Floyd-Warshall 알고리즘을 익힙니다.",
       "summary": "APSP, transitive closure, 경로 복원, 음수 사이클 영향 점검까지 이어지는 작은 그래프 최단거리 레슨",
-      "order": 30,
+      "order": 31,
       "folderId": "graphs",
       "tags": [
         "floyd-warshall",
@@ -885,7 +916,7 @@
       "title": "Sqrt Decomposition",
       "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",
       "summary": "구간 합, 점 업데이트, 블록 크기 선택, lazy 블록 갱신까지 이어지는 sqrt decomposition 입문",
-      "order": 31,
+      "order": 32,
       "folderId": "data-structures",
       "tags": [
         "sqrt-decomposition",
@@ -914,7 +945,7 @@
       "title": "Sparse Table과 RMQ",
       "description": "업데이트가 없는 배열에서 구간 최솟값, gcd, LCP RMQ를 빠르게 처리하는 Sparse Table을 익힙니다.",
       "summary": "2^k 길이 구간 전처리, idempotent 연산의 O(1) RMQ, LCP 배열과 LCA 연결까지 이어지는 정적 구간 질의 레슨",
-      "order": 32,
+      "order": 33,
       "folderId": "data-structures",
       "tags": [
         "sparse-table",
@@ -1049,11 +1080,42 @@
         "coordinate-compression"
       ],
       "nextLessons": [
+        "convex-hull-trick-li-chao",
         "offline-queries"
       ],
       "relatedLessons": [
         "fenwick-tree",
         "sparse-table-rmq"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "convex-hull-trick-li-chao",
+      "title": "Convex Hull Trick과 Li Chao Tree",
+      "description": "DP 전이를 직선 query로 바꾸고, Convex Hull Trick과 Li Chao Tree로 최솟값 전이를 빠르게 처리합니다.",
+      "summary": "직선으로 분리되는 DP 전이, 단조 deque CHT 조건, Li Chao Tree 구현, 좌표 압축과 overflow 점검까지 이어지는 DP/자료구조 최적화",
+      "order": 42,
+      "folderId": "data-structures",
+      "tags": [
+        "convex-hull-trick",
+        "li-chao-tree",
+        "dp-optimization",
+        "line-container",
+        "segment-tree",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "dynamic-programming",
+        "segment-tree"
+      ],
+      "nextLessons": [
+        "divide-and-conquer-dp-optimization"
+      ],
+      "relatedLessons": [
+        "persistent-segment-tree",
+        "matrix-exponentiation"
       ],
       "pages": []
     },
@@ -1309,8 +1371,38 @@
       "prerequisites": [
         "geometry-ccw-segment-intersection"
       ],
+      "nextLessons": [
+        "sweep-line-geometry"
+      ],
+      "relatedLessons": [
+        "two-pointers-sliding-window"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "sweep-line-geometry",
+      "title": "Sweep Line Geometry",
+      "description": "기하 이벤트를 한 축으로 정렬하고 active set 또는 구간 자료구조로 직사각형 넓이와 교차 판정을 처리합니다.",
+      "summary": "이벤트 정렬, active set, y좌표 압축, 직사각형 합집합 넓이, 선분 교차 sweep의 tie-breaking까지 이어지는 기하 심화",
+      "order": 62,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "sweep-line",
+        "events",
+        "active-set",
+        "rectangle-union",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "geometry-ccw-segment-intersection",
+        "segment-tree"
+      ],
       "nextLessons": [],
       "relatedLessons": [
+        "rotating-calipers",
         "two-pointers-sliding-window"
       ],
       "pages": []
@@ -1320,7 +1412,7 @@
       "title": "정수론 심화: GCD, Extended Euclid, CRT, Sieve",
       "description": "gcd, 확장 유클리드 알고리즘, 일반 모듈러 역원, CRT, 최소 소인수 전처리로 정수론 문제를 확장해 풉니다.",
       "summary": "유클리드 알고리즘, extended gcd, 합성수 mod 역원, 일반 CRT, smallest prime factor sieve까지 이어지는 정수론 심화",
-      "order": 62,
+      "order": 63,
       "folderId": "math",
       "tags": [
         "number-theory",
@@ -1348,7 +1440,7 @@
       "title": "조합론: nCr, 포함-배제, Lucas",
       "description": "모듈러 조합 계산, 포함-배제, Lucas 정리로 경우의 수 문제를 체계적으로 세는 방법을 익힙니다.",
       "summary": "factorial과 inverse factorial nCr, 포함-배제 부호 처리, Lucas 정리와 큰 n 조합 계산까지 이어지는 수학 심화",
-      "order": 63,
+      "order": 64,
       "folderId": "math",
       "tags": [
         "combinatorics",
@@ -1365,7 +1457,8 @@
       ],
       "nextLessons": [
         "matrix-exponentiation",
-        "fft-ntt"
+        "fft-ntt",
+        "probability-expected-value"
       ],
       "relatedLessons": [
         "gcd-extended-euclid-crt",
@@ -1378,7 +1471,7 @@
       "title": "Matrix Exponentiation",
       "description": "선형 점화식과 상태 전이를 행렬로 만들고 빠른 거듭제곱으로 큰 반복 횟수를 처리합니다.",
       "summary": "상태 벡터, companion matrix, 행렬 빠른 거듭제곱, 그래프 walk 수와 affine transform까지 이어지는 수학/DP 레슨",
-      "order": 64,
+      "order": 65,
       "folderId": "math",
       "tags": [
         "matrix-exponentiation",
@@ -1409,7 +1502,7 @@
       "title": "FFT와 NTT",
       "description": "다항식 곱셈과 convolution을 FFT/NTT로 빠르게 계산하고, pair count와 generating function 모델링으로 연결합니다.",
       "summary": "Convolution 신호 찾기, NTT 구현, FFT/NTT 선택 기준, 빈도 배열 pair count 모델링까지 이어지는 다항식 곱셈 레슨",
-      "order": 65,
+      "order": 66,
       "folderId": "math",
       "tags": [
         "fft",
@@ -1433,11 +1526,40 @@
       "pages": []
     },
     {
+      "lessonId": "probability-expected-value",
+      "title": "확률과 기대값",
+      "description": "확률 분포와 기대값 DP를 세우고, DAG 전이와 순환 전이, 모듈러 확률 처리를 구분해 익힙니다.",
+      "summary": "확률 DP, 기대값 식, 기대값의 선형성, 순환 상태의 연립방정식, 모듈러 확률 표현까지 이어지는 수학/DP 레슨",
+      "order": 67,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "expected-value",
+        "dynamic-programming",
+        "markov-chain",
+        "modular-arithmetic",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "dynamic-programming",
+        "modular-arithmetic",
+        "combinatorics-ncr"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "matrix-exponentiation",
+        "testing-and-stress"
+      ],
+      "pages": []
+    },
+    {
       "lessonId": "offline-queries",
       "title": "오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search",
       "description": "질의를 재정렬하거나 되돌릴 수 있는 상태를 이용해 Mo's Algorithm, DSU Rollback, Parallel Binary Search를 익힙니다.",
       "summary": "정적 구간 질의의 Mo's Algorithm, 시간 분기 처리를 위한 DSU rollback, 여러 답을 동시에 찾는 parallel binary search 정리",
-      "order": 67,
+      "order": 68,
       "folderId": "data-structures",
       "tags": [
         "offline-queries",
@@ -1516,6 +1638,34 @@
       "nextLessons": [],
       "relatedLessons": [
         "testing-and-stress"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "divide-and-conquer-dp-optimization",
+      "title": "Divide and Conquer DP Optimization",
+      "description": "최적 분할점 단조성을 이용해 layer DP의 후보 범위를 줄이는 divide-and-conquer DP optimization을 익힙니다.",
+      "summary": "구간 분할 DP, opt 단조성, 재귀적 후보 범위 축소, cost 계산과 적용 조건 검증까지 이어지는 DP 최적화 레슨",
+      "order": 73,
+      "folderId": "strategy",
+      "tags": [
+        "divide-and-conquer-dp",
+        "dp-optimization",
+        "monotone-opt",
+        "partition-dp",
+        "quadrangle-inequality",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "dynamic-programming",
+        "proof-and-invariants"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "convex-hull-trick-li-chao",
+        "probability-expected-value"
       ],
       "pages": []
     }

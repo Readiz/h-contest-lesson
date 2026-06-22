@@ -78,6 +78,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [휴리스틱 개선과 선택 기준](lessons/tsp-hamiltonian/pages/heuristic-and-choices.md)
 - [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
 - [Proof와 Invariant](lessons/proof-and-invariants/lesson.md)
+- [Divide and Conquer DP Optimization](lessons/divide-and-conquer-dp-optimization/lesson.md)
 
 ### 그래프와 트리
 
@@ -94,6 +95,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md)
 - [SCC와 2-SAT](lessons/scc-2sat/lesson.md)
 - [Max Flow, Min Cut, Bipartite Matching](lessons/max-flow-min-cut/lesson.md)
+- [Matching과 Cover Duality](lessons/matching-cover-duality/lesson.md)
 - [Min-Cost Flow](lessons/min-cost-flow/lesson.md)
 - [Floyd-Warshall](lessons/floyd-warshall/lesson.md)
 
@@ -113,6 +115,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [Lazy Propagation](lessons/segment-tree/pages/lazy-propagation.md)
   - [Monoid와 Lazy 합성](lessons/segment-tree/pages/monoid-and-lazy-composition.md)
 - [Persistent Segment Tree](lessons/persistent-segment-tree/lesson.md)
+- [Convex Hull Trick과 Li Chao Tree](lessons/convex-hull-trick-li-chao/lesson.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
   - [BST와 회전 기본기](lessons/treap/pages/bst-and-rotation.md)
@@ -136,6 +139,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 
 - [기하 기본: CCW, 선분 교차, Convex Hull](lessons/geometry-ccw-segment-intersection/lesson.md)
 - [Rotating Calipers](lessons/rotating-calipers/lesson.md)
+- [Sweep Line Geometry](lessons/sweep-line-geometry/lesson.md)
 
 ### 수학
 
@@ -146,3 +150,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [조합론: nCr, 포함-배제, Lucas](lessons/combinatorics-ncr/lesson.md)
 - [Matrix Exponentiation](lessons/matrix-exponentiation/lesson.md)
 - [FFT와 NTT](lessons/fft-ntt/lesson.md)
+- [확률과 기대값](lessons/probability-expected-value/lesson.md)

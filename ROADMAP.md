@@ -24,27 +24,32 @@
 - `floyd-warshall`: 모든 쌍 최단거리, transitive closure, 경로 복원, 음수 사이클 영향 점검을 공개했습니다. 남은 그래프 심화는 matching/cover duality 후보로 이어갑니다.
 - `matrix-exponentiation`: 선형 점화식, 그래프 walk 수, affine transform을 행렬 빠른 거듭제곱으로 처리하는 수학/DP 레슨을 공개했습니다. 남은 수학 심화는 FFT/NTT와 polynomial 계열로 이어갑니다.
 - `fft-ntt`: 다항식 곱셈, convolution 모델링, NTT 구현, pair count 응용을 공개했습니다. 남은 polynomial 심화는 formal power series 후보로 이어갑니다.
+- `matching-cover-duality`: 이분 매칭에서 minimum vertex cover, maximum independent set, DAG path cover로 이어지는 duality 모델링을 공개했습니다. 남은 그래프 심화는 일반 matching 또는 flow 변형 후보로 이어갑니다.
+- `sweep-line-geometry`: 이벤트 정렬, active set, y구간 cover tree를 이용한 직사각형 합집합 넓이와 선분 sweep 관점을 공개했습니다. 남은 기하 심화는 closest pair와 더 세부적인 line arrangement 후보로 이어갑니다.
+- `convex-hull-trick-li-chao`: 직선으로 분리되는 DP 전이, Li Chao Tree, CHT 선택 조건을 공개했습니다. 남은 DP 최적화는 divide-and-conquer와 Knuth 후보로 이어갑니다.
+- `divide-and-conquer-dp-optimization`: layer DP의 opt 단조성을 이용한 재귀적 후보 범위 축소를 공개했습니다. 남은 DP 최적화는 Knuth optimization 후보로 이어갑니다.
+- `probability-expected-value`: 확률 분포 DP, 기대값 식, 기대값의 선형성, 순환 상태와 모듈러 확률을 공개했습니다. 남은 수학/전략 심화는 game theory와 Markov chain 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `matching-cover-duality` | 이분 매칭, minimum vertex cover, Konig theorem | TODO: matching/cover `/practice/...` 문제 필요 |
-| 2 | `sweep-line-geometry` | 이벤트 정렬, active set, 선분/직사각형 sweep | TODO: sweep line geometry `/practice/...` 문제 필요 |
-| 3 | `convex-hull-trick-li-chao` | 직선 최솟값 DP, Li Chao Tree | TODO: CHT/Li Chao `/practice/...` 문제 필요 |
-| 4 | `divide-and-conquer-dp-optimization` | 단조 argmin을 이용한 DP 최적화 | TODO: D&C DP 최적화 `/practice/...` 문제 필요 |
-| 5 | `probability-expected-value` | 확률 DP, 기대값 식 세우기 | TODO: 확률/기대값 `/practice/...` 문제 필요 |
+| 1 | `palindromic-tree` | 모든 palindrome substring을 상태로 압축하는 Eertree | TODO: palindrome structure `/practice/...` 문제 필요 |
+| 2 | `wavelet-tree` | 값 범위와 index 범위를 동시에 나누는 rank/kth 자료구조 | TODO: wavelet tree `/practice/...` 문제 필요 |
+| 3 | `formal-power-series` | polynomial inverse, derivative/integral, FPS 기본 연산 | TODO: FPS `/practice/...` 문제 필요 |
+| 4 | `knuth-optimization` | interval DP의 opt 범위 축소 | TODO: Knuth optimization `/practice/...` 문제 필요 |
+| 5 | `game-theory-grundy` | impartial game, mex, Sprague-Grundy theorem | TODO: Grundy/game `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `palindromic-tree` |
-| 그래프 심화 | `matching-cover-duality` |
-| 자료구조/오프라인 | `convex-hull-trick-li-chao`, `wavelet-tree` |
-| 수학 심화 | `formal-power-series`, `probability-expected-value` |
-| DP 최적화 | `divide-and-conquer-dp-optimization`, `knuth-optimization` |
-| 기하 | `sweep-line-geometry` |
+| 그래프 심화 | `general-matching`, `flow-with-lower-bound` |
+| 자료구조/오프라인 | `wavelet-tree` |
+| 수학 심화 | `formal-power-series`, `game-theory-grundy` |
+| DP 최적화 | `knuth-optimization` |
+| 기하 | `closest-pair-sweep` |
 
 ## 공개 레슨으로 올리기 전 조건
 
