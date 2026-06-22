@@ -1658,7 +1658,8 @@
         "string-matching-kmp-z"
       ],
       "nextLessons": [
-        "suffix-palindrome-applications"
+        "suffix-palindrome-applications",
+        "palindrome-query-structures"
       ],
       "relatedLessons": [
         "trie-aho-corasick",
@@ -1688,7 +1689,8 @@
         "palindromic-tree"
       ],
       "nextLessons": [
-        "lyndon-factorization"
+        "lyndon-factorization",
+        "palindrome-query-structures"
       ],
       "relatedLessons": [
         "suffix-array-lcp",
@@ -3101,7 +3103,9 @@
         "suffix-array-applications",
         "suffix-palindrome-applications"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "generalized-suffix-automaton"
+      ],
       "relatedLessons": [
         "border-automaton",
         "runs-periodicity"
@@ -3130,7 +3134,9 @@
         "gomory-hu-tree",
         "dynamic-mst"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "cut-sparsification"
+      ],
       "relatedLessons": [
         "flow-with-lower-bound",
         "directed-mst"
@@ -3159,7 +3165,9 @@
         "persistent-union-find",
         "dynamic-connectivity"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "retroactive-data-structures"
+      ],
       "relatedLessons": [
         "union-find",
         "persistent-segment-tree"
@@ -3372,6 +3380,153 @@
       "relatedLessons": [
         "heuristic",
         "probability-expected-value"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "generalized-suffix-automaton",
+      "title": "Generalized Suffix Automaton",
+      "description": "여러 문자열의 substring 집합을 하나의 automaton 관점에서 합치고 문자열별 등장 정보를 집계합니다.",
+      "summary": "단일 SAM을 여러 문자열 LCS, coverage count, group substring query로 확장하는 generalized suffix automaton 레슨",
+      "order": 116,
+      "folderId": "strings",
+      "tags": [
+        "suffix-automaton",
+        "generalized-sam",
+        "multi-string",
+        "substring",
+        "coverage",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "suffix-automaton",
+        "suffix-automaton-applications",
+        "trie-aho-corasick"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "suffix-array-applications",
+        "suffix-palindrome-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "palindrome-query-structures",
+      "title": "Palindrome Query Structures",
+      "description": "Manacher, rolling hash, Palindromic Tree를 질의 형태별로 골라 palindrome 판정과 집계를 처리합니다.",
+      "summary": "정적 palindrome 판정, 동적 hash query, Eertree occurrence 집계를 문제 신호별로 선택하는 palindrome query 레슨",
+      "order": 117,
+      "folderId": "strings",
+      "tags": [
+        "palindrome",
+        "manacher",
+        "rolling-hash",
+        "eertree",
+        "range-query",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "palindromic-tree",
+        "suffix-palindrome-applications",
+        "string-matching-kmp-z"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "suffix-array-applications",
+        "suffix-automaton-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "cut-sparsification",
+      "title": "Cut Sparsification",
+      "description": "작은 cut이나 edge connectivity를 보존하는 sparse certificate로 dense graph의 cut 계산을 줄입니다.",
+      "summary": "spanning forest layer, k-certificate, threshold cut preservation을 이용해 min cut 전처리와 connectivity 판정을 줄이는 그래프 심화 레슨",
+      "order": 118,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "min-cut",
+        "sparsification",
+        "connectivity",
+        "certificate",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "global-min-cut",
+        "gomory-hu-tree",
+        "max-flow-min-cut"
+      ],
+      "nextLessons": [
+        "global-min-cut-applications"
+      ],
+      "relatedLessons": [
+        "dynamic-mst",
+        "rollback-techniques"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "global-min-cut-applications",
+      "title": "Global Min Cut Applications",
+      "description": "Global Min Cut 값을 넘어서 partition 복원, 여러 minimum cut, pair cut query와 edge criticality를 모델링합니다.",
+      "summary": "Stoer-Wagner partition tracking, Gomory-Hu Tree 해석, cactus-style min cut family와 edge sensitivity를 연결하는 그래프 응용 레슨",
+      "order": 119,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "global-min-cut",
+        "gomory-hu-tree",
+        "cactus",
+        "cut-query",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "global-min-cut",
+        "gomory-hu-tree",
+        "cut-sparsification"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "max-flow-min-cut",
+        "dynamic-mst"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "retroactive-data-structures",
+      "title": "Retroactive Data Structures",
+      "description": "과거 operation 삽입과 삭제를 시간축 interval로 모델링하고 rollback/persistence와의 경계를 익힙니다.",
+      "summary": "operation timeline, offline retroactivity, segment tree over time, rollback structure를 조합하는 자료구조 심화 레슨",
+      "order": 120,
+      "folderId": "data-structures",
+      "tags": [
+        "data-structures",
+        "retroactive",
+        "offline-query",
+        "rollback",
+        "persistence",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "rollback-techniques",
+        "persistent-union-find",
+        "offline-queries"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "dynamic-connectivity",
+        "persistent-segment-tree"
       ],
       "pages": []
     }
