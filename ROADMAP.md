@@ -74,26 +74,31 @@
 - `persistent-union-find`: parent change time과 size history로 과거 version의 연결성/component size를 조회하는 DSU 심화를 공개했습니다. 남은 자료구조/오프라인 심화는 rollback techniques 후보로 이어갑니다.
 - `linear-basis-applications`: XOR basis를 표현 가능성, k번째 xor, graph cycle xor, range query, matroid greedy로 확장하는 수학 심화를 공개했습니다. 남은 수학 심화는 Dirichlet convolution 후보로 이어갑니다.
 - `min-plus-convolution`: min-plus DP merge, convex sequence, argmin monotonicity, divide-and-conquer 최적화 관점을 공개했습니다. 남은 DP 최적화는 convex DP modeling 후보로 이어갑니다.
+- `suffix-automaton-applications`: Suffix Automaton 이후 transition DAG와 suffix link tree를 활용해 occurrence, k번째 substring, 반복 substring, 여러 문자열 공통 substring을 다루는 응용 레슨을 공개했습니다.
+- `global-min-cut`: 무향 그래프의 전체 minimum cut을 Stoer-Wagner 알고리즘과 cut modeling 관점으로 공개했습니다. 남은 cut 심화는 cut sparsification이나 cactus representation 후보로 이어갑니다.
+- `rollback-techniques`: Rollback DSU를 중심으로 snapshot, segment tree over time, 상태 변경 기록 패턴을 공개했습니다. 남은 오프라인 심화는 retroactive data structure 후보로 이어갑니다.
+- `dirichlet-convolution`: 약수 관계 위 convolution, divisor zeta transform, Mobius inverse, multiplicative function 관점을 공개했습니다. 남은 수학 심화는 multiplicative function sieve 후보로 이어갑니다.
+- `convex-dp-modeling`: DP 최적화 적용 전 convex, Monge, argmin 단조 조건을 모델링하고 검증하는 관점을 공개했습니다. 남은 DP 최적화는 CHT variants와 parametric DP 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `suffix-automaton-applications` | suffix automaton applications beyond substring count | TODO: suffix automaton applications `/practice/...` 문제 필요 |
-| 2 | `global-min-cut` | Stoer-Wagner and global min cut modeling | TODO: global min cut `/practice/...` 문제 필요 |
-| 3 | `rollback-techniques` | rollback patterns for offline data structures | TODO: rollback techniques `/practice/...` 문제 필요 |
-| 4 | `dirichlet-convolution` | multiplicative functions and divisor convolution | TODO: Dirichlet convolution `/practice/...` 문제 필요 |
-| 5 | `convex-dp-modeling` | recognizing convex DP models before optimization | TODO: convex DP modeling `/practice/...` 문제 필요 |
+| 1 | `minkowski-sum` | convex polygon Minkowski sum and distance modeling | TODO: Minkowski sum `/practice/...` 문제 필요 |
+| 2 | `rotating-calipers-applications` | width, tangent, antipodal pair applications | TODO: rotating calipers applications `/practice/...` 문제 필요 |
+| 3 | `multiplicative-functions` | linear sieve for multiplicative arithmetic functions | TODO: multiplicative function `/practice/...` 문제 필요 |
+| 4 | `markov-decision-process` | stochastic state transition and value iteration | TODO: Markov decision process `/practice/...` 문제 필요 |
+| 5 | `imperfect-information-search` | hidden information game search and belief state modeling | TODO: imperfect-information search `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `border-automaton`, `suffix-automaton-applications` |
-| 그래프 심화 | `dynamic-mst`, `global-min-cut` |
-| 자료구조/오프라인 | `persistent-union-find`, `rollback-techniques` |
-| 수학 심화 | `linear-basis-applications`, `dirichlet-convolution` |
-| DP 최적화 | `min-plus-convolution`, `convex-dp-modeling` |
+| 문자열 | `generalized-suffix-automaton`, `palindrome-query-structures` |
+| 그래프 심화 | `cut-sparsification`, `global-min-cut-applications` |
+| 자료구조/오프라인 | `retroactive-data-structures`, `offline-range-query-techniques` |
+| 수학 심화 | `multiplicative-functions`, `summatory-number-theory` |
+| DP 최적화 | `convex-hull-trick-variants`, `parametric-dp` |
 | 기하 | `minkowski-sum`, `rotating-calipers-applications` |
 | 게임/탐색 | `markov-decision-process`, `imperfect-information-search` |
 
