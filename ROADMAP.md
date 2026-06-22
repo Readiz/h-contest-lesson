@@ -69,16 +69,21 @@
 - `euler-tour-tree`: dynamic forest를 Euler tour sequence와 treap split/merge로 관리하는 Euler Tour Tree를 공개했습니다. 남은 자료구조 심화는 persistent union-find 후보로 이어갑니다.
 - `mobius-inversion`: Mobius function, divisor inversion, coprime pair count, exact gcd count를 다루는 수학 심화를 공개했습니다. 남은 수학 심화는 linear basis applications 후보로 이어갑니다.
 - `convex-cost-flow`: convex marginal cost를 edge split으로 표현해 Min-Cost Flow 모델과 결합하는 최적화 심화를 공개했습니다. 남은 DP 최적화는 min-plus convolution 후보로 이어갑니다.
+- `border-automaton`: KMP prefix function을 상태 전이표로 바꾸고 forbidden pattern DP와 overlapping match 처리를 다루는 문자열 심화를 공개했습니다. 남은 문자열 심화는 suffix automaton applications 후보로 이어갑니다.
+- `dynamic-mst`: 간선 추가/삭제가 섞인 그래프에서 MST 비용을 유지하는 성질, rebuild baseline, block/offline 전략을 공개했습니다. 남은 그래프 심화는 global min cut 후보로 이어갑니다.
+- `persistent-union-find`: parent change time과 size history로 과거 version의 연결성/component size를 조회하는 DSU 심화를 공개했습니다. 남은 자료구조/오프라인 심화는 rollback techniques 후보로 이어갑니다.
+- `linear-basis-applications`: XOR basis를 표현 가능성, k번째 xor, graph cycle xor, range query, matroid greedy로 확장하는 수학 심화를 공개했습니다. 남은 수학 심화는 Dirichlet convolution 후보로 이어갑니다.
+- `min-plus-convolution`: min-plus DP merge, convex sequence, argmin monotonicity, divide-and-conquer 최적화 관점을 공개했습니다. 남은 DP 최적화는 convex DP modeling 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `border-automaton` | prefix-function automaton and border transitions | TODO: border automaton `/practice/...` 문제 필요 |
-| 2 | `dynamic-mst` | dynamic minimum spanning tree maintenance | TODO: dynamic MST `/practice/...` 문제 필요 |
-| 3 | `persistent-union-find` | versioned DSU and rollback/persistence choices | TODO: persistent union-find `/practice/...` 문제 필요 |
-| 4 | `linear-basis-applications` | xor basis applications beyond maximum xor | TODO: linear basis applications `/practice/...` 문제 필요 |
-| 5 | `min-plus-convolution` | convex/min-plus convolution and DP transition speedups | TODO: min-plus convolution `/practice/...` 문제 필요 |
+| 1 | `suffix-automaton-applications` | suffix automaton applications beyond substring count | TODO: suffix automaton applications `/practice/...` 문제 필요 |
+| 2 | `global-min-cut` | Stoer-Wagner and global min cut modeling | TODO: global min cut `/practice/...` 문제 필요 |
+| 3 | `rollback-techniques` | rollback patterns for offline data structures | TODO: rollback techniques `/practice/...` 문제 필요 |
+| 4 | `dirichlet-convolution` | multiplicative functions and divisor convolution | TODO: Dirichlet convolution `/practice/...` 문제 필요 |
+| 5 | `convex-dp-modeling` | recognizing convex DP models before optimization | TODO: convex DP modeling `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
