@@ -105,6 +105,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Floyd-Warshall](lessons/floyd-warshall/lesson.md)
 - [Dominator Tree](lessons/dominator-tree/lesson.md)
 - [Weighted Matching](lessons/weighted-matching/lesson.md)
+- [Directed MST](lessons/directed-mst/lesson.md)
 
 ### 자료구조
 
@@ -128,6 +129,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Wavelet Matrix](lessons/wavelet-matrix/lesson.md)
 - [Succinct Bitvector](lessons/succinct-bitvector/lesson.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
+- [Link-Cut Tree](lessons/link-cut-tree/lesson.md)
 - [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
   - [BST와 회전 기본기](lessons/treap/pages/bst-and-rotation.md)
   - [AVL과 Splay Tree](lessons/treap/pages/balanced-bst.md)
@@ -146,6 +148,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Palindromic Tree](lessons/palindromic-tree/lesson.md)
 - [Suffix와 Palindrome 응용](lessons/suffix-palindrome-applications/lesson.md)
 - [Lyndon Factorization](lessons/lyndon-factorization/lesson.md)
+- [Suffix Tree와 Ukkonen](lessons/suffix-tree-ukkonen/lesson.md)
 
 ### 기하
 
@@ -157,6 +160,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Closest Pair Sweep](lessons/closest-pair-sweep/lesson.md)
 - [Line Arrangement](lessons/line-arrangement/lesson.md)
 - [Voronoi와 Delaunay](lessons/voronoi-delaunay/lesson.md)
+- [Half-Plane Intersection](lessons/half-plane-intersection/lesson.md)
 
 ### 수학
 
@@ -172,6 +176,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [FPS Log와 Exp](lessons/fps-log-exp/lesson.md)
 - [Multipoint Evaluation](lessons/multipoint-evaluation/lesson.md)
 - [Bostan-Mori](lessons/bostan-mori/lesson.md)
+- [Polynomial Interpolation](lessons/polynomial-interpolation/lesson.md)
 - [확률과 기대값](lessons/probability-expected-value/lesson.md)
 - [Game Theory와 Grundy Number](lessons/game-theory-grundy/lesson.md)
 - [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md)

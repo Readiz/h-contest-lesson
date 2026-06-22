@@ -54,27 +54,32 @@
 - `persistent-lazy-segment-tree`: lazy range update와 path copying을 결합한 versioned range add/range sum 구조를 공개했습니다. 남은 자료구조 심화는 link-cut tree 후보로 이어갑니다.
 - `bostan-mori`: rational generating function의 n번째 계수 추출과 선형 점화식 연결을 polynomial 심화 레슨으로 공개했습니다. 남은 수학 심화는 polynomial interpolation 후보로 이어갑니다.
 - `voronoi-delaunay`: Voronoi diagram과 Delaunay triangulation의 쌍대성, in-circle predicate, Euclidean MST 응용 관점을 기하 심화 레슨으로 공개했습니다. 남은 기하 심화는 half-plane intersection 후보로 이어갑니다.
+- `suffix-tree-ukkonen`: 압축 suffix trie, active point, suffix link, sentinel 처리와 generalized suffix tree 관점을 문자열 구조 심화로 공개했습니다. 남은 문자열 심화는 runs/periodicity 후보로 이어갑니다.
+- `directed-mst`: Chu-Liu/Edmonds arborescence, incoming edge 선택, cycle contraction, 비용 보정을 방향 그래프 최적화 레슨으로 공개했습니다. 남은 그래프 심화는 dynamic connectivity 후보로 이어갑니다.
+- `link-cut-tree`: access, makeroot, link/cut, path aggregate를 splay 기반 dynamic tree 자료구조로 공개했습니다. 남은 자료구조 심화는 dynamic segment tree 후보로 이어갑니다.
+- `polynomial-interpolation`: Lagrange interpolation, consecutive x 최적화, finite difference, 계수 복원 관점을 polynomial 심화로 공개했습니다. 남은 수학 심화는 linear basis/xor 후보로 이어갑니다.
+- `half-plane-intersection`: 반평면 표현, angle sort, deque intersection, bounding box와 Voronoi cell 연결을 기하 심화로 공개했습니다. 남은 기하 심화는 Minkowski sum 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `suffix-tree-ukkonen` | suffix tree, Ukkonen online construction | TODO: suffix tree `/practice/...` 문제 필요 |
-| 2 | `directed-mst` | Chu-Liu/Edmonds arborescence | TODO: directed MST `/practice/...` 문제 필요 |
-| 3 | `link-cut-tree` | dynamic tree path query, link, cut | TODO: link-cut tree `/practice/...` 문제 필요 |
-| 4 | `polynomial-interpolation` | Lagrange/Newton interpolation | TODO: interpolation `/practice/...` 문제 필요 |
-| 5 | `half-plane-intersection` | convex polygon clipping, half-plane intersection | TODO: half-plane intersection `/practice/...` 문제 필요 |
+| 1 | `runs-periodicity` | runs theorem, string period, border structure | TODO: runs/periodicity `/practice/...` 문제 필요 |
+| 2 | `dynamic-connectivity` | offline/online dynamic graph connectivity | TODO: dynamic connectivity `/practice/...` 문제 필요 |
+| 3 | `dynamic-segment-tree` | sparse coordinate range query/update | TODO: dynamic segment tree `/practice/...` 문제 필요 |
+| 4 | `linear-basis-xor` | xor linear basis, maximum xor, rank | TODO: xor basis `/practice/...` 문제 필요 |
+| 5 | `slope-trick` | convex piecewise-linear DP optimization | TODO: slope trick `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `suffix-tree-ukkonen`, `runs-periodicity` |
-| 그래프 심화 | `directed-mst`, `dynamic-connectivity` |
-| 자료구조/오프라인 | `link-cut-tree`, `dynamic-segment-tree` |
-| 수학 심화 | `polynomial-interpolation`, `linear-basis-xor` |
-| DP 최적화 | `lagrangian-relaxation`, `slope-trick` |
-| 기하 | `half-plane-intersection`, `minkowski-sum` |
+| 문자열 | `runs-periodicity`, `suffix-array-applications` |
+| 그래프 심화 | `dynamic-connectivity`, `gomory-hu-tree` |
+| 자료구조/오프라인 | `dynamic-segment-tree`, `euler-tour-tree` |
+| 수학 심화 | `linear-basis-xor`, `mobius-inversion` |
+| DP 최적화 | `slope-trick`, `convex-cost-flow` |
+| 기하 | `minkowski-sum`, `rotating-calipers-applications` |
 | 게임/탐색 | `markov-decision-process`, `imperfect-information-search` |
 
 ## 공개 레슨으로 올리기 전 조건

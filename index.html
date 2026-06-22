@@ -750,7 +750,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/directed-mst/lesson.md">Directed MST</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a> <a href="lessons/general-matching/lesson.md">General Matching</a></p>
 </article>
 <article class="lesson-card">
@@ -772,8 +772,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/general-matching/lesson.md">General Matching</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/directed-mst/lesson.md">Directed MST</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/matching-cover-duality/lesson.md">Matching과 Cover Duality</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/directed-mst/lesson.md">Directed MST</a></h3>
+<code class="lesson-id">directed-mst</code>
+</div>
+<p class="lesson-description">루트에서 모든 정점으로 향하는 최소 비용 arborescence를 Chu-Liu/Edmonds cycle contraction으로 계산합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+</div>
+<div class="tag-list">
+<span class="tag">directed-mst</span>
+<span class="tag">arborescence</span>
+<span class="tag">edmonds</span>
+<span class="tag">chu-liu</span>
+<span class="tag">directed-graph</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/weighted-matching/lesson.md">Weighted Matching</a> <a href="lessons/dominator-tree/lesson.md">Dominator Tree</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
 </article>
 </div>
 </section>
@@ -1087,8 +1109,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/tsp-hamiltonian/lesson.md">TSP와 해밀턴 경로</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></h3>
+<code class="lesson-id">link-cut-tree</code>
+</div>
+<p class="lesson-description">동적으로 변하는 forest에서 link, cut, path query를 splay 기반 preferred path로 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">85분</span>
+</div>
+<div class="tag-list">
+<span class="tag">link-cut-tree</span>
+<span class="tag">dynamic-tree</span>
+<span class="tag">splay-tree</span>
+<span class="tag">path-query</span>
+<span class="tag">forest</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/persistent-lazy-segment-tree/lesson.md">Persistent Lazy Segment Tree</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1297,8 +1341,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-tree-ukkonen/lesson.md">Suffix Tree와 Ukkonen</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/suffix-tree-ukkonen/lesson.md">Suffix Tree와 Ukkonen</a></h3>
+<code class="lesson-id">suffix-tree-ukkonen</code>
+</div>
+<p class="lesson-description">압축 suffix trie와 Ukkonen active point/suffix link를 이용해 모든 suffix를 구조화합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">85분</span>
+</div>
+<div class="tag-list">
+<span class="tag">suffix-tree</span>
+<span class="tag">ukkonen</span>
+<span class="tag">string</span>
+<span class="tag">suffix-link</span>
+<span class="tag">substring</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
 </article>
 </div>
 </section>
@@ -1435,8 +1501,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a> <a href="lessons/closest-pair-sweep/lesson.md">Closest Pair Sweep</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a></h3>
+<code class="lesson-id">half-plane-intersection</code>
+</div>
+<p class="lesson-description">방향 있는 직선의 왼쪽 반평면들을 각도순 deque로 처리해 convex feasible region을 구합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">75분</span>
+</div>
+<div class="tag-list">
+<span class="tag">half-plane-intersection</span>
+<span class="tag">geometry</span>
+<span class="tag">convex-polygon</span>
+<span class="tag">line-intersection</span>
+<span class="tag">voronoi</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a> <a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a></p>
 </article>
 </div>
 </section>
@@ -1638,7 +1726,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/formal-power-series/lesson.md">Formal Power Series</a> <a href="lessons/fft-ntt/lesson.md">FFT와 NTT</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/bostan-mori/lesson.md">Bostan-Mori</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/bostan-mori/lesson.md">Bostan-Mori</a> <a href="lessons/polynomial-interpolation/lesson.md">Polynomial Interpolation</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/fps-log-exp/lesson.md">FPS Log와 Exp</a> <a href="lessons/linear-recurrence-kitamasa/lesson.md">Linear Recurrence와 Kitamasa</a></p>
 </article>
 <article class="lesson-card">
@@ -1660,8 +1748,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/linear-recurrence-kitamasa/lesson.md">Linear Recurrence와 Kitamasa</a> <a href="lessons/formal-power-series/lesson.md">Formal Power Series</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/polynomial-interpolation/lesson.md">Polynomial Interpolation</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/multipoint-evaluation/lesson.md">Multipoint Evaluation</a> <a href="lessons/fft-ntt/lesson.md">FFT와 NTT</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/polynomial-interpolation/lesson.md">Polynomial Interpolation</a></h3>
+<code class="lesson-id">polynomial-interpolation</code>
+</div>
+<p class="lesson-description">여러 점의 값으로 다항식을 결정하고 Lagrange 보간으로 큰 위치의 값을 계산합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+</div>
+<div class="tag-list">
+<span class="tag">polynomial-interpolation</span>
+<span class="tag">lagrange</span>
+<span class="tag">finite-difference</span>
+<span class="tag">polynomial</span>
+<span class="tag">modular-arithmetic</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/multipoint-evaluation/lesson.md">Multipoint Evaluation</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/formal-power-series/lesson.md">Formal Power Series</a> <a href="lessons/bostan-mori/lesson.md">Bostan-Mori</a> <a href="lessons/multipoint-evaluation/lesson.md">Multipoint Evaluation</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
