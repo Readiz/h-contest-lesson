@@ -44,26 +44,31 @@
 - `line-arrangement`: 직선 정규화, rational 교점 dedup, arrangement 영역 수와 선분 sweep 확장 관점을 공개했습니다. 남은 기하 심화는 Voronoi/Delaunay나 half-plane 후보로 이어갑니다.
 - `linear-recurrence-kitamasa`: characteristic polynomial과 Kitamasa 방식으로 선형 점화식의 n번째 항을 계산하는 수학 심화를 공개했습니다. 남은 polynomial 심화는 multipoint/Bostan-Mori 후보로 이어갑니다.
 - `monte-carlo-tree-search`: UCB, rollout, backpropagation을 이용한 확률적 게임 탐색을 공개했습니다. 남은 게임/탐색 심화는 Markov decision process 후보로 이어갑니다.
+- `suffix-palindrome-applications`: suffix 구조와 palindromic tree를 문제 신호별로 선택하는 문자열 응용 레슨을 공개했습니다. 남은 문자열 심화는 Lyndon factorization 후보로 이어갑니다.
+- `dominator-tree`: flow graph의 immediate dominator와 Lengauer-Tarjan 흐름을 그래프 심화로 공개했습니다. 남은 그래프 심화는 weighted matching 후보로 이어갑니다.
+- `succinct-bitvector`: rank/select와 superblock/block 기반 bitvector를 Wavelet Matrix 내부 구조와 연결해 공개했습니다. 남은 자료구조 심화는 persistent lazy 구조 후보로 이어갑니다.
+- `multipoint-evaluation`: subproduct tree와 polynomial remainder 기반의 다점 평가 관점을 공개했습니다. 남은 polynomial 심화는 Bostan-Mori 후보로 이어갑니다.
+- `alien-optimization`: Lagrangian relaxation, penalty DP, count 단조성을 이용한 Alien Optimization을 공개했습니다. 남은 DP 최적화는 slope/convex 계열 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `suffix-palindrome-applications` | suffix automaton/array와 palindromic tree 응용 패턴 | TODO: suffix-palindrome `/practice/...` 문제 필요 |
-| 2 | `dominator-tree` | flow graph, immediate dominator, Lengauer-Tarjan | TODO: dominator tree `/practice/...` 문제 필요 |
-| 3 | `succinct-bitvector` | rank/select, compressed bitvector, wavelet 구조 기반 | TODO: succinct bitvector `/practice/...` 문제 필요 |
-| 4 | `multipoint-evaluation` | subproduct tree, polynomial evaluation/interpolation | TODO: multipoint evaluation `/practice/...` 문제 필요 |
-| 5 | `alien-optimization` | Lagrangian relaxation, slope trick 관점의 DP 최적화 | TODO: alien optimization `/practice/...` 문제 필요 |
+| 1 | `lyndon-factorization` | Lyndon word, Duval algorithm, 최소 표현/문자열 분해 | TODO: Lyndon `/practice/...` 문제 필요 |
+| 2 | `weighted-matching` | weighted blossom 개요와 assignment/dual slack 비교 | TODO: weighted matching `/practice/...` 문제 필요 |
+| 3 | `persistent-lazy-segment-tree` | lazy propagation과 persistence 결합, versioned range update | TODO: persistent lazy segtree `/practice/...` 문제 필요 |
+| 4 | `bostan-mori` | rational generating function의 n번째 계수 계산 | TODO: Bostan-Mori `/practice/...` 문제 필요 |
+| 5 | `voronoi-delaunay` | Delaunay triangulation과 Voronoi diagram의 문제화 관점 | TODO: Voronoi/Delaunay `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `suffix-palindrome-applications`, `lyndon-factorization` |
-| 그래프 심화 | `dominator-tree`, `weighted-matching` |
-| 자료구조/오프라인 | `succinct-bitvector`, `persistent-lazy-segment-tree` |
-| 수학 심화 | `multipoint-evaluation`, `bostan-mori` |
-| DP 최적화 | `alien-optimization`, `lagrangian-relaxation` |
+| 문자열 | `lyndon-factorization`, `suffix-tree-ukkonen` |
+| 그래프 심화 | `weighted-matching`, `directed-mst` |
+| 자료구조/오프라인 | `persistent-lazy-segment-tree`, `link-cut-tree` |
+| 수학 심화 | `bostan-mori`, `polynomial-interpolation` |
+| DP 최적화 | `lagrangian-relaxation`, `slope-trick` |
 | 기하 | `voronoi-delaunay`, `half-plane-intersection` |
 | 게임/탐색 | `markov-decision-process`, `imperfect-information-search` |
 
