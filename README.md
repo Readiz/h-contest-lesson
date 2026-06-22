@@ -79,6 +79,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
 - [Proof와 Invariant](lessons/proof-and-invariants/lesson.md)
 - [Divide and Conquer DP Optimization](lessons/divide-and-conquer-dp-optimization/lesson.md)
+- [Knuth Optimization](lessons/knuth-optimization/lesson.md)
 
 ### 그래프와 트리
 
@@ -116,6 +117,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [Monoid와 Lazy 합성](lessons/segment-tree/pages/monoid-and-lazy-composition.md)
 - [Persistent Segment Tree](lessons/persistent-segment-tree/lesson.md)
 - [Convex Hull Trick과 Li Chao Tree](lessons/convex-hull-trick-li-chao/lesson.md)
+- [Wavelet Tree](lessons/wavelet-tree/lesson.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
   - [BST와 회전 기본기](lessons/treap/pages/bst-and-rotation.md)
@@ -132,6 +134,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Trie와 Aho-Corasick](lessons/trie-aho-corasick/lesson.md)
 - [Suffix Array와 LCP](lessons/suffix-array-lcp/lesson.md)
 - [Suffix Automaton](lessons/suffix-automaton/lesson.md)
+- [Palindromic Tree](lessons/palindromic-tree/lesson.md)
 
 ### 기하
 
@@ -150,4 +153,6 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [조합론: nCr, 포함-배제, Lucas](lessons/combinatorics-ncr/lesson.md)
 - [Matrix Exponentiation](lessons/matrix-exponentiation/lesson.md)
 - [FFT와 NTT](lessons/fft-ntt/lesson.md)
+- [Formal Power Series](lessons/formal-power-series/lesson.md)
 - [확률과 기대값](lessons/probability-expected-value/lesson.md)
+- [Game Theory와 Grundy Number](lessons/game-theory-grundy/lesson.md)
