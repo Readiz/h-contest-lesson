@@ -51,6 +51,8 @@ for s in 1..N-1:
 
 `side`는 residual graph에서 `s`로부터 도달 가능한 정점 집합입니다. 이 정보가 있어야 cut tree를 갱신할 수 있습니다.
 
+작은 그래프에서 parent가 실제로 어떻게 움직이는지는 [4정점 construction trace](pages/construct-trace.md)에서 단계별로 따로 봅니다. 구현을 외우기 전에 `reachable side`가 어떤 자식을 `s` 아래로 옮기는지 먼저 손으로 따라가야 합니다.
+
 ## 4. 구현 골격
 
 아래 코드는 max-flow 구현을 주입받아 Gomory-Hu parent tree를 만드는 골격입니다. `minCut(s, t)`는 min cut 값과 residual reachable side를 반환해야 합니다.
@@ -125,10 +127,13 @@ answer(u, v):
 
 각 단계에서 구한 cut은 현재 tree의 한 edge에 해당하는 분할을 확정합니다. reachable side에 따라 parent를 재배치하면 이전에 확정된 cut과 충돌하지 않는 형태로 cut-equivalent tree가 유지됩니다.
 
-증명은 submodularity와 cut uncrossing에 기대지만, 구현 관점에서는 아래 두 조건을 기억하면 충분합니다.
+직관적으로는 현재 parent tree가 "아직 구분이 덜 된 정점 묶음"을 들고 있고, `s-parent[s]` min cut은 그 묶음 안에서 `s` 쪽과 `parent[s]` 쪽을 가르는 새 경계 하나를 확정합니다. `side`에 같이 들어온 형제들은 `s`와 같은 쪽에 있었으므로 `s` 아래로 이동합니다. 이렇게 옮겨도 이전 단계에서 확정한 cut은 uncrossing 성질 때문에 더 나빠지지 않습니다.
+
+증명은 submodularity와 cut uncrossing에 기대지만, 구현 관점에서는 아래 세 조건을 기억하면 충분합니다.
 
 1. 매번 `s`와 `parent[s]`의 실제 minimum cut을 구한다.
 2. reachable side에 속한 같은 parent 자식들을 `s` 아래로 옮긴다.
+3. 완성된 tree 질의는 path sum이 아니라 path minimum으로 답한다.
 
 ## 7. 시간 복잡도
 

@@ -166,7 +166,71 @@ reroot(u):
 
 그 뒤 새 edge arc `(u, v)`, `(v, u)`를 사이에 끼우며 두 sequence를 merge합니다.
 
-## 5. `cut` 관점
+## 5. Sequence trace
+
+아래 tree를 Euler Tour Tree sequence로 펼쳐 보겠습니다.
+
+```text
+1 -- 2 -- 3
+```
+
+무향 edge를 양방향 arc로 보면 한 가지 가능한 sequence는 아래와 같습니다.
+
+```text
+1, (1,2), 2, (2,3), 3, (3,2), 2, (2,1), 1
+```
+
+정점 occurrence가 여러 번 나오기 때문에, 구현에서는 정점별 대표 occurrence와 edge별 양방향 arc pointer를 따로 들고 있어야 합니다.
+
+### 5.1 `link(3, 4)`
+
+먼저 `3`이 sequence 앞에 오도록 기존 tree를 reroot합니다.
+
+```text
+3, (3,2), 2, (2,1), 1, (1,2), 2, (2,3), 3
+```
+
+정점 `4`의 singleton sequence는 단순히 아래와 같습니다.
+
+```text
+4
+```
+
+새 edge `3-4`를 추가하려면 arc `(3,4)`, `(4,3)`를 만들어 두 sequence 사이에 넣습니다.
+
+```text
+3, (3,2), 2, (2,1), 1, (1,2), 2, (2,3), 3,
+(3,4), 4, (4,3)
+```
+
+실제 treap에서는 이 전체 문자열을 복사하지 않습니다. `split`과 `merge`로 root pointer 몇 개를 재조합할 뿐입니다. 그래도 논리적으로는 위 sequence 하나가 같은 component를 뜻합니다.
+
+### 5.2 `cut(2, 3)`
+
+다시 원래 tree `1-2-3`의 sequence를 보겠습니다.
+
+```text
+1, (1,2), 2, (2,3), 3, (3,2), 2, (2,1), 1
+```
+
+edge `2-3`을 지우려면 arc `(2,3)`와 `(3,2)`의 위치를 찾습니다.
+
+```text
+prefix = 1, (1,2), 2
+middle = 3
+suffix = 2, (2,1), 1
+```
+
+`middle`은 정점 `3`만 있는 component가 되고, `suffix + prefix`를 다시 붙이면 `1-2` component가 됩니다.
+
+```text
+component A: 3
+component B: 2, (2,1), 1, 1, (1,2), 2
+```
+
+위 표기는 개념 trace라서 vertex occurrence가 연속으로 보일 수 있습니다. 실제 구현에서는 chosen occurrence와 arc 제거 위치를 기준으로 treap을 잘라, 각 component가 유효한 Euler tour cycle이 되도록 회전합니다. 중요한 점은 `cut`이 edge endpoint 값만으로는 부족하고, `(u,v)`, `(v,u)` arc node pointer가 있어야 정확한 두 split 지점을 잡을 수 있다는 것입니다.
+
+## 6. `cut` 관점
 
 edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 위치를 찾아 그 사이를 잘라 두 component sequence로 나눕니다.
 
@@ -176,7 +240,7 @@ edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 
 
 두 arc의 순서에 따라 split 구간이 달라집니다. 그래서 edge id로 양방향 arc node pointer를 모두 저장해 두는 것이 중요합니다.
 
-## 6. Link-Cut Tree와 비교
+## 7. Link-Cut Tree와 비교
 
 | 구조 | 강점 |
 | --- | --- |
@@ -186,7 +250,7 @@ edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 
 
 경로 max/min이 핵심이면 Link-Cut Tree가 자연스럽고, component 전체 합이나 dynamic forest connectivity가 핵심이면 Euler Tour Tree가 더 직접적입니다.
 
-## 7. 시간 복잡도
+## 8. 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -198,7 +262,7 @@ edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 
 
 treap priority가 편향되면 성능이 무너질 수 있습니다. deterministic judge에서는 난수 seed와 priority 충돌 처리도 신경 씁니다.
 
-## 8. 자주 하는 실수
+## 9. 자주 하는 실수
 
 1. 일반 그래프 connectivity를 ETT 하나만으로 처리하려고 한다.
 2. edge의 양방향 arc pointer를 저장하지 않아 cut 위치를 못 찾는다.
@@ -206,7 +270,7 @@ treap priority가 편향되면 성능이 무너질 수 있습니다. determinist
 4. vertex occurrence가 여러 개인데 대표 occurrence 관리를 잃는다.
 5. treap split/merge에서 aggregate pull 순서를 빠뜨린다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 10. 문제를 볼 때 체크할 조건
 
 - 유지되는 그래프가 항상 forest인가?
 - edge 삭제가 온라인으로 들어오는가?
@@ -214,7 +278,7 @@ treap priority가 편향되면 성능이 무너질 수 있습니다. determinist
 - path aggregate가 핵심이라 Link-Cut Tree가 더 나은 문제는 아닌가?
 - edge id로 arc node를 안정적으로 찾을 수 있는가?
 
-## 10. 연습 문제
+## 11. 연습 문제
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |

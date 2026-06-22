@@ -112,6 +112,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Directed MST](lessons/directed-mst/lesson.md)
 - [Dynamic Connectivity](lessons/dynamic-connectivity/lesson.md)
 - [Gomory-Hu Tree](lessons/gomory-hu-tree/lesson.md)
+  - [4정점 construction trace](lessons/gomory-hu-tree/pages/construct-trace.md)
 - [Dynamic MST](lessons/dynamic-mst/lesson.md)
 - [Global Min Cut](lessons/global-min-cut/lesson.md)
 
@@ -161,6 +162,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Suffix와 Palindrome 응용](lessons/suffix-palindrome-applications/lesson.md)
 - [Lyndon Factorization](lessons/lyndon-factorization/lesson.md)
 - [Suffix Tree와 Ukkonen](lessons/suffix-tree-ukkonen/lesson.md)
+  - [abab$ phase trace](lessons/suffix-tree-ukkonen/pages/phase-trace.md)
 - [Runs와 문자열 주기](lessons/runs-periodicity/lesson.md)
 - [Suffix Array 응용 패턴](lessons/suffix-array-applications/lesson.md)
 - [Border Automaton](lessons/border-automaton/lesson.md)
