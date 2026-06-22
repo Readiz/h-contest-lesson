@@ -2738,6 +2738,148 @@
         "divide-and-conquer-dp-optimization"
       ],
       "pages": []
+    },
+    {
+      "lessonId": "suffix-array-applications",
+      "title": "Suffix Array 응용 패턴",
+      "description": "정렬된 suffix 구간, LCP RMQ, sliding window로 패턴 등장, k번째 substring, 여러 문자열 공통 substring을 처리합니다.",
+      "summary": "Suffix Array를 패턴 구간 탐색, LCP RMQ, 서로 다른 substring, multi-string common substring, 반복 substring 조건에 적용하는 문자열 응용 레슨",
+      "order": 96,
+      "folderId": "strings",
+      "tags": [
+        "strings",
+        "suffix-array",
+        "lcp",
+        "rmq",
+        "substring",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "suffix-array-lcp",
+        "sparse-table-rmq"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "suffix-palindrome-applications",
+        "runs-periodicity"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "gomory-hu-tree",
+      "title": "Gomory-Hu Tree",
+      "description": "무향 그래프의 모든 쌍 min cut 값을 N-1번의 min-cut 계산으로 tree path minimum 질의로 압축합니다.",
+      "summary": "cut-equivalent tree, source side 기반 parent 재배치, all-pairs min cut query와 max-flow 초기화 주의점을 다루는 그래프 심화 레슨",
+      "order": 97,
+      "folderId": "graphs",
+      "tags": [
+        "graphs",
+        "min-cut",
+        "gomory-hu-tree",
+        "max-flow",
+        "cut-equivalent-tree",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "max-flow-min-cut",
+        "flow-with-lower-bound"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "min-cost-flow",
+        "dynamic-connectivity"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "euler-tour-tree",
+      "title": "Euler Tour Tree",
+      "description": "dynamic forest를 Euler tour sequence와 balanced binary tree로 표현해 online link, cut, connectivity를 처리합니다.",
+      "summary": "Euler tour sequence, implicit treap split/merge, reroot, edge arc 관리, Link-Cut Tree와의 선택 기준을 설명하는 자료구조 심화 레슨",
+      "order": 98,
+      "folderId": "data-structures",
+      "tags": [
+        "data-structures",
+        "euler-tour-tree",
+        "dynamic-forest",
+        "treap",
+        "connectivity",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "link-cut-tree",
+        "dynamic-connectivity",
+        "tree-advanced"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "union-find",
+        "offline-queries"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "mobius-inversion",
+      "title": "Mobius Inversion",
+      "description": "Mobius function으로 약수 합 관계를 되돌리고 gcd, 서로소 pair, divisor transform 문제를 포함-배제로 처리합니다.",
+      "summary": "Mobius function, divisor inversion, coprime pair count, exact gcd count, multiple sieve와 pair 보정까지 이어지는 수학 심화 레슨",
+      "order": 99,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "number-theory",
+        "mobius-inversion",
+        "gcd",
+        "inclusion-exclusion",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "gcd-extended-euclid-crt",
+        "combinatorics-ncr"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "linear-basis-xor",
+        "proof-and-invariants"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "convex-cost-flow",
+      "title": "Convex Cost Flow",
+      "description": "사용량이 늘수록 marginal cost가 증가하는 비용을 edge split으로 표현해 Min-Cost Flow 모델에 결합합니다.",
+      "summary": "convex marginal cost, unit/piecewise edge split, demand allocation, Slope Trick과 Min-Cost Flow의 선택 기준을 다루는 최적화 심화 레슨",
+      "order": 100,
+      "folderId": "strategy",
+      "tags": [
+        "optimization",
+        "convex-cost-flow",
+        "min-cost-flow",
+        "convexity",
+        "network-flow",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "min-cost-flow",
+        "slope-trick",
+        "alien-optimization"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "convex-hull-trick-li-chao",
+        "flow-with-lower-bound"
+      ],
+      "pages": []
     }
   ]
 }
