@@ -83,6 +83,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Monge와 SMAWK](lessons/monge-smawk/lesson.md)
 - [Alien Optimization](lessons/alien-optimization/lesson.md)
 - [Slope Trick](lessons/slope-trick/lesson.md)
+- [Convex Cost Flow](lessons/convex-cost-flow/lesson.md)
 
 ### 그래프와 트리
 
@@ -108,6 +109,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Weighted Matching](lessons/weighted-matching/lesson.md)
 - [Directed MST](lessons/directed-mst/lesson.md)
 - [Dynamic Connectivity](lessons/dynamic-connectivity/lesson.md)
+- [Gomory-Hu Tree](lessons/gomory-hu-tree/lesson.md)
 
 ### 자료구조
 
@@ -139,6 +141,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [순위, 전체 구현, Implicit Treap](lessons/treap/pages/order-statistics-and-implicit.md)
 - [오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search](lessons/offline-queries/lesson.md)
 - [Dynamic Segment Tree](lessons/dynamic-segment-tree/lesson.md)
+- [Euler Tour Tree](lessons/euler-tour-tree/lesson.md)
 
 ### 문자열
 
@@ -153,6 +156,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Lyndon Factorization](lessons/lyndon-factorization/lesson.md)
 - [Suffix Tree와 Ukkonen](lessons/suffix-tree-ukkonen/lesson.md)
 - [Runs와 문자열 주기](lessons/runs-periodicity/lesson.md)
+- [Suffix Array 응용 패턴](lessons/suffix-array-applications/lesson.md)
 
 ### 기하
 
@@ -186,3 +190,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md)
 - [Monte Carlo Tree Search](lessons/monte-carlo-tree-search/lesson.md)
 - [XOR Linear Basis](lessons/linear-basis-xor/lesson.md)
+- [Mobius Inversion](lessons/mobius-inversion/lesson.md)

@@ -64,26 +64,31 @@
 - `dynamic-segment-tree`: 큰 좌표 범위에서 필요한 node만 만드는 sparse Segment Tree와 lazy range update를 공개했습니다. 남은 자료구조 심화는 Euler Tour Tree 후보로 이어갑니다.
 - `linear-basis-xor`: GF(2) 기저로 maximum xor, 표현 가능성, rank와 그래프 cycle xor를 다루는 수학 심화를 공개했습니다. 남은 수학 심화는 Mobius inversion 후보로 이어갑니다.
 - `slope-trick`: convex piecewise-linear 비용 함수를 두 heap과 lazy shift로 관리하는 DP 최적화 심화를 공개했습니다. 남은 DP 최적화는 convex cost flow 후보로 이어갑니다.
+- `suffix-array-applications`: Suffix Array 구간 탐색, LCP RMQ, k번째 substring, 여러 문자열 공통 substring 같은 suffix array 응용 패턴을 공개했습니다. 남은 문자열 심화는 border automaton 후보로 이어갑니다.
+- `gomory-hu-tree`: 무향 그래프의 all-pairs min cut 값을 cut-equivalent tree로 압축하는 Gomory-Hu Tree를 공개했습니다. 남은 그래프 심화는 dynamic MST 후보로 이어갑니다.
+- `euler-tour-tree`: dynamic forest를 Euler tour sequence와 treap split/merge로 관리하는 Euler Tour Tree를 공개했습니다. 남은 자료구조 심화는 persistent union-find 후보로 이어갑니다.
+- `mobius-inversion`: Mobius function, divisor inversion, coprime pair count, exact gcd count를 다루는 수학 심화를 공개했습니다. 남은 수학 심화는 linear basis applications 후보로 이어갑니다.
+- `convex-cost-flow`: convex marginal cost를 edge split으로 표현해 Min-Cost Flow 모델과 결합하는 최적화 심화를 공개했습니다. 남은 DP 최적화는 min-plus convolution 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `suffix-array-applications` | suffix array/LCP 응용 패턴 | TODO: suffix array applications `/practice/...` 문제 필요 |
-| 2 | `gomory-hu-tree` | all-pairs min cut tree | TODO: Gomory-Hu Tree `/practice/...` 문제 필요 |
-| 3 | `euler-tour-tree` | online dynamic forest connectivity | TODO: Euler Tour Tree `/practice/...` 문제 필요 |
-| 4 | `mobius-inversion` | divisor lattice inclusion-exclusion | TODO: Mobius inversion `/practice/...` 문제 필요 |
-| 5 | `convex-cost-flow` | convex cost modeling with min-cost flow | TODO: convex cost flow `/practice/...` 문제 필요 |
+| 1 | `border-automaton` | prefix-function automaton and border transitions | TODO: border automaton `/practice/...` 문제 필요 |
+| 2 | `dynamic-mst` | dynamic minimum spanning tree maintenance | TODO: dynamic MST `/practice/...` 문제 필요 |
+| 3 | `persistent-union-find` | versioned DSU and rollback/persistence choices | TODO: persistent union-find `/practice/...` 문제 필요 |
+| 4 | `linear-basis-applications` | xor basis applications beyond maximum xor | TODO: linear basis applications `/practice/...` 문제 필요 |
+| 5 | `min-plus-convolution` | convex/min-plus convolution and DP transition speedups | TODO: min-plus convolution `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `suffix-array-applications`, `border-automaton` |
-| 그래프 심화 | `gomory-hu-tree`, `dynamic-mst` |
-| 자료구조/오프라인 | `euler-tour-tree`, `persistent-union-find` |
-| 수학 심화 | `mobius-inversion`, `linear-basis-applications` |
-| DP 최적화 | `convex-cost-flow`, `min-plus-convolution` |
+| 문자열 | `border-automaton`, `suffix-automaton-applications` |
+| 그래프 심화 | `dynamic-mst`, `global-min-cut` |
+| 자료구조/오프라인 | `persistent-union-find`, `rollback-techniques` |
+| 수학 심화 | `linear-basis-applications`, `dirichlet-convolution` |
+| DP 최적화 | `min-plus-convolution`, `convex-dp-modeling` |
 | 기하 | `minkowski-sum`, `rotating-calipers-applications` |
 | 게임/탐색 | `markov-decision-process`, `imperfect-information-search` |
 
