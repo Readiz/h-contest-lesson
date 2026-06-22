@@ -100,6 +100,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Matching과 Cover Duality](lessons/matching-cover-duality/lesson.md)
 - [Min-Cost Flow](lessons/min-cost-flow/lesson.md)
 - [Flow with Lower Bound](lessons/flow-with-lower-bound/lesson.md)
+- [General Matching](lessons/general-matching/lesson.md)
 - [Floyd-Warshall](lessons/floyd-warshall/lesson.md)
 
 ### 자료구조
@@ -120,6 +121,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Persistent Segment Tree](lessons/persistent-segment-tree/lesson.md)
 - [Convex Hull Trick과 Li Chao Tree](lessons/convex-hull-trick-li-chao/lesson.md)
 - [Wavelet Tree](lessons/wavelet-tree/lesson.md)
+- [Wavelet Matrix](lessons/wavelet-matrix/lesson.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
   - [BST와 회전 기본기](lessons/treap/pages/bst-and-rotation.md)
@@ -146,6 +148,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Rotating Calipers](lessons/rotating-calipers/lesson.md)
 - [Sweep Line Geometry](lessons/sweep-line-geometry/lesson.md)
 - [Closest Pair Sweep](lessons/closest-pair-sweep/lesson.md)
+- [Line Arrangement](lessons/line-arrangement/lesson.md)
 
 ### 수학
 
@@ -155,9 +158,11 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [정수론 심화: GCD, Extended Euclid, CRT, Sieve](lessons/gcd-extended-euclid-crt/lesson.md)
 - [조합론: nCr, 포함-배제, Lucas](lessons/combinatorics-ncr/lesson.md)
 - [Matrix Exponentiation](lessons/matrix-exponentiation/lesson.md)
+- [Linear Recurrence와 Kitamasa](lessons/linear-recurrence-kitamasa/lesson.md)
 - [FFT와 NTT](lessons/fft-ntt/lesson.md)
 - [Formal Power Series](lessons/formal-power-series/lesson.md)
 - [FPS Log와 Exp](lessons/fps-log-exp/lesson.md)
 - [확률과 기대값](lessons/probability-expected-value/lesson.md)
 - [Game Theory와 Grundy Number](lessons/game-theory-grundy/lesson.md)
 - [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md)
+- [Monte Carlo Tree Search](lessons/monte-carlo-tree-search/lesson.md)
