@@ -85,6 +85,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Slope Trick](lessons/slope-trick/lesson.md)
 - [Convex Cost Flow](lessons/convex-cost-flow/lesson.md)
 - [Min-Plus Convolution](lessons/min-plus-convolution/lesson.md)
+- [Convex DP Modeling](lessons/convex-dp-modeling/lesson.md)
 
 ### 그래프와 트리
 
@@ -112,6 +113,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Dynamic Connectivity](lessons/dynamic-connectivity/lesson.md)
 - [Gomory-Hu Tree](lessons/gomory-hu-tree/lesson.md)
 - [Dynamic MST](lessons/dynamic-mst/lesson.md)
+- [Global Min Cut](lessons/global-min-cut/lesson.md)
 
 ### 자료구조
 
@@ -145,6 +147,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Dynamic Segment Tree](lessons/dynamic-segment-tree/lesson.md)
 - [Euler Tour Tree](lessons/euler-tour-tree/lesson.md)
 - [Persistent Union-Find](lessons/persistent-union-find/lesson.md)
+- [Rollback Techniques](lessons/rollback-techniques/lesson.md)
 
 ### 문자열
 
@@ -161,6 +164,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Runs와 문자열 주기](lessons/runs-periodicity/lesson.md)
 - [Suffix Array 응용 패턴](lessons/suffix-array-applications/lesson.md)
 - [Border Automaton](lessons/border-automaton/lesson.md)
+- [Suffix Automaton Applications](lessons/suffix-automaton-applications/lesson.md)
 
 ### 기하
 
@@ -196,3 +200,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [XOR Linear Basis](lessons/linear-basis-xor/lesson.md)
 - [Mobius Inversion](lessons/mobius-inversion/lesson.md)
 - [Linear Basis Applications](lessons/linear-basis-applications/lesson.md)
+- [Dirichlet Convolution](lessons/dirichlet-convolution/lesson.md)

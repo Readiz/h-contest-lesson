@@ -1627,7 +1627,8 @@
         "trie-aho-corasick"
       ],
       "nextLessons": [
-        "palindromic-tree"
+        "palindromic-tree",
+        "suffix-automaton-applications"
       ],
       "relatedLessons": [
         "string-matching-kmp-z",
@@ -2859,7 +2860,9 @@
         "gcd-extended-euclid-crt",
         "combinatorics-ncr"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "dirichlet-convolution"
+      ],
       "relatedLessons": [
         "linear-basis-xor",
         "proof-and-invariants"
@@ -2919,7 +2922,9 @@
         "runs-periodicity",
         "suffix-array-applications"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "suffix-automaton-applications"
+      ],
       "relatedLessons": [
         "trie-aho-corasick",
         "suffix-automaton"
@@ -2948,7 +2953,9 @@
         "dynamic-connectivity",
         "gomory-hu-tree"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "global-min-cut"
+      ],
       "relatedLessons": [
         "euler-tour-tree",
         "link-cut-tree",
@@ -2978,7 +2985,9 @@
         "dynamic-connectivity",
         "euler-tour-tree"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "rollback-techniques"
+      ],
       "relatedLessons": [
         "persistent-segment-tree",
         "offline-queries"
@@ -3036,10 +3045,157 @@
         "slope-trick",
         "monge-smawk"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "convex-dp-modeling"
+      ],
       "relatedLessons": [
         "alien-optimization",
         "knuth-optimization"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "suffix-automaton-applications",
+      "title": "Suffix Automaton Applications",
+      "description": "Suffix Automaton 위에서 occurrence 누적, k번째 substring, 반복 substring, 여러 문자열 공통 substring을 처리하는 응용 패턴을 익힙니다.",
+      "summary": "Suffix Automaton의 transition DAG와 suffix link tree를 분리해 occurrence, path count, k번째 substring, multi-string matching으로 확장하는 문자열 심화 레슨",
+      "order": 106,
+      "folderId": "strings",
+      "tags": [
+        "strings",
+        "suffix-automaton",
+        "automaton-dp",
+        "substring",
+        "occurrence",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "suffix-automaton",
+        "suffix-array-applications",
+        "suffix-palindrome-applications"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "border-automaton",
+        "runs-periodicity"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "global-min-cut",
+      "title": "Global Min Cut",
+      "description": "무향 가중 그래프 전체에서 가장 작은 cut을 Stoer-Wagner 알고리즘과 cut 모델링 관점으로 다룹니다.",
+      "summary": "특정 s-t가 아닌 전체 graph의 minimum cut을 정의하고 Stoer-Wagner contraction으로 계산하는 그래프 심화 레슨",
+      "order": 107,
+      "folderId": "graphs",
+      "tags": [
+        "graphs",
+        "min-cut",
+        "stoer-wagner",
+        "connectivity",
+        "undirected-graph",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "max-flow-min-cut",
+        "gomory-hu-tree",
+        "dynamic-mst"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "flow-with-lower-bound",
+        "directed-mst"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "rollback-techniques",
+      "title": "Rollback Techniques",
+      "description": "오프라인 질의와 재귀 탐색에서 상태 변경을 snapshot 단위로 되돌리는 rollback 패턴을 익힙니다.",
+      "summary": "Rollback DSU를 중심으로 변경 전 값 기록, segment tree over time, divide and conquer query 처리에 쓰이는 rollback 설계 패턴",
+      "order": 108,
+      "folderId": "data-structures",
+      "tags": [
+        "data-structures",
+        "rollback",
+        "offline-query",
+        "rollback-dsu",
+        "dynamic-connectivity",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "offline-queries",
+        "persistent-union-find",
+        "dynamic-connectivity"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "union-find",
+        "persistent-segment-tree"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "dirichlet-convolution",
+      "title": "Dirichlet Convolution",
+      "description": "약수 관계 위 convolution으로 Mobius Inversion, multiplicative function, divisor transform을 하나의 틀에서 정리합니다.",
+      "summary": "Dirichlet convolution의 정의, 기본 산술 함수 관계, divisor zeta transform, Mobius inverse를 다루는 정수론 심화 레슨",
+      "order": 109,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "number-theory",
+        "dirichlet-convolution",
+        "mobius-inversion",
+        "divisor-transform",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "mobius-inversion",
+        "gcd-extended-euclid-crt",
+        "combinatorics-ncr"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "modular-arithmetic",
+        "linear-basis-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "convex-dp-modeling",
+      "title": "Convex DP Modeling",
+      "description": "DP 최적화 기법을 적용하기 전에 convex, Monge, argmin 단조 조건을 모델링하고 검증하는 방법을 익힙니다.",
+      "summary": "Min-Plus Convolution, Alien Optimization, Slope Trick 같은 최적화 전 단계에서 비용 구조와 단조 조건을 판정하는 DP 모델링 레슨",
+      "order": 110,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "convexity",
+        "monge",
+        "modeling",
+        "stress-test",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "min-plus-convolution",
+        "alien-optimization",
+        "convex-cost-flow"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "slope-trick",
+        "monge-smawk"
       ],
       "pages": []
     }
