@@ -85,6 +85,20 @@
 - `markov-decision-process`: 상태, 행동, 확률 전이, 보상을 가진 MDP와 Bellman update/value iteration을 공개했습니다. 남은 확률/전략 심화는 imperfect information과 POMDP 후보로 이어갑니다.
 - `imperfect-information-search`: information set, belief update, determinization의 한계, information set MCTS를 게임 탐색 심화로 공개했습니다.
 
+## 콘텐츠 보강 우선순위
+
+이미 공개된 심화 레슨은 새 문제를 붙이기 전에 "손으로 따라가는 예시 1개, 조건이 필요한 이유 1개, 구현 trace 1개"를 우선 보강합니다. 연습 문제 TODO는 적절한 h-contest 문제가 생길 때까지 그대로 둡니다.
+
+| 우선순위 | lessonId | 부족한 부분 | 문제 추가 없이 할 일 | 상태 |
+| ---: | --- | --- | --- | --- |
+| 1 | `convex-cost-flow` | end-to-end 모델링 예시와 nondecreasing marginal cost 반례 | demand allocation 예시, edge 목록, 선택 unit 표 추가 | 반영 |
+| 2 | `min-plus-convolution` | argmin monotone 조건을 손으로 확인하는 흐름 | opt 이동 표, opt 감소 반례, 조건별 복잡도 구분 추가 | 반영 |
+| 3 | `gomory-hu-tree` | construction parent 갱신 trace | 4정점 예시와 tree path query page 추가 | 반영 |
+| 4 | `weighted-matching` | weighted blossom 구현 레슨인지 선택 가이드인지 목표가 모호함 | 목표 재정의, 일반 그래프가 어려운 이유, 선택 기준 강화 | 반영 |
+| 5 | `suffix-tree-ukkonen` | sentinel 전제와 Ukkonen phase trace 부족 | `abab$` phase별 active point/split trace page 추가 | 반영 |
+| 6 | `link-cut-tree` | `access`, `makeRoot`, `cut` 조건의 상태 변화 설명 부족 | `1-2-3` path query trace와 cut 조건 설명 추가 | 반영 |
+| 7 | `euler-tour-tree` | sequence split/merge 예시 부족 | `link(3,4)`, `cut(2,3)` sequence trace 추가 | 반영 |
+
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |

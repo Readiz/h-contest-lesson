@@ -1742,7 +1742,7 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 85,
+      "estimatedMinutes": 95,
       "prerequisites": [
         "suffix-array-lcp",
         "suffix-automaton",
@@ -1756,7 +1756,15 @@
         "suffix-palindrome-applications",
         "suffix-array-lcp"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "phase-trace",
+          "title": "abab$ phase trace",
+          "description": "abab$를 phase별로 따라가며 active point, split, suffix link, sentinel의 역할을 확인합니다.",
+          "order": 1,
+          "file": "pages/phase-trace.md"
+        }
+      ]
     },
     {
       "lessonId": "geometry-ccw-segment-intersection",
@@ -2803,7 +2811,7 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 55,
+      "estimatedMinutes": 65,
       "prerequisites": [
         "max-flow-min-cut",
         "flow-with-lower-bound"
@@ -2815,7 +2823,15 @@
         "min-cost-flow",
         "dynamic-connectivity"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "construct-trace",
+          "title": "4정점 construction trace",
+          "description": "작은 무향 그래프에서 min-cut source side와 parent 재배치가 cut tree로 확정되는 과정을 추적합니다.",
+          "order": 1,
+          "file": "pages/construct-trace.md"
+        }
+      ]
     },
     {
       "lessonId": "euler-tour-tree",

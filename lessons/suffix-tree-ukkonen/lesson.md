@@ -37,7 +37,34 @@ node stores outgoing edges by first character
 
 따라서 간선을 복사해서 문자열로 저장하지 않고, 원문 index 구간만 저장합니다. 이 방식은 memory와 substring 비교 모두에서 중요합니다.
 
-## 3. Ukkonen의 상태
+## 3. Sentinel이 먼저 필요한 이유
+
+Suffix Tree 구현에서는 문자열 끝에 입력 alphabet에 없는 sentinel을 붙이는 것이 사실상 전제입니다. 예를 들어 `abab`만 넣으면 suffix `ab`가 suffix `abab`의 prefix라서 별도 leaf로 명시되지 않고 implicit 상태로 남을 수 있습니다.
+
+```text
+suffixes of abab:
+abab
+bab
+ab
+b
+```
+
+여기에 `$`를 붙이면 모든 suffix가 서로 prefix 관계로 끝나지 않습니다.
+
+```text
+suffixes of abab$:
+abab$
+bab$
+ab$
+b$
+$
+```
+
+그래서 `ab$`, `b$`, `$`가 각각 명시 leaf로 드러납니다. pattern occurrence, suffix 시작 위치 복구, generalized suffix tree를 다룰 때는 이 leaf 명시성이 중요합니다.
+
+여러 문자열을 합칠 때도 같은 sentinel을 재사용하면 안 됩니다. `A#B#`처럼 같은 끝 문자를 쓰면 서로 다른 문자열의 suffix가 잘못 이어질 수 있으므로 `A#B$C%`처럼 문자열마다 고유 sentinel을 둡니다.
+
+## 4. Ukkonen의 상태
 
 Ukkonen 알고리즘은 현재까지 만든 implicit suffix tree 위에서 active point를 유지합니다.
 
@@ -51,7 +78,9 @@ Ukkonen 알고리즘은 현재까지 만든 implicit suffix tree 위에서 activ
 
 아래 구현은 같은 아이디어를 `state(node, positionOnEdge)` 형태로 둔 버전입니다. 간선 label은 원문 구간으로 저장합니다.
 
-## 4. 구현 골격
+작은 문자열에서 active point와 split이 어떻게 움직이는지는 [abab$ phase trace](pages/phase-trace.md)에서 먼저 확인할 수 있습니다. 코드를 읽기 전에 phase trace를 보면 `go`, `split`, `getLink`, `extend`가 왜 서로 맞물리는지 훨씬 덜 추상적으로 보입니다.
+
+## 5. 구현 골격
 
 ```cpp compile-check
 #include <map>
@@ -180,9 +209,9 @@ struct SuffixTree {
 };
 ```
 
-실전 구현에서는 문자열 끝에 입력 alphabet에 없는 sentinel을 붙이는 편이 안전합니다. Sentinel이 없으면 마지막 suffix들이 implicit 상태로 남을 수 있습니다.
+실전 구현에서는 생성자에 들어가기 전에 문자열 끝에 sentinel을 붙여 둡니다. Sentinel이 없으면 마지막 suffix들이 implicit 상태로 남을 수 있고, leaf 기반 질의가 한 칸씩 비게 됩니다.
 
-## 5. Suffix Array와 비교
+## 6. Suffix Array와 비교
 
 | 구조 | 강점 | 약점 |
 | --- | --- | --- |
@@ -192,7 +221,7 @@ struct SuffixTree {
 
 문제에서 "모든 suffix를 사전순으로 정렬"하면 suffix array를 먼저 생각하고, "substring 상태 수"가 나오면 suffix automaton을 먼저 생각합니다. Suffix Tree는 path와 subtree가 모두 필요한 경우에 꺼냅니다.
 
-## 6. Generalized Suffix Tree
+## 7. Generalized Suffix Tree
 
 여러 문자열을 하나의 suffix tree에 넣을 때는 각 문자열마다 서로 다른 sentinel을 붙입니다.
 
@@ -202,7 +231,7 @@ A + # + B + $ + C + %
 
 Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 모으면 longest common substring이나 k개 문자열 공통 substring을 처리할 수 있습니다.
 
-## 7. 시간 복잡도
+## 8. 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | --- |
@@ -211,7 +240,7 @@ Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 
 | pattern 탐색 | `O(|pattern| log alphabet)` |
 | subtree leaf 순회 | 출력 크기에 비례 |
 
-## 8. 자주 하는 실수
+## 9. 자주 하는 실수
 
 1. Sentinel을 붙이지 않아 leaf가 명시적으로 끝나지 않는다.
 2. 간선 구간을 inclusive/exclusive로 섞어 off-by-one을 만든다.
@@ -219,7 +248,7 @@ Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 
 4. root에서 suffix link를 따라갈 때 첫 글자 skip 규칙을 빠뜨린다.
 5. 여러 문자열 sentinel을 같은 문자로 둔다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 10. 문제를 볼 때 체크할 조건
 
 - suffix tree가 꼭 필요한가, suffix array나 suffix automaton으로 충분한가?
 - alphabet 크기가 작아 fixed array를 쓸 수 있는가?
@@ -227,7 +256,7 @@ Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 
 - 여러 문자열을 합칠 때 sentinel 충돌이 없는가?
 - path depth와 edge length를 분리해서 계산하고 있는가?
 
-## 10. 연습 문제
+## 11. 연습 문제
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |

@@ -108,15 +108,68 @@ struct ConvexCostEdgeBuilder {
 
 ## 5. 모델링 예시
 
-여러 공장에 생산량을 배분하고, 각 공장의 생산량이 늘수록 추가 비용이 증가한다고 하겠습니다.
+여러 공장에 총 수요 4개를 배분하고, 각 공장의 생산량이 늘수록 추가 비용이 증가한다고 하겠습니다.
 
 ```text
-source -> factory i 선택 edge
-factory i -> sink convex production cost edges
-전체 demand만큼 flow를 보냄
+source -> factory marginal unit edges
+factory marginal unit -> sink
+전체 demand 4만큼 flow를 보냄
 ```
 
-Min-Cost Flow는 전체 demand를 채우기 위해 가장 싼 marginal production unit부터 선택합니다. 이때 capacity constraint, assignment constraint, lower bound를 같은 네트워크에 함께 넣을 수 있습니다.
+공장별 누적 비용은 아래와 같습니다.
+
+| 공장 | `C(0)` | `C(1)` | `C(2)` | `C(3)` |
+| --- | ---: | ---: | ---: | ---: |
+| A | 0 | 2 | 5 | 10 |
+| B | 0 | 3 | 4 | 8 |
+
+각 공장의 marginal cost는 누적 비용의 차분입니다.
+
+| 공장 | 1번째 unit | 2번째 unit | 3번째 unit |
+| --- | ---: | ---: | ---: |
+| A | 2 | 3 | 5 |
+| B | 3 | 1 | 4 |
+
+여기서 A는 convex이지만 B는 `3, 1, 4`로 감소 구간이 있어 convex가 아닙니다. Convex Cost Flow로 그대로 넣기 전에 이 조건 위반을 발견해야 합니다. 만약 B의 비용표가 `0, 1, 4, 8`이었다면 marginal cost는 `1, 3, 4`가 되어 아래처럼 안전하게 edge split을 만들 수 있습니다.
+
+```text
+source -> A1 cap 1 cost 2
+source -> A2 cap 1 cost 3
+source -> A3 cap 1 cost 5
+source -> B1 cap 1 cost 1
+source -> B2 cap 1 cost 3
+source -> B3 cap 1 cost 4
+
+A1, A2, A3 -> sink cap 1 cost 0
+B1, B2, B3 -> sink cap 1 cost 0
+```
+
+총 demand 4를 보내면 Min-Cost Flow는 marginal unit을 비용순으로 고릅니다.
+
+| 선택 순서 | unit | marginal cost | 누적 선택 비용 |
+| ---: | --- | ---: | ---: |
+| 1 | B1 | 1 | 1 |
+| 2 | A1 | 2 | 3 |
+| 3 | A2 또는 B2 | 3 | 6 |
+| 4 | B2 또는 A2 | 3 | 9 |
+
+결과적으로 A에서 2개, B에서 2개를 생산하면 비용은 `A C(2)=5`, `B C(2)=4`, 총 `9`입니다. 같은 cost tie는 어느 쪽을 먼저 골라도 누적 비용은 같습니다.
+
+이 방식은 단순 "싼 unit 정렬"처럼 보이지만, 실제 네트워크에서는 factory capacity, 작업-공장 compatibility, lower bound, assignment edge를 같은 flow 안에 함께 넣을 수 있습니다. 그래서 greedy로 분리해서 풀 수 없는 제약이 섞일 때 가치가 생깁니다.
+
+### Nondecreasing marginal cost가 필요한 이유
+
+아까 B의 원래 비용 `0, 3, 4, 8`을 생각해 봅시다. marginal cost는 `3, 1, 4`입니다. 두 번째 unit이 첫 번째 unit보다 싸기 때문에 "B2만 고르고 B1은 안 고르는" 선택이 edge split 모델에서는 가능해 보입니다.
+
+```text
+source -> B1 cap 1 cost 3
+source -> B2 cap 1 cost 1
+source -> B3 cap 1 cost 4
+```
+
+하지만 실제 생산량 2개는 반드시 첫 번째 unit과 두 번째 unit을 함께 포함해야 하므로 비용이 `3+1=4`입니다. unit edge들이 서로 독립이면 Min-Cost Flow는 cost 1짜리 B2를 먼저 선택할 수 있고, 이것은 원래 비용 함수의 prefix 선택 조건을 깨뜨립니다.
+
+따라서 단순 parallel edge split은 marginal cost가 nondecreasing인 convex 비용에서만 안전합니다. 감소 구간이 있다면 prefix dependency를 표현하는 추가 구조를 넣거나, 다른 DP/flow 모델로 바꿔야 합니다.
 
 ## 6. Slope Trick과 비교
 
