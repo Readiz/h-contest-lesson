@@ -552,8 +552,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/floyd-warshall/lesson.md">Floyd-Warshall</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/floyd-warshall/lesson.md">Floyd-Warshall</a></h3>
+<code class="lesson-id">floyd-warshall</code>
+</div>
+<p class="lesson-description">모든 정점 쌍 최단거리와 도달 가능성을 중간 정점 DP로 처리하는 Floyd-Warshall 알고리즘을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">50분</span>
+</div>
+<div class="tag-list">
+<span class="tag">floyd-warshall</span>
+<span class="tag">apsp</span>
+<span class="tag">shortest-path</span>
+<span class="tag">transitive-closure</span>
+<span class="tag">dynamic-programming</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
 </article>
 </div>
 </section>
@@ -707,7 +729,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
 <ul class="page-list">
 <li><a href="lessons/segment-tree/pages/basic-range-query.md">기본 구간 질의</a> <code>basic-range-query</code></li>
@@ -715,6 +737,28 @@ p{margin:0;color:var(--muted)}
 <li><a href="lessons/segment-tree/pages/lazy-propagation.md">Lazy Propagation</a> <code>lazy-propagation</code></li>
 <li><a href="lessons/segment-tree/pages/monoid-and-lazy-composition.md">Monoid와 Lazy 합성</a> <code>monoid-and-lazy-composition</code></li>
 </ul>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a></h3>
+<code class="lesson-id">persistent-segment-tree</code>
+</div>
+<p class="lesson-description">업데이트 경로만 복사해 여러 버전의 Segment Tree를 보존하고, prefix root 차이로 k번째 수 질의를 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+</div>
+<div class="tag-list">
+<span class="tag">persistent-segment-tree</span>
+<span class="tag">segment-tree</span>
+<span class="tag">versioning</span>
+<span class="tag">order-statistics</span>
+<span class="tag">coordinate-compression</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -857,8 +901,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></h3>
+<code class="lesson-id">suffix-automaton</code>
+</div>
+<p class="lesson-description">한 문자열의 모든 부분 문자열을 상태로 압축해 부분 문자열 개수, 등장 횟수, 최장 공통 부분 문자열을 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">75분</span>
+</div>
+<div class="tag-list">
+<span class="tag">suffix-automaton</span>
+<span class="tag">string</span>
+<span class="tag">automaton</span>
+<span class="tag">substring</span>
+<span class="tag">dynamic-programming</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
 </article>
 </div>
 </section>
@@ -978,8 +1044,52 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a> <a href="lessons/fft-ntt/lesson.md">FFT와 NTT</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a></h3>
+<code class="lesson-id">matrix-exponentiation</code>
+</div>
+<p class="lesson-description">선형 점화식과 상태 전이를 행렬로 만들고 빠른 거듭제곱으로 큰 반복 횟수를 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">60분</span>
+</div>
+<div class="tag-list">
+<span class="tag">matrix-exponentiation</span>
+<span class="tag">linear-recurrence</span>
+<span class="tag">fast-power</span>
+<span class="tag">dynamic-programming</span>
+<span class="tag">graph-walk</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/fft-ntt/lesson.md">FFT와 NTT</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/fft-ntt/lesson.md">FFT와 NTT</a></h3>
+<code class="lesson-id">fft-ntt</code>
+</div>
+<p class="lesson-description">다항식 곱셈과 convolution을 FFT/NTT로 빠르게 계산하고, pair count와 generating function 모델링으로 연결합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">75분</span>
+</div>
+<div class="tag-list">
+<span class="tag">fft</span>
+<span class="tag">ntt</span>
+<span class="tag">convolution</span>
+<span class="tag">polynomial</span>
+<span class="tag">number-theoretic-transform</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a></p>
 </article>
 </div>
 </section>

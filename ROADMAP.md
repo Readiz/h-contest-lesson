@@ -19,25 +19,31 @@
 - `rotating-calipers`: Convex Hull 이후 antipodal pair, hull 지름, 폭 계산으로 이어지는 기하 심화 레슨을 공개했습니다. 남은 기하 심화는 sweep line geometry 후보로 이어갑니다.
 - `sparse-table-rmq`: 정적 배열의 RMQ, idempotent 연산, LCP RMQ, Euler Tour LCA 연결을 자료구조 심화 레슨으로 공개했습니다. 남은 자료구조 확장은 persistent segment tree 후보로 이어갑니다.
 - `combinatorics-ncr`: factorial 기반 nCr, 포함-배제, Lucas 정리를 모듈러 조합론 레슨으로 공개했습니다. 남은 수학 심화는 matrix exponentiation과 FFT/NTT 후보로 이어갑니다.
+- `persistent-segment-tree`: Segment Tree 이후 path copying, 버전 root, prefix 차이 기반 k번째 수 질의를 공개했습니다. 남은 자료구조 확장은 wavelet tree와 더 세부적인 rollback 기법 후보로 이어갑니다.
+- `suffix-automaton`: Suffix Array/LCP 이후 모든 부분 문자열을 상태로 압축하는 문자열 automaton을 공개했습니다. 남은 문자열 심화는 palindromic tree 후보로 이어갑니다.
+- `floyd-warshall`: 모든 쌍 최단거리, transitive closure, 경로 복원, 음수 사이클 영향 점검을 공개했습니다. 남은 그래프 심화는 matching/cover duality 후보로 이어갑니다.
+- `matrix-exponentiation`: 선형 점화식, 그래프 walk 수, affine transform을 행렬 빠른 거듭제곱으로 처리하는 수학/DP 레슨을 공개했습니다. 남은 수학 심화는 FFT/NTT와 polynomial 계열로 이어갑니다.
+- `fft-ntt`: 다항식 곱셈, convolution 모델링, NTT 구현, pair count 응용을 공개했습니다. 남은 polynomial 심화는 formal power series 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `persistent-segment-tree` | 버전이 있는 Segment Tree, k번째 수 질의 | TODO: persistent 자료구조 `/practice/...` 문제 필요 |
-| 2 | `suffix-automaton` | 모든 부분 문자열을 상태로 압축하는 문자열 automaton | TODO: suffix automaton `/practice/...` 문제 필요 |
-| 3 | `floyd-warshall` | 모든 정점 쌍 최단거리, transitive closure | TODO: APSP `/practice/...` 문제 필요 |
-| 4 | `matrix-exponentiation` | 선형 점화식, 그래프 walk 수, 행렬 빠른 거듭제곱 | TODO: 행렬 거듭제곱 `/practice/...` 문제 필요 |
-| 5 | `fft-ntt` | 다항식 곱셈, convolution, NTT | TODO: convolution `/practice/...` 문제 필요 |
+| 1 | `matching-cover-duality` | 이분 매칭, minimum vertex cover, Konig theorem | TODO: matching/cover `/practice/...` 문제 필요 |
+| 2 | `sweep-line-geometry` | 이벤트 정렬, active set, 선분/직사각형 sweep | TODO: sweep line geometry `/practice/...` 문제 필요 |
+| 3 | `convex-hull-trick-li-chao` | 직선 최솟값 DP, Li Chao Tree | TODO: CHT/Li Chao `/practice/...` 문제 필요 |
+| 4 | `divide-and-conquer-dp-optimization` | 단조 argmin을 이용한 DP 최적화 | TODO: D&C DP 최적화 `/practice/...` 문제 필요 |
+| 5 | `probability-expected-value` | 확률 DP, 기대값 식 세우기 | TODO: 확률/기대값 `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `suffix-automaton` |
-| 그래프 심화 | `floyd-warshall`, `matching-cover-duality` |
-| 자료구조/오프라인 | `persistent-segment-tree` |
-| 수학 심화 | `matrix-exponentiation`, `fft-ntt` |
+| 문자열 | `palindromic-tree` |
+| 그래프 심화 | `matching-cover-duality` |
+| 자료구조/오프라인 | `convex-hull-trick-li-chao`, `wavelet-tree` |
+| 수학 심화 | `formal-power-series`, `probability-expected-value` |
+| DP 최적화 | `divide-and-conquer-dp-optimization`, `knuth-optimization` |
 | 기하 | `sweep-line-geometry` |
 
 ## 공개 레슨으로 올리기 전 조건

@@ -843,10 +843,40 @@
         "max-flow-min-cut",
         "bellman-ford-negative-cycle"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "floyd-warshall"
+      ],
       "relatedLessons": [
         "dijkstra",
         "priority-queue-heap"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "floyd-warshall",
+      "title": "Floyd-Warshall",
+      "description": "모든 정점 쌍 최단거리와 도달 가능성을 중간 정점 DP로 처리하는 Floyd-Warshall 알고리즘을 익힙니다.",
+      "summary": "APSP, transitive closure, 경로 복원, 음수 사이클 영향 점검까지 이어지는 작은 그래프 최단거리 레슨",
+      "order": 30,
+      "folderId": "graphs",
+      "tags": [
+        "floyd-warshall",
+        "apsp",
+        "shortest-path",
+        "transitive-closure",
+        "dynamic-programming",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "dijkstra",
+        "dynamic-programming"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "bellman-ford-negative-cycle",
+        "min-cost-flow"
       ],
       "pages": []
     },
@@ -855,7 +885,7 @@
       "title": "Sqrt Decomposition",
       "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",
       "summary": "구간 합, 점 업데이트, 블록 크기 선택, lazy 블록 갱신까지 이어지는 sqrt decomposition 입문",
-      "order": 30,
+      "order": 31,
       "folderId": "data-structures",
       "tags": [
         "sqrt-decomposition",
@@ -957,6 +987,7 @@
         "prefix-sum-difference"
       ],
       "nextLessons": [
+        "persistent-segment-tree",
         "tree-advanced",
         "offline-queries"
       ],
@@ -995,6 +1026,36 @@
           "file": "pages/monoid-and-lazy-composition.md"
         }
       ]
+    },
+    {
+      "lessonId": "persistent-segment-tree",
+      "title": "Persistent Segment Tree",
+      "description": "업데이트 경로만 복사해 여러 버전의 Segment Tree를 보존하고, prefix root 차이로 k번째 수 질의를 처리합니다.",
+      "summary": "path copying, 버전 root 저장, prefix 차이, 구간 k번째 수와 메모리 계산까지 이어지는 persistent 자료구조 레슨",
+      "order": 41,
+      "folderId": "data-structures",
+      "tags": [
+        "persistent-segment-tree",
+        "segment-tree",
+        "versioning",
+        "order-statistics",
+        "coordinate-compression",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "segment-tree",
+        "coordinate-compression"
+      ],
+      "nextLessons": [
+        "offline-queries"
+      ],
+      "relatedLessons": [
+        "fenwick-tree",
+        "sparse-table-rmq"
+      ],
+      "pages": []
     },
     {
       "lessonId": "tree-advanced",
@@ -1163,9 +1224,39 @@
         "string-matching-kmp-z",
         "sorting"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "suffix-automaton"
+      ],
       "relatedLessons": [
         "trie-aho-corasick"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "suffix-automaton",
+      "title": "Suffix Automaton",
+      "description": "한 문자열의 모든 부분 문자열을 상태로 압축해 부분 문자열 개수, 등장 횟수, 최장 공통 부분 문자열을 처리합니다.",
+      "summary": "Suffix Automaton construction, clone 상태, 서로 다른 부분 문자열 수, occurrence 누적, LCS 응용까지 이어지는 문자열 심화",
+      "order": 58,
+      "folderId": "strings",
+      "tags": [
+        "suffix-automaton",
+        "string",
+        "automaton",
+        "substring",
+        "dynamic-programming",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "suffix-array-lcp",
+        "trie-aho-corasick"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "string-matching-kmp-z",
+        "suffix-array-lcp"
       ],
       "pages": []
     },
@@ -1272,10 +1363,72 @@
       "prerequisites": [
         "modular-arithmetic"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "matrix-exponentiation",
+        "fft-ntt"
+      ],
       "relatedLessons": [
         "gcd-extended-euclid-crt",
         "dynamic-programming"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "matrix-exponentiation",
+      "title": "Matrix Exponentiation",
+      "description": "선형 점화식과 상태 전이를 행렬로 만들고 빠른 거듭제곱으로 큰 반복 횟수를 처리합니다.",
+      "summary": "상태 벡터, companion matrix, 행렬 빠른 거듭제곱, 그래프 walk 수와 affine transform까지 이어지는 수학/DP 레슨",
+      "order": 64,
+      "folderId": "math",
+      "tags": [
+        "matrix-exponentiation",
+        "linear-recurrence",
+        "fast-power",
+        "dynamic-programming",
+        "graph-walk",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "modular-arithmetic",
+        "dynamic-programming",
+        "combinatorics-ncr"
+      ],
+      "nextLessons": [
+        "fft-ntt"
+      ],
+      "relatedLessons": [
+        "gcd-extended-euclid-crt",
+        "topological-sort-dag"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "fft-ntt",
+      "title": "FFT와 NTT",
+      "description": "다항식 곱셈과 convolution을 FFT/NTT로 빠르게 계산하고, pair count와 generating function 모델링으로 연결합니다.",
+      "summary": "Convolution 신호 찾기, NTT 구현, FFT/NTT 선택 기준, 빈도 배열 pair count 모델링까지 이어지는 다항식 곱셈 레슨",
+      "order": 65,
+      "folderId": "math",
+      "tags": [
+        "fft",
+        "ntt",
+        "convolution",
+        "polynomial",
+        "number-theoretic-transform",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "modular-arithmetic",
+        "combinatorics-ncr",
+        "matrix-exponentiation"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "gcd-extended-euclid-crt"
       ],
       "pages": []
     },
@@ -1284,7 +1437,7 @@
       "title": "오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search",
       "description": "질의를 재정렬하거나 되돌릴 수 있는 상태를 이용해 Mo's Algorithm, DSU Rollback, Parallel Binary Search를 익힙니다.",
       "summary": "정적 구간 질의의 Mo's Algorithm, 시간 분기 처리를 위한 DSU rollback, 여러 답을 동시에 찾는 parallel binary search 정리",
-      "order": 65,
+      "order": 67,
       "folderId": "data-structures",
       "tags": [
         "offline-queries",

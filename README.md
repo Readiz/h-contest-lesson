@@ -95,6 +95,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [SCC와 2-SAT](lessons/scc-2sat/lesson.md)
 - [Max Flow, Min Cut, Bipartite Matching](lessons/max-flow-min-cut/lesson.md)
 - [Min-Cost Flow](lessons/min-cost-flow/lesson.md)
+- [Floyd-Warshall](lessons/floyd-warshall/lesson.md)
 
 ### 자료구조
 
@@ -111,6 +112,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
   - [Bottom-up 구현](lessons/segment-tree/pages/bottom-up-implementation.md)
   - [Lazy Propagation](lessons/segment-tree/pages/lazy-propagation.md)
   - [Monoid와 Lazy 합성](lessons/segment-tree/pages/monoid-and-lazy-composition.md)
+- [Persistent Segment Tree](lessons/persistent-segment-tree/lesson.md)
 - [트리 심화: 분할 기법](lessons/tree-advanced/lesson.md)
 - [BST 계열: AVL, Splay, Treap](lessons/treap/lesson.md)
   - [BST와 회전 기본기](lessons/treap/pages/bst-and-rotation.md)
@@ -126,6 +128,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [문자열 매칭: KMP, Z, Rolling Hash](lessons/string-matching-kmp-z/lesson.md)
 - [Trie와 Aho-Corasick](lessons/trie-aho-corasick/lesson.md)
 - [Suffix Array와 LCP](lessons/suffix-array-lcp/lesson.md)
+- [Suffix Automaton](lessons/suffix-automaton/lesson.md)
 
 ### 기하
 
@@ -141,3 +144,5 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [모듈러 연산과 빠른 거듭제곱](lessons/modular-arithmetic/lesson.md)
 - [정수론 심화: GCD, Extended Euclid, CRT, Sieve](lessons/gcd-extended-euclid-crt/lesson.md)
 - [조합론: nCr, 포함-배제, Lucas](lessons/combinatorics-ncr/lesson.md)
+- [Matrix Exponentiation](lessons/matrix-exponentiation/lesson.md)
+- [FFT와 NTT](lessons/fft-ntt/lesson.md)
