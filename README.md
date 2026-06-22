@@ -80,6 +80,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Proof와 Invariant](lessons/proof-and-invariants/lesson.md)
 - [Divide and Conquer DP Optimization](lessons/divide-and-conquer-dp-optimization/lesson.md)
 - [Knuth Optimization](lessons/knuth-optimization/lesson.md)
+- [Monge와 SMAWK](lessons/monge-smawk/lesson.md)
 
 ### 그래프와 트리
 
@@ -98,6 +99,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Max Flow, Min Cut, Bipartite Matching](lessons/max-flow-min-cut/lesson.md)
 - [Matching과 Cover Duality](lessons/matching-cover-duality/lesson.md)
 - [Min-Cost Flow](lessons/min-cost-flow/lesson.md)
+- [Flow with Lower Bound](lessons/flow-with-lower-bound/lesson.md)
 - [Floyd-Warshall](lessons/floyd-warshall/lesson.md)
 
 ### 자료구조
@@ -143,6 +145,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [기하 기본: CCW, 선분 교차, Convex Hull](lessons/geometry-ccw-segment-intersection/lesson.md)
 - [Rotating Calipers](lessons/rotating-calipers/lesson.md)
 - [Sweep Line Geometry](lessons/sweep-line-geometry/lesson.md)
+- [Closest Pair Sweep](lessons/closest-pair-sweep/lesson.md)
 
 ### 수학
 
@@ -154,5 +157,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Matrix Exponentiation](lessons/matrix-exponentiation/lesson.md)
 - [FFT와 NTT](lessons/fft-ntt/lesson.md)
 - [Formal Power Series](lessons/formal-power-series/lesson.md)
+- [FPS Log와 Exp](lessons/fps-log-exp/lesson.md)
 - [확률과 기대값](lessons/probability-expected-value/lesson.md)
 - [Game Theory와 Grundy Number](lessons/game-theory-grundy/lesson.md)
+- [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md)
