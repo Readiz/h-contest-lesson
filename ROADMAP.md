@@ -49,27 +49,32 @@
 - `succinct-bitvector`: rank/select와 superblock/block 기반 bitvector를 Wavelet Matrix 내부 구조와 연결해 공개했습니다. 남은 자료구조 심화는 persistent lazy 구조 후보로 이어갑니다.
 - `multipoint-evaluation`: subproduct tree와 polynomial remainder 기반의 다점 평가 관점을 공개했습니다. 남은 polynomial 심화는 Bostan-Mori 후보로 이어갑니다.
 - `alien-optimization`: Lagrangian relaxation, penalty DP, count 단조성을 이용한 Alien Optimization을 공개했습니다. 남은 DP 최적화는 slope/convex 계열 후보로 이어갑니다.
+- `lyndon-factorization`: Lyndon word, Chen-Fox-Lyndon decomposition, Duval algorithm, minimum rotation을 문자열 심화 레슨으로 공개했습니다. 남은 문자열 심화는 suffix tree나 runs/periodicity 후보로 이어갑니다.
+- `weighted-matching`: cardinality와 weight 목적식 차이, small-N bitmask DP, assignment/min-cost/weighted blossom 경계를 그래프 심화 레슨으로 공개했습니다. 남은 그래프 심화는 directed MST 후보로 이어갑니다.
+- `persistent-lazy-segment-tree`: lazy range update와 path copying을 결합한 versioned range add/range sum 구조를 공개했습니다. 남은 자료구조 심화는 link-cut tree 후보로 이어갑니다.
+- `bostan-mori`: rational generating function의 n번째 계수 추출과 선형 점화식 연결을 polynomial 심화 레슨으로 공개했습니다. 남은 수학 심화는 polynomial interpolation 후보로 이어갑니다.
+- `voronoi-delaunay`: Voronoi diagram과 Delaunay triangulation의 쌍대성, in-circle predicate, Euclidean MST 응용 관점을 기하 심화 레슨으로 공개했습니다. 남은 기하 심화는 half-plane intersection 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `lyndon-factorization` | Lyndon word, Duval algorithm, 최소 표현/문자열 분해 | TODO: Lyndon `/practice/...` 문제 필요 |
-| 2 | `weighted-matching` | weighted blossom 개요와 assignment/dual slack 비교 | TODO: weighted matching `/practice/...` 문제 필요 |
-| 3 | `persistent-lazy-segment-tree` | lazy propagation과 persistence 결합, versioned range update | TODO: persistent lazy segtree `/practice/...` 문제 필요 |
-| 4 | `bostan-mori` | rational generating function의 n번째 계수 계산 | TODO: Bostan-Mori `/practice/...` 문제 필요 |
-| 5 | `voronoi-delaunay` | Delaunay triangulation과 Voronoi diagram의 문제화 관점 | TODO: Voronoi/Delaunay `/practice/...` 문제 필요 |
+| 1 | `suffix-tree-ukkonen` | suffix tree, Ukkonen online construction | TODO: suffix tree `/practice/...` 문제 필요 |
+| 2 | `directed-mst` | Chu-Liu/Edmonds arborescence | TODO: directed MST `/practice/...` 문제 필요 |
+| 3 | `link-cut-tree` | dynamic tree path query, link, cut | TODO: link-cut tree `/practice/...` 문제 필요 |
+| 4 | `polynomial-interpolation` | Lagrange/Newton interpolation | TODO: interpolation `/practice/...` 문제 필요 |
+| 5 | `half-plane-intersection` | convex polygon clipping, half-plane intersection | TODO: half-plane intersection `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `lyndon-factorization`, `suffix-tree-ukkonen` |
-| 그래프 심화 | `weighted-matching`, `directed-mst` |
-| 자료구조/오프라인 | `persistent-lazy-segment-tree`, `link-cut-tree` |
-| 수학 심화 | `bostan-mori`, `polynomial-interpolation` |
+| 문자열 | `suffix-tree-ukkonen`, `runs-periodicity` |
+| 그래프 심화 | `directed-mst`, `dynamic-connectivity` |
+| 자료구조/오프라인 | `link-cut-tree`, `dynamic-segment-tree` |
+| 수학 심화 | `polynomial-interpolation`, `linear-basis-xor` |
 | DP 최적화 | `lagrangian-relaxation`, `slope-trick` |
-| 기하 | `voronoi-delaunay`, `half-plane-intersection` |
+| 기하 | `half-plane-intersection`, `minkowski-sum` |
 | 게임/탐색 | `markov-decision-process`, `imperfect-information-search` |
 
 ## 공개 레슨으로 올리기 전 조건
