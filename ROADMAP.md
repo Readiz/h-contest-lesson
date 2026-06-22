@@ -34,28 +34,33 @@
 - `formal-power-series`: FPS의 계수 표현, 미분/적분, polynomial inverse, 생성함수 연결을 공개했습니다. 남은 polynomial 심화는 FPS log/exp와 convolution DP 후보로 이어갑니다.
 - `knuth-optimization`: interval DP의 opt 단조 범위를 이용하는 Knuth Optimization을 공개했습니다. 남은 DP 최적화는 Monge/SMAWK 후보로 이어갑니다.
 - `game-theory-grundy`: impartial game, mex, Sprague-Grundy theorem, xor 합성을 공개했습니다. 남은 게임/전략 심화는 minimax와 Markov chain 후보로 이어갑니다.
+- `flow-with-lower-bound`: lower/upper bound가 있는 간선 제약을 feasible circulation으로 바꾸는 flow 심화를 공개했습니다. 남은 그래프 심화는 일반 matching 후보로 이어갑니다.
+- `closest-pair-sweep`: x sweep과 active y set으로 최근접 점 쌍 후보를 제한하는 기하 심화를 공개했습니다. 남은 기하 심화는 line arrangement 후보로 이어갑니다.
+- `monge-smawk`: Monge inequality, totally monotone row minima, SMAWK column reduction을 DP 최적화 심화로 공개했습니다.
+- `fps-log-exp`: FPS log, exp, power 연산 조건과 Newton iteration 흐름을 polynomial 심화로 공개했습니다. 남은 수학 심화는 선형 점화식 고속 계산 후보로 이어갑니다.
+- `minimax-alpha-beta`: game tree minimax, alpha-beta pruning, move ordering을 게임 탐색 레슨으로 공개했습니다. 남은 게임/탐색 심화는 MCTS 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `flow-with-lower-bound` | lower/upper bound가 있는 flow, feasibility circulation | TODO: lower-bound flow `/practice/...` 문제 필요 |
-| 2 | `closest-pair-sweep` | 최근접 점 쌍, divide-and-conquer와 sweep set | TODO: closest pair `/practice/...` 문제 필요 |
-| 3 | `monge-smawk` | Monge array, totally monotone matrix, SMAWK | TODO: Monge/SMAWK `/practice/...` 문제 필요 |
-| 4 | `fps-log-exp` | FPS log, exp, power와 generating function 응용 | TODO: FPS log/exp `/practice/...` 문제 필요 |
-| 5 | `minimax-alpha-beta` | minimax, alpha-beta pruning, game tree search | TODO: minimax `/practice/...` 문제 필요 |
+| 1 | `general-matching` | blossom, 일반 그래프 matching, alternating forest | TODO: blossom/general matching `/practice/...` 문제 필요 |
+| 2 | `wavelet-matrix` | Wavelet Matrix, rank/select, kth/frequency 질의 | TODO: wavelet matrix `/practice/...` 문제 필요 |
+| 3 | `line-arrangement` | line arrangement, sweep intersection, planar subdivision 관점 | TODO: line arrangement `/practice/...` 문제 필요 |
+| 4 | `linear-recurrence-kitamasa` | Kitamasa, Bostan-Mori, 선형 점화식 빠른 계산 | TODO: linear recurrence `/practice/...` 문제 필요 |
+| 5 | `monte-carlo-tree-search` | MCTS, UCB, rollout 기반 game tree search | TODO: MCTS `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `palindromic-tree` |
-| 그래프 심화 | `flow-with-lower-bound`, `general-matching` |
+| 문자열 | `suffix-palindrome-applications`, `lyndon-factorization` |
+| 그래프 심화 | `general-matching`, `dominator-tree` |
 | 자료구조/오프라인 | `wavelet-matrix`, `succinct-bitvector` |
-| 수학 심화 | `fps-log-exp`, `linear-recurrence-kitamasa` |
-| DP 최적화 | `monge-smawk` |
-| 기하 | `closest-pair-sweep`, `line-arrangement` |
-| 게임/탐색 | `minimax-alpha-beta` |
+| 수학 심화 | `linear-recurrence-kitamasa`, `multipoint-evaluation` |
+| DP 최적화 | `alien-optimization`, `lagrangian-relaxation` |
+| 기하 | `line-arrangement`, `voronoi-delaunay` |
+| 게임/탐색 | `monte-carlo-tree-search`, `markov-decision-process` |
 
 ## 공개 레슨으로 올리기 전 조건
 
