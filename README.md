@@ -177,6 +177,8 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Line Arrangement](lessons/line-arrangement/lesson.md)
 - [Voronoi와 Delaunay](lessons/voronoi-delaunay/lesson.md)
 - [Half-Plane Intersection](lessons/half-plane-intersection/lesson.md)
+- [Minkowski Sum](lessons/minkowski-sum/lesson.md)
+- [Rotating Calipers Applications](lessons/rotating-calipers-applications/lesson.md)
 
 ### 수학
 
@@ -201,3 +203,6 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Mobius Inversion](lessons/mobius-inversion/lesson.md)
 - [Linear Basis Applications](lessons/linear-basis-applications/lesson.md)
 - [Dirichlet Convolution](lessons/dirichlet-convolution/lesson.md)
+- [Multiplicative Functions](lessons/multiplicative-functions/lesson.md)
+- [Markov Decision Process](lessons/markov-decision-process/lesson.md)
+- [Imperfect Information Search](lessons/imperfect-information-search/lesson.md)
