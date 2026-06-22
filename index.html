@@ -455,7 +455,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/alien-optimization/lesson.md">Alien Optimization</a> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
 </article>
 <article class="lesson-card">
@@ -477,8 +477,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a> <a href="lessons/alien-optimization/lesson.md">Alien Optimization</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a></h3>
+<code class="lesson-id">min-plus-convolution</code>
+</div>
+<p class="lesson-description">두 비용 배열을 min-plus 방식으로 합치는 DP merge를 이해하고 convex/Monge 조건에서 argmin 단조성을 활용합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">50분</span>
+</div>
+<div class="tag-list">
+<span class="tag">dp-optimization</span>
+<span class="tag">min-plus-convolution</span>
+<span class="tag">convexity</span>
+<span class="tag">monge</span>
+<span class="tag">divide-and-conquer</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-cost-flow/lesson.md">Convex Cost Flow</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/alien-optimization/lesson.md">Alien Optimization</a> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a></p>
 </article>
 </div>
 </section>
@@ -858,7 +880,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/directed-mst/lesson.md">Directed MST</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
 </article>
 <article class="lesson-card">
@@ -880,8 +902,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></h3>
+<code class="lesson-id">dynamic-mst</code>
+</div>
+<p class="lesson-description">간선 추가, 삭제, 가중치 변화가 섞인 그래프에서 MST 비용을 유지하는 모델과 실용적인 rebuild/offline 전략을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+</div>
+<div class="tag-list">
+<span class="tag">graphs</span>
+<span class="tag">mst</span>
+<span class="tag">dynamic-mst</span>
+<span class="tag">kruskal</span>
+<span class="tag">offline-query</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/euler-tour-tree/lesson.md">Euler Tour Tree</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a> <a href="lessons/directed-mst/lesson.md">Directed MST</a></p>
 </article>
 </div>
 </section>
@@ -1312,8 +1356,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-union-find/lesson.md">Persistent Union-Find</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/persistent-union-find/lesson.md">Persistent Union-Find</a></h3>
+<code class="lesson-id">persistent-union-find</code>
+</div>
+<p class="lesson-description">Union-Find의 과거 version에서 연결성과 component size를 조회하는 partially persistent DSU와 rollback DSU 선택 기준을 정리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">50분</span>
+</div>
+<div class="tag-list">
+<span class="tag">data-structures</span>
+<span class="tag">union-find</span>
+<span class="tag">persistence</span>
+<span class="tag">rollback-dsu</span>
+<span class="tag">versioning</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/euler-tour-tree/lesson.md">Euler Tour Tree</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 </article>
 </div>
 </section>
@@ -1514,7 +1580,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/suffix-tree-ukkonen/lesson.md">Suffix Tree와 Ukkonen</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/border-automaton/lesson.md">Border Automaton</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a></p>
 </article>
 <article class="lesson-card">
@@ -1536,8 +1602,30 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/border-automaton/lesson.md">Border Automaton</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/border-automaton/lesson.md">Border Automaton</a></h3>
+<code class="lesson-id">border-automaton</code>
+</div>
+<p class="lesson-description">KMP prefix function을 상태 전이표로 바꿔 패턴 매칭, forbidden pattern DP, border transition을 빠르게 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">45분</span>
+</div>
+<div class="tag-list">
+<span class="tag">strings</span>
+<span class="tag">border-automaton</span>
+<span class="tag">prefix-function</span>
+<span class="tag">kmp</span>
+<span class="tag">automaton</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a> <a href="lessons/suffix-array-applications/lesson.md">Suffix Array 응용 패턴</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></p>
 </article>
 </div>
 </section>
@@ -2052,7 +2140,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a> <a href="lessons/polynomial-interpolation/lesson.md">Polynomial Interpolation</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/linear-basis-applications/lesson.md">Linear Basis Applications</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a></p>
 </article>
 <article class="lesson-card">
@@ -2076,6 +2164,28 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/linear-basis-xor/lesson.md">XOR Linear Basis</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/linear-basis-applications/lesson.md">Linear Basis Applications</a></h3>
+<code class="lesson-id">linear-basis-applications</code>
+</div>
+<p class="lesson-description">XOR Linear Basis를 표현 가능성, k번째 xor, graph cycle xor, range query, matroid greedy로 확장해 적용합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">50분</span>
+</div>
+<div class="tag-list">
+<span class="tag">math</span>
+<span class="tag">linear-basis</span>
+<span class="tag">xor</span>
+<span class="tag">graph-xor</span>
+<span class="tag">matroid</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/linear-basis-xor/lesson.md">XOR Linear Basis</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/mobius-inversion/lesson.md">Mobius Inversion</a> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a></p>
 </article>
 </div>
 </section>

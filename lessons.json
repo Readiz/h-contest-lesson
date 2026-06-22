@@ -2620,7 +2620,9 @@
         "suffix-array-lcp",
         "suffix-tree-ukkonen"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "border-automaton"
+      ],
       "relatedLessons": [
         "lyndon-factorization",
         "suffix-palindrome-applications"
@@ -2648,7 +2650,9 @@
         "offline-queries",
         "link-cut-tree"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "dynamic-mst"
+      ],
       "relatedLessons": [
         "directed-mst",
         "flow-with-lower-bound",
@@ -2705,7 +2709,9 @@
         "proof-and-invariants",
         "polynomial-interpolation"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "linear-basis-applications"
+      ],
       "relatedLessons": [
         "combinatorics-ncr",
         "game-theory-grundy"
@@ -2732,7 +2738,9 @@
         "alien-optimization",
         "convex-hull-trick-li-chao"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "min-plus-convolution"
+      ],
       "relatedLessons": [
         "monge-smawk",
         "divide-and-conquer-dp-optimization"
@@ -2760,7 +2768,9 @@
         "suffix-array-lcp",
         "sparse-table-rmq"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "border-automaton"
+      ],
       "relatedLessons": [
         "suffix-palindrome-applications",
         "runs-periodicity"
@@ -2788,7 +2798,9 @@
         "max-flow-min-cut",
         "flow-with-lower-bound"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "dynamic-mst"
+      ],
       "relatedLessons": [
         "min-cost-flow",
         "dynamic-connectivity"
@@ -2817,7 +2829,9 @@
         "dynamic-connectivity",
         "tree-advanced"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "persistent-union-find"
+      ],
       "relatedLessons": [
         "union-find",
         "offline-queries"
@@ -2874,10 +2888,158 @@
         "slope-trick",
         "alien-optimization"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "min-plus-convolution"
+      ],
       "relatedLessons": [
         "convex-hull-trick-li-chao",
         "flow-with-lower-bound"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "border-automaton",
+      "title": "Border Automaton",
+      "description": "KMP prefix function을 상태 전이표로 바꿔 패턴 매칭, forbidden pattern DP, border transition을 빠르게 처리합니다.",
+      "summary": "matched prefix length 상태, prefix-function fallback, automaton transition table, forbidden pattern DP와 overlapping match 처리를 다루는 문자열 심화 레슨",
+      "order": 101,
+      "folderId": "strings",
+      "tags": [
+        "strings",
+        "border-automaton",
+        "prefix-function",
+        "kmp",
+        "automaton",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 45,
+      "prerequisites": [
+        "string-matching-kmp-z",
+        "runs-periodicity",
+        "suffix-array-applications"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "trie-aho-corasick",
+        "suffix-automaton"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "dynamic-mst",
+      "title": "Dynamic MST",
+      "description": "간선 추가, 삭제, 가중치 변화가 섞인 그래프에서 MST 비용을 유지하는 모델과 실용적인 rebuild/offline 전략을 익힙니다.",
+      "summary": "cycle property 기반 edge insertion, tree edge deletion replacement, rebuild baseline, block/offline dynamic MST 전략을 다루는 그래프 심화 레슨",
+      "order": 102,
+      "folderId": "graphs",
+      "tags": [
+        "graphs",
+        "mst",
+        "dynamic-mst",
+        "kruskal",
+        "offline-query",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "graph-tree-basics",
+        "dynamic-connectivity",
+        "gomory-hu-tree"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "euler-tour-tree",
+        "link-cut-tree",
+        "directed-mst"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "persistent-union-find",
+      "title": "Persistent Union-Find",
+      "description": "Union-Find의 과거 version에서 연결성과 component size를 조회하는 partially persistent DSU와 rollback DSU 선택 기준을 정리합니다.",
+      "summary": "parent change time, size history, versioned connectivity query, rollback DSU와 partially persistent DSU의 차이를 다루는 자료구조 심화 레슨",
+      "order": 103,
+      "folderId": "data-structures",
+      "tags": [
+        "data-structures",
+        "union-find",
+        "persistence",
+        "rollback-dsu",
+        "versioning",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "union-find",
+        "dynamic-connectivity",
+        "euler-tour-tree"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "persistent-segment-tree",
+        "offline-queries"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "linear-basis-applications",
+      "title": "Linear Basis Applications",
+      "description": "XOR Linear Basis를 표현 가능성, k번째 xor, graph cycle xor, range query, matroid greedy로 확장해 적용합니다.",
+      "summary": "rank와 표현 개수, normalized basis 기반 kth xor, graph cycle basis, range basis merge와 linear matroid 응용을 다루는 수학 심화 레슨",
+      "order": 104,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "linear-basis",
+        "xor",
+        "graph-xor",
+        "matroid",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "linear-basis-xor",
+        "proof-and-invariants",
+        "combinatorics-ncr"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "mobius-inversion",
+        "game-theory-grundy"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "min-plus-convolution",
+      "title": "Min-Plus Convolution",
+      "description": "두 비용 배열을 min-plus 방식으로 합치는 DP merge를 이해하고 convex/Monge 조건에서 argmin 단조성을 활용합니다.",
+      "summary": "C[k] = min A[i] + B[k-i] 형태의 DP merge, naive convolution, convex sequence, argmin monotonicity와 divide-and-conquer 최적화를 다루는 전략 심화 레슨",
+      "order": 105,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "min-plus-convolution",
+        "convexity",
+        "monge",
+        "divide-and-conquer",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 50,
+      "prerequisites": [
+        "convex-cost-flow",
+        "slope-trick",
+        "monge-smawk"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "alien-optimization",
+        "knuth-optimization"
       ],
       "pages": []
     }
