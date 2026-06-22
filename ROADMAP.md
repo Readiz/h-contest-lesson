@@ -29,27 +29,33 @@
 - `convex-hull-trick-li-chao`: 직선으로 분리되는 DP 전이, Li Chao Tree, CHT 선택 조건을 공개했습니다. 남은 DP 최적화는 divide-and-conquer와 Knuth 후보로 이어갑니다.
 - `divide-and-conquer-dp-optimization`: layer DP의 opt 단조성을 이용한 재귀적 후보 범위 축소를 공개했습니다. 남은 DP 최적화는 Knuth optimization 후보로 이어갑니다.
 - `probability-expected-value`: 확률 분포 DP, 기대값 식, 기대값의 선형성, 순환 상태와 모듈러 확률을 공개했습니다. 남은 수학/전략 심화는 game theory와 Markov chain 후보로 이어갑니다.
+- `palindromic-tree`: 모든 서로 다른 palindrome substring을 Eertree 노드로 압축하고 occurrence를 누적하는 문자열 심화 레슨을 공개했습니다. 남은 문자열 심화는 suffix/palindrome 응용 문제 쪽으로 이어갑니다.
+- `wavelet-tree`: 정적 배열의 구간 kth, rank, frequency 질의를 값 범위와 index 범위 변환으로 처리하는 자료구조 레슨을 공개했습니다. 남은 자료구조 심화는 wavelet matrix나 succinct 구조 후보로 이어갑니다.
+- `formal-power-series`: FPS의 계수 표현, 미분/적분, polynomial inverse, 생성함수 연결을 공개했습니다. 남은 polynomial 심화는 FPS log/exp와 convolution DP 후보로 이어갑니다.
+- `knuth-optimization`: interval DP의 opt 단조 범위를 이용하는 Knuth Optimization을 공개했습니다. 남은 DP 최적화는 Monge/SMAWK 후보로 이어갑니다.
+- `game-theory-grundy`: impartial game, mex, Sprague-Grundy theorem, xor 합성을 공개했습니다. 남은 게임/전략 심화는 minimax와 Markov chain 후보로 이어갑니다.
 
 ## 우선 추가할 주제
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `palindromic-tree` | 모든 palindrome substring을 상태로 압축하는 Eertree | TODO: palindrome structure `/practice/...` 문제 필요 |
-| 2 | `wavelet-tree` | 값 범위와 index 범위를 동시에 나누는 rank/kth 자료구조 | TODO: wavelet tree `/practice/...` 문제 필요 |
-| 3 | `formal-power-series` | polynomial inverse, derivative/integral, FPS 기본 연산 | TODO: FPS `/practice/...` 문제 필요 |
-| 4 | `knuth-optimization` | interval DP의 opt 범위 축소 | TODO: Knuth optimization `/practice/...` 문제 필요 |
-| 5 | `game-theory-grundy` | impartial game, mex, Sprague-Grundy theorem | TODO: Grundy/game `/practice/...` 문제 필요 |
+| 1 | `flow-with-lower-bound` | lower/upper bound가 있는 flow, feasibility circulation | TODO: lower-bound flow `/practice/...` 문제 필요 |
+| 2 | `closest-pair-sweep` | 최근접 점 쌍, divide-and-conquer와 sweep set | TODO: closest pair `/practice/...` 문제 필요 |
+| 3 | `monge-smawk` | Monge array, totally monotone matrix, SMAWK | TODO: Monge/SMAWK `/practice/...` 문제 필요 |
+| 4 | `fps-log-exp` | FPS log, exp, power와 generating function 응용 | TODO: FPS log/exp `/practice/...` 문제 필요 |
+| 5 | `minimax-alpha-beta` | minimax, alpha-beta pruning, game tree search | TODO: minimax `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `palindromic-tree` |
-| 그래프 심화 | `general-matching`, `flow-with-lower-bound` |
-| 자료구조/오프라인 | `wavelet-tree` |
-| 수학 심화 | `formal-power-series`, `game-theory-grundy` |
-| DP 최적화 | `knuth-optimization` |
-| 기하 | `closest-pair-sweep` |
+| 그래프 심화 | `flow-with-lower-bound`, `general-matching` |
+| 자료구조/오프라인 | `wavelet-matrix`, `succinct-bitvector` |
+| 수학 심화 | `fps-log-exp`, `linear-recurrence-kitamasa` |
+| DP 최적화 | `monge-smawk` |
+| 기하 | `closest-pair-sweep`, `line-arrangement` |
+| 게임/탐색 | `minimax-alpha-beta` |
 
 ## 공개 레슨으로 올리기 전 조건
 

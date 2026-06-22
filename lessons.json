@@ -1081,6 +1081,7 @@
       ],
       "nextLessons": [
         "convex-hull-trick-li-chao",
+        "wavelet-tree",
         "offline-queries"
       ],
       "relatedLessons": [
@@ -1116,6 +1117,36 @@
       "relatedLessons": [
         "persistent-segment-tree",
         "matrix-exponentiation"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "wavelet-tree",
+      "title": "Wavelet Tree",
+      "description": "정적 배열에서 구간 kth, rank, frequency 질의를 값 범위와 index 범위를 함께 나누어 처리하는 Wavelet Tree를 익힙니다.",
+      "summary": "값 기준 분할, prefixLeft index 변환, 구간 kth, `<= x` count, frequency 질의와 Persistent Segment Tree 비교까지 이어지는 정적 order statistic 레슨",
+      "order": 43,
+      "folderId": "data-structures",
+      "tags": [
+        "wavelet-tree",
+        "order-statistics",
+        "range-query",
+        "kth-query",
+        "frequency",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "persistent-segment-tree",
+        "coordinate-compression"
+      ],
+      "nextLessons": [
+        "offline-queries"
+      ],
+      "relatedLessons": [
+        "segment-tree",
+        "sqrt-decomposition"
       ],
       "pages": []
     },
@@ -1315,9 +1346,39 @@
         "suffix-array-lcp",
         "trie-aho-corasick"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "palindromic-tree"
+      ],
       "relatedLessons": [
         "string-matching-kmp-z",
+        "suffix-array-lcp"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "palindromic-tree",
+      "title": "Palindromic Tree",
+      "description": "모든 서로 다른 palindrome substring을 Eertree 노드로 압축하고, 등장 횟수와 prefix별 palindrome 통계를 관리합니다.",
+      "summary": "두 root, palindromic suffix link, 온라인 문자 추가, 서로 다른 palindrome 개수와 occurrence 누적까지 이어지는 palindrome 구조 레슨",
+      "order": 59,
+      "folderId": "strings",
+      "tags": [
+        "palindromic-tree",
+        "eertree",
+        "palindrome",
+        "string",
+        "suffix-link",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "suffix-automaton",
+        "string-matching-kmp-z"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "trie-aho-corasick",
         "suffix-array-lcp"
       ],
       "pages": []
@@ -1458,7 +1519,8 @@
       "nextLessons": [
         "matrix-exponentiation",
         "fft-ntt",
-        "probability-expected-value"
+        "probability-expected-value",
+        "game-theory-grundy"
       ],
       "relatedLessons": [
         "gcd-extended-euclid-crt",
@@ -1519,8 +1581,38 @@
         "combinatorics-ncr",
         "matrix-exponentiation"
       ],
+      "nextLessons": [
+        "formal-power-series"
+      ],
+      "relatedLessons": [
+        "gcd-extended-euclid-crt"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "formal-power-series",
+      "title": "Formal Power Series",
+      "description": "다항식을 계수열로 다루며 미분, 적분, 역원 같은 FPS 기본 연산과 생성함수 모델링을 익힙니다.",
+      "summary": "FPS 계수 표현, derivative/integral, truncate, Newton iteration 기반 polynomial inverse, 생성함수 연결까지 이어지는 polynomial 심화 레슨",
+      "order": 67,
+      "folderId": "math",
+      "tags": [
+        "formal-power-series",
+        "polynomial",
+        "generating-function",
+        "ntt",
+        "modular-arithmetic",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "fft-ntt",
+        "combinatorics-ncr"
+      ],
       "nextLessons": [],
       "relatedLessons": [
+        "matrix-exponentiation",
         "gcd-extended-euclid-crt"
       ],
       "pages": []
@@ -1530,7 +1622,7 @@
       "title": "확률과 기대값",
       "description": "확률 분포와 기대값 DP를 세우고, DAG 전이와 순환 전이, 모듈러 확률 처리를 구분해 익힙니다.",
       "summary": "확률 DP, 기대값 식, 기대값의 선형성, 순환 상태의 연립방정식, 모듈러 확률 표현까지 이어지는 수학/DP 레슨",
-      "order": 67,
+      "order": 68,
       "folderId": "math",
       "tags": [
         "probability",
@@ -1547,9 +1639,39 @@
         "modular-arithmetic",
         "combinatorics-ncr"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "game-theory-grundy"
+      ],
       "relatedLessons": [
         "matrix-exponentiation",
+        "testing-and-stress"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "game-theory-grundy",
+      "title": "Game Theory와 Grundy Number",
+      "description": "Impartial game에서 win/lose DP와 Grundy number를 계산하고, 여러 독립 게임의 xor 합성으로 승패를 판정합니다.",
+      "summary": "terminal losing, mex, Sprague-Grundy theorem, 여러 게임 xor, misere play 주의점까지 이어지는 게임 이론 입문",
+      "order": 69,
+      "folderId": "math",
+      "tags": [
+        "game-theory",
+        "grundy-number",
+        "sprague-grundy",
+        "mex",
+        "nim",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "dynamic-programming",
+        "proof-and-invariants"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "probability-expected-value",
         "testing-and-stress"
       ],
       "pages": []
@@ -1559,7 +1681,7 @@
       "title": "오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search",
       "description": "질의를 재정렬하거나 되돌릴 수 있는 상태를 이용해 Mo's Algorithm, DSU Rollback, Parallel Binary Search를 익힙니다.",
       "summary": "정적 구간 질의의 Mo's Algorithm, 시간 분기 처리를 위한 DSU rollback, 여러 답을 동시에 찾는 parallel binary search 정리",
-      "order": 68,
+      "order": 70,
       "folderId": "data-structures",
       "tags": [
         "offline-queries",
@@ -1588,7 +1710,7 @@
       "title": "Testing과 Stress Test",
       "description": "edge case, brute force, random generator, 빠른 풀이와 느린 풀이 비교로 제출 전 오답 가능성을 줄이는 검증 습관을 익힙니다.",
       "summary": "예제 이후의 edge case 설계, brute force oracle, random stress loop, 반례 재현, 성능 테스트까지 이어지는 풀이 검증 레슨",
-      "order": 70,
+      "order": 71,
       "folderId": "strategy",
       "tags": [
         "testing",
@@ -1635,7 +1757,10 @@
         "binary-search",
         "dynamic-programming"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "divide-and-conquer-dp-optimization",
+        "knuth-optimization"
+      ],
       "relatedLessons": [
         "testing-and-stress"
       ],
@@ -1662,10 +1787,39 @@
         "dynamic-programming",
         "proof-and-invariants"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "knuth-optimization"
+      ],
       "relatedLessons": [
         "convex-hull-trick-li-chao",
         "probability-expected-value"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "knuth-optimization",
+      "title": "Knuth Optimization",
+      "description": "Interval DP에서 최적 분할점의 단조 범위를 이용해 `O(N^3)` 전이를 `O(N^2)`로 줄이는 Knuth Optimization을 익힙니다.",
+      "summary": "구간 DP 전이, opt monotonicity, `opt[l][r-1]..opt[l+1][r]` 후보 범위, 파일 합치기와 적용 조건 점검까지 이어지는 DP 최적화",
+      "order": 74,
+      "folderId": "strategy",
+      "tags": [
+        "knuth-optimization",
+        "interval-dp",
+        "dp-optimization",
+        "quadrangle-inequality",
+        "optimal-bst",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "dynamic-programming",
+        "proof-and-invariants"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "divide-and-conquer-dp-optimization"
       ],
       "pages": []
     }
