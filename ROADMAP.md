@@ -109,6 +109,11 @@
 - `cht-dp-applications`: DP 전이식을 직선과 query로 분리하고 단조 조건에 맞는 CHT 구현을 고르는 응용 흐름을 공개했습니다.
 - `robust-geometry-predicates`: orientation, segment intersection, incircle 같은 기하 분기 조건의 exact/EPS 정책을 공개했습니다.
 - `pomdp`: hidden state와 observation model을 belief state로 올려 푸는 Partially Observable MDP 모델링을 공개했습니다.
+- `generating-function-modeling`: counting/DP 식을 생성함수 계수로 번역하고 rational form, recurrence, Bostan-Mori로 연결하는 모델링을 공개했습니다.
+- `black-box-linear-algebra`: sparse matrix-vector product와 Krylov sequence, Wiedemann 계열 관점을 이용한 큰 선형대수 모델링을 공개했습니다.
+- `game-theory-applications`: Grundy, minimax, MDP, hidden information 모델을 문제 신호별로 고르는 게임 이론 응용 기준을 공개했습니다.
+- `inversion-geometry`: 원과 직선을 inversion으로 변환해 접선, 교점, 원다발 문제를 단순화하는 기하 모델링을 공개했습니다.
+- `point-based-value-iteration`: POMDP belief space를 대표 belief point와 alpha vector로 근사하는 PBVI planning 기법을 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -128,23 +133,23 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `generating-function-modeling` | counting/DP 식을 generating function으로 세우고 rational form으로 바꾸는 모델링 | TODO: generating function modeling `/practice/...` 문제 필요 |
-| 2 | `black-box-linear-algebra` | sparse matrix/vector query와 Wiedemann 계열로 큰 선형 시스템/recurrence를 다루는 관점 | TODO: black-box linear algebra `/practice/...` 문제 필요 |
-| 3 | `game-theory-applications` | Grundy, minimax, stochastic model을 실제 문제 신호별로 고르는 게임 이론 응용 | TODO: game theory applications `/practice/...` 문제 필요 |
-| 4 | `inversion-geometry` | 원/직선 변환과 접선/교점 문제를 inversion으로 단순화하는 기하 심화 | TODO: inversion geometry `/practice/...` 문제 필요 |
-| 5 | `point-based-value-iteration` | POMDP belief space를 대표 belief 집합으로 근사하는 planning 기법 | TODO: point-based value iteration `/practice/...` 문제 필요 |
+| 1 | `kinetic-hull` | 시간에 따라 변하는 직선/점 집합에서 event를 관리하며 hull이나 최적 값을 유지하는 관점 | TODO: kinetic hull `/practice/...` 문제 필요 |
+| 2 | `fully-dynamic-cht` | line 삽입/삭제와 arbitrary query가 섞인 CHT 변형과 offline/segment-tree-over-time 선택 기준 | TODO: fully dynamic CHT `/practice/...` 문제 필요 |
+| 3 | `robust-delaunay` | Delaunay triangulation 구현에서 orientation/incircle predicate와 degeneracy를 안정화하는 기하 심화 | TODO: robust Delaunay `/practice/...` 문제 필요 |
+| 4 | `cut-cactus-applications` | cactus representation으로 minimum cut family, edge criticality, cut query를 모델링하는 응용 | TODO: cut cactus applications `/practice/...` 문제 필요 |
+| 5 | `pomcp` | particle belief와 UCT를 결합해 POMDP를 online planning으로 근사하는 탐색 기법 | TODO: POMCP `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `string-period-query-applications` 이후 응용 후보 정리 필요 |
-| 그래프 심화 | `randomized-min-cut` 이후 cut family 응용 후보 정리 필요 |
+| 그래프 심화 | `cut-cactus-applications`, `matroid-intersection` |
 | 자료구조/오프라인 | `persistent-sequence-queries` 이후 versioned sequence 응용 후보 정리 필요 |
-| 수학 심화 | `generating-function-modeling`, `black-box-linear-algebra` |
+| 수학 심화 | `sparse-linear-systems`, `linear-algebra-applications` |
 | DP 최적화 | `kinetic-hull`, `fully-dynamic-cht` |
-| 기하 | `inversion-geometry`, `robust-delaunay` |
-| 게임/탐색 | `game-theory-applications`, `point-based-value-iteration` |
+| 기하 | `robust-delaunay`, `power-diagram` |
+| 게임/탐색 | `pomcp`, `bayesian-bandits` |
 
 ## 공개 레슨으로 올리기 전 조건
 
