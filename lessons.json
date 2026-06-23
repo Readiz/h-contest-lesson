@@ -1110,7 +1110,8 @@
         "min-cost-flow"
       ],
       "nextLessons": [
-        "directed-mst"
+        "directed-mst",
+        "matroid-intersection"
       ],
       "relatedLessons": [
         "matching-cover-duality",
@@ -1940,7 +1941,8 @@
       ],
       "nextLessons": [
         "half-plane-intersection",
-        "robust-delaunay"
+        "robust-delaunay",
+        "power-diagram"
       ],
       "relatedLessons": [
         "geometry-ccw-segment-intersection",
@@ -3054,7 +3056,10 @@
         "proof-and-invariants",
         "combinatorics-ncr"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "matroid-intersection",
+        "linear-algebra-applications"
+      ],
       "relatedLessons": [
         "mobius-inversion",
         "game-theory-grundy"
@@ -4229,7 +4234,10 @@
         "berlekamp-massey",
         "modular-arithmetic"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "sparse-linear-systems",
+        "linear-algebra-applications"
+      ],
       "relatedLessons": [
         "matrix-exponentiation",
         "generating-function-modeling"
@@ -4472,11 +4480,165 @@
         "point-based-value-iteration",
         "monte-carlo-tree-search"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "bayesian-bandits"
+      ],
       "relatedLessons": [
         "imperfect-information-search",
         "game-theory-applications",
         "markov-decision-process"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "matroid-intersection",
+      "title": "Matroid Intersection",
+      "description": "두 matroid 독립성 조건을 동시에 만족하는 최대 집합을 exchange graph와 augmenting path로 찾는 모델을 익힙니다.",
+      "summary": "graphic, partition, linear matroid의 공통 독립 집합을 exchange graph로 키우는 matroid intersection 모델링 심화 레슨",
+      "order": 151,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "matroid",
+        "matroid-intersection",
+        "augmenting-path",
+        "independence",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "general-matching",
+        "weighted-matching",
+        "linear-basis-applications"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "max-flow-min-cut",
+        "proof-and-invariants",
+        "linear-algebra-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "sparse-linear-systems",
+      "title": "Sparse Linear Systems",
+      "description": "대부분의 계수가 0인 큰 연립방정식에서 sparse row, matvec oracle, rank consistency를 구분해 풉니다.",
+      "summary": "sparse matrix-vector product, rank/augmented rank 비교, fill-in 위험, black-box solver 선택 기준을 다루는 선형대수 심화 레슨",
+      "order": 152,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "linear-algebra",
+        "sparse-matrix",
+        "gaussian-elimination",
+        "rank",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "black-box-linear-algebra",
+        "modular-arithmetic",
+        "matrix-exponentiation"
+      ],
+      "nextLessons": [
+        "linear-algebra-applications"
+      ],
+      "relatedLessons": [
+        "berlekamp-massey",
+        "generating-function-modeling",
+        "summatory-number-theory"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "linear-algebra-applications",
+      "title": "Linear Algebra Applications",
+      "description": "rank, determinant, xor basis, recurrence, graph counting을 vector space 모델로 번역하는 기준을 정리합니다.",
+      "summary": "문제 신호를 GF(2) basis, linear system, determinant, matrix recurrence, rank model 중 하나로 고르는 선형대수 응용 레슨",
+      "order": 153,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "linear-algebra",
+        "rank",
+        "determinant",
+        "modeling",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "linear-basis-applications",
+        "sparse-linear-systems",
+        "black-box-linear-algebra"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "generating-function-modeling",
+        "matroid-intersection",
+        "matrix-exponentiation"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "power-diagram",
+      "title": "Power Diagram",
+      "description": "가중치가 붙은 site의 power distance와 radical axis로 weighted Voronoi cell을 모델링합니다.",
+      "summary": "squared distance minus weight, radical axis, weighted Voronoi cell, half-plane intersection 기반 cell 계산을 다루는 계산기하 심화 레슨",
+      "order": 154,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "power-diagram",
+        "voronoi",
+        "weighted-distance",
+        "half-plane-intersection",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "voronoi-delaunay",
+        "half-plane-intersection",
+        "shape-distance-modeling"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "robust-delaunay",
+        "circle-geometry",
+        "inversion-geometry"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "bayesian-bandits",
+      "title": "Bayesian Bandits",
+      "description": "미지 보상 확률을 posterior로 갱신하며 Thompson Sampling, Bayesian UCB, belief DP를 선택하는 기준을 익힙니다.",
+      "summary": "Beta-Bernoulli posterior update, exploration value, Thompson Sampling, finite-horizon belief-state DP를 다루는 확률적 의사결정 레슨",
+      "order": 155,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "bandit",
+        "bayesian",
+        "thompson-sampling",
+        "expected-value",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "probability-expected-value",
+        "markov-decision-process",
+        "pomdp"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "pomcp",
+        "imperfect-information-search",
+        "game-theory-applications"
       ],
       "pages": []
     }

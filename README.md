@@ -125,6 +125,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Cactus Representation](lessons/cactus-representation/lesson.md)
 - [Randomized Min Cut](lessons/randomized-min-cut/lesson.md)
 - [Cut Cactus Applications](lessons/cut-cactus-applications/lesson.md)
+- [Matroid Intersection](lessons/matroid-intersection/lesson.md)
 
 ### 자료구조
 
@@ -206,6 +207,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Robust Geometry Predicates](lessons/robust-geometry-predicates/lesson.md)
 - [Inversion Geometry](lessons/inversion-geometry/lesson.md)
 - [Robust Delaunay](lessons/robust-delaunay/lesson.md)
+- [Power Diagram](lessons/power-diagram/lesson.md)
 
 ### 수학
 
@@ -243,3 +245,6 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Game Theory Applications](lessons/game-theory-applications/lesson.md)
 - [Point-Based Value Iteration](lessons/point-based-value-iteration/lesson.md)
 - [POMCP](lessons/pomcp/lesson.md)
+- [Sparse Linear Systems](lessons/sparse-linear-systems/lesson.md)
+- [Linear Algebra Applications](lessons/linear-algebra-applications/lesson.md)
+- [Bayesian Bandits](lessons/bayesian-bandits/lesson.md)

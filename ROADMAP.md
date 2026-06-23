@@ -119,6 +119,11 @@
 - `robust-delaunay`: Delaunay triangulation의 orientation, incircle, cocircular degeneracy를 안정적으로 다루는 predicate 중심 관점을 공개했습니다.
 - `cut-cactus-applications`: global min cut family를 cactus representation으로 압축하고 query/criticality에 활용하는 그래프 cut 응용을 공개했습니다.
 - `pomcp`: particle belief와 UCT 기반 MCTS를 결합해 POMDP를 online planning으로 근사하는 POMCP 관점을 공개했습니다.
+- `matroid-intersection`: 두 matroid 독립성 조건을 동시에 만족하는 최대 집합을 exchange graph와 augmenting path로 찾는 모델을 공개했습니다.
+- `sparse-linear-systems`: sparse row, matvec oracle, rank consistency를 기준으로 큰 선형 시스템을 푸는 선택지를 공개했습니다.
+- `linear-algebra-applications`: rank, determinant, xor basis, recurrence, graph counting을 vector space 모델로 번역하는 응용 기준을 공개했습니다.
+- `power-diagram`: power distance와 radical axis로 weighted Voronoi cell을 다루는 계산기하 심화 관점을 공개했습니다.
+- `bayesian-bandits`: posterior update, Thompson Sampling, Bayesian UCB, finite-horizon belief DP를 연결하는 확률적 의사결정 레슨을 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -138,23 +143,23 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `matroid-intersection` | 두 matroid 제약을 동시에 만족하는 최대 독립 집합을 augmenting path 관점으로 모델링하는 그래프/조합 최적화 | TODO: matroid intersection `/practice/...` 문제 필요 |
-| 2 | `sparse-linear-systems` | 큰 sparse linear system을 modular Gaussian elimination, iterative method, black-box 관점으로 푸는 기준 | TODO: sparse linear system `/practice/...` 문제 필요 |
-| 3 | `linear-algebra-applications` | rank, determinant, xor basis, recurrence, graph counting을 선형대수 모델로 바꾸는 응용 묶음 | TODO: linear algebra applications `/practice/...` 문제 필요 |
-| 4 | `power-diagram` | weighted point distance와 additively weighted Voronoi를 power distance로 다루는 기하 심화 | TODO: power diagram `/practice/...` 문제 필요 |
-| 5 | `bayesian-bandits` | 불확실한 보상 분포에서 posterior update, Thompson sampling, UCB 계열을 비교하는 확률적 의사결정 | TODO: Bayesian bandits `/practice/...` 문제 필요 |
+| 1 | `dynamic-flow` | edge update나 time-expanded network에서 flow 값을 유지하거나 반복 재계산을 줄이는 그래프 최적화 | TODO: dynamic flow `/practice/...` 문제 필요 |
+| 2 | `online-convex-optimization` | regret, projection, mirror descent 관점으로 online decision 문제를 모델링하는 최적화 | TODO: online convex optimization `/practice/...` 문제 필요 |
+| 3 | `fractional-programming-dp` | ratio objective를 parametric search나 Dinkelbach 관점으로 DP/graph 모델에 붙이는 기법 | TODO: fractional programming DP `/practice/...` 문제 필요 |
+| 4 | `3d-convex-hull` | 3차원 점 집합의 convex hull, face orientation, visibility를 다루는 계산기하 심화 | TODO: 3D convex hull `/practice/...` 문제 필요 |
+| 5 | `reinforcement-learning-basics` | MDP에서 policy evaluation, policy iteration, Q-value를 contest 모델링 수준으로 정리하는 확률/전략 기초 | TODO: reinforcement learning `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `string-period-query-applications` 이후 응용 후보 정리 필요 |
-| 그래프 심화 | `matroid-intersection`, `dynamic-flow` |
+| 그래프 심화 | `dynamic-flow`, `matroid-parity` |
 | 자료구조/오프라인 | `persistent-sequence-queries` 이후 versioned sequence 응용 후보 정리 필요 |
-| 수학 심화 | `sparse-linear-systems`, `linear-algebra-applications` |
+| 수학 심화 | `randomized-determinant`, `matrix-tree-theorem-applications` |
 | DP 최적화 | `online-convex-optimization`, `fractional-programming-dp` |
-| 기하 | `power-diagram`, `3d-convex-hull` |
-| 게임/탐색 | `bayesian-bandits`, `reinforcement-learning-basics` |
+| 기하 | `3d-convex-hull`, `regular-triangulation` |
+| 게임/탐색 | `reinforcement-learning-basics`, `online-planning-evaluation` |
 
 ## 공개 레슨으로 올리기 전 조건
 
