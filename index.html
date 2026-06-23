@@ -653,7 +653,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/fractional-programming-dp/lesson.md">Fractional Programming DP</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/fractional-programming-dp/lesson.md">Fractional Programming DP</a> <a href="lessons/dual-averaging/lesson.md">Dual Averaging</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/parametric-dp/lesson.md">Parametric DP</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a></p>
 </article>
 <article class="lesson-card">
@@ -675,7 +675,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/parametric-dp/lesson.md">Parametric DP</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/alien-optimization/lesson.md">Alien Optimization</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/lagrangian-relaxation-patterns/lesson.md">Lagrangian Relaxation Patterns</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a> <a href="lessons/cht-dp-applications/lesson.md">CHT DP Applications</a></p>
 </article>
 <article class="lesson-card">
@@ -699,6 +699,50 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/pomcp/lesson.md">POMCP</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a> <a href="lessons/reinforcement-learning-basics/lesson.md">Reinforcement Learning Basics</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/lagrangian-relaxation-patterns/lesson.md">Lagrangian Relaxation Patterns</a></h3>
+<code class="lesson-id">lagrangian-relaxation-patterns</code>
+</div>
+<p class="lesson-description">hard constraint를 penalty와 dual variable로 목적식에 흡수해 DP, flow, greedy oracle을 반복 호출하는 패턴을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">65분</span>
+</div>
+<div class="tag-list">
+<span class="tag">optimization</span>
+<span class="tag">lagrangian-relaxation</span>
+<span class="tag">parametric-search</span>
+<span class="tag">dp-optimization</span>
+<span class="tag">dual-variable</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/alien-optimization/lesson.md">Alien Optimization</a> <a href="lessons/parametric-dp/lesson.md">Parametric DP</a> <a href="lessons/fractional-programming-dp/lesson.md">Fractional Programming DP</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dual-averaging/lesson.md">Dual Averaging</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/dual-averaging/lesson.md">Dual Averaging</a></h3>
+<code class="lesson-id">dual-averaging</code>
+</div>
+<p class="lesson-description">online convex optimization에서 누적 gradient와 regularizer로 decision을 갱신하는 dual averaging 패턴을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+</div>
+<div class="tag-list">
+<span class="tag">optimization</span>
+<span class="tag">online-learning</span>
+<span class="tag">dual-averaging</span>
+<span class="tag">regularization</span>
+<span class="tag">regret</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/lagrangian-relaxation-patterns/lesson.md">Lagrangian Relaxation Patterns</a> <a href="lessons/reinforcement-learning-basics/lesson.md">Reinforcement Learning Basics</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 </article>
 </div>
 </section>
@@ -1323,7 +1367,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/matroid-intersection/lesson.md">Matroid Intersection</a> <a href="lessons/general-matching/lesson.md">General Matching</a> <a href="lessons/linear-basis-applications/lesson.md">Linear Basis Applications</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/randomized-determinant/lesson.md">Randomized Determinant</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/matroid-union/lesson.md">Matroid Union</a> <a href="lessons/randomized-determinant/lesson.md">Randomized Determinant</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/weighted-matching/lesson.md">Weighted Matching</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a></p>
 </article>
 <article class="lesson-card">
@@ -1347,6 +1391,50 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/randomized-determinant/lesson.md">Randomized Determinant</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/matroid-union/lesson.md">Matroid Union</a></h3>
+<code class="lesson-id">matroid-union</code>
+</div>
+<p class="lesson-description">여러 matroid 독립 집합의 합으로 원소를 덮거나 분해하는 union rank와 layer exchange 관점을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">60분</span>
+</div>
+<div class="tag-list">
+<span class="tag">graph</span>
+<span class="tag">matroid</span>
+<span class="tag">matroid-union</span>
+<span class="tag">exchange</span>
+<span class="tag">combinatorial-optimization</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/matroid-intersection/lesson.md">Matroid Intersection</a> <a href="lessons/matroid-parity/lesson.md">Matroid Parity</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/general-matching/lesson.md">General Matching</a> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a> <a href="lessons/randomized-determinant/lesson.md">Randomized Determinant</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/planar-graph-duality/lesson.md">Planar Graph Duality</a></h3>
+<code class="lesson-id">planar-graph-duality</code>
+</div>
+<p class="lesson-description">평면 그래프의 face를 dual 정점으로 바꾸고 cut-cycle duality로 graph와 geometry 문제를 변환합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">60분</span>
+</div>
+<div class="tag-list">
+<span class="tag">graph</span>
+<span class="tag">planar-graph</span>
+<span class="tag">duality</span>
+<span class="tag">face-graph</span>
+<span class="tag">min-cut</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/matrix-tree-theorem-applications/lesson.md">Matrix-Tree Theorem Applications</a> <a href="lessons/global-min-cut/lesson.md">Global Min Cut</a></p>
 </article>
 </div>
 </section>
@@ -3158,7 +3246,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/stochastic-shortest-path/lesson.md">Stochastic Shortest Path</a> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a></p>
 </article>
 <article class="lesson-card">
@@ -3488,7 +3576,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/stochastic-shortest-path/lesson.md">Stochastic Shortest Path</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a> <a href="lessons/pomcp/lesson.md">POMCP</a> <a href="lessons/point-based-value-iteration/lesson.md">Point-Based Value Iteration</a></p>
 </article>
 <article class="lesson-card">
@@ -3512,6 +3600,28 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/black-box-linear-algebra/lesson.md">Black-Box Linear Algebra</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/matrix-tree-theorem-applications/lesson.md">Matrix-Tree Theorem Applications</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/general-matching/lesson.md">General Matching</a> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/stochastic-shortest-path/lesson.md">Stochastic Shortest Path</a></h3>
+<code class="lesson-id">stochastic-shortest-path</code>
+</div>
+<p class="lesson-description">absorbing 목표 상태까지의 기대 비용을 Bellman equation, value iteration, linear equation 관점으로 풉니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">60분</span>
+</div>
+<div class="tag-list">
+<span class="tag">probability</span>
+<span class="tag">mdp</span>
+<span class="tag">stochastic-shortest-path</span>
+<span class="tag">expected-value</span>
+<span class="tag">bellman-equation</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/reinforcement-learning-basics/lesson.md">Reinforcement Learning Basics</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a></p>
 </article>
 </div>
 </section>

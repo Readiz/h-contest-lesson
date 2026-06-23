@@ -3375,6 +3375,7 @@
       ],
       "nextLessons": [
         "imperfect-information-search",
+        "stochastic-shortest-path",
         "pomdp"
       ],
       "relatedLessons": [
@@ -4695,7 +4696,8 @@
         "probability-expected-value"
       ],
       "nextLessons": [
-        "fractional-programming-dp"
+        "fractional-programming-dp",
+        "dual-averaging"
       ],
       "relatedLessons": [
         "parametric-dp",
@@ -4726,7 +4728,9 @@
         "convex-dp-modeling",
         "alien-optimization"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "lagrangian-relaxation-patterns"
+      ],
       "relatedLessons": [
         "online-convex-optimization",
         "min-plus-convolution",
@@ -4786,7 +4790,9 @@
         "probability-expected-value",
         "game-theory-applications"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "stochastic-shortest-path"
+      ],
       "relatedLessons": [
         "bayesian-bandits",
         "pomcp",
@@ -4817,6 +4823,7 @@
         "linear-basis-applications"
       ],
       "nextLessons": [
+        "matroid-union",
         "randomized-determinant"
       ],
       "relatedLessons": [
@@ -4945,6 +4952,158 @@
         "testing-and-stress",
         "heuristic",
         "reinforcement-learning-basics"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "lagrangian-relaxation-patterns",
+      "title": "Lagrangian Relaxation Patterns",
+      "description": "hard constraint를 penalty와 dual variable로 목적식에 흡수해 DP, flow, greedy oracle을 반복 호출하는 패턴을 익힙니다.",
+      "summary": "제약을 penalty로 바꾸고 relaxed oracle을 풀며 multiplier, response 단조성, tie-break, 답 보정을 함께 관리하는 최적화 모델링 레슨",
+      "order": 166,
+      "folderId": "strategy",
+      "tags": [
+        "optimization",
+        "lagrangian-relaxation",
+        "parametric-search",
+        "dp-optimization",
+        "dual-variable",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "alien-optimization",
+        "parametric-dp",
+        "fractional-programming-dp"
+      ],
+      "nextLessons": [
+        "dual-averaging"
+      ],
+      "relatedLessons": [
+        "convex-dp-modeling",
+        "min-cost-flow",
+        "flow-with-lower-bound"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "matroid-union",
+      "title": "Matroid Union",
+      "description": "여러 matroid 독립 집합의 합으로 원소를 덮거나 분해하는 union rank와 layer exchange 관점을 익힙니다.",
+      "summary": "partition, graphic, linear matroid를 여러 layer의 독립 집합으로 합치는 matroid union과 covering 모델링 레슨",
+      "order": 167,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "matroid",
+        "matroid-union",
+        "exchange",
+        "combinatorial-optimization",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "matroid-intersection",
+        "matroid-parity",
+        "proof-and-invariants"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "general-matching",
+        "linear-algebra-applications",
+        "randomized-determinant"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "planar-graph-duality",
+      "title": "Planar Graph Duality",
+      "description": "평면 그래프의 face를 dual 정점으로 바꾸고 cut-cycle duality로 graph와 geometry 문제를 변환합니다.",
+      "summary": "planar embedding, outer face, dual edge construction, cut-cycle 대응, planar min-cut과 dual shortest path를 연결하는 그래프/기하 심화 레슨",
+      "order": 168,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "planar-graph",
+        "duality",
+        "face-graph",
+        "min-cut",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "graph-tree-basics",
+        "max-flow-min-cut",
+        "geometry-ccw-segment-intersection"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "sweep-line-geometry",
+        "matrix-tree-theorem-applications",
+        "global-min-cut"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "stochastic-shortest-path",
+      "title": "Stochastic Shortest Path",
+      "description": "absorbing 목표 상태까지의 기대 비용을 Bellman equation, value iteration, linear equation 관점으로 풉니다.",
+      "summary": "확률 전이와 terminal hitting cost가 있는 MDP 특수형에서 proper policy, expected cost, value iteration, linear solve를 다루는 레슨",
+      "order": 169,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "mdp",
+        "stochastic-shortest-path",
+        "expected-value",
+        "bellman-equation",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "markov-decision-process",
+        "reinforcement-learning-basics",
+        "probability-expected-value"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "sparse-linear-systems",
+        "bayesian-bandits",
+        "dijkstra"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "dual-averaging",
+      "title": "Dual Averaging",
+      "description": "online convex optimization에서 누적 gradient와 regularizer로 decision을 갱신하는 dual averaging 패턴을 익힙니다.",
+      "summary": "cumulative gradient, entropy regularizer, simplex exponential update, learning rate, Lagrangian dual update 연결을 다루는 온라인 최적화 레슨",
+      "order": 170,
+      "folderId": "strategy",
+      "tags": [
+        "optimization",
+        "online-learning",
+        "dual-averaging",
+        "regularization",
+        "regret",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "online-convex-optimization",
+        "convex-dp-modeling",
+        "bayesian-bandits"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "lagrangian-relaxation-patterns",
+        "reinforcement-learning-basics",
+        "probability-expected-value"
       ],
       "pages": []
     }
