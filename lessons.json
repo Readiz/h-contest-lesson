@@ -2586,7 +2586,8 @@
         "knuth-optimization"
       ],
       "nextLessons": [
-        "alien-optimization"
+        "alien-optimization",
+        "quadrangle-inequality-proofs"
       ],
       "relatedLessons": [
         "convex-hull-trick-li-chao"
@@ -2647,7 +2648,8 @@
         "suffix-tree-ukkonen"
       ],
       "nextLessons": [
-        "border-automaton"
+        "border-automaton",
+        "string-period-query-applications"
       ],
       "relatedLessons": [
         "lyndon-factorization",
@@ -3141,7 +3143,8 @@
         "dynamic-mst"
       ],
       "nextLessons": [
-        "cut-sparsification"
+        "cut-sparsification",
+        "randomized-min-cut"
       ],
       "relatedLessons": [
         "flow-with-lower-bound",
@@ -3480,7 +3483,8 @@
         "max-flow-min-cut"
       ],
       "nextLessons": [
-        "global-min-cut-applications"
+        "global-min-cut-applications",
+        "randomized-min-cut"
       ],
       "relatedLessons": [
         "dynamic-mst",
@@ -3783,7 +3787,9 @@
         "retroactive-data-structures",
         "rollback-techniques"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "persistent-sequence-queries"
+      ],
       "relatedLessons": [
         "persistent-segment-tree",
         "offline-range-query-techniques"
@@ -3841,10 +3847,157 @@
         "geometry-ccw-segment-intersection",
         "closest-pair-sweep"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "circle-arrangement"
+      ],
       "relatedLessons": [
         "voronoi-delaunay",
         "sweep-line-geometry"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "string-period-query-applications",
+      "title": "String Period Query Applications",
+      "description": "Border, period, runs 정보를 substring range/query 문제로 확장해 반복 판정과 최소 주기 질의를 처리합니다.",
+      "summary": "rolling hash, suffix LCP/LCS, runs 관점을 이용해 range period, minimal period, repeated substring query를 모델링하는 문자열 응용 레슨",
+      "order": 131,
+      "folderId": "strings",
+      "tags": [
+        "strings",
+        "periodicity",
+        "border",
+        "range-query",
+        "suffix-array",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "runs-periodicity",
+        "suffix-array-applications",
+        "border-automaton"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "suffix-automaton-applications",
+        "palindrome-range-dp"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "randomized-min-cut",
+      "title": "Randomized Min Cut",
+      "description": "Karger contraction과 반복 확률 증폭으로 무향 global min cut을 찾는 randomized graph 기법을 익힙니다.",
+      "summary": "무작위 edge contraction, min cut 보존 확률, 반복 증폭, Stoer-Wagner와의 선택 기준을 다루는 그래프 심화 레슨",
+      "order": 132,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "min-cut",
+        "randomized",
+        "karger",
+        "contraction",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "global-min-cut",
+        "cut-sparsification",
+        "global-min-cut-applications"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "gomory-hu-tree",
+        "cactus-representation"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "persistent-sequence-queries",
+      "title": "Persistent Sequence Queries",
+      "description": "Version별 배열과 sequence에서 kth, count, range query를 persistent tree와 implicit structure로 처리합니다.",
+      "summary": "prefix persistent segment tree, path copying, version root 차이, persistent sequence split/merge 선택 기준을 다루는 자료구조 레슨",
+      "order": 133,
+      "folderId": "data-structures",
+      "tags": [
+        "data-structures",
+        "persistence",
+        "range-query",
+        "kth",
+        "persistent-segment-tree",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "persistent-queue-stack",
+        "persistent-segment-tree",
+        "wavelet-tree"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "offline-range-query-techniques",
+        "persistent-lazy-segment-tree"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "quadrangle-inequality-proofs",
+      "title": "Quadrangle Inequality Proofs",
+      "description": "Knuth, Monge, divide-and-conquer DP 최적화 전에 필요한 부등식과 opt 단조성 증명 패턴을 익힙니다.",
+      "summary": "quadrangle inequality, Monge inequality, opt monotonicity, tie-breaking, 작은 반례 탐색을 연결하는 DP 최적화 증명 레슨",
+      "order": 134,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "quadrangle-inequality",
+        "monge",
+        "knuth",
+        "opt-monotonicity",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "knuth-optimization",
+        "monge-smawk",
+        "divide-and-conquer-dp-optimization"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "convex-dp-modeling",
+        "min-plus-convolution"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "circle-arrangement",
+      "title": "Circle Arrangement",
+      "description": "여러 원의 교점으로 arc를 나누고 union area, perimeter, depth를 angular sweep으로 계산합니다.",
+      "summary": "circle-circle intersection angle, arc midpoint depth, union boundary, sector contribution, 포함 원 처리를 다루는 계산기하 레슨",
+      "order": 135,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "circle",
+        "arrangement",
+        "angular-sweep",
+        "area-union",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "circle-geometry",
+        "sweep-line-geometry",
+        "shape-distance-modeling"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "half-plane-intersection",
+        "voronoi-delaunay"
       ],
       "pages": []
     }

@@ -87,6 +87,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Min-Plus Convolution](lessons/min-plus-convolution/lesson.md)
 - [Convex DP Modeling](lessons/convex-dp-modeling/lesson.md)
 - [Parametric DP](lessons/parametric-dp/lesson.md)
+- [Quadrangle Inequality Proofs](lessons/quadrangle-inequality-proofs/lesson.md)
 
 ### 그래프와 트리
 
@@ -119,6 +120,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Cut Sparsification](lessons/cut-sparsification/lesson.md)
 - [Global Min Cut Applications](lessons/global-min-cut-applications/lesson.md)
 - [Cactus Representation](lessons/cactus-representation/lesson.md)
+- [Randomized Min Cut](lessons/randomized-min-cut/lesson.md)
 
 ### 자료구조
 
@@ -157,6 +159,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Offline Range Query Techniques](lessons/offline-range-query-techniques/lesson.md)
 - [Convex Hull Trick Variants](lessons/convex-hull-trick-variants/lesson.md)
 - [Persistent Queue and Stack](lessons/persistent-queue-stack/lesson.md)
+- [Persistent Sequence Queries](lessons/persistent-sequence-queries/lesson.md)
 
 ### 문자열
 
@@ -178,6 +181,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Generalized Suffix Automaton](lessons/generalized-suffix-automaton/lesson.md)
 - [Palindrome Query Structures](lessons/palindrome-query-structures/lesson.md)
 - [Palindrome Range DP](lessons/palindrome-range-dp/lesson.md)
+- [String Period Query Applications](lessons/string-period-query-applications/lesson.md)
 
 ### 기하
 
@@ -194,6 +198,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Rotating Calipers Applications](lessons/rotating-calipers-applications/lesson.md)
 - [Shape Distance Modeling](lessons/shape-distance-modeling/lesson.md)
 - [Circle Geometry](lessons/circle-geometry/lesson.md)
+- [Circle Arrangement](lessons/circle-arrangement/lesson.md)
 
 ### 수학
 
