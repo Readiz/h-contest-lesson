@@ -94,6 +94,11 @@
 - `convex-hull-trick-variants`: monotone deque CHT, breakpoint hull, Li Chao 변형을 slope/query 조건별로 고르는 기준을 공개했습니다.
 - `parametric-dp`: penalty DP, feasibility parameter, answer binary search로 DP 제약을 분리하는 관점을 공개했습니다.
 - `shape-distance-modeling`: Minkowski difference, support function, separating axis로 도형 거리와 충돌 문제를 모델링하는 법을 공개했습니다.
+- `palindrome-range-dp`: palindrome 판정 구조를 prefix DP와 interval DP 전이에 결합하는 문자열/DP 응용을 공개했습니다.
+- `cactus-representation`: cactus graph와 min cut family 표현을 구분하고 cycle block을 tree처럼 다루는 그래프 모델을 공개했습니다.
+- `persistent-queue-stack`: persistent stack, queue, deque의 version root와 rollback/retroactivity 경계를 공개했습니다.
+- `linear-recurrence-applications`: DP, graph walk, 생성함수에서 선형 점화식을 찾아 Kitamasa/Bostan-Mori/행렬 거듭제곱 중 방법을 고르는 기준을 공개했습니다.
+- `circle-geometry`: 원-직선, 원-원 교점과 접선 construction, 각도 구간 sweep의 case 분기를 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -113,22 +118,22 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `palindrome-range-dp` | palindrome 판정 구조와 구간 DP를 함께 쓰는 문자열/DP 응용 | TODO: palindrome range `/practice/...` 문제 필요 |
-| 2 | `cactus-representation` | 모든 minimum cut 또는 biconnected 구조를 cactus로 압축하는 그래프 모델 | TODO: cactus graph `/practice/...` 문제 필요 |
-| 3 | `persistent-queue-stack` | persistent stack, queue, deque의 version 관리와 query 처리 | TODO: persistent sequence `/practice/...` 문제 필요 |
-| 4 | `linear-recurrence-applications` | recurrence, generating function, Kitamasa/Bostan-Mori 선택 기준 | TODO: recurrence application `/practice/...` 문제 필요 |
-| 5 | `circle-geometry` | circle-line, circle-circle intersection과 tangent construction | TODO: circle geometry `/practice/...` 문제 필요 |
+| 1 | `string-period-query-applications` | border, period, runs 정보를 range/query 문제로 확장하는 문자열 응용 | TODO: string period query `/practice/...` 문제 필요 |
+| 2 | `randomized-min-cut` | Karger contraction과 반복 확률 증폭으로 global min cut을 찾는 randomized graph 기법 | TODO: randomized min cut `/practice/...` 문제 필요 |
+| 3 | `persistent-sequence-queries` | persistent array/treap/segment tree로 version별 kth, range query를 처리하는 자료구조 응용 | TODO: persistent sequence `/practice/...` 문제 필요 |
+| 4 | `quadrangle-inequality-proofs` | Knuth/Monge 최적화에 필요한 quadrangle inequality와 opt 단조성 증명 패턴 | TODO: quadrangle inequality `/practice/...` 문제 필요 |
+| 5 | `circle-arrangement` | 여러 원의 교점, arc 분할, union/perimeter 계산으로 이어지는 원 기하 응용 | TODO: circle arrangement `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `palindrome-range-dp`, `string-period-query-applications` |
-| 그래프 심화 | `cactus-representation`, `randomized-min-cut` |
-| 자료구조/오프라인 | `persistent-queue-stack` |
-| 수학 심화 | `linear-recurrence-applications` |
+| 문자열 | `string-period-query-applications` |
+| 그래프 심화 | `randomized-min-cut` |
+| 자료구조/오프라인 | `persistent-sequence-queries` |
+| 수학 심화 | `recurrence-guessing`, `berlekamp-massey` |
 | DP 최적화 | `quadrangle-inequality-proofs`, `cht-dp-applications` |
-| 기하 | `circle-geometry` |
+| 기하 | `circle-arrangement`, `robust-geometry-predicates` |
 | 게임/탐색 | `pomdp`, `game-theory-applications` |
 
 ## 공개 레슨으로 올리기 전 조건
