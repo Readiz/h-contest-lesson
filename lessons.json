@@ -4793,6 +4793,160 @@
         "point-based-value-iteration"
       ],
       "pages": []
+    },
+    {
+      "lessonId": "matroid-parity",
+      "title": "Matroid Parity",
+      "description": "짝으로 묶인 원소를 선택하면서 matroid 독립성을 유지하는 pair 선택 모델을 matching 일반화 관점으로 익힙니다.",
+      "summary": "pair 단위 선택, underlying matroid 독립성, linear matroid parity, matching과의 차이를 정리하는 조합 최적화 심화 레슨",
+      "order": 161,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "matroid",
+        "matching",
+        "linear-algebra",
+        "combinatorial-optimization",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "matroid-intersection",
+        "general-matching",
+        "linear-basis-applications"
+      ],
+      "nextLessons": [
+        "randomized-determinant"
+      ],
+      "relatedLessons": [
+        "weighted-matching",
+        "proof-and-invariants",
+        "linear-algebra-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "randomized-determinant",
+      "title": "Randomized Determinant",
+      "description": "determinant polynomial에 무작위 값을 대입해 rank, matching 존재성, polynomial identity를 확률적으로 판정합니다.",
+      "summary": "Schwartz-Zippel, random substitution, modular determinant, Tutte matrix 기반 존재성 판정을 다루는 선형대수 심화 레슨",
+      "order": 162,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "linear-algebra",
+        "determinant",
+        "randomized",
+        "matching",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "black-box-linear-algebra",
+        "modular-arithmetic",
+        "probability-expected-value"
+      ],
+      "nextLessons": [
+        "matrix-tree-theorem-applications"
+      ],
+      "relatedLessons": [
+        "general-matching",
+        "linear-algebra-applications",
+        "testing-and-stress"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "matrix-tree-theorem-applications",
+      "title": "Matrix-Tree Theorem Applications",
+      "description": "Laplacian cofactor determinant로 spanning tree, rooted arborescence, edge 포함 조건을 계산합니다.",
+      "summary": "무향/방향 Laplacian, cofactor determinant, contraction/deletion 기반 edge criticality를 연결하는 그래프 수학 레슨",
+      "order": 163,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "matrix-tree-theorem",
+        "laplacian",
+        "determinant",
+        "spanning-tree",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "graph-tree-basics",
+        "modular-arithmetic",
+        "randomized-determinant"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "linear-algebra-applications",
+        "sparse-linear-systems",
+        "proof-and-invariants"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "regular-triangulation",
+      "title": "Regular Triangulation",
+      "description": "weighted point를 3D lower hull로 lifting해 Power Diagram의 dual triangulation을 이해합니다.",
+      "summary": "power distance, weighted lifting, lower convex hull, weighted Delaunay adjacency를 연결하는 계산기하 심화 레슨",
+      "order": 164,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "regular-triangulation",
+        "power-diagram",
+        "delaunay",
+        "convex-hull-3d",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "power-diagram",
+        "robust-delaunay",
+        "3d-convex-hull"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "robust-geometry-predicates",
+        "half-plane-intersection",
+        "voronoi-delaunay"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "online-planning-evaluation",
+      "title": "Online Planning Evaluation",
+      "description": "simulator 기반 policy와 search agent를 paired seed, confidence interval, holdout set으로 검증합니다.",
+      "summary": "rollout benchmark, paired seed comparison, confidence interval, time budget과 holdout 검증을 다루는 게임/탐색 평가 레슨",
+      "order": 165,
+      "folderId": "strategy",
+      "tags": [
+        "strategy",
+        "online-planning",
+        "mcts",
+        "pomcp",
+        "evaluation",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "monte-carlo-tree-search",
+        "pomcp",
+        "bayesian-bandits"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "testing-and-stress",
+        "heuristic",
+        "reinforcement-learning-basics"
+      ],
+      "pages": []
     }
   ]
 }
