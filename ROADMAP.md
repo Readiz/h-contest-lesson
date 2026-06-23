@@ -124,6 +124,11 @@
 - `linear-algebra-applications`: rank, determinant, xor basis, recurrence, graph counting을 vector space 모델로 번역하는 응용 기준을 공개했습니다.
 - `power-diagram`: power distance와 radical axis로 weighted Voronoi cell을 다루는 계산기하 심화 관점을 공개했습니다.
 - `bayesian-bandits`: posterior update, Thompson Sampling, Bayesian UCB, finite-horizon belief DP를 연결하는 확률적 의사결정 레슨을 공개했습니다.
+- `dynamic-flow`: capacity update, residual graph 재사용, time-expanded network, batch rebuild를 구분하는 flow 심화 레슨을 공개했습니다.
+- `online-convex-optimization`: regret, projection, online gradient descent, mirror descent를 sequential decision 모델링 관점으로 공개했습니다.
+- `fractional-programming-dp`: 비율 목적식을 `value - lambda * weight` 판정으로 바꾸고 DP/graph feasibility와 결합하는 최적화 레슨을 공개했습니다.
+- `3d-convex-hull`: signed volume, oriented face, visible face, horizon edge, coplanar degeneracy를 다루는 3D 기하 심화를 공개했습니다.
+- `reinforcement-learning-basics`: Bellman 식, value iteration, policy improvement, Q-value를 contest 모델링 수준으로 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -143,23 +148,23 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `dynamic-flow` | edge update나 time-expanded network에서 flow 값을 유지하거나 반복 재계산을 줄이는 그래프 최적화 | TODO: dynamic flow `/practice/...` 문제 필요 |
-| 2 | `online-convex-optimization` | regret, projection, mirror descent 관점으로 online decision 문제를 모델링하는 최적화 | TODO: online convex optimization `/practice/...` 문제 필요 |
-| 3 | `fractional-programming-dp` | ratio objective를 parametric search나 Dinkelbach 관점으로 DP/graph 모델에 붙이는 기법 | TODO: fractional programming DP `/practice/...` 문제 필요 |
-| 4 | `3d-convex-hull` | 3차원 점 집합의 convex hull, face orientation, visibility를 다루는 계산기하 심화 | TODO: 3D convex hull `/practice/...` 문제 필요 |
-| 5 | `reinforcement-learning-basics` | MDP에서 policy evaluation, policy iteration, Q-value를 contest 모델링 수준으로 정리하는 확률/전략 기초 | TODO: reinforcement learning `/practice/...` 문제 필요 |
+| 1 | `matroid-parity` | matching보다 일반적인 paired element independence 조건을 matroid 관점에서 모델링하는 그래프/조합 최적화 | TODO: matroid parity `/practice/...` 문제 필요 |
+| 2 | `randomized-determinant` | polynomial identity, determinant lemma, Schwartz-Zippel 관점으로 rank와 matching 존재성을 확률적으로 판정하는 선형대수 | TODO: randomized determinant `/practice/...` 문제 필요 |
+| 3 | `matrix-tree-theorem-applications` | Laplacian determinant로 spanning tree count, rooted arborescence, edge criticality를 계산하는 그래프 수학 | TODO: matrix-tree theorem `/practice/...` 문제 필요 |
+| 4 | `regular-triangulation` | weighted lifting과 lower hull로 Power Diagram의 dual triangulation을 구성하는 계산기하 심화 | TODO: regular triangulation `/practice/...` 문제 필요 |
+| 5 | `online-planning-evaluation` | simulator 기반 policy를 offline rollout, confidence interval, baseline 비교로 평가하는 게임/탐색 후속 주제 | TODO: online planning evaluation `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `string-period-query-applications` 이후 응용 후보 정리 필요 |
-| 그래프 심화 | `dynamic-flow`, `matroid-parity` |
+| 그래프 심화 | `matroid-parity` |
 | 자료구조/오프라인 | `persistent-sequence-queries` 이후 versioned sequence 응용 후보 정리 필요 |
 | 수학 심화 | `randomized-determinant`, `matrix-tree-theorem-applications` |
-| DP 최적화 | `online-convex-optimization`, `fractional-programming-dp` |
-| 기하 | `3d-convex-hull`, `regular-triangulation` |
-| 게임/탐색 | `reinforcement-learning-basics`, `online-planning-evaluation` |
+| DP 최적화 | `lagrangian-relaxation-patterns`, `dual-averaging` |
+| 기하 | `regular-triangulation` |
+| 게임/탐색 | `online-planning-evaluation` |
 
 ## 공개 레슨으로 올리기 전 조건
 

@@ -91,6 +91,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [CHT DP Applications](lessons/cht-dp-applications/lesson.md)
 - [Kinetic Hull](lessons/kinetic-hull/lesson.md)
 - [Fully Dynamic CHT](lessons/fully-dynamic-cht/lesson.md)
+- [Online Convex Optimization](lessons/online-convex-optimization/lesson.md)
+- [Fractional Programming DP](lessons/fractional-programming-dp/lesson.md)
 
 ### 그래프와 트리
 
@@ -126,6 +128,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Randomized Min Cut](lessons/randomized-min-cut/lesson.md)
 - [Cut Cactus Applications](lessons/cut-cactus-applications/lesson.md)
 - [Matroid Intersection](lessons/matroid-intersection/lesson.md)
+- [Dynamic Flow](lessons/dynamic-flow/lesson.md)
 
 ### 자료구조
 
@@ -208,6 +211,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Inversion Geometry](lessons/inversion-geometry/lesson.md)
 - [Robust Delaunay](lessons/robust-delaunay/lesson.md)
 - [Power Diagram](lessons/power-diagram/lesson.md)
+- [3D Convex Hull](lessons/3d-convex-hull/lesson.md)
 
 ### 수학
 
@@ -248,3 +252,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Sparse Linear Systems](lessons/sparse-linear-systems/lesson.md)
 - [Linear Algebra Applications](lessons/linear-algebra-applications/lesson.md)
 - [Bayesian Bandits](lessons/bayesian-bandits/lesson.md)
+- [Reinforcement Learning Basics](lessons/reinforcement-learning-basics/lesson.md)

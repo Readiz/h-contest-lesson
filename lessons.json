@@ -4641,6 +4641,158 @@
         "game-theory-applications"
       ],
       "pages": []
+    },
+    {
+      "lessonId": "dynamic-flow",
+      "title": "Dynamic Flow",
+      "description": "간선 용량과 활성 시간이 바뀌는 flow 문제를 residual 재사용, time-expanded network, batch rebuild로 모델링합니다.",
+      "summary": "capacity update, residual graph reuse, time-expanded network, rebuild 기준을 구분하는 dynamic flow 모델링 심화 레슨",
+      "order": 156,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "flow",
+        "dynamic-flow",
+        "residual-graph",
+        "time-expanded-network",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "max-flow-min-cut",
+        "min-cost-flow",
+        "dynamic-connectivity"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "flow-with-lower-bound",
+        "convex-cost-flow",
+        "rollback-techniques"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "online-convex-optimization",
+      "title": "Online Convex Optimization",
+      "description": "입력이 순차적으로 공개되는 convex decision 문제를 regret, projection, online gradient descent 관점으로 풉니다.",
+      "summary": "regret minimization, projected gradient descent, mirror descent, feedback model 구분을 다루는 online optimization 레슨",
+      "order": 157,
+      "folderId": "strategy",
+      "tags": [
+        "optimization",
+        "online-learning",
+        "convex",
+        "regret",
+        "gradient-descent",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "convex-dp-modeling",
+        "convex-hull-trick-variants",
+        "probability-expected-value"
+      ],
+      "nextLessons": [
+        "fractional-programming-dp"
+      ],
+      "relatedLessons": [
+        "parametric-dp",
+        "bayesian-bandits",
+        "slope-trick"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "fractional-programming-dp",
+      "title": "Fractional Programming DP",
+      "description": "비율 목적식을 fixed ratio 판정으로 바꾸고 DP, graph feasibility, binary search와 결합합니다.",
+      "summary": "benefit-cost ratio를 value minus lambda times weight 판정으로 바꿔 binary search와 DP에 붙이는 최적화 레슨",
+      "order": 158,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "fractional-programming",
+        "parametric-search",
+        "binary-search",
+        "ratio",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "parametric-dp",
+        "convex-dp-modeling",
+        "alien-optimization"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "online-convex-optimization",
+        "min-plus-convolution",
+        "cht-dp-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "3d-convex-hull",
+      "title": "3D Convex Hull",
+      "description": "3차원 점 집합의 convex polyhedron을 oriented face, visible face, horizon edge로 구성하는 기준을 익힙니다.",
+      "summary": "signed volume predicate, oriented triangular face, incremental hull, coplanar degeneracy를 다루는 3D geometry 심화 레슨",
+      "order": 159,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "3d",
+        "convex-hull",
+        "signed-volume",
+        "robust-predicate",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "geometry-ccw-segment-intersection",
+        "robust-geometry-predicates",
+        "shape-distance-modeling"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "voronoi-delaunay",
+        "power-diagram",
+        "robust-delaunay"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "reinforcement-learning-basics",
+      "title": "Reinforcement Learning Basics",
+      "description": "MDP의 policy evaluation, value iteration, Q-value를 contest 모델링 수준에서 정리합니다.",
+      "summary": "Bellman equation, value iteration, policy improvement, Q-value, MDP와 POMDP 구분을 다루는 강화학습 기초 레슨",
+      "order": 160,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "reinforcement-learning",
+        "mdp",
+        "value-iteration",
+        "policy",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "markov-decision-process",
+        "probability-expected-value",
+        "game-theory-applications"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "bayesian-bandits",
+        "pomcp",
+        "point-based-value-iteration"
+      ],
+      "pages": []
     }
   ]
 }
