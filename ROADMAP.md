@@ -99,6 +99,11 @@
 - `persistent-queue-stack`: persistent stack, queue, deque의 version root와 rollback/retroactivity 경계를 공개했습니다.
 - `linear-recurrence-applications`: DP, graph walk, 생성함수에서 선형 점화식을 찾아 Kitamasa/Bostan-Mori/행렬 거듭제곱 중 방법을 고르는 기준을 공개했습니다.
 - `circle-geometry`: 원-직선, 원-원 교점과 접선 construction, 각도 구간 sweep의 case 분기를 공개했습니다.
+- `string-period-query-applications`: border, period, runs 정보를 substring range/query 문제로 확장하는 문자열 응용을 공개했습니다.
+- `randomized-min-cut`: Karger contraction과 반복 확률 증폭으로 global min cut을 찾는 randomized graph 기법을 공개했습니다.
+- `persistent-sequence-queries`: version별 배열과 sequence에서 kth, count, range query를 처리하는 persistent structure 응용을 공개했습니다.
+- `quadrangle-inequality-proofs`: Knuth/Monge 최적화에 필요한 quadrangle inequality와 opt 단조성 증명 패턴을 공개했습니다.
+- `circle-arrangement`: 여러 원의 교점으로 arc를 나누고 union area/perimeter/depth를 angular sweep으로 계산하는 기하 응용을 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -118,22 +123,22 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `string-period-query-applications` | border, period, runs 정보를 range/query 문제로 확장하는 문자열 응용 | TODO: string period query `/practice/...` 문제 필요 |
-| 2 | `randomized-min-cut` | Karger contraction과 반복 확률 증폭으로 global min cut을 찾는 randomized graph 기법 | TODO: randomized min cut `/practice/...` 문제 필요 |
-| 3 | `persistent-sequence-queries` | persistent array/treap/segment tree로 version별 kth, range query를 처리하는 자료구조 응용 | TODO: persistent sequence `/practice/...` 문제 필요 |
-| 4 | `quadrangle-inequality-proofs` | Knuth/Monge 최적화에 필요한 quadrangle inequality와 opt 단조성 증명 패턴 | TODO: quadrangle inequality `/practice/...` 문제 필요 |
-| 5 | `circle-arrangement` | 여러 원의 교점, arc 분할, union/perimeter 계산으로 이어지는 원 기하 응용 | TODO: circle arrangement `/practice/...` 문제 필요 |
+| 1 | `recurrence-guessing` | 생성된 수열에서 선형 점화식 후보를 찾고 검증하는 실험적 모델링 | TODO: recurrence guessing `/practice/...` 문제 필요 |
+| 2 | `berlekamp-massey` | finite field 위 최소 선형 점화식을 찾아 Kitamasa/Bostan-Mori로 연결하는 알고리즘 | TODO: Berlekamp-Massey `/practice/...` 문제 필요 |
+| 3 | `cht-dp-applications` | CHT/Li Chao를 실제 DP 식 변환과 선택 기준으로 연결하는 응용 | TODO: CHT DP applications `/practice/...` 문제 필요 |
+| 4 | `robust-geometry-predicates` | orientation/incircle/EPS 정책을 robust predicate 관점으로 정리하는 기하 안정성 | TODO: robust geometry `/practice/...` 문제 필요 |
+| 5 | `pomdp` | 부분 관측 상태에서 belief state를 갱신하고 정책/가치 반복으로 모델링하는 탐색 심화 | TODO: POMDP `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
-| 문자열 | `string-period-query-applications` |
-| 그래프 심화 | `randomized-min-cut` |
-| 자료구조/오프라인 | `persistent-sequence-queries` |
+| 문자열 | `string-period-query-applications` 이후 응용 후보 정리 필요 |
+| 그래프 심화 | `randomized-min-cut` 이후 cut family 응용 후보 정리 필요 |
+| 자료구조/오프라인 | `persistent-sequence-queries` 이후 versioned sequence 응용 후보 정리 필요 |
 | 수학 심화 | `recurrence-guessing`, `berlekamp-massey` |
-| DP 최적화 | `quadrangle-inequality-proofs`, `cht-dp-applications` |
-| 기하 | `circle-arrangement`, `robust-geometry-predicates` |
+| DP 최적화 | `cht-dp-applications` |
+| 기하 | `robust-geometry-predicates` |
 | 게임/탐색 | `pomdp`, `game-theory-applications` |
 
 ## 공개 레슨으로 올리기 전 조건
