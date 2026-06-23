@@ -201,6 +201,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Circle Geometry](lessons/circle-geometry/lesson.md)
 - [Circle Arrangement](lessons/circle-arrangement/lesson.md)
 - [Robust Geometry Predicates](lessons/robust-geometry-predicates/lesson.md)
+- [Inversion Geometry](lessons/inversion-geometry/lesson.md)
 
 ### 수학
 
@@ -233,3 +234,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Recurrence Guessing](lessons/recurrence-guessing/lesson.md)
 - [Berlekamp-Massey](lessons/berlekamp-massey/lesson.md)
 - [Partially Observable MDP](lessons/pomdp/lesson.md)
+- [Generating Function Modeling](lessons/generating-function-modeling/lesson.md)
+- [Black-Box Linear Algebra](lessons/black-box-linear-algebra/lesson.md)
+- [Game Theory Applications](lessons/game-theory-applications/lesson.md)
+- [Point-Based Value Iteration](lessons/point-based-value-iteration/lesson.md)

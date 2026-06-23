@@ -2156,7 +2156,8 @@
       ],
       "nextLessons": [
         "fps-log-exp",
-        "multipoint-evaluation"
+        "multipoint-evaluation",
+        "generating-function-modeling"
       ],
       "relatedLessons": [
         "matrix-exponentiation",
@@ -2341,7 +2342,8 @@
         "proof-and-invariants"
       ],
       "nextLessons": [
-        "minimax-alpha-beta"
+        "minimax-alpha-beta",
+        "game-theory-applications"
       ],
       "relatedLessons": [
         "probability-expected-value",
@@ -3825,7 +3827,8 @@
       ],
       "nextLessons": [
         "recurrence-guessing",
-        "berlekamp-massey"
+        "berlekamp-massey",
+        "generating-function-modeling"
       ],
       "relatedLessons": [
         "formal-power-series",
@@ -3857,7 +3860,8 @@
       ],
       "nextLessons": [
         "circle-arrangement",
-        "robust-geometry-predicates"
+        "robust-geometry-predicates",
+        "inversion-geometry"
       ],
       "relatedLessons": [
         "voronoi-delaunay",
@@ -4153,10 +4157,162 @@
         "imperfect-information-search",
         "probability-expected-value"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "point-based-value-iteration"
+      ],
       "relatedLessons": [
         "monte-carlo-tree-search",
         "minimax-alpha-beta"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "generating-function-modeling",
+      "title": "Generating Function Modeling",
+      "description": "Counting과 DP 식을 생성함수 계수로 번역하고 rational form, recurrence, Bostan-Mori로 연결합니다.",
+      "summary": "선택 구조를 다항식으로 모델링하고 product, sequence, truncate, rational generating function 계수 추출까지 이어지는 조합 모델링 레슨",
+      "order": 141,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "generating-function",
+        "combinatorics",
+        "formal-power-series",
+        "bostan-mori",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "formal-power-series",
+        "combinatorics-ncr",
+        "linear-recurrence-applications"
+      ],
+      "nextLessons": [
+        "black-box-linear-algebra"
+      ],
+      "relatedLessons": [
+        "bostan-mori",
+        "recurrence-guessing"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "black-box-linear-algebra",
+      "title": "Black-Box Linear Algebra",
+      "description": "Sparse matrix-vector product만으로 Krylov sequence와 Wiedemann 계열 선형대수 모델을 다룹니다.",
+      "summary": "큰 sparse matrix를 matvec oracle로 보고 Krylov sequence, Berlekamp-Massey, randomized projection 검증을 연결하는 선형대수 심화 레슨",
+      "order": 142,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "linear-algebra",
+        "sparse-matrix",
+        "berlekamp-massey",
+        "randomized",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "linear-recurrence-applications",
+        "berlekamp-massey",
+        "modular-arithmetic"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "matrix-exponentiation",
+        "generating-function-modeling"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "game-theory-applications",
+      "title": "Game Theory Applications",
+      "description": "Grundy, minimax, MDP, hidden information 모델을 문제 신호별로 고르는 게임 이론 응용 기준을 정리합니다.",
+      "summary": "impartial game, xor 합성, minimax, MDP, imperfect information을 문제 조건별로 선택하는 게임 모델링 레슨",
+      "order": 143,
+      "folderId": "math",
+      "tags": [
+        "game-theory",
+        "grundy-number",
+        "minimax",
+        "mdp",
+        "imperfect-information",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "game-theory-grundy",
+        "minimax-alpha-beta",
+        "markov-decision-process"
+      ],
+      "nextLessons": [
+        "point-based-value-iteration"
+      ],
+      "relatedLessons": [
+        "monte-carlo-tree-search",
+        "pomdp"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "inversion-geometry",
+      "title": "Inversion Geometry",
+      "description": "원과 직선을 inversion으로 변환해 접선, 교점, 원다발 문제를 단순화하는 기하 모델링을 익힙니다.",
+      "summary": "점 inversion 공식, 중심을 지나는 원의 직선 변환, angle 보존, degeneracy 처리 기준을 다루는 계산기하 심화 레슨",
+      "order": 144,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "inversion",
+        "circle",
+        "tangent",
+        "transformation",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "circle-geometry",
+        "robust-geometry-predicates",
+        "shape-distance-modeling"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "circle-arrangement",
+        "voronoi-delaunay",
+        "half-plane-intersection"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "point-based-value-iteration",
+      "title": "Point-Based Value Iteration",
+      "description": "POMDP belief space를 대표 belief point와 alpha vector로 근사하는 planning 기법을 익힙니다.",
+      "summary": "PBVI의 belief point set, alpha vector value function, action-observation backup, exact POMDP와 근사 planning의 차이를 다루는 레슨",
+      "order": 145,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "pomdp",
+        "belief-state",
+        "value-iteration",
+        "planning",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "pomdp",
+        "markov-decision-process",
+        "monte-carlo-tree-search"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "imperfect-information-search",
+        "game-theory-applications"
       ],
       "pages": []
     }
