@@ -118,6 +118,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Global Min Cut](lessons/global-min-cut/lesson.md)
 - [Cut Sparsification](lessons/cut-sparsification/lesson.md)
 - [Global Min Cut Applications](lessons/global-min-cut-applications/lesson.md)
+- [Cactus Representation](lessons/cactus-representation/lesson.md)
 
 ### 자료구조
 
@@ -155,6 +156,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Retroactive Data Structures](lessons/retroactive-data-structures/lesson.md)
 - [Offline Range Query Techniques](lessons/offline-range-query-techniques/lesson.md)
 - [Convex Hull Trick Variants](lessons/convex-hull-trick-variants/lesson.md)
+- [Persistent Queue and Stack](lessons/persistent-queue-stack/lesson.md)
 
 ### 문자열
 
@@ -175,6 +177,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Suffix Automaton Applications](lessons/suffix-automaton-applications/lesson.md)
 - [Generalized Suffix Automaton](lessons/generalized-suffix-automaton/lesson.md)
 - [Palindrome Query Structures](lessons/palindrome-query-structures/lesson.md)
+- [Palindrome Range DP](lessons/palindrome-range-dp/lesson.md)
 
 ### 기하
 
@@ -190,6 +193,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Minkowski Sum](lessons/minkowski-sum/lesson.md)
 - [Rotating Calipers Applications](lessons/rotating-calipers-applications/lesson.md)
 - [Shape Distance Modeling](lessons/shape-distance-modeling/lesson.md)
+- [Circle Geometry](lessons/circle-geometry/lesson.md)
 
 ### 수학
 
@@ -218,3 +222,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Markov Decision Process](lessons/markov-decision-process/lesson.md)
 - [Imperfect Information Search](lessons/imperfect-information-search/lesson.md)
 - [Summatory Number Theory](lessons/summatory-number-theory/lesson.md)
+- [Linear Recurrence Applications](lessons/linear-recurrence-applications/lesson.md)

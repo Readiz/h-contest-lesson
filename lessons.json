@@ -2093,7 +2093,8 @@
       ],
       "nextLessons": [
         "fft-ntt",
-        "bostan-mori"
+        "bostan-mori",
+        "linear-recurrence-applications"
       ],
       "relatedLessons": [
         "formal-power-series",
@@ -2246,7 +2247,8 @@
         "formal-power-series"
       ],
       "nextLessons": [
-        "polynomial-interpolation"
+        "polynomial-interpolation",
+        "linear-recurrence-applications"
       ],
       "relatedLessons": [
         "multipoint-evaluation",
@@ -3446,7 +3448,9 @@
         "suffix-palindrome-applications",
         "string-matching-kmp-z"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "palindrome-range-dp"
+      ],
       "relatedLessons": [
         "suffix-array-applications",
         "suffix-automaton-applications"
@@ -3506,7 +3510,9 @@
         "gomory-hu-tree",
         "cut-sparsification"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "cactus-representation"
+      ],
       "relatedLessons": [
         "max-flow-min-cut",
         "dynamic-mst"
@@ -3535,7 +3541,9 @@
         "persistent-union-find",
         "offline-queries"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "persistent-queue-stack"
+      ],
       "relatedLessons": [
         "dynamic-connectivity",
         "persistent-segment-tree"
@@ -3685,11 +3693,158 @@
         "rotating-calipers-applications",
         "geometry-ccw-segment-intersection"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "circle-geometry"
+      ],
       "relatedLessons": [
         "half-plane-intersection",
         "sweep-line-geometry",
         "voronoi-delaunay"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "palindrome-range-dp",
+      "title": "Palindrome Range DP",
+      "description": "Palindrome 판정 구조를 prefix DP와 interval DP 전이에 결합하는 문자열/DP 응용을 익힙니다.",
+      "summary": "Manacher 또는 `isPal` table을 구간 DP, palindrome partition, 최소 삽입 문제에 연결하는 문자열 DP 응용 레슨",
+      "order": 126,
+      "folderId": "strings",
+      "tags": [
+        "palindrome",
+        "dynamic-programming",
+        "interval-dp",
+        "manacher",
+        "range-query",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "palindrome-query-structures",
+        "dynamic-programming",
+        "palindromic-tree"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "suffix-palindrome-applications",
+        "string-matching-kmp-z"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "cactus-representation",
+      "title": "Cactus Representation",
+      "description": "Cactus graph와 min cut family 표현을 구분하고 cycle block을 tree처럼 다루는 모델링을 익힙니다.",
+      "summary": "edge-disjoint cycle 구조, block tree, global min cut family를 cactus representation 관점으로 해석하는 그래프 심화 레슨",
+      "order": 127,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "cactus",
+        "min-cut",
+        "biconnected-component",
+        "block-tree",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "global-min-cut-applications",
+        "cut-sparsification",
+        "scc-2sat"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "gomory-hu-tree",
+        "dynamic-mst"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "persistent-queue-stack",
+      "title": "Persistent Queue and Stack",
+      "description": "과거 version을 보존하는 stack, queue, deque 모델을 root pointer와 persistent sequence 관점으로 정리합니다.",
+      "summary": "persistent stack parent pointer, queue head/tail version, binary lifting, rollback과 retroactivity의 경계를 다루는 자료구조 레슨",
+      "order": 128,
+      "folderId": "data-structures",
+      "tags": [
+        "data-structures",
+        "persistence",
+        "stack",
+        "queue",
+        "binary-lifting",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "persistent-union-find",
+        "retroactive-data-structures",
+        "rollback-techniques"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "persistent-segment-tree",
+        "offline-range-query-techniques"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "linear-recurrence-applications",
+      "title": "Linear Recurrence Applications",
+      "description": "DP, graph walk, 생성함수에서 선형 점화식을 찾아 Kitamasa, Bostan-Mori, 행렬 거듭제곱 중 방법을 고릅니다.",
+      "summary": "문제에서 recurrence를 모델링하고 Matrix Exponentiation, Kitamasa, Bostan-Mori, Berlekamp-Massey 선택 기준을 정리하는 수학 응용 레슨",
+      "order": 129,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "linear-recurrence",
+        "kitamasa",
+        "bostan-mori",
+        "berlekamp-massey",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "linear-recurrence-kitamasa",
+        "bostan-mori",
+        "matrix-exponentiation"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "formal-power-series",
+        "polynomial-interpolation"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "circle-geometry",
+      "title": "Circle Geometry",
+      "description": "원-직선, 원-원 교점과 접선 construction, 각도 구간 sweep의 case 분기를 익힙니다.",
+      "summary": "circle-line intersection, circle-circle intersection, tangent construction, angular interval sweep을 다루는 계산기하 레슨",
+      "order": 130,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "circle",
+        "intersection",
+        "tangent",
+        "angular-sweep",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "shape-distance-modeling",
+        "geometry-ccw-segment-intersection",
+        "closest-pair-sweep"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "voronoi-delaunay",
+        "sweep-line-geometry"
       ],
       "pages": []
     }
