@@ -88,6 +88,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Convex DP Modeling](lessons/convex-dp-modeling/lesson.md)
 - [Parametric DP](lessons/parametric-dp/lesson.md)
 - [Quadrangle Inequality Proofs](lessons/quadrangle-inequality-proofs/lesson.md)
+- [CHT DP Applications](lessons/cht-dp-applications/lesson.md)
 
 ### 그래프와 트리
 
@@ -199,6 +200,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Shape Distance Modeling](lessons/shape-distance-modeling/lesson.md)
 - [Circle Geometry](lessons/circle-geometry/lesson.md)
 - [Circle Arrangement](lessons/circle-arrangement/lesson.md)
+- [Robust Geometry Predicates](lessons/robust-geometry-predicates/lesson.md)
 
 ### 수학
 
@@ -228,3 +230,6 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Imperfect Information Search](lessons/imperfect-information-search/lesson.md)
 - [Summatory Number Theory](lessons/summatory-number-theory/lesson.md)
 - [Linear Recurrence Applications](lessons/linear-recurrence-applications/lesson.md)
+- [Recurrence Guessing](lessons/recurrence-guessing/lesson.md)
+- [Berlekamp-Massey](lessons/berlekamp-massey/lesson.md)
+- [Partially Observable MDP](lessons/pomdp/lesson.md)

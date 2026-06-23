@@ -3238,6 +3238,7 @@
       ],
       "nextLessons": [
         "convex-hull-trick-variants",
+        "cht-dp-applications",
         "parametric-dp"
       ],
       "relatedLessons": [
@@ -3363,7 +3364,8 @@
         "minimax-alpha-beta"
       ],
       "nextLessons": [
-        "imperfect-information-search"
+        "imperfect-information-search",
+        "pomdp"
       ],
       "relatedLessons": [
         "game-theory-grundy",
@@ -3393,7 +3395,9 @@
         "monte-carlo-tree-search",
         "markov-decision-process"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "pomdp"
+      ],
       "relatedLessons": [
         "heuristic",
         "probability-expected-value"
@@ -3638,6 +3642,7 @@
         "divide-and-conquer-dp-optimization"
       ],
       "nextLessons": [
+        "cht-dp-applications",
         "parametric-dp"
       ],
       "relatedLessons": [
@@ -3818,7 +3823,10 @@
         "bostan-mori",
         "matrix-exponentiation"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "recurrence-guessing",
+        "berlekamp-massey"
+      ],
       "relatedLessons": [
         "formal-power-series",
         "polynomial-interpolation"
@@ -3848,7 +3856,8 @@
         "closest-pair-sweep"
       ],
       "nextLessons": [
-        "circle-arrangement"
+        "circle-arrangement",
+        "robust-geometry-predicates"
       ],
       "relatedLessons": [
         "voronoi-delaunay",
@@ -3998,6 +4007,156 @@
       "relatedLessons": [
         "half-plane-intersection",
         "voronoi-delaunay"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "recurrence-guessing",
+      "title": "Recurrence Guessing",
+      "description": "처음 몇 항에서 낮은 차수 선형 점화식 후보를 찾고 holdout 항으로 검증하는 모델링 흐름을 익힙니다.",
+      "summary": "수열 항 생성, recurrence 후보 검증, affine 전이 처리, BM/Kitamasa 연결 기준을 다루는 선형 점화식 모델링 레슨",
+      "order": 136,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "linear-recurrence",
+        "recurrence-guessing",
+        "sequence-modeling",
+        "berlekamp-massey",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "linear-recurrence-applications",
+        "linear-recurrence-kitamasa",
+        "matrix-exponentiation"
+      ],
+      "nextLessons": [
+        "berlekamp-massey"
+      ],
+      "relatedLessons": [
+        "bostan-mori",
+        "polynomial-interpolation"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "berlekamp-massey",
+      "title": "Berlekamp-Massey",
+      "description": "Field 위 수열 앞 항에서 최소 선형 점화식을 찾아 Kitamasa나 Bostan-Mori로 연결하는 방법을 익힙니다.",
+      "summary": "discrepancy, recurrence 보정, prime modulo field 조건, BM + Kitamasa 연결을 다루는 선형 점화식 추정 레슨",
+      "order": 137,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "berlekamp-massey",
+        "linear-recurrence",
+        "kitamasa",
+        "modular-inverse",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "recurrence-guessing",
+        "linear-recurrence-kitamasa",
+        "modular-arithmetic"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "linear-recurrence-applications",
+        "bostan-mori"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "cht-dp-applications",
+      "title": "CHT DP Applications",
+      "description": "DP 전이식을 직선과 query x로 분리하고 slope/query 단조성에 맞는 CHT 구현을 선택합니다.",
+      "summary": "quadratic DP 전개, line/query 분리, monotone CHT 적용 조건, Li Chao fallback을 다루는 DP 최적화 응용 레슨",
+      "order": 138,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "convex-hull-trick",
+        "li-chao-tree",
+        "dynamic-programming",
+        "modeling",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "convex-hull-trick-variants",
+        "convex-dp-modeling",
+        "dynamic-programming"
+      ],
+      "nextLessons": [
+        "parametric-dp"
+      ],
+      "relatedLessons": [
+        "slope-trick",
+        "divide-and-conquer-dp-optimization"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "robust-geometry-predicates",
+      "title": "Robust Geometry Predicates",
+      "description": "orientation, segment intersection, incircle 같은 기하 분기 조건을 exact arithmetic과 EPS 정책으로 안정화합니다.",
+      "summary": "정수 좌표 exact CCW, 선분 교차, EPS 정책, predicate와 construction 분리를 다루는 계산기하 안정성 레슨",
+      "order": 139,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "robust-predicate",
+        "ccw",
+        "segment-intersection",
+        "epsilon",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "geometry-ccw-segment-intersection",
+        "circle-geometry",
+        "sweep-line-geometry"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "voronoi-delaunay",
+        "half-plane-intersection",
+        "circle-arrangement"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "pomdp",
+      "title": "Partially Observable MDP",
+      "description": "숨은 상태와 관측 모델을 가진 의사결정 문제를 belief state 업데이트와 finite horizon DP로 모델링합니다.",
+      "summary": "POMDP belief distribution, Bayes update, observation model, belief tree DP와 sampling 근사 기준을 다루는 확률적 전략 레슨",
+      "order": 140,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "pomdp",
+        "belief-state",
+        "mdp",
+        "expected-value",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "markov-decision-process",
+        "imperfect-information-search",
+        "probability-expected-value"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "monte-carlo-tree-search",
+        "minimax-alpha-beta"
       ],
       "pages": []
     }
