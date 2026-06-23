@@ -114,6 +114,11 @@
 - `game-theory-applications`: Grundy, minimax, MDP, hidden information 모델을 문제 신호별로 고르는 게임 이론 응용 기준을 공개했습니다.
 - `inversion-geometry`: 원과 직선을 inversion으로 변환해 접선, 교점, 원다발 문제를 단순화하는 기하 모델링을 공개했습니다.
 - `point-based-value-iteration`: POMDP belief space를 대표 belief point와 alpha vector로 근사하는 PBVI planning 기법을 공개했습니다.
+- `kinetic-hull`: 시간에 따라 움직이는 점/직선의 최적 후보가 바뀌는 event를 line envelope와 kinetic 구조 관점으로 공개했습니다.
+- `fully-dynamic-cht`: 직선 삽입/삭제/질의가 섞인 CHT 문제를 활성 구간, rollback Li Chao, online line container로 고르는 기준을 공개했습니다.
+- `robust-delaunay`: Delaunay triangulation의 orientation, incircle, cocircular degeneracy를 안정적으로 다루는 predicate 중심 관점을 공개했습니다.
+- `cut-cactus-applications`: global min cut family를 cactus representation으로 압축하고 query/criticality에 활용하는 그래프 cut 응용을 공개했습니다.
+- `pomcp`: particle belief와 UCT 기반 MCTS를 결합해 POMDP를 online planning으로 근사하는 POMCP 관점을 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -133,23 +138,23 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `kinetic-hull` | 시간에 따라 변하는 직선/점 집합에서 event를 관리하며 hull이나 최적 값을 유지하는 관점 | TODO: kinetic hull `/practice/...` 문제 필요 |
-| 2 | `fully-dynamic-cht` | line 삽입/삭제와 arbitrary query가 섞인 CHT 변형과 offline/segment-tree-over-time 선택 기준 | TODO: fully dynamic CHT `/practice/...` 문제 필요 |
-| 3 | `robust-delaunay` | Delaunay triangulation 구현에서 orientation/incircle predicate와 degeneracy를 안정화하는 기하 심화 | TODO: robust Delaunay `/practice/...` 문제 필요 |
-| 4 | `cut-cactus-applications` | cactus representation으로 minimum cut family, edge criticality, cut query를 모델링하는 응용 | TODO: cut cactus applications `/practice/...` 문제 필요 |
-| 5 | `pomcp` | particle belief와 UCT를 결합해 POMDP를 online planning으로 근사하는 탐색 기법 | TODO: POMCP `/practice/...` 문제 필요 |
+| 1 | `matroid-intersection` | 두 matroid 제약을 동시에 만족하는 최대 독립 집합을 augmenting path 관점으로 모델링하는 그래프/조합 최적화 | TODO: matroid intersection `/practice/...` 문제 필요 |
+| 2 | `sparse-linear-systems` | 큰 sparse linear system을 modular Gaussian elimination, iterative method, black-box 관점으로 푸는 기준 | TODO: sparse linear system `/practice/...` 문제 필요 |
+| 3 | `linear-algebra-applications` | rank, determinant, xor basis, recurrence, graph counting을 선형대수 모델로 바꾸는 응용 묶음 | TODO: linear algebra applications `/practice/...` 문제 필요 |
+| 4 | `power-diagram` | weighted point distance와 additively weighted Voronoi를 power distance로 다루는 기하 심화 | TODO: power diagram `/practice/...` 문제 필요 |
+| 5 | `bayesian-bandits` | 불확실한 보상 분포에서 posterior update, Thompson sampling, UCB 계열을 비교하는 확률적 의사결정 | TODO: Bayesian bandits `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `string-period-query-applications` 이후 응용 후보 정리 필요 |
-| 그래프 심화 | `cut-cactus-applications`, `matroid-intersection` |
+| 그래프 심화 | `matroid-intersection`, `dynamic-flow` |
 | 자료구조/오프라인 | `persistent-sequence-queries` 이후 versioned sequence 응용 후보 정리 필요 |
 | 수학 심화 | `sparse-linear-systems`, `linear-algebra-applications` |
-| DP 최적화 | `kinetic-hull`, `fully-dynamic-cht` |
-| 기하 | `robust-delaunay`, `power-diagram` |
-| 게임/탐색 | `pomcp`, `bayesian-bandits` |
+| DP 최적화 | `online-convex-optimization`, `fractional-programming-dp` |
+| 기하 | `power-diagram`, `3d-convex-hull` |
+| 게임/탐색 | `bayesian-bandits`, `reinforcement-learning-basics` |
 
 ## 공개 레슨으로 올리기 전 조건
 
