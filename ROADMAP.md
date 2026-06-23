@@ -89,6 +89,11 @@
 - `cut-sparsification`: 작은 cut과 edge connectivity를 보존하는 sparse certificate와 forest layer 관점을 공개했습니다. 남은 cut 심화는 cactus representation과 randomized contraction 후보로 이어갑니다.
 - `global-min-cut-applications`: global min cut partition 복원, 여러 minimum cut, Gomory-Hu Tree 기반 pair cut query와 edge criticality 관점을 공개했습니다.
 - `retroactive-data-structures`: 과거 operation 삽입/삭제를 시간축 interval로 바꾸고 rollback/persistence와 구분하는 오프라인 retroactive 자료구조 레슨을 공개했습니다.
+- `offline-range-query-techniques`: Mo 변형, offline sorting + Fenwick, time dimension이 붙은 range query 처리 기준을 공개했습니다.
+- `summatory-number-theory`: floor division grouping과 divisor transform으로 큰 `n`의 정수론 누적합을 계산하는 관점을 공개했습니다.
+- `convex-hull-trick-variants`: monotone deque CHT, breakpoint hull, Li Chao 변형을 slope/query 조건별로 고르는 기준을 공개했습니다.
+- `parametric-dp`: penalty DP, feasibility parameter, answer binary search로 DP 제약을 분리하는 관점을 공개했습니다.
+- `shape-distance-modeling`: Minkowski difference, support function, separating axis로 도형 거리와 충돌 문제를 모델링하는 법을 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -108,11 +113,11 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `offline-range-query-techniques` | Mo variants, divide-and-conquer on queries, and add/remove frequency query design | TODO: offline range query `/practice/...` 문제 필요 |
-| 2 | `summatory-number-theory` | floor division grouping and summatory multiplicative-function techniques | TODO: summatory number theory `/practice/...` 문제 필요 |
-| 3 | `convex-hull-trick-variants` | monotone CHT, dynamic line container, Li Chao variants, and maximum/minimum convention checks | TODO: CHT variants `/practice/...` 문제 필요 |
-| 4 | `parametric-dp` | answer parameterization, feasibility DP, and binary/ternary search over objective values | TODO: parametric DP `/practice/...` 문제 필요 |
-| 5 | `shape-distance-modeling` | convex shape distance, support function, and collision/distance modeling beyond Minkowski sum | TODO: geometry distance modeling `/practice/...` 문제 필요 |
+| 1 | `palindrome-range-dp` | palindrome 판정 구조와 구간 DP를 함께 쓰는 문자열/DP 응용 | TODO: palindrome range `/practice/...` 문제 필요 |
+| 2 | `cactus-representation` | 모든 minimum cut 또는 biconnected 구조를 cactus로 압축하는 그래프 모델 | TODO: cactus graph `/practice/...` 문제 필요 |
+| 3 | `persistent-queue-stack` | persistent stack, queue, deque의 version 관리와 query 처리 | TODO: persistent sequence `/practice/...` 문제 필요 |
+| 4 | `linear-recurrence-applications` | recurrence, generating function, Kitamasa/Bostan-Mori 선택 기준 | TODO: recurrence application `/practice/...` 문제 필요 |
+| 5 | `circle-geometry` | circle-line, circle-circle intersection과 tangent construction | TODO: circle geometry `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
@@ -120,10 +125,10 @@
 | --- | --- |
 | 문자열 | `palindrome-range-dp`, `string-period-query-applications` |
 | 그래프 심화 | `cactus-representation`, `randomized-min-cut` |
-| 자료구조/오프라인 | `offline-range-query-techniques`, `persistent-queue-stack` |
-| 수학 심화 | `summatory-number-theory`, `linear-recurrence-applications` |
-| DP 최적화 | `convex-hull-trick-variants`, `parametric-dp` |
-| 기하 | `shape-distance-modeling`, `circle-geometry` |
+| 자료구조/오프라인 | `persistent-queue-stack` |
+| 수학 심화 | `linear-recurrence-applications` |
+| DP 최적화 | `quadrangle-inequality-proofs`, `cht-dp-applications` |
+| 기하 | `circle-geometry` |
 | 게임/탐색 | `pomdp`, `game-theory-applications` |
 
 ## 공개 레슨으로 올리기 전 조건

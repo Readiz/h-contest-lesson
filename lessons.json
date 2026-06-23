@@ -1297,6 +1297,7 @@
         "segment-tree"
       ],
       "nextLessons": [
+        "convex-hull-trick-variants",
         "divide-and-conquer-dp-optimization"
       ],
       "relatedLessons": [
@@ -2431,7 +2432,9 @@
         "union-find",
         "binary-search"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "offline-range-query-techniques"
+      ],
       "relatedLessons": [
         "fenwick-tree",
         "segment-tree"
@@ -2610,7 +2613,8 @@
         "monge-smawk"
       ],
       "nextLessons": [
-        "slope-trick"
+        "convex-dp-modeling",
+        "parametric-dp"
       ],
       "relatedLessons": [
         "convex-hull-trick-li-chao",
@@ -3227,7 +3231,10 @@
         "alien-optimization",
         "convex-cost-flow"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "convex-hull-trick-variants",
+        "parametric-dp"
+      ],
       "relatedLessons": [
         "slope-trick",
         "monge-smawk"
@@ -3257,7 +3264,8 @@
         "geometry-ccw-segment-intersection"
       ],
       "nextLessons": [
-        "rotating-calipers-applications"
+        "rotating-calipers-applications",
+        "shape-distance-modeling"
       ],
       "relatedLessons": [
         "sweep-line-geometry",
@@ -3287,7 +3295,9 @@
         "minkowski-sum",
         "closest-pair-sweep"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "shape-distance-modeling"
+      ],
       "relatedLessons": [
         "half-plane-intersection",
         "line-arrangement"
@@ -3316,7 +3326,9 @@
         "mobius-inversion",
         "gcd-extended-euclid-crt"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "summatory-number-theory"
+      ],
       "relatedLessons": [
         "modular-arithmetic",
         "combinatorics-ncr"
@@ -3527,6 +3539,157 @@
       "relatedLessons": [
         "dynamic-connectivity",
         "persistent-segment-tree"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "offline-range-query-techniques",
+      "title": "Offline Range Query Techniques",
+      "description": "Mo 변형, offline sorting, time dimension을 이용해 배열 구간 질의를 재배열하고 상태를 유지하는 법을 익힙니다.",
+      "summary": "range query를 add/remove 상태, Fenwick sweep, time-aware Mo로 처리하는 오프라인 자료구조 심화 레슨",
+      "order": 121,
+      "folderId": "data-structures",
+      "tags": [
+        "data-structures",
+        "offline-query",
+        "range-query",
+        "mo-algorithm",
+        "fenwick-tree",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "offline-queries",
+        "sqrt-decomposition",
+        "rollback-techniques"
+      ],
+      "nextLessons": [
+        "persistent-segment-tree"
+      ],
+      "relatedLessons": [
+        "fenwick-tree",
+        "segment-tree",
+        "retroactive-data-structures"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "summatory-number-theory",
+      "title": "Summatory Number Theory",
+      "description": "floor division grouping과 divisor transform으로 큰 n의 정수론 누적합을 빠르게 계산하는 관점을 익힙니다.",
+      "summary": "multiplicative function prefix, Mobius inversion, floor quotient block을 결합하는 정수론 summatory 레슨",
+      "order": 122,
+      "folderId": "math",
+      "tags": [
+        "math",
+        "number-theory",
+        "summatory-function",
+        "floor-division",
+        "mobius-inversion",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 55,
+      "prerequisites": [
+        "multiplicative-functions",
+        "mobius-inversion",
+        "dirichlet-convolution"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "gcd-extended-euclid-crt",
+        "combinatorics-ncr"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "convex-hull-trick-variants",
+      "title": "Convex Hull Trick Variants",
+      "description": "slope와 query 순서, min/max convention, 같은 slope 처리에 따라 CHT 구현을 고르는 기준을 정리합니다.",
+      "summary": "monotone deque CHT, breakpoint hull, Li Chao 변형을 조건별로 선택하는 DP 최적화 레슨",
+      "order": 123,
+      "folderId": "data-structures",
+      "tags": [
+        "dp-optimization",
+        "convex-hull-trick",
+        "li-chao-tree",
+        "line-container",
+        "monotone-query",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "convex-hull-trick-li-chao",
+        "convex-dp-modeling",
+        "divide-and-conquer-dp-optimization"
+      ],
+      "nextLessons": [
+        "parametric-dp"
+      ],
+      "relatedLessons": [
+        "monge-smawk",
+        "slope-trick"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "parametric-dp",
+      "title": "Parametric DP",
+      "description": "penalty, feasibility parameter, answer binary search로 DP의 제약과 목적값을 분리하는 방법을 익힙니다.",
+      "summary": "parameter 고정 DP, 선택 개수 tie-breaking, Alien Optimization 보정을 다루는 DP 최적화 레슨",
+      "order": 124,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "parametric-search",
+        "alien-optimization",
+        "feasibility-dp",
+        "lagrangian-relaxation",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "alien-optimization",
+        "convex-dp-modeling",
+        "convex-hull-trick-variants"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "divide-and-conquer-dp-optimization",
+        "monge-smawk"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "shape-distance-modeling",
+      "title": "Shape Distance Modeling",
+      "description": "Minkowski difference, support function, separating axis로 도형 거리와 충돌 문제를 모델링하는 법을 익힙니다.",
+      "summary": "convex shape distance, reflected obstacle, support function, segment-distance baseline을 연결하는 계산기하 레슨",
+      "order": 125,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "shape-distance",
+        "minkowski-sum",
+        "support-function",
+        "separating-axis",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "minkowski-sum",
+        "rotating-calipers-applications",
+        "geometry-ccw-segment-intersection"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "half-plane-intersection",
+        "sweep-line-geometry",
+        "voronoi-delaunay"
       ],
       "pages": []
     }
