@@ -86,6 +86,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Convex Cost Flow](lessons/convex-cost-flow/lesson.md)
 - [Min-Plus Convolution](lessons/min-plus-convolution/lesson.md)
 - [Convex DP Modeling](lessons/convex-dp-modeling/lesson.md)
+- [Parametric DP](lessons/parametric-dp/lesson.md)
 
 ### 그래프와 트리
 
@@ -152,6 +153,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Persistent Union-Find](lessons/persistent-union-find/lesson.md)
 - [Rollback Techniques](lessons/rollback-techniques/lesson.md)
 - [Retroactive Data Structures](lessons/retroactive-data-structures/lesson.md)
+- [Offline Range Query Techniques](lessons/offline-range-query-techniques/lesson.md)
+- [Convex Hull Trick Variants](lessons/convex-hull-trick-variants/lesson.md)
 
 ### 문자열
 
@@ -186,6 +189,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Half-Plane Intersection](lessons/half-plane-intersection/lesson.md)
 - [Minkowski Sum](lessons/minkowski-sum/lesson.md)
 - [Rotating Calipers Applications](lessons/rotating-calipers-applications/lesson.md)
+- [Shape Distance Modeling](lessons/shape-distance-modeling/lesson.md)
 
 ### 수학
 
@@ -213,3 +217,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Multiplicative Functions](lessons/multiplicative-functions/lesson.md)
 - [Markov Decision Process](lessons/markov-decision-process/lesson.md)
 - [Imperfect Information Search](lessons/imperfect-information-search/lesson.md)
+- [Summatory Number Theory](lessons/summatory-number-theory/lesson.md)
