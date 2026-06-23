@@ -89,6 +89,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Parametric DP](lessons/parametric-dp/lesson.md)
 - [Quadrangle Inequality Proofs](lessons/quadrangle-inequality-proofs/lesson.md)
 - [CHT DP Applications](lessons/cht-dp-applications/lesson.md)
+- [Kinetic Hull](lessons/kinetic-hull/lesson.md)
+- [Fully Dynamic CHT](lessons/fully-dynamic-cht/lesson.md)
 
 ### 그래프와 트리
 
@@ -122,6 +124,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Global Min Cut Applications](lessons/global-min-cut-applications/lesson.md)
 - [Cactus Representation](lessons/cactus-representation/lesson.md)
 - [Randomized Min Cut](lessons/randomized-min-cut/lesson.md)
+- [Cut Cactus Applications](lessons/cut-cactus-applications/lesson.md)
 
 ### 자료구조
 
@@ -202,6 +205,7 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Circle Arrangement](lessons/circle-arrangement/lesson.md)
 - [Robust Geometry Predicates](lessons/robust-geometry-predicates/lesson.md)
 - [Inversion Geometry](lessons/inversion-geometry/lesson.md)
+- [Robust Delaunay](lessons/robust-delaunay/lesson.md)
 
 ### 수학
 
@@ -238,3 +242,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Black-Box Linear Algebra](lessons/black-box-linear-algebra/lesson.md)
 - [Game Theory Applications](lessons/game-theory-applications/lesson.md)
 - [Point-Based Value Iteration](lessons/point-based-value-iteration/lesson.md)
+- [POMCP](lessons/pomcp/lesson.md)

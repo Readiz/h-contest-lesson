@@ -1939,7 +1939,8 @@
         "closest-pair-sweep"
       ],
       "nextLessons": [
-        "half-plane-intersection"
+        "half-plane-intersection",
+        "robust-delaunay"
       ],
       "relatedLessons": [
         "geometry-ccw-segment-intersection",
@@ -3146,7 +3147,8 @@
       ],
       "nextLessons": [
         "cut-sparsification",
-        "randomized-min-cut"
+        "randomized-min-cut",
+        "cut-cactus-applications"
       ],
       "relatedLessons": [
         "flow-with-lower-bound",
@@ -3304,7 +3306,8 @@
         "closest-pair-sweep"
       ],
       "nextLessons": [
-        "shape-distance-modeling"
+        "shape-distance-modeling",
+        "kinetic-hull"
       ],
       "relatedLessons": [
         "half-plane-intersection",
@@ -3645,7 +3648,9 @@
       ],
       "nextLessons": [
         "cht-dp-applications",
-        "parametric-dp"
+        "parametric-dp",
+        "kinetic-hull",
+        "fully-dynamic-cht"
       ],
       "relatedLessons": [
         "monge-smawk",
@@ -3765,7 +3770,9 @@
         "cut-sparsification",
         "scc-2sat"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "cut-cactus-applications"
+      ],
       "relatedLessons": [
         "gomory-hu-tree",
         "dynamic-mst"
@@ -4127,7 +4134,9 @@
         "circle-geometry",
         "sweep-line-geometry"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "robust-delaunay"
+      ],
       "relatedLessons": [
         "voronoi-delaunay",
         "half-plane-intersection",
@@ -4158,7 +4167,8 @@
         "probability-expected-value"
       ],
       "nextLessons": [
-        "point-based-value-iteration"
+        "point-based-value-iteration",
+        "pomcp"
       ],
       "relatedLessons": [
         "monte-carlo-tree-search",
@@ -4309,10 +4319,164 @@
         "markov-decision-process",
         "monte-carlo-tree-search"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "pomcp"
+      ],
       "relatedLessons": [
         "imperfect-information-search",
         "game-theory-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "kinetic-hull",
+      "title": "Kinetic Hull",
+      "description": "시간에 따라 움직이는 점과 직선의 최적 후보가 바뀌는 event를 추적하는 kinetic hull 관점을 익힙니다.",
+      "summary": "time-dependent line envelope, moving point support, event queue, stale event validation을 다루는 동적 최적화 심화 레슨",
+      "order": 146,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "convex-hull-trick",
+        "geometry",
+        "kinetic",
+        "event-queue",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "convex-hull-trick-variants",
+        "rotating-calipers-applications",
+        "robust-geometry-predicates"
+      ],
+      "nextLessons": [
+        "fully-dynamic-cht"
+      ],
+      "relatedLessons": [
+        "shape-distance-modeling",
+        "sweep-line-geometry",
+        "convex-dp-modeling"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "fully-dynamic-cht",
+      "title": "Fully Dynamic CHT",
+      "description": "직선 삽입, 삭제, 임의 질의가 섞인 상황에서 offline 구간화, rollback Li Chao, online line container를 고르는 기준을 정리합니다.",
+      "summary": "dynamic line set을 활성 시간 구간, segment tree over time, rollback Li Chao, rebuild, online line container로 처리하는 CHT 심화 레슨",
+      "order": 147,
+      "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "convex-hull-trick",
+        "li-chao-tree",
+        "rollback",
+        "offline-query",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "convex-hull-trick-variants",
+        "kinetic-hull",
+        "rollback-techniques"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "parametric-dp",
+        "convex-dp-modeling",
+        "dynamic-connectivity"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "robust-delaunay",
+      "title": "Robust Delaunay",
+      "description": "Delaunay triangulation의 orientation, incircle, cocircular degeneracy를 안정적으로 처리하는 predicate 중심 구현 기준을 배웁니다.",
+      "summary": "Delaunay edge flip, incircle predicate, exact orientation, cocircular tie policy, predicate-construction 분리를 다루는 계산기하 심화 레슨",
+      "order": 148,
+      "folderId": "geometry",
+      "tags": [
+        "geometry",
+        "delaunay",
+        "robust-predicate",
+        "incircle",
+        "degeneracy",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "voronoi-delaunay",
+        "robust-geometry-predicates",
+        "circle-geometry"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "inversion-geometry",
+        "circle-arrangement",
+        "shape-distance-modeling"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "cut-cactus-applications",
+      "title": "Cut Cactus Applications",
+      "description": "global min cut family를 cactus representation으로 압축하고 query, criticality, partition 모델링에 활용하는 기준을 정리합니다.",
+      "summary": "global min cut family, cactus cycle block, edge criticality, Gomory-Hu Tree와의 차이를 다루는 graph cut 응용 레슨",
+      "order": 149,
+      "folderId": "graphs",
+      "tags": [
+        "graph",
+        "min-cut",
+        "cactus",
+        "gomory-hu-tree",
+        "connectivity",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "cactus-representation",
+        "global-min-cut",
+        "gomory-hu-tree"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "cut-sparsification",
+        "randomized-min-cut",
+        "global-min-cut-applications"
+      ],
+      "pages": []
+    },
+    {
+      "lessonId": "pomcp",
+      "title": "POMCP",
+      "description": "particle belief와 UCT 기반 Monte Carlo Tree Search를 결합해 POMDP를 online planning으로 근사하는 방법을 익힙니다.",
+      "summary": "POMCP history tree, particle belief, UCT selection, simulator rollout, root belief update를 다루는 확률적 planning 심화 레슨",
+      "order": 150,
+      "folderId": "math",
+      "tags": [
+        "probability",
+        "pomdp",
+        "mcts",
+        "particle-belief",
+        "online-planning",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 65,
+      "prerequisites": [
+        "pomdp",
+        "point-based-value-iteration",
+        "monte-carlo-tree-search"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "imperfect-information-search",
+        "game-theory-applications",
+        "markov-decision-process"
       ],
       "pages": []
     }
