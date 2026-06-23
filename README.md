@@ -94,6 +94,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Online Convex Optimization](lessons/online-convex-optimization/lesson.md)
 - [Fractional Programming DP](lessons/fractional-programming-dp/lesson.md)
 - [Online Planning Evaluation](lessons/online-planning-evaluation/lesson.md)
+- [Lagrangian Relaxation Patterns](lessons/lagrangian-relaxation-patterns/lesson.md)
+- [Dual Averaging](lessons/dual-averaging/lesson.md)
 
 ### 그래프와 트리
 
@@ -132,6 +134,8 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 - [Dynamic Flow](lessons/dynamic-flow/lesson.md)
 - [Matroid Parity](lessons/matroid-parity/lesson.md)
 - [Matrix-Tree Theorem Applications](lessons/matrix-tree-theorem-applications/lesson.md)
+- [Matroid Union](lessons/matroid-union/lesson.md)
+- [Planar Graph Duality](lessons/planar-graph-duality/lesson.md)
 
 ### 자료구조
 
@@ -258,3 +262,4 @@ CCW, 선분 교차, 볼록 껍질처럼 좌표와 벡터를 다루는 기하 기
 - [Bayesian Bandits](lessons/bayesian-bandits/lesson.md)
 - [Reinforcement Learning Basics](lessons/reinforcement-learning-basics/lesson.md)
 - [Randomized Determinant](lessons/randomized-determinant/lesson.md)
+- [Stochastic Shortest Path](lessons/stochastic-shortest-path/lesson.md)

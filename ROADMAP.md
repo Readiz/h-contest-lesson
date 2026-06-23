@@ -129,11 +129,16 @@
 - `fractional-programming-dp`: 비율 목적식을 `value - lambda * weight` 판정으로 바꾸고 DP/graph feasibility와 결합하는 최적화 레슨을 공개했습니다.
 - `3d-convex-hull`: signed volume, oriented face, visible face, horizon edge, coplanar degeneracy를 다루는 3D 기하 심화를 공개했습니다.
 - `reinforcement-learning-basics`: Bellman 식, value iteration, policy improvement, Q-value를 contest 모델링 수준으로 공개했습니다.
-- `matroid-parity`: pair 단위 선택과 matroid 독립성을 결합하는 matching 일반화 모델을 공개했습니다. 남은 조합 최적화 심화는 matroid union과 algebraic matching 쪽으로 이어갑니다.
+- `matroid-parity`: pair 단위 선택과 matroid 독립성을 결합하는 matching 일반화 모델을 공개했습니다. 조합 최적화 심화는 matroid union과 algebraic matching 쪽으로 이어갑니다.
 - `randomized-determinant`: Schwartz-Zippel, random substitution, modular determinant, Tutte matrix 존재성 판정을 공개했습니다. 남은 선형대수 심화는 spectral graph와 sparse determinant 후보로 이어갑니다.
 - `matrix-tree-theorem-applications`: Laplacian cofactor로 spanning tree count, rooted arborescence, edge include/exclude를 계산하는 그래프 수학 레슨을 공개했습니다.
 - `regular-triangulation`: weighted point lifting과 lower hull로 Power Diagram의 dual triangulation을 이해하는 계산기하 심화를 공개했습니다.
 - `online-planning-evaluation`: simulator 기반 policy를 paired seed, confidence interval, holdout set으로 검증하는 게임/탐색 평가 레슨을 공개했습니다.
+- `lagrangian-relaxation-patterns`: 제약을 penalty와 dual variable로 목적식에 흡수하고 relaxed oracle을 반복 호출하는 최적화 패턴을 공개했습니다.
+- `matroid-union`: 여러 matroid 독립 집합의 합, union rank, layer exchange 관점을 조합 최적화 레슨으로 공개했습니다.
+- `planar-graph-duality`: planar embedding의 face graph와 cut-cycle duality를 이용해 그래프/기하 문제를 변환하는 관점을 공개했습니다.
+- `stochastic-shortest-path`: absorbing 목표 상태까지의 기대 비용을 Bellman 식, value iteration, linear equation 관점으로 공개했습니다.
+- `dual-averaging`: online convex optimization에서 누적 gradient와 regularizer로 decision을 갱신하는 dual averaging 패턴을 공개했습니다.
 
 ## 콘텐츠 보강 우선순위
 
@@ -153,23 +158,23 @@
 
 | 우선순위 | 후보 lessonId | 주제 | 연습 문제 상태 |
 | ---: | --- | --- | --- |
-| 1 | `lagrangian-relaxation-patterns` | penalty, dual variable, feasibility oracle을 DP/flow/greedy 모델로 분리하는 최적화 패턴 | TODO: Lagrangian relaxation `/practice/...` 문제 필요 |
-| 2 | `matroid-union` | 여러 matroid 독립 집합의 union rank와 covering 관점을 조합 최적화로 모델링 | TODO: matroid union `/practice/...` 문제 필요 |
-| 3 | `planar-graph-duality` | planar embedding, face graph, cut-cycle duality로 graph 문제를 바꾸는 그래프/기하 연결 주제 | TODO: planar dual `/practice/...` 문제 필요 |
-| 4 | `stochastic-shortest-path` | absorbing MDP와 expected hitting time을 shortest path/linear equation 관점으로 푸는 확률적 의사결정 | TODO: stochastic shortest path `/practice/...` 문제 필요 |
-| 5 | `dual-averaging` | online convex optimization 이후 gradient 누적과 regularizer로 decision을 갱신하는 온라인 최적화 | TODO: dual averaging `/practice/...` 문제 필요 |
+| 1 | `spectral-graph-basics` | Laplacian eigenvalue, algebraic connectivity, random walk 관점으로 그래프 성질을 읽는 수학/그래프 연결 주제 | TODO: spectral graph `/practice/...` 문제 필요 |
+| 2 | `sparse-determinant` | sparse matrix의 determinant/rank를 black-box linear algebra와 modular evaluation으로 계산하는 선형대수 주제 | TODO: sparse determinant `/practice/...` 문제 필요 |
+| 3 | `additively-weighted-voronoi` | distance에 additive weight가 붙는 Voronoi variant와 shortest path/geometry 모델링 | TODO: weighted Voronoi `/practice/...` 문제 필요 |
+| 4 | `arrangement-duality` | point-line duality와 arrangement level/query를 계산기하 문제 변환으로 다루는 주제 | TODO: arrangement duality `/practice/...` 문제 필요 |
+| 5 | `policy-gradient-basics` | policy parameter, score function estimator, baseline을 contest simulator 평가 관점에서 정리하는 주제 | TODO: policy gradient `/practice/...` 문제 필요 |
 
 ## 추가 후보 묶음
 
 | 영역 | 후보 lessonId |
 | --- | --- |
 | 문자열 | `string-period-query-applications` 이후 응용 후보 정리 필요 |
-| 그래프 심화 | `matroid-union`, `planar-graph-duality` |
+| 그래프 심화 | `spectral-graph-basics`, `algebraic-matching` |
 | 자료구조/오프라인 | `persistent-sequence-queries` 이후 versioned sequence 응용 후보 정리 필요 |
 | 수학 심화 | `spectral-graph-basics`, `sparse-determinant` |
-| DP 최적화 | `lagrangian-relaxation-patterns`, `dual-averaging` |
+| DP 최적화 | `convex-optimization-duality`, `risk-sensitive-dp` |
 | 기하 | `additively-weighted-voronoi`, `arrangement-duality` |
-| 게임/탐색 | `stochastic-shortest-path`, `policy-gradient-basics` |
+| 게임/탐색 | `policy-gradient-basics`, `risk-sensitive-planning` |
 
 ## 공개 레슨으로 올리기 전 조건
 
