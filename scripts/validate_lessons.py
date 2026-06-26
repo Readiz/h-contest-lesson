@@ -16,6 +16,11 @@ IMAGE_LINK_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 FENCE_RE = re.compile(r"^```(.*)$")
 LESSON_LEVELS = {"beginner", "intermediate", "advanced"}
+LESSON_STATUSES = {"draft", "review", "published"}
+LESSON_TYPES = {"core", "implementation", "overview", "reference", "experimental"}
+PRACTICE_STATUSES = {"none", "todo", "linked", "verified"}
+IMPLEMENTATION_STATUSES = {"concept-only", "partial", "full"}
+AUDIENCES = {"contest-core", "advanced-contest", "research-reference"}
 LESSON_REFERENCE_FIELDS = ("prerequisites", "nextLessons", "relatedLessons")
 HCONTEST_PROBLEM_ROUTE_RE = re.compile(
     r"^/practice/[A-Z0-9]{8,16}(?:/(?:editorial|submissions/[0-9]+))?$",
@@ -274,6 +279,13 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     estimated_minutes = lesson.get("estimatedMinutes")
     tags = lesson.get("tags")
     pages_raw = lesson.get("pages", [])
+    status = lesson.get("status")
+    lesson_type = lesson.get("lessonType")
+    series_id = lesson.get("seriesId")
+    parent_lesson_id = lesson.get("parentLessonId")
+    practice_status = lesson.get("practiceStatus")
+    implementation_status = lesson.get("implementationStatus")
+    audience = lesson.get("audience")
 
     if not isinstance(lesson_id, str) or not LESSON_ID_RE.fullmatch(lesson_id):
         fail(f"invalid lessonId: {lesson_id!r}")
@@ -297,6 +309,42 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
         fail(f"tags must contain only non-empty strings for {lesson_id}")
     if not isinstance(pages_raw, list):
         fail(f"pages must be an array for {lesson_id}")
+    if status is not None and (not isinstance(status, str) or status not in LESSON_STATUSES):
+        fail(f"status must be one of {sorted(LESSON_STATUSES)} for {lesson_id}: {status!r}")
+    if lesson_type is not None and (
+        not isinstance(lesson_type, str) or lesson_type not in LESSON_TYPES
+    ):
+        fail(f"lessonType must be one of {sorted(LESSON_TYPES)} for {lesson_id}: {lesson_type!r}")
+    if series_id is not None and (not isinstance(series_id, str) or not LESSON_ID_RE.fullmatch(series_id)):
+        fail(f"invalid seriesId for {lesson_id}: {series_id!r}")
+    if parent_lesson_id is not None:
+        if not isinstance(parent_lesson_id, str) or not LESSON_ID_RE.fullmatch(parent_lesson_id):
+            fail(f"invalid parentLessonId for {lesson_id}: {parent_lesson_id!r}")
+        if parent_lesson_id == lesson_id:
+            fail(f"parentLessonId must not reference itself for {lesson_id}")
+    if practice_status is not None and (
+        not isinstance(practice_status, str) or practice_status not in PRACTICE_STATUSES
+    ):
+        fail(
+            f"practiceStatus must be one of {sorted(PRACTICE_STATUSES)} "
+            f"for {lesson_id}: {practice_status!r}"
+        )
+    if implementation_status is not None and (
+        not isinstance(implementation_status, str)
+        or implementation_status not in IMPLEMENTATION_STATUSES
+    ):
+        fail(
+            f"implementationStatus must be one of {sorted(IMPLEMENTATION_STATUSES)} "
+            f"for {lesson_id}: {implementation_status!r}"
+        )
+    if audience is not None and (not isinstance(audience, str) or audience not in AUDIENCES):
+        fail(f"audience must be one of {sorted(AUDIENCES)} for {lesson_id}: {audience!r}")
+    if (
+        status == "published"
+        and lesson_type in {"core", "implementation"}
+        and practice_status in {"none", "todo"}
+    ):
+        fail(f"published {lesson_type} lesson must not have practiceStatus={practice_status!r}: {lesson_id}")
 
     for field_name in LESSON_REFERENCE_FIELDS:
         lesson[field_name] = validate_lesson_reference_list(lesson.get(field_name), lesson_id, field_name)
@@ -331,6 +379,9 @@ def validate_lesson_references(lessons: list[dict], lesson_ids: set[str]) -> Non
             for ref in lesson[field_name]:
                 if ref not in lesson_ids:
                     fail(f"{field_name} for {lesson_id} references missing lessonId: {ref}")
+        parent_lesson_id = lesson.get("parentLessonId")
+        if parent_lesson_id is not None and parent_lesson_id not in lesson_ids:
+            fail(f"parentLessonId for {lesson_id} references missing lessonId: {parent_lesson_id}")
 
 
 def validate_generated_files() -> None:

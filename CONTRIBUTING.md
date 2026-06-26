@@ -61,6 +61,22 @@ lessons.json
 
 `lessons.json`에는 새 레슨이 들어갈 `folderId`, `level`, `estimatedMinutes`, `prerequisites`, `nextLessons`, `relatedLessons`를 함께 지정합니다. 하위 페이지가 있으면 `pageId`, `title`, `description`, `order`, `file`을 가진 `pages` 배열을 추가합니다. 기존 폴더에 맞지 않는 주제라면 `folders` 배열에 새 폴더를 추가하고, `folderId`, `title`, `description`, `order`를 함께 작성합니다.
 
+문서의 공개 성격이 명확하지 않으면 아래 metadata를 함께 지정합니다.
+
+```json
+{
+  "status": "draft | review | published",
+  "lessonType": "core | implementation | overview | reference | experimental",
+  "seriesId": "parametric-optimization",
+  "parentLessonId": "parametric-optimization",
+  "practiceStatus": "none | todo | linked | verified",
+  "implementationStatus": "concept-only | partial | full",
+  "audience": "contest-core | advanced-contest | research-reference"
+}
+```
+
+`published`인 `core` 또는 `implementation` 레슨은 `practiceStatus: todo` 상태로 둘 수 없습니다. 실제 practice 링크나 저장소 안의 로컬 완결형 연습을 준비한 뒤 정식 구현 레슨으로 올립니다. 실제 문제와 완전 구현이 아직 없으면 `overview` 또는 `reference`로 분류합니다.
+
 이미지가 필요하면 아래 디렉터리에 추가합니다.
 
 ```text
@@ -176,3 +192,4 @@ int main() {
 - 이미지와 내부 링크가 깨지지 않나요?
 - C++ 코드는 문법상 문제가 없나요?
 - 적절한 h-contest 연습 문제가 없으면 `TODO`로 남겼나요?
+- `lessonType`, `practiceStatus`, `implementationStatus`가 실제 문서 완성도와 맞나요?

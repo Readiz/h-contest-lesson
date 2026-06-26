@@ -2591,7 +2591,7 @@
         "knuth-optimization"
       ],
       "nextLessons": [
-        "alien-optimization",
+        "parametric-optimization",
         "quadrangle-inequality-proofs"
       ],
       "relatedLessons": [
@@ -2600,35 +2600,86 @@
       "pages": []
     },
     {
-      "lessonId": "alien-optimization",
-      "title": "Alien Optimization",
-      "description": "정확히 K개 선택 조건을 penalty가 붙은 relaxed DP로 바꾸고 이분 탐색으로 맞추는 Alien Optimization을 익힙니다.",
-      "summary": "Lagrangian relaxation, penalty 기반 count 단조성, relaxed DP의 cost/count pair, 답 보정과 tie-break까지 이어지는 DP 최적화 레슨",
+      "lessonId": "parametric-optimization",
+      "title": "Parametric Optimization",
+      "description": "Alien Optimization, Parametric DP, fractional objectives, Lagrangian relaxation을 하나의 parameter 기반 최적화 흐름으로 묶어 선택 기준과 구현 함정을 정리합니다.",
+      "summary": "제약이나 답 후보를 parameter로 고정해 더 쉬운 oracle을 풀고, 단조성, tie-break, breakpoint, 답 복원으로 원래 최적화 문제를 해결하는 허브 레슨입니다.",
       "order": 90,
       "folderId": "strategy",
-      "tags": [
-        "alien-optimization",
-        "lagrangian-relaxation",
-        "parametric-search",
-        "dp-optimization",
-        "monotonicity",
-        "practice"
-      ],
       "level": "advanced",
-      "estimatedMinutes": 65,
+      "estimatedMinutes": 110,
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "parametric-optimization",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
       "prerequisites": [
         "divide-and-conquer-dp-optimization",
-        "monge-smawk"
+        "monge-smawk",
+        "convex-dp-modeling"
       ],
       "nextLessons": [
-        "convex-dp-modeling",
-        "parametric-dp"
+        "online-convex-optimization",
+        "convex-cost-flow"
       ],
       "relatedLessons": [
         "convex-hull-trick-li-chao",
-        "proof-and-invariants"
+        "min-plus-convolution",
+        "flow-with-lower-bound"
       ],
-      "pages": []
+      "tags": [
+        "dp-optimization",
+        "parametric-search",
+        "alien-optimization",
+        "fractional-programming",
+        "lagrangian-relaxation",
+        "practice"
+      ],
+      "pages": [
+        {
+          "pageId": "feasibility-and-answer-search",
+          "title": "Feasibility and Answer Search",
+          "description": "답 후보와 penalty를 고정한 DP/feasibility oracle의 공통 구조입니다.",
+          "order": 10,
+          "file": "pages/feasibility-and-answer-search.md"
+        },
+        {
+          "pageId": "exact-k-alien-optimization",
+          "title": "Exact-K Alien Optimization",
+          "description": "정확히 K개 선택 제약을 count와 penalty로 다루는 Alien Optimization입니다.",
+          "order": 20,
+          "file": "pages/exact-k-alien-optimization.md"
+        },
+        {
+          "pageId": "fractional-objectives",
+          "title": "Fractional Objectives",
+          "description": "평균과 비율 목적식을 value - lambda * weight 판정으로 바꿉니다.",
+          "order": 30,
+          "file": "pages/fractional-objectives.md"
+        },
+        {
+          "pageId": "general-lagrangian-relaxation",
+          "title": "General Lagrangian Relaxation",
+          "description": "여러 제약과 relaxed oracle을 dual variable 관점에서 다룹니다.",
+          "order": 40,
+          "file": "pages/general-lagrangian-relaxation.md"
+        },
+        {
+          "pageId": "tie-breaking-and-breakpoints",
+          "title": "Tie-breaking and Breakpoints",
+          "description": "count 동점 처리와 breakpoint 주변의 답 복원 함정을 정리합니다.",
+          "order": 50,
+          "file": "pages/tie-breaking-and-breakpoints.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Parametric Optimization 계열을 하나의 흐름으로 연습합니다.",
+          "order": 60,
+          "file": "pages/practice-set.md"
+        }
+      ]
     },
     {
       "lessonId": "runs-periodicity",
@@ -2768,7 +2819,7 @@
       "level": "advanced",
       "estimatedMinutes": 45,
       "prerequisites": [
-        "alien-optimization",
+        "parametric-optimization",
         "convex-hull-trick-li-chao"
       ],
       "nextLessons": [
@@ -2929,7 +2980,7 @@
       "prerequisites": [
         "min-cost-flow",
         "slope-trick",
-        "alien-optimization"
+        "parametric-optimization"
       ],
       "nextLessons": [
         "min-plus-convolution"
@@ -3092,7 +3143,7 @@
         "convex-dp-modeling"
       ],
       "relatedLessons": [
-        "alien-optimization",
+        "parametric-optimization",
         "knuth-optimization"
       ],
       "pages": []
@@ -3242,13 +3293,13 @@
       "estimatedMinutes": 50,
       "prerequisites": [
         "min-plus-convolution",
-        "alien-optimization",
+        "parametric-optimization",
         "convex-cost-flow"
       ],
       "nextLessons": [
         "convex-hull-trick-variants",
         "cht-dp-applications",
-        "parametric-dp"
+        "parametric-optimization"
       ],
       "relatedLessons": [
         "slope-trick",
@@ -3654,42 +3705,13 @@
       ],
       "nextLessons": [
         "cht-dp-applications",
-        "parametric-dp",
+        "parametric-optimization",
         "kinetic-hull",
         "fully-dynamic-cht"
       ],
       "relatedLessons": [
         "monge-smawk",
         "slope-trick"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "parametric-dp",
-      "title": "Parametric DP",
-      "description": "penalty, feasibility parameter, answer binary search로 DP의 제약과 목적값을 분리하는 방법을 익힙니다.",
-      "summary": "parameter 고정 DP, 선택 개수 tie-breaking, Alien Optimization 보정을 다루는 DP 최적화 레슨",
-      "order": 124,
-      "folderId": "strategy",
-      "tags": [
-        "dp-optimization",
-        "parametric-search",
-        "alien-optimization",
-        "feasibility-dp",
-        "lagrangian-relaxation",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "alien-optimization",
-        "convex-dp-modeling",
-        "convex-hull-trick-variants"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "divide-and-conquer-dp-optimization",
-        "monge-smawk"
       ],
       "pages": []
     },
@@ -4110,7 +4132,7 @@
         "dynamic-programming"
       ],
       "nextLessons": [
-        "parametric-dp"
+        "parametric-optimization"
       ],
       "relatedLessons": [
         "slope-trick",
@@ -4393,7 +4415,7 @@
       ],
       "nextLessons": [],
       "relatedLessons": [
-        "parametric-dp",
+        "parametric-optimization",
         "convex-dp-modeling",
         "dynamic-connectivity"
       ],
@@ -4519,7 +4541,13 @@
         "proof-and-invariants",
         "linear-algebra-applications"
       ],
-      "pages": []
+      "pages": [],
+      "status": "published",
+      "lessonType": "reference",
+      "seriesId": "matroid-algorithms",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "research-reference"
     },
     {
       "lessonId": "sparse-linear-systems",
@@ -4696,45 +4724,13 @@
         "probability-expected-value"
       ],
       "nextLessons": [
-        "fractional-programming-dp",
+        "parametric-optimization",
         "dual-averaging"
       ],
       "relatedLessons": [
-        "parametric-dp",
+        "parametric-optimization",
         "bayesian-bandits",
         "slope-trick"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "fractional-programming-dp",
-      "title": "Fractional Programming DP",
-      "description": "비율 목적식을 fixed ratio 판정으로 바꾸고 DP, graph feasibility, binary search와 결합합니다.",
-      "summary": "benefit-cost ratio를 value minus lambda times weight 판정으로 바꿔 binary search와 DP에 붙이는 최적화 레슨",
-      "order": 158,
-      "folderId": "strategy",
-      "tags": [
-        "dp-optimization",
-        "fractional-programming",
-        "parametric-search",
-        "binary-search",
-        "ratio",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "parametric-dp",
-        "convex-dp-modeling",
-        "alien-optimization"
-      ],
-      "nextLessons": [
-        "lagrangian-relaxation-patterns"
-      ],
-      "relatedLessons": [
-        "online-convex-optimization",
-        "min-plus-convolution",
-        "cht-dp-applications"
       ],
       "pages": []
     },
@@ -4831,7 +4827,13 @@
         "proof-and-invariants",
         "linear-algebra-applications"
       ],
-      "pages": []
+      "pages": [],
+      "status": "published",
+      "lessonType": "reference",
+      "seriesId": "matroid-algorithms",
+      "practiceStatus": "todo",
+      "implementationStatus": "concept-only",
+      "audience": "research-reference"
     },
     {
       "lessonId": "randomized-determinant",
@@ -4956,38 +4958,6 @@
       "pages": []
     },
     {
-      "lessonId": "lagrangian-relaxation-patterns",
-      "title": "Lagrangian Relaxation Patterns",
-      "description": "hard constraint를 penalty와 dual variable로 목적식에 흡수해 DP, flow, greedy oracle을 반복 호출하는 패턴을 익힙니다.",
-      "summary": "제약을 penalty로 바꾸고 relaxed oracle을 풀며 multiplier, response 단조성, tie-break, 답 보정을 함께 관리하는 최적화 모델링 레슨",
-      "order": 166,
-      "folderId": "strategy",
-      "tags": [
-        "optimization",
-        "lagrangian-relaxation",
-        "parametric-search",
-        "dp-optimization",
-        "dual-variable",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 65,
-      "prerequisites": [
-        "alien-optimization",
-        "parametric-dp",
-        "fractional-programming-dp"
-      ],
-      "nextLessons": [
-        "dual-averaging"
-      ],
-      "relatedLessons": [
-        "convex-dp-modeling",
-        "min-cost-flow",
-        "flow-with-lower-bound"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "matroid-union",
       "title": "Matroid Union",
       "description": "여러 matroid 독립 집합의 합으로 원소를 덮거나 분해하는 union rank와 layer exchange 관점을 익힙니다.",
@@ -5015,7 +4985,13 @@
         "linear-algebra-applications",
         "randomized-determinant"
       ],
-      "pages": []
+      "pages": [],
+      "status": "published",
+      "lessonType": "reference",
+      "seriesId": "matroid-algorithms",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "research-reference"
     },
     {
       "lessonId": "planar-graph-duality",
@@ -5045,7 +5021,13 @@
         "matrix-tree-theorem-applications",
         "global-min-cut"
       ],
-      "pages": []
+      "pages": [],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "planar-embedding-duality",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "stochastic-shortest-path",
@@ -5101,7 +5083,7 @@
       ],
       "nextLessons": [],
       "relatedLessons": [
-        "lagrangian-relaxation-patterns",
+        "parametric-optimization",
         "reinforcement-learning-basics",
         "probability-expected-value"
       ],

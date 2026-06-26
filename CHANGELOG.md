@@ -2,6 +2,12 @@
 
 이 문서는 이미 공개된 레슨의 이동 기록과 콘텐츠 보강 완료 내역을 보관합니다. 아직 공개하지 않은 후보와 practice link TODO는 [ROADMAP.md](ROADMAP.md)에서 관리합니다.
 
+## 2026-06 구조 개편
+
+- `alien-optimization`, `parametric-dp`, `fractional-programming-dp`, `lagrangian-relaxation-patterns`를 `parametric-optimization` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
+- `lessonType`, `status`, `practiceStatus`, `implementationStatus`, `audience`, `seriesId`, `parentLessonId` metadata 검증 기반을 추가했습니다.
+- `matroid-intersection`, `matroid-parity`, `matroid-union`은 일반 구현 레슨이 아니라 `reference` 성격으로 표시했습니다.
+
 ## 2026-06 공개 레슨 이동 기록
 
 - `bellman-ford-negative-cycle`: Dijkstra의 음수 간선 한계를 받아 주는 그래프 최단거리 레슨으로 공개했습니다. 남은 그래프 심화는 SCC/2-SAT와 Flow/Matching 쪽으로 이어갑니다.

@@ -25,6 +25,7 @@
 - [ ] `lessons/<lessonId>/lesson.md`를 추가하거나 수정했습니다.
 - [ ] 긴 레슨은 `lesson.md` 허브와 `pages/*.md` 분할 기준을 검토했습니다.
 - [ ] `lessons.json`의 title, description, summary, order, folderId, level, estimatedMinutes, prerequisites, nextLessons, relatedLessons, tags를 갱신했습니다.
+- [ ] `lessonType`, `practiceStatus`, `implementationStatus`, `audience`가 문서의 실제 완성도와 맞습니다.
 - [ ] `python3 scripts/generate_catalog.py`를 실행했습니다.
 - [ ] `python3 scripts/validate_lessons.py`를 실행했습니다.
 - [ ] `lesson.md`의 H1 제목과 `lessons.json`의 title이 일치합니다.

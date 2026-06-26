@@ -147,6 +147,24 @@ def level_label(level: str) -> str:
     }.get(level, level)
 
 
+def lesson_type_label(lesson_type: str | None) -> str | None:
+    if lesson_type is None:
+        return None
+    return {
+        "core": "core",
+        "implementation": "implementation",
+        "overview": "overview",
+        "reference": "reference",
+        "experimental": "experimental",
+    }.get(lesson_type, lesson_type)
+
+
+def status_label(status: str | None) -> str | None:
+    if status is None or status == "published":
+        return None
+    return status
+
+
 def lesson_links(lesson_ids: list[str], lessons_by_id: dict[str, dict]) -> str:
     links = []
     for lesson_id in lesson_ids:
@@ -194,6 +212,8 @@ def build_index(folders: list[dict], lessons: list[dict]) -> str:
             lesson_description = escape(lesson["description"], quote=True)
             level = escape(level_label(lesson["level"]), quote=True)
             minutes = escape(str(lesson["estimatedMinutes"]), quote=True)
+            lesson_type = lesson_type_label(lesson.get("lessonType"))
+            status = status_label(lesson.get("status"))
             tags = [escape(tag, quote=True) for tag in lesson.get("tags", [])]
             prerequisites = lesson_links(lesson.get("prerequisites", []), lessons_by_id)
             next_lessons = lesson_links(lesson.get("nextLessons", []), lessons_by_id)
@@ -207,6 +227,12 @@ def build_index(folders: list[dict], lessons: list[dict]) -> str:
             lines.append('<div class="meta-row">\n')
             lines.append(f'<span class="badge level">{level}</span>\n')
             lines.append(f'<span class="badge time">{minutes}분</span>\n')
+            if lesson_type:
+                safe_lesson_type = escape(lesson_type, quote=True)
+                lines.append(f'<span class="badge">{safe_lesson_type}</span>\n')
+            if status:
+                safe_status = escape(status, quote=True)
+                lines.append(f'<span class="badge">{safe_status}</span>\n')
             lines.append("</div>\n")
             if tags:
                 lines.append('<div class="tag-list">\n')
