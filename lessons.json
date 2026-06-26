@@ -5030,20 +5030,21 @@
     {
       "lessonId": "planar-graph-duality",
       "title": "Planar Graph Duality",
-      "description": "평면 그래프의 face를 dual 정점으로 바꾸고 cut-cycle duality로 graph와 geometry 문제를 변환합니다.",
-      "summary": "planar embedding, outer face, dual edge construction, cut-cycle 대응, planar min-cut과 dual shortest path를 연결하는 그래프/기하 심화 레슨",
+      "description": "평면 그래프의 half-edge face traversal, dual graph 구성, cut-cycle duality, planar min-cut 변환을 정리합니다.",
+      "summary": "planar embedding, half-edge traversal, outer face, dual edge construction, cut-cycle 대응, planar min-cut과 dual shortest path를 연결하는 그래프/기하 심화 허브",
       "order": 168,
       "folderId": "graphs",
       "tags": [
         "graph",
         "planar-graph",
         "duality",
+        "half-edge",
         "face-graph",
         "min-cut",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 105,
       "prerequisites": [
         "graph-tree-basics",
         "max-flow-min-cut",
@@ -5055,7 +5056,43 @@
         "matrix-tree-theorem-applications",
         "global-min-cut"
       ],
-      "pages": [],
+      "pages": [
+        {
+          "pageId": "half-edge-and-face-traversal",
+          "title": "Half-edge and Face Traversal",
+          "description": "좌표와 간선에서 directed half-edge를 만들고 face를 순회하는 구현입니다.",
+          "order": 10,
+          "file": "pages/half-edge-and-face-traversal.md"
+        },
+        {
+          "pageId": "dual-graph-construction",
+          "title": "Dual Graph Construction",
+          "description": "primal edge 양쪽 face를 dual edge로 바꾸는 기본 구성입니다.",
+          "order": 20,
+          "file": "pages/dual-graph-construction.md"
+        },
+        {
+          "pageId": "cut-cycle-duality",
+          "title": "Cut-Cycle Duality",
+          "description": "primal cut/cycle과 dual path/cut 대응을 정리합니다.",
+          "order": 30,
+          "file": "pages/cut-cycle-duality.md"
+        },
+        {
+          "pageId": "planar-min-cut",
+          "title": "Planar Min-Cut",
+          "description": "특정 planar min-cut을 dual shortest path로 바꾸는 조건과 절차입니다.",
+          "order": 40,
+          "file": "pages/planar-min-cut.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "face traversal과 dual 변환을 하나의 흐름으로 연습합니다.",
+          "order": 50,
+          "file": "pages/practice-set.md"
+        }
+      ],
       "status": "published",
       "lessonType": "overview",
       "seriesId": "planar-embedding-duality",
