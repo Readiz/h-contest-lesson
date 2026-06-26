@@ -1171,8 +1171,7 @@
         "prefix-sum-difference"
       ],
       "nextLessons": [
-        "persistent-segment-tree",
-        "persistent-lazy-segment-tree",
+        "versioned-data-structures",
         "dynamic-segment-tree",
         "tree-advanced",
         "offline-queries"
@@ -1214,67 +1213,95 @@
       ]
     },
     {
-      "lessonId": "persistent-segment-tree",
-      "title": "Persistent Segment Tree",
-      "description": "업데이트 경로만 복사해 여러 버전의 Segment Tree를 보존하고, prefix root 차이로 k번째 수 질의를 처리합니다.",
-      "summary": "path copying, 버전 root 저장, prefix 차이, 구간 k번째 수와 메모리 계산까지 이어지는 persistent 자료구조 레슨",
+      "lessonId": "versioned-data-structures",
+      "title": "Versioned Data Structures",
+      "description": "persistent segment tree, persistent DSU, versioned stack/queue, sequence query를 persistence/rollback/retroactivity 경계와 함께 정리합니다.",
+      "summary": "version root, path copying, partial persistence, persistent lazy propagation, persistent queue/stack, sequence query를 묶는 자료구조 허브",
       "order": 41,
       "folderId": "data-structures",
       "tags": [
-        "persistent-segment-tree",
-        "segment-tree",
+        "data-structures",
+        "persistence",
         "versioning",
-        "order-statistics",
-        "coordinate-compression",
+        "persistent-segment-tree",
+        "union-find",
+        "sequence",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 70,
+      "estimatedMinutes": 160,
       "prerequisites": [
         "segment-tree",
+        "union-find",
         "coordinate-compression"
       ],
       "nextLessons": [
-        "persistent-lazy-segment-tree",
-        "convex-hull-trick-li-chao",
-        "wavelet-tree",
-        "offline-queries"
+        "rollback-techniques",
+        "offline-range-query-techniques",
+        "wavelet-tree"
       ],
       "relatedLessons": [
-        "fenwick-tree",
-        "sparse-table-rmq"
+        "retroactive-data-structures",
+        "dynamic-connectivity",
+        "wavelet-matrix"
       ],
-      "pages": []
-    },
-    {
-      "lessonId": "persistent-lazy-segment-tree",
-      "title": "Persistent Lazy Segment Tree",
-      "description": "Lazy Propagation을 유지하면서 version root를 보존하는 Persistent Segment Tree로 range update와 과거 질의를 처리합니다.",
-      "summary": "node clone 원칙, lazy push 중 자식 clone, versioned range add/range sum, read-only query 변형과 메모리 계산까지 이어지는 persistent 자료구조 심화",
-      "order": 42,
-      "folderId": "data-structures",
-      "tags": [
-        "persistent-segment-tree",
-        "lazy-propagation",
-        "range-update",
-        "versioning",
-        "segment-tree",
-        "practice"
+      "pages": [
+        {
+          "pageId": "versioning-model-map",
+          "title": "Versioning Model Map",
+          "description": "persistence, rollback, partial persistence, retroactivity를 먼저 구분합니다.",
+          "order": 10,
+          "file": "pages/versioning-model-map.md"
+        },
+        {
+          "pageId": "persistent-segment-tree",
+          "title": "Persistent Segment Tree",
+          "description": "point update version root와 prefix root 차이 기반 kth query를 다룹니다.",
+          "order": 20,
+          "file": "pages/persistent-segment-tree.md"
+        },
+        {
+          "pageId": "persistent-lazy-segment-tree",
+          "title": "Persistent Lazy Segment Tree",
+          "description": "range update와 range query를 version별로 처리할 때의 lazy clone 원칙입니다.",
+          "order": 30,
+          "file": "pages/persistent-lazy-segment-tree.md"
+        },
+        {
+          "pageId": "persistent-union-find",
+          "title": "Persistent Union-Find",
+          "description": "union-only history에서 과거 연결성과 component size를 조회합니다.",
+          "order": 40,
+          "file": "pages/persistent-union-find.md"
+        },
+        {
+          "pageId": "persistent-queue-stack",
+          "title": "Persistent Queue and Stack",
+          "description": "version별 stack, queue, deque 모델과 binary lifting 활용을 정리합니다.",
+          "order": 50,
+          "file": "pages/persistent-queue-stack.md"
+        },
+        {
+          "pageId": "persistent-sequence-queries",
+          "title": "Persistent Sequence Queries",
+          "description": "version별 배열과 sequence에서 kth, count, range query를 처리합니다.",
+          "order": 60,
+          "file": "pages/persistent-sequence-queries.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Versioned Data Structures 계열을 하나의 흐름으로 연습합니다.",
+          "order": 70,
+          "file": "pages/practice-set.md"
+        }
       ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "persistent-segment-tree",
-        "segment-tree"
-      ],
-      "nextLessons": [
-        "offline-queries"
-      ],
-      "relatedLessons": [
-        "fenwick-tree",
-        "sqrt-decomposition"
-      ],
-      "pages": []
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "versioned-data-structures",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "convex-hull-trick-li-chao",
@@ -1302,7 +1329,7 @@
         "divide-and-conquer-dp-optimization"
       ],
       "relatedLessons": [
-        "persistent-segment-tree",
+        "versioned-data-structures",
         "matrix-exponentiation"
       ],
       "pages": []
@@ -1325,7 +1352,7 @@
       "level": "advanced",
       "estimatedMinutes": 70,
       "prerequisites": [
-        "persistent-segment-tree",
+        "versioned-data-structures",
         "coordinate-compression"
       ],
       "nextLessons": [
@@ -1364,7 +1391,7 @@
         "offline-queries"
       ],
       "relatedLessons": [
-        "persistent-segment-tree",
+        "versioned-data-structures",
         "sparse-table-rmq"
       ],
       "pages": []
@@ -1456,7 +1483,7 @@
       ],
       "relatedLessons": [
         "segment-tree",
-        "persistent-lazy-segment-tree",
+        "versioned-data-structures",
         "offline-queries"
       ],
       "pages": []
@@ -2766,8 +2793,7 @@
       ],
       "nextLessons": [],
       "relatedLessons": [
-        "persistent-segment-tree",
-        "persistent-lazy-segment-tree",
+        "versioned-data-structures",
         "link-cut-tree"
       ],
       "pages": []
@@ -2996,7 +3022,7 @@
         "tree-advanced"
       ],
       "nextLessons": [
-        "persistent-union-find"
+        "versioned-data-structures"
       ],
       "relatedLessons": [
         "union-find",
@@ -3129,37 +3155,6 @@
       "pages": []
     },
     {
-      "lessonId": "persistent-union-find",
-      "title": "Persistent Union-Find",
-      "description": "Union-Find의 과거 version에서 연결성과 component size를 조회하는 partially persistent DSU와 rollback DSU 선택 기준을 정리합니다.",
-      "summary": "parent change time, size history, versioned connectivity query, rollback DSU와 partially persistent DSU의 차이를 다루는 자료구조 심화 레슨",
-      "order": 103,
-      "folderId": "data-structures",
-      "tags": [
-        "data-structures",
-        "union-find",
-        "persistence",
-        "rollback-dsu",
-        "versioning",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 50,
-      "prerequisites": [
-        "union-find",
-        "dynamic-connectivity",
-        "euler-tour-tree"
-      ],
-      "nextLessons": [
-        "rollback-techniques"
-      ],
-      "relatedLessons": [
-        "persistent-segment-tree",
-        "offline-queries"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "linear-basis-applications",
       "title": "Linear Basis Applications",
       "description": "XOR Linear Basis를 표현 가능성, k번째 xor, graph cycle xor, range query, matroid greedy로 확장해 적용합니다.",
@@ -3272,7 +3267,7 @@
       "estimatedMinutes": 50,
       "prerequisites": [
         "offline-queries",
-        "persistent-union-find",
+        "versioned-data-structures",
         "dynamic-connectivity"
       ],
       "nextLessons": [
@@ -3280,7 +3275,7 @@
       ],
       "relatedLessons": [
         "union-find",
-        "persistent-segment-tree"
+        "versioned-data-structures"
       ],
       "pages": []
     },
@@ -3636,15 +3631,15 @@
       "estimatedMinutes": 60,
       "prerequisites": [
         "rollback-techniques",
-        "persistent-union-find",
+        "versioned-data-structures",
         "offline-queries"
       ],
       "nextLessons": [
-        "persistent-queue-stack"
+        "versioned-data-structures"
       ],
       "relatedLessons": [
         "dynamic-connectivity",
-        "persistent-segment-tree"
+        "versioned-data-structures"
       ],
       "pages": []
     },
@@ -3671,7 +3666,7 @@
         "rollback-techniques"
       ],
       "nextLessons": [
-        "persistent-segment-tree"
+        "versioned-data-structures"
       ],
       "relatedLessons": [
         "fenwick-tree",
@@ -3805,37 +3800,6 @@
       "pages": []
     },
     {
-      "lessonId": "persistent-queue-stack",
-      "title": "Persistent Queue and Stack",
-      "description": "과거 version을 보존하는 stack, queue, deque 모델을 root pointer와 persistent sequence 관점으로 정리합니다.",
-      "summary": "persistent stack parent pointer, queue head/tail version, binary lifting, rollback과 retroactivity의 경계를 다루는 자료구조 레슨",
-      "order": 128,
-      "folderId": "data-structures",
-      "tags": [
-        "data-structures",
-        "persistence",
-        "stack",
-        "queue",
-        "binary-lifting",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "persistent-union-find",
-        "retroactive-data-structures",
-        "rollback-techniques"
-      ],
-      "nextLessons": [
-        "persistent-sequence-queries"
-      ],
-      "relatedLessons": [
-        "persistent-segment-tree",
-        "offline-range-query-techniques"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "linear-recurrence-applications",
       "title": "Linear Recurrence Applications",
       "description": "DP, graph walk, 생성함수에서 선형 점화식을 찾아 Kitamasa, Bostan-Mori, 행렬 거듭제곱 중 방법을 고릅니다.",
@@ -3927,35 +3891,6 @@
       "relatedLessons": [
         "suffix-automaton-applications",
         "palindrome-range-dp"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "persistent-sequence-queries",
-      "title": "Persistent Sequence Queries",
-      "description": "Version별 배열과 sequence에서 kth, count, range query를 persistent tree와 implicit structure로 처리합니다.",
-      "summary": "prefix persistent segment tree, path copying, version root 차이, persistent sequence split/merge 선택 기준을 다루는 자료구조 레슨",
-      "order": 133,
-      "folderId": "data-structures",
-      "tags": [
-        "data-structures",
-        "persistence",
-        "range-query",
-        "kth",
-        "persistent-segment-tree",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "persistent-queue-stack",
-        "persistent-segment-tree",
-        "wavelet-tree"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "offline-range-query-techniques",
-        "persistent-lazy-segment-tree"
       ],
       "pages": []
     },

@@ -1373,7 +1373,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/persistent-lazy-segment-tree/lesson.md">Persistent Lazy Segment Tree</a> <a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
 <ul class="page-list">
 <li><a href="lessons/segment-tree/pages/basic-range-query.md">기본 구간 질의</a> <code>basic-range-query</code></li>
@@ -1384,47 +1384,36 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a></h3>
-<code class="lesson-id">persistent-segment-tree</code>
+<h3><a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></h3>
+<code class="lesson-id">versioned-data-structures</code>
 </div>
-<p class="lesson-description">업데이트 경로만 복사해 여러 버전의 Segment Tree를 보존하고, prefix root 차이로 k번째 수 질의를 처리합니다.</p>
+<p class="lesson-description">persistent segment tree, persistent DSU, versioned stack/queue, sequence query를 persistence/rollback/retroactivity 경계와 함께 정리합니다.</p>
 <div class="meta-row">
 <span class="badge level">심화</span>
-<span class="badge time">70분</span>
+<span class="badge time">160분</span>
+<span class="badge">overview</span>
 </div>
 <div class="tag-list">
-<span class="tag">persistent-segment-tree</span>
-<span class="tag">segment-tree</span>
+<span class="tag">data-structures</span>
+<span class="tag">persistence</span>
 <span class="tag">versioning</span>
-<span class="tag">order-statistics</span>
-<span class="tag">coordinate-compression</span>
+<span class="tag">persistent-segment-tree</span>
+<span class="tag">union-find</span>
+<span class="tag">sequence</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-lazy-segment-tree/lesson.md">Persistent Lazy Segment Tree</a> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/persistent-lazy-segment-tree/lesson.md">Persistent Lazy Segment Tree</a></h3>
-<code class="lesson-id">persistent-lazy-segment-tree</code>
-</div>
-<p class="lesson-description">Lazy Propagation을 유지하면서 version root를 보존하는 Persistent Segment Tree로 range update와 과거 질의를 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-</div>
-<div class="tag-list">
-<span class="tag">persistent-segment-tree</span>
-<span class="tag">lazy-propagation</span>
-<span class="tag">range-update</span>
-<span class="tag">versioning</span>
-<span class="tag">segment-tree</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/rollback-techniques/lesson.md">Rollback Techniques</a> <a href="lessons/offline-range-query-techniques/lesson.md">Offline Range Query Techniques</a> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/retroactive-data-structures/lesson.md">Retroactive Data Structures</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a></p>
+<ul class="page-list">
+<li><a href="lessons/versioned-data-structures/pages/versioning-model-map.md">Versioning Model Map</a> <code>versioning-model-map</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-segment-tree.md">Persistent Segment Tree</a> <code>persistent-segment-tree</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-lazy-segment-tree.md">Persistent Lazy Segment Tree</a> <code>persistent-lazy-segment-tree</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-union-find.md">Persistent Union-Find</a> <code>persistent-union-find</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-queue-stack.md">Persistent Queue and Stack</a> <code>persistent-queue-stack</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-sequence-queries.md">Persistent Sequence Queries</a> <code>persistent-sequence-queries</code></li>
+<li><a href="lessons/versioned-data-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1446,7 +1435,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1466,7 +1455,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">frequency</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
 </article>
@@ -1490,7 +1479,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/succinct-bitvector/lesson.md">Succinct Bitvector</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1556,7 +1545,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/persistent-lazy-segment-tree/lesson.md">Persistent Lazy Segment Tree</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1629,7 +1618,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/persistent-lazy-segment-tree/lesson.md">Persistent Lazy Segment Tree</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1650,30 +1639,8 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-union-find/lesson.md">Persistent Union-Find</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/persistent-union-find/lesson.md">Persistent Union-Find</a></h3>
-<code class="lesson-id">persistent-union-find</code>
-</div>
-<p class="lesson-description">Union-Find의 과거 version에서 연결성과 component size를 조회하는 partially persistent DSU와 rollback DSU 선택 기준을 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">50분</span>
-</div>
-<div class="tag-list">
-<span class="tag">data-structures</span>
-<span class="tag">union-find</span>
-<span class="tag">persistence</span>
-<span class="tag">rollback-dsu</span>
-<span class="tag">versioning</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/euler-tour-tree/lesson.md">Euler Tour Tree</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/rollback-techniques/lesson.md">Rollback Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1693,9 +1660,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">dynamic-connectivity</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a> <a href="lessons/persistent-union-find/lesson.md">Persistent Union-Find</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/retroactive-data-structures/lesson.md">Retroactive Data Structures</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1715,9 +1682,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">persistence</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/rollback-techniques/lesson.md">Rollback Techniques</a> <a href="lessons/persistent-union-find/lesson.md">Persistent Union-Find</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-queue-stack/lesson.md">Persistent Queue and Stack</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/rollback-techniques/lesson.md">Rollback Techniques</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1738,7 +1705,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/offline-queries/lesson.md">오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a> <a href="lessons/rollback-techniques/lesson.md">Rollback Techniques</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/retroactive-data-structures/lesson.md">Retroactive Data Structures</a></p>
 </article>
 <article class="lesson-card">
@@ -1762,50 +1729,6 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/cht-dp-applications/lesson.md">CHT DP Applications</a> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/kinetic-hull/lesson.md">Kinetic Hull</a> <a href="lessons/fully-dynamic-cht/lesson.md">Fully Dynamic CHT</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/persistent-queue-stack/lesson.md">Persistent Queue and Stack</a></h3>
-<code class="lesson-id">persistent-queue-stack</code>
-</div>
-<p class="lesson-description">과거 version을 보존하는 stack, queue, deque 모델을 root pointer와 persistent sequence 관점으로 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-</div>
-<div class="tag-list">
-<span class="tag">data-structures</span>
-<span class="tag">persistence</span>
-<span class="tag">stack</span>
-<span class="tag">queue</span>
-<span class="tag">binary-lifting</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/persistent-union-find/lesson.md">Persistent Union-Find</a> <a href="lessons/retroactive-data-structures/lesson.md">Retroactive Data Structures</a> <a href="lessons/rollback-techniques/lesson.md">Rollback Techniques</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/persistent-sequence-queries/lesson.md">Persistent Sequence Queries</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/offline-range-query-techniques/lesson.md">Offline Range Query Techniques</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/persistent-sequence-queries/lesson.md">Persistent Sequence Queries</a></h3>
-<code class="lesson-id">persistent-sequence-queries</code>
-</div>
-<p class="lesson-description">Version별 배열과 sequence에서 kth, count, range query를 persistent tree와 implicit structure로 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">data-structures</span>
-<span class="tag">persistence</span>
-<span class="tag">range-query</span>
-<span class="tag">kth</span>
-<span class="tag">persistent-segment-tree</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/persistent-queue-stack/lesson.md">Persistent Queue and Stack</a> <a href="lessons/persistent-segment-tree/lesson.md">Persistent Segment Tree</a> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/offline-range-query-techniques/lesson.md">Offline Range Query Techniques</a> <a href="lessons/persistent-lazy-segment-tree/lesson.md">Persistent Lazy Segment Tree</a></p>
 </article>
 </div>
 </section>
