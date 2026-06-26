@@ -663,7 +663,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/pomcp/lesson.md">POMCP</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a> <a href="lessons/reinforcement-learning-basics/lesson.md">Reinforcement Learning Basics</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -685,7 +685,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/reinforcement-learning-basics/lesson.md">Reinforcement Learning Basics</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 </article>
 </div>
 </section>
@@ -2996,7 +2996,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
 </article>
 <article class="lesson-card">
@@ -3062,7 +3062,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
 </article>
 <article class="lesson-card">
@@ -3176,25 +3176,34 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a></h3>
-<code class="lesson-id">markov-decision-process</code>
+<h3><a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a></h3>
+<code class="lesson-id">stochastic-decision-process</code>
 </div>
-<p class="lesson-description">상태, 행동, 확률 전이, 보상을 가진 의사결정 모델에서 Bellman 최적식과 value iteration을 익힙니다.</p>
+<p class="lesson-description">MDP, reinforcement learning basics, stochastic shortest path를 Bellman 식 기반 확률적 의사결정 허브로 묶어 모델 차이와 구현 선택 기준을 정리합니다.</p>
 <div class="meta-row">
 <span class="badge level">심화</span>
-<span class="badge time">60분</span>
+<span class="badge time">110분</span>
+<span class="badge">overview</span>
 </div>
 <div class="tag-list">
 <span class="tag">probability</span>
-<span class="tag">expected-value</span>
 <span class="tag">mdp</span>
+<span class="tag">reinforcement-learning</span>
 <span class="tag">value-iteration</span>
-<span class="tag">policy</span>
+<span class="tag">stochastic-shortest-path</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/stochastic-shortest-path/lesson.md">Stochastic Shortest Path</a> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a></p>
+<ul class="page-list">
+<li><a href="lessons/stochastic-decision-process/pages/finite-horizon-mdp.md">Finite Horizon MDP</a> <code>finite-horizon-mdp</code></li>
+<li><a href="lessons/stochastic-decision-process/pages/discounted-value-iteration.md">Discounted Value Iteration</a> <code>discounted-value-iteration</code></li>
+<li><a href="lessons/stochastic-decision-process/pages/policy-evaluation-and-improvement.md">Policy Evaluation and Improvement</a> <code>policy-evaluation-and-improvement</code></li>
+<li><a href="lessons/stochastic-decision-process/pages/stochastic-shortest-path.md">Stochastic Shortest Path</a> <code>stochastic-shortest-path</code></li>
+<li><a href="lessons/stochastic-decision-process/pages/exact-model-vs-sampling.md">Exact Model vs Sampling</a> <code>exact-model-vs-sampling</code></li>
+<li><a href="lessons/stochastic-decision-process/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -3214,7 +3223,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">search</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 </article>
@@ -3324,7 +3333,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">expected-value</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/point-based-value-iteration/lesson.md">Point-Based Value Iteration</a> <a href="lessons/pomcp/lesson.md">POMCP</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a></p>
 </article>
@@ -3390,7 +3399,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">imperfect-information</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/point-based-value-iteration/lesson.md">Point-Based Value Iteration</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a></p>
 </article>
@@ -3412,7 +3421,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">planning</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/pomcp/lesson.md">POMCP</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a></p>
 </article>
@@ -3436,7 +3445,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a> <a href="lessons/point-based-value-iteration/lesson.md">Point-Based Value Iteration</a> <a href="lessons/monte-carlo-tree-search/lesson.md">Monte Carlo Tree Search</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -3500,31 +3509,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">expected-value</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a> <a href="lessons/pomdp/lesson.md">Partially Observable MDP</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/pomcp/lesson.md">POMCP</a> <a href="lessons/imperfect-information-search/lesson.md">Imperfect Information Search</a> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/reinforcement-learning-basics/lesson.md">Reinforcement Learning Basics</a></h3>
-<code class="lesson-id">reinforcement-learning-basics</code>
-</div>
-<p class="lesson-description">MDP의 policy evaluation, value iteration, Q-value를 contest 모델링 수준에서 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">probability</span>
-<span class="tag">reinforcement-learning</span>
-<span class="tag">mdp</span>
-<span class="tag">value-iteration</span>
-<span class="tag">policy</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/stochastic-shortest-path/lesson.md">Stochastic Shortest Path</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a> <a href="lessons/pomcp/lesson.md">POMCP</a> <a href="lessons/point-based-value-iteration/lesson.md">Point-Based Value Iteration</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -3547,28 +3534,6 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/black-box-linear-algebra/lesson.md">Black-Box Linear Algebra</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/matrix-tree-theorem-applications/lesson.md">Matrix-Tree Theorem Applications</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/general-matching/lesson.md">General Matching</a> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/stochastic-shortest-path/lesson.md">Stochastic Shortest Path</a></h3>
-<code class="lesson-id">stochastic-shortest-path</code>
-</div>
-<p class="lesson-description">absorbing 목표 상태까지의 기대 비용을 Bellman equation, value iteration, linear equation 관점으로 풉니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">probability</span>
-<span class="tag">mdp</span>
-<span class="tag">stochastic-shortest-path</span>
-<span class="tag">expected-value</span>
-<span class="tag">bellman-equation</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/markov-decision-process/lesson.md">Markov Decision Process</a> <a href="lessons/reinforcement-learning-basics/lesson.md">Reinforcement Learning Basics</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a></p>
 </article>
 </div>
 </section>

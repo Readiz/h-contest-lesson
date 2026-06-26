@@ -2315,7 +2315,7 @@
       ],
       "nextLessons": [
         "game-theory-grundy",
-        "markov-decision-process"
+        "stochastic-decision-process"
       ],
       "relatedLessons": [
         "matrix-exponentiation",
@@ -2408,7 +2408,7 @@
         "heuristic"
       ],
       "nextLessons": [
-        "markov-decision-process",
+        "stochastic-decision-process",
         "imperfect-information-search"
       ],
       "relatedLessons": [
@@ -3403,37 +3403,87 @@
       "pages": []
     },
     {
-      "lessonId": "markov-decision-process",
-      "title": "Markov Decision Process",
-      "description": "상태, 행동, 확률 전이, 보상을 가진 의사결정 모델에서 Bellman 최적식과 value iteration을 익힙니다.",
-      "summary": "확률 전이와 선택이 함께 있는 문제를 MDP로 모델링하고 finite horizon DP, value iteration, policy 저장 기준을 다루는 확률적 전략 레슨",
+      "lessonId": "stochastic-decision-process",
+      "title": "Stochastic Decision Process",
+      "description": "MDP, reinforcement learning basics, stochastic shortest path를 Bellman 식 기반 확률적 의사결정 허브로 묶어 모델 차이와 구현 선택 기준을 정리합니다.",
+      "summary": "finite horizon, discounted value iteration, policy evaluation, absorbing stochastic shortest path, exact model과 sampling 기반 RL의 경계를 한 흐름에서 비교하는 확률적 의사결정 허브입니다.",
       "order": 114,
       "folderId": "math",
-      "tags": [
-        "probability",
-        "expected-value",
-        "mdp",
-        "value-iteration",
-        "policy",
-        "practice"
-      ],
       "level": "advanced",
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 110,
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "stochastic-decision-process",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
       "prerequisites": [
         "probability-expected-value",
-        "monte-carlo-tree-search",
+        "dynamic-programming",
         "minimax-alpha-beta"
       ],
       "nextLessons": [
-        "imperfect-information-search",
-        "stochastic-shortest-path",
-        "pomdp"
+        "pomdp",
+        "bayesian-bandits",
+        "imperfect-information-search"
       ],
       "relatedLessons": [
-        "game-theory-grundy",
-        "convex-dp-modeling"
+        "monte-carlo-tree-search",
+        "sparse-linear-systems",
+        "game-theory-applications"
       ],
-      "pages": []
+      "tags": [
+        "probability",
+        "mdp",
+        "reinforcement-learning",
+        "value-iteration",
+        "stochastic-shortest-path",
+        "practice"
+      ],
+      "pages": [
+        {
+          "pageId": "finite-horizon-mdp",
+          "title": "Finite Horizon MDP",
+          "description": "남은 턴 수가 정해진 MDP를 정확한 layer DP로 풉니다.",
+          "order": 10,
+          "file": "pages/finite-horizon-mdp.md"
+        },
+        {
+          "pageId": "discounted-value-iteration",
+          "title": "Discounted Value Iteration",
+          "description": "discount factor가 있는 무한 horizon MDP의 Bellman 반복과 오차 기준을 다룹니다.",
+          "order": 20,
+          "file": "pages/discounted-value-iteration.md"
+        },
+        {
+          "pageId": "policy-evaluation-and-improvement",
+          "title": "Policy Evaluation and Improvement",
+          "description": "고정 policy 평가, 선형 방정식, policy improvement를 구분합니다.",
+          "order": 30,
+          "file": "pages/policy-evaluation-and-improvement.md"
+        },
+        {
+          "pageId": "stochastic-shortest-path",
+          "title": "Stochastic Shortest Path",
+          "description": "absorbing goal까지의 기대 비용과 proper policy 조건을 다룹니다.",
+          "order": 40,
+          "file": "pages/stochastic-shortest-path.md"
+        },
+        {
+          "pageId": "exact-model-vs-sampling",
+          "title": "Exact Model vs Sampling",
+          "description": "전이표가 주어진 MDP DP와 sample 기반 reinforcement learning을 구분합니다.",
+          "order": 50,
+          "file": "pages/exact-model-vs-sampling.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "확률적 의사결정 모델을 하나의 흐름으로 연습합니다.",
+          "order": 60,
+          "file": "pages/practice-set.md"
+        }
+      ]
     },
     {
       "lessonId": "imperfect-information-search",
@@ -3455,7 +3505,7 @@
       "prerequisites": [
         "minimax-alpha-beta",
         "monte-carlo-tree-search",
-        "markov-decision-process"
+        "stochastic-decision-process"
       ],
       "nextLessons": [
         "pomdp"
@@ -4190,7 +4240,7 @@
       "level": "advanced",
       "estimatedMinutes": 60,
       "prerequisites": [
-        "markov-decision-process",
+        "stochastic-decision-process",
         "imperfect-information-search",
         "probability-expected-value"
       ],
@@ -4287,7 +4337,7 @@
       "prerequisites": [
         "game-theory-grundy",
         "minimax-alpha-beta",
-        "markov-decision-process"
+        "stochastic-decision-process"
       ],
       "nextLessons": [
         "point-based-value-iteration"
@@ -4347,7 +4397,7 @@
       "estimatedMinutes": 60,
       "prerequisites": [
         "pomdp",
-        "markov-decision-process",
+        "stochastic-decision-process",
         "monte-carlo-tree-search"
       ],
       "nextLessons": [
@@ -4509,7 +4559,7 @@
       "relatedLessons": [
         "imperfect-information-search",
         "game-theory-applications",
-        "markov-decision-process"
+        "stochastic-decision-process"
       ],
       "pages": []
     },
@@ -4660,7 +4710,7 @@
       "estimatedMinutes": 55,
       "prerequisites": [
         "probability-expected-value",
-        "markov-decision-process",
+        "stochastic-decision-process",
         "pomdp"
       ],
       "nextLessons": [],
@@ -4761,38 +4811,6 @@
         "voronoi-delaunay",
         "power-diagram",
         "robust-delaunay"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "reinforcement-learning-basics",
-      "title": "Reinforcement Learning Basics",
-      "description": "MDP의 policy evaluation, value iteration, Q-value를 contest 모델링 수준에서 정리합니다.",
-      "summary": "Bellman equation, value iteration, policy improvement, Q-value, MDP와 POMDP 구분을 다루는 강화학습 기초 레슨",
-      "order": 160,
-      "folderId": "math",
-      "tags": [
-        "probability",
-        "reinforcement-learning",
-        "mdp",
-        "value-iteration",
-        "policy",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "markov-decision-process",
-        "probability-expected-value",
-        "game-theory-applications"
-      ],
-      "nextLessons": [
-        "stochastic-shortest-path"
-      ],
-      "relatedLessons": [
-        "bayesian-bandits",
-        "pomcp",
-        "point-based-value-iteration"
       ],
       "pages": []
     },
@@ -4953,7 +4971,7 @@
       "relatedLessons": [
         "testing-and-stress",
         "heuristic",
-        "reinforcement-learning-basics"
+        "stochastic-decision-process"
       ],
       "pages": []
     },
@@ -5030,36 +5048,6 @@
       "audience": "advanced-contest"
     },
     {
-      "lessonId": "stochastic-shortest-path",
-      "title": "Stochastic Shortest Path",
-      "description": "absorbing 목표 상태까지의 기대 비용을 Bellman equation, value iteration, linear equation 관점으로 풉니다.",
-      "summary": "확률 전이와 terminal hitting cost가 있는 MDP 특수형에서 proper policy, expected cost, value iteration, linear solve를 다루는 레슨",
-      "order": 169,
-      "folderId": "math",
-      "tags": [
-        "probability",
-        "mdp",
-        "stochastic-shortest-path",
-        "expected-value",
-        "bellman-equation",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "markov-decision-process",
-        "reinforcement-learning-basics",
-        "probability-expected-value"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "sparse-linear-systems",
-        "bayesian-bandits",
-        "dijkstra"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "dual-averaging",
       "title": "Dual Averaging",
       "description": "online convex optimization에서 누적 gradient와 regularizer로 decision을 갱신하는 dual averaging 패턴을 익힙니다.",
@@ -5084,7 +5072,7 @@
       "nextLessons": [],
       "relatedLessons": [
         "parametric-optimization",
-        "reinforcement-learning-basics",
+        "stochastic-decision-process",
         "probability-expected-value"
       ],
       "pages": []
