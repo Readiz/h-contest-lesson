@@ -7,8 +7,9 @@
 - `alien-optimization`, `parametric-dp`, `fractional-programming-dp`, `lagrangian-relaxation-patterns`를 `parametric-optimization` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `markov-decision-process`, `reinforcement-learning-basics`, `stochastic-shortest-path`를 `stochastic-decision-process` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `online-convex-optimization`, `dual-averaging`을 `online-convex-optimization` 허브와 하위 페이지로 재배치했습니다. 기존 `dual-averaging` 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
+- `matroid-intersection`, `matroid-parity`, `matroid-union`을 `matroid-algorithms` 허브와 하위 reference 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `lessonType`, `status`, `practiceStatus`, `implementationStatus`, `audience`, `seriesId`, `parentLessonId` metadata 검증 기반을 추가했습니다.
-- `matroid-intersection`, `matroid-parity`, `matroid-union`은 일반 구현 레슨이 아니라 `reference` 성격으로 표시했습니다.
+- `matroid-algorithms` 허브는 일반 구현 레슨이 아니라 `reference` 성격으로 표시했습니다.
 
 ## 2026-06 공개 레슨 이동 기록
 

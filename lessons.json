@@ -1111,7 +1111,7 @@
       ],
       "nextLessons": [
         "directed-mst",
-        "matroid-intersection"
+        "matroid-algorithms"
       ],
       "relatedLessons": [
         "matching-cover-duality",
@@ -3108,7 +3108,7 @@
         "combinatorics-ncr"
       ],
       "nextLessons": [
-        "matroid-intersection",
+        "matroid-algorithms",
         "linear-algebra-applications"
       ],
       "relatedLessons": [
@@ -4564,34 +4564,82 @@
       "pages": []
     },
     {
-      "lessonId": "matroid-intersection",
-      "title": "Matroid Intersection",
-      "description": "두 matroid 독립성 조건을 동시에 만족하는 최대 집합을 exchange graph와 augmenting path로 찾는 모델을 익힙니다.",
-      "summary": "graphic, partition, linear matroid의 공통 독립 집합을 exchange graph로 키우는 matroid intersection 모델링 심화 레슨",
+      "lessonId": "matroid-algorithms",
+      "title": "Matroid Algorithms",
+      "description": "Matroid greedy, exchange, intersection, union, parity를 구현 완성도별 reference 트랙으로 정리합니다.",
+      "summary": "matroid 공리와 greedy, exchange graph, intersection/union/parity reference, contest 구현 경계를 다루는 조합 최적화 허브",
       "order": 151,
       "folderId": "graphs",
       "tags": [
         "graph",
         "matroid",
-        "matroid-intersection",
-        "augmenting-path",
-        "independence",
+        "combinatorial-optimization",
+        "exchange",
+        "matching",
+        "linear-algebra",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 75,
+      "estimatedMinutes": 120,
       "prerequisites": [
         "general-matching",
         "weighted-matching",
-        "linear-basis-applications"
+        "linear-basis-applications",
+        "proof-and-invariants"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "randomized-determinant",
+        "sparse-linear-systems"
+      ],
       "relatedLessons": [
+        "linear-algebra-applications",
         "max-flow-min-cut",
-        "proof-and-invariants",
-        "linear-algebra-applications"
+        "proof-and-invariants"
       ],
-      "pages": [],
+      "pages": [
+        {
+          "pageId": "matroid-basics-and-exchange",
+          "title": "Matroid Basics and Exchange",
+          "description": "matroid 독립성 공리, greedy 정당성, exchange 사고를 정리합니다.",
+          "order": 10,
+          "file": "pages/matroid-basics-and-exchange.md"
+        },
+        {
+          "pageId": "matroid-intersection",
+          "title": "Matroid Intersection",
+          "description": "두 matroid 독립성 조건을 동시에 만족하는 exchange graph reference입니다.",
+          "order": 20,
+          "file": "pages/matroid-intersection.md"
+        },
+        {
+          "pageId": "matroid-union",
+          "title": "Matroid Union",
+          "description": "여러 matroid 독립 집합의 합과 layer exchange를 다루는 reference입니다.",
+          "order": 30,
+          "file": "pages/matroid-union.md"
+        },
+        {
+          "pageId": "matroid-parity",
+          "title": "Matroid Parity",
+          "description": "pair 단위 선택과 matroid 독립성을 결합하는 reference입니다.",
+          "order": 40,
+          "file": "pages/matroid-parity.md"
+        },
+        {
+          "pageId": "contest-boundaries",
+          "title": "Contest Boundaries",
+          "description": "일반 matroid 이론과 실제 대회 구현 가능성의 경계를 정리합니다.",
+          "order": 50,
+          "file": "pages/contest-boundaries.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Matroid 계열 모델 판독과 특수형 구현 가능성을 연습합니다.",
+          "order": 60,
+          "file": "pages/practice-set.md"
+        }
+      ],
       "status": "published",
       "lessonType": "reference",
       "seriesId": "matroid-algorithms",
@@ -4656,7 +4704,7 @@
       "nextLessons": [],
       "relatedLessons": [
         "generating-function-modeling",
-        "matroid-intersection",
+        "matroid-algorithms",
         "matrix-exponentiation"
       ],
       "pages": []
@@ -4858,45 +4906,6 @@
       "pages": []
     },
     {
-      "lessonId": "matroid-parity",
-      "title": "Matroid Parity",
-      "description": "짝으로 묶인 원소를 선택하면서 matroid 독립성을 유지하는 pair 선택 모델을 matching 일반화 관점으로 익힙니다.",
-      "summary": "pair 단위 선택, underlying matroid 독립성, linear matroid parity, matching과의 차이를 정리하는 조합 최적화 심화 레슨",
-      "order": 161,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "matroid",
-        "matching",
-        "linear-algebra",
-        "combinatorial-optimization",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "matroid-intersection",
-        "general-matching",
-        "linear-basis-applications"
-      ],
-      "nextLessons": [
-        "matroid-union",
-        "randomized-determinant"
-      ],
-      "relatedLessons": [
-        "weighted-matching",
-        "proof-and-invariants",
-        "linear-algebra-applications"
-      ],
-      "pages": [],
-      "status": "published",
-      "lessonType": "reference",
-      "seriesId": "matroid-algorithms",
-      "practiceStatus": "todo",
-      "implementationStatus": "concept-only",
-      "audience": "research-reference"
-    },
-    {
       "lessonId": "randomized-determinant",
       "title": "Randomized Determinant",
       "description": "determinant polynomial에 무작위 값을 대입해 rank, matching 존재성, polynomial identity를 확률적으로 판정합니다.",
@@ -5017,42 +5026,6 @@
         "stochastic-decision-process"
       ],
       "pages": []
-    },
-    {
-      "lessonId": "matroid-union",
-      "title": "Matroid Union",
-      "description": "여러 matroid 독립 집합의 합으로 원소를 덮거나 분해하는 union rank와 layer exchange 관점을 익힙니다.",
-      "summary": "partition, graphic, linear matroid를 여러 layer의 독립 집합으로 합치는 matroid union과 covering 모델링 레슨",
-      "order": 167,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "matroid",
-        "matroid-union",
-        "exchange",
-        "combinatorial-optimization",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "matroid-intersection",
-        "matroid-parity",
-        "proof-and-invariants"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "general-matching",
-        "linear-algebra-applications",
-        "randomized-determinant"
-      ],
-      "pages": [],
-      "status": "published",
-      "lessonType": "reference",
-      "seriesId": "matroid-algorithms",
-      "practiceStatus": "todo",
-      "implementationStatus": "partial",
-      "audience": "research-reference"
     },
     {
       "lessonId": "planar-graph-duality",
