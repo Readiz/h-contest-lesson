@@ -2862,42 +2862,116 @@
       "pages": []
     },
     {
-      "lessonId": "gomory-hu-tree",
-      "title": "Gomory-Hu Tree",
-      "description": "무향 그래프의 모든 쌍 min cut 값을 N-1번의 min-cut 계산으로 tree path minimum 질의로 압축합니다.",
-      "summary": "cut-equivalent tree, source side 기반 parent 재배치, all-pairs min cut query와 max-flow 초기화 주의점을 다루는 그래프 심화 레슨",
+      "lessonId": "graph-cut-structures",
+      "title": "Graph Cut Structures",
+      "description": "s-t min cut 이후의 global min cut, Gomory-Hu Tree, sparsification, randomized contraction, cactus cut family를 하나의 흐름으로 정리합니다.",
+      "summary": "cut model selection, Stoer-Wagner, Karger contraction, Gomory-Hu Tree, sparse certificate, cactus representation을 묶는 그래프 cut 허브",
       "order": 97,
       "folderId": "graphs",
       "tags": [
-        "graphs",
+        "graph",
         "min-cut",
+        "global-min-cut",
         "gomory-hu-tree",
-        "max-flow",
-        "cut-equivalent-tree",
+        "cactus",
+        "sparsification",
+        "randomized",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 65,
+      "estimatedMinutes": 210,
       "prerequisites": [
         "max-flow-min-cut",
-        "flow-with-lower-bound"
-      ],
-      "nextLessons": [
+        "flow-with-lower-bound",
         "dynamic-mst"
       ],
+      "nextLessons": [
+        "dynamic-connectivity",
+        "planar-graph-duality"
+      ],
       "relatedLessons": [
-        "min-cost-flow",
-        "dynamic-connectivity"
+        "proof-and-invariants",
+        "dynamic-mst",
+        "planar-graph-duality"
       ],
       "pages": [
         {
-          "pageId": "construct-trace",
-          "title": "4정점 construction trace",
-          "description": "작은 무향 그래프에서 min-cut source side와 parent 재배치가 cut tree로 확정되는 과정을 추적합니다.",
-          "order": 1,
-          "file": "pages/construct-trace.md"
+          "pageId": "cut-model-map",
+          "title": "Cut Model Map",
+          "description": "s-t, global, all-pairs, threshold, cut family 모델을 먼저 구분합니다.",
+          "order": 10,
+          "file": "pages/cut-model-map.md"
+        },
+        {
+          "pageId": "global-min-cut",
+          "title": "Global Min Cut",
+          "description": "무향 그래프의 전체 minimum cut과 Stoer-Wagner 알고리즘입니다.",
+          "order": 20,
+          "file": "pages/global-min-cut.md"
+        },
+        {
+          "pageId": "randomized-min-cut",
+          "title": "Randomized Min Cut",
+          "description": "Karger contraction과 반복 확률 증폭으로 global min cut을 찾는 randomized 접근입니다.",
+          "order": 30,
+          "file": "pages/randomized-min-cut.md"
+        },
+        {
+          "pageId": "gomory-hu-tree",
+          "title": "Gomory-Hu Tree",
+          "description": "모든 pair min cut 값을 cut-equivalent tree로 압축합니다.",
+          "order": 40,
+          "file": "pages/gomory-hu-tree.md"
+        },
+        {
+          "pageId": "gomory-hu-tree-construct-trace",
+          "title": "Gomory-Hu Construction Trace",
+          "description": "4정점 예시로 parent 갱신과 reachable side를 추적합니다.",
+          "order": 50,
+          "file": "pages/gomory-hu-tree-construct-trace.md"
+        },
+        {
+          "pageId": "cut-sparsification",
+          "title": "Cut Sparsification",
+          "description": "작은 cut과 edge connectivity를 보존하는 sparse certificate 관점입니다.",
+          "order": 60,
+          "file": "pages/cut-sparsification.md"
+        },
+        {
+          "pageId": "global-min-cut-applications",
+          "title": "Global Min Cut Applications",
+          "description": "partition 복원, pair cut query, edge criticality 같은 global cut 응용입니다.",
+          "order": 70,
+          "file": "pages/global-min-cut-applications.md"
+        },
+        {
+          "pageId": "cactus-representation",
+          "title": "Cactus Representation",
+          "description": "cactus graph와 min cut family 표현을 구분합니다.",
+          "order": 80,
+          "file": "pages/cactus-representation.md"
+        },
+        {
+          "pageId": "cut-cactus-applications",
+          "title": "Cut Cactus Applications",
+          "description": "global min cut family를 cactus representation으로 압축하고 질의에 활용합니다.",
+          "order": 90,
+          "file": "pages/cut-cactus-applications.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Graph Cut Structures 계열을 하나의 흐름으로 연습합니다.",
+          "order": 100,
+          "file": "pages/practice-set.md"
         }
-      ]
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "graph-cut-structures",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "euler-tour-tree",
@@ -3042,10 +3116,10 @@
       "prerequisites": [
         "graph-tree-basics",
         "dynamic-connectivity",
-        "gomory-hu-tree"
+        "graph-cut-structures"
       ],
       "nextLessons": [
-        "global-min-cut"
+        "graph-cut-structures"
       ],
       "relatedLessons": [
         "euler-tour-tree",
@@ -3176,39 +3250,6 @@
       "relatedLessons": [
         "border-automaton",
         "runs-periodicity"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "global-min-cut",
-      "title": "Global Min Cut",
-      "description": "무향 가중 그래프 전체에서 가장 작은 cut을 Stoer-Wagner 알고리즘과 cut 모델링 관점으로 다룹니다.",
-      "summary": "특정 s-t가 아닌 전체 graph의 minimum cut을 정의하고 Stoer-Wagner contraction으로 계산하는 그래프 심화 레슨",
-      "order": 107,
-      "folderId": "graphs",
-      "tags": [
-        "graphs",
-        "min-cut",
-        "stoer-wagner",
-        "connectivity",
-        "undirected-graph",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "max-flow-min-cut",
-        "gomory-hu-tree",
-        "dynamic-mst"
-      ],
-      "nextLessons": [
-        "cut-sparsification",
-        "randomized-min-cut",
-        "cut-cactus-applications"
-      ],
-      "relatedLessons": [
-        "flow-with-lower-bound",
-        "directed-mst"
       ],
       "pages": []
     },
@@ -3577,69 +3618,6 @@
       "pages": []
     },
     {
-      "lessonId": "cut-sparsification",
-      "title": "Cut Sparsification",
-      "description": "작은 cut이나 edge connectivity를 보존하는 sparse certificate로 dense graph의 cut 계산을 줄입니다.",
-      "summary": "spanning forest layer, k-certificate, threshold cut preservation을 이용해 min cut 전처리와 connectivity 판정을 줄이는 그래프 심화 레슨",
-      "order": 118,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "min-cut",
-        "sparsification",
-        "connectivity",
-        "certificate",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "global-min-cut",
-        "gomory-hu-tree",
-        "max-flow-min-cut"
-      ],
-      "nextLessons": [
-        "global-min-cut-applications",
-        "randomized-min-cut"
-      ],
-      "relatedLessons": [
-        "dynamic-mst",
-        "rollback-techniques"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "global-min-cut-applications",
-      "title": "Global Min Cut Applications",
-      "description": "Global Min Cut 값을 넘어서 partition 복원, 여러 minimum cut, pair cut query와 edge criticality를 모델링합니다.",
-      "summary": "Stoer-Wagner partition tracking, Gomory-Hu Tree 해석, cactus-style min cut family와 edge sensitivity를 연결하는 그래프 응용 레슨",
-      "order": 119,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "global-min-cut",
-        "gomory-hu-tree",
-        "cactus",
-        "cut-query",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "global-min-cut",
-        "gomory-hu-tree",
-        "cut-sparsification"
-      ],
-      "nextLessons": [
-        "cactus-representation"
-      ],
-      "relatedLessons": [
-        "max-flow-min-cut",
-        "dynamic-mst"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "retroactive-data-structures",
       "title": "Retroactive Data Structures",
       "description": "과거 operation 삽입과 삭제를 시간축 interval로 모델링하고 rollback/persistence와의 경계를 익힙니다.",
@@ -3827,37 +3805,6 @@
       "pages": []
     },
     {
-      "lessonId": "cactus-representation",
-      "title": "Cactus Representation",
-      "description": "Cactus graph와 min cut family 표현을 구분하고 cycle block을 tree처럼 다루는 모델링을 익힙니다.",
-      "summary": "edge-disjoint cycle 구조, block tree, global min cut family를 cactus representation 관점으로 해석하는 그래프 심화 레슨",
-      "order": 127,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "cactus",
-        "min-cut",
-        "biconnected-component",
-        "block-tree",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "global-min-cut-applications",
-        "cut-sparsification",
-        "scc-2sat"
-      ],
-      "nextLessons": [
-        "cut-cactus-applications"
-      ],
-      "relatedLessons": [
-        "gomory-hu-tree",
-        "dynamic-mst"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "persistent-queue-stack",
       "title": "Persistent Queue and Stack",
       "description": "과거 version을 보존하는 stack, queue, deque 모델을 root pointer와 persistent sequence 관점으로 정리합니다.",
@@ -3980,35 +3927,6 @@
       "relatedLessons": [
         "suffix-automaton-applications",
         "palindrome-range-dp"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "randomized-min-cut",
-      "title": "Randomized Min Cut",
-      "description": "Karger contraction과 반복 확률 증폭으로 무향 global min cut을 찾는 randomized graph 기법을 익힙니다.",
-      "summary": "무작위 edge contraction, min cut 보존 확률, 반복 증폭, Stoer-Wagner와의 선택 기준을 다루는 그래프 심화 레슨",
-      "order": 132,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "min-cut",
-        "randomized",
-        "karger",
-        "contraction",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "global-min-cut",
-        "cut-sparsification",
-        "global-min-cut-applications"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "gomory-hu-tree",
-        "cactus-representation"
       ],
       "pages": []
     },
@@ -4498,36 +4416,6 @@
         "inversion-geometry",
         "circle-arrangement",
         "shape-distance-modeling"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "cut-cactus-applications",
-      "title": "Cut Cactus Applications",
-      "description": "global min cut family를 cactus representation으로 압축하고 query, criticality, partition 모델링에 활용하는 기준을 정리합니다.",
-      "summary": "global min cut family, cactus cycle block, edge criticality, Gomory-Hu Tree와의 차이를 다루는 graph cut 응용 레슨",
-      "order": 149,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "min-cut",
-        "cactus",
-        "gomory-hu-tree",
-        "connectivity",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "cactus-representation",
-        "global-min-cut",
-        "gomory-hu-tree"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "cut-sparsification",
-        "randomized-min-cut",
-        "global-min-cut-applications"
       ],
       "pages": []
     },
@@ -5054,7 +4942,7 @@
       "relatedLessons": [
         "sweep-line-geometry",
         "matrix-tree-theorem-applications",
-        "global-min-cut"
+        "graph-cut-structures"
       ],
       "pages": [
         {

@@ -1057,27 +1057,39 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a></h3>
-<code class="lesson-id">gomory-hu-tree</code>
+<h3><a href="lessons/graph-cut-structures/lesson.md">Graph Cut Structures</a></h3>
+<code class="lesson-id">graph-cut-structures</code>
 </div>
-<p class="lesson-description">무향 그래프의 모든 쌍 min cut 값을 N-1번의 min-cut 계산으로 tree path minimum 질의로 압축합니다.</p>
+<p class="lesson-description">s-t min cut 이후의 global min cut, Gomory-Hu Tree, sparsification, randomized contraction, cactus cut family를 하나의 흐름으로 정리합니다.</p>
 <div class="meta-row">
 <span class="badge level">심화</span>
-<span class="badge time">65분</span>
+<span class="badge time">210분</span>
+<span class="badge">overview</span>
 </div>
 <div class="tag-list">
-<span class="tag">graphs</span>
+<span class="tag">graph</span>
 <span class="tag">min-cut</span>
+<span class="tag">global-min-cut</span>
 <span class="tag">gomory-hu-tree</span>
-<span class="tag">max-flow</span>
-<span class="tag">cut-equivalent-tree</span>
+<span class="tag">cactus</span>
+<span class="tag">sparsification</span>
+<span class="tag">randomized</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/planar-graph-duality/lesson.md">Planar Graph Duality</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a> <a href="lessons/planar-graph-duality/lesson.md">Planar Graph Duality</a></p>
 <ul class="page-list">
-<li><a href="lessons/gomory-hu-tree/pages/construct-trace.md">4정점 construction trace</a> <code>construct-trace</code></li>
+<li><a href="lessons/graph-cut-structures/pages/cut-model-map.md">Cut Model Map</a> <code>cut-model-map</code></li>
+<li><a href="lessons/graph-cut-structures/pages/global-min-cut.md">Global Min Cut</a> <code>global-min-cut</code></li>
+<li><a href="lessons/graph-cut-structures/pages/randomized-min-cut.md">Randomized Min Cut</a> <code>randomized-min-cut</code></li>
+<li><a href="lessons/graph-cut-structures/pages/gomory-hu-tree.md">Gomory-Hu Tree</a> <code>gomory-hu-tree</code></li>
+<li><a href="lessons/graph-cut-structures/pages/gomory-hu-tree-construct-trace.md">Gomory-Hu Construction Trace</a> <code>gomory-hu-tree-construct-trace</code></li>
+<li><a href="lessons/graph-cut-structures/pages/cut-sparsification.md">Cut Sparsification</a> <code>cut-sparsification</code></li>
+<li><a href="lessons/graph-cut-structures/pages/global-min-cut-applications.md">Global Min Cut Applications</a> <code>global-min-cut-applications</code></li>
+<li><a href="lessons/graph-cut-structures/pages/cactus-representation.md">Cactus Representation</a> <code>cactus-representation</code></li>
+<li><a href="lessons/graph-cut-structures/pages/cut-cactus-applications.md">Cut Cactus Applications</a> <code>cut-cactus-applications</code></li>
+<li><a href="lessons/graph-cut-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
 </ul>
 </article>
 <article class="lesson-card">
@@ -1098,141 +1110,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">offline-query</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/global-min-cut/lesson.md">Global Min Cut</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/dynamic-connectivity/lesson.md">Dynamic Connectivity</a> <a href="lessons/graph-cut-structures/lesson.md">Graph Cut Structures</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/graph-cut-structures/lesson.md">Graph Cut Structures</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/euler-tour-tree/lesson.md">Euler Tour Tree</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a> <a href="lessons/directed-mst/lesson.md">Directed MST</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/global-min-cut/lesson.md">Global Min Cut</a></h3>
-<code class="lesson-id">global-min-cut</code>
-</div>
-<p class="lesson-description">무향 가중 그래프 전체에서 가장 작은 cut을 Stoer-Wagner 알고리즘과 cut 모델링 관점으로 다룹니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-</div>
-<div class="tag-list">
-<span class="tag">graphs</span>
-<span class="tag">min-cut</span>
-<span class="tag">stoer-wagner</span>
-<span class="tag">connectivity</span>
-<span class="tag">undirected-graph</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/cut-sparsification/lesson.md">Cut Sparsification</a> <a href="lessons/randomized-min-cut/lesson.md">Randomized Min Cut</a> <a href="lessons/cut-cactus-applications/lesson.md">Cut Cactus Applications</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a> <a href="lessons/directed-mst/lesson.md">Directed MST</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/cut-sparsification/lesson.md">Cut Sparsification</a></h3>
-<code class="lesson-id">cut-sparsification</code>
-</div>
-<p class="lesson-description">작은 cut이나 edge connectivity를 보존하는 sparse certificate로 dense graph의 cut 계산을 줄입니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-</div>
-<div class="tag-list">
-<span class="tag">graph</span>
-<span class="tag">min-cut</span>
-<span class="tag">sparsification</span>
-<span class="tag">connectivity</span>
-<span class="tag">certificate</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/global-min-cut/lesson.md">Global Min Cut</a> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/global-min-cut-applications/lesson.md">Global Min Cut Applications</a> <a href="lessons/randomized-min-cut/lesson.md">Randomized Min Cut</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a> <a href="lessons/rollback-techniques/lesson.md">Rollback Techniques</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/global-min-cut-applications/lesson.md">Global Min Cut Applications</a></h3>
-<code class="lesson-id">global-min-cut-applications</code>
-</div>
-<p class="lesson-description">Global Min Cut 값을 넘어서 partition 복원, 여러 minimum cut, pair cut query와 edge criticality를 모델링합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">graph</span>
-<span class="tag">global-min-cut</span>
-<span class="tag">gomory-hu-tree</span>
-<span class="tag">cactus</span>
-<span class="tag">cut-query</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/global-min-cut/lesson.md">Global Min Cut</a> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a> <a href="lessons/cut-sparsification/lesson.md">Cut Sparsification</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/cactus-representation/lesson.md">Cactus Representation</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/cactus-representation/lesson.md">Cactus Representation</a></h3>
-<code class="lesson-id">cactus-representation</code>
-</div>
-<p class="lesson-description">Cactus graph와 min cut family 표현을 구분하고 cycle block을 tree처럼 다루는 모델링을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">graph</span>
-<span class="tag">cactus</span>
-<span class="tag">min-cut</span>
-<span class="tag">biconnected-component</span>
-<span class="tag">block-tree</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/global-min-cut-applications/lesson.md">Global Min Cut Applications</a> <a href="lessons/cut-sparsification/lesson.md">Cut Sparsification</a> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/cut-cactus-applications/lesson.md">Cut Cactus Applications</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a> <a href="lessons/dynamic-mst/lesson.md">Dynamic MST</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/randomized-min-cut/lesson.md">Randomized Min Cut</a></h3>
-<code class="lesson-id">randomized-min-cut</code>
-</div>
-<p class="lesson-description">Karger contraction과 반복 확률 증폭으로 무향 global min cut을 찾는 randomized graph 기법을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-</div>
-<div class="tag-list">
-<span class="tag">graph</span>
-<span class="tag">min-cut</span>
-<span class="tag">randomized</span>
-<span class="tag">karger</span>
-<span class="tag">contraction</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/global-min-cut/lesson.md">Global Min Cut</a> <a href="lessons/cut-sparsification/lesson.md">Cut Sparsification</a> <a href="lessons/global-min-cut-applications/lesson.md">Global Min Cut Applications</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a> <a href="lessons/cactus-representation/lesson.md">Cactus Representation</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/cut-cactus-applications/lesson.md">Cut Cactus Applications</a></h3>
-<code class="lesson-id">cut-cactus-applications</code>
-</div>
-<p class="lesson-description">global min cut family를 cactus representation으로 압축하고 query, criticality, partition 모델링에 활용하는 기준을 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">graph</span>
-<span class="tag">min-cut</span>
-<span class="tag">cactus</span>
-<span class="tag">gomory-hu-tree</span>
-<span class="tag">connectivity</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/cactus-representation/lesson.md">Cactus Representation</a> <a href="lessons/global-min-cut/lesson.md">Global Min Cut</a> <a href="lessons/gomory-hu-tree/lesson.md">Gomory-Hu Tree</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/cut-sparsification/lesson.md">Cut Sparsification</a> <a href="lessons/randomized-min-cut/lesson.md">Randomized Min Cut</a> <a href="lessons/global-min-cut-applications/lesson.md">Global Min Cut Applications</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1332,7 +1212,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/matrix-tree-theorem-applications/lesson.md">Matrix-Tree Theorem Applications</a> <a href="lessons/global-min-cut/lesson.md">Global Min Cut</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/matrix-tree-theorem-applications/lesson.md">Matrix-Tree Theorem Applications</a> <a href="lessons/graph-cut-structures/lesson.md">Graph Cut Structures</a></p>
 <ul class="page-list">
 <li><a href="lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md">Half-edge and Face Traversal</a> <code>half-edge-and-face-traversal</code></li>
 <li><a href="lessons/planar-graph-duality/pages/dual-graph-construction.md">Dual Graph Construction</a> <code>dual-graph-construction</code></li>
