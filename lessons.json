@@ -4754,8 +4754,8 @@
     {
       "lessonId": "online-convex-optimization",
       "title": "Online Convex Optimization",
-      "description": "입력이 순차적으로 공개되는 convex decision 문제를 regret, projection, online gradient descent 관점으로 풉니다.",
-      "summary": "regret minimization, projected gradient descent, mirror descent, feedback model 구분을 다루는 online optimization 레슨",
+      "description": "regret minimization, projected gradient descent, mirror descent, dual averaging을 하나의 online optimization 흐름으로 정리합니다.",
+      "summary": "online decision, regret, OGD, mirror descent, dual averaging, full-information/bandit feedback 구분을 다루는 온라인 최적화 허브",
       "order": 157,
       "folderId": "strategy",
       "tags": [
@@ -4763,26 +4763,69 @@
         "online-learning",
         "convex",
         "regret",
-        "gradient-descent",
+        "mirror-descent",
+        "dual-averaging",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 100,
       "prerequisites": [
         "convex-dp-modeling",
         "convex-hull-trick-variants",
         "probability-expected-value"
       ],
       "nextLessons": [
-        "parametric-optimization",
-        "dual-averaging"
+        "bayesian-bandits",
+        "online-planning-evaluation"
       ],
       "relatedLessons": [
         "parametric-optimization",
-        "bayesian-bandits",
+        "stochastic-decision-process",
         "slope-trick"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "online-decision-and-regret",
+          "title": "Online Decision and Regret",
+          "description": "온라인 의사결정의 regret 정의와 projected gradient descent 기본형입니다.",
+          "order": 10,
+          "file": "pages/online-decision-and-regret.md"
+        },
+        {
+          "pageId": "mirror-descent-and-multiplicative-weights",
+          "title": "Mirror Descent and Multiplicative Weights",
+          "description": "simplex와 entropy regularizer에서 나오는 multiplicative weights update를 다룹니다.",
+          "order": 20,
+          "file": "pages/mirror-descent-and-multiplicative-weights.md"
+        },
+        {
+          "pageId": "dual-averaging",
+          "title": "Dual Averaging",
+          "description": "누적 gradient와 regularizer로 다음 decision을 고르는 dual averaging 패턴입니다.",
+          "order": 30,
+          "file": "pages/dual-averaging.md"
+        },
+        {
+          "pageId": "feedback-models",
+          "title": "Full-information and Bandit Feedback",
+          "description": "전체 loss를 보는 OCO와 선택 결과만 보는 bandit feedback을 구분합니다.",
+          "order": 40,
+          "file": "pages/feedback-models.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Online Convex Optimization 계열을 하나의 흐름으로 연습합니다.",
+          "order": 50,
+          "file": "pages/practice-set.md"
+        }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "online-convex-optimization",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "3d-convex-hull",
@@ -5046,36 +5089,6 @@
       "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
-    },
-    {
-      "lessonId": "dual-averaging",
-      "title": "Dual Averaging",
-      "description": "online convex optimization에서 누적 gradient와 regularizer로 decision을 갱신하는 dual averaging 패턴을 익힙니다.",
-      "summary": "cumulative gradient, entropy regularizer, simplex exponential update, learning rate, Lagrangian dual update 연결을 다루는 온라인 최적화 레슨",
-      "order": 170,
-      "folderId": "strategy",
-      "tags": [
-        "optimization",
-        "online-learning",
-        "dual-averaging",
-        "regularization",
-        "regret",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "online-convex-optimization",
-        "convex-dp-modeling",
-        "bayesian-bandits"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "parametric-optimization",
-        "stochastic-decision-process",
-        "probability-expected-value"
-      ],
-      "pages": []
     }
   ]
 }
