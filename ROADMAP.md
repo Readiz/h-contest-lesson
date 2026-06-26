@@ -16,6 +16,7 @@
 | 4 | `matroid-intersection`, `matroid-parity`, `matroid-union` | Matroid Algorithms 허브로 묶고 구현 완성도에 따라 reference/implementation을 구분 | 반영: `matroid-algorithms` |
 | 5 | `global-min-cut`, `gomory-hu-tree`, `cut-sparsification`, `global-min-cut-applications`, `cactus-representation`, `randomized-min-cut`, `cut-cactus-applications` | Graph Cut Structures 허브로 s-t/global/all-pairs/family cut 경로를 정리 | 반영: `graph-cut-structures` |
 | 6 | `persistent-segment-tree`, `persistent-lazy-segment-tree`, `persistent-union-find`, `persistent-queue-stack`, `persistent-sequence-queries` | Versioned Data Structures 허브로 persistence/rollback/retroactivity 경계와 구현별 선택 기준을 정리 | 반영: `versioned-data-structures` |
+| 7 | `offline-queries`, `rollback-techniques`, `dynamic-connectivity`, `offline-range-query-techniques`, `retroactive-data-structures` | Offline and Time-Axis Techniques 허브로 query reordering, rollback, time segment tree, retroactivity 경계를 정리 | 반영: `offline-time-axis-techniques` |
 
 ## 우선 추가할 주제
 

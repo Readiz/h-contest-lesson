@@ -1021,7 +1021,7 @@
         "sqrt-decomposition"
       ],
       "nextLessons": [
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "suffix-array-lcp",
@@ -1141,7 +1141,7 @@
         "greedy"
       ],
       "nextLessons": [
-        "dynamic-connectivity"
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "min-cost-flow",
@@ -1174,7 +1174,7 @@
         "versioned-data-structures",
         "dynamic-segment-tree",
         "tree-advanced",
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "fenwick-tree",
@@ -1236,13 +1236,11 @@
         "coordinate-compression"
       ],
       "nextLessons": [
-        "rollback-techniques",
-        "offline-range-query-techniques",
+        "offline-time-axis-techniques",
         "wavelet-tree"
       ],
       "relatedLessons": [
-        "retroactive-data-structures",
-        "dynamic-connectivity",
+        "offline-time-axis-techniques",
         "wavelet-matrix"
       ],
       "pages": [
@@ -1357,7 +1355,7 @@
       ],
       "nextLessons": [
         "wavelet-matrix",
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "segment-tree",
@@ -1388,7 +1386,7 @@
       ],
       "nextLessons": [
         "succinct-bitvector",
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "versioned-data-structures",
@@ -1418,7 +1416,7 @@
         "cpp-contest-basics"
       ],
       "nextLessons": [
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "sparse-table-rmq",
@@ -1479,12 +1477,12 @@
       ],
       "nextLessons": [
         "dynamic-segment-tree",
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "segment-tree",
         "versioned-data-structures",
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "pages": []
     },
@@ -2445,35 +2443,98 @@
       "pages": []
     },
     {
-      "lessonId": "offline-queries",
-      "title": "오프라인 쿼리: Mo, DSU Rollback, Parallel Binary Search",
-      "description": "질의를 재정렬하거나 되돌릴 수 있는 상태를 이용해 Mo's Algorithm, DSU Rollback, Parallel Binary Search를 익힙니다.",
-      "summary": "정적 구간 질의의 Mo's Algorithm, 시간 분기 처리를 위한 DSU rollback, 여러 답을 동시에 찾는 parallel binary search 정리",
+      "lessonId": "offline-time-axis-techniques",
+      "title": "Offline and Time-Axis Techniques",
+      "description": "Mo, offline sorting, parallel binary search, rollback, time segment tree, dynamic connectivity, retroactivity를 시간축 모델 선택 기준으로 묶습니다.",
+      "summary": "offline query reordering, answer search, rollback over time, dynamic connectivity, retroactive modeling을 하나의 시간축 문제군으로 정리하는 허브",
       "order": 84,
       "folderId": "data-structures",
       "tags": [
         "offline-queries",
-        "mos-algorithm",
-        "dsu-rollback",
+        "time-axis",
+        "mo-algorithm",
+        "rollback",
+        "dynamic-connectivity",
         "parallel-binary-search",
-        "data-structure",
+        "retroactive",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 75,
+      "estimatedMinutes": 180,
       "prerequisites": [
         "sqrt-decomposition",
         "union-find",
+        "segment-tree",
         "binary-search"
       ],
       "nextLessons": [
-        "offline-range-query-techniques"
+        "versioned-data-structures",
+        "link-cut-tree",
+        "dynamic-mst"
       ],
       "relatedLessons": [
         "fenwick-tree",
-        "segment-tree"
+        "segment-tree",
+        "versioned-data-structures",
+        "euler-tour-tree"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "time-axis-model-map",
+          "title": "Time-Axis Model Map",
+          "description": "offline reordering, answer search, rollback, retroactivity를 구분합니다.",
+          "order": 10,
+          "file": "pages/time-axis-model-map.md"
+        },
+        {
+          "pageId": "offline-queries",
+          "title": "Offline Queries",
+          "description": "Mo, DSU rollback, parallel binary search의 큰 그림입니다.",
+          "order": 20,
+          "file": "pages/offline-queries.md"
+        },
+        {
+          "pageId": "offline-range-query-techniques",
+          "title": "Offline Range Query Techniques",
+          "description": "구간 질의에서 add/remove 상태, Mo 변형, offline Fenwick을 고릅니다.",
+          "order": 30,
+          "file": "pages/offline-range-query-techniques.md"
+        },
+        {
+          "pageId": "rollback-techniques",
+          "title": "Rollback Techniques",
+          "description": "snapshot stack과 segment tree over time의 공통 구현 규칙입니다.",
+          "order": 40,
+          "file": "pages/rollback-techniques.md"
+        },
+        {
+          "pageId": "dynamic-connectivity",
+          "title": "Dynamic Connectivity",
+          "description": "간선 활성 구간을 rollback DSU로 처리하는 offline connectivity입니다.",
+          "order": 50,
+          "file": "pages/dynamic-connectivity.md"
+        },
+        {
+          "pageId": "retroactive-data-structures",
+          "title": "Retroactive Data Structures",
+          "description": "과거 operation 변경을 active interval로 바꾸는 제한적 retroactivity입니다.",
+          "order": 60,
+          "file": "pages/retroactive-data-structures.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Offline and Time-Axis 계열을 하나의 흐름으로 연습합니다.",
+          "order": 70,
+          "file": "pages/practice-set.md"
+        }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "offline-time-axis-techniques",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "testing-and-stress",
@@ -2741,37 +2802,6 @@
       "pages": []
     },
     {
-      "lessonId": "dynamic-connectivity",
-      "title": "Dynamic Connectivity",
-      "description": "간선 추가와 삭제가 섞인 그래프 연결성 질의를 시간축 Segment Tree와 Rollback DSU로 오프라인 처리합니다.",
-      "summary": "edge active interval, segment tree over time, rollback DSU, online dynamic connectivity와의 선택 기준을 다루는 그래프 심화 레슨",
-      "order": 92,
-      "folderId": "graphs",
-      "tags": [
-        "graphs",
-        "dynamic-connectivity",
-        "rollback-dsu",
-        "offline-query",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 50,
-      "prerequisites": [
-        "union-find",
-        "offline-queries",
-        "link-cut-tree"
-      ],
-      "nextLessons": [
-        "dynamic-mst"
-      ],
-      "relatedLessons": [
-        "directed-mst",
-        "flow-with-lower-bound",
-        "tree-advanced"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "dynamic-segment-tree",
       "title": "Dynamic Segment Tree",
       "description": "좌표 범위가 매우 크고 실제 접근 지점이 적은 상황에서 필요한 node만 생성하는 sparse Segment Tree를 익힙니다.",
@@ -2912,7 +2942,7 @@
         "dynamic-mst"
       ],
       "nextLessons": [
-        "dynamic-connectivity",
+        "offline-time-axis-techniques",
         "planar-graph-duality"
       ],
       "relatedLessons": [
@@ -3018,7 +3048,7 @@
       "estimatedMinutes": 60,
       "prerequisites": [
         "link-cut-tree",
-        "dynamic-connectivity",
+        "offline-time-axis-techniques",
         "tree-advanced"
       ],
       "nextLessons": [
@@ -3026,7 +3056,7 @@
       ],
       "relatedLessons": [
         "union-find",
-        "offline-queries"
+        "offline-time-axis-techniques"
       ],
       "pages": []
     },
@@ -3141,7 +3171,7 @@
       "estimatedMinutes": 55,
       "prerequisites": [
         "graph-tree-basics",
-        "dynamic-connectivity",
+        "offline-time-axis-techniques",
         "graph-cut-structures"
       ],
       "nextLessons": [
@@ -3245,37 +3275,6 @@
       "relatedLessons": [
         "border-automaton",
         "runs-periodicity"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "rollback-techniques",
-      "title": "Rollback Techniques",
-      "description": "오프라인 질의와 재귀 탐색에서 상태 변경을 snapshot 단위로 되돌리는 rollback 패턴을 익힙니다.",
-      "summary": "Rollback DSU를 중심으로 변경 전 값 기록, segment tree over time, divide and conquer query 처리에 쓰이는 rollback 설계 패턴",
-      "order": 108,
-      "folderId": "data-structures",
-      "tags": [
-        "data-structures",
-        "rollback",
-        "offline-query",
-        "rollback-dsu",
-        "dynamic-connectivity",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 50,
-      "prerequisites": [
-        "offline-queries",
-        "versioned-data-structures",
-        "dynamic-connectivity"
-      ],
-      "nextLessons": [
-        "retroactive-data-structures"
-      ],
-      "relatedLessons": [
-        "union-find",
-        "versioned-data-structures"
       ],
       "pages": []
     },
@@ -3609,69 +3608,6 @@
       "relatedLessons": [
         "suffix-array-applications",
         "suffix-automaton-applications"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "retroactive-data-structures",
-      "title": "Retroactive Data Structures",
-      "description": "과거 operation 삽입과 삭제를 시간축 interval로 모델링하고 rollback/persistence와의 경계를 익힙니다.",
-      "summary": "operation timeline, offline retroactivity, segment tree over time, rollback structure를 조합하는 자료구조 심화 레슨",
-      "order": 120,
-      "folderId": "data-structures",
-      "tags": [
-        "data-structures",
-        "retroactive",
-        "offline-query",
-        "rollback",
-        "persistence",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "rollback-techniques",
-        "versioned-data-structures",
-        "offline-queries"
-      ],
-      "nextLessons": [
-        "versioned-data-structures"
-      ],
-      "relatedLessons": [
-        "dynamic-connectivity",
-        "versioned-data-structures"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "offline-range-query-techniques",
-      "title": "Offline Range Query Techniques",
-      "description": "Mo 변형, offline sorting, time dimension을 이용해 배열 구간 질의를 재배열하고 상태를 유지하는 법을 익힙니다.",
-      "summary": "range query를 add/remove 상태, Fenwick sweep, time-aware Mo로 처리하는 오프라인 자료구조 심화 레슨",
-      "order": 121,
-      "folderId": "data-structures",
-      "tags": [
-        "data-structures",
-        "offline-query",
-        "range-query",
-        "mo-algorithm",
-        "fenwick-tree",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "offline-queries",
-        "sqrt-decomposition",
-        "rollback-techniques"
-      ],
-      "nextLessons": [
-        "versioned-data-structures"
-      ],
-      "relatedLessons": [
-        "fenwick-tree",
-        "segment-tree",
-        "retroactive-data-structures"
       ],
       "pages": []
     },
@@ -4314,13 +4250,13 @@
       "prerequisites": [
         "convex-hull-trick-variants",
         "kinetic-hull",
-        "rollback-techniques"
+        "offline-time-axis-techniques"
       ],
       "nextLessons": [],
       "relatedLessons": [
         "parametric-optimization",
         "convex-dp-modeling",
-        "dynamic-connectivity"
+        "offline-time-axis-techniques"
       ],
       "pages": []
     },
@@ -4612,13 +4548,13 @@
       "prerequisites": [
         "max-flow-min-cut",
         "min-cost-flow",
-        "dynamic-connectivity"
+        "offline-time-axis-techniques"
       ],
       "nextLessons": [],
       "relatedLessons": [
         "flow-with-lower-bound",
         "convex-cost-flow",
-        "rollback-techniques"
+        "offline-time-axis-techniques"
       ],
       "pages": []
     },
