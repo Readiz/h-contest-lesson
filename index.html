@@ -369,7 +369,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -413,7 +413,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/quadrangle-inequality-proofs/lesson.md">Quadrangle Inequality Proofs</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -434,9 +434,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">lagrangian-relaxation</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/convex-cost-flow/lesson.md">Convex Cost Flow</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
 <ul class="page-list">
 <li><a href="lessons/parametric-optimization/pages/feasibility-and-answer-search.md">Feasibility and Answer Search</a> <code>feasibility-and-answer-search</code></li>
 <li><a href="lessons/parametric-optimization/pages/exact-k-alien-optimization.md">Exact-K Alien Optimization</a> <code>exact-k-alien-optimization</code></li>
@@ -448,24 +448,40 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/slope-trick/lesson.md">Slope Trick</a></h3>
-<code class="lesson-id">slope-trick</code>
+<h3><a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></h3>
+<code class="lesson-id">convex-dp-optimization</code>
 </div>
-<p class="lesson-description">Convex piecewise-linear 비용 함수를 두 heap과 lazy shift로 관리해 절댓값/hinge 기반 DP를 최적화합니다.</p>
+<p class="lesson-description">CHT, Li Chao Tree, Slope Trick, Min-Plus Convolution, Kinetic/Fully Dynamic Hull을 DP 전이식 선택 기준으로 묶습니다.</p>
 <div class="meta-row">
 <span class="badge level">심화</span>
-<span class="badge time">45분</span>
+<span class="badge time">260분</span>
+<span class="badge">overview</span>
 </div>
 <div class="tag-list">
-<span class="tag">dp-optimization</span>
+<span class="tag">dynamic-programming</span>
+<span class="tag">convex-optimization</span>
+<span class="tag">convex-hull-trick</span>
+<span class="tag">li-chao-tree</span>
 <span class="tag">slope-trick</span>
-<span class="tag">convexity</span>
-<span class="tag">priority-queue</span>
+<span class="tag">min-plus-convolution</span>
+<span class="tag">monge</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/convex-cost-flow/lesson.md">Convex Cost Flow</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/robust-geometry-predicates/lesson.md">Robust Geometry Predicates</a></p>
+<ul class="page-list">
+<li><a href="lessons/convex-dp-optimization/pages/technique-decision-tree.md">Technique Decision Tree</a> <code>technique-decision-tree</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/convex-dp-modeling.md">Convex DP Modeling</a> <code>convex-dp-modeling</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md">Convex Hull Trick and Li Chao Tree</a> <code>convex-hull-trick-li-chao</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/convex-hull-trick-variants.md">Convex Hull Trick Variants</a> <code>convex-hull-trick-variants</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/cht-dp-applications.md">CHT DP Applications</a> <code>cht-dp-applications</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/slope-trick.md">Slope Trick</a> <code>slope-trick</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/min-plus-convolution.md">Min-Plus Convolution</a> <code>min-plus-convolution</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/kinetic-hull.md">Kinetic Hull</a> <code>kinetic-hull</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/fully-dynamic-cht.md">Fully Dynamic CHT</a> <code>fully-dynamic-cht</code></li>
+<li><a href="lessons/convex-dp-optimization/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -485,53 +501,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">network-flow</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a></h3>
-<code class="lesson-id">min-plus-convolution</code>
-</div>
-<p class="lesson-description">두 비용 배열을 min-plus 방식으로 합치는 DP merge를 이해하고 convex/Monge 조건에서 argmin 단조성을 활용합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">50분</span>
-</div>
-<div class="tag-list">
-<span class="tag">dp-optimization</span>
-<span class="tag">min-plus-convolution</span>
-<span class="tag">convexity</span>
-<span class="tag">monge</span>
-<span class="tag">divide-and-conquer</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-cost-flow/lesson.md">Convex Cost Flow</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a></h3>
-<code class="lesson-id">convex-dp-modeling</code>
-</div>
-<p class="lesson-description">DP 최적화 기법을 적용하기 전에 convex, Monge, argmin 단조 조건을 모델링하고 검증하는 방법을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">50분</span>
-</div>
-<div class="tag-list">
-<span class="tag">dp-optimization</span>
-<span class="tag">convexity</span>
-<span class="tag">monge</span>
-<span class="tag">modeling</span>
-<span class="tag">stress-test</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/convex-cost-flow/lesson.md">Convex Cost Flow</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/cht-dp-applications/lesson.md">CHT DP Applications</a> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/slope-trick/lesson.md">Slope Trick</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -553,73 +525,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/min-plus-convolution/lesson.md">Min-Plus Convolution</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/cht-dp-applications/lesson.md">CHT DP Applications</a></h3>
-<code class="lesson-id">cht-dp-applications</code>
-</div>
-<p class="lesson-description">DP 전이식을 직선과 query x로 분리하고 slope/query 단조성에 맞는 CHT 구현을 선택합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">dp-optimization</span>
-<span class="tag">convex-hull-trick</span>
-<span class="tag">li-chao-tree</span>
-<span class="tag">dynamic-programming</span>
-<span class="tag">modeling</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/slope-trick/lesson.md">Slope Trick</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/kinetic-hull/lesson.md">Kinetic Hull</a></h3>
-<code class="lesson-id">kinetic-hull</code>
-</div>
-<p class="lesson-description">시간에 따라 움직이는 점과 직선의 최적 후보가 바뀌는 event를 추적하는 kinetic hull 관점을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">dp-optimization</span>
-<span class="tag">convex-hull-trick</span>
-<span class="tag">geometry</span>
-<span class="tag">kinetic</span>
-<span class="tag">event-queue</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/rotating-calipers-applications/lesson.md">Rotating Calipers Applications</a> <a href="lessons/robust-geometry-predicates/lesson.md">Robust Geometry Predicates</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/fully-dynamic-cht/lesson.md">Fully Dynamic CHT</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/shape-distance-modeling/lesson.md">Shape Distance Modeling</a> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/fully-dynamic-cht/lesson.md">Fully Dynamic CHT</a></h3>
-<code class="lesson-id">fully-dynamic-cht</code>
-</div>
-<p class="lesson-description">직선 삽입, 삭제, 임의 질의가 섞인 상황에서 offline 구간화, rollback Li Chao, online line container를 고르는 기준을 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">65분</span>
-</div>
-<div class="tag-list">
-<span class="tag">dp-optimization</span>
-<span class="tag">convex-hull-trick</span>
-<span class="tag">li-chao-tree</span>
-<span class="tag">rollback</span>
-<span class="tag">offline-query</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/kinetic-hull/lesson.md">Kinetic Hull</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -641,9 +547,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">dual-averaging</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/bayesian-bandits/lesson.md">Bayesian Bandits</a> <a href="lessons/online-planning-evaluation/lesson.md">Online Planning Evaluation</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/stochastic-decision-process/lesson.md">Stochastic Decision Process</a> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
 <ul class="page-list">
 <li><a href="lessons/online-convex-optimization/pages/online-decision-and-regret.md">Online Decision and Regret</a> <code>online-decision-and-regret</code></li>
 <li><a href="lessons/online-convex-optimization/pages/mirror-descent-and-multiplicative-weights.md">Mirror Descent and Multiplicative Weights</a> <code>mirror-descent-and-multiplicative-weights</code></li>
@@ -1396,28 +1302,6 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a></h3>
-<code class="lesson-id">convex-hull-trick-li-chao</code>
-</div>
-<p class="lesson-description">DP 전이를 직선 query로 바꾸고, Convex Hull Trick과 Li Chao Tree로 최솟값 전이를 빠르게 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-</div>
-<div class="tag-list">
-<span class="tag">convex-hull-trick</span>
-<span class="tag">li-chao-tree</span>
-<span class="tag">dp-optimization</span>
-<span class="tag">line-container</span>
-<span class="tag">segment-tree</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
 <h3><a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a></h3>
 <code class="lesson-id">wavelet-tree</code>
 </div>
@@ -1632,28 +1516,6 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/convex-hull-trick-variants/lesson.md">Convex Hull Trick Variants</a></h3>
-<code class="lesson-id">convex-hull-trick-variants</code>
-</div>
-<p class="lesson-description">slope와 query 순서, min/max convention, 같은 slope 처리에 따라 CHT 구현을 고르는 기준을 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">dp-optimization</span>
-<span class="tag">convex-hull-trick</span>
-<span class="tag">li-chao-tree</span>
-<span class="tag">line-container</span>
-<span class="tag">monotone-query</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/convex-hull-trick-li-chao/lesson.md">Convex Hull Trick과 Li Chao Tree</a> <a href="lessons/convex-dp-modeling/lesson.md">Convex DP Modeling</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/cht-dp-applications/lesson.md">CHT DP Applications</a> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/kinetic-hull/lesson.md">Kinetic Hull</a> <a href="lessons/fully-dynamic-cht/lesson.md">Fully Dynamic CHT</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a> <a href="lessons/slope-trick/lesson.md">Slope Trick</a></p>
 </article>
 </div>
 </section>
@@ -2215,7 +2077,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a> <a href="lessons/minkowski-sum/lesson.md">Minkowski Sum</a> <a href="lessons/closest-pair-sweep/lesson.md">Closest Pair Sweep</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/shape-distance-modeling/lesson.md">Shape Distance Modeling</a> <a href="lessons/kinetic-hull/lesson.md">Kinetic Hull</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/shape-distance-modeling/lesson.md">Shape Distance Modeling</a> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a></p>
 </article>
 <article class="lesson-card">

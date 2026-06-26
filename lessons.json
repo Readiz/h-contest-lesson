@@ -1302,37 +1302,6 @@
       "audience": "advanced-contest"
     },
     {
-      "lessonId": "convex-hull-trick-li-chao",
-      "title": "Convex Hull Trick과 Li Chao Tree",
-      "description": "DP 전이를 직선 query로 바꾸고, Convex Hull Trick과 Li Chao Tree로 최솟값 전이를 빠르게 처리합니다.",
-      "summary": "직선으로 분리되는 DP 전이, 단조 deque CHT 조건, Li Chao Tree 구현, 좌표 압축과 overflow 점검까지 이어지는 DP/자료구조 최적화",
-      "order": 43,
-      "folderId": "data-structures",
-      "tags": [
-        "convex-hull-trick",
-        "li-chao-tree",
-        "dp-optimization",
-        "line-container",
-        "segment-tree",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "dynamic-programming",
-        "segment-tree"
-      ],
-      "nextLessons": [
-        "convex-hull-trick-variants",
-        "divide-and-conquer-dp-optimization"
-      ],
-      "relatedLessons": [
-        "versioned-data-structures",
-        "matrix-exponentiation"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "wavelet-tree",
       "title": "Wavelet Tree",
       "description": "정적 배열에서 구간 kth, rank, frequency 질의를 값 범위와 index 범위를 함께 나누어 처리하는 Wavelet Tree를 익힙니다.",
@@ -2623,7 +2592,7 @@
         "monge-smawk"
       ],
       "relatedLessons": [
-        "convex-hull-trick-li-chao",
+        "convex-dp-optimization",
         "probability-expected-value"
       ],
       "pages": []
@@ -2683,7 +2652,7 @@
         "quadrangle-inequality-proofs"
       ],
       "relatedLessons": [
-        "convex-hull-trick-li-chao"
+        "convex-dp-optimization"
       ],
       "pages": []
     },
@@ -2705,15 +2674,14 @@
       "prerequisites": [
         "divide-and-conquer-dp-optimization",
         "monge-smawk",
-        "convex-dp-modeling"
+        "convex-dp-optimization"
       ],
       "nextLessons": [
         "online-convex-optimization",
         "convex-cost-flow"
       ],
       "relatedLessons": [
-        "convex-hull-trick-li-chao",
-        "min-plus-convolution",
+        "convex-dp-optimization",
         "flow-with-lower-bound"
       ],
       "tags": [
@@ -2859,33 +2827,118 @@
       "pages": []
     },
     {
-      "lessonId": "slope-trick",
-      "title": "Slope Trick",
-      "description": "Convex piecewise-linear 비용 함수를 두 heap과 lazy shift로 관리해 절댓값/hinge 기반 DP를 최적화합니다.",
-      "summary": "hinge function, 절댓값 비용, two heap invariant, lazy shift, convex DP 적용 조건을 설명하는 DP 최적화 심화 레슨",
+      "lessonId": "convex-dp-optimization",
+      "title": "Convex DP Optimization",
+      "description": "CHT, Li Chao Tree, Slope Trick, Min-Plus Convolution, Kinetic/Fully Dynamic Hull을 DP 전이식 선택 기준으로 묶습니다.",
+      "summary": "전이식의 line query, argmin monotonicity, convex function, min-plus merge, dynamic line set 여부를 보고 DP 최적화 기법을 고르는 허브",
       "order": 95,
       "folderId": "strategy",
       "tags": [
-        "dp-optimization",
+        "dynamic-programming",
+        "convex-optimization",
+        "convex-hull-trick",
+        "li-chao-tree",
         "slope-trick",
-        "convexity",
-        "priority-queue",
+        "min-plus-convolution",
+        "monge",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 45,
+      "estimatedMinutes": 260,
       "prerequisites": [
-        "parametric-optimization",
-        "convex-hull-trick-li-chao"
+        "dynamic-programming",
+        "segment-tree",
+        "divide-and-conquer-dp-optimization",
+        "parametric-optimization"
       ],
       "nextLessons": [
-        "min-plus-convolution"
+        "parametric-optimization",
+        "convex-cost-flow",
+        "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "monge-smawk",
-        "divide-and-conquer-dp-optimization"
+        "versioned-data-structures",
+        "robust-geometry-predicates"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "technique-decision-tree",
+          "title": "Technique Decision Tree",
+          "description": "전이식 모양으로 CHT, Monge, Slope Trick, Min-Plus를 고릅니다.",
+          "order": 10,
+          "file": "pages/technique-decision-tree.md"
+        },
+        {
+          "pageId": "convex-dp-modeling",
+          "title": "Convex DP Modeling",
+          "description": "최적화 전에 convex, Monge, argmin 단조성을 판정합니다.",
+          "order": 20,
+          "file": "pages/convex-dp-modeling.md"
+        },
+        {
+          "pageId": "convex-hull-trick-li-chao",
+          "title": "Convex Hull Trick and Li Chao Tree",
+          "description": "직선 삽입과 x query로 DP 전이를 처리합니다.",
+          "order": 30,
+          "file": "pages/convex-hull-trick-li-chao.md"
+        },
+        {
+          "pageId": "convex-hull-trick-variants",
+          "title": "Convex Hull Trick Variants",
+          "description": "단조성, 좌표 압축, dynamic 조건에 따라 CHT 구현을 고릅니다.",
+          "order": 40,
+          "file": "pages/convex-hull-trick-variants.md"
+        },
+        {
+          "pageId": "cht-dp-applications",
+          "title": "CHT DP Applications",
+          "description": "실제 DP 식을 직선과 query로 바꾸는 응용 패턴입니다.",
+          "order": 50,
+          "file": "pages/cht-dp-applications.md"
+        },
+        {
+          "pageId": "slope-trick",
+          "title": "Slope Trick",
+          "description": "convex piecewise-linear function을 priority queue로 유지합니다.",
+          "order": 60,
+          "file": "pages/slope-trick.md"
+        },
+        {
+          "pageId": "min-plus-convolution",
+          "title": "Min-Plus Convolution",
+          "description": "cost sequence merge와 convex/Monge 특수형을 구분합니다.",
+          "order": 70,
+          "file": "pages/min-plus-convolution.md"
+        },
+        {
+          "pageId": "kinetic-hull",
+          "title": "Kinetic Hull",
+          "description": "시간에 따라 움직이는 line/hull의 이벤트를 다룹니다.",
+          "order": 80,
+          "file": "pages/kinetic-hull.md"
+        },
+        {
+          "pageId": "fully-dynamic-cht",
+          "title": "Fully Dynamic CHT",
+          "description": "line 삽입과 삭제가 모두 필요한 경우의 선택지입니다.",
+          "order": 90,
+          "file": "pages/fully-dynamic-cht.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Convex DP Optimization 계열을 하나의 흐름으로 연습합니다.",
+          "order": 100,
+          "file": "pages/practice-set.md"
+        }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "convex-dp-optimization",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "suffix-array-applications",
@@ -3109,14 +3162,14 @@
       "estimatedMinutes": 45,
       "prerequisites": [
         "min-cost-flow",
-        "slope-trick",
+        "convex-dp-optimization",
         "parametric-optimization"
       ],
       "nextLessons": [
-        "min-plus-convolution"
+        "convex-dp-optimization"
       ],
       "relatedLessons": [
-        "convex-hull-trick-li-chao",
+        "convex-dp-optimization",
         "flow-with-lower-bound"
       ],
       "pages": []
@@ -3217,37 +3270,6 @@
       "pages": []
     },
     {
-      "lessonId": "min-plus-convolution",
-      "title": "Min-Plus Convolution",
-      "description": "두 비용 배열을 min-plus 방식으로 합치는 DP merge를 이해하고 convex/Monge 조건에서 argmin 단조성을 활용합니다.",
-      "summary": "C[k] = min A[i] + B[k-i] 형태의 DP merge, naive convolution, convex sequence, argmin monotonicity와 divide-and-conquer 최적화를 다루는 전략 심화 레슨",
-      "order": 105,
-      "folderId": "strategy",
-      "tags": [
-        "dp-optimization",
-        "min-plus-convolution",
-        "convexity",
-        "monge",
-        "divide-and-conquer",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 50,
-      "prerequisites": [
-        "convex-cost-flow",
-        "slope-trick",
-        "monge-smawk"
-      ],
-      "nextLessons": [
-        "convex-dp-modeling"
-      ],
-      "relatedLessons": [
-        "parametric-optimization",
-        "knuth-optimization"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "suffix-automaton-applications",
       "title": "Suffix Automaton Applications",
       "description": "Suffix Automaton 위에서 occurrence 누적, k번째 substring, 반복 substring, 여러 문자열 공통 substring을 처리하는 응용 패턴을 익힙니다.",
@@ -3310,39 +3332,6 @@
       "pages": []
     },
     {
-      "lessonId": "convex-dp-modeling",
-      "title": "Convex DP Modeling",
-      "description": "DP 최적화 기법을 적용하기 전에 convex, Monge, argmin 단조 조건을 모델링하고 검증하는 방법을 익힙니다.",
-      "summary": "Min-Plus Convolution, Alien Optimization, Slope Trick 같은 최적화 전 단계에서 비용 구조와 단조 조건을 판정하는 DP 모델링 레슨",
-      "order": 110,
-      "folderId": "strategy",
-      "tags": [
-        "dp-optimization",
-        "convexity",
-        "monge",
-        "modeling",
-        "stress-test",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 50,
-      "prerequisites": [
-        "min-plus-convolution",
-        "parametric-optimization",
-        "convex-cost-flow"
-      ],
-      "nextLessons": [
-        "convex-hull-trick-variants",
-        "cht-dp-applications",
-        "parametric-optimization"
-      ],
-      "relatedLessons": [
-        "slope-trick",
-        "monge-smawk"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "minkowski-sum",
       "title": "Minkowski Sum",
       "description": "두 convex polygon의 모든 점 합을 edge vector merge로 계산하고 충돌 판정과 거리 모델링으로 연결합니다.",
@@ -3398,7 +3387,7 @@
       ],
       "nextLessons": [
         "shape-distance-modeling",
-        "kinetic-hull"
+        "convex-dp-optimization"
       ],
       "relatedLessons": [
         "half-plane-intersection",
@@ -3641,40 +3630,6 @@
       "pages": []
     },
     {
-      "lessonId": "convex-hull-trick-variants",
-      "title": "Convex Hull Trick Variants",
-      "description": "slope와 query 순서, min/max convention, 같은 slope 처리에 따라 CHT 구현을 고르는 기준을 정리합니다.",
-      "summary": "monotone deque CHT, breakpoint hull, Li Chao 변형을 조건별로 선택하는 DP 최적화 레슨",
-      "order": 123,
-      "folderId": "data-structures",
-      "tags": [
-        "dp-optimization",
-        "convex-hull-trick",
-        "li-chao-tree",
-        "line-container",
-        "monotone-query",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "convex-hull-trick-li-chao",
-        "convex-dp-modeling",
-        "divide-and-conquer-dp-optimization"
-      ],
-      "nextLessons": [
-        "cht-dp-applications",
-        "parametric-optimization",
-        "kinetic-hull",
-        "fully-dynamic-cht"
-      ],
-      "relatedLessons": [
-        "monge-smawk",
-        "slope-trick"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "shape-distance-modeling",
       "title": "Shape Distance Modeling",
       "description": "Minkowski difference, support function, separating axis로 도형 거리와 충돌 문제를 모델링하는 법을 익힙니다.",
@@ -3854,8 +3809,7 @@
       ],
       "nextLessons": [],
       "relatedLessons": [
-        "convex-dp-modeling",
-        "min-plus-convolution"
+        "convex-dp-optimization"
       ],
       "pages": []
     },
@@ -3945,37 +3899,6 @@
       "relatedLessons": [
         "linear-recurrence-applications",
         "bostan-mori"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "cht-dp-applications",
-      "title": "CHT DP Applications",
-      "description": "DP 전이식을 직선과 query x로 분리하고 slope/query 단조성에 맞는 CHT 구현을 선택합니다.",
-      "summary": "quadratic DP 전개, line/query 분리, monotone CHT 적용 조건, Li Chao fallback을 다루는 DP 최적화 응용 레슨",
-      "order": 138,
-      "folderId": "strategy",
-      "tags": [
-        "dp-optimization",
-        "convex-hull-trick",
-        "li-chao-tree",
-        "dynamic-programming",
-        "modeling",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "convex-hull-trick-variants",
-        "convex-dp-modeling",
-        "dynamic-programming"
-      ],
-      "nextLessons": [
-        "parametric-optimization"
-      ],
-      "relatedLessons": [
-        "slope-trick",
-        "divide-and-conquer-dp-optimization"
       ],
       "pages": []
     },
@@ -4195,68 +4118,6 @@
       "relatedLessons": [
         "imperfect-information-search",
         "game-theory-applications"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "kinetic-hull",
-      "title": "Kinetic Hull",
-      "description": "시간에 따라 움직이는 점과 직선의 최적 후보가 바뀌는 event를 추적하는 kinetic hull 관점을 익힙니다.",
-      "summary": "time-dependent line envelope, moving point support, event queue, stale event validation을 다루는 동적 최적화 심화 레슨",
-      "order": 146,
-      "folderId": "strategy",
-      "tags": [
-        "dp-optimization",
-        "convex-hull-trick",
-        "geometry",
-        "kinetic",
-        "event-queue",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "convex-hull-trick-variants",
-        "rotating-calipers-applications",
-        "robust-geometry-predicates"
-      ],
-      "nextLessons": [
-        "fully-dynamic-cht"
-      ],
-      "relatedLessons": [
-        "shape-distance-modeling",
-        "sweep-line-geometry",
-        "convex-dp-modeling"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "fully-dynamic-cht",
-      "title": "Fully Dynamic CHT",
-      "description": "직선 삽입, 삭제, 임의 질의가 섞인 상황에서 offline 구간화, rollback Li Chao, online line container를 고르는 기준을 정리합니다.",
-      "summary": "dynamic line set을 활성 시간 구간, segment tree over time, rollback Li Chao, rebuild, online line container로 처리하는 CHT 심화 레슨",
-      "order": 147,
-      "folderId": "strategy",
-      "tags": [
-        "dp-optimization",
-        "convex-hull-trick",
-        "li-chao-tree",
-        "rollback",
-        "offline-query",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 65,
-      "prerequisites": [
-        "convex-hull-trick-variants",
-        "kinetic-hull",
-        "offline-time-axis-techniques"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "parametric-optimization",
-        "convex-dp-modeling",
-        "offline-time-axis-techniques"
       ],
       "pages": []
     },
@@ -4577,8 +4438,7 @@
       "level": "advanced",
       "estimatedMinutes": 100,
       "prerequisites": [
-        "convex-dp-modeling",
-        "convex-hull-trick-variants",
+        "convex-dp-optimization",
         "probability-expected-value"
       ],
       "nextLessons": [
@@ -4588,7 +4448,7 @@
       "relatedLessons": [
         "parametric-optimization",
         "stochastic-decision-process",
-        "slope-trick"
+        "convex-dp-optimization"
       ],
       "pages": [
         {
