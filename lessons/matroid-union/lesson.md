@@ -50,6 +50,8 @@ Si is independent in Mi
 
 cycle이 생긴 간선을 같은 색에 넣을 수 없으므로, 각 색마다 DSU를 하나씩 두는 greedy 검증을 떠올릴 수 있습니다. 하지만 임의 순서 greedy는 일반적으로 틀릴 수 있고, 막힌 간선을 넣기 위해 다른 색의 간선을 교환해야 할 수 있습니다.
 
+중요한 판단 기준은 "지금 넣을 색이 없다"와 "어떤 분해에서도 넣을 수 없다"를 구분하는 것입니다. 한 색에서 cycle을 만드는 기존 간선 하나를 다른 색으로 밀어내면, 그 색에서도 또 다른 간선을 이동시키는 연쇄가 생길 수 있습니다. 따라서 forest decomposition류 문제에서는 실패 조건을 greedy 삽입 실패가 아니라 교환 경로 부재로 세워야 합니다.
+
 ## 4. Partition Matroid의 쉬운 경우
 
 원소마다 class가 있고, 한 독립 집합은 class별로 capacity만큼만 고를 수 있다고 합시다. 같은 matroid를 `k`번 union하면 class별 capacity가 `k`배가 됩니다.

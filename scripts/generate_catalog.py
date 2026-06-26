@@ -14,36 +14,29 @@ INDEX = ROOT / "index.html"
 
 README_HEADER = """# h-contest lesson content
 
-This repository is the source of truth for h-contest algorithm lessons.
-The public API is generated from or synchronized with this repository.
+This repository is the source of truth for h-contest algorithm lessons. Lesson source lives in `lessons/` and `lessons.json`; `README.md` and `index.html` are generated entry points.
 
+## 탐색
+
+- 전체 카탈로그: [index.html](index.html)
 - Published manifest: https://blog.readiz.com/h-contest-lesson/lessons.json
 - API mirror: https://h.readiz.com/api/lessons
+- 공개 기록: [CHANGELOG.md](CHANGELOG.md)
+- 미공개 후보와 practice TODO: [ROADMAP.md](ROADMAP.md)
+- 기여 절차: [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Contributing
+## 작업 흐름
 
-Pull requests should edit this repository directly. For details, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Planned topics and missing practice-problem links are tracked in [ROADMAP.md](ROADMAP.md).
-
-When adding a new lesson, update these source files:
-
-- `lessons/<lessonId>/lesson.md`
-- `lessons.json` (`folderId` included, optional `pages` included)
-
-Then regenerate derived files:
+1. `lessons/<lessonId>/lesson.md`와 필요 시 `lessons/<lessonId>/pages/*.md`를 수정합니다.
+2. `lessons.json`에서 metadata, page 목록, 선수/다음/연관 레슨을 맞춥니다.
+3. 아래 명령으로 파생 파일과 검증 상태를 맞춥니다.
 
 ```bash
 python3 scripts/generate_catalog.py
 python3 scripts/validate_lessons.py
 ```
 
-Generated files:
-
-- `README.md`
-- `index.html`
-
-If the lesson uses images or other local assets, add them under `lessons/<lessonId>/lesson-assets/`.
+이미지나 보조 자료는 `lessons/<lessonId>/lesson-assets/`에 둡니다.
 
 ## 학습 로드맵
 
@@ -56,7 +49,7 @@ If the lesson uses images or other local assets, add them under `lessons/<lesson
 5. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
 6. 심화 확장: 문자열 매칭, SCC/2-SAT, Flow, 정수론 심화, 기하, 오프라인 쿼리, 검증/증명
 
-## Lessons
+## 카테고리 요약
 
 """
 
@@ -168,22 +161,16 @@ def lesson_links(lesson_ids: list[str], lessons_by_id: dict[str, dict]) -> str:
 def build_readme(folders: list[dict], lessons: list[dict]) -> str:
     lines = [README_HEADER]
     grouped = group_lessons_by_folder(lessons)
+    lines.append("| 카테고리 | 설명 | 레슨 수 |\n")
+    lines.append("| --- | --- | ---: |\n")
     for folder in folders:
         folder_lessons = grouped.get(folder["folderId"], [])
         if not folder_lessons:
             continue
-        lines.append(f"### {folder['title']}\n\n")
-        if folder.get("description"):
-            lines.append(f"{folder['description']}\n\n")
-        for lesson in folder_lessons:
-            lesson_id = lesson["lessonId"]
-            title = lesson["title"]
-            lines.append(f"- [{title}](lessons/{lesson_id}/lesson.md)\n")
-            for page in sorted(lesson.get("pages", []), key=page_sort_key):
-                lines.append(
-                    f"  - [{page['title']}](lessons/{lesson_id}/{page['file']})\n"
-                )
-        lines.append("\n")
+        lines.append(
+            f"| {folder['title']} | {folder.get('description', '')} | {len(folder_lessons)} |\n"
+        )
+    lines.append("\n전체 레슨과 하위 페이지 링크는 [index.html](index.html)에서 확인합니다.\n")
     return f"{''.join(lines).rstrip()}\n"
 
 

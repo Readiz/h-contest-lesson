@@ -101,6 +101,14 @@ vector<vector<pair<int, int>>> buildDualGraph(
 
 문제에서 face 정보가 없고 좌표만 있다면, 각 정점의 incident edge를 polar angle로 정렬하고 half-edge traversal로 face를 찾아야 합니다. 이 단계가 구현의 대부분입니다.
 
+좌표만 있는 입력의 최소 구현 순서는 아래처럼 분리해 두는 편이 안전합니다.
+
+1. 무향 간선 하나를 양방향 half-edge 두 개로 만든다.
+2. 각 정점의 outgoing half-edge를 polar angle 순서로 정렬한다.
+3. 아직 방문하지 않은 half-edge에서 시작해, 반대 방향으로 건너간 뒤 정렬 순서에서 다음 왼쪽 회전 edge를 고른다.
+4. 시작 half-edge로 돌아올 때까지 반복해 face 하나를 기록한다.
+5. 모든 half-edge를 한 번씩 방문했는지, `V - E + F` 검증이 맞는지 확인한 뒤 dual graph를 만든다.
+
 ## 6. Euler Formula로 검증
 
 연결 planar graph라면 아래가 성립합니다.

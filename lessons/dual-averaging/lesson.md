@@ -26,6 +26,10 @@ Dual Averaging은 online convex optimization에서 매 라운드 gradient를 바
 
 Online Gradient Descent가 현재 점에서 한 걸음 이동한다면, Dual Averaging은 지금까지의 gradient 합이 가리키는 방향을 regularizer로 누그러뜨려 새 점을 고릅니다.
 
+### Feedback 모델 경계
+
+대회 문맥에서 가장 흔한 오독은 bandit feedback을 full-information 문제처럼 푸는 것입니다. 선택하지 않은 action의 loss까지 매 라운드 모두 주어지면 이 레슨의 simplex update를 바로 쓸 수 있습니다. 반대로 선택한 action의 결과만 보이면 관측되지 않은 loss를 추정하거나 탐색을 섞어야 하므로 Bayesian Bandits, Thompson Sampling, UCB 계열을 먼저 의심합니다.
+
 ## 2. 기본 식
 
 라운드 `t`까지의 gradient 합을 `G_t`라고 합시다.
