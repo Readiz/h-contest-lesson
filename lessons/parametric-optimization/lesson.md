@@ -6,9 +6,11 @@ Parametric Optimization은 제약이나 답을 직접 상태에 넣기 어려울
 
 ## 0. 선수 지식과 이어지는 레슨
 
-- 선수 지식: 이분 탐색, 동적 계획법, Convex DP Modeling, Monge와 SMAWK
-- 함께 보면 좋은 레슨: Convex Hull Trick, Min-Plus Convolution, Flow with Lower Bound
+- 선수 지식: 이분 탐색, 동적 계획법, Divide and Conquer DP Optimization, Monge와 SMAWK
+- 함께 보면 좋은 레슨: Convex DP Optimization, Convex Hull Trick, Min-Plus Convolution, Flow with Lower Bound
 - 다음에 볼 레슨: Online Convex Optimization, Convex Cost Flow, primal-dual methods
+
+Convex DP Optimization은 선수 지식이 아니라 보완 관계입니다. Parametric Optimization은 `lambda`, `penalty`, `ratio`, `answer`를 고정해 oracle을 만드는 흐름이고, Convex DP Optimization은 전이식의 모양으로 CHT, Li Chao, Monge, Slope Trick을 고르는 흐름입니다. 서로를 먼저 끝내야 하는 관계로 두면 학습 순서가 순환하므로, 필요한 페이지를 옆에서 참조하는 방식이 더 안전합니다.
 
 ## 1. 문제 신호와 선택 기준
 

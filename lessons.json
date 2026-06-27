@@ -1983,8 +1983,7 @@
       ],
       "nextLessons": [
         "half-plane-intersection",
-        "robust-delaunay",
-        "power-diagram"
+        "geometry-robustness-and-duality"
       ],
       "relatedLessons": [
         "geometry-ccw-segment-intersection",
@@ -2526,14 +2525,15 @@
       ],
       "nextLessons": [
         "versioned-data-structures",
-        "link-cut-tree",
-        "dynamic-mst"
+        "dynamic-network-optimization",
+        "link-cut-tree"
       ],
       "relatedLessons": [
         "fenwick-tree",
         "segment-tree",
         "versioned-data-structures",
-        "euler-tour-tree"
+        "euler-tour-tree",
+        "dynamic-network-optimization"
       ],
       "pages": [
         {
@@ -2760,9 +2760,10 @@
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "prerequisites": [
+        "binary-search",
+        "dynamic-programming",
         "divide-and-conquer-dp-optimization",
-        "monge-smawk",
-        "convex-dp-optimization"
+        "monge-smawk"
       ],
       "nextLessons": [
         "online-convex-optimization",
@@ -2904,18 +2905,17 @@
       "prerequisites": [
         "dynamic-programming",
         "segment-tree",
-        "divide-and-conquer-dp-optimization",
-        "parametric-optimization"
+        "divide-and-conquer-dp-optimization"
       ],
       "nextLessons": [
-        "parametric-optimization",
         "convex-cost-flow",
         "offline-time-axis-techniques"
       ],
       "relatedLessons": [
         "monge-smawk",
+        "parametric-optimization",
         "versioned-data-structures",
-        "robust-geometry-predicates"
+        "geometry-robustness-and-duality"
       ],
       "pages": [
         {
@@ -3017,8 +3017,7 @@
       "estimatedMinutes": 210,
       "prerequisites": [
         "max-flow-min-cut",
-        "flow-with-lower-bound",
-        "dynamic-mst"
+        "flow-with-lower-bound"
       ],
       "nextLessons": [
         "offline-time-axis-techniques",
@@ -3026,7 +3025,7 @@
       ],
       "relatedLessons": [
         "proof-and-invariants",
-        "dynamic-mst",
+        "dynamic-network-optimization",
         "planar-graph-duality"
       ],
       "pages": [
@@ -3201,36 +3200,68 @@
       "pages": []
     },
     {
-      "lessonId": "dynamic-mst",
-      "title": "Dynamic MST",
-      "description": "간선 추가, 삭제, 가중치 변화가 섞인 그래프에서 MST 비용을 유지하는 모델과 실용적인 rebuild/offline 전략을 익힙니다.",
-      "summary": "cycle property 기반 edge insertion, tree edge deletion replacement, rebuild baseline, block/offline dynamic MST 전략을 다루는 그래프 심화 레슨",
+      "lessonId": "dynamic-network-optimization",
+      "title": "Dynamic Network Optimization",
+      "description": "Dynamic Flow, Dynamic MST, offline time-axis, rebuild, residual reuse, cut/cycle property를 하나의 동적 그래프 최적화 선택 흐름으로 묶습니다.",
+      "summary": "flow나 MST가 시간에 따라 바뀌는 문제를 완전 동적 자료구조부터 보지 않고 residual reuse, time-expanded network, block rebuild, offline interval 모델로 낮추는 허브",
       "order": 102,
       "folderId": "graphs",
       "tags": [
-        "graphs",
+        "graph",
+        "dynamic-graph",
+        "flow",
         "mst",
-        "dynamic-mst",
-        "kruskal",
         "offline-query",
+        "cut",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 55,
+      "estimatedMinutes": 160,
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "dynamic-network-optimization",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
       "prerequisites": [
+        "max-flow-min-cut",
+        "min-cost-flow",
         "graph-tree-basics",
-        "offline-time-axis-techniques",
-        "graph-cut-structures"
+        "offline-time-axis-techniques"
       ],
       "nextLessons": [
-        "graph-cut-structures"
+        "link-cut-tree",
+        "euler-tour-tree"
       ],
       "relatedLessons": [
-        "euler-tour-tree",
-        "link-cut-tree",
-        "directed-mst"
+        "graph-cut-structures",
+        "flow-with-lower-bound",
+        "versioned-data-structures",
+        "planar-graph-duality"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "dynamic-flow",
+          "title": "Dynamic Flow",
+          "description": "capacity update, residual reuse, time-expanded network, batch rebuild를 구분합니다.",
+          "order": 10,
+          "file": "pages/dynamic-flow.md"
+        },
+        {
+          "pageId": "dynamic-mst",
+          "title": "Dynamic MST",
+          "description": "edge insertion/deletion, replacement edge, rebuild baseline, block strategy를 구분합니다.",
+          "order": 20,
+          "file": "pages/dynamic-mst.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Dynamic Network Optimization 계열을 하나의 흐름으로 연습합니다.",
+          "order": 30,
+          "file": "pages/practice-set.md"
+        }
+      ]
     },
     {
       "lessonId": "linear-basis-applications",
@@ -3475,7 +3506,7 @@
       ],
       "nextLessons": [
         "circle-arrangement",
-        "robust-geometry-predicates",
+        "geometry-robustness-and-duality",
         "inversion-geometry"
       ],
       "relatedLessons": [
@@ -3542,36 +3573,88 @@
       "pages": []
     },
     {
-      "lessonId": "robust-geometry-predicates",
-      "title": "Robust Geometry Predicates",
-      "description": "orientation, segment intersection, incircle 같은 기하 분기 조건을 exact arithmetic과 EPS 정책으로 안정화합니다.",
-      "summary": "정수 좌표 exact CCW, 선분 교차, EPS 정책, predicate와 construction 분리를 다루는 계산기하 안정성 레슨",
-      "order": 139,
+      "lessonId": "geometry-robustness-and-duality",
+      "title": "Geometry Robustness and Duality",
+      "description": "Robust predicate, Power Diagram, Robust Delaunay, 3D Convex Hull, Regular Triangulation을 계산기하 안정성과 duality 흐름으로 묶습니다.",
+      "summary": "좌표 predicate 안정성, weighted Voronoi, Delaunay incircle, 3D lifting, lower hull duality를 구현 위험도와 문제 신호별로 고르는 계산기하 허브",
+      "order": 138,
       "folderId": "geometry",
       "tags": [
         "geometry",
         "robust-predicate",
-        "ccw",
-        "segment-intersection",
-        "epsilon",
+        "duality",
+        "power-diagram",
+        "delaunay",
+        "convex-hull-3d",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 55,
+      "estimatedMinutes": 260,
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "geometry-robustness-and-duality",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
       "prerequisites": [
         "geometry-ccw-segment-intersection",
         "circle-geometry",
-        "sweep-line-geometry"
+        "sweep-line-geometry",
+        "half-plane-intersection"
       ],
       "nextLessons": [
-        "robust-delaunay"
+        "voronoi-delaunay",
+        "planar-graph-duality"
       ],
       "relatedLessons": [
-        "voronoi-delaunay",
-        "half-plane-intersection",
-        "circle-arrangement"
+        "shape-distance-modeling",
+        "circle-arrangement",
+        "inversion-geometry"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "robust-geometry-predicates",
+          "title": "Robust Geometry Predicates",
+          "description": "orientation, segment intersection, incircle 같은 분기 조건의 exact/EPS 정책입니다.",
+          "order": 10,
+          "file": "pages/robust-geometry-predicates.md"
+        },
+        {
+          "pageId": "power-diagram",
+          "title": "Power Diagram",
+          "description": "weighted site의 power distance와 radical axis cell 모델입니다.",
+          "order": 20,
+          "file": "pages/power-diagram.md"
+        },
+        {
+          "pageId": "robust-delaunay",
+          "title": "Robust Delaunay",
+          "description": "Delaunay edge flip, incircle predicate, cocircular degeneracy를 안정적으로 처리합니다.",
+          "order": 30,
+          "file": "pages/robust-delaunay.md"
+        },
+        {
+          "pageId": "3d-convex-hull",
+          "title": "3D Convex Hull",
+          "description": "signed volume, oriented face, visible face, horizon edge를 다룹니다.",
+          "order": 40,
+          "file": "pages/3d-convex-hull.md"
+        },
+        {
+          "pageId": "regular-triangulation",
+          "title": "Regular Triangulation",
+          "description": "weighted point lifting과 lower hull로 Power Diagram의 dual을 해석합니다.",
+          "order": 50,
+          "file": "pages/regular-triangulation.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Geometry Robustness and Duality 계열을 하나의 흐름으로 연습합니다.",
+          "order": 60,
+          "file": "pages/practice-set.md"
+        }
+      ]
     },
     {
       "lessonId": "black-box-linear-algebra",
@@ -3653,7 +3736,7 @@
       "estimatedMinutes": 55,
       "prerequisites": [
         "circle-geometry",
-        "robust-geometry-predicates",
+        "geometry-robustness-and-duality",
         "shape-distance-modeling"
       ],
       "nextLessons": [],
@@ -3661,36 +3744,6 @@
         "circle-arrangement",
         "voronoi-delaunay",
         "half-plane-intersection"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "robust-delaunay",
-      "title": "Robust Delaunay",
-      "description": "Delaunay triangulation의 orientation, incircle, cocircular degeneracy를 안정적으로 처리하는 predicate 중심 구현 기준을 배웁니다.",
-      "summary": "Delaunay edge flip, incircle predicate, exact orientation, cocircular tie policy, predicate-construction 분리를 다루는 계산기하 심화 레슨",
-      "order": 148,
-      "folderId": "geometry",
-      "tags": [
-        "geometry",
-        "delaunay",
-        "robust-predicate",
-        "incircle",
-        "degeneracy",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "voronoi-delaunay",
-        "robust-geometry-predicates",
-        "circle-geometry"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "inversion-geometry",
-        "circle-arrangement",
-        "shape-distance-modeling"
       ],
       "pages": []
     },
@@ -3812,8 +3865,8 @@
     {
       "lessonId": "linear-algebra-applications",
       "title": "Linear Algebra Applications",
-      "description": "rank, determinant, xor basis, recurrence, graph counting을 vector space 모델로 번역하는 기준을 정리합니다.",
-      "summary": "문제 신호를 GF(2) basis, linear system, determinant, matrix recurrence, rank model 중 하나로 고르는 선형대수 응용 레슨",
+      "description": "rank, determinant, xor basis, sparse solver, recurrence, graph counting을 먼저 선택표로 구분한 뒤 vector space 모델로 번역하는 선형대수 모델링 허브입니다.",
+      "summary": "GF(2) basis, dense/sparse linear system, determinant, matrix-tree, randomized identity test, recurrence 모델 중 무엇을 써야 하는지 고르는 선형대수 decision map",
       "order": 153,
       "folderId": "math",
       "tags": [
@@ -3831,73 +3884,23 @@
         "sparse-linear-systems",
         "black-box-linear-algebra"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "randomized-determinant",
+        "matrix-tree-theorem-applications"
+      ],
       "relatedLessons": [
+        "linear-basis-xor",
         "polynomial-recurrence-algorithms",
         "matroid-algorithms",
         "matrix-exponentiation"
       ],
-      "pages": []
-    },
-    {
-      "lessonId": "power-diagram",
-      "title": "Power Diagram",
-      "description": "가중치가 붙은 site의 power distance와 radical axis로 weighted Voronoi cell을 모델링합니다.",
-      "summary": "squared distance minus weight, radical axis, weighted Voronoi cell, half-plane intersection 기반 cell 계산을 다루는 계산기하 심화 레슨",
-      "order": 154,
-      "folderId": "geometry",
-      "tags": [
-        "geometry",
-        "power-diagram",
-        "voronoi",
-        "weighted-distance",
-        "half-plane-intersection",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "voronoi-delaunay",
-        "half-plane-intersection",
-        "shape-distance-modeling"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "robust-delaunay",
-        "circle-geometry",
-        "inversion-geometry"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "dynamic-flow",
-      "title": "Dynamic Flow",
-      "description": "간선 용량과 활성 시간이 바뀌는 flow 문제를 residual 재사용, time-expanded network, batch rebuild로 모델링합니다.",
-      "summary": "capacity update, residual graph reuse, time-expanded network, rebuild 기준을 구분하는 dynamic flow 모델링 심화 레슨",
-      "order": 156,
-      "folderId": "graphs",
-      "tags": [
-        "graph",
-        "flow",
-        "dynamic-flow",
-        "residual-graph",
-        "time-expanded-network",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 65,
-      "prerequisites": [
-        "max-flow-min-cut",
-        "min-cost-flow",
-        "offline-time-axis-techniques"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "flow-with-lower-bound",
-        "convex-cost-flow",
-        "offline-time-axis-techniques"
-      ],
-      "pages": []
+      "pages": [],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "linear-algebra-modeling",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "online-convex-optimization",
@@ -3974,36 +3977,6 @@
       "audience": "advanced-contest"
     },
     {
-      "lessonId": "3d-convex-hull",
-      "title": "3D Convex Hull",
-      "description": "3차원 점 집합의 convex polyhedron을 oriented face, visible face, horizon edge로 구성하는 기준을 익힙니다.",
-      "summary": "signed volume predicate, oriented triangular face, incremental hull, coplanar degeneracy를 다루는 3D geometry 심화 레슨",
-      "order": 159,
-      "folderId": "geometry",
-      "tags": [
-        "geometry",
-        "3d",
-        "convex-hull",
-        "signed-volume",
-        "robust-predicate",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "geometry-ccw-segment-intersection",
-        "robust-geometry-predicates",
-        "shape-distance-modeling"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "voronoi-delaunay",
-        "power-diagram",
-        "robust-delaunay"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "randomized-determinant",
       "title": "Randomized Determinant",
       "description": "determinant polynomial에 무작위 값을 대입해 rank, matching 존재성, polynomial identity를 확률적으로 판정합니다.",
@@ -4062,36 +4035,6 @@
         "linear-algebra-applications",
         "sparse-linear-systems",
         "proof-and-invariants"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "regular-triangulation",
-      "title": "Regular Triangulation",
-      "description": "weighted point를 3D lower hull로 lifting해 Power Diagram의 dual triangulation을 이해합니다.",
-      "summary": "power distance, weighted lifting, lower convex hull, weighted Delaunay adjacency를 연결하는 계산기하 심화 레슨",
-      "order": 164,
-      "folderId": "geometry",
-      "tags": [
-        "geometry",
-        "regular-triangulation",
-        "power-diagram",
-        "delaunay",
-        "convex-hull-3d",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "power-diagram",
-        "robust-delaunay",
-        "3d-convex-hull"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "robust-geometry-predicates",
-        "half-plane-intersection",
-        "voronoi-delaunay"
       ],
       "pages": []
     },

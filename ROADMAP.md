@@ -22,6 +22,9 @@
 | 10 | `palindromic-tree`, `palindrome-query-structures`, `palindrome-range-dp`, `suffix-palindrome-applications` | Palindrome Structures 허브로 회문 판정, 열거, 구간 DP, suffix-palindrome 응용 경계를 정리 | 반영: `palindrome-structures` |
 | 11 | `fft-ntt`, `formal-power-series`, `fps-log-exp`, `multipoint-evaluation`, `polynomial-interpolation`, `generating-function-modeling`, `linear-recurrence-kitamasa`, `bostan-mori`, `linear-recurrence-applications`, `recurrence-guessing`, `berlekamp-massey` | Polynomial and Recurrence Algorithms 허브로 convolution/FPS/evaluation/generating function/recurrence 흐름을 정리 | 반영: `polynomial-recurrence-algorithms` |
 | 12 | `stochastic-decision-process`, `monte-carlo-tree-search`, `imperfect-information-search`, `pomdp`, `point-based-value-iteration`, `pomcp`, `bayesian-bandits`, `online-planning-evaluation` | Probabilistic Decision AI 허브로 정확 MDP와 heuristic/simulator planning reference 경계를 정리 | 반영: `probabilistic-decision-ai` |
+| 13 | `dynamic-flow`, `dynamic-mst`, `graph-cut-structures`, `offline-time-axis-techniques` | Dynamic Network Optimization 허브로 residual reuse, rebuild, offline interval, cut/cycle property 경계를 정리하고 graph cut과 MST의 순환 선수 관계를 제거 | 반영: `dynamic-network-optimization` |
+| 14 | `robust-geometry-predicates`, `power-diagram`, `robust-delaunay`, `3d-convex-hull`, `regular-triangulation` | Geometry Robustness and Duality 허브로 predicate 안정성, weighted Voronoi, lifting, lower hull duality를 묶고 구현 위험도를 명확히 표시 | 반영: `geometry-robustness-and-duality` |
+| 15 | `linear-basis-xor`, `linear-basis-applications`, `black-box-linear-algebra`, `sparse-linear-systems`, `linear-algebra-applications`, `randomized-determinant`, `matrix-tree-theorem-applications` | Linear Algebra Applications를 decision map 허브로 보강해 GF(2), linear system, determinant, sparse solver, graph counting 선택 기준을 먼저 제시 | 반영: `linear-algebra-applications` |
 
 ## 우선 추가할 주제
 
