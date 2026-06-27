@@ -14,6 +14,7 @@ Probabilistic Decision AI는 확률 전이, 숨은 상태, simulation 기반 탐
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
+| 선택 뒤 무엇을 관측하는지부터 헷갈린다 | [Feedback Model Boundary](pages/feedback-model-boundary.md) |
 | 상태와 action, 확률 전이표가 모두 주어진다 | [Stochastic Decision Process](pages/stochastic-decision-process.md) |
 | finite horizon, discounted MDP, policy evaluation, SSP를 구분해야 한다 | [Finite Horizon MDP](pages/finite-horizon-mdp.md), [Discounted Value Iteration](pages/discounted-value-iteration.md), [Stochastic Shortest Path](pages/stochastic-shortest-path.md) |
 | 큰 game tree에서 좋은 수를 시간 내에 고른다 | [Monte Carlo Tree Search](pages/monte-carlo-tree-search.md) |
@@ -23,7 +24,7 @@ Probabilistic Decision AI는 확률 전이, 숨은 상태, simulation 기반 탐
 | simulator와 particle belief로 online action을 고른다 | [POMCP](pages/pomcp.md) |
 | arm reward 확률을 모른 채 탐색/활용을 조절한다 | [Bayesian Bandits](pages/bayesian-bandits.md) |
 | planning algorithm의 시간/점수 tradeoff를 평가한다 | [Online Planning Evaluation](pages/online-planning-evaluation.md) |
-| 전체 경계가 헷갈린다 | [Decision AI Model Map](pages/decision-ai-model-map.md) |
+| 전체 경계가 헷갈린다 | [Decision AI Model Map](pages/decision-ai-model-map.md), [Feedback Model Boundary](pages/feedback-model-boundary.md) |
 
 ## 2. 정확 알고리즘과 reference/heuristic 경계
 

@@ -15,6 +15,7 @@
 
 | 상황 | 후보 |
 | --- | --- |
+| 선택 뒤 무엇을 관측하는지가 핵심이다 | feedback model boundary |
 | 전이표와 보상표가 있고 horizon이 작다 | finite horizon DP |
 | discount가 있고 오차 허용이 있다 | value iteration |
 | absorbing goal까지 기대 비용을 구한다 | stochastic shortest path |
@@ -22,6 +23,8 @@
 | belief space가 크고 근사가 허용된다 | PBVI 또는 POMCP |
 | 매 턴 제한 시간 안에 action 하나를 골라야 한다 | MCTS/POMCP |
 | 선택하지 않은 arm의 reward를 모른다 | bandit |
+
+관측 모델 자체가 헷갈리면 먼저 Feedback Model Boundary를 봅니다. full-information, bandit, simulator, hidden-state observation을 구분한 뒤에야 MDP, MCTS, POMDP, Bayesian Bandits 중 하나를 안전하게 고를 수 있습니다.
 
 ## 3. 쓰지 말아야 할 경우
 
