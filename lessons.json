@@ -3227,7 +3227,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "dynamic-network-optimization",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "prerequisites": [
