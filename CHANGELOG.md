@@ -18,6 +18,7 @@
 - `fft-ntt`, `formal-power-series`, `fps-log-exp`, `multipoint-evaluation`, `polynomial-interpolation`, `generating-function-modeling`, `linear-recurrence-kitamasa`, `bostan-mori`, `linear-recurrence-applications`, `recurrence-guessing`, `berlekamp-massey`를 `polynomial-recurrence-algorithms` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `stochastic-decision-process`, `monte-carlo-tree-search`, `imperfect-information-search`, `pomdp`, `point-based-value-iteration`, `pomcp`, `bayesian-bandits`, `online-planning-evaluation`를 `probabilistic-decision-ai` reference 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `dynamic-flow`, `dynamic-mst`를 `dynamic-network-optimization` 허브와 하위 페이지로 재배치하고, `graph-cut-structures`와 `dynamic-mst` 사이의 순환 선수 관계를 제거했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
+- `dynamic-network-optimization` Practice Set에 residual reuse trace와 incremental max-flow runner 로컬 연습을 추가해 dynamic-flow 보강 기준을 채웠습니다.
 - `robust-geometry-predicates`, `power-diagram`, `robust-delaunay`, `3d-convex-hull`, `regular-triangulation`을 `geometry-robustness-and-duality` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `parametric-optimization`과 `convex-dp-optimization` 사이의 순환 선수 관계를 제거하고 서로를 related track으로 정리했습니다.
 - `linear-algebra-applications`에 GF(2) basis, sparse solver, determinant, matrix-tree, recurrence를 먼저 고르는 decision map을 추가하고 overview metadata를 붙였습니다.
