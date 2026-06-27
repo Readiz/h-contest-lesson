@@ -12,9 +12,11 @@ Convex DP Optimization은 DP 전이식의 모양을 보고 어떤 최적화 기�
 
 ## 0. 선수 지식과 이어지는 레슨
 
-- 선수 지식: Dynamic Programming, Segment Tree, Divide and Conquer DP Optimization, Parametric Optimization
-- 함께 보면 좋은 레슨: Monge and SMAWK, Convex Cost Flow, Versioned Data Structures
-- 다음에 볼 레슨: Parametric Optimization, Offline and Time-Axis Techniques, Geometry Sweep
+- 선수 지식: Dynamic Programming, Segment Tree, Divide and Conquer DP Optimization
+- 함께 보면 좋은 레슨: Monge and SMAWK, Parametric Optimization, Convex Cost Flow, Versioned Data Structures
+- 다음에 볼 레슨: Offline and Time-Axis Techniques, Geometry Sweep
+
+Parametric Optimization은 이 허브의 prerequisite이 아니라 related track입니다. `lambda`나 penalty를 고정해 DP oracle을 만드는 문제는 Parametric Optimization 쪽으로, 이미 주어진 DP 전이식의 최적화 구조를 판정하는 문제는 이 허브로 들어옵니다.
 
 ## 1. 결정 트리
 

@@ -6,9 +6,11 @@ Graph Cut Structures는 s-t min cut 이후의 무향 cut 구조를 하나의 학
 
 ## 0. 선수 지식과 이어지는 레슨
 
-- 선수 지식: Max Flow Min Cut, Flow with Lower Bound, Dynamic MST
-- 함께 보면 좋은 레슨: Dynamic Connectivity, Planar Graph Duality, Proof and Invariants
+- 선수 지식: Max Flow Min Cut, Flow with Lower Bound
+- 함께 보면 좋은 레슨: Dynamic Network Optimization, Dynamic Connectivity, Planar Graph Duality, Proof and Invariants
 - 다음에 볼 레슨: dynamic cut, planar min-cut, randomized graph algorithms
+
+Dynamic MST는 cut/cycle property를 공유하지만 Graph Cut Structures의 prerequisite은 아닙니다. MST 갱신은 Dynamic Network Optimization에서 다루고, 이 허브는 s-t/global/all-pairs/family cut 모델 선택에 집중합니다.
 
 ## 1. 모델 선택 표
 
