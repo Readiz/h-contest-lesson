@@ -2386,6 +2386,13 @@
           "file": "pages/decision-ai-model-map.md"
         },
         {
+          "pageId": "feedback-model-boundary",
+          "title": "Feedback Model Boundary",
+          "description": "full-information, bandit, simulator, hidden-state observation을 먼저 구분합니다.",
+          "order": 15,
+          "file": "pages/feedback-model-boundary.md"
+        },
+        {
           "pageId": "stochastic-decision-process",
           "title": "Stochastic Decision Process",
           "description": "MDP, RL basics, SSP를 Bellman 모델로 묶은 하위 허브입니다.",
