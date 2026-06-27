@@ -1024,7 +1024,7 @@
         "offline-time-axis-techniques"
       ],
       "relatedLessons": [
-        "suffix-array-lcp",
+        "suffix-periodicity-structures",
         "segment-tree",
         "tree-advanced"
       ],
@@ -1537,7 +1537,7 @@
       ],
       "nextLessons": [
         "trie-aho-corasick",
-        "suffix-array-lcp"
+        "suffix-periodicity-structures"
       ],
       "relatedLessons": [
         "two-pointers-sliding-window",
@@ -1566,7 +1566,7 @@
         "bfs-dfs-grid"
       ],
       "nextLessons": [
-        "suffix-array-lcp"
+        "suffix-periodicity-structures"
       ],
       "relatedLessons": [
         "dynamic-programming"
@@ -1574,63 +1574,132 @@
       "pages": []
     },
     {
-      "lessonId": "suffix-array-lcp",
-      "title": "Suffix Array와 LCP",
-      "description": "모든 suffix를 사전순으로 정렬하고 LCP 배열로 반복 부분 문자열, 패턴 검색, 부분 문자열 개수를 처리합니다.",
-      "summary": "Doubling 방식 Suffix Array, Kasai LCP, 패턴 검색, 서로 다른 부분 문자열 수와 여러 문자열 공통 부분 문자열까지 정리",
+      "lessonId": "suffix-periodicity-structures",
+      "title": "Suffix and Periodicity Structures",
+      "description": "Suffix Array, Suffix Automaton, Suffix Tree, runs, border automaton, period query를 문자열 구조 선택 기준으로 묶습니다.",
+      "summary": "suffix ordering, substring automaton, generalized strings, suffix tree, runs/periodicity, border automaton을 하나의 문자열 고급 구조 트랙으로 정리하는 허브",
       "order": 57,
       "folderId": "strings",
       "tags": [
+        "strings",
         "suffix-array",
-        "lcp",
-        "string",
-        "doubling",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 65,
-      "prerequisites": [
-        "string-matching-kmp-z",
-        "sorting"
-      ],
-      "nextLessons": [
-        "suffix-automaton"
-      ],
-      "relatedLessons": [
-        "trie-aho-corasick"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "suffix-automaton",
-      "title": "Suffix Automaton",
-      "description": "한 문자열의 모든 부분 문자열을 상태로 압축해 부분 문자열 개수, 등장 횟수, 최장 공통 부분 문자열을 처리합니다.",
-      "summary": "Suffix Automaton construction, clone 상태, 서로 다른 부분 문자열 수, occurrence 누적, LCS 응용까지 이어지는 문자열 심화",
-      "order": 58,
-      "folderId": "strings",
-      "tags": [
         "suffix-automaton",
-        "string",
-        "automaton",
-        "substring",
-        "dynamic-programming",
+        "suffix-tree",
+        "periodicity",
+        "border",
+        "lcp",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 75,
+      "estimatedMinutes": 300,
       "prerequisites": [
-        "suffix-array-lcp",
-        "trie-aho-corasick"
+        "string-matching-kmp-z",
+        "trie-aho-corasick",
+        "sorting",
+        "sparse-table-rmq"
       ],
       "nextLessons": [
-        "palindromic-tree",
-        "suffix-automaton-applications"
+        "palindrome-query-structures",
+        "lyndon-factorization",
+        "suffix-palindrome-applications"
       ],
       "relatedLessons": [
-        "string-matching-kmp-z",
-        "suffix-array-lcp"
+        "palindromic-tree",
+        "trie-aho-corasick",
+        "string-matching-kmp-z"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "suffix-model-map",
+          "title": "Suffix Model Map",
+          "description": "suffix ordering, substring automaton, periodicity를 먼저 구분합니다.",
+          "order": 10,
+          "file": "pages/suffix-model-map.md"
+        },
+        {
+          "pageId": "suffix-array-lcp",
+          "title": "Suffix Array and LCP",
+          "description": "suffix 정렬과 LCP 배열, RMQ 기반 질의를 다룹니다.",
+          "order": 20,
+          "file": "pages/suffix-array-lcp.md"
+        },
+        {
+          "pageId": "suffix-array-applications",
+          "title": "Suffix Array Applications",
+          "description": "반복 부분 문자열, distinct substring, pattern search 응용입니다.",
+          "order": 30,
+          "file": "pages/suffix-array-applications.md"
+        },
+        {
+          "pageId": "suffix-automaton",
+          "title": "Suffix Automaton",
+          "description": "모든 substring을 O(N) 상태 DAG로 압축합니다.",
+          "order": 40,
+          "file": "pages/suffix-automaton.md"
+        },
+        {
+          "pageId": "suffix-automaton-applications",
+          "title": "Suffix Automaton Applications",
+          "description": "SAM 위 DP, k번째 substring, occurrence count 응용입니다.",
+          "order": 50,
+          "file": "pages/suffix-automaton-applications.md"
+        },
+        {
+          "pageId": "generalized-suffix-automaton",
+          "title": "Generalized Suffix Automaton",
+          "description": "여러 문자열을 한 automaton에서 처리합니다.",
+          "order": 60,
+          "file": "pages/generalized-suffix-automaton.md"
+        },
+        {
+          "pageId": "suffix-tree-ukkonen",
+          "title": "Suffix Tree and Ukkonen",
+          "description": "explicit suffix tree edge와 Ukkonen construction을 다룹니다.",
+          "order": 70,
+          "file": "pages/suffix-tree-ukkonen.md"
+        },
+        {
+          "pageId": "suffix-tree-phase-trace",
+          "title": "Suffix Tree Phase Trace",
+          "description": "abab$ 예제로 Ukkonen active point와 split 과정을 추적합니다.",
+          "order": 75,
+          "file": "pages/suffix-tree-phase-trace.md"
+        },
+        {
+          "pageId": "runs-periodicity",
+          "title": "Runs and Periodicity",
+          "description": "반복 구간, run, 문자열 주기를 다룹니다.",
+          "order": 80,
+          "file": "pages/runs-periodicity.md"
+        },
+        {
+          "pageId": "border-automaton",
+          "title": "Border Automaton",
+          "description": "prefix-function 기반 automaton과 border 전이를 다룹니다.",
+          "order": 90,
+          "file": "pages/border-automaton.md"
+        },
+        {
+          "pageId": "string-period-query-applications",
+          "title": "String Period Query Applications",
+          "description": "구간 period query와 주기 응용 패턴입니다.",
+          "order": 100,
+          "file": "pages/string-period-query-applications.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Suffix and Periodicity 계열을 하나의 흐름으로 연습합니다.",
+          "order": 110,
+          "file": "pages/practice-set.md"
+        }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "suffix-periodicity-structures",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "palindromic-tree",
@@ -1650,7 +1719,7 @@
       "level": "advanced",
       "estimatedMinutes": 65,
       "prerequisites": [
-        "suffix-automaton",
+        "suffix-periodicity-structures",
         "string-matching-kmp-z"
       ],
       "nextLessons": [
@@ -1659,7 +1728,7 @@
       ],
       "relatedLessons": [
         "trie-aho-corasick",
-        "suffix-array-lcp"
+        "suffix-periodicity-structures"
       ],
       "pages": []
     },
@@ -1681,7 +1750,7 @@
       "level": "advanced",
       "estimatedMinutes": 70,
       "prerequisites": [
-        "suffix-automaton",
+        "suffix-periodicity-structures",
         "palindromic-tree"
       ],
       "nextLessons": [
@@ -1689,7 +1758,7 @@
         "palindrome-query-structures"
       ],
       "relatedLessons": [
-        "suffix-array-lcp",
+        "suffix-periodicity-structures",
         "trie-aho-corasick"
       ],
       "pages": []
@@ -1716,53 +1785,12 @@
         "string-matching-kmp-z"
       ],
       "nextLessons": [
-        "suffix-tree-ukkonen"
+        "suffix-periodicity-structures"
       ],
       "relatedLessons": [
-        "suffix-array-lcp",
-        "suffix-automaton"
+        "suffix-periodicity-structures"
       ],
       "pages": []
-    },
-    {
-      "lessonId": "suffix-tree-ukkonen",
-      "title": "Suffix Tree와 Ukkonen",
-      "description": "압축 suffix trie와 Ukkonen active point/suffix link를 이용해 모든 suffix를 구조화합니다.",
-      "summary": "compressed edge, active point, split, suffix link, sentinel, generalized suffix tree 응용까지 이어지는 문자열 구조 심화",
-      "order": 62,
-      "folderId": "strings",
-      "tags": [
-        "suffix-tree",
-        "ukkonen",
-        "string",
-        "suffix-link",
-        "substring",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 95,
-      "prerequisites": [
-        "suffix-array-lcp",
-        "suffix-automaton",
-        "lyndon-factorization"
-      ],
-      "nextLessons": [
-        "runs-periodicity"
-      ],
-      "relatedLessons": [
-        "trie-aho-corasick",
-        "suffix-palindrome-applications",
-        "suffix-array-lcp"
-      ],
-      "pages": [
-        {
-          "pageId": "phase-trace",
-          "title": "abab$ phase trace",
-          "description": "abab$를 phase별로 따라가며 active point, split, suffix link, sentinel의 역할을 확인합니다.",
-          "order": 1,
-          "file": "pages/phase-trace.md"
-        }
-      ]
     },
     {
       "lessonId": "geometry-ccw-segment-intersection",
@@ -2738,38 +2766,6 @@
       ]
     },
     {
-      "lessonId": "runs-periodicity",
-      "title": "Runs와 문자열 주기",
-      "description": "문자열의 period, border, run을 이용해 반복 구조를 판정하고 maximal 반복 구간을 해석하는 문자열 심화 개념입니다.",
-      "summary": "prefix function 기반 minimal period, border chain, Fine-Wilf 직관, run의 maximal 반복 조건으로 이어지는 문자열 반복 구조 레슨",
-      "order": 91,
-      "folderId": "strings",
-      "tags": [
-        "strings",
-        "periodicity",
-        "runs",
-        "border",
-        "prefix-function",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 45,
-      "prerequisites": [
-        "string-matching-kmp-z",
-        "suffix-array-lcp",
-        "suffix-tree-ukkonen"
-      ],
-      "nextLessons": [
-        "border-automaton",
-        "string-period-query-applications"
-      ],
-      "relatedLessons": [
-        "lyndon-factorization",
-        "suffix-palindrome-applications"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "dynamic-segment-tree",
       "title": "Dynamic Segment Tree",
       "description": "좌표 범위가 매우 크고 실제 접근 지점이 적은 상황에서 필요한 node만 생성하는 sparse Segment Tree를 익힙니다.",
@@ -2939,36 +2935,6 @@
       "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
-    },
-    {
-      "lessonId": "suffix-array-applications",
-      "title": "Suffix Array 응용 패턴",
-      "description": "정렬된 suffix 구간, LCP RMQ, sliding window로 패턴 등장, k번째 substring, 여러 문자열 공통 substring을 처리합니다.",
-      "summary": "Suffix Array를 패턴 구간 탐색, LCP RMQ, 서로 다른 substring, multi-string common substring, 반복 substring 조건에 적용하는 문자열 응용 레슨",
-      "order": 96,
-      "folderId": "strings",
-      "tags": [
-        "strings",
-        "suffix-array",
-        "lcp",
-        "rmq",
-        "substring",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "suffix-array-lcp",
-        "sparse-table-rmq"
-      ],
-      "nextLessons": [
-        "border-automaton"
-      ],
-      "relatedLessons": [
-        "suffix-palindrome-applications",
-        "runs-periodicity"
-      ],
-      "pages": []
     },
     {
       "lessonId": "graph-cut-structures",
@@ -3175,37 +3141,6 @@
       "pages": []
     },
     {
-      "lessonId": "border-automaton",
-      "title": "Border Automaton",
-      "description": "KMP prefix function을 상태 전이표로 바꿔 패턴 매칭, forbidden pattern DP, border transition을 빠르게 처리합니다.",
-      "summary": "matched prefix length 상태, prefix-function fallback, automaton transition table, forbidden pattern DP와 overlapping match 처리를 다루는 문자열 심화 레슨",
-      "order": 101,
-      "folderId": "strings",
-      "tags": [
-        "strings",
-        "border-automaton",
-        "prefix-function",
-        "kmp",
-        "automaton",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 45,
-      "prerequisites": [
-        "string-matching-kmp-z",
-        "runs-periodicity",
-        "suffix-array-applications"
-      ],
-      "nextLessons": [
-        "suffix-automaton-applications"
-      ],
-      "relatedLessons": [
-        "trie-aho-corasick",
-        "suffix-automaton"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "dynamic-mst",
       "title": "Dynamic MST",
       "description": "간선 추가, 삭제, 가중치 변화가 섞인 그래프에서 MST 비용을 유지하는 모델과 실용적인 rebuild/offline 전략을 익힙니다.",
@@ -3266,37 +3201,6 @@
       "relatedLessons": [
         "mobius-inversion",
         "game-theory-grundy"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "suffix-automaton-applications",
-      "title": "Suffix Automaton Applications",
-      "description": "Suffix Automaton 위에서 occurrence 누적, k번째 substring, 반복 substring, 여러 문자열 공통 substring을 처리하는 응용 패턴을 익힙니다.",
-      "summary": "Suffix Automaton의 transition DAG와 suffix link tree를 분리해 occurrence, path count, k번째 substring, multi-string matching으로 확장하는 문자열 심화 레슨",
-      "order": 106,
-      "folderId": "strings",
-      "tags": [
-        "strings",
-        "suffix-automaton",
-        "automaton-dp",
-        "substring",
-        "occurrence",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "suffix-automaton",
-        "suffix-array-applications",
-        "suffix-palindrome-applications"
-      ],
-      "nextLessons": [
-        "generalized-suffix-automaton"
-      ],
-      "relatedLessons": [
-        "border-automaton",
-        "runs-periodicity"
       ],
       "pages": []
     },
@@ -3541,35 +3445,6 @@
       "pages": []
     },
     {
-      "lessonId": "generalized-suffix-automaton",
-      "title": "Generalized Suffix Automaton",
-      "description": "여러 문자열의 substring 집합을 하나의 automaton 관점에서 합치고 문자열별 등장 정보를 집계합니다.",
-      "summary": "단일 SAM을 여러 문자열 LCS, coverage count, group substring query로 확장하는 generalized suffix automaton 레슨",
-      "order": 116,
-      "folderId": "strings",
-      "tags": [
-        "suffix-automaton",
-        "generalized-sam",
-        "multi-string",
-        "substring",
-        "coverage",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 65,
-      "prerequisites": [
-        "suffix-automaton",
-        "suffix-automaton-applications",
-        "trie-aho-corasick"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "suffix-array-applications",
-        "suffix-palindrome-applications"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "palindrome-query-structures",
       "title": "Palindrome Query Structures",
       "description": "Manacher, rolling hash, Palindromic Tree를 질의 형태별로 골라 palindrome 판정과 집계를 처리합니다.",
@@ -3595,8 +3470,7 @@
         "palindrome-range-dp"
       ],
       "relatedLessons": [
-        "suffix-array-applications",
-        "suffix-automaton-applications"
+        "suffix-periodicity-structures"
       ],
       "pages": []
     },
@@ -3753,35 +3627,6 @@
       "relatedLessons": [
         "voronoi-delaunay",
         "sweep-line-geometry"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "string-period-query-applications",
-      "title": "String Period Query Applications",
-      "description": "Border, period, runs 정보를 substring range/query 문제로 확장해 반복 판정과 최소 주기 질의를 처리합니다.",
-      "summary": "rolling hash, suffix LCP/LCS, runs 관점을 이용해 range period, minimal period, repeated substring query를 모델링하는 문자열 응용 레슨",
-      "order": 131,
-      "folderId": "strings",
-      "tags": [
-        "strings",
-        "periodicity",
-        "border",
-        "range-query",
-        "suffix-array",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "runs-periodicity",
-        "suffix-array-applications",
-        "border-automaton"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "suffix-automaton-applications",
-        "palindrome-range-dp"
       ],
       "pages": []
     },

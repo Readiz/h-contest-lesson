@@ -1217,7 +1217,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1542,7 +1542,7 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/two-pointers-sliding-window/lesson.md">투 포인터와 슬라이딩 윈도우</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
 </article>
 <article class="lesson-card">
@@ -1563,51 +1563,47 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/bfs-dfs-grid/lesson.md">BFS/DFS와 격자 탐색</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></h3>
-<code class="lesson-id">suffix-array-lcp</code>
+<h3><a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></h3>
+<code class="lesson-id">suffix-periodicity-structures</code>
 </div>
-<p class="lesson-description">모든 suffix를 사전순으로 정렬하고 LCP 배열로 반복 부분 문자열, 패턴 검색, 부분 문자열 개수를 처리합니다.</p>
+<p class="lesson-description">Suffix Array, Suffix Automaton, Suffix Tree, runs, border automaton, period query를 문자열 구조 선택 기준으로 묶습니다.</p>
 <div class="meta-row">
 <span class="badge level">심화</span>
-<span class="badge time">65분</span>
+<span class="badge time">300분</span>
+<span class="badge">overview</span>
 </div>
 <div class="tag-list">
+<span class="tag">strings</span>
 <span class="tag">suffix-array</span>
-<span class="tag">lcp</span>
-<span class="tag">string</span>
-<span class="tag">doubling</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></h3>
-<code class="lesson-id">suffix-automaton</code>
-</div>
-<p class="lesson-description">한 문자열의 모든 부분 문자열을 상태로 압축해 부분 문자열 개수, 등장 횟수, 최장 공통 부분 문자열을 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">75분</span>
-</div>
-<div class="tag-list">
 <span class="tag">suffix-automaton</span>
-<span class="tag">string</span>
-<span class="tag">automaton</span>
-<span class="tag">substring</span>
-<span class="tag">dynamic-programming</span>
+<span class="tag">suffix-tree</span>
+<span class="tag">periodicity</span>
+<span class="tag">border</span>
+<span class="tag">lcp</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a> <a href="lessons/suffix-automaton-applications/lesson.md">Suffix Automaton Applications</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<ul class="page-list">
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-model-map.md">Suffix Model Map</a> <code>suffix-model-map</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md">Suffix Array and LCP</a> <code>suffix-array-lcp</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-array-applications.md">Suffix Array Applications</a> <code>suffix-array-applications</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-automaton.md">Suffix Automaton</a> <code>suffix-automaton</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md">Suffix Automaton Applications</a> <code>suffix-automaton-applications</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md">Generalized Suffix Automaton</a> <code>generalized-suffix-automaton</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md">Suffix Tree and Ukkonen</a> <code>suffix-tree-ukkonen</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-tree-phase-trace.md">Suffix Tree Phase Trace</a> <code>suffix-tree-phase-trace</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/runs-periodicity.md">Runs and Periodicity</a> <code>runs-periodicity</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/border-automaton.md">Border Automaton</a> <code>border-automaton</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/string-period-query-applications.md">String Period Query Applications</a> <code>string-period-query-applications</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1627,9 +1623,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">suffix-link</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1649,9 +1645,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">palindrome</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1672,143 +1668,8 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-tree-ukkonen/lesson.md">Suffix Tree와 Ukkonen</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/suffix-tree-ukkonen/lesson.md">Suffix Tree와 Ukkonen</a></h3>
-<code class="lesson-id">suffix-tree-ukkonen</code>
-</div>
-<p class="lesson-description">압축 suffix trie와 Ukkonen active point/suffix link를 이용해 모든 suffix를 구조화합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">95분</span>
-</div>
-<div class="tag-list">
-<span class="tag">suffix-tree</span>
-<span class="tag">ukkonen</span>
-<span class="tag">string</span>
-<span class="tag">suffix-link</span>
-<span class="tag">substring</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a></p>
-<ul class="page-list">
-<li><a href="lessons/suffix-tree-ukkonen/pages/phase-trace.md">abab$ phase trace</a> <code>phase-trace</code></li>
-</ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a></h3>
-<code class="lesson-id">runs-periodicity</code>
-</div>
-<p class="lesson-description">문자열의 period, border, run을 이용해 반복 구조를 판정하고 maximal 반복 구간을 해석하는 문자열 심화 개념입니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">45분</span>
-</div>
-<div class="tag-list">
-<span class="tag">strings</span>
-<span class="tag">periodicity</span>
-<span class="tag">runs</span>
-<span class="tag">border</span>
-<span class="tag">prefix-function</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/suffix-tree-ukkonen/lesson.md">Suffix Tree와 Ukkonen</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/border-automaton/lesson.md">Border Automaton</a> <a href="lessons/string-period-query-applications/lesson.md">String Period Query Applications</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/suffix-array-applications/lesson.md">Suffix Array 응용 패턴</a></h3>
-<code class="lesson-id">suffix-array-applications</code>
-</div>
-<p class="lesson-description">정렬된 suffix 구간, LCP RMQ, sliding window로 패턴 등장, k번째 substring, 여러 문자열 공통 substring을 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-</div>
-<div class="tag-list">
-<span class="tag">strings</span>
-<span class="tag">suffix-array</span>
-<span class="tag">lcp</span>
-<span class="tag">rmq</span>
-<span class="tag">substring</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-array-lcp/lesson.md">Suffix Array와 LCP</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/border-automaton/lesson.md">Border Automaton</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/border-automaton/lesson.md">Border Automaton</a></h3>
-<code class="lesson-id">border-automaton</code>
-</div>
-<p class="lesson-description">KMP prefix function을 상태 전이표로 바꿔 패턴 매칭, forbidden pattern DP, border transition을 빠르게 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">45분</span>
-</div>
-<div class="tag-list">
-<span class="tag">strings</span>
-<span class="tag">border-automaton</span>
-<span class="tag">prefix-function</span>
-<span class="tag">kmp</span>
-<span class="tag">automaton</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a> <a href="lessons/suffix-array-applications/lesson.md">Suffix Array 응용 패턴</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-automaton-applications/lesson.md">Suffix Automaton Applications</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/suffix-automaton-applications/lesson.md">Suffix Automaton Applications</a></h3>
-<code class="lesson-id">suffix-automaton-applications</code>
-</div>
-<p class="lesson-description">Suffix Automaton 위에서 occurrence 누적, k번째 substring, 반복 substring, 여러 문자열 공통 substring을 처리하는 응용 패턴을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-</div>
-<div class="tag-list">
-<span class="tag">strings</span>
-<span class="tag">suffix-automaton</span>
-<span class="tag">automaton-dp</span>
-<span class="tag">substring</span>
-<span class="tag">occurrence</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a> <a href="lessons/suffix-array-applications/lesson.md">Suffix Array 응용 패턴</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/generalized-suffix-automaton/lesson.md">Generalized Suffix Automaton</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/border-automaton/lesson.md">Border Automaton</a> <a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/generalized-suffix-automaton/lesson.md">Generalized Suffix Automaton</a></h3>
-<code class="lesson-id">generalized-suffix-automaton</code>
-</div>
-<p class="lesson-description">여러 문자열의 substring 집합을 하나의 automaton 관점에서 합치고 문자열별 등장 정보를 집계합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">65분</span>
-</div>
-<div class="tag-list">
-<span class="tag">suffix-automaton</span>
-<span class="tag">generalized-sam</span>
-<span class="tag">multi-string</span>
-<span class="tag">substring</span>
-<span class="tag">coverage</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-automaton/lesson.md">Suffix Automaton</a> <a href="lessons/suffix-automaton-applications/lesson.md">Suffix Automaton Applications</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-array-applications/lesson.md">Suffix Array 응용 패턴</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1830,7 +1691,7 @@ p{margin:0;color:var(--muted)}
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/palindrome-range-dp/lesson.md">Palindrome Range DP</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-array-applications/lesson.md">Suffix Array 응용 패턴</a> <a href="lessons/suffix-automaton-applications/lesson.md">Suffix Automaton Applications</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1853,28 +1714,6 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a></p>
 <p class="path-row"><strong>다음:</strong> 없음</p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/string-period-query-applications/lesson.md">String Period Query Applications</a></h3>
-<code class="lesson-id">string-period-query-applications</code>
-</div>
-<p class="lesson-description">Border, period, runs 정보를 substring range/query 문제로 확장해 반복 판정과 최소 주기 질의를 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">strings</span>
-<span class="tag">periodicity</span>
-<span class="tag">border</span>
-<span class="tag">range-query</span>
-<span class="tag">suffix-array</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/runs-periodicity/lesson.md">Runs와 문자열 주기</a> <a href="lessons/suffix-array-applications/lesson.md">Suffix Array 응용 패턴</a> <a href="lessons/border-automaton/lesson.md">Border Automaton</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-automaton-applications/lesson.md">Suffix Automaton Applications</a> <a href="lessons/palindrome-range-dp/lesson.md">Palindrome Range DP</a></p>
 </article>
 </div>
 </section>
