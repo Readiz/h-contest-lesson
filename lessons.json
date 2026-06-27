@@ -2273,7 +2273,7 @@
       ],
       "nextLessons": [
         "game-theory-grundy",
-        "stochastic-decision-process"
+        "probabilistic-decision-ai"
       ],
       "relatedLessons": [
         "matrix-exponentiation",
@@ -2334,8 +2334,7 @@
         "testing-and-stress"
       ],
       "nextLessons": [
-        "monte-carlo-tree-search",
-        "imperfect-information-search"
+        "probabilistic-decision-ai"
       ],
       "relatedLessons": [
         "proof-and-invariants",
@@ -2344,36 +2343,161 @@
       "pages": []
     },
     {
-      "lessonId": "monte-carlo-tree-search",
-      "title": "Monte Carlo Tree Search",
-      "description": "UCB 기반 선택, rollout, backpropagation으로 큰 game tree에서 좋은 수를 통계적으로 찾는 MCTS를 익힙니다.",
-      "summary": "selection, expansion, simulation, backpropagation, UCB score, rollout policy와 minimax와의 비교까지 이어지는 확률적 게임 탐색 레슨",
+      "lessonId": "probabilistic-decision-ai",
+      "title": "Probabilistic Decision AI",
+      "description": "MDP, MCTS, imperfect information, POMDP, PBVI, POMCP, Bayesian Bandits, online planning evaluation을 reference 트랙으로 묶습니다.",
+      "summary": "Bellman 기반 확률적 의사결정, hidden-state belief, simulation planning, bandit, online planning 평가를 정확 알고리즘과 heuristic/reference 경계로 정리하는 허브",
       "order": 83,
       "folderId": "math",
       "tags": [
+        "probability",
+        "decision-process",
+        "mdp",
         "mcts",
-        "uct",
-        "game-tree",
-        "randomized",
-        "heuristic",
-        "practice"
+        "pomdp",
+        "bandits",
+        "online-planning",
+        "imperfect-information",
+        "reference"
       ],
       "level": "advanced",
-      "estimatedMinutes": 65,
+      "estimatedMinutes": 320,
       "prerequisites": [
-        "minimax-alpha-beta",
         "probability-expected-value",
+        "dynamic-programming",
+        "minimax-alpha-beta",
         "heuristic"
       ],
       "nextLessons": [
-        "stochastic-decision-process",
-        "imperfect-information-search"
+        "game-theory-applications",
+        "online-convex-optimization",
+        "testing-and-stress"
       ],
       "relatedLessons": [
         "game-theory-grundy",
-        "testing-and-stress"
+        "sparse-linear-systems",
+        "black-box-linear-algebra"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "decision-ai-model-map",
+          "title": "Decision AI Model Map",
+          "description": "정확 MDP, partial observation, simulation planning, bandit을 구분합니다.",
+          "order": 10,
+          "file": "pages/decision-ai-model-map.md"
+        },
+        {
+          "pageId": "stochastic-decision-process",
+          "title": "Stochastic Decision Process",
+          "description": "MDP, RL basics, SSP를 Bellman 모델로 묶은 하위 허브입니다.",
+          "order": 20,
+          "file": "pages/stochastic-decision-process.md"
+        },
+        {
+          "pageId": "finite-horizon-mdp",
+          "title": "Finite Horizon MDP",
+          "description": "남은 턴 수가 정해진 MDP를 정확한 layer DP로 풉니다.",
+          "order": 30,
+          "file": "pages/finite-horizon-mdp.md"
+        },
+        {
+          "pageId": "discounted-value-iteration",
+          "title": "Discounted Value Iteration",
+          "description": "discounted infinite horizon MDP의 value iteration과 오차 기준입니다.",
+          "order": 40,
+          "file": "pages/discounted-value-iteration.md"
+        },
+        {
+          "pageId": "policy-evaluation-and-improvement",
+          "title": "Policy Evaluation and Improvement",
+          "description": "fixed policy evaluation과 policy improvement를 분리합니다.",
+          "order": 50,
+          "file": "pages/policy-evaluation-and-improvement.md"
+        },
+        {
+          "pageId": "stochastic-shortest-path",
+          "title": "Stochastic Shortest Path",
+          "description": "absorbing goal, proper policy, 무한 기대 비용 가능성을 다룹니다.",
+          "order": 60,
+          "file": "pages/stochastic-shortest-path.md"
+        },
+        {
+          "pageId": "exact-model-vs-sampling",
+          "title": "Exact Model vs Sampling",
+          "description": "전이표 기반 DP와 sample 기반 RL/planning을 구분합니다.",
+          "order": 70,
+          "file": "pages/exact-model-vs-sampling.md"
+        },
+        {
+          "pageId": "monte-carlo-tree-search",
+          "title": "Monte Carlo Tree Search",
+          "description": "UCT, rollout, backpropagation으로 큰 game tree를 근사 탐색합니다.",
+          "order": 80,
+          "file": "pages/monte-carlo-tree-search.md"
+        },
+        {
+          "pageId": "imperfect-information-search",
+          "title": "Imperfect Information Search",
+          "description": "information set, belief filtering, hidden-state search를 다룹니다.",
+          "order": 90,
+          "file": "pages/imperfect-information-search.md"
+        },
+        {
+          "pageId": "pomdp",
+          "title": "Partially Observable MDP",
+          "description": "belief distribution과 observation model을 상태로 올립니다.",
+          "order": 100,
+          "file": "pages/pomdp.md"
+        },
+        {
+          "pageId": "point-based-value-iteration",
+          "title": "Point-Based Value Iteration",
+          "description": "대표 belief point에서 alpha vector value function을 근사합니다.",
+          "order": 110,
+          "file": "pages/point-based-value-iteration.md"
+        },
+        {
+          "pageId": "pomcp",
+          "title": "POMCP",
+          "description": "particle belief와 UCT를 결합한 online POMDP planning입니다.",
+          "order": 120,
+          "file": "pages/pomcp.md"
+        },
+        {
+          "pageId": "bayesian-bandits",
+          "title": "Bayesian Bandits",
+          "description": "posterior update로 탐색과 활용을 조절합니다.",
+          "order": 130,
+          "file": "pages/bayesian-bandits.md"
+        },
+        {
+          "pageId": "online-planning-evaluation",
+          "title": "Online Planning Evaluation",
+          "description": "planning 성능을 seed, budget, variance, deadline 기준으로 평가합니다.",
+          "order": 140,
+          "file": "pages/online-planning-evaluation.md"
+        },
+        {
+          "pageId": "stochastic-decision-practice-set",
+          "title": "Stochastic Decision Practice Set",
+          "description": "MDP/RL/SSP 하위 흐름의 연습 항목입니다.",
+          "order": 150,
+          "file": "pages/stochastic-decision-practice-set.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Probabilistic Decision AI 계열을 하나의 흐름으로 연습합니다.",
+          "order": 160,
+          "file": "pages/practice-set.md"
+        }
+      ],
+      "status": "published",
+      "lessonType": "reference",
+      "seriesId": "probabilistic-decision-ai",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "research-reference"
     },
     {
       "lessonId": "offline-time-axis-techniques",
@@ -3267,120 +3391,6 @@
       "pages": []
     },
     {
-      "lessonId": "stochastic-decision-process",
-      "title": "Stochastic Decision Process",
-      "description": "MDP, reinforcement learning basics, stochastic shortest path를 Bellman 식 기반 확률적 의사결정 허브로 묶어 모델 차이와 구현 선택 기준을 정리합니다.",
-      "summary": "finite horizon, discounted value iteration, policy evaluation, absorbing stochastic shortest path, exact model과 sampling 기반 RL의 경계를 한 흐름에서 비교하는 확률적 의사결정 허브입니다.",
-      "order": 114,
-      "folderId": "math",
-      "level": "advanced",
-      "estimatedMinutes": 110,
-      "status": "published",
-      "lessonType": "overview",
-      "seriesId": "stochastic-decision-process",
-      "practiceStatus": "todo",
-      "implementationStatus": "partial",
-      "audience": "advanced-contest",
-      "prerequisites": [
-        "probability-expected-value",
-        "dynamic-programming",
-        "minimax-alpha-beta"
-      ],
-      "nextLessons": [
-        "pomdp",
-        "bayesian-bandits",
-        "imperfect-information-search"
-      ],
-      "relatedLessons": [
-        "monte-carlo-tree-search",
-        "sparse-linear-systems",
-        "game-theory-applications"
-      ],
-      "tags": [
-        "probability",
-        "mdp",
-        "reinforcement-learning",
-        "value-iteration",
-        "stochastic-shortest-path",
-        "practice"
-      ],
-      "pages": [
-        {
-          "pageId": "finite-horizon-mdp",
-          "title": "Finite Horizon MDP",
-          "description": "남은 턴 수가 정해진 MDP를 정확한 layer DP로 풉니다.",
-          "order": 10,
-          "file": "pages/finite-horizon-mdp.md"
-        },
-        {
-          "pageId": "discounted-value-iteration",
-          "title": "Discounted Value Iteration",
-          "description": "discount factor가 있는 무한 horizon MDP의 Bellman 반복과 오차 기준을 다룹니다.",
-          "order": 20,
-          "file": "pages/discounted-value-iteration.md"
-        },
-        {
-          "pageId": "policy-evaluation-and-improvement",
-          "title": "Policy Evaluation and Improvement",
-          "description": "고정 policy 평가, 선형 방정식, policy improvement를 구분합니다.",
-          "order": 30,
-          "file": "pages/policy-evaluation-and-improvement.md"
-        },
-        {
-          "pageId": "stochastic-shortest-path",
-          "title": "Stochastic Shortest Path",
-          "description": "absorbing goal까지의 기대 비용과 proper policy 조건을 다룹니다.",
-          "order": 40,
-          "file": "pages/stochastic-shortest-path.md"
-        },
-        {
-          "pageId": "exact-model-vs-sampling",
-          "title": "Exact Model vs Sampling",
-          "description": "전이표가 주어진 MDP DP와 sample 기반 reinforcement learning을 구분합니다.",
-          "order": 50,
-          "file": "pages/exact-model-vs-sampling.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "확률적 의사결정 모델을 하나의 흐름으로 연습합니다.",
-          "order": 60,
-          "file": "pages/practice-set.md"
-        }
-      ]
-    },
-    {
-      "lessonId": "imperfect-information-search",
-      "title": "Imperfect Information Search",
-      "description": "숨은 상태와 관측 가능한 정보를 분리해 belief update, determinization, information set MCTS를 모델링합니다.",
-      "summary": "상대 패나 hidden state가 있는 탐색에서 information set, belief state, determinization의 한계, information set MCTS를 다루는 게임 탐색 심화 레슨",
-      "order": 115,
-      "folderId": "math",
-      "tags": [
-        "game-tree",
-        "imperfect-information",
-        "belief-state",
-        "mcts",
-        "search",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "minimax-alpha-beta",
-        "monte-carlo-tree-search",
-        "stochastic-decision-process"
-      ],
-      "nextLessons": [
-        "pomdp"
-      ],
-      "relatedLessons": [
-        "heuristic",
-        "probability-expected-value"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "summatory-number-theory",
       "title": "Summatory Number Theory",
       "description": "floor division grouping과 divisor transform으로 큰 n의 정수론 누적합을 빠르게 계산하는 관점을 익힙니다.",
@@ -3564,38 +3574,6 @@
       "pages": []
     },
     {
-      "lessonId": "pomdp",
-      "title": "Partially Observable MDP",
-      "description": "숨은 상태와 관측 모델을 가진 의사결정 문제를 belief state 업데이트와 finite horizon DP로 모델링합니다.",
-      "summary": "POMDP belief distribution, Bayes update, observation model, belief tree DP와 sampling 근사 기준을 다루는 확률적 전략 레슨",
-      "order": 140,
-      "folderId": "math",
-      "tags": [
-        "probability",
-        "pomdp",
-        "belief-state",
-        "mdp",
-        "expected-value",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "stochastic-decision-process",
-        "imperfect-information-search",
-        "probability-expected-value"
-      ],
-      "nextLessons": [
-        "point-based-value-iteration",
-        "pomcp"
-      ],
-      "relatedLessons": [
-        "monte-carlo-tree-search",
-        "minimax-alpha-beta"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "black-box-linear-algebra",
       "title": "Black-Box Linear Algebra",
       "description": "Sparse matrix-vector product만으로 Krylov sequence와 Wiedemann 계열 선형대수 모델을 다룹니다.",
@@ -3646,14 +3624,13 @@
       "prerequisites": [
         "game-theory-grundy",
         "minimax-alpha-beta",
-        "stochastic-decision-process"
+        "probabilistic-decision-ai"
       ],
       "nextLessons": [
-        "point-based-value-iteration"
+        "probabilistic-decision-ai"
       ],
       "relatedLessons": [
-        "monte-carlo-tree-search",
-        "pomdp"
+        "probabilistic-decision-ai"
       ],
       "pages": []
     },
@@ -3688,37 +3665,6 @@
       "pages": []
     },
     {
-      "lessonId": "point-based-value-iteration",
-      "title": "Point-Based Value Iteration",
-      "description": "POMDP belief space를 대표 belief point와 alpha vector로 근사하는 planning 기법을 익힙니다.",
-      "summary": "PBVI의 belief point set, alpha vector value function, action-observation backup, exact POMDP와 근사 planning의 차이를 다루는 레슨",
-      "order": 145,
-      "folderId": "math",
-      "tags": [
-        "probability",
-        "pomdp",
-        "belief-state",
-        "value-iteration",
-        "planning",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "pomdp",
-        "stochastic-decision-process",
-        "monte-carlo-tree-search"
-      ],
-      "nextLessons": [
-        "pomcp"
-      ],
-      "relatedLessons": [
-        "imperfect-information-search",
-        "game-theory-applications"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "robust-delaunay",
       "title": "Robust Delaunay",
       "description": "Delaunay triangulation의 orientation, incircle, cocircular degeneracy를 안정적으로 처리하는 predicate 중심 구현 기준을 배웁니다.",
@@ -3745,38 +3691,6 @@
         "inversion-geometry",
         "circle-arrangement",
         "shape-distance-modeling"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "pomcp",
-      "title": "POMCP",
-      "description": "particle belief와 UCT 기반 Monte Carlo Tree Search를 결합해 POMDP를 online planning으로 근사하는 방법을 익힙니다.",
-      "summary": "POMCP history tree, particle belief, UCT selection, simulator rollout, root belief update를 다루는 확률적 planning 심화 레슨",
-      "order": 150,
-      "folderId": "math",
-      "tags": [
-        "probability",
-        "pomdp",
-        "mcts",
-        "particle-belief",
-        "online-planning",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 65,
-      "prerequisites": [
-        "pomdp",
-        "point-based-value-iteration",
-        "monte-carlo-tree-search"
-      ],
-      "nextLessons": [
-        "bayesian-bandits"
-      ],
-      "relatedLessons": [
-        "imperfect-information-search",
-        "game-theory-applications",
-        "stochastic-decision-process"
       ],
       "pages": []
     },
@@ -3956,36 +3870,6 @@
       "pages": []
     },
     {
-      "lessonId": "bayesian-bandits",
-      "title": "Bayesian Bandits",
-      "description": "미지 보상 확률을 posterior로 갱신하며 Thompson Sampling, Bayesian UCB, belief DP를 선택하는 기준을 익힙니다.",
-      "summary": "Beta-Bernoulli posterior update, exploration value, Thompson Sampling, finite-horizon belief-state DP를 다루는 확률적 의사결정 레슨",
-      "order": 155,
-      "folderId": "math",
-      "tags": [
-        "probability",
-        "bandit",
-        "bayesian",
-        "thompson-sampling",
-        "expected-value",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "probability-expected-value",
-        "stochastic-decision-process",
-        "pomdp"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "pomcp",
-        "imperfect-information-search",
-        "game-theory-applications"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "dynamic-flow",
       "title": "Dynamic Flow",
       "description": "간선 용량과 활성 시간이 바뀌는 flow 문제를 residual 재사용, time-expanded network, batch rebuild로 모델링합니다.",
@@ -4038,12 +3922,11 @@
         "probability-expected-value"
       ],
       "nextLessons": [
-        "bayesian-bandits",
-        "online-planning-evaluation"
+        "probabilistic-decision-ai"
       ],
       "relatedLessons": [
         "parametric-optimization",
-        "stochastic-decision-process",
+        "probabilistic-decision-ai",
         "convex-dp-optimization"
       ],
       "pages": [
@@ -4209,36 +4092,6 @@
         "robust-geometry-predicates",
         "half-plane-intersection",
         "voronoi-delaunay"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "online-planning-evaluation",
-      "title": "Online Planning Evaluation",
-      "description": "simulator 기반 policy와 search agent를 paired seed, confidence interval, holdout set으로 검증합니다.",
-      "summary": "rollout benchmark, paired seed comparison, confidence interval, time budget과 holdout 검증을 다루는 게임/탐색 평가 레슨",
-      "order": 165,
-      "folderId": "strategy",
-      "tags": [
-        "strategy",
-        "online-planning",
-        "mcts",
-        "pomcp",
-        "evaluation",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "monte-carlo-tree-search",
-        "pomcp",
-        "bayesian-bandits"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "testing-and-stress",
-        "heuristic",
-        "stochastic-decision-process"
       ],
       "pages": []
     },
