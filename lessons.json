@@ -1599,12 +1599,11 @@
         "sparse-table-rmq"
       ],
       "nextLessons": [
-        "palindrome-query-structures",
-        "lyndon-factorization",
-        "suffix-palindrome-applications"
+        "palindrome-structures",
+        "lyndon-factorization"
       ],
       "relatedLessons": [
-        "palindromic-tree",
+        "palindrome-structures",
         "trie-aho-corasick",
         "string-matching-kmp-z"
       ],
@@ -1702,66 +1701,87 @@
       "audience": "advanced-contest"
     },
     {
-      "lessonId": "palindromic-tree",
-      "title": "Palindromic Tree",
-      "description": "모든 서로 다른 palindrome substring을 Eertree 노드로 압축하고, 등장 횟수와 prefix별 palindrome 통계를 관리합니다.",
-      "summary": "두 root, palindromic suffix link, 온라인 문자 추가, 서로 다른 palindrome 개수와 occurrence 누적까지 이어지는 palindrome 구조 레슨",
+      "lessonId": "palindrome-structures",
+      "title": "Palindrome Structures",
+      "description": "Palindromic Tree, palindrome query, range DP, suffix-palindrome 응용을 회문 문제 모델 선택 기준으로 묶습니다.",
+      "summary": "회문 판정, 서로 다른 palindrome substring 집계, 구간 DP, suffix 구조와 palindrome 조건 결합을 하나의 문자열 회문 트랙으로 정리하는 허브",
       "order": 59,
       "folderId": "strings",
       "tags": [
-        "palindromic-tree",
-        "eertree",
+        "strings",
         "palindrome",
-        "string",
-        "suffix-link",
+        "palindromic-tree",
+        "manacher",
+        "rolling-hash",
+        "range-dp",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 65,
+      "estimatedMinutes": 170,
       "prerequisites": [
+        "string-matching-kmp-z",
         "suffix-periodicity-structures",
-        "string-matching-kmp-z"
-      ],
-      "nextLessons": [
-        "suffix-palindrome-applications",
-        "palindrome-query-structures"
-      ],
-      "relatedLessons": [
-        "trie-aho-corasick",
-        "suffix-periodicity-structures"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "suffix-palindrome-applications",
-      "title": "Suffix와 Palindrome 응용",
-      "description": "Suffix Array, Suffix Automaton, Palindromic Tree를 문제 신호에 맞게 고르고 substring/palindrome 응용을 연결합니다.",
-      "summary": "서로 다른 substring, occurrence 누적, 최장 공통 substring, palindrome occurrence, 여러 문자열 separator 처리까지 이어지는 문자열 구조 응용 레슨",
-      "order": 60,
-      "folderId": "strings",
-      "tags": [
-        "suffix-automaton",
-        "suffix-array",
-        "palindromic-tree",
-        "substring",
-        "palindrome",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "suffix-periodicity-structures",
-        "palindromic-tree"
+        "dynamic-programming"
       ],
       "nextLessons": [
         "lyndon-factorization",
-        "palindrome-query-structures"
+        "suffix-periodicity-structures"
       ],
       "relatedLessons": [
+        "trie-aho-corasick",
         "suffix-periodicity-structures",
-        "trie-aho-corasick"
+        "string-matching-kmp-z"
       ],
-      "pages": []
+      "pages": [
+        {
+          "pageId": "palindrome-model-map",
+          "title": "Palindrome Model Map",
+          "description": "판정, 열거, 집계, range DP 문제를 먼저 구분합니다.",
+          "order": 10,
+          "file": "pages/palindrome-model-map.md"
+        },
+        {
+          "pageId": "palindromic-tree",
+          "title": "Palindromic Tree",
+          "description": "모든 서로 다른 palindrome substring을 Eertree 노드로 압축합니다.",
+          "order": 20,
+          "file": "pages/palindromic-tree.md"
+        },
+        {
+          "pageId": "palindrome-query-structures",
+          "title": "Palindrome Query Structures",
+          "description": "Manacher, rolling hash, update query 모델을 구분합니다.",
+          "order": 30,
+          "file": "pages/palindrome-query-structures.md"
+        },
+        {
+          "pageId": "palindrome-range-dp",
+          "title": "Palindrome Range DP",
+          "description": "구간 palindrome table과 range DP 응용입니다.",
+          "order": 40,
+          "file": "pages/palindrome-range-dp.md"
+        },
+        {
+          "pageId": "suffix-palindrome-applications",
+          "title": "Suffix and Palindrome Applications",
+          "description": "suffix 구조와 palindrome 보조 정보를 결합합니다.",
+          "order": 50,
+          "file": "pages/suffix-palindrome-applications.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Palindrome Structures 계열을 하나의 흐름으로 연습합니다.",
+          "order": 60,
+          "file": "pages/practice-set.md"
+        }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "palindrome-structures",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "lyndon-factorization",
@@ -1781,7 +1801,7 @@
       "level": "advanced",
       "estimatedMinutes": 55,
       "prerequisites": [
-        "suffix-palindrome-applications",
+        "palindrome-structures",
         "string-matching-kmp-z"
       ],
       "nextLessons": [
@@ -3445,36 +3465,6 @@
       "pages": []
     },
     {
-      "lessonId": "palindrome-query-structures",
-      "title": "Palindrome Query Structures",
-      "description": "Manacher, rolling hash, Palindromic Tree를 질의 형태별로 골라 palindrome 판정과 집계를 처리합니다.",
-      "summary": "정적 palindrome 판정, 동적 hash query, Eertree occurrence 집계를 문제 신호별로 선택하는 palindrome query 레슨",
-      "order": 117,
-      "folderId": "strings",
-      "tags": [
-        "palindrome",
-        "manacher",
-        "rolling-hash",
-        "eertree",
-        "range-query",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "palindromic-tree",
-        "suffix-palindrome-applications",
-        "string-matching-kmp-z"
-      ],
-      "nextLessons": [
-        "palindrome-range-dp"
-      ],
-      "relatedLessons": [
-        "suffix-periodicity-structures"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "summatory-number-theory",
       "title": "Summatory Number Theory",
       "description": "floor division grouping과 divisor transform으로 큰 n의 정수론 누적합을 빠르게 계산하는 관점을 익힙니다.",
@@ -3532,35 +3522,6 @@
         "half-plane-intersection",
         "sweep-line-geometry",
         "voronoi-delaunay"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "palindrome-range-dp",
-      "title": "Palindrome Range DP",
-      "description": "Palindrome 판정 구조를 prefix DP와 interval DP 전이에 결합하는 문자열/DP 응용을 익힙니다.",
-      "summary": "Manacher 또는 `isPal` table을 구간 DP, palindrome partition, 최소 삽입 문제에 연결하는 문자열 DP 응용 레슨",
-      "order": 126,
-      "folderId": "strings",
-      "tags": [
-        "palindrome",
-        "dynamic-programming",
-        "interval-dp",
-        "manacher",
-        "range-query",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "palindrome-query-structures",
-        "dynamic-programming",
-        "palindromic-tree"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "suffix-palindrome-applications",
-        "string-matching-kmp-z"
       ],
       "pages": []
     },

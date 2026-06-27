@@ -1588,8 +1588,8 @@ p{margin:0;color:var(--muted)}
 <span class="tag">practice</span>
 </div>
 <p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
 <ul class="page-list">
 <li><a href="lessons/suffix-periodicity-structures/pages/suffix-model-map.md">Suffix Model Map</a> <code>suffix-model-map</code></li>
 <li><a href="lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md">Suffix Array and LCP</a> <code>suffix-array-lcp</code></li>
@@ -1607,47 +1607,35 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a></h3>
-<code class="lesson-id">palindromic-tree</code>
+<h3><a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a></h3>
+<code class="lesson-id">palindrome-structures</code>
 </div>
-<p class="lesson-description">모든 서로 다른 palindrome substring을 Eertree 노드로 압축하고, 등장 횟수와 prefix별 palindrome 통계를 관리합니다.</p>
+<p class="lesson-description">Palindromic Tree, palindrome query, range DP, suffix-palindrome 응용을 회문 문제 모델 선택 기준으로 묶습니다.</p>
 <div class="meta-row">
 <span class="badge level">심화</span>
-<span class="badge time">65분</span>
+<span class="badge time">170분</span>
+<span class="badge">overview</span>
 </div>
 <div class="tag-list">
-<span class="tag">palindromic-tree</span>
-<span class="tag">eertree</span>
+<span class="tag">strings</span>
 <span class="tag">palindrome</span>
-<span class="tag">string</span>
-<span class="tag">suffix-link</span>
+<span class="tag">palindromic-tree</span>
+<span class="tag">manacher</span>
+<span class="tag">rolling-hash</span>
+<span class="tag">range-dp</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a></h3>
-<code class="lesson-id">suffix-palindrome-applications</code>
-</div>
-<p class="lesson-description">Suffix Array, Suffix Automaton, Palindromic Tree를 문제 신호에 맞게 고르고 substring/palindrome 응용을 연결합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-</div>
-<div class="tag-list">
-<span class="tag">suffix-automaton</span>
-<span class="tag">suffix-array</span>
-<span class="tag">palindromic-tree</span>
-<span class="tag">substring</span>
-<span class="tag">palindrome</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<ul class="page-list">
+<li><a href="lessons/palindrome-structures/pages/palindrome-model-map.md">Palindrome Model Map</a> <code>palindrome-model-map</code></li>
+<li><a href="lessons/palindrome-structures/pages/palindromic-tree.md">Palindromic Tree</a> <code>palindromic-tree</code></li>
+<li><a href="lessons/palindrome-structures/pages/palindrome-query-structures.md">Palindrome Query Structures</a> <code>palindrome-query-structures</code></li>
+<li><a href="lessons/palindrome-structures/pages/palindrome-range-dp.md">Palindrome Range DP</a> <code>palindrome-range-dp</code></li>
+<li><a href="lessons/palindrome-structures/pages/suffix-palindrome-applications.md">Suffix and Palindrome Applications</a> <code>suffix-palindrome-applications</code></li>
+<li><a href="lessons/palindrome-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1667,53 +1655,9 @@ p{margin:0;color:var(--muted)}
 <span class="tag">factorization</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a></h3>
-<code class="lesson-id">palindrome-query-structures</code>
-</div>
-<p class="lesson-description">Manacher, rolling hash, Palindromic Tree를 질의 형태별로 골라 palindrome 판정과 집계를 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-</div>
-<div class="tag-list">
-<span class="tag">palindrome</span>
-<span class="tag">manacher</span>
-<span class="tag">rolling-hash</span>
-<span class="tag">eertree</span>
-<span class="tag">range-query</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/palindrome-range-dp/lesson.md">Palindrome Range DP</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/palindrome-range-dp/lesson.md">Palindrome Range DP</a></h3>
-<code class="lesson-id">palindrome-range-dp</code>
-</div>
-<p class="lesson-description">Palindrome 판정 구조를 prefix DP와 interval DP 전이에 결합하는 문자열/DP 응용을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-</div>
-<div class="tag-list">
-<span class="tag">palindrome</span>
-<span class="tag">dynamic-programming</span>
-<span class="tag">interval-dp</span>
-<span class="tag">manacher</span>
-<span class="tag">range-query</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/palindrome-query-structures/lesson.md">Palindrome Query Structures</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/palindromic-tree/lesson.md">Palindromic Tree</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-palindrome-applications/lesson.md">Suffix와 Palindrome 응용</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
 </article>
 </div>
 </section>
