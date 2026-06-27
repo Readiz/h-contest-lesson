@@ -178,9 +178,11 @@ int rankOverGF2(vector<unsigned long long> basisInput) {
 
 ## 12. 연습 문제
 
+로컬 완결형 연습은 [Decision Map Practice](pages/decision-map-practice.md)에서 먼저 진행합니다. 실제 h-contest practice 문제와 연결되지 않은 항목은 아래 표에 TODO로 남겨 둡니다.
+
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
-| 입문 | TODO: xor rank `/practice/...` 문제 필요 | rank와 표현 가능성 연결 | GF(2) basis |
+| 입문 | [Decision Map Practice](pages/decision-map-practice.md) | rank, determinant, recurrence 중 먼저 고르기 | model selection |
 | 표준 | TODO: linear constraints `/practice/...` 문제 필요 | 해 없음/여러 해 판정 | augmented matrix |
 | 응용 | TODO: determinant counting `/practice/...` 문제 필요 | determinant로 구조 세기 | Matrix-Tree |
 | 함정 | TODO: randomized algebra `/practice/...` 문제 필요 | zero test 실패 확률 줄이기 | Schwartz-Zippel |

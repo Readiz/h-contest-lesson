@@ -21,6 +21,7 @@
 - `robust-geometry-predicates`, `power-diagram`, `robust-delaunay`, `3d-convex-hull`, `regular-triangulation`을 `geometry-robustness-and-duality` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `parametric-optimization`과 `convex-dp-optimization` 사이의 순환 선수 관계를 제거하고 서로를 related track으로 정리했습니다.
 - `linear-algebra-applications`에 GF(2) basis, sparse solver, determinant, matrix-tree, recurrence를 먼저 고르는 decision map을 추가하고 overview metadata를 붙였습니다.
+- `linear-algebra-applications`에 Decision Map Practice 페이지를 추가해 GF(2) rank trace, 로컬 XOR constraint counter, Matrix-Tree counting 연습을 연결했습니다.
 - `probabilistic-decision-ai`에 full-information, bandit, simulator, hidden-state observation을 먼저 구분하는 Feedback Model Boundary 페이지와 로컬 분류 연습을 추가했습니다.
 - `lessonType`, `status`, `practiceStatus`, `implementationStatus`, `audience`, `seriesId`, `parentLessonId` metadata 검증 기반을 추가했습니다.
 - `matroid-algorithms` 허브는 일반 구현 레슨이 아니라 `reference` 성격으로 표시했습니다.
