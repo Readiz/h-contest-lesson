@@ -3885,7 +3885,7 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 55,
+      "estimatedMinutes": 70,
       "prerequisites": [
         "linear-basis-applications",
         "sparse-linear-systems",
@@ -3901,11 +3901,19 @@
         "matroid-algorithms",
         "matrix-exponentiation"
       ],
-      "pages": [],
+      "pages": [
+        {
+          "pageId": "decision-map-practice",
+          "title": "Decision Map Practice",
+          "description": "GF(2) rank, determinant counting, recurrence 선택을 작은 입력과 trace로 연습합니다.",
+          "order": 10,
+          "file": "pages/decision-map-practice.md"
+        }
+      ],
       "status": "published",
       "lessonType": "overview",
       "seriesId": "linear-algebra-modeling",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
