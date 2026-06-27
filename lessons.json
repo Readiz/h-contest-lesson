@@ -2073,7 +2073,7 @@
       ],
       "nextLessons": [
         "matrix-exponentiation",
-        "fft-ntt",
+        "polynomial-recurrence-algorithms",
         "probability-expected-value",
         "game-theory-grundy"
       ],
@@ -2106,8 +2106,7 @@
         "combinatorics-ncr"
       ],
       "nextLessons": [
-        "linear-recurrence-kitamasa",
-        "fft-ntt"
+        "polynomial-recurrence-algorithms"
       ],
       "relatedLessons": [
         "gcd-extended-euclid-crt",
@@ -2116,222 +2115,139 @@
       "pages": []
     },
     {
-      "lessonId": "linear-recurrence-kitamasa",
-      "title": "Linear Recurrence와 Kitamasa",
-      "description": "선형 점화식을 characteristic polynomial로 줄여 `O(K^2 log N)`에 n번째 항을 계산하는 Kitamasa 방식을 익힙니다.",
-      "summary": "characteristic polynomial, `x^n mod P(x)` 계수, 초기항 선형 결합, Berlekamp-Massey/Bostan-Mori 연결까지 이어지는 선형 점화식 심화",
+      "lessonId": "polynomial-recurrence-algorithms",
+      "title": "Polynomial and Recurrence Algorithms",
+      "description": "FFT/NTT, FPS, 다점평가, 보간, 생성함수, Kitamasa, Bostan-Mori, Berlekamp-Massey를 계수열 알고리즘 흐름으로 묶습니다.",
+      "summary": "convolution, formal power series, multipoint evaluation, interpolation, generating function, linear recurrence nth term, recurrence guessing을 하나의 수학 알고리즘 트랙으로 정리하는 허브",
       "order": 73,
       "folderId": "math",
       "tags": [
-        "linear-recurrence",
-        "kitamasa",
-        "characteristic-polynomial",
-        "fast-power",
-        "modular-arithmetic",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "matrix-exponentiation",
-        "modular-arithmetic"
-      ],
-      "nextLessons": [
-        "fft-ntt",
-        "bostan-mori",
-        "linear-recurrence-applications"
-      ],
-      "relatedLessons": [
-        "formal-power-series",
-        "combinatorics-ncr"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "fft-ntt",
-      "title": "FFT와 NTT",
-      "description": "다항식 곱셈과 convolution을 FFT/NTT로 빠르게 계산하고, pair count와 generating function 모델링으로 연결합니다.",
-      "summary": "Convolution 신호 찾기, NTT 구현, FFT/NTT 선택 기준, 빈도 배열 pair count 모델링까지 이어지는 다항식 곱셈 레슨",
-      "order": 74,
-      "folderId": "math",
-      "tags": [
+        "math",
+        "polynomial",
         "fft",
         "ntt",
-        "convolution",
-        "polynomial",
-        "number-theoretic-transform",
+        "formal-power-series",
+        "generating-function",
+        "linear-recurrence",
+        "berlekamp-massey",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 75,
+      "estimatedMinutes": 360,
       "prerequisites": [
         "modular-arithmetic",
-        "combinatorics-ncr",
-        "matrix-exponentiation",
-        "linear-recurrence-kitamasa"
-      ],
-      "nextLessons": [
-        "formal-power-series"
-      ],
-      "relatedLessons": [
-        "gcd-extended-euclid-crt"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "formal-power-series",
-      "title": "Formal Power Series",
-      "description": "다항식을 계수열로 다루며 미분, 적분, 역원 같은 FPS 기본 연산과 생성함수 모델링을 익힙니다.",
-      "summary": "FPS 계수 표현, derivative/integral, truncate, Newton iteration 기반 polynomial inverse, 생성함수 연결까지 이어지는 polynomial 심화 레슨",
-      "order": 75,
-      "folderId": "math",
-      "tags": [
-        "formal-power-series",
-        "polynomial",
-        "generating-function",
-        "ntt",
-        "modular-arithmetic",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 75,
-      "prerequisites": [
-        "fft-ntt",
-        "combinatorics-ncr"
-      ],
-      "nextLessons": [
-        "fps-log-exp",
-        "multipoint-evaluation",
-        "generating-function-modeling"
-      ],
-      "relatedLessons": [
-        "matrix-exponentiation",
-        "gcd-extended-euclid-crt"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "fps-log-exp",
-      "title": "FPS Log와 Exp",
-      "description": "Formal Power Series에서 log, exp, power 연산의 조건과 Newton iteration 흐름, 생성함수 응용을 익힙니다.",
-      "summary": "FPS log 공식, exp Newton iteration, polynomial power, OGF/EGF 구분과 구현 전제 조건까지 이어지는 polynomial 심화",
-      "order": 76,
-      "folderId": "math",
-      "tags": [
-        "formal-power-series",
-        "fps-log",
-        "fps-exp",
-        "polynomial",
-        "generating-function",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 75,
-      "prerequisites": [
-        "formal-power-series",
-        "fft-ntt"
-      ],
-      "nextLessons": [
-        "multipoint-evaluation"
-      ],
-      "relatedLessons": [
         "combinatorics-ncr",
         "matrix-exponentiation"
       ],
-      "pages": []
-    },
-    {
-      "lessonId": "multipoint-evaluation",
-      "title": "Multipoint Evaluation",
-      "description": "Subproduct tree와 polynomial remainder 관점으로 하나의 다항식을 여러 점에서 빠르게 평가하는 방법을 익힙니다.",
-      "summary": "평가점 product tree, `P mod M` 나머지 전파, interpolation 연결, NTT 기반 최적화 경계까지 이어지는 polynomial algorithm 응용",
-      "order": 77,
-      "folderId": "math",
-      "tags": [
-        "polynomial",
-        "multipoint-evaluation",
-        "subproduct-tree",
-        "interpolation",
-        "ntt",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "formal-power-series",
-        "fft-ntt"
-      ],
       "nextLessons": [
-        "bostan-mori",
-        "polynomial-interpolation"
+        "black-box-linear-algebra",
+        "linear-algebra-applications",
+        "sparse-linear-systems"
       ],
       "relatedLessons": [
-        "fps-log-exp",
-        "linear-recurrence-kitamasa"
+        "gcd-extended-euclid-crt",
+        "convex-dp-optimization",
+        "randomized-determinant"
       ],
-      "pages": []
-    },
-    {
-      "lessonId": "bostan-mori",
-      "title": "Bostan-Mori",
-      "description": "Rational generating function `P(x)/Q(x)`의 n번째 계수를 짝수/홀수 계수 추출로 빠르게 계산합니다.",
-      "summary": "`Q(x)Q(-x)` 변환, parity coefficient extraction, 선형 점화식 생성함수와 Kitamasa 비교까지 이어지는 계수 추출 알고리즘 레슨",
-      "order": 78,
-      "folderId": "math",
-      "tags": [
-        "bostan-mori",
-        "generating-function",
-        "linear-recurrence",
-        "polynomial",
-        "coefficient-extraction",
-        "practice"
+      "pages": [
+        {
+          "pageId": "polynomial-model-map",
+          "title": "Polynomial Model Map",
+          "description": "convolution, FPS, evaluation/interpolation, recurrence를 먼저 구분합니다.",
+          "order": 10,
+          "file": "pages/polynomial-model-map.md"
+        },
+        {
+          "pageId": "fft-ntt",
+          "title": "FFT and NTT",
+          "description": "다항식 곱셈과 convolution을 빠르게 계산합니다.",
+          "order": 20,
+          "file": "pages/fft-ntt.md"
+        },
+        {
+          "pageId": "formal-power-series",
+          "title": "Formal Power Series",
+          "description": "FPS 기본 연산, inverse, truncate를 다룹니다.",
+          "order": 30,
+          "file": "pages/formal-power-series.md"
+        },
+        {
+          "pageId": "fps-log-exp",
+          "title": "FPS Log and Exp",
+          "description": "FPS log, exp, power의 조건과 구현 흐름입니다.",
+          "order": 40,
+          "file": "pages/fps-log-exp.md"
+        },
+        {
+          "pageId": "multipoint-evaluation",
+          "title": "Multipoint Evaluation",
+          "description": "subproduct tree로 polynomial을 여러 점에서 평가합니다.",
+          "order": 50,
+          "file": "pages/multipoint-evaluation.md"
+        },
+        {
+          "pageId": "polynomial-interpolation",
+          "title": "Polynomial Interpolation",
+          "description": "값에서 polynomial 계수를 복원합니다.",
+          "order": 60,
+          "file": "pages/polynomial-interpolation.md"
+        },
+        {
+          "pageId": "generating-function-modeling",
+          "title": "Generating Function Modeling",
+          "description": "counting과 DP를 생성함수 계수 문제로 번역합니다.",
+          "order": 70,
+          "file": "pages/generating-function-modeling.md"
+        },
+        {
+          "pageId": "linear-recurrence-kitamasa",
+          "title": "Linear Recurrence and Kitamasa",
+          "description": "characteristic polynomial로 n번째 항을 계산합니다.",
+          "order": 80,
+          "file": "pages/linear-recurrence-kitamasa.md"
+        },
+        {
+          "pageId": "bostan-mori",
+          "title": "Bostan-Mori",
+          "description": "rational generating function의 n번째 계수를 추출합니다.",
+          "order": 90,
+          "file": "pages/bostan-mori.md"
+        },
+        {
+          "pageId": "linear-recurrence-applications",
+          "title": "Linear Recurrence Applications",
+          "description": "문제에서 선형 점화식을 찾고 방법을 고릅니다.",
+          "order": 100,
+          "file": "pages/linear-recurrence-applications.md"
+        },
+        {
+          "pageId": "recurrence-guessing",
+          "title": "Recurrence Guessing",
+          "description": "앞 항에서 recurrence 후보를 만들고 검증합니다.",
+          "order": 110,
+          "file": "pages/recurrence-guessing.md"
+        },
+        {
+          "pageId": "berlekamp-massey",
+          "title": "Berlekamp-Massey",
+          "description": "field 위 수열에서 최소 선형 점화식을 찾습니다.",
+          "order": 120,
+          "file": "pages/berlekamp-massey.md"
+        },
+        {
+          "pageId": "practice-set",
+          "title": "Practice Set",
+          "description": "Polynomial and Recurrence 계열을 하나의 흐름으로 연습합니다.",
+          "order": 130,
+          "file": "pages/practice-set.md"
+        }
       ],
-      "level": "advanced",
-      "estimatedMinutes": 65,
-      "prerequisites": [
-        "linear-recurrence-kitamasa",
-        "formal-power-series"
-      ],
-      "nextLessons": [
-        "polynomial-interpolation",
-        "linear-recurrence-applications"
-      ],
-      "relatedLessons": [
-        "multipoint-evaluation",
-        "fft-ntt"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "polynomial-interpolation",
-      "title": "Polynomial Interpolation",
-      "description": "여러 점의 값으로 다항식을 결정하고 Lagrange 보간으로 큰 위치의 값을 계산합니다.",
-      "summary": "Lagrange basis, consecutive x 최적화, finite differences, 계수 복원과 multipoint evaluation의 역방향 관점까지 이어지는 polynomial 심화",
-      "order": 79,
-      "folderId": "math",
-      "tags": [
-        "polynomial-interpolation",
-        "lagrange",
-        "finite-difference",
-        "polynomial",
-        "modular-arithmetic",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "multipoint-evaluation",
-        "combinatorics-ncr"
-      ],
-      "nextLessons": [
-        "linear-basis-xor"
-      ],
-      "relatedLessons": [
-        "formal-power-series",
-        "bostan-mori",
-        "multipoint-evaluation"
-      ],
-      "pages": []
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "polynomial-recurrence-algorithms",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest"
     },
     {
       "lessonId": "probability-expected-value",
@@ -2831,7 +2747,7 @@
       "prerequisites": [
         "modular-arithmetic",
         "proof-and-invariants",
-        "polynomial-interpolation"
+        "polynomial-recurrence-algorithms"
       ],
       "nextLessons": [
         "linear-basis-applications"
@@ -3526,39 +3442,6 @@
       "pages": []
     },
     {
-      "lessonId": "linear-recurrence-applications",
-      "title": "Linear Recurrence Applications",
-      "description": "DP, graph walk, 생성함수에서 선형 점화식을 찾아 Kitamasa, Bostan-Mori, 행렬 거듭제곱 중 방법을 고릅니다.",
-      "summary": "문제에서 recurrence를 모델링하고 Matrix Exponentiation, Kitamasa, Bostan-Mori, Berlekamp-Massey 선택 기준을 정리하는 수학 응용 레슨",
-      "order": 129,
-      "folderId": "math",
-      "tags": [
-        "math",
-        "linear-recurrence",
-        "kitamasa",
-        "bostan-mori",
-        "berlekamp-massey",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "linear-recurrence-kitamasa",
-        "bostan-mori",
-        "matrix-exponentiation"
-      ],
-      "nextLessons": [
-        "recurrence-guessing",
-        "berlekamp-massey",
-        "generating-function-modeling"
-      ],
-      "relatedLessons": [
-        "formal-power-series",
-        "polynomial-interpolation"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "circle-geometry",
       "title": "Circle Geometry",
       "description": "원-직선, 원-원 교점과 접선 construction, 각도 구간 sweep의 case 분기를 익힙니다.",
@@ -3649,66 +3532,6 @@
       "pages": []
     },
     {
-      "lessonId": "recurrence-guessing",
-      "title": "Recurrence Guessing",
-      "description": "처음 몇 항에서 낮은 차수 선형 점화식 후보를 찾고 holdout 항으로 검증하는 모델링 흐름을 익힙니다.",
-      "summary": "수열 항 생성, recurrence 후보 검증, affine 전이 처리, BM/Kitamasa 연결 기준을 다루는 선형 점화식 모델링 레슨",
-      "order": 136,
-      "folderId": "math",
-      "tags": [
-        "math",
-        "linear-recurrence",
-        "recurrence-guessing",
-        "sequence-modeling",
-        "berlekamp-massey",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "linear-recurrence-applications",
-        "linear-recurrence-kitamasa",
-        "matrix-exponentiation"
-      ],
-      "nextLessons": [
-        "berlekamp-massey"
-      ],
-      "relatedLessons": [
-        "bostan-mori",
-        "polynomial-interpolation"
-      ],
-      "pages": []
-    },
-    {
-      "lessonId": "berlekamp-massey",
-      "title": "Berlekamp-Massey",
-      "description": "Field 위 수열 앞 항에서 최소 선형 점화식을 찾아 Kitamasa나 Bostan-Mori로 연결하는 방법을 익힙니다.",
-      "summary": "discrepancy, recurrence 보정, prime modulo field 조건, BM + Kitamasa 연결을 다루는 선형 점화식 추정 레슨",
-      "order": 137,
-      "folderId": "math",
-      "tags": [
-        "math",
-        "berlekamp-massey",
-        "linear-recurrence",
-        "kitamasa",
-        "modular-inverse",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "recurrence-guessing",
-        "linear-recurrence-kitamasa",
-        "modular-arithmetic"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "linear-recurrence-applications",
-        "bostan-mori"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "robust-geometry-predicates",
       "title": "Robust Geometry Predicates",
       "description": "orientation, segment intersection, incircle 같은 기하 분기 조건을 exact arithmetic과 EPS 정책으로 안정화합니다.",
@@ -3773,37 +3596,6 @@
       "pages": []
     },
     {
-      "lessonId": "generating-function-modeling",
-      "title": "Generating Function Modeling",
-      "description": "Counting과 DP 식을 생성함수 계수로 번역하고 rational form, recurrence, Bostan-Mori로 연결합니다.",
-      "summary": "선택 구조를 다항식으로 모델링하고 product, sequence, truncate, rational generating function 계수 추출까지 이어지는 조합 모델링 레슨",
-      "order": 141,
-      "folderId": "math",
-      "tags": [
-        "math",
-        "generating-function",
-        "combinatorics",
-        "formal-power-series",
-        "bostan-mori",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "formal-power-series",
-        "combinatorics-ncr",
-        "linear-recurrence-applications"
-      ],
-      "nextLessons": [
-        "black-box-linear-algebra"
-      ],
-      "relatedLessons": [
-        "bostan-mori",
-        "recurrence-guessing"
-      ],
-      "pages": []
-    },
-    {
       "lessonId": "black-box-linear-algebra",
       "title": "Black-Box Linear Algebra",
       "description": "Sparse matrix-vector product만으로 Krylov sequence와 Wiedemann 계열 선형대수 모델을 다룹니다.",
@@ -3821,8 +3613,7 @@
       "level": "advanced",
       "estimatedMinutes": 65,
       "prerequisites": [
-        "linear-recurrence-applications",
-        "berlekamp-massey",
+        "polynomial-recurrence-algorithms",
         "modular-arithmetic"
       ],
       "nextLessons": [
@@ -3831,7 +3622,7 @@
       ],
       "relatedLessons": [
         "matrix-exponentiation",
-        "generating-function-modeling"
+        "polynomial-recurrence-algorithms"
       ],
       "pages": []
     },
@@ -4099,8 +3890,7 @@
         "linear-algebra-applications"
       ],
       "relatedLessons": [
-        "berlekamp-massey",
-        "generating-function-modeling",
+        "polynomial-recurrence-algorithms",
         "summatory-number-theory"
       ],
       "pages": []
@@ -4129,7 +3919,7 @@
       ],
       "nextLessons": [],
       "relatedLessons": [
-        "generating-function-modeling",
+        "polynomial-recurrence-algorithms",
         "matroid-algorithms",
         "matrix-exponentiation"
       ],

@@ -15,6 +15,7 @@
 - `convex-dp-modeling`, `convex-hull-trick-li-chao`, `convex-hull-trick-variants`, `cht-dp-applications`, `slope-trick`, `min-plus-convolution`, `kinetic-hull`, `fully-dynamic-cht`를 `convex-dp-optimization` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `suffix-array-lcp`, `suffix-array-applications`, `suffix-automaton`, `suffix-automaton-applications`, `generalized-suffix-automaton`, `suffix-tree-ukkonen`, `runs-periodicity`, `border-automaton`, `string-period-query-applications`를 `suffix-periodicity-structures` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `palindromic-tree`, `palindrome-query-structures`, `palindrome-range-dp`, `suffix-palindrome-applications`를 `palindrome-structures` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
+- `fft-ntt`, `formal-power-series`, `fps-log-exp`, `multipoint-evaluation`, `polynomial-interpolation`, `generating-function-modeling`, `linear-recurrence-kitamasa`, `bostan-mori`, `linear-recurrence-applications`, `recurrence-guessing`, `berlekamp-massey`를 `polynomial-recurrence-algorithms` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `lessonType`, `status`, `practiceStatus`, `implementationStatus`, `audience`, `seriesId`, `parentLessonId` metadata 검증 기반을 추가했습니다.
 - `matroid-algorithms` 허브는 일반 구현 레슨이 아니라 `reference` 성격으로 표시했습니다.
 
