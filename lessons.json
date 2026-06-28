@@ -2244,7 +2244,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "polynomial-recurrence-algorithms",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },

@@ -46,4 +46,4 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 
 ## 3. 공개 상태
 
-하위 페이지들은 기존 구현과 설명을 보존합니다. practice link가 부족한 항목은 [Practice Set](pages/practice-set.md)에 TODO로 모아 둡니다.
+하위 페이지들은 기존 구현과 설명을 보존합니다. [Practice Set](pages/practice-set.md)은 Kitamasa 기반 K차 선형 점화식 nth-term 로컬 연습과 Fibonacci coefficient trace를 대표 구현 흐름으로 제공합니다.
