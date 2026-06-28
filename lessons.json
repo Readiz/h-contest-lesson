@@ -2763,7 +2763,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "parametric-optimization",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "prerequisites": [

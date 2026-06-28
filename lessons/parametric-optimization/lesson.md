@@ -65,4 +65,4 @@ parameter를 고정했을 때 원래보다 쉬운 DP, greedy, shortest path, flo
 
 ## 6. 연습 문제
 
-이 허브의 실제 연습 흐름은 [Practice Set](pages/practice-set.md)에 모읍니다. 적절한 h-contest 문제가 아직 없는 칸은 임의 ID를 넣지 않고 `TODO`로 둡니다.
+이 허브의 실제 연습 흐름은 [Practice Set](pages/practice-set.md)에 모읍니다. Practice Set은 maximum average subarray의 `value - x * weight` 판정 trace와 로컬 구현을 대표 흐름으로 제공합니다.
