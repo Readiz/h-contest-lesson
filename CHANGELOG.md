@@ -11,6 +11,7 @@
 - `planar-graph-duality`는 독립 lessonId를 유지하되, half-edge face traversal, cut-cycle duality, planar min-cut 페이지를 추가해 구현 전제조건을 보강했습니다.
 - `global-min-cut`, `gomory-hu-tree`, `cut-sparsification`, `global-min-cut-applications`, `cactus-representation`, `randomized-min-cut`, `cut-cactus-applications`를 `graph-cut-structures` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `persistent-segment-tree`, `persistent-lazy-segment-tree`, `persistent-union-find`, `persistent-queue-stack`, `persistent-sequence-queries`를 `versioned-data-structures` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
+- `versioned-data-structures` Practice Set에 prefix root 차이 trace와 persistent segment tree kth query 로컬 연습을 추가했습니다.
 - `offline-queries`, `rollback-techniques`, `dynamic-connectivity`, `offline-range-query-techniques`, `retroactive-data-structures`를 `offline-time-axis-techniques` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `offline-time-axis-techniques` Practice Set에 active interval trace와 Rollback DSU + Segment Tree over Time 로컬 연습을 추가했습니다.
 - `convex-dp-modeling`, `convex-hull-trick-li-chao`, `convex-hull-trick-variants`, `cht-dp-applications`, `slope-trick`, `min-plus-convolution`, `kinetic-hull`, `fully-dynamic-cht`를 `convex-dp-optimization` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
