@@ -2596,7 +2596,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "offline-time-axis-techniques",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
