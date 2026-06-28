@@ -8,6 +8,7 @@
 - `parametric-optimization` Practice Set에 maximum average subarray 판정 trace와 `value - x * weight` 로컬 구현 연습을 추가했습니다.
 - `markov-decision-process`, `reinforcement-learning-basics`, `stochastic-shortest-path`를 `stochastic-decision-process` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `online-convex-optimization`, `dual-averaging`을 `online-convex-optimization` 허브와 하위 페이지로 재배치했습니다. 기존 `dual-averaging` 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
+- `online-convex-optimization` Practice Set에 full-information expert advice와 Multiplicative Weights 로컬 구현 연습을 추가했습니다.
 - `matroid-intersection`, `matroid-parity`, `matroid-union`을 `matroid-algorithms` 허브와 하위 reference 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `matroid-algorithms` Practice Set에 weighted partition matroid greedy 로컬 연습과 exchange argument를 추가했습니다.
 - `planar-graph-duality`는 독립 lessonId를 유지하되, half-edge face traversal, cut-cycle duality, planar min-cut 페이지를 추가해 구현 전제조건을 보강했습니다.
