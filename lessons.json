@@ -3987,7 +3987,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "online-convex-optimization",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
