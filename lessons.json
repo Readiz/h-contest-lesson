@@ -1779,7 +1779,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "palindrome-structures",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
