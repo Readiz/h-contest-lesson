@@ -44,4 +44,4 @@ Parametric Optimization은 이 허브의 prerequisite이 아니라 related track
 
 ## 3. 공개 상태
 
-하위 페이지들은 구현과 판단 기준을 담고 있지만, 아직 practice link가 TODO인 항목이 남아 있습니다. 이 허브는 `overview`로 공개하고, 세부 구현 페이지는 [Practice Set](pages/practice-set.md)에서 보강 대상을 추적합니다.
+하위 페이지들은 구현과 판단 기준을 담고 있습니다. [Practice Set](pages/practice-set.md)은 line-query DP를 Li Chao Tree로 계산하는 로컬 구현, trace, stress 기준을 대표 흐름으로 제공합니다.

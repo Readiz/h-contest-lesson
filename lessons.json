@@ -2999,7 +2999,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "convex-dp-optimization",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
