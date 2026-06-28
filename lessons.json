@@ -2501,7 +2501,7 @@
       "status": "published",
       "lessonType": "reference",
       "seriesId": "probabilistic-decision-ai",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "research-reference"
     },
