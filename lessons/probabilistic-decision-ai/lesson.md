@@ -35,4 +35,4 @@ Probabilistic Decision AI는 확률 전이, 숨은 상태, simulation 기반 탐
 | belief 근사 | POMDP, PBVI | 작은 모델 또는 근사 planning |
 | 평가 방법 | Online Planning Evaluation | 알고리즘보다 실험 설계 중심 |
 
-`published`라고 해서 모든 하위 페이지가 완전한 구현 강의라는 뜻은 아닙니다. 이 트랙은 `reference` 성격이 강하고, 실제 문제 링크가 부족한 항목은 [Practice Set](pages/practice-set.md)에 TODO로 남깁니다.
+`published`라고 해서 모든 하위 페이지가 완전한 구현 강의라는 뜻은 아닙니다. 이 트랙은 `reference` 성격이 강하지만, [Practice Set](pages/practice-set.md)은 feedback 모델 분류와 finite-horizon MDP의 backward Bellman DP를 로컬 완결형 연습으로 제공합니다.
