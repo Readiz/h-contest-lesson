@@ -44,6 +44,8 @@ robust predicate 없이 duality만 쓰면 구현이 불안정해지고, duality 
 
 ## 4. 로컬 완결형 연습
 
+Practice Set은 `__int128` orientation 기반 선분 교차 구현을 대표 predicate 연습으로 제공하고, weighted power boundary trace로 duality 흐름을 이어갑니다.
+
 ### Power Cell by Half-Planes
 
 작은 weighted point set과 bounding box가 주어졌다고 가정합니다. 한 site `i`에 대해 모든 다른 site `j`가 만드는 부등식 `power_i(x) <= power_j(x)`를 half-plane으로 바꾸고, 남는 polygon을 손으로 계산합니다.

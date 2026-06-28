@@ -3600,7 +3600,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "geometry-robustness-and-duality",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "prerequisites": [
