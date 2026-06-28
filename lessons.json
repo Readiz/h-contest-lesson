@@ -3834,7 +3834,7 @@
       "status": "published",
       "lessonType": "reference",
       "seriesId": "matroid-algorithms",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "research-reference"
     },
