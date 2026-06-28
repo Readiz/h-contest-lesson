@@ -3110,7 +3110,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "graph-cut-structures",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
