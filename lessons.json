@@ -1297,7 +1297,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "versioned-data-structures",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
