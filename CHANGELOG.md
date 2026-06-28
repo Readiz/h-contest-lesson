@@ -12,6 +12,7 @@
 - `matroid-intersection`, `matroid-parity`, `matroid-union`을 `matroid-algorithms` 허브와 하위 reference 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `matroid-algorithms` Practice Set에 weighted partition matroid greedy 로컬 연습과 exchange argument를 추가했습니다.
 - `planar-graph-duality`는 독립 lessonId를 유지하되, half-edge face traversal, cut-cycle duality, planar min-cut 페이지를 추가해 구현 전제조건을 보강했습니다.
+- `planar-graph-duality` Practice Set에 face incidence 기반 dual shortest path 로컬 구현 연습을 추가했습니다.
 - `global-min-cut`, `gomory-hu-tree`, `cut-sparsification`, `global-min-cut-applications`, `cactus-representation`, `randomized-min-cut`, `cut-cactus-applications`를 `graph-cut-structures` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
 - `graph-cut-structures` Practice Set에 Stoer-Wagner phase trace와 global min cut 로컬 연습을 추가했습니다.
 - `persistent-segment-tree`, `persistent-lazy-segment-tree`, `persistent-union-find`, `persistent-queue-stack`, `persistent-sequence-queries`를 `versioned-data-structures` 허브와 하위 페이지로 재배치했습니다. 기존 경로에는 새 허브로 안내하는 짧은 이동 문서를 남겼습니다.
