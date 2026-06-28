@@ -1696,7 +1696,7 @@
       "status": "published",
       "lessonType": "overview",
       "seriesId": "suffix-periodicity-structures",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "partial",
       "audience": "advanced-contest"
     },
