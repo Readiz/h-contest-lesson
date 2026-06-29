@@ -70,7 +70,14 @@
       "relatedLessons": [
         "dynamic-programming"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "todo",
+      "implementationStatus": "concept-only",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "selection"
+      ]
     },
     {
       "lessonId": "cpp-contest-basics",
@@ -100,7 +107,14 @@
       "relatedLessons": [
         "priority-queue-heap"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "sorting",
@@ -130,7 +144,14 @@
       "relatedLessons": [
         "two-pointers-sliding-window"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "prefix-sum-difference",
@@ -159,7 +180,15 @@
       "relatedLessons": [
         "sqrt-decomposition"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "greedy",
@@ -188,7 +217,15 @@
       "relatedLessons": [
         "heuristic"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "concept-only",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "proof",
+        "selection"
+      ]
     },
     {
       "lessonId": "two-pointers-sliding-window",
@@ -204,7 +241,6 @@
         "range",
         "practice"
       ],
-      "pages": [],
       "level": "beginner",
       "estimatedMinutes": 40,
       "prerequisites": [
@@ -217,6 +253,14 @@
       ],
       "relatedLessons": [
         "prefix-sum-difference"
+      ],
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
       ]
     },
     {
@@ -245,7 +289,16 @@
       "relatedLessons": [
         "two-pointers-sliding-window"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "selection"
+      ]
     },
     {
       "lessonId": "coordinate-compression",
@@ -261,7 +314,6 @@
         "range-query",
         "practice"
       ],
-      "pages": [],
       "level": "beginner",
       "estimatedMinutes": 35,
       "prerequisites": [
@@ -276,6 +328,15 @@
       "relatedLessons": [
         "sorting",
         "fenwick-tree"
+      ],
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
       ]
     },
     {
@@ -305,7 +366,14 @@
       "relatedLessons": [
         "greedy"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "meldable-heap",
@@ -334,7 +402,14 @@
       "relatedLessons": [
         "priority-queue-heap"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "heuristic",
@@ -349,6 +424,19 @@
         "local-search",
         "simulated-annealing",
         "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 80,
+      "prerequisites": [
+        "greedy",
+        "dynamic-programming"
+      ],
+      "nextLessons": [
+        "tsp-hamiltonian",
+        "testing-and-stress"
+      ],
+      "relatedLessons": [
+        "tsp-hamiltonian"
       ],
       "pages": [
         {
@@ -380,18 +468,14 @@
           "file": "pages/experiments-and-checklist.md"
         }
       ],
-      "level": "advanced",
-      "estimatedMinutes": 80,
-      "prerequisites": [
-        "greedy",
-        "dynamic-programming"
-      ],
-      "nextLessons": [
-        "tsp-hamiltonian",
-        "testing-and-stress"
-      ],
-      "relatedLessons": [
-        "tsp-hamiltonian"
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
       ]
     },
     {
@@ -408,7 +492,6 @@
         "combinatorics",
         "practice"
       ],
-      "pages": [],
       "level": "beginner",
       "estimatedMinutes": 45,
       "prerequisites": [],
@@ -420,6 +503,14 @@
       ],
       "relatedLessons": [
         "topological-sort-dag"
+      ],
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
       ]
     },
     {
@@ -491,6 +582,15 @@
           "order": 50,
           "file": "pages/practice-set.md"
         }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
       ]
     },
     {
@@ -509,6 +609,18 @@
         "heuristic",
         "two-opt",
         "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "dynamic-programming",
+        "graph-tree-basics"
+      ],
+      "nextLessons": [
+        "heuristic"
+      ],
+      "relatedLessons": [
+        "tree-advanced"
       ],
       "pages": [
         {
@@ -533,17 +645,13 @@
           "file": "pages/heuristic-and-choices.md"
         }
       ],
-      "level": "advanced",
-      "estimatedMinutes": 70,
-      "prerequisites": [
-        "dynamic-programming",
-        "graph-tree-basics"
-      ],
-      "nextLessons": [
-        "heuristic"
-      ],
-      "relatedLessons": [
-        "tree-advanced"
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
       ]
     },
     {
@@ -568,7 +676,14 @@
       "relatedLessons": [
         "meldable-heap"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "bfs-dfs-grid",
@@ -596,7 +711,14 @@
       "relatedLessons": [
         "topological-sort-dag"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "graph-tree-basics",
@@ -649,6 +771,13 @@
           "order": 30,
           "file": "pages/mst-kruskal-prim.md"
         }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "concept-only",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "modeling"
       ]
     },
     {
@@ -665,7 +794,6 @@
         "deque",
         "practice"
       ],
-      "pages": [],
       "level": "intermediate",
       "estimatedMinutes": 35,
       "prerequisites": [
@@ -676,6 +804,15 @@
       ],
       "relatedLessons": [
         "bfs-dfs-grid"
+      ],
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
       ]
     },
     {
@@ -706,7 +843,15 @@
       "relatedLessons": [
         "graph-tree-basics"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "dijkstra",
@@ -735,7 +880,14 @@
         "graph-tree-basics",
         "zero-one-bfs"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "bellman-ford-negative-cycle",
@@ -762,7 +914,15 @@
         "topological-sort-dag",
         "zero-one-bfs"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "proof"
+      ]
     },
     {
       "lessonId": "scc-2sat",
@@ -791,7 +951,15 @@
         "bellman-ford-negative-cycle",
         "graph-tree-basics"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "max-flow-min-cut",
@@ -821,7 +989,15 @@
         "graph-tree-basics",
         "priority-queue-heap"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "matching-cover-duality",
@@ -851,7 +1027,16 @@
         "scc-2sat",
         "topological-sort-dag"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "concept-only",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "proof",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "min-cost-flow",
@@ -882,7 +1067,15 @@
         "matching-cover-duality",
         "priority-queue-heap"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "flow-with-lower-bound",
@@ -910,7 +1103,16 @@
         "matching-cover-duality",
         "floyd-warshall"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "general-matching",
@@ -941,7 +1143,15 @@
         "flow-with-lower-bound",
         "scc-2sat"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "floyd-warshall",
@@ -969,7 +1179,15 @@
         "bellman-ford-negative-cycle",
         "min-cost-flow"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "sqrt-decomposition",
@@ -998,7 +1216,15 @@
       "relatedLessons": [
         "coordinate-compression"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "selection"
+      ]
     },
     {
       "lessonId": "sparse-table-rmq",
@@ -1028,7 +1254,14 @@
         "segment-tree",
         "tree-advanced"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "fenwick-tree",
@@ -1056,7 +1289,14 @@
       "relatedLessons": [
         "sqrt-decomposition"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "dominator-tree",
@@ -1086,7 +1326,16 @@
         "topological-sort-dag",
         "general-matching"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "weighted-matching",
@@ -1117,7 +1366,16 @@
         "matching-cover-duality",
         "flow-with-lower-bound"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "directed-mst",
@@ -1149,7 +1407,16 @@
         "dominator-tree",
         "flow-with-lower-bound"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "segment-tree",
@@ -1210,6 +1477,13 @@
           "order": 40,
           "file": "pages/monoid-and-lazy-composition.md"
         }
+      ],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
       ]
     },
     {
@@ -1299,7 +1573,12 @@
       "seriesId": "versioned-data-structures",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "wavelet-tree",
@@ -1330,7 +1609,15 @@
         "segment-tree",
         "sqrt-decomposition"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "wavelet-matrix",
@@ -1361,7 +1648,15 @@
         "versioned-data-structures",
         "sparse-table-rmq"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "succinct-bitvector",
@@ -1391,7 +1686,15 @@
         "sparse-table-rmq",
         "coordinate-compression"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "tree-advanced",
@@ -1421,7 +1724,16 @@
       "relatedLessons": [
         "tsp-hamiltonian"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "link-cut-tree",
@@ -1453,7 +1765,14 @@
         "versioned-data-structures",
         "offline-time-axis-techniques"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "treap",
@@ -1471,6 +1790,17 @@
         "order-statistics",
         "data-structure",
         "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "binary-search",
+        "sorting"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "segment-tree",
+        "tree-advanced"
       ],
       "pages": [
         {
@@ -1502,16 +1832,12 @@
           "file": "pages/order-statistics-and-implicit.md"
         }
       ],
-      "level": "advanced",
-      "estimatedMinutes": 75,
-      "prerequisites": [
-        "binary-search",
-        "sorting"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "segment-tree",
-        "tree-advanced"
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation"
       ]
     },
     {
@@ -1543,7 +1869,15 @@
         "two-pointers-sliding-window",
         "sorting"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "proof"
+      ]
     },
     {
       "lessonId": "trie-aho-corasick",
@@ -1571,7 +1905,14 @@
       "relatedLessons": [
         "dynamic-programming"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "suffix-periodicity-structures",
@@ -1698,7 +2039,12 @@
       "seriesId": "suffix-periodicity-structures",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "palindrome-structures",
@@ -1781,7 +2127,12 @@
       "seriesId": "palindrome-structures",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "lyndon-factorization",
@@ -1810,7 +2161,15 @@
       "relatedLessons": [
         "suffix-periodicity-structures"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof"
+      ]
     },
     {
       "lessonId": "geometry-ccw-segment-intersection",
@@ -1839,7 +2198,16 @@
       "relatedLessons": [
         "complexity-input-size"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "rotating-calipers",
@@ -1869,7 +2237,15 @@
       "relatedLessons": [
         "two-pointers-sliding-window"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof"
+      ]
     },
     {
       "lessonId": "sweep-line-geometry",
@@ -1899,7 +2275,15 @@
         "rotating-calipers",
         "two-pointers-sliding-window"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "closest-pair-sweep",
@@ -1928,7 +2312,16 @@
       "relatedLessons": [
         "rotating-calipers"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "line-arrangement",
@@ -1958,7 +2351,15 @@
         "geometry-ccw-segment-intersection",
         "rotating-calipers"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "voronoi-delaunay",
@@ -1989,7 +2390,16 @@
         "geometry-ccw-segment-intersection",
         "rotating-calipers"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "half-plane-intersection",
@@ -2020,7 +2430,16 @@
         "sweep-line-geometry",
         "line-arrangement"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "gcd-extended-euclid-crt",
@@ -2048,7 +2467,15 @@
       "relatedLessons": [
         "complexity-input-size"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "proof"
+      ]
     },
     {
       "lessonId": "combinatorics-ncr",
@@ -2080,7 +2507,15 @@
         "gcd-extended-euclid-crt",
         "dynamic-programming"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "proof"
+      ]
     },
     {
       "lessonId": "matrix-exponentiation",
@@ -2111,7 +2546,15 @@
         "gcd-extended-euclid-crt",
         "topological-sort-dag"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "polynomial-recurrence-algorithms",
@@ -2246,7 +2689,12 @@
       "seriesId": "polynomial-recurrence-algorithms",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "probability-expected-value",
@@ -2278,7 +2726,15 @@
         "matrix-exponentiation",
         "testing-and-stress"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "concept-only",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "game-theory-grundy",
@@ -2309,7 +2765,15 @@
         "probability-expected-value",
         "testing-and-stress"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "concept-only",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "minimax-alpha-beta",
@@ -2339,7 +2803,15 @@
         "proof-and-invariants",
         "heuristic"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "probabilistic-decision-ai",
@@ -2503,7 +2975,12 @@
       "seriesId": "probabilistic-decision-ai",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "research-reference"
+      "audience": "research-reference",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "offline-time-axis-techniques",
@@ -2598,7 +3075,11 @@
       "seriesId": "offline-time-axis-techniques",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "selection"
+      ]
     },
     {
       "lessonId": "testing-and-stress",
@@ -2628,7 +3109,15 @@
         "greedy",
         "dynamic-programming"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "todo",
+      "implementationStatus": "concept-only",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "proof",
+        "selection"
+      ]
     },
     {
       "lessonId": "proof-and-invariants",
@@ -2659,7 +3148,14 @@
       "relatedLessons": [
         "testing-and-stress"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "todo",
+      "implementationStatus": "concept-only",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "proof"
+      ]
     },
     {
       "lessonId": "divide-and-conquer-dp-optimization",
@@ -2690,7 +3186,16 @@
         "convex-dp-optimization",
         "probability-expected-value"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "selection"
+      ]
     },
     {
       "lessonId": "knuth-optimization",
@@ -2719,7 +3224,16 @@
       "relatedLessons": [
         "divide-and-conquer-dp-optimization"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "selection"
+      ]
     },
     {
       "lessonId": "monge-smawk",
@@ -2749,7 +3263,16 @@
       "relatedLessons": [
         "convex-dp-optimization"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "selection"
+      ]
     },
     {
       "lessonId": "parametric-optimization",
@@ -2758,14 +3281,16 @@
       "summary": "제약이나 답 후보를 parameter로 고정해 더 쉬운 oracle을 풀고, 단조성, tie-break, breakpoint, 답 복원으로 원래 최적화 문제를 해결하는 허브 레슨입니다.",
       "order": 90,
       "folderId": "strategy",
+      "tags": [
+        "dp-optimization",
+        "parametric-search",
+        "alien-optimization",
+        "fractional-programming",
+        "lagrangian-relaxation",
+        "practice"
+      ],
       "level": "advanced",
       "estimatedMinutes": 110,
-      "status": "published",
-      "lessonType": "overview",
-      "seriesId": "parametric-optimization",
-      "practiceStatus": "linked",
-      "implementationStatus": "partial",
-      "audience": "advanced-contest",
       "prerequisites": [
         "binary-search",
         "dynamic-programming",
@@ -2779,14 +3304,6 @@
       "relatedLessons": [
         "convex-dp-optimization",
         "flow-with-lower-bound"
-      ],
-      "tags": [
-        "dp-optimization",
-        "parametric-search",
-        "alien-optimization",
-        "fractional-programming",
-        "lagrangian-relaxation",
-        "practice"
       ],
       "pages": [
         {
@@ -2831,6 +3348,18 @@
           "order": 60,
           "file": "pages/practice-set.md"
         }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "parametric-optimization",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling",
+        "selection"
       ]
     },
     {
@@ -2858,7 +3387,14 @@
         "versioned-data-structures",
         "link-cut-tree"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation"
+      ]
     },
     {
       "lessonId": "linear-basis-xor",
@@ -2888,7 +3424,15 @@
         "combinatorics-ncr",
         "game-theory-grundy"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "convex-dp-optimization",
@@ -3001,7 +3545,13 @@
       "seriesId": "convex-dp-optimization",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "graph-cut-structures",
@@ -3112,7 +3662,12 @@
       "seriesId": "graph-cut-structures",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "euler-tour-tree",
@@ -3143,7 +3698,15 @@
         "union-find",
         "offline-time-axis-techniques"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "mobius-inversion",
@@ -3173,7 +3736,16 @@
         "linear-basis-xor",
         "proof-and-invariants"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "convex-cost-flow",
@@ -3204,7 +3776,15 @@
         "convex-dp-optimization",
         "flow-with-lower-bound"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "dynamic-network-optimization",
@@ -3224,12 +3804,6 @@
       ],
       "level": "advanced",
       "estimatedMinutes": 160,
-      "status": "published",
-      "lessonType": "overview",
-      "seriesId": "dynamic-network-optimization",
-      "practiceStatus": "linked",
-      "implementationStatus": "partial",
-      "audience": "advanced-contest",
       "prerequisites": [
         "max-flow-min-cut",
         "min-cost-flow",
@@ -3268,6 +3842,17 @@
           "order": 30,
           "file": "pages/practice-set.md"
         }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "dynamic-network-optimization",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
       ]
     },
     {
@@ -3300,7 +3885,16 @@
         "mobius-inversion",
         "game-theory-grundy"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "dirichlet-convolution",
@@ -3331,7 +3925,17 @@
         "modular-arithmetic",
         "linear-basis-applications"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "minkowski-sum",
@@ -3363,7 +3967,15 @@
         "sweep-line-geometry",
         "voronoi-delaunay"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "rotating-calipers-applications",
@@ -3395,7 +4007,16 @@
         "half-plane-intersection",
         "line-arrangement"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "multiplicative-functions",
@@ -3426,7 +4047,16 @@
         "modular-arithmetic",
         "combinatorics-ncr"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "summatory-number-theory",
@@ -3455,7 +4085,16 @@
         "gcd-extended-euclid-crt",
         "combinatorics-ncr"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "shape-distance-modeling",
@@ -3487,7 +4126,16 @@
         "sweep-line-geometry",
         "voronoi-delaunay"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "circle-geometry",
@@ -3520,7 +4168,15 @@
         "voronoi-delaunay",
         "sweep-line-geometry"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "quadrangle-inequality-proofs",
@@ -3548,7 +4204,15 @@
       "relatedLessons": [
         "convex-dp-optimization"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "concept-only",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "proof",
+        "selection"
+      ]
     },
     {
       "lessonId": "circle-arrangement",
@@ -3577,7 +4241,15 @@
         "half-plane-intersection",
         "voronoi-delaunay"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "geometry-robustness-and-duality",
@@ -3597,12 +4269,6 @@
       ],
       "level": "advanced",
       "estimatedMinutes": 260,
-      "status": "published",
-      "lessonType": "overview",
-      "seriesId": "geometry-robustness-and-duality",
-      "practiceStatus": "linked",
-      "implementationStatus": "partial",
-      "audience": "advanced-contest",
       "prerequisites": [
         "geometry-ccw-segment-intersection",
         "circle-geometry",
@@ -3661,6 +4327,17 @@
           "order": 60,
           "file": "pages/practice-set.md"
         }
+      ],
+      "status": "published",
+      "lessonType": "overview",
+      "seriesId": "geometry-robustness-and-duality",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
       ]
     },
     {
@@ -3692,7 +4369,15 @@
         "matrix-exponentiation",
         "polynomial-recurrence-algorithms"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "game-theory-applications",
@@ -3722,7 +4407,16 @@
       "relatedLessons": [
         "probabilistic-decision-ai"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "inversion-geometry",
@@ -3752,7 +4446,16 @@
         "voronoi-delaunay",
         "half-plane-intersection"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "matroid-algorithms",
@@ -3836,7 +4539,13 @@
       "seriesId": "matroid-algorithms",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "research-reference"
+      "audience": "research-reference",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "sparse-linear-systems",
@@ -3867,7 +4576,15 @@
         "polynomial-recurrence-algorithms",
         "summatory-number-theory"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling"
+      ]
     },
     {
       "lessonId": "linear-algebra-applications",
@@ -3915,7 +4632,12 @@
       "seriesId": "linear-algebra-modeling",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "online-convex-optimization",
@@ -3989,7 +4711,13 @@
       "seriesId": "online-convex-optimization",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling",
+        "selection"
+      ]
     },
     {
       "lessonId": "randomized-determinant",
@@ -4021,7 +4749,16 @@
         "linear-algebra-applications",
         "testing-and-stress"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "matrix-tree-theorem-applications",
@@ -4051,7 +4788,16 @@
         "sparse-linear-systems",
         "proof-and-invariants"
       ],
-      "pages": []
+      "pages": [],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
+      ]
     },
     {
       "lessonId": "planar-graph-duality",
@@ -4123,8 +4869,13 @@
       "lessonType": "overview",
       "seriesId": "planar-embedding-duality",
       "practiceStatus": "linked",
-      "implementationStatus": "partial",
-      "audience": "advanced-contest"
+      "implementationStatus": "concept-only",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "proof",
+        "modeling",
+        "selection"
+      ]
     }
   ]
 }
