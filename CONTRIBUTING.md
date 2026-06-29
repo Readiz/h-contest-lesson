@@ -97,6 +97,8 @@ README.md
 index.html
 ```
 
+`README.md`와 `index.html` 상단의 문제 신호별 빠른 길찾기, 심화 트랙 지도, 카드 배지 기준도 `scripts/generate_catalog.py`에서 생성됩니다. 새 허브 레슨을 추가하거나 기존 허브의 역할이 바뀌면 `QUICK_GUIDES`, `TRACK_GUIDES`, `METADATA_GUIDE`가 현재 학습 경로와 맞는지 함께 확인합니다.
+
 새 레슨을 처음 작성할 때는 `templates/lesson.md`를 출발점으로 사용할 수 있습니다.
 
 ## lessonId 규칙
@@ -193,3 +195,4 @@ int main() {
 - C++ 코드는 문법상 문제가 없나요?
 - 적절한 h-contest 연습 문제가 없으면 `TODO`로 남겼나요?
 - `lessonType`, `practiceStatus`, `implementationStatus`가 실제 문서 완성도와 맞나요?
+- 새 허브나 트랙 역할이 생겼다면 생성 카탈로그의 빠른 길찾기와 트랙 지도도 맞게 갱신했나요?
