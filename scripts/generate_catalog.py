@@ -181,6 +181,7 @@ TRACK_GUIDES = [
 
 METADATA_GUIDE = [
     ("난이도", "beginner / intermediate / advanced"),
+    ("난이도 축", "implementation / proof / modeling / selection"),
     ("성격", "core / implementation / overview / reference / experimental"),
     ("완성도", "concept-only / partial / full"),
     ("연습", "none / todo / linked / verified"),
@@ -195,7 +196,7 @@ INDEX_PREFIX = """<!doctype html>
 <title>h-contest lessons</title>
 <link rel="icon" href="data:,">
 <style>
-:root{color-scheme:light;--text:#172033;--muted:#596579;--line:#d9dde5;--panel:#ffffff;--bg:#f6f7f9;--accent:#0f766e;--accent-soft:#dff5f0;--warn-soft:#fff4d8;--type-soft:#e9f1ff;--type-text:#244b7c;--practice-soft:#e8f8ef;--practice-text:#1f6a3f;--impl-soft:#f3edff;--impl-text:#59418a;--audience-soft:#f9ece4;--audience-text:#7a4630}
+:root{color-scheme:light;--text:#172033;--muted:#596579;--line:#d9dde5;--panel:#ffffff;--bg:#f6f7f9;--accent:#0f766e;--accent-soft:#dff5f0;--warn-soft:#fff4d8;--axis-soft:#ecf7ff;--axis-text:#24516c;--type-soft:#e9f1ff;--type-text:#244b7c;--practice-soft:#e8f8ef;--practice-text:#1f6a3f;--impl-soft:#f3edff;--impl-text:#59418a;--audience-soft:#f9ece4;--audience-text:#7a4630}
 *{box-sizing:border-box}
 body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:1120px;margin:36px auto;padding:0 20px 56px;line-height:1.55;color:var(--text);background:var(--bg)}
 a{color:#0b63ce;text-decoration:none}
@@ -229,6 +230,7 @@ p{margin:0;color:var(--muted)}
 .badge{display:inline-flex;align-items:center;min-height:24px;padding:2px 8px;border-radius:999px;background:#eef2f7;color:#39465a;font-size:13px}
 .badge.level{background:var(--accent-soft);color:#075f55}
 .badge.time{background:var(--warn-soft);color:#76520a}
+.badge.axis{background:var(--axis-soft);color:var(--axis-text)}
 .badge.type{background:var(--type-soft);color:var(--type-text)}
 .badge.practice{background:var(--practice-soft);color:var(--practice-text)}
 .badge.implementation{background:var(--impl-soft);color:var(--impl-text)}
@@ -338,6 +340,18 @@ def audience_label(audience: str | None) -> str | None:
         "advanced-contest": "advanced-contest",
         "research-reference": "research-reference",
     }.get(audience, audience)
+
+
+def difficulty_axes_label(difficulty_axes: list[str] | None) -> str | None:
+    if not difficulty_axes:
+        return None
+    labels = {
+        "implementation": "구현형",
+        "proof": "증명형",
+        "modeling": "모델링형",
+        "selection": "선택지도형",
+    }
+    return " / ".join(labels.get(axis, axis) for axis in difficulty_axes)
 
 
 def status_label(status: str | None) -> str | None:
@@ -547,6 +561,7 @@ def build_index(folders: list[dict], lessons: list[dict]) -> str:
             practice_status = practice_status_label(lesson.get("practiceStatus"))
             implementation_status = implementation_status_label(lesson.get("implementationStatus"))
             audience = audience_label(lesson.get("audience"))
+            difficulty_axes = difficulty_axes_label(lesson.get("difficultyAxes"))
             tags = [escape(tag, quote=True) for tag in lesson.get("tags", [])]
             prerequisites = lesson_links(lesson.get("prerequisites", []), lessons_by_id)
             next_lessons = lesson_links(lesson.get("nextLessons", []), lessons_by_id)
@@ -560,6 +575,9 @@ def build_index(folders: list[dict], lessons: list[dict]) -> str:
             lines.append('<div class="meta-row">\n')
             lines.append(f'<span class="badge level">{level}</span>\n')
             lines.append(f'<span class="badge time">{minutes}분</span>\n')
+            if difficulty_axes:
+                safe_difficulty_axes = escape(difficulty_axes, quote=True)
+                lines.append(f'<span class="badge axis">축 {safe_difficulty_axes}</span>\n')
             if lesson_type:
                 safe_lesson_type = escape(lesson_type, quote=True)
                 lines.append(f'<span class="badge type">성격 {safe_lesson_type}</span>\n')

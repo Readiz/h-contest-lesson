@@ -71,9 +71,12 @@ lessons.json
   "parentLessonId": "parametric-optimization",
   "practiceStatus": "none | todo | linked | verified",
   "implementationStatus": "concept-only | partial | full",
-  "audience": "contest-core | advanced-contest | research-reference"
+  "audience": "contest-core | advanced-contest | research-reference",
+  "difficultyAxes": ["implementation | proof | modeling | selection"]
 }
 ```
+
+`difficultyAxes`는 레슨이 어려운 이유를 표시합니다. 코드와 corner case가 핵심이면 `implementation`, 조건 증명이 핵심이면 `proof`, 수학/그래프 모델로 바꾸는 과정이 핵심이면 `modeling`, 여러 기법 중 무엇을 고를지 판단하는 문서면 `selection`을 사용합니다. 둘 이상이 동시에 필요하면 여러 값을 넣습니다.
 
 `published`인 `core` 또는 `implementation` 레슨은 `practiceStatus: todo` 상태로 둘 수 없습니다. 실제 practice 링크나 저장소 안의 로컬 완결형 연습을 준비한 뒤 정식 구현 레슨으로 올립니다. 실제 문제와 완전 구현이 아직 없으면 `overview` 또는 `reference`로 분류합니다.
 
@@ -195,4 +198,5 @@ int main() {
 - C++ 코드는 문법상 문제가 없나요?
 - 적절한 h-contest 연습 문제가 없으면 `TODO`로 남겼나요?
 - `lessonType`, `practiceStatus`, `implementationStatus`가 실제 문서 완성도와 맞나요?
+- `difficultyAxes`가 레슨의 어려운 이유를 정확히 설명하나요?
 - 새 허브나 트랙 역할이 생겼다면 생성 카탈로그의 빠른 길찾기와 트랙 지도도 맞게 갱신했나요?

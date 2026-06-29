@@ -21,6 +21,7 @@ LESSON_TYPES = {"core", "implementation", "overview", "reference", "experimental
 PRACTICE_STATUSES = {"none", "todo", "linked", "verified"}
 IMPLEMENTATION_STATUSES = {"concept-only", "partial", "full"}
 AUDIENCES = {"contest-core", "advanced-contest", "research-reference"}
+DIFFICULTY_AXES = {"implementation", "proof", "modeling", "selection"}
 LESSON_REFERENCE_FIELDS = ("prerequisites", "nextLessons", "relatedLessons")
 HCONTEST_PROBLEM_ROUTE_RE = re.compile(
     r"^/practice/[A-Z0-9]{8,16}(?:/(?:editorial|submissions/[0-9]+))?$",
@@ -265,6 +266,22 @@ def validate_lesson_reference_list(value: object, lesson_id: str, field_name: st
     return refs
 
 
+def validate_difficulty_axes(value: object, lesson_id: str) -> list[str]:
+    if not isinstance(value, list) or not value:
+        fail(f"difficultyAxes must be a non-empty array for {lesson_id}")
+
+    axes: list[str] = []
+    seen_axes: set[str] = set()
+    for axis in value:
+        if not isinstance(axis, str) or axis not in DIFFICULTY_AXES:
+            fail(f"difficultyAxes must contain only {sorted(DIFFICULTY_AXES)} for {lesson_id}: {axis!r}")
+        if axis in seen_axes:
+            fail(f"duplicated difficultyAxes value for {lesson_id}: {axis}")
+        axes.append(axis)
+        seen_axes.add(axis)
+    return axes
+
+
 def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     if not isinstance(lesson, dict):
         fail("each lesson entry must be an object")
@@ -286,6 +303,7 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
     practice_status = lesson.get("practiceStatus")
     implementation_status = lesson.get("implementationStatus")
     audience = lesson.get("audience")
+    difficulty_axes = lesson.get("difficultyAxes")
 
     if not isinstance(lesson_id, str) or not LESSON_ID_RE.fullmatch(lesson_id):
         fail(f"invalid lessonId: {lesson_id!r}")
@@ -311,9 +329,7 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
         fail(f"pages must be an array for {lesson_id}")
     if status is not None and (not isinstance(status, str) or status not in LESSON_STATUSES):
         fail(f"status must be one of {sorted(LESSON_STATUSES)} for {lesson_id}: {status!r}")
-    if lesson_type is not None and (
-        not isinstance(lesson_type, str) or lesson_type not in LESSON_TYPES
-    ):
+    if not isinstance(lesson_type, str) or lesson_type not in LESSON_TYPES:
         fail(f"lessonType must be one of {sorted(LESSON_TYPES)} for {lesson_id}: {lesson_type!r}")
     if series_id is not None and (not isinstance(series_id, str) or not LESSON_ID_RE.fullmatch(series_id)):
         fail(f"invalid seriesId for {lesson_id}: {series_id!r}")
@@ -322,14 +338,12 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
             fail(f"invalid parentLessonId for {lesson_id}: {parent_lesson_id!r}")
         if parent_lesson_id == lesson_id:
             fail(f"parentLessonId must not reference itself for {lesson_id}")
-    if practice_status is not None and (
-        not isinstance(practice_status, str) or practice_status not in PRACTICE_STATUSES
-    ):
+    if not isinstance(practice_status, str) or practice_status not in PRACTICE_STATUSES:
         fail(
             f"practiceStatus must be one of {sorted(PRACTICE_STATUSES)} "
             f"for {lesson_id}: {practice_status!r}"
         )
-    if implementation_status is not None and (
+    if (
         not isinstance(implementation_status, str)
         or implementation_status not in IMPLEMENTATION_STATUSES
     ):
@@ -337,8 +351,9 @@ def validate_manifest_entry(lesson: object, folder_ids: set[str]) -> dict:
             f"implementationStatus must be one of {sorted(IMPLEMENTATION_STATUSES)} "
             f"for {lesson_id}: {implementation_status!r}"
         )
-    if audience is not None and (not isinstance(audience, str) or audience not in AUDIENCES):
+    if not isinstance(audience, str) or audience not in AUDIENCES:
         fail(f"audience must be one of {sorted(AUDIENCES)} for {lesson_id}: {audience!r}")
+    lesson["difficultyAxes"] = validate_difficulty_axes(difficulty_axes, lesson_id)
     if (
         status == "published"
         and lesson_type in {"core", "implementation"}

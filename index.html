@@ -5,7 +5,7 @@
 <title>h-contest lessons</title>
 <link rel="icon" href="data:,">
 <style>
-:root{color-scheme:light;--text:#172033;--muted:#596579;--line:#d9dde5;--panel:#ffffff;--bg:#f6f7f9;--accent:#0f766e;--accent-soft:#dff5f0;--warn-soft:#fff4d8;--type-soft:#e9f1ff;--type-text:#244b7c;--practice-soft:#e8f8ef;--practice-text:#1f6a3f;--impl-soft:#f3edff;--impl-text:#59418a;--audience-soft:#f9ece4;--audience-text:#7a4630}
+:root{color-scheme:light;--text:#172033;--muted:#596579;--line:#d9dde5;--panel:#ffffff;--bg:#f6f7f9;--accent:#0f766e;--accent-soft:#dff5f0;--warn-soft:#fff4d8;--axis-soft:#ecf7ff;--axis-text:#24516c;--type-soft:#e9f1ff;--type-text:#244b7c;--practice-soft:#e8f8ef;--practice-text:#1f6a3f;--impl-soft:#f3edff;--impl-text:#59418a;--audience-soft:#f9ece4;--audience-text:#7a4630}
 *{box-sizing:border-box}
 body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:1120px;margin:36px auto;padding:0 20px 56px;line-height:1.55;color:var(--text);background:var(--bg)}
 a{color:#0b63ce;text-decoration:none}
@@ -39,6 +39,7 @@ p{margin:0;color:var(--muted)}
 .badge{display:inline-flex;align-items:center;min-height:24px;padding:2px 8px;border-radius:999px;background:#eef2f7;color:#39465a;font-size:13px}
 .badge.level{background:var(--accent-soft);color:#075f55}
 .badge.time{background:var(--warn-soft);color:#76520a}
+.badge.axis{background:var(--axis-soft);color:var(--axis-text)}
 .badge.type{background:var(--type-soft);color:var(--type-text)}
 .badge.practice{background:var(--practice-soft);color:var(--practice-text)}
 .badge.implementation{background:var(--impl-soft);color:var(--impl-text)}
@@ -157,6 +158,7 @@ p{margin:0;color:var(--muted)}
 <h2>카드 배지 기준</h2>
 <div class="meta-legend">
 <span><strong>난이도</strong>beginner / intermediate / advanced</span>
+<span><strong>난이도 축</strong>implementation / proof / modeling / selection</span>
 <span><strong>성격</strong>core / implementation / overview / reference / experimental</span>
 <span><strong>완성도</strong>concept-only / partial / full</span>
 <span><strong>연습</strong>none / todo / linked / verified</span>
@@ -176,6 +178,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">30분</span>
+<span class="badge axis">축 선택지도형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">complexity</span>
@@ -197,6 +204,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">35분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">cpp</span>
@@ -219,6 +231,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">35분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">sorting</span>
@@ -240,6 +257,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">40분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">prefix-sum</span>
@@ -261,6 +283,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">40분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">two-pointers</span>
@@ -282,6 +309,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 구현형 / 증명형 / 선택지도형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">binary-search</span>
@@ -303,6 +335,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">35분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">coordinate-compression</span>
@@ -330,6 +367,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 증명형 / 선택지도형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">greedy</span>
@@ -351,6 +393,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">80분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">heuristic</span>
@@ -378,6 +425,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">90분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">dynamic-programming</span>
@@ -411,6 +463,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">tsp</span>
@@ -440,6 +497,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 증명형 / 선택지도형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">testing</span>
@@ -462,6 +524,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 증명형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">proof</span>
@@ -484,6 +551,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 증명형 / 선택지도형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">divide-and-conquer-dp</span>
@@ -506,6 +578,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 증명형 / 선택지도형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">knuth-optimization</span>
@@ -528,6 +605,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 증명형 / 선택지도형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">monge</span>
@@ -550,6 +632,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">110분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -584,6 +667,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">260분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -624,6 +708,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">optimization</span>
@@ -646,6 +735,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 증명형 / 선택지도형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">dp-optimization</span>
@@ -668,6 +762,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">100분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -708,6 +803,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">bfs</span>
@@ -730,6 +830,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 모델링형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">graph</span>
@@ -757,6 +862,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">35분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">zero-one-bfs</span>
@@ -778,6 +888,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">50분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">topological-sort</span>
@@ -800,6 +915,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">50분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">dijkstra</span>
@@ -821,6 +941,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">bellman-ford</span>
@@ -842,6 +967,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">scc</span>
@@ -864,6 +994,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">80분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">max-flow</span>
@@ -886,6 +1021,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 증명형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">bipartite-matching</span>
@@ -908,6 +1048,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">75분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">min-cost-flow</span>
@@ -930,6 +1075,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">flow</span>
@@ -952,6 +1102,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">80분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">matching</span>
@@ -974,6 +1129,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">50분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">floyd-warshall</span>
@@ -996,6 +1156,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">75분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">dominator-tree</span>
@@ -1018,6 +1183,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">weighted-matching</span>
@@ -1040,6 +1210,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">directed-mst</span>
@@ -1062,6 +1237,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">210분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -1102,6 +1278,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">160분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -1134,6 +1311,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">120분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 reference</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -1169,6 +1347,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">graph</span>
@@ -1191,8 +1374,9 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">105분</span>
+<span class="badge axis">축 증명형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
+<span class="badge implementation">구현 concept-only</span>
 <span class="badge practice">연습 linked</span>
 <span class="badge audience">대상 advanced-contest</span>
 </div>
@@ -1231,6 +1415,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">40분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">priority-queue</span>
@@ -1253,6 +1442,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">50분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">meldable-heap</span>
@@ -1275,6 +1469,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">35분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">union-find</span>
@@ -1295,6 +1494,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 구현형 / 선택지도형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">sqrt-decomposition</span>
@@ -1316,6 +1520,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">sparse-table</span>
@@ -1338,6 +1547,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">fenwick-tree</span>
@@ -1359,6 +1573,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">segment-tree</span>
@@ -1386,6 +1605,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">160분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -1422,6 +1642,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">wavelet-tree</span>
@@ -1444,6 +1669,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">wavelet-matrix</span>
@@ -1466,6 +1696,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">succinct</span>
@@ -1488,6 +1723,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">75분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">tree</span>
@@ -1510,6 +1750,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">85분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">link-cut-tree</span>
@@ -1532,6 +1777,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">75분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">treap</span>
@@ -1562,6 +1812,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">180분</span>
+<span class="badge axis">축 구현형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -1599,6 +1850,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">segment-tree</span>
@@ -1620,6 +1876,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">data-structures</span>
@@ -1648,6 +1909,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">string</span>
@@ -1670,6 +1936,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">trie</span>
@@ -1691,6 +1962,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">300분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -1733,6 +2005,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">170분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -1768,6 +2041,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">lyndon-word</span>
@@ -1796,6 +2074,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -1818,6 +2101,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -1840,6 +2128,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -1862,6 +2155,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -1884,6 +2182,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -1906,6 +2209,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">voronoi</span>
@@ -1928,6 +2236,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">75분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">half-plane-intersection</span>
@@ -1950,6 +2263,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -1972,6 +2290,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -1994,6 +2317,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -2016,6 +2344,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -2038,6 +2371,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -2060,6 +2398,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">260분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -2095,6 +2434,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">geometry</span>
@@ -2123,6 +2467,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">입문</span>
 <span class="badge time">45분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">modular-arithmetic</span>
@@ -2144,6 +2493,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">number-theory</span>
@@ -2166,6 +2520,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">combinatorics</span>
@@ -2188,6 +2547,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">matrix-exponentiation</span>
@@ -2210,6 +2574,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">360분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -2254,6 +2619,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 증명형 / 모델링형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">probability</span>
@@ -2276,6 +2646,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 증명형 / 모델링형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">game-theory</span>
@@ -2298,6 +2673,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">중급</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
 </div>
 <div class="tag-list">
 <span class="tag">minimax</span>
@@ -2320,6 +2700,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">320분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 reference</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -2368,6 +2749,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">40분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">xor</span>
@@ -2389,6 +2775,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">50분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
@@ -2411,6 +2802,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">50분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
@@ -2433,6 +2829,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">50분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
@@ -2455,6 +2856,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
@@ -2477,6 +2883,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
@@ -2499,6 +2910,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
@@ -2521,6 +2937,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">game-theory</span>
@@ -2543,6 +2964,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
@@ -2565,6 +2991,7 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
 <span class="badge type">성격 overview</span>
 <span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
@@ -2594,6 +3021,11 @@ p{margin:0;color:var(--muted)}
 <div class="meta-row">
 <span class="badge level">심화</span>
 <span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
 <span class="tag">math</span>
