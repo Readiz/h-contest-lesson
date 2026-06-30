@@ -975,7 +975,7 @@
       "description": "이분 매칭에서 minimum vertex cover와 maximum independent set, DAG path cover로 이어지는 duality 모델링을 익힙니다.",
       "summary": "이분 매칭, Konig theorem, alternating path 기반 vertex cover 복원, maximum independent set, DAG minimum path cover까지 이어지는 matching 심화",
       "order": 29,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "bipartite-matching",
         "vertex-cover",
@@ -1274,7 +1274,7 @@
       "description": "시작점에서 각 정점으로 가는 모든 경로가 반드시 지나는 immediate dominator와 dominator tree를 계산합니다.",
       "summary": "dominance 정의, immediate dominator, Lengauer-Tarjan의 semi-dominator/eval/link 흐름, tree ancestor 질의까지 이어지는 방향 그래프 심화",
       "order": 37,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "dominator-tree",
         "directed-graph",
@@ -1313,7 +1313,7 @@
       "description": "Matching에 가중치가 붙을 때 이분 assignment, small-N DP, 일반 그래프 weighted blossom의 경계를 구분합니다.",
       "summary": "maximum cardinality와 maximum weight 목적식 차이, small general graph bitmask DP, 이분 weighted matching, weighted blossom 개요까지 이어지는 matching 심화",
       "order": 38,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "weighted-matching",
         "matching",
@@ -1353,7 +1353,7 @@
       "description": "루트에서 모든 정점으로 향하는 최소 비용 arborescence를 Chu-Liu/Edmonds cycle contraction으로 계산합니다.",
       "summary": "루트 arborescence 모델링, incoming edge 선택, cycle contraction, 비용 보정과 불가능 판정까지 이어지는 방향 그래프 최적화 레슨",
       "order": 39,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "directed-mst",
         "arborescence",
@@ -1462,7 +1462,7 @@
       "description": "persistent segment tree, persistent DSU, versioned stack/queue, sequence query를 persistence/rollback/retroactivity 경계와 함께 정리합니다.",
       "summary": "version root, path copying, partial persistence, persistent lazy propagation, persistent queue/stack, sequence query를 묶는 자료구조 허브",
       "order": 41,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "data-structures",
         "persistence",
@@ -1556,7 +1556,7 @@
       "description": "정적 배열에서 구간 kth, rank, frequency 질의를 값 범위와 index 범위를 함께 나누어 처리하는 Wavelet Tree를 익힙니다.",
       "summary": "값 기준 분할, prefixLeft index 변환, 구간 kth, `<= x` count, frequency 질의와 Persistent Segment Tree 비교까지 이어지는 정적 order statistic 레슨",
       "order": 44,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "wavelet-tree",
         "order-statistics",
@@ -1595,7 +1595,7 @@
       "description": "level별 bitvector와 rank 변환으로 정적 배열의 kth, rank, frequency 질의를 처리하는 Wavelet Matrix를 익힙니다.",
       "summary": "bitvector rank, level별 안정 분할, 구간 kth와 countLess, 좌표 압축과 Wavelet Tree와의 차이까지 이어지는 정적 range query 심화",
       "order": 45,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "wavelet-matrix",
         "rank",
@@ -1634,7 +1634,7 @@
       "description": "압축된 bit열 위에서 rank/select를 빠르게 처리하고 Wavelet Matrix의 내부 bitvector를 메모리 효율적으로 구성합니다.",
       "summary": "64-bit word packing, superblock/block rank, rank/select convention, Wavelet Matrix와 compressed index 연결까지 이어지는 succinct 자료구조 레슨",
       "order": 46,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "succinct",
         "bitvector",
@@ -1711,7 +1711,7 @@
       "description": "동적으로 변하는 forest에서 link, cut, path query를 splay 기반 preferred path로 처리합니다.",
       "summary": "access, makeroot, findRoot, link/cut, path aggregate, edge node 모델링까지 이어지는 dynamic tree 자료구조 심화",
       "order": 48,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "link-cut-tree",
         "dynamic-tree",
@@ -1890,7 +1890,7 @@
       "description": "Suffix Array, Suffix Automaton, Suffix Tree, runs, border automaton, period query를 문자열 구조 선택 기준으로 묶습니다.",
       "summary": "suffix ordering, substring automaton, generalized strings, suffix tree, runs/periodicity, border automaton을 하나의 문자열 고급 구조 트랙으로 정리하는 허브",
       "order": 57,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "strings",
         "suffix-array",
@@ -2022,7 +2022,7 @@
       "description": "Palindromic Tree, palindrome query, range DP, suffix-palindrome 응용을 회문 문제 모델 선택 기준으로 묶습니다.",
       "summary": "회문 판정, 서로 다른 palindrome substring 집계, 구간 DP, suffix 구조와 palindrome 조건 결합을 하나의 문자열 회문 트랙으로 정리하는 허브",
       "order": 59,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "strings",
         "palindrome",
@@ -2110,7 +2110,7 @@
       "description": "Lyndon word의 성질과 Duval algorithm을 이용해 문자열을 선형 시간에 분해하고 최소 회전으로 연결합니다.",
       "summary": "Lyndon word 정의, Chen-Fox-Lyndon 분해, Duval algorithm, minimum rotation과 suffix 구조와의 차이까지 이어지는 문자열 분해 레슨",
       "order": 61,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "lyndon-word",
         "duval",
@@ -2299,7 +2299,7 @@
       "description": "직선의 중복, 평행, 교점을 정확히 다루며 arrangement 영역 수와 sweep 확장 관점을 익힙니다.",
       "summary": "직선 정규화, rational 교점 dedup, 새 직선이 추가하는 영역 수, 선분 arrangement와 Euler formula 연결까지 이어지는 기하 심화",
       "order": 67,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "line-arrangement",
@@ -2337,7 +2337,7 @@
       "description": "Voronoi cell과 Delaunay edge의 쌍대 관계, empty circumcircle 성질, nearest 구조 문제의 활용 기준을 익힙니다.",
       "summary": "Voronoi/Delaunay duality, in-circle predicate, Euclidean MST 후보 성질, half-plane cell 관점과 degeneracy 처리까지 이어지는 계산기하 심화",
       "order": 68,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "voronoi",
         "delaunay",
@@ -2532,7 +2532,7 @@
       "description": "FFT/NTT, FPS, 다점평가, 보간, 생성함수, Kitamasa, Bostan-Mori, Berlekamp-Massey를 계수열 알고리즘 흐름으로 묶습니다.",
       "summary": "convolution, formal power series, multipoint evaluation, interpolation, generating function, linear recurrence nth term, recurrence guessing을 하나의 수학 알고리즘 트랙으로 정리하는 허브",
       "order": 73,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "polynomial",
@@ -3872,7 +3872,7 @@
       "description": "약수 관계 위 convolution으로 Mobius Inversion, multiplicative function, divisor transform을 하나의 틀에서 정리합니다.",
       "summary": "Dirichlet convolution의 정의, 기본 산술 함수 관계, divisor zeta transform, Mobius inverse를 다루는 정수론 심화 레슨",
       "order": 109,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "number-theory",
@@ -3994,7 +3994,7 @@
       "description": "서로소 곱에서 값이 분리되는 산술 함수를 prime power 공식과 linear sieve로 계산합니다.",
       "summary": "Euler phi, Mobius, divisor count 같은 multiplicative function을 prime power 공식과 linear sieve 상태 관리로 한 번에 계산하는 정수론 심화 레슨",
       "order": 113,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "number-theory",
@@ -4034,7 +4034,7 @@
       "description": "floor division grouping과 divisor transform으로 큰 n의 정수론 누적합을 빠르게 계산하는 관점을 익힙니다.",
       "summary": "multiplicative function prefix, Mobius inversion, floor quotient block을 결합하는 정수론 summatory 레슨",
       "order": 122,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "number-theory",
@@ -4227,7 +4227,7 @@
       "description": "Robust predicate, Power Diagram, Robust Delaunay, 3D Convex Hull, Regular Triangulation을 계산기하 안정성과 duality 흐름으로 묶습니다.",
       "summary": "좌표 predicate 안정성, weighted Voronoi, Delaunay incircle, 3D lifting, lower hull duality를 구현 위험도와 문제 신호별로 고르는 계산기하 허브",
       "order": 138,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "robust-predicate",
@@ -4316,7 +4316,7 @@
       "description": "Sparse matrix-vector product만으로 Krylov sequence와 Wiedemann 계열 선형대수 모델을 다룹니다.",
       "summary": "큰 sparse matrix를 matvec oracle로 보고 Krylov sequence, Berlekamp-Massey, randomized projection 검증을 연결하는 선형대수 심화 레슨",
       "order": 142,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "linear-algebra",
@@ -4523,7 +4523,7 @@
       "description": "대부분의 계수가 0인 큰 연립방정식에서 sparse row, matvec oracle, rank consistency를 구분해 풉니다.",
       "summary": "sparse matrix-vector product, rank/augmented rank 비교, fill-in 위험, black-box solver 선택 기준을 다루는 선형대수 심화 레슨",
       "order": 152,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "linear-algebra",
@@ -4562,7 +4562,7 @@
       "description": "rank, determinant, xor basis, sparse solver, recurrence, graph counting을 먼저 선택표로 구분한 뒤 vector space 모델로 번역하는 선형대수 모델링 허브입니다.",
       "summary": "GF(2) basis, dense/sparse linear system, determinant, matrix-tree, randomized identity test, recurrence 모델 중 무엇을 써야 하는지 고르는 선형대수 decision map",
       "order": 153,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "linear-algebra",
@@ -4615,7 +4615,7 @@
       "description": "regret minimization, projected gradient descent, mirror descent, dual averaging을 하나의 online optimization 흐름으로 정리합니다.",
       "summary": "online decision, regret, OGD, mirror descent, dual averaging, full-information/bandit feedback 구분을 다루는 온라인 최적화 허브",
       "order": 157,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "optimization",
         "online-learning",
@@ -4695,7 +4695,7 @@
       "description": "determinant polynomial에 무작위 값을 대입해 rank, matching 존재성, polynomial identity를 확률적으로 판정합니다.",
       "summary": "Schwartz-Zippel, random substitution, modular determinant, Tutte matrix 기반 존재성 판정을 다루는 선형대수 심화 레슨",
       "order": 162,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "linear-algebra",
@@ -4736,7 +4736,7 @@
       "description": "Laplacian cofactor determinant로 spanning tree, rooted arborescence, edge 포함 조건을 계산합니다.",
       "summary": "무향/방향 Laplacian, cofactor determinant, contraction/deletion 기반 edge criticality를 연결하는 그래프 수학 레슨",
       "order": 163,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "graph",
         "matrix-tree-theorem",
@@ -4775,7 +4775,7 @@
       "description": "평면 그래프의 half-edge face traversal, dual graph 구성, cut-cycle duality, planar min-cut 변환을 정리합니다.",
       "summary": "planar embedding, half-edge traversal, outer face, dual edge construction, cut-cycle 대응, planar min-cut과 dual shortest path를 연결하는 그래프/기하 심화 허브",
       "order": 168,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "graph",
         "planar-graph",
