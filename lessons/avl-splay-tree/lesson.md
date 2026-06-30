@@ -1,6 +1,10 @@
-# BST 계열: AVL, Splay, Treap: AVL과 Splay Tree
+# AVL과 Splay Tree 참고
 
-## 5. AVL Tree
+AVL Tree와 Splay Tree는 Treap과 같은 BST 계열이지만, 현재 기본 학습 트랙에서는 Treap을 먼저 봅니다. Treap은 `split`과 `merge` 구현이 짧고 order statistics나 implicit sequence로 확장하기 쉬워 대회 코드에서 바로 쓰기 좋습니다.
+
+이 문서는 Treap 이후에 "다른 균형 BST는 어떤 보장을 주는가"를 확인하는 참고 노트입니다. BST 기본 연산과 회전이 낯설다면 먼저 기본 트랙의 `Treap과 BST 기본`에서 BST 페이지를 봅니다.
+
+## 1. AVL Tree
 
 AVL Tree는 각 노드에서 왼쪽 subtree와 오른쪽 subtree의 높이 차이가 1 이하가 되도록 유지하는 BST입니다.
 
@@ -37,7 +41,7 @@ int balance(AvlNode* node) {
 
 AVL은 높이를 엄격하게 관리하므로 탐색이 빠르고 안정적입니다. 대신 삽입/삭제 구현이 다소 길고, 회전 경우를 정확히 나누어야 합니다.
 
-## 6. AVL 회전 경우
+## 2. AVL 회전 경우
 
 AVL에서 균형이 깨지는 대표 경우는 네 가지입니다.
 
@@ -98,7 +102,7 @@ AvlNode* rebalance(AvlNode* node) {
 
 AVL은 "최악의 경우에도 높이를 강하게 보장하고 싶다"는 목적에 잘 맞습니다. 직접 구현 문제에서는 실수가 많아, 구현량을 감당할 수 있을 때 선택합니다.
 
-## 7. Splay Tree
+## 3. Splay Tree
 
 Splay Tree는 어떤 노드를 접근할 때마다 그 노드를 root로 끌어올리는 BST입니다. 이 끌어올리는 연산을 splay라고 합니다.
 
@@ -112,7 +116,7 @@ amortized 보장이면 충분하다.
 
 이런 상황에서 Splay Tree가 유용합니다. 각 연산의 최악 시간은 길 수 있지만, 연산 전체를 평균적으로 보면 amortized `O(log n)`입니다.
 
-## 8. Splay 회전 패턴
+## 4. Splay 회전 패턴
 
 Splay는 노드 `x`를 root로 올릴 때 부모 `p`, 조부모 `g`의 위치에 따라 회전합니다.
 
@@ -148,7 +152,7 @@ struct SplayNode {
 
 회전할 때 child와 parent pointer를 모두 정확히 갱신해야 합니다. 그래서 구현 난이도는 Treap보다 높은 편입니다.
 
-## 9. Splay의 특징
+## 5. Splay의 특징
 
 Splay Tree는 접근한 노드가 root가 됩니다.
 
@@ -158,6 +162,24 @@ insert(x) 후 x가 root
 split할 때 기준 노드를 root로 올린 뒤 왼쪽/오른쪽을 자름
 ```
 
-이 성질 때문에 동적 sequence, link-cut tree 같은 고급 자료구조의 기반으로 쓰입니다.
+이 성질 때문에 동적 sequence, Link-Cut Tree 같은 고급 자료구조의 기반으로 쓰입니다.
 
 장점은 보조 정보가 적고 split/join에 강하다는 점입니다. 단점은 구현이 섬세하고, 한 연산의 최악 시간이 `O(n)`까지 갈 수 있다는 점입니다. 그래도 전체 연산열에 대해서는 amortized `O(log n)`이 보장됩니다.
+
+## 6. Treap과의 선택 기준
+
+| 구조 | 먼저 고를 상황 | 주의할 점 |
+| --- | --- | --- |
+| Treap | 짧은 구현, split/merge, order statistics, implicit sequence | random priority와 중복 key 정책 |
+| AVL Tree | 최악 `O(log n)` 높이 보장이 중요함 | 삽입/삭제 회전 case 구현량 |
+| Splay Tree | 접근 locality, amortized 보장, Link-Cut Tree 기반 | parent pointer와 lazy reverse 관리 |
+
+일반 대회 풀이에서 직접 BST가 필요하면 Treap을 먼저 고려합니다. AVL은 최악 시간 보장이 중요하고 구현 검증 시간이 충분할 때, Splay는 Link-Cut Tree처럼 Splay 자체가 구조의 핵심일 때 선택합니다.
+
+## 7. 연습 문제
+
+| 단계 | 문제 | 목표 | 힌트 키워드 |
+| --- | --- | --- | --- |
+| 참고 | TODO: AVL 회전 trace 문제 필요 | LL/RR/LR/RL 회전 순서 확인 | balance factor |
+| 참고 | TODO: Splay 접근 trace 문제 필요 | zig, zig-zig, zig-zag 구분 | amortized BST |
+| 심화 | TODO: Link-Cut Tree 보조 연습 필요 | Splay lazy reverse와 aggregate 연결 | auxiliary tree |

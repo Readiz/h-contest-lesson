@@ -1,6 +1,6 @@
-# BST 계열: AVL, Splay, Treap: Treap 핵심 연산
+# Treap과 BST 기본: Treap 핵심 연산
 
-## 10. Treap
+## 1. Treap
 
 Treap은 Tree와 Heap을 합친 randomized BST입니다. 각 노드는 `key`와 `priority`를 가집니다.
 
@@ -20,7 +20,7 @@ Treap은 두 조건을 동시에 만족합니다.
 
 Treap의 장점은 `split`과 `merge`가 자연스럽다는 것입니다. 이 때문에 단순 ordered set뿐 아니라 구간을 자르고 붙이는 Implicit Treap으로도 확장하기 좋습니다.
 
-## 11. Treap 노드와 size
+## 2. Treap 노드와 size
 
 순위 질의와 k번째 원소를 처리하려면 각 subtree 크기를 저장합니다.
 
@@ -46,9 +46,9 @@ void pull(Node* node) {
 }
 ```
 
-자식을 바꾼 뒤에는 항상 `pull(node)`로 `size`를 다시 계산합니다. AVL의 height 갱신과 같은 습관입니다.
+자식을 바꾼 뒤에는 항상 `pull(node)`로 `size`를 다시 계산합니다.
 
-## 12. Treap merge
+## 3. Treap merge
 
 `merge(a, b)`는 두 Treap을 하나로 합칩니다. 단, `a`의 모든 key가 `b`의 모든 key보다 작아야 합니다.
 
@@ -71,7 +71,7 @@ Node* merge(Node* a, Node* b) {
 
 BST 조건은 `a < b` 전제 때문에 유지됩니다. Heap 조건은 priority가 높은 쪽을 root로 고르기 때문에 유지됩니다.
 
-## 13. Treap split
+## 4. Treap split
 
 `split(root, key, a, b)`는 하나의 Treap을 두 개로 나눕니다.
 
@@ -102,7 +102,7 @@ void split(Node* root, int key, Node*& a, Node*& b) {
 
 `root->key < key`이면 root와 왼쪽 subtree는 전부 `a` 쪽에 남을 수 있습니다. 오른쪽 subtree에는 작은 값과 큰 값이 섞여 있을 수 있으므로 오른쪽만 다시 나눕니다.
 
-## 14. Treap 삽입과 삭제
+## 5. Treap 삽입과 삭제
 
 삽입은 split 후 가운데에 새 노드를 끼우고 다시 merge합니다.
 

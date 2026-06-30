@@ -1,4 +1,4 @@
-# BST 계열: AVL, Splay, Treap: BST와 회전 기본기
+# Treap과 BST 기본: BST 기본기와 균형이 필요한 이유
 
 ## 1. BST 기본 연산
 
@@ -67,7 +67,7 @@ lower_bound / upper_bound
 
 단순 BST는 이론적으로 좋지만, 입력 순서가 나쁘면 쉽게 한쪽으로 기울어집니다. 그래서 실전 자료구조는 균형을 잡는 규칙을 추가합니다.
 
-## 3. 회전
+## 3. 회전이 하는 일
 
 균형 BST의 기본 도구는 회전입니다. 회전은 BST 순서를 깨지 않고 부모와 자식 관계를 바꾸는 연산입니다.
 
@@ -109,7 +109,7 @@ Node* rotateLeft(Node* x) {
 
 `A < x < B < y < C` 순서는 회전 전후에 유지됩니다. 그래서 회전은 BST 조건을 보존합니다.
 
-실제 AVL이나 Treap에서는 회전 후 `height`, `size`, `sum` 같은 보조 정보를 다시 계산해야 합니다.
+실제 균형 BST에서는 회전 후 `height`, `size`, `sum` 같은 보조 정보를 다시 계산해야 합니다. Treap도 회전으로 설명할 수 있지만, 대회 구현에서는 `split`과 `merge`로 쓰는 편이 더 짧고 실수가 적습니다.
 
 ## 4. 균형이 필요한 이유
 
@@ -133,6 +133,10 @@ Node* rotateLeft(Node* x) {
 
 | 구조 | 균형 유지 방식 | 시간 보장 |
 | --- | --- | --- |
-| AVL Tree | subtree 높이 차이를 1 이하로 유지 | 최악 `O(log n)` |
-| Splay Tree | 접근한 노드를 root로 끌어올림 | amortized `O(log n)` |
-| Treap | random priority로 트리 모양을 랜덤화 | 기대 `O(log n)` |
+| 구조 | 균형 유지 방식 | 시간 보장 | 이 레슨에서의 위치 |
+| --- | --- | --- | --- |
+| Treap | random priority로 트리 모양을 랜덤화 | 기대 `O(log n)` | 기본 트랙 본문 |
+| AVL Tree | subtree 높이 차이를 1 이하로 유지 | 최악 `O(log n)` | 참고 노트 |
+| Splay Tree | 접근한 노드를 root로 끌어올림 | amortized `O(log n)` | 참고 노트 |
+
+Treap을 구현할 때는 "BST 순서를 보존한다"와 "`priority`가 높은 노드가 위에 온다"는 두 조건만 계속 확인하면 됩니다. AVL/Splay의 자세한 회전 경우는 참고 노트의 `AVL과 Splay Tree 참고`에서 따로 봅니다.

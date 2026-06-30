@@ -1689,6 +1689,7 @@
       ],
       "nextLessons": [
         "treap",
+        "avl-splay-tree",
         "link-cut-tree"
       ],
       "relatedLessons": [
@@ -1706,11 +1707,48 @@
       ]
     },
     {
+      "lessonId": "avl-splay-tree",
+      "title": "AVL과 Splay Tree 참고",
+      "description": "Treap 이후에 참고할 균형 BST로 AVL Tree의 높이 균형과 Splay Tree의 상각 회전 패턴을 정리합니다.",
+      "summary": "AVL balance factor와 LL/RR/LR/RL 회전, Splay의 zig/zig-zig/zig-zag와 Link-Cut Tree로 이어지는 참고 BST 노트",
+      "order": 48,
+      "folderId": "heuristic-reference",
+      "tags": [
+        "avl-tree",
+        "splay-tree",
+        "balanced-bst",
+        "binary-search-tree",
+        "rotation",
+        "reference",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 40,
+      "prerequisites": [
+        "treap"
+      ],
+      "nextLessons": [
+        "link-cut-tree"
+      ],
+      "relatedLessons": [
+        "tree-advanced",
+        "segment-tree"
+      ],
+      "pages": [],
+      "lessonType": "reference",
+      "practiceStatus": "todo",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation"
+      ]
+    },
+    {
       "lessonId": "link-cut-tree",
       "title": "Link-Cut Tree",
       "description": "동적으로 변하는 forest에서 link, cut, path query를 splay 기반 preferred path로 처리합니다.",
       "summary": "access, makeroot, findRoot, link/cut, path aggregate, edge node 모델링까지 이어지는 dynamic tree 자료구조 심화",
-      "order": 48,
+      "order": 49,
       "folderId": "heuristic-reference",
       "tags": [
         "link-cut-tree",
@@ -1724,7 +1762,7 @@
       "estimatedMinutes": 85,
       "prerequisites": [
         "tree-advanced",
-        "treap"
+        "avl-splay-tree"
       ],
       "nextLessons": [
         "dynamic-segment-tree",
@@ -1733,7 +1771,8 @@
       "relatedLessons": [
         "segment-tree",
         "versioned-data-structures",
-        "offline-time-axis-techniques"
+        "offline-time-axis-techniques",
+        "treap"
       ],
       "pages": [],
       "lessonType": "implementation",
@@ -1746,66 +1785,62 @@
     },
     {
       "lessonId": "treap",
-      "title": "BST 계열: AVL, Splay, Treap",
-      "description": "일반 BST의 한계와 균형 유지 방법을 이해하고, AVL Tree, Splay Tree, Treap의 차이와 활용 기준을 익힙니다.",
-      "summary": "BST 기본 성질, 회전, AVL 균형 조건, Splay 상각 분석 관점, Treap split/merge와 순위 질의까지 이어지는 BST 계열 정리",
+      "title": "Treap과 BST 기본",
+      "description": "일반 BST의 탐색, 삽입, inorder 순회와 균형 필요성을 이해하고, Treap의 split/merge와 순위 질의를 구현합니다.",
+      "summary": "BST 기본 성질, 균형이 필요한 이유, randomized priority, Treap split/merge, kth와 orderOfKey까지 이어지는 직접 구현 레슨",
       "order": 50,
-      "folderId": "heuristic-reference",
+      "folderId": "heuristic-notes",
       "tags": [
         "treap",
         "binary-search-tree",
-        "avl-tree",
-        "splay-tree",
+        "bst",
         "randomized",
+        "split-merge",
         "order-statistics",
         "data-structure",
         "practice"
       ],
-      "level": "advanced",
-      "estimatedMinutes": 75,
+      "level": "intermediate",
+      "estimatedMinutes": 60,
       "prerequisites": [
         "binary-search",
         "sorting"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "euler-tour-tree"
+      ],
       "relatedLessons": [
         "segment-tree",
-        "tree-advanced"
+        "tree-advanced",
+        "avl-splay-tree"
       ],
       "pages": [
         {
           "pageId": "bst-and-rotation",
-          "title": "BST와 회전 기본기",
+          "title": "BST 기본기와 균형이 필요한 이유",
           "description": "BST 기본 연산, inorder 순회, 회전, 균형 필요성을 정리합니다.",
           "order": 10,
           "file": "pages/bst-and-rotation.md"
         },
         {
-          "pageId": "balanced-bst",
-          "title": "AVL과 Splay Tree",
-          "description": "AVL 회전과 Splay Tree의 회전 패턴 및 특징을 다룹니다.",
-          "order": 20,
-          "file": "pages/balanced-bst.md"
-        },
-        {
           "pageId": "treap-core",
           "title": "Treap 핵심 연산",
           "description": "Treap 노드 구조, merge, split, 삽입과 삭제를 정리합니다.",
-          "order": 30,
+          "order": 20,
           "file": "pages/treap-core.md"
         },
         {
           "pageId": "order-statistics-and-implicit",
           "title": "순위, 전체 구현, Implicit Treap",
           "description": "순위 질의, 전체 구현, Implicit Treap, 구조 비교와 실수 포인트를 모았습니다.",
-          "order": 40,
+          "order": 30,
           "file": "pages/order-statistics-and-implicit.md"
         }
       ],
       "lessonType": "implementation",
       "practiceStatus": "todo",
       "implementationStatus": "full",
-      "audience": "advanced-contest",
+      "audience": "contest-core",
       "difficultyAxes": [
         "implementation"
       ]
