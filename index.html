@@ -167,7 +167,7 @@ p{margin:0;color:var(--muted)}
 </section>
 <section>
 <h2>휴리스틱 기본 및 심화 노트</h2>
-<p class="folder-description">h-contest 문제 풀이에 필요한 기본 구현, 모델링, 최적화, 검증 개념을 한 흐름으로 모은 노트입니다.</p>
+<p class="folder-description">현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 개념을 모은 직접 학습 트랙입니다.</p>
 <div class="lesson-grid">
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -404,33 +404,6 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a> <a href="lessons/meldable-heap/lesson.md">Meldable Heap</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/meldable-heap/lesson.md">Meldable Heap</a></h3>
-<code class="lesson-id">meldable-heap</code>
-</div>
-<p class="lesson-description">두 힙을 빠르게 합치는 meld 연산을 중심으로 Leftist Heap과 Skew Heap의 구조와 구현을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">50분</span>
-<span class="badge axis">축 구현형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 todo</span>
-<span class="badge audience">대상 contest-core</span>
-</div>
-<div class="tag-list">
-<span class="tag">meldable-heap</span>
-<span class="tag">leftist-heap</span>
-<span class="tag">skew-heap</span>
-<span class="tag">priority-queue</span>
-<span class="tag">data-structure</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -753,6 +726,374 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
+<h3><a href="lessons/floyd-warshall/lesson.md">Floyd-Warshall</a></h3>
+<code class="lesson-id">floyd-warshall</code>
+</div>
+<p class="lesson-description">모든 정점 쌍 최단거리와 도달 가능성을 중간 정점 DP로 처리하는 Floyd-Warshall 알고리즘을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">50분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">floyd-warshall</span>
+<span class="tag">apsp</span>
+<span class="tag">shortest-path</span>
+<span class="tag">transitive-closure</span>
+<span class="tag">dynamic-programming</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a></h3>
+<code class="lesson-id">fenwick-tree</code>
+</div>
+<p class="lesson-description">배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">45분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">fenwick-tree</span>
+<span class="tag">binary-indexed-tree</span>
+<span class="tag">prefix-sum</span>
+<span class="tag">range-query</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/segment-tree/lesson.md">Segment Tree</a></h3>
+<code class="lesson-id">segment-tree</code>
+</div>
+<p class="lesson-description">배열 구간 정보를 트리로 나누어 점 업데이트, 구간 질의, lazy 구간 업데이트를 처리하는 방법을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">70분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">segment-tree</span>
+<span class="tag">range-query</span>
+<span class="tag">lazy-propagation</span>
+<span class="tag">data-structure</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
+<ul class="page-list">
+<li><a href="lessons/segment-tree/pages/basic-range-query.md">기본 구간 질의</a> <code>basic-range-query</code></li>
+<li><a href="lessons/segment-tree/pages/bottom-up-implementation.md">Bottom-up 구현</a> <code>bottom-up-implementation</code></li>
+<li><a href="lessons/segment-tree/pages/lazy-propagation.md">Lazy Propagation</a> <code>lazy-propagation</code></li>
+<li><a href="lessons/segment-tree/pages/monoid-and-lazy-composition.md">Monoid와 Lazy 합성</a> <code>monoid-and-lazy-composition</code></li>
+</ul>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a></h3>
+<code class="lesson-id">geometry-ccw-segment-intersection</code>
+</div>
+<p class="lesson-description">정수 좌표에서 외적 부호로 방향을 판정하고, 선분 교차와 convex hull을 안정적으로 구현하는 기하 기본기를 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">geometry</span>
+<span class="tag">ccw</span>
+<span class="tag">cross-product</span>
+<span class="tag">segment-intersection</span>
+<span class="tag">convex-hull</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a></h3>
+<code class="lesson-id">gcd-extended-euclid-crt</code>
+</div>
+<p class="lesson-description">gcd, 확장 유클리드 알고리즘, 일반 모듈러 역원, CRT, 최소 소인수 전처리로 정수론 문제를 확장해 풉니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">number-theory</span>
+<span class="tag">gcd</span>
+<span class="tag">extended-euclid</span>
+<span class="tag">crt</span>
+<span class="tag">sieve</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></h3>
+<code class="lesson-id">combinatorics-ncr</code>
+</div>
+<p class="lesson-description">모듈러 조합 계산, 포함-배제, Lucas 정리로 경우의 수 문제를 체계적으로 세는 방법을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">combinatorics</span>
+<span class="tag">ncr</span>
+<span class="tag">inclusion-exclusion</span>
+<span class="tag">lucas-theorem</span>
+<span class="tag">modular-arithmetic</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a> <a href="lessons/polynomial-recurrence-algorithms/lesson.md">Polynomial and Recurrence Algorithms</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></h3>
+<code class="lesson-id">probability-expected-value</code>
+</div>
+<p class="lesson-description">확률 분포와 기대값 DP를 세우고, DAG 전이와 순환 전이, 모듈러 확률 처리를 구분해 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">60분</span>
+<span class="badge axis">축 증명형 / 모델링형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">probability</span>
+<span class="tag">expected-value</span>
+<span class="tag">dynamic-programming</span>
+<span class="tag">markov-chain</span>
+<span class="tag">modular-arithmetic</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a></h3>
+<code class="lesson-id">minimax-alpha-beta</code>
+</div>
+<p class="lesson-description">두 플레이어 game tree에서 minimax 값을 계산하고 alpha-beta pruning으로 불필요한 가지를 줄이는 방법을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">minimax</span>
+<span class="tag">alpha-beta</span>
+<span class="tag">game-tree</span>
+<span class="tag">search</span>
+<span class="tag">heuristic</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></h3>
+<code class="lesson-id">testing-and-stress</code>
+</div>
+<p class="lesson-description">edge case, brute force, random generator, 빠른 풀이와 느린 풀이 비교로 제출 전 오답 가능성을 줄이는 검증 습관을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">45분</span>
+<span class="badge axis">축 증명형 / 선택지도형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">testing</span>
+<span class="tag">stress-test</span>
+<span class="tag">brute-force</span>
+<span class="tag">debugging</span>
+<span class="tag">counterexample</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></h3>
+<code class="lesson-id">proof-and-invariants</code>
+</div>
+<p class="lesson-description">이분 탐색, 그리디, DP, 자료구조 풀이에서 invariant, exchange argument, monotonicity, counterexample로 정당성을 점검합니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">45분</span>
+<span class="badge axis">축 증명형</span>
+<span class="badge type">성격 core</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">proof</span>
+<span class="tag">invariant</span>
+<span class="tag">exchange-argument</span>
+<span class="tag">monotonicity</span>
+<span class="tag">counterexample</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a> <a href="lessons/binary-search/lesson.md">이분 탐색과 파라메트릭 서치</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a></h3>
+<code class="lesson-id">parametric-optimization</code>
+</div>
+<p class="lesson-description">Alien Optimization, Parametric DP, fractional objectives, Lagrangian relaxation을 하나의 parameter 기반 최적화 흐름으로 묶어 선택 기준과 구현 함정을 정리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">110분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">dp-optimization</span>
+<span class="tag">parametric-search</span>
+<span class="tag">alien-optimization</span>
+<span class="tag">fractional-programming</span>
+<span class="tag">lagrangian-relaxation</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/binary-search/lesson.md">이분 탐색과 파라메트릭 서치</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/convex-cost-flow/lesson.md">Convex Cost Flow</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
+<ul class="page-list">
+<li><a href="lessons/parametric-optimization/pages/feasibility-and-answer-search.md">Feasibility and Answer Search</a> <code>feasibility-and-answer-search</code></li>
+<li><a href="lessons/parametric-optimization/pages/exact-k-alien-optimization.md">Exact-K Alien Optimization</a> <code>exact-k-alien-optimization</code></li>
+<li><a href="lessons/parametric-optimization/pages/fractional-objectives.md">Fractional Objectives</a> <code>fractional-objectives</code></li>
+<li><a href="lessons/parametric-optimization/pages/general-lagrangian-relaxation.md">General Lagrangian Relaxation</a> <code>general-lagrangian-relaxation</code></li>
+<li><a href="lessons/parametric-optimization/pages/tie-breaking-and-breakpoints.md">Tie-breaking and Breakpoints</a> <code>tie-breaking-and-breakpoints</code></li>
+<li><a href="lessons/parametric-optimization/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a></h3>
+<code class="lesson-id">dynamic-segment-tree</code>
+</div>
+<p class="lesson-description">좌표 범위가 매우 크고 실제 접근 지점이 적은 상황에서 필요한 node만 생성하는 sparse Segment Tree를 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">45분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">segment-tree</span>
+<span class="tag">dynamic-segment-tree</span>
+<span class="tag">sparse</span>
+<span class="tag">lazy-propagation</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></p>
+</article>
+</div>
+</section>
+<section>
+<h2>휴리스틱 참고 노트</h2>
+<p class="folder-description">현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 희소 고급 도구, 장기 확장용 레퍼런스 노트입니다.</p>
+<div class="lesson-grid">
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/meldable-heap/lesson.md">Meldable Heap</a></h3>
+<code class="lesson-id">meldable-heap</code>
+</div>
+<p class="lesson-description">두 힙을 빠르게 합치는 meld 연산을 중심으로 Leftist Heap과 Skew Heap의 구조와 구현을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">중급</span>
+<span class="badge time">50분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 todo</span>
+<span class="badge audience">대상 contest-core</span>
+</div>
+<div class="tag-list">
+<span class="tag">meldable-heap</span>
+<span class="tag">leftist-heap</span>
+<span class="tag">skew-heap</span>
+<span class="tag">priority-queue</span>
+<span class="tag">data-structure</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
 <h3><a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a></h3>
 <code class="lesson-id">scc-2sat</code>
 </div>
@@ -804,6 +1145,33 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/matching-cover-duality/lesson.md">Matching과 Cover Duality</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/priority-queue-heap/lesson.md">우선순위 큐와 힙</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/matching-cover-duality/lesson.md">Matching과 Cover Duality</a></h3>
+<code class="lesson-id">matching-cover-duality</code>
+</div>
+<p class="lesson-description">이분 매칭에서 minimum vertex cover와 maximum independent set, DAG path cover로 이어지는 duality 모델링을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">65분</span>
+<span class="badge axis">축 증명형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 concept-only</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">bipartite-matching</span>
+<span class="tag">vertex-cover</span>
+<span class="tag">konig-theorem</span>
+<span class="tag">independent-set</span>
+<span class="tag">path-cover</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/general-matching/lesson.md">General Matching</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -888,33 +1256,6 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/floyd-warshall/lesson.md">Floyd-Warshall</a></h3>
-<code class="lesson-id">floyd-warshall</code>
-</div>
-<p class="lesson-description">모든 정점 쌍 최단거리와 도달 가능성을 중간 정점 DP로 처리하는 Floyd-Warshall 알고리즘을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">50분</span>
-<span class="badge axis">축 구현형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 contest-core</span>
-</div>
-<div class="tag-list">
-<span class="tag">floyd-warshall</span>
-<span class="tag">apsp</span>
-<span class="tag">shortest-path</span>
-<span class="tag">transitive-closure</span>
-<span class="tag">dynamic-programming</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/dijkstra/lesson.md">Dijkstra 최단거리</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/bellman-ford-negative-cycle/lesson.md">Bellman-Ford와 음수 사이클</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
 <h3><a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></h3>
 <code class="lesson-id">sqrt-decomposition</code>
 </div>
@@ -968,61 +1309,202 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a></h3>
-<code class="lesson-id">fenwick-tree</code>
+<h3><a href="lessons/dominator-tree/lesson.md">Dominator Tree</a></h3>
+<code class="lesson-id">dominator-tree</code>
 </div>
-<p class="lesson-description">배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.</p>
+<p class="lesson-description">시작점에서 각 정점으로 가는 모든 경로가 반드시 지나는 immediate dominator와 dominator tree를 계산합니다.</p>
 <div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">45분</span>
-<span class="badge axis">축 구현형</span>
+<span class="badge level">심화</span>
+<span class="badge time">75분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
 <span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 todo</span>
-<span class="badge audience">대상 contest-core</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
-<span class="tag">fenwick-tree</span>
-<span class="tag">binary-indexed-tree</span>
-<span class="tag">prefix-sum</span>
-<span class="tag">range-query</span>
+<span class="tag">dominator-tree</span>
+<span class="tag">directed-graph</span>
+<span class="tag">flow-graph</span>
+<span class="tag">lengauer-tarjan</span>
+<span class="tag">dfs-order</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/directed-mst/lesson.md">Directed MST</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a> <a href="lessons/general-matching/lesson.md">General Matching</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/segment-tree/lesson.md">Segment Tree</a></h3>
-<code class="lesson-id">segment-tree</code>
+<h3><a href="lessons/weighted-matching/lesson.md">Weighted Matching</a></h3>
+<code class="lesson-id">weighted-matching</code>
 </div>
-<p class="lesson-description">배열 구간 정보를 트리로 나누어 점 업데이트, 구간 질의, lazy 구간 업데이트를 처리하는 방법을 익힙니다.</p>
+<p class="lesson-description">Matching에 가중치가 붙을 때 이분 assignment, small-N DP, 일반 그래프 weighted blossom의 경계를 구분합니다.</p>
 <div class="meta-row">
-<span class="badge level">중급</span>
+<span class="badge level">심화</span>
 <span class="badge time">70분</span>
-<span class="badge axis">축 구현형</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
 <span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
+<span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 contest-core</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
-<span class="tag">segment-tree</span>
-<span class="tag">range-query</span>
-<span class="tag">lazy-propagation</span>
-<span class="tag">data-structure</span>
+<span class="tag">weighted-matching</span>
+<span class="tag">matching</span>
+<span class="tag">assignment</span>
+<span class="tag">blossom</span>
+<span class="tag">dynamic-programming</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/prefix-sum-difference/lesson.md">누적합과 차분 배열</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/fenwick-tree/lesson.md">Fenwick Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/general-matching/lesson.md">General Matching</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/directed-mst/lesson.md">Directed MST</a> <a href="lessons/matroid-algorithms/lesson.md">Matroid Algorithms</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/matching-cover-duality/lesson.md">Matching과 Cover Duality</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/directed-mst/lesson.md">Directed MST</a></h3>
+<code class="lesson-id">directed-mst</code>
+</div>
+<p class="lesson-description">루트에서 모든 정점으로 향하는 최소 비용 arborescence를 Chu-Liu/Edmonds cycle contraction으로 계산합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">directed-mst</span>
+<span class="tag">arborescence</span>
+<span class="tag">edmonds</span>
+<span class="tag">chu-liu</span>
+<span class="tag">directed-graph</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/weighted-matching/lesson.md">Weighted Matching</a> <a href="lessons/dominator-tree/lesson.md">Dominator Tree</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></h3>
+<code class="lesson-id">versioned-data-structures</code>
+</div>
+<p class="lesson-description">persistent segment tree, persistent DSU, versioned stack/queue, sequence query를 persistence/rollback/retroactivity 경계와 함께 정리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">160분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">data-structures</span>
+<span class="tag">persistence</span>
+<span class="tag">versioning</span>
+<span class="tag">persistent-segment-tree</span>
+<span class="tag">union-find</span>
+<span class="tag">sequence</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a></p>
 <ul class="page-list">
-<li><a href="lessons/segment-tree/pages/basic-range-query.md">기본 구간 질의</a> <code>basic-range-query</code></li>
-<li><a href="lessons/segment-tree/pages/bottom-up-implementation.md">Bottom-up 구현</a> <code>bottom-up-implementation</code></li>
-<li><a href="lessons/segment-tree/pages/lazy-propagation.md">Lazy Propagation</a> <code>lazy-propagation</code></li>
-<li><a href="lessons/segment-tree/pages/monoid-and-lazy-composition.md">Monoid와 Lazy 합성</a> <code>monoid-and-lazy-composition</code></li>
+<li><a href="lessons/versioned-data-structures/pages/versioning-model-map.md">Versioning Model Map</a> <code>versioning-model-map</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-segment-tree.md">Persistent Segment Tree</a> <code>persistent-segment-tree</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-lazy-segment-tree.md">Persistent Lazy Segment Tree</a> <code>persistent-lazy-segment-tree</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-union-find.md">Persistent Union-Find</a> <code>persistent-union-find</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-queue-stack.md">Persistent Queue and Stack</a> <code>persistent-queue-stack</code></li>
+<li><a href="lessons/versioned-data-structures/pages/persistent-sequence-queries.md">Persistent Sequence Queries</a> <code>persistent-sequence-queries</code></li>
+<li><a href="lessons/versioned-data-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
 </ul>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a></h3>
+<code class="lesson-id">wavelet-tree</code>
+</div>
+<p class="lesson-description">정적 배열에서 구간 kth, rank, frequency 질의를 값 범위와 index 범위를 함께 나누어 처리하는 Wavelet Tree를 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">wavelet-tree</span>
+<span class="tag">order-statistics</span>
+<span class="tag">range-query</span>
+<span class="tag">kth-query</span>
+<span class="tag">frequency</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a></h3>
+<code class="lesson-id">wavelet-matrix</code>
+</div>
+<p class="lesson-description">level별 bitvector와 rank 변환으로 정적 배열의 kth, rank, frequency 질의를 처리하는 Wavelet Matrix를 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">wavelet-matrix</span>
+<span class="tag">rank</span>
+<span class="tag">range-query</span>
+<span class="tag">order-statistics</span>
+<span class="tag">succinct</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/succinct-bitvector/lesson.md">Succinct Bitvector</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/succinct-bitvector/lesson.md">Succinct Bitvector</a></h3>
+<code class="lesson-id">succinct-bitvector</code>
+</div>
+<p class="lesson-description">압축된 bit열 위에서 rank/select를 빠르게 처리하고 Wavelet Matrix의 내부 bitvector를 메모리 효율적으로 구성합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">60분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">succinct</span>
+<span class="tag">bitvector</span>
+<span class="tag">rank</span>
+<span class="tag">select</span>
+<span class="tag">wavelet-matrix</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1050,6 +1532,33 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a> <a href="lessons/segment-tree/lesson.md">Segment Tree</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/tsp-hamiltonian/lesson.md">TSP와 해밀턴 경로</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></h3>
+<code class="lesson-id">link-cut-tree</code>
+</div>
+<p class="lesson-description">동적으로 변하는 forest에서 link, cut, path query를 splay 기반 preferred path로 처리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">85분</span>
+<span class="badge axis">축 구현형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">link-cut-tree</span>
+<span class="tag">dynamic-tree</span>
+<span class="tag">splay-tree</span>
+<span class="tag">path-query</span>
+<span class="tag">forest</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1141,30 +1650,109 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a></h3>
-<code class="lesson-id">geometry-ccw-segment-intersection</code>
+<h3><a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></h3>
+<code class="lesson-id">suffix-periodicity-structures</code>
 </div>
-<p class="lesson-description">정수 좌표에서 외적 부호로 방향을 판정하고, 선분 교차와 convex hull을 안정적으로 구현하는 기하 기본기를 익힙니다.</p>
+<p class="lesson-description">Suffix Array, Suffix Automaton, Suffix Tree, runs, border automaton, period query를 문자열 구조 선택 기준으로 묶습니다.</p>
 <div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">60분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 todo</span>
-<span class="badge audience">대상 contest-core</span>
+<span class="badge level">심화</span>
+<span class="badge time">300분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
-<span class="tag">geometry</span>
-<span class="tag">ccw</span>
-<span class="tag">cross-product</span>
-<span class="tag">segment-intersection</span>
-<span class="tag">convex-hull</span>
+<span class="tag">strings</span>
+<span class="tag">suffix-array</span>
+<span class="tag">suffix-automaton</span>
+<span class="tag">suffix-tree</span>
+<span class="tag">periodicity</span>
+<span class="tag">border</span>
+<span class="tag">lcp</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<ul class="page-list">
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-model-map.md">Suffix Model Map</a> <code>suffix-model-map</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md">Suffix Array and LCP</a> <code>suffix-array-lcp</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-array-applications.md">Suffix Array Applications</a> <code>suffix-array-applications</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-automaton.md">Suffix Automaton</a> <code>suffix-automaton</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md">Suffix Automaton Applications</a> <code>suffix-automaton-applications</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md">Generalized Suffix Automaton</a> <code>generalized-suffix-automaton</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md">Suffix Tree and Ukkonen</a> <code>suffix-tree-ukkonen</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/suffix-tree-phase-trace.md">Suffix Tree Phase Trace</a> <code>suffix-tree-phase-trace</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/runs-periodicity.md">Runs and Periodicity</a> <code>runs-periodicity</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/border-automaton.md">Border Automaton</a> <code>border-automaton</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/string-period-query-applications.md">String Period Query Applications</a> <code>string-period-query-applications</code></li>
+<li><a href="lessons/suffix-periodicity-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a></h3>
+<code class="lesson-id">palindrome-structures</code>
+</div>
+<p class="lesson-description">Palindromic Tree, palindrome query, range DP, suffix-palindrome 응용을 회문 문제 모델 선택 기준으로 묶습니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">170분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">strings</span>
+<span class="tag">palindrome</span>
+<span class="tag">palindromic-tree</span>
+<span class="tag">manacher</span>
+<span class="tag">rolling-hash</span>
+<span class="tag">range-dp</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<ul class="page-list">
+<li><a href="lessons/palindrome-structures/pages/palindrome-model-map.md">Palindrome Model Map</a> <code>palindrome-model-map</code></li>
+<li><a href="lessons/palindrome-structures/pages/palindromic-tree.md">Palindromic Tree</a> <code>palindromic-tree</code></li>
+<li><a href="lessons/palindrome-structures/pages/palindrome-query-structures.md">Palindrome Query Structures</a> <code>palindrome-query-structures</code></li>
+<li><a href="lessons/palindrome-structures/pages/palindrome-range-dp.md">Palindrome Range DP</a> <code>palindrome-range-dp</code></li>
+<li><a href="lessons/palindrome-structures/pages/suffix-palindrome-applications.md">Suffix and Palindrome Applications</a> <code>suffix-palindrome-applications</code></li>
+<li><a href="lessons/palindrome-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a></h3>
+<code class="lesson-id">lyndon-factorization</code>
+</div>
+<p class="lesson-description">Lyndon word의 성질과 Duval algorithm을 이용해 문자열을 선형 시간에 분해하고 최소 회전으로 연결합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">lyndon-word</span>
+<span class="tag">duval</span>
+<span class="tag">string</span>
+<span class="tag">minimum-rotation</span>
+<span class="tag">factorization</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1249,6 +1837,60 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
+<h3><a href="lessons/line-arrangement/lesson.md">Line Arrangement</a></h3>
+<code class="lesson-id">line-arrangement</code>
+</div>
+<p class="lesson-description">직선의 중복, 평행, 교점을 정확히 다루며 arrangement 영역 수와 sweep 확장 관점을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">65분</span>
+<span class="badge axis">축 구현형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">geometry</span>
+<span class="tag">line-arrangement</span>
+<span class="tag">intersection</span>
+<span class="tag">sweep-line</span>
+<span class="tag">rational</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/closest-pair-sweep/lesson.md">Closest Pair Sweep</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a></h3>
+<code class="lesson-id">voronoi-delaunay</code>
+</div>
+<p class="lesson-description">Voronoi cell과 Delaunay edge의 쌍대 관계, empty circumcircle 성질, nearest 구조 문제의 활용 기준을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">70분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">voronoi</span>
+<span class="tag">delaunay</span>
+<span class="tag">geometry</span>
+<span class="tag">nearest-neighbor</span>
+<span class="tag">circumcircle</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a> <a href="lessons/closest-pair-sweep/lesson.md">Closest Pair Sweep</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a> <a href="lessons/geometry-robustness-and-duality/lesson.md">Geometry Robustness and Duality</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
 <h3><a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a></h3>
 <code class="lesson-id">half-plane-intersection</code>
 </div>
@@ -1273,60 +1915,6 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a> <a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/minkowski-sum/lesson.md">Minkowski Sum</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a></h3>
-<code class="lesson-id">gcd-extended-euclid-crt</code>
-</div>
-<p class="lesson-description">gcd, 확장 유클리드 알고리즘, 일반 모듈러 역원, CRT, 최소 소인수 전처리로 정수론 문제를 확장해 풉니다.</p>
-<div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">65분</span>
-<span class="badge axis">축 구현형 / 증명형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 todo</span>
-<span class="badge audience">대상 contest-core</span>
-</div>
-<div class="tag-list">
-<span class="tag">number-theory</span>
-<span class="tag">gcd</span>
-<span class="tag">extended-euclid</span>
-<span class="tag">crt</span>
-<span class="tag">sieve</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></h3>
-<code class="lesson-id">combinatorics-ncr</code>
-</div>
-<p class="lesson-description">모듈러 조합 계산, 포함-배제, Lucas 정리로 경우의 수 문제를 체계적으로 세는 방법을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">65분</span>
-<span class="badge axis">축 구현형 / 증명형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 contest-core</span>
-</div>
-<div class="tag-list">
-<span class="tag">combinatorics</span>
-<span class="tag">ncr</span>
-<span class="tag">inclusion-exclusion</span>
-<span class="tag">lucas-theorem</span>
-<span class="tag">modular-arithmetic</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a> <a href="lessons/polynomial-recurrence-algorithms/lesson.md">Polynomial and Recurrence Algorithms</a> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1357,30 +1945,48 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a></h3>
-<code class="lesson-id">probability-expected-value</code>
+<h3><a href="lessons/polynomial-recurrence-algorithms/lesson.md">Polynomial and Recurrence Algorithms</a></h3>
+<code class="lesson-id">polynomial-recurrence-algorithms</code>
 </div>
-<p class="lesson-description">확률 분포와 기대값 DP를 세우고, DAG 전이와 순환 전이, 모듈러 확률 처리를 구분해 익힙니다.</p>
+<p class="lesson-description">FFT/NTT, FPS, 다점평가, 보간, 생성함수, Kitamasa, Bostan-Mori, Berlekamp-Massey를 계수열 알고리즘 흐름으로 묶습니다.</p>
 <div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">60분</span>
-<span class="badge axis">축 증명형 / 모델링형</span>
-<span class="badge type">성격 core</span>
-<span class="badge implementation">구현 concept-only</span>
+<span class="badge level">심화</span>
+<span class="badge time">360분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 contest-core</span>
+<span class="badge audience">대상 advanced-contest</span>
 </div>
 <div class="tag-list">
-<span class="tag">probability</span>
-<span class="tag">expected-value</span>
-<span class="tag">dynamic-programming</span>
-<span class="tag">markov-chain</span>
-<span class="tag">modular-arithmetic</span>
+<span class="tag">math</span>
+<span class="tag">polynomial</span>
+<span class="tag">fft</span>
+<span class="tag">ntt</span>
+<span class="tag">formal-power-series</span>
+<span class="tag">generating-function</span>
+<span class="tag">linear-recurrence</span>
+<span class="tag">berlekamp-massey</span>
 <span class="tag">practice</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/black-box-linear-algebra/lesson.md">Black-Box Linear Algebra</a> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/randomized-determinant/lesson.md">Randomized Determinant</a></p>
+<ul class="page-list">
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/polynomial-model-map.md">Polynomial Model Map</a> <code>polynomial-model-map</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/fft-ntt.md">FFT and NTT</a> <code>fft-ntt</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md">Formal Power Series</a> <code>formal-power-series</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/fps-log-exp.md">FPS Log and Exp</a> <code>fps-log-exp</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/multipoint-evaluation.md">Multipoint Evaluation</a> <code>multipoint-evaluation</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/polynomial-interpolation.md">Polynomial Interpolation</a> <code>polynomial-interpolation</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/generating-function-modeling.md">Generating Function Modeling</a> <code>generating-function-modeling</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md">Linear Recurrence and Kitamasa</a> <code>linear-recurrence-kitamasa</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/bostan-mori.md">Bostan-Mori</a> <code>bostan-mori</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-applications.md">Linear Recurrence Applications</a> <code>linear-recurrence-applications</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/recurrence-guessing.md">Recurrence Guessing</a> <code>recurrence-guessing</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md">Berlekamp-Massey</a> <code>berlekamp-massey</code></li>
+<li><a href="lessons/polynomial-recurrence-algorithms/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1411,30 +2017,52 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a></h3>
-<code class="lesson-id">minimax-alpha-beta</code>
+<h3><a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></h3>
+<code class="lesson-id">probabilistic-decision-ai</code>
 </div>
-<p class="lesson-description">두 플레이어 game tree에서 minimax 값을 계산하고 alpha-beta pruning으로 불필요한 가지를 줄이는 방법을 익힙니다.</p>
+<p class="lesson-description">MDP, MCTS, imperfect information, POMDP, PBVI, POMCP, Bayesian Bandits, online planning evaluation을 reference 트랙으로 묶습니다.</p>
 <div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">60분</span>
-<span class="badge axis">축 구현형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
+<span class="badge level">심화</span>
+<span class="badge time">320분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 reference</span>
+<span class="badge implementation">구현 partial</span>
 <span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 contest-core</span>
+<span class="badge audience">대상 research-reference</span>
 </div>
 <div class="tag-list">
-<span class="tag">minimax</span>
-<span class="tag">alpha-beta</span>
-<span class="tag">game-tree</span>
-<span class="tag">search</span>
-<span class="tag">heuristic</span>
-<span class="tag">practice</span>
+<span class="tag">probability</span>
+<span class="tag">decision-process</span>
+<span class="tag">mdp</span>
+<span class="tag">mcts</span>
+<span class="tag">pomdp</span>
+<span class="tag">bandits</span>
+<span class="tag">online-planning</span>
+<span class="tag">imperfect-information</span>
+<span class="tag">reference</span>
 </div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a></p>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a> <a href="lessons/black-box-linear-algebra/lesson.md">Black-Box Linear Algebra</a></p>
+<ul class="page-list">
+<li><a href="lessons/probabilistic-decision-ai/pages/decision-ai-model-map.md">Decision AI Model Map</a> <code>decision-ai-model-map</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/feedback-model-boundary.md">Feedback Model Boundary</a> <code>feedback-model-boundary</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/stochastic-decision-process.md">Stochastic Decision Process</a> <code>stochastic-decision-process</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md">Finite Horizon MDP</a> <code>finite-horizon-mdp</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/discounted-value-iteration.md">Discounted Value Iteration</a> <code>discounted-value-iteration</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/policy-evaluation-and-improvement.md">Policy Evaluation and Improvement</a> <code>policy-evaluation-and-improvement</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/stochastic-shortest-path.md">Stochastic Shortest Path</a> <code>stochastic-shortest-path</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/exact-model-vs-sampling.md">Exact Model vs Sampling</a> <code>exact-model-vs-sampling</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/monte-carlo-tree-search.md">Monte Carlo Tree Search</a> <code>monte-carlo-tree-search</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/imperfect-information-search.md">Imperfect Information Search</a> <code>imperfect-information-search</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/pomdp.md">Partially Observable MDP</a> <code>pomdp</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/point-based-value-iteration.md">Point-Based Value Iteration</a> <code>point-based-value-iteration</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/pomcp.md">POMCP</a> <code>pomcp</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/bayesian-bandits.md">Bayesian Bandits</a> <code>bayesian-bandits</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/online-planning-evaluation.md">Online Planning Evaluation</a> <code>online-planning-evaluation</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/stochastic-decision-practice-set.md">Stochastic Decision Practice Set</a> <code>stochastic-decision-practice-set</code></li>
+<li><a href="lessons/probabilistic-decision-ai/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
+</ul>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1473,60 +2101,6 @@ p{margin:0;color:var(--muted)}
 <li><a href="lessons/offline-time-axis-techniques/pages/retroactive-data-structures.md">Retroactive Data Structures</a> <code>retroactive-data-structures</code></li>
 <li><a href="lessons/offline-time-axis-techniques/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
 </ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></h3>
-<code class="lesson-id">testing-and-stress</code>
-</div>
-<p class="lesson-description">edge case, brute force, random generator, 빠른 풀이와 느린 풀이 비교로 제출 전 오답 가능성을 줄이는 검증 습관을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">45분</span>
-<span class="badge axis">축 증명형 / 선택지도형</span>
-<span class="badge type">성격 core</span>
-<span class="badge implementation">구현 concept-only</span>
-<span class="badge practice">연습 todo</span>
-<span class="badge audience">대상 contest-core</span>
-</div>
-<div class="tag-list">
-<span class="tag">testing</span>
-<span class="tag">stress-test</span>
-<span class="tag">brute-force</span>
-<span class="tag">debugging</span>
-<span class="tag">counterexample</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a> <a href="lessons/complexity-input-size/lesson.md">복잡도와 입력 크기 감각</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/proof-and-invariants/lesson.md">Proof와 Invariant</a></h3>
-<code class="lesson-id">proof-and-invariants</code>
-</div>
-<p class="lesson-description">이분 탐색, 그리디, DP, 자료구조 풀이에서 invariant, exchange argument, monotonicity, counterexample로 정당성을 점검합니다.</p>
-<div class="meta-row">
-<span class="badge level">중급</span>
-<span class="badge time">45분</span>
-<span class="badge axis">축 증명형</span>
-<span class="badge type">성격 core</span>
-<span class="badge implementation">구현 concept-only</span>
-<span class="badge practice">연습 todo</span>
-<span class="badge audience">대상 contest-core</span>
-</div>
-<div class="tag-list">
-<span class="tag">proof</span>
-<span class="tag">invariant</span>
-<span class="tag">exchange-argument</span>
-<span class="tag">monotonicity</span>
-<span class="tag">counterexample</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a> <a href="lessons/binary-search/lesson.md">이분 탐색과 파라메트릭 서치</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1608,67 +2182,6 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/knuth-optimization/lesson.md">Knuth Optimization</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a> <a href="lessons/quadrangle-inequality-proofs/lesson.md">Quadrangle Inequality Proofs</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/parametric-optimization/lesson.md">Parametric Optimization</a></h3>
-<code class="lesson-id">parametric-optimization</code>
-</div>
-<p class="lesson-description">Alien Optimization, Parametric DP, fractional objectives, Lagrangian relaxation을 하나의 parameter 기반 최적화 흐름으로 묶어 선택 기준과 구현 함정을 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">110분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">dp-optimization</span>
-<span class="tag">parametric-search</span>
-<span class="tag">alien-optimization</span>
-<span class="tag">fractional-programming</span>
-<span class="tag">lagrangian-relaxation</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/binary-search/lesson.md">이분 탐색과 파라메트릭 서치</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/divide-and-conquer-dp-optimization/lesson.md">Divide and Conquer DP Optimization</a> <a href="lessons/monge-smawk/lesson.md">Monge와 SMAWK</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/convex-cost-flow/lesson.md">Convex Cost Flow</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
-<ul class="page-list">
-<li><a href="lessons/parametric-optimization/pages/feasibility-and-answer-search.md">Feasibility and Answer Search</a> <code>feasibility-and-answer-search</code></li>
-<li><a href="lessons/parametric-optimization/pages/exact-k-alien-optimization.md">Exact-K Alien Optimization</a> <code>exact-k-alien-optimization</code></li>
-<li><a href="lessons/parametric-optimization/pages/fractional-objectives.md">Fractional Objectives</a> <code>fractional-objectives</code></li>
-<li><a href="lessons/parametric-optimization/pages/general-lagrangian-relaxation.md">General Lagrangian Relaxation</a> <code>general-lagrangian-relaxation</code></li>
-<li><a href="lessons/parametric-optimization/pages/tie-breaking-and-breakpoints.md">Tie-breaking and Breakpoints</a> <code>tie-breaking-and-breakpoints</code></li>
-<li><a href="lessons/parametric-optimization/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
-</ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a></h3>
-<code class="lesson-id">dynamic-segment-tree</code>
-</div>
-<p class="lesson-description">좌표 범위가 매우 크고 실제 접근 지점이 적은 상황에서 필요한 node만 생성하는 sparse Segment Tree를 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">45분</span>
-<span class="badge axis">축 구현형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">segment-tree</span>
-<span class="tag">dynamic-segment-tree</span>
-<span class="tag">sparse</span>
-<span class="tag">lazy-propagation</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -1921,6 +2434,33 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
+<h3><a href="lessons/dirichlet-convolution/lesson.md">Dirichlet Convolution</a></h3>
+<code class="lesson-id">dirichlet-convolution</code>
+</div>
+<p class="lesson-description">약수 관계 위 convolution으로 Mobius Inversion, multiplicative function, divisor transform을 하나의 틀에서 정리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">50분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">math</span>
+<span class="tag">number-theory</span>
+<span class="tag">dirichlet-convolution</span>
+<span class="tag">mobius-inversion</span>
+<span class="tag">divisor-transform</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/mobius-inversion/lesson.md">Mobius Inversion</a> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/multiplicative-functions/lesson.md">Multiplicative Functions</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/linear-basis-applications/lesson.md">Linear Basis Applications</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
 <h3><a href="lessons/minkowski-sum/lesson.md">Minkowski Sum</a></h3>
 <code class="lesson-id">minkowski-sum</code>
 </div>
@@ -1972,6 +2512,60 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a> <a href="lessons/minkowski-sum/lesson.md">Minkowski Sum</a> <a href="lessons/closest-pair-sweep/lesson.md">Closest Pair Sweep</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/shape-distance-modeling/lesson.md">Shape Distance Modeling</a> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/multiplicative-functions/lesson.md">Multiplicative Functions</a></h3>
+<code class="lesson-id">multiplicative-functions</code>
+</div>
+<p class="lesson-description">서로소 곱에서 값이 분리되는 산술 함수를 prime power 공식과 linear sieve로 계산합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 full</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">math</span>
+<span class="tag">number-theory</span>
+<span class="tag">multiplicative-function</span>
+<span class="tag">linear-sieve</span>
+<span class="tag">dirichlet-convolution</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/dirichlet-convolution/lesson.md">Dirichlet Convolution</a> <a href="lessons/mobius-inversion/lesson.md">Mobius Inversion</a> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/summatory-number-theory/lesson.md">Summatory Number Theory</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/summatory-number-theory/lesson.md">Summatory Number Theory</a></h3>
+<code class="lesson-id">summatory-number-theory</code>
+</div>
+<p class="lesson-description">floor division grouping과 divisor transform으로 큰 n의 정수론 누적합을 빠르게 계산하는 관점을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
+<span class="badge type">성격 implementation</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">math</span>
+<span class="tag">number-theory</span>
+<span class="tag">summatory-function</span>
+<span class="tag">floor-division</span>
+<span class="tag">mobius-inversion</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/multiplicative-functions/lesson.md">Multiplicative Functions</a> <a href="lessons/mobius-inversion/lesson.md">Mobius Inversion</a> <a href="lessons/dirichlet-convolution/lesson.md">Dirichlet Convolution</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
@@ -2083,654 +2677,6 @@ p{margin:0;color:var(--muted)}
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">
-<h3><a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a></h3>
-<code class="lesson-id">game-theory-applications</code>
-</div>
-<p class="lesson-description">Grundy, minimax, MDP, hidden information 모델을 문제 신호별로 고르는 게임 이론 응용 기준을 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">game-theory</span>
-<span class="tag">grundy-number</span>
-<span class="tag">minimax</span>
-<span class="tag">mdp</span>
-<span class="tag">imperfect-information</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/inversion-geometry/lesson.md">Inversion Geometry</a></h3>
-<code class="lesson-id">inversion-geometry</code>
-</div>
-<p class="lesson-description">원과 직선을 inversion으로 변환해 접선, 교점, 원다발 문제를 단순화하는 기하 모델링을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">geometry</span>
-<span class="tag">inversion</span>
-<span class="tag">circle</span>
-<span class="tag">tangent</span>
-<span class="tag">transformation</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/circle-geometry/lesson.md">Circle Geometry</a> <a href="lessons/geometry-robustness-and-duality/lesson.md">Geometry Robustness and Duality</a> <a href="lessons/shape-distance-modeling/lesson.md">Shape Distance Modeling</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/circle-arrangement/lesson.md">Circle Arrangement</a> <a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a> <a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a></p>
-</article>
-</div>
-</section>
-<section>
-<h2>휴리스틱 참고 노트</h2>
-<p class="folder-description">현재 문제 풀이의 직접 범위를 넘지만 심화 탐색과 아이디어 확장에 도움이 되는 참고 노트입니다.</p>
-<div class="lesson-grid">
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/matching-cover-duality/lesson.md">Matching과 Cover Duality</a></h3>
-<code class="lesson-id">matching-cover-duality</code>
-</div>
-<p class="lesson-description">이분 매칭에서 minimum vertex cover와 maximum independent set, DAG path cover로 이어지는 duality 모델링을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">65분</span>
-<span class="badge axis">축 증명형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 concept-only</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">bipartite-matching</span>
-<span class="tag">vertex-cover</span>
-<span class="tag">konig-theorem</span>
-<span class="tag">independent-set</span>
-<span class="tag">path-cover</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/max-flow-min-cut/lesson.md">Max Flow, Min Cut, Bipartite Matching</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/general-matching/lesson.md">General Matching</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/dominator-tree/lesson.md">Dominator Tree</a></h3>
-<code class="lesson-id">dominator-tree</code>
-</div>
-<p class="lesson-description">시작점에서 각 정점으로 가는 모든 경로가 반드시 지나는 immediate dominator와 dominator tree를 계산합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">75분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">dominator-tree</span>
-<span class="tag">directed-graph</span>
-<span class="tag">flow-graph</span>
-<span class="tag">lengauer-tarjan</span>
-<span class="tag">dfs-order</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/graph-tree-basics/lesson.md">그래프와 트리 기본 성질</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/directed-mst/lesson.md">Directed MST</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/topological-sort-dag/lesson.md">위상 정렬과 DAG DP</a> <a href="lessons/general-matching/lesson.md">General Matching</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/weighted-matching/lesson.md">Weighted Matching</a></h3>
-<code class="lesson-id">weighted-matching</code>
-</div>
-<p class="lesson-description">Matching에 가중치가 붙을 때 이분 assignment, small-N DP, 일반 그래프 weighted blossom의 경계를 구분합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">weighted-matching</span>
-<span class="tag">matching</span>
-<span class="tag">assignment</span>
-<span class="tag">blossom</span>
-<span class="tag">dynamic-programming</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/general-matching/lesson.md">General Matching</a> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/directed-mst/lesson.md">Directed MST</a> <a href="lessons/matroid-algorithms/lesson.md">Matroid Algorithms</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/matching-cover-duality/lesson.md">Matching과 Cover Duality</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/directed-mst/lesson.md">Directed MST</a></h3>
-<code class="lesson-id">directed-mst</code>
-</div>
-<p class="lesson-description">루트에서 모든 정점으로 향하는 최소 비용 arborescence를 Chu-Liu/Edmonds cycle contraction으로 계산합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">directed-mst</span>
-<span class="tag">arborescence</span>
-<span class="tag">edmonds</span>
-<span class="tag">chu-liu</span>
-<span class="tag">directed-graph</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/scc-2sat/lesson.md">SCC와 2-SAT</a> <a href="lessons/greedy/lesson.md">그리디 알고리즘</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/min-cost-flow/lesson.md">Min-Cost Flow</a> <a href="lessons/weighted-matching/lesson.md">Weighted Matching</a> <a href="lessons/dominator-tree/lesson.md">Dominator Tree</a> <a href="lessons/flow-with-lower-bound/lesson.md">Flow with Lower Bound</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a></h3>
-<code class="lesson-id">versioned-data-structures</code>
-</div>
-<p class="lesson-description">persistent segment tree, persistent DSU, versioned stack/queue, sequence query를 persistence/rollback/retroactivity 경계와 함께 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">160분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">data-structures</span>
-<span class="tag">persistence</span>
-<span class="tag">versioning</span>
-<span class="tag">persistent-segment-tree</span>
-<span class="tag">union-find</span>
-<span class="tag">sequence</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/union-find/lesson.md">Union-Find 알고리즘</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a></p>
-<ul class="page-list">
-<li><a href="lessons/versioned-data-structures/pages/versioning-model-map.md">Versioning Model Map</a> <code>versioning-model-map</code></li>
-<li><a href="lessons/versioned-data-structures/pages/persistent-segment-tree.md">Persistent Segment Tree</a> <code>persistent-segment-tree</code></li>
-<li><a href="lessons/versioned-data-structures/pages/persistent-lazy-segment-tree.md">Persistent Lazy Segment Tree</a> <code>persistent-lazy-segment-tree</code></li>
-<li><a href="lessons/versioned-data-structures/pages/persistent-union-find.md">Persistent Union-Find</a> <code>persistent-union-find</code></li>
-<li><a href="lessons/versioned-data-structures/pages/persistent-queue-stack.md">Persistent Queue and Stack</a> <code>persistent-queue-stack</code></li>
-<li><a href="lessons/versioned-data-structures/pages/persistent-sequence-queries.md">Persistent Sequence Queries</a> <code>persistent-sequence-queries</code></li>
-<li><a href="lessons/versioned-data-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
-</ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a></h3>
-<code class="lesson-id">wavelet-tree</code>
-</div>
-<p class="lesson-description">정적 배열에서 구간 kth, rank, frequency 질의를 값 범위와 index 범위를 함께 나누어 처리하는 Wavelet Tree를 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-<span class="badge axis">축 구현형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">wavelet-tree</span>
-<span class="tag">order-statistics</span>
-<span class="tag">range-query</span>
-<span class="tag">kth-query</span>
-<span class="tag">frequency</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/sqrt-decomposition/lesson.md">Sqrt Decomposition</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a></h3>
-<code class="lesson-id">wavelet-matrix</code>
-</div>
-<p class="lesson-description">level별 bitvector와 rank 변환으로 정적 배열의 kth, rank, frequency 질의를 처리하는 Wavelet Matrix를 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-<span class="badge axis">축 구현형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">wavelet-matrix</span>
-<span class="tag">rank</span>
-<span class="tag">range-query</span>
-<span class="tag">order-statistics</span>
-<span class="tag">succinct</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/wavelet-tree/lesson.md">Wavelet Tree</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/succinct-bitvector/lesson.md">Succinct Bitvector</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/succinct-bitvector/lesson.md">Succinct Bitvector</a></h3>
-<code class="lesson-id">succinct-bitvector</code>
-</div>
-<p class="lesson-description">압축된 bit열 위에서 rank/select를 빠르게 처리하고 Wavelet Matrix의 내부 bitvector를 메모리 효율적으로 구성합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">60분</span>
-<span class="badge axis">축 구현형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">succinct</span>
-<span class="tag">bitvector</span>
-<span class="tag">rank</span>
-<span class="tag">select</span>
-<span class="tag">wavelet-matrix</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/wavelet-matrix/lesson.md">Wavelet Matrix</a> <a href="lessons/cpp-contest-basics/lesson.md">대회용 C++ 기본기</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a> <a href="lessons/coordinate-compression/lesson.md">좌표 압축</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/link-cut-tree/lesson.md">Link-Cut Tree</a></h3>
-<code class="lesson-id">link-cut-tree</code>
-</div>
-<p class="lesson-description">동적으로 변하는 forest에서 link, cut, path query를 splay 기반 preferred path로 처리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">85분</span>
-<span class="badge axis">축 구현형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">link-cut-tree</span>
-<span class="tag">dynamic-tree</span>
-<span class="tag">splay-tree</span>
-<span class="tag">path-query</span>
-<span class="tag">forest</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/tree-advanced/lesson.md">트리 심화: 분할 기법</a> <a href="lessons/treap/lesson.md">BST 계열: AVL, Splay, Treap</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/dynamic-segment-tree/lesson.md">Dynamic Segment Tree</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/segment-tree/lesson.md">Segment Tree</a> <a href="lessons/versioned-data-structures/lesson.md">Versioned Data Structures</a> <a href="lessons/offline-time-axis-techniques/lesson.md">Offline and Time-Axis Techniques</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></h3>
-<code class="lesson-id">suffix-periodicity-structures</code>
-</div>
-<p class="lesson-description">Suffix Array, Suffix Automaton, Suffix Tree, runs, border automaton, period query를 문자열 구조 선택 기준으로 묶습니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">300분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">strings</span>
-<span class="tag">suffix-array</span>
-<span class="tag">suffix-automaton</span>
-<span class="tag">suffix-tree</span>
-<span class="tag">periodicity</span>
-<span class="tag">border</span>
-<span class="tag">lcp</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/sorting/lesson.md">정렬 알고리즘</a> <a href="lessons/sparse-table-rmq/lesson.md">Sparse Table과 RMQ</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-<ul class="page-list">
-<li><a href="lessons/suffix-periodicity-structures/pages/suffix-model-map.md">Suffix Model Map</a> <code>suffix-model-map</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md">Suffix Array and LCP</a> <code>suffix-array-lcp</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/suffix-array-applications.md">Suffix Array Applications</a> <code>suffix-array-applications</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/suffix-automaton.md">Suffix Automaton</a> <code>suffix-automaton</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md">Suffix Automaton Applications</a> <code>suffix-automaton-applications</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md">Generalized Suffix Automaton</a> <code>generalized-suffix-automaton</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md">Suffix Tree and Ukkonen</a> <code>suffix-tree-ukkonen</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/suffix-tree-phase-trace.md">Suffix Tree Phase Trace</a> <code>suffix-tree-phase-trace</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/runs-periodicity.md">Runs and Periodicity</a> <code>runs-periodicity</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/border-automaton.md">Border Automaton</a> <code>border-automaton</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/string-period-query-applications.md">String Period Query Applications</a> <code>string-period-query-applications</code></li>
-<li><a href="lessons/suffix-periodicity-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
-</ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a></h3>
-<code class="lesson-id">palindrome-structures</code>
-</div>
-<p class="lesson-description">Palindromic Tree, palindrome query, range DP, suffix-palindrome 응용을 회문 문제 모델 선택 기준으로 묶습니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">170분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">strings</span>
-<span class="tag">palindrome</span>
-<span class="tag">palindromic-tree</span>
-<span class="tag">manacher</span>
-<span class="tag">rolling-hash</span>
-<span class="tag">range-dp</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/trie-aho-corasick/lesson.md">Trie와 Aho-Corasick</a> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-<ul class="page-list">
-<li><a href="lessons/palindrome-structures/pages/palindrome-model-map.md">Palindrome Model Map</a> <code>palindrome-model-map</code></li>
-<li><a href="lessons/palindrome-structures/pages/palindromic-tree.md">Palindromic Tree</a> <code>palindromic-tree</code></li>
-<li><a href="lessons/palindrome-structures/pages/palindrome-query-structures.md">Palindrome Query Structures</a> <code>palindrome-query-structures</code></li>
-<li><a href="lessons/palindrome-structures/pages/palindrome-range-dp.md">Palindrome Range DP</a> <code>palindrome-range-dp</code></li>
-<li><a href="lessons/palindrome-structures/pages/suffix-palindrome-applications.md">Suffix and Palindrome Applications</a> <code>suffix-palindrome-applications</code></li>
-<li><a href="lessons/palindrome-structures/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
-</ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/lyndon-factorization/lesson.md">Lyndon Factorization</a></h3>
-<code class="lesson-id">lyndon-factorization</code>
-</div>
-<p class="lesson-description">Lyndon word의 성질과 Duval algorithm을 이용해 문자열을 선형 시간에 분해하고 최소 회전으로 연결합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-<span class="badge axis">축 구현형 / 증명형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">lyndon-word</span>
-<span class="tag">duval</span>
-<span class="tag">string</span>
-<span class="tag">minimum-rotation</span>
-<span class="tag">factorization</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/palindrome-structures/lesson.md">Palindrome Structures</a> <a href="lessons/string-matching-kmp-z/lesson.md">문자열 매칭: KMP, Z, Rolling Hash</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/suffix-periodicity-structures/lesson.md">Suffix and Periodicity Structures</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/line-arrangement/lesson.md">Line Arrangement</a></h3>
-<code class="lesson-id">line-arrangement</code>
-</div>
-<p class="lesson-description">직선의 중복, 평행, 교점을 정확히 다루며 arrangement 영역 수와 sweep 확장 관점을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">65분</span>
-<span class="badge axis">축 구현형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">geometry</span>
-<span class="tag">line-arrangement</span>
-<span class="tag">intersection</span>
-<span class="tag">sweep-line</span>
-<span class="tag">rational</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/sweep-line-geometry/lesson.md">Sweep Line Geometry</a> <a href="lessons/closest-pair-sweep/lesson.md">Closest Pair Sweep</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a></h3>
-<code class="lesson-id">voronoi-delaunay</code>
-</div>
-<p class="lesson-description">Voronoi cell과 Delaunay edge의 쌍대 관계, empty circumcircle 성질, nearest 구조 문제의 활용 기준을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">70분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">voronoi</span>
-<span class="tag">delaunay</span>
-<span class="tag">geometry</span>
-<span class="tag">nearest-neighbor</span>
-<span class="tag">circumcircle</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/line-arrangement/lesson.md">Line Arrangement</a> <a href="lessons/closest-pair-sweep/lesson.md">Closest Pair Sweep</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a> <a href="lessons/geometry-robustness-and-duality/lesson.md">Geometry Robustness and Duality</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/geometry-ccw-segment-intersection/lesson.md">기하 기본: CCW, 선분 교차, Convex Hull</a> <a href="lessons/rotating-calipers/lesson.md">Rotating Calipers</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/polynomial-recurrence-algorithms/lesson.md">Polynomial and Recurrence Algorithms</a></h3>
-<code class="lesson-id">polynomial-recurrence-algorithms</code>
-</div>
-<p class="lesson-description">FFT/NTT, FPS, 다점평가, 보간, 생성함수, Kitamasa, Bostan-Mori, Berlekamp-Massey를 계수열 알고리즘 흐름으로 묶습니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">360분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">math</span>
-<span class="tag">polynomial</span>
-<span class="tag">fft</span>
-<span class="tag">ntt</span>
-<span class="tag">formal-power-series</span>
-<span class="tag">generating-function</span>
-<span class="tag">linear-recurrence</span>
-<span class="tag">berlekamp-massey</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/black-box-linear-algebra/lesson.md">Black-Box Linear Algebra</a> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/convex-dp-optimization/lesson.md">Convex DP Optimization</a> <a href="lessons/randomized-determinant/lesson.md">Randomized Determinant</a></p>
-<ul class="page-list">
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/polynomial-model-map.md">Polynomial Model Map</a> <code>polynomial-model-map</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/fft-ntt.md">FFT and NTT</a> <code>fft-ntt</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md">Formal Power Series</a> <code>formal-power-series</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/fps-log-exp.md">FPS Log and Exp</a> <code>fps-log-exp</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/multipoint-evaluation.md">Multipoint Evaluation</a> <code>multipoint-evaluation</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/polynomial-interpolation.md">Polynomial Interpolation</a> <code>polynomial-interpolation</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/generating-function-modeling.md">Generating Function Modeling</a> <code>generating-function-modeling</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md">Linear Recurrence and Kitamasa</a> <code>linear-recurrence-kitamasa</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/bostan-mori.md">Bostan-Mori</a> <code>bostan-mori</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-applications.md">Linear Recurrence Applications</a> <code>linear-recurrence-applications</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/recurrence-guessing.md">Recurrence Guessing</a> <code>recurrence-guessing</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md">Berlekamp-Massey</a> <code>berlekamp-massey</code></li>
-<li><a href="lessons/polynomial-recurrence-algorithms/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
-</ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></h3>
-<code class="lesson-id">probabilistic-decision-ai</code>
-</div>
-<p class="lesson-description">MDP, MCTS, imperfect information, POMDP, PBVI, POMCP, Bayesian Bandits, online planning evaluation을 reference 트랙으로 묶습니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">320분</span>
-<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 reference</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 research-reference</span>
-</div>
-<div class="tag-list">
-<span class="tag">probability</span>
-<span class="tag">decision-process</span>
-<span class="tag">mdp</span>
-<span class="tag">mcts</span>
-<span class="tag">pomdp</span>
-<span class="tag">bandits</span>
-<span class="tag">online-planning</span>
-<span class="tag">imperfect-information</span>
-<span class="tag">reference</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/probability-expected-value/lesson.md">확률과 기대값</a> <a href="lessons/dynamic-programming/lesson.md">동적 계획법</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/heuristic/lesson.md">휴리스틱 알고리즘</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a> <a href="lessons/online-convex-optimization/lesson.md">Online Convex Optimization</a> <a href="lessons/testing-and-stress/lesson.md">Testing과 Stress Test</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a> <a href="lessons/black-box-linear-algebra/lesson.md">Black-Box Linear Algebra</a></p>
-<ul class="page-list">
-<li><a href="lessons/probabilistic-decision-ai/pages/decision-ai-model-map.md">Decision AI Model Map</a> <code>decision-ai-model-map</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/feedback-model-boundary.md">Feedback Model Boundary</a> <code>feedback-model-boundary</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/stochastic-decision-process.md">Stochastic Decision Process</a> <code>stochastic-decision-process</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md">Finite Horizon MDP</a> <code>finite-horizon-mdp</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/discounted-value-iteration.md">Discounted Value Iteration</a> <code>discounted-value-iteration</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/policy-evaluation-and-improvement.md">Policy Evaluation and Improvement</a> <code>policy-evaluation-and-improvement</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/stochastic-shortest-path.md">Stochastic Shortest Path</a> <code>stochastic-shortest-path</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/exact-model-vs-sampling.md">Exact Model vs Sampling</a> <code>exact-model-vs-sampling</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/monte-carlo-tree-search.md">Monte Carlo Tree Search</a> <code>monte-carlo-tree-search</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/imperfect-information-search.md">Imperfect Information Search</a> <code>imperfect-information-search</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/pomdp.md">Partially Observable MDP</a> <code>pomdp</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/point-based-value-iteration.md">Point-Based Value Iteration</a> <code>point-based-value-iteration</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/pomcp.md">POMCP</a> <code>pomcp</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/bayesian-bandits.md">Bayesian Bandits</a> <code>bayesian-bandits</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/online-planning-evaluation.md">Online Planning Evaluation</a> <code>online-planning-evaluation</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/stochastic-decision-practice-set.md">Stochastic Decision Practice Set</a> <code>stochastic-decision-practice-set</code></li>
-<li><a href="lessons/probabilistic-decision-ai/pages/practice-set.md">Practice Set</a> <code>practice-set</code></li>
-</ul>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/dirichlet-convolution/lesson.md">Dirichlet Convolution</a></h3>
-<code class="lesson-id">dirichlet-convolution</code>
-</div>
-<p class="lesson-description">약수 관계 위 convolution으로 Mobius Inversion, multiplicative function, divisor transform을 하나의 틀에서 정리합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">50분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형 / 선택지도형</span>
-<span class="badge type">성격 overview</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">math</span>
-<span class="tag">number-theory</span>
-<span class="tag">dirichlet-convolution</span>
-<span class="tag">mobius-inversion</span>
-<span class="tag">divisor-transform</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/mobius-inversion/lesson.md">Mobius Inversion</a> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/multiplicative-functions/lesson.md">Multiplicative Functions</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/linear-basis-applications/lesson.md">Linear Basis Applications</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/multiplicative-functions/lesson.md">Multiplicative Functions</a></h3>
-<code class="lesson-id">multiplicative-functions</code>
-</div>
-<p class="lesson-description">서로소 곱에서 값이 분리되는 산술 함수를 prime power 공식과 linear sieve로 계산합니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 full</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">math</span>
-<span class="tag">number-theory</span>
-<span class="tag">multiplicative-function</span>
-<span class="tag">linear-sieve</span>
-<span class="tag">dirichlet-convolution</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/dirichlet-convolution/lesson.md">Dirichlet Convolution</a> <a href="lessons/mobius-inversion/lesson.md">Mobius Inversion</a> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a></p>
-<p class="path-row"><strong>다음:</strong> <a href="lessons/summatory-number-theory/lesson.md">Summatory Number Theory</a></p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
-<h3><a href="lessons/summatory-number-theory/lesson.md">Summatory Number Theory</a></h3>
-<code class="lesson-id">summatory-number-theory</code>
-</div>
-<p class="lesson-description">floor division grouping과 divisor transform으로 큰 n의 정수론 누적합을 빠르게 계산하는 관점을 익힙니다.</p>
-<div class="meta-row">
-<span class="badge level">심화</span>
-<span class="badge time">55분</span>
-<span class="badge axis">축 구현형 / 증명형 / 모델링형</span>
-<span class="badge type">성격 implementation</span>
-<span class="badge implementation">구현 partial</span>
-<span class="badge practice">연습 linked</span>
-<span class="badge audience">대상 advanced-contest</span>
-</div>
-<div class="tag-list">
-<span class="tag">math</span>
-<span class="tag">number-theory</span>
-<span class="tag">summatory-function</span>
-<span class="tag">floor-division</span>
-<span class="tag">mobius-inversion</span>
-<span class="tag">practice</span>
-</div>
-<p class="path-row"><strong>선수:</strong> <a href="lessons/multiplicative-functions/lesson.md">Multiplicative Functions</a> <a href="lessons/mobius-inversion/lesson.md">Mobius Inversion</a> <a href="lessons/dirichlet-convolution/lesson.md">Dirichlet Convolution</a></p>
-<p class="path-row"><strong>다음:</strong> 없음</p>
-<p class="path-row"><strong>연관:</strong> <a href="lessons/gcd-extended-euclid-crt/lesson.md">정수론 심화: GCD, Extended Euclid, CRT, Sieve</a> <a href="lessons/combinatorics-ncr/lesson.md">조합론: nCr, 포함-배제, Lucas</a></p>
-</article>
-<article class="lesson-card">
-<div class="lesson-heading">
 <h3><a href="lessons/geometry-robustness-and-duality/lesson.md">Geometry Robustness and Duality</a></h3>
 <code class="lesson-id">geometry-robustness-and-duality</code>
 </div>
@@ -2791,6 +2737,60 @@ p{margin:0;color:var(--muted)}
 <p class="path-row"><strong>선수:</strong> <a href="lessons/polynomial-recurrence-algorithms/lesson.md">Polynomial and Recurrence Algorithms</a> <a href="lessons/modular-arithmetic/lesson.md">모듈러 연산과 빠른 거듭제곱</a></p>
 <p class="path-row"><strong>다음:</strong> <a href="lessons/sparse-linear-systems/lesson.md">Sparse Linear Systems</a> <a href="lessons/linear-algebra-applications/lesson.md">Linear Algebra Applications</a></p>
 <p class="path-row"><strong>연관:</strong> <a href="lessons/matrix-exponentiation/lesson.md">Matrix Exponentiation</a> <a href="lessons/polynomial-recurrence-algorithms/lesson.md">Polynomial and Recurrence Algorithms</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/game-theory-applications/lesson.md">Game Theory Applications</a></h3>
+<code class="lesson-id">game-theory-applications</code>
+</div>
+<p class="lesson-description">Grundy, minimax, MDP, hidden information 모델을 문제 신호별로 고르는 게임 이론 응용 기준을 정리합니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">game-theory</span>
+<span class="tag">grundy-number</span>
+<span class="tag">minimax</span>
+<span class="tag">mdp</span>
+<span class="tag">imperfect-information</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/game-theory-grundy/lesson.md">Game Theory와 Grundy Number</a> <a href="lessons/minimax-alpha-beta/lesson.md">Minimax와 Alpha-Beta Pruning</a> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
+<p class="path-row"><strong>다음:</strong> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/probabilistic-decision-ai/lesson.md">Probabilistic Decision AI</a></p>
+</article>
+<article class="lesson-card">
+<div class="lesson-heading">
+<h3><a href="lessons/inversion-geometry/lesson.md">Inversion Geometry</a></h3>
+<code class="lesson-id">inversion-geometry</code>
+</div>
+<p class="lesson-description">원과 직선을 inversion으로 변환해 접선, 교점, 원다발 문제를 단순화하는 기하 모델링을 익힙니다.</p>
+<div class="meta-row">
+<span class="badge level">심화</span>
+<span class="badge time">55분</span>
+<span class="badge axis">축 구현형 / 모델링형 / 선택지도형</span>
+<span class="badge type">성격 overview</span>
+<span class="badge implementation">구현 partial</span>
+<span class="badge practice">연습 linked</span>
+<span class="badge audience">대상 advanced-contest</span>
+</div>
+<div class="tag-list">
+<span class="tag">geometry</span>
+<span class="tag">inversion</span>
+<span class="tag">circle</span>
+<span class="tag">tangent</span>
+<span class="tag">transformation</span>
+<span class="tag">practice</span>
+</div>
+<p class="path-row"><strong>선수:</strong> <a href="lessons/circle-geometry/lesson.md">Circle Geometry</a> <a href="lessons/geometry-robustness-and-duality/lesson.md">Geometry Robustness and Duality</a> <a href="lessons/shape-distance-modeling/lesson.md">Shape Distance Modeling</a></p>
+<p class="path-row"><strong>다음:</strong> 없음</p>
+<p class="path-row"><strong>연관:</strong> <a href="lessons/circle-arrangement/lesson.md">Circle Arrangement</a> <a href="lessons/voronoi-delaunay/lesson.md">Voronoi와 Delaunay</a> <a href="lessons/half-plane-intersection/lesson.md">Half-Plane Intersection</a></p>
 </article>
 <article class="lesson-card">
 <div class="lesson-heading">

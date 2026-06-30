@@ -63,8 +63,8 @@ lessons.json
 
 현재 공개 분류는 두 가지입니다.
 
-- `heuristic-notes`: 휴리스틱 기본 및 심화 노트. 현재 h-contest 문제 풀이에 직접 쓰는 기본 구현, 모델링, 최적화, 검증 레슨이 들어갑니다.
-- `heuristic-reference`: 휴리스틱 참고 노트. 현재 문제 풀이의 직접 범위를 넘는 이론, 희소 고급 도구, 장기 확장용 레퍼런스 레슨이 들어갑니다. 이 폴더에는 `research-reference`뿐 아니라 직접성이 낮은 `advanced-contest` 레슨도 들어갈 수 있습니다.
+- `heuristic-notes`: 휴리스틱 기본 및 심화 노트. 현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 레슨만 들어갑니다.
+- `heuristic-reference`: 휴리스틱 참고 노트. 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 이론, 희소 고급 도구, 장기 확장용 레퍼런스 레슨이 들어갑니다. 이 폴더에는 `research-reference`뿐 아니라 직접성이 낮은 `contest-core` 또는 `advanced-contest` 레슨도 들어갈 수 있습니다.
 
 새 폴더를 추가하기보다 위 두 분류 중 하나를 먼저 고릅니다. 주제별 탐색은 `tags`, `difficultyAxes`, `prerequisites`, `nextLessons`, `relatedLessons`, 하위 `pages`로 표현합니다.
 

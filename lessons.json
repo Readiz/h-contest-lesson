@@ -3,13 +3,13 @@
     {
       "folderId": "heuristic-notes",
       "title": "휴리스틱 기본 및 심화 노트",
-      "description": "h-contest 문제 풀이에 필요한 기본 구현, 모델링, 최적화, 검증 개념을 한 흐름으로 모은 노트입니다.",
+      "description": "현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 개념을 모은 직접 학습 트랙입니다.",
       "order": 10
     },
     {
       "folderId": "heuristic-reference",
       "title": "휴리스틱 참고 노트",
-      "description": "현재 문제 풀이의 직접 범위를 넘지만 심화 탐색과 아이디어 확장에 도움이 되는 참고 노트입니다.",
+      "description": "현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 희소 고급 도구, 장기 확장용 레퍼런스 노트입니다.",
       "order": 20
     }
   ],
@@ -351,7 +351,7 @@
       "description": "두 힙을 빠르게 합치는 meld 연산을 중심으로 Leftist Heap과 Skew Heap의 구조와 구현을 익힙니다.",
       "summary": "mergeable priority queue, Leftist Heap, Skew Heap, meld 연산, lazy deletion 대안까지 이어지는 힙 심화",
       "order": 15,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "meldable-heap",
         "leftist-heap",
@@ -900,7 +900,7 @@
       "description": "방향 그래프의 강한 연결 요소를 구하고, implication graph로 2-SAT 만족 가능성을 판정하는 방법을 익힙니다.",
       "summary": "Kosaraju SCC, condensation graph, implication graph, 2-SAT 모순 판정과 값 복원 주의점까지 이어지는 방향 그래프 심화",
       "order": 27,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "scc",
         "strongly-connected-components",
@@ -937,7 +937,7 @@
       "description": "용량이 있는 방향 그래프에서 최대 유량을 구하고, residual graph로 min cut과 bipartite matching 모델링을 연결해 익힙니다.",
       "summary": "Dinic 알고리즘, residual graph, max-flow min-cut theorem, source-left-right-sink 이분 매칭 모델링까지 이어지는 Flow 입문",
       "order": 28,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "max-flow",
         "min-cut",
@@ -1014,7 +1014,7 @@
       "description": "용량과 비용이 함께 있는 flow에서 정해진 유량을 최소 비용으로 보내는 shortest augmenting path 모델링을 익힙니다.",
       "summary": "Residual cost, SPFA 기반 shortest augmenting path, assignment 모델링, potential 최적화 판단까지 이어지는 비용 flow 심화",
       "order": 30,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "min-cost-flow",
         "flow",
@@ -1053,7 +1053,7 @@
       "description": "간선마다 최소/최대 유량 제약이 있는 flow를 feasible circulation으로 변환해 가능 여부와 확장 흐름을 판정합니다.",
       "summary": "lower bound 제거, demand balance, super source/sink 변환, s-t bounded flow와 flow 복원 주의점까지 이어지는 flow 심화",
       "order": 31,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "flow",
         "lower-bound",
@@ -1090,7 +1090,7 @@
       "description": "이분 그래프가 아닌 일반 무향 그래프에서 Edmonds blossom으로 최대 matching을 찾는 방법을 익힙니다.",
       "summary": "augmenting path, odd cycle blossom 수축, base/parent 관리, 최대 cardinality matching 구현과 weighted matching과의 경계까지 이어지는 일반 matching 레슨",
       "order": 32,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "matching",
         "blossom",
@@ -1165,7 +1165,7 @@
       "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",
       "summary": "구간 합, 점 업데이트, 블록 크기 선택, lazy 블록 갱신까지 이어지는 sqrt decomposition 입문",
       "order": 34,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "sqrt-decomposition",
         "range-query",
@@ -1202,7 +1202,7 @@
       "description": "업데이트가 없는 배열에서 구간 최솟값, gcd, LCP RMQ를 빠르게 처리하는 Sparse Table을 익힙니다.",
       "summary": "2^k 길이 구간 전처리, idempotent 연산의 O(1) RMQ, LCP 배열과 LCA 연결까지 이어지는 정적 구간 질의 레슨",
       "order": 35,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "sparse-table",
         "rmq",
@@ -1672,7 +1672,7 @@
       "description": "트리 기본 성질 위에서 센트로이드 분할, Heavy-Light Decomposition, Euler Tour, LCA 같은 심화 도구를 연결해 익힙니다.",
       "summary": "Euler Tour, LCA, 센트로이드 분할, Heavy-Light Decomposition, small-to-large까지 이어지는 트리 심화",
       "order": 47,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "tree",
         "centroid-decomposition",
@@ -1750,7 +1750,7 @@
       "description": "일반 BST의 한계와 균형 유지 방법을 이해하고, AVL Tree, Splay Tree, Treap의 차이와 활용 기준을 익힙니다.",
       "summary": "BST 기본 성질, 회전, AVL 균형 조건, Splay 상각 분석 관점, Treap split/merge와 순위 질의까지 이어지는 BST 계열 정리",
       "order": 50,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "treap",
         "binary-search-tree",
@@ -1816,7 +1816,7 @@
       "description": "긴 텍스트에서 패턴을 빠르게 찾고 부분 문자열을 비교하기 위한 KMP, Z algorithm, rolling hash의 선택 기준과 구현을 익힙니다.",
       "summary": "KMP 실패 함수, Z function, rolling hash 전처리와 구간 비교, 해시 충돌 주의까지 이어지는 문자열 매칭 입문",
       "order": 55,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "string",
         "kmp",
@@ -1855,7 +1855,7 @@
       "description": "여러 문자열을 Trie에 저장하고 실패 링크를 붙여 다중 패턴 매칭을 선형 시간에 처리하는 방법을 익힙니다.",
       "summary": "Trie 삽입과 접두사 탐색, Aho-Corasick 실패 링크, 출력 전파, 각 패턴별 등장 횟수 집계까지 이어지는 문자열 심화 레슨",
       "order": 56,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "trie",
         "aho-corasick",
@@ -2185,7 +2185,7 @@
       "description": "Convex Hull 위에서 antipodal pair를 선형 시간에 훑어 지름, 폭, 가장 먼 두 점 문제를 처리합니다.",
       "summary": "볼록 다각형의 antipodal pair, 회전하는 포인터, hull 지름과 폭 계산, collinear 처리 주의점까지 이어지는 기하 심화",
       "order": 64,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "rotating-calipers",
@@ -2223,7 +2223,7 @@
       "description": "기하 이벤트를 한 축으로 정렬하고 active set 또는 구간 자료구조로 직사각형 넓이와 교차 판정을 처리합니다.",
       "summary": "이벤트 정렬, active set, y좌표 압축, 직사각형 합집합 넓이, 선분 교차 sweep의 tie-breaking까지 이어지는 기하 심화",
       "order": 65,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "sweep-line",
@@ -2261,7 +2261,7 @@
       "description": "평면 점을 x좌표로 훑으며 active set의 y범위 후보만 검사해 가장 가까운 두 점을 찾습니다.",
       "summary": "정렬, active y set, x/y 거리 후보 제한, 중복 점과 overflow 처리까지 이어지는 closest pair sweep 레슨",
       "order": 66,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "closest-pair",
@@ -2377,7 +2377,7 @@
       "description": "방향 있는 직선의 왼쪽 반평면들을 각도순 deque로 처리해 convex feasible region을 구합니다.",
       "summary": "반평면 표현, angle sort, parallel tie-break, deque intersection, bounding box와 Voronoi cell 연결까지 이어지는 계산기하 심화",
       "order": 69,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "half-plane-intersection",
         "geometry",
@@ -2493,7 +2493,7 @@
       "description": "선형 점화식과 상태 전이를 행렬로 만들고 빠른 거듭제곱으로 큰 반복 횟수를 처리합니다.",
       "summary": "상태 벡터, companion matrix, 행렬 빠른 거듭제곱, 그래프 walk 수와 affine transform까지 이어지는 수학/DP 레슨",
       "order": 72,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "matrix-exponentiation",
         "linear-recurrence",
@@ -2712,7 +2712,7 @@
       "description": "Impartial game에서 win/lose DP와 Grundy number를 계산하고, 여러 독립 게임의 xor 합성으로 승패를 판정합니다.",
       "summary": "terminal losing, mex, Sprague-Grundy theorem, 여러 게임 xor, misere play 주의점까지 이어지는 게임 이론 입문",
       "order": 81,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "game-theory",
         "grundy-number",
@@ -2958,7 +2958,7 @@
       "description": "Mo, offline sorting, parallel binary search, rollback, time segment tree, dynamic connectivity, retroactivity를 시간축 모델 선택 기준으로 묶습니다.",
       "summary": "offline query reordering, answer search, rollback over time, dynamic connectivity, retroactive modeling을 하나의 시간축 문제군으로 정리하는 허브",
       "order": 84,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "offline-queries",
         "time-axis",
@@ -3133,7 +3133,7 @@
       "description": "최적 분할점 단조성을 이용해 layer DP의 후보 범위를 줄이는 divide-and-conquer DP optimization을 익힙니다.",
       "summary": "구간 분할 DP, opt 단조성, 재귀적 후보 범위 축소, cost 계산과 적용 조건 검증까지 이어지는 DP 최적화 레슨",
       "order": 87,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "divide-and-conquer-dp",
         "dp-optimization",
@@ -3173,7 +3173,7 @@
       "description": "Interval DP에서 최적 분할점의 단조 범위를 이용해 `O(N^3)` 전이를 `O(N^2)`로 줄이는 Knuth Optimization을 익힙니다.",
       "summary": "구간 DP 전이, opt monotonicity, `opt[l][r-1]..opt[l+1][r]` 후보 범위, 파일 합치기와 적용 조건 점검까지 이어지는 DP 최적화",
       "order": 88,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "knuth-optimization",
         "interval-dp",
@@ -3211,7 +3211,7 @@
       "description": "Monge array와 totally monotone matrix의 row minimum 단조성을 이용해 SMAWK와 monotone optimization을 이해합니다.",
       "summary": "Monge inequality, totally monotone matrix, monotone row minima, SMAWK column reduction과 DP 최적화 연결까지 이어지는 고급 최적화 레슨",
       "order": 89,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "monge",
         "smawk",
@@ -3372,7 +3372,7 @@
       "description": "정수를 GF(2) 벡터로 보고 xor 조합의 최댓값, 표현 가능성, rank와 경우의 수를 처리하는 기법입니다.",
       "summary": "bitwise Gaussian elimination, maximum xor, representability, rank와 subset xor count, graph cycle xor 응용을 다루는 수학 심화 레슨",
       "order": 94,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "xor",
         "linear-basis",
@@ -3410,7 +3410,7 @@
       "description": "CHT, Li Chao Tree, Slope Trick, Min-Plus Convolution, Kinetic/Fully Dynamic Hull을 DP 전이식 선택 기준으로 묶습니다.",
       "summary": "전이식의 line query, argmin monotonicity, convex function, min-plus merge, dynamic line set 여부를 보고 DP 최적화 기법을 고르는 허브",
       "order": 95,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "dynamic-programming",
         "convex-optimization",
@@ -3529,7 +3529,7 @@
       "description": "s-t min cut 이후의 global min cut, Gomory-Hu Tree, sparsification, randomized contraction, cactus cut family를 하나의 흐름으로 정리합니다.",
       "summary": "cut model selection, Stoer-Wagner, Karger contraction, Gomory-Hu Tree, sparse certificate, cactus representation을 묶는 그래프 cut 허브",
       "order": 97,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "graph",
         "min-cut",
@@ -3645,7 +3645,7 @@
       "description": "dynamic forest를 Euler tour sequence와 balanced binary tree로 표현해 online link, cut, connectivity를 처리합니다.",
       "summary": "Euler tour sequence, implicit treap split/merge, reroot, edge arc 관리, Link-Cut Tree와의 선택 기준을 설명하는 자료구조 심화 레슨",
       "order": 98,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "data-structures",
         "euler-tour-tree",
@@ -3684,7 +3684,7 @@
       "description": "Mobius function으로 약수 합 관계를 되돌리고 gcd, 서로소 pair, divisor transform 문제를 포함-배제로 처리합니다.",
       "summary": "Mobius function, divisor inversion, coprime pair count, exact gcd count, multiple sieve와 pair 보정까지 이어지는 수학 심화 레슨",
       "order": 99,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "number-theory",
@@ -3723,7 +3723,7 @@
       "description": "사용량이 늘수록 marginal cost가 증가하는 비용을 edge split으로 표현해 Min-Cost Flow 모델에 결합합니다.",
       "summary": "convex marginal cost, unit/piecewise edge split, demand allocation, Slope Trick과 Min-Cost Flow의 선택 기준을 다루는 최적화 심화 레슨",
       "order": 100,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "optimization",
         "convex-cost-flow",
@@ -3762,7 +3762,7 @@
       "description": "Dynamic Flow, Dynamic MST, offline time-axis, rebuild, residual reuse, cut/cycle property를 하나의 동적 그래프 최적화 선택 흐름으로 묶습니다.",
       "summary": "flow나 MST가 시간에 따라 바뀌는 문제를 완전 동적 자료구조부터 보지 않고 residual reuse, time-expanded network, block rebuild, offline interval 모델로 낮추는 허브",
       "order": 102,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "graph",
         "dynamic-graph",
@@ -3831,7 +3831,7 @@
       "description": "XOR Linear Basis를 표현 가능성, k번째 xor, graph cycle xor, range query, matroid greedy로 확장해 적용합니다.",
       "summary": "rank와 표현 개수, normalized basis 기반 kth xor, graph cycle basis, range basis merge와 linear matroid 응용을 다루는 수학 심화 레슨",
       "order": 104,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "math",
         "linear-basis",
@@ -3913,7 +3913,7 @@
       "description": "두 convex polygon의 모든 점 합을 edge vector merge로 계산하고 충돌 판정과 거리 모델링으로 연결합니다.",
       "summary": "Minkowski sum 정의, convex polygon edge merge, reflected polygon 충돌 판정, support function과 configuration space 관점을 다루는 기하 심화 레슨",
       "order": 111,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "minkowski-sum",
@@ -3953,7 +3953,7 @@
       "description": "지름 계산을 넘어 width, tangent, 두 convex polygon 거리, 최소 감싸는 직사각형으로 calipers를 확장합니다.",
       "summary": "support direction이 회전할 때 포인터가 단조롭게 움직이는 성질로 width, tangent, convex polygon distance, minimum rectangle을 모델링하는 기하 응용 레슨",
       "order": 112,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "rotating-calipers",
@@ -4072,7 +4072,7 @@
       "description": "Minkowski difference, support function, separating axis로 도형 거리와 충돌 문제를 모델링하는 법을 익힙니다.",
       "summary": "convex shape distance, reflected obstacle, support function, segment-distance baseline을 연결하는 계산기하 레슨",
       "order": 125,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "shape-distance",
@@ -4113,7 +4113,7 @@
       "description": "원-직선, 원-원 교점과 접선 construction, 각도 구간 sweep의 case 분기를 익힙니다.",
       "summary": "circle-line intersection, circle-circle intersection, tangent construction, angular interval sweep을 다루는 계산기하 레슨",
       "order": 130,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "circle",
@@ -4154,7 +4154,7 @@
       "description": "Knuth, Monge, divide-and-conquer DP 최적화 전에 필요한 부등식과 opt 단조성 증명 패턴을 익힙니다.",
       "summary": "quadrangle inequality, Monge inequality, opt monotonicity, tie-breaking, 작은 반례 탐색을 연결하는 DP 최적화 증명 레슨",
       "order": 134,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "dp-optimization",
         "quadrangle-inequality",
@@ -4190,7 +4190,7 @@
       "description": "여러 원의 교점으로 arc를 나누고 union area, perimeter, depth를 angular sweep으로 계산합니다.",
       "summary": "circle-circle intersection angle, arc midpoint depth, union boundary, sector contribution, 포함 원 처리를 다루는 계산기하 레슨",
       "order": 135,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "circle",
@@ -4355,7 +4355,7 @@
       "description": "Grundy, minimax, MDP, hidden information 모델을 문제 신호별로 고르는 게임 이론 응용 기준을 정리합니다.",
       "summary": "impartial game, xor 합성, minimax, MDP, imperfect information을 문제 조건별로 선택하는 게임 모델링 레슨",
       "order": 143,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "game-theory",
         "grundy-number",
@@ -4394,7 +4394,7 @@
       "description": "원과 직선을 inversion으로 변환해 접선, 교점, 원다발 문제를 단순화하는 기하 모델링을 익힙니다.",
       "summary": "점 inversion 공식, 중심을 지나는 원의 직선 변환, angle 보존, degeneracy 처리 기준을 다루는 계산기하 심화 레슨",
       "order": 144,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "inversion",
