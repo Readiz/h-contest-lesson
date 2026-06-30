@@ -12,9 +12,9 @@ README = ROOT / "README.md"
 INDEX = ROOT / "index.html"
 
 
-README_HEADER = """# h-contest lesson content
+README_HEADER = """# h-contest heuristic notes
 
-This repository is the source of truth for h-contest algorithm lessons. Lesson source lives in `lessons/` and `lessons.json`; `README.md` and `index.html` are generated entry points.
+This repository is the source of truth for h-contest heuristic notes. Lesson source lives in `lessons/` and `lessons.json`; `README.md` and `index.html` are generated entry points.
 
 ## 탐색
 
@@ -48,6 +48,7 @@ python3 scripts/validate_lessons.py
 4. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
 5. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
 6. 심화 확장: 문자열 매칭, SCC/2-SAT, Flow, 정수론 심화, 기하, 오프라인 쿼리, 검증/증명
+7. 참고 노트: 현재 문제 대비 우선순위는 낮지만 휴리스틱 아이디어 확장에 도움이 되는 연구/레퍼런스 주제
 
 """
 
@@ -491,7 +492,7 @@ def build_readme(folders: list[dict], lessons: list[dict]) -> str:
     lines.append(
         render_markdown_guide_section(
             "문제 신호별 빠른 길찾기",
-            "폴더별 카테고리와 별개로, 문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
+            "두 노트 분류와 별개로, 문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
             QUICK_GUIDES,
             lessons_by_id,
         )
@@ -526,7 +527,7 @@ def build_index(folders: list[dict], lessons: list[dict]) -> str:
     lines.append(
         render_html_guide_section(
             "문제 신호별 빠른 길찾기",
-            "폴더별 카테고리와 별개로, 문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
+            "두 노트 분류와 별개로, 문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
             QUICK_GUIDES,
             lessons_by_id,
         )

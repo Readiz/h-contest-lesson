@@ -1,6 +1,6 @@
 # Contributing
 
-h-contest-lesson 저장소는 h-contest 알고리즘 레슨 콘텐츠의 source of truth입니다.
+h-contest-lesson 저장소는 h-contest 휴리스틱 노트 콘텐츠의 source of truth입니다.
 
 API와 공개 manifest는 이 저장소의 내용을 기준으로 제공됩니다.
 따라서 레슨을 수정하거나 추가하려면 이 저장소에 Pull Request를 보내 주세요.
@@ -59,7 +59,14 @@ lessons/<new-lesson-id>/lesson.md
 lessons.json
 ```
 
-`lessons.json`에는 새 레슨이 들어갈 `folderId`, `level`, `estimatedMinutes`, `prerequisites`, `nextLessons`, `relatedLessons`를 함께 지정합니다. 하위 페이지가 있으면 `pageId`, `title`, `description`, `order`, `file`을 가진 `pages` 배열을 추가합니다. 기존 폴더에 맞지 않는 주제라면 `folders` 배열에 새 폴더를 추가하고, `folderId`, `title`, `description`, `order`를 함께 작성합니다.
+`lessons.json`에는 새 레슨이 들어갈 `folderId`, `level`, `estimatedMinutes`, `prerequisites`, `nextLessons`, `relatedLessons`를 함께 지정합니다. 하위 페이지가 있으면 `pageId`, `title`, `description`, `order`, `file`을 가진 `pages` 배열을 추가합니다.
+
+현재 공개 분류는 두 가지입니다.
+
+- `heuristic-notes`: 휴리스틱 기본 및 심화 노트. `contest-core`와 `advanced-contest` 대상 레슨이 들어갑니다.
+- `heuristic-reference`: 휴리스틱 참고 노트. 현재 문제 풀이의 직접 범위를 넘는 `research-reference` 대상 레슨이 들어갑니다.
+
+새 폴더를 추가하기보다 위 두 분류 중 하나를 먼저 고릅니다. 주제별 탐색은 `tags`, `difficultyAxes`, `prerequisites`, `nextLessons`, `relatedLessons`, 하위 `pages`로 표현합니다.
 
 문서의 공개 성격이 명확하지 않으면 아래 metadata를 함께 지정합니다.
 
