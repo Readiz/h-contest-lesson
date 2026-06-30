@@ -1329,12 +1329,14 @@
         "min-cost-flow"
       ],
       "nextLessons": [
+        "hungarian-algorithm",
         "directed-mst",
         "matroid-algorithms"
       ],
       "relatedLessons": [
         "matching-cover-duality",
-        "flow-with-lower-bound"
+        "flow-with-lower-bound",
+        "min-cost-flow"
       ],
       "pages": [],
       "lessonType": "implementation",
@@ -1548,6 +1550,46 @@
         "implementation",
         "modeling",
         "selection"
+      ]
+    },
+    {
+      "lessonId": "hungarian-algorithm",
+      "title": "Hungarian Algorithm",
+      "description": "이분 assignment 문제를 potential, reduced cost, tight edge, augmenting path로 해석하고 O(N^3) 구현까지 익힙니다.",
+      "summary": "assignment problem, Hungarian potentials, reduced cost, tight edge graph, augmenting path trace, O(N^3) 구현",
+      "order": 42,
+      "folderId": "heuristic-reference",
+      "tags": [
+        "hungarian",
+        "assignment",
+        "weighted-matching",
+        "bipartite-matching",
+        "optimization",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "weighted-matching",
+        "matching-cover-duality"
+      ],
+      "nextLessons": [
+        "matroid-algorithms"
+      ],
+      "relatedLessons": [
+        "weighted-matching",
+        "min-cost-flow",
+        "matching-cover-duality"
+      ],
+      "pages": [],
+      "lessonType": "implementation",
+      "practiceStatus": "todo",
+      "implementationStatus": "full",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "proof",
+        "modeling"
       ]
     },
     {

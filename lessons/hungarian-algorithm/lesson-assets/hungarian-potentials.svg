@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+  <title id="title">Hungarian Algorithm potential과 tight edge 시각화</title>
+  <desc id="desc">비용 행렬에서 row와 column potential을 조정해 reduced cost가 0인 tight edge를 만들고 augmenting path로 matching을 늘리는 흐름을 보여준다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#15803d"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.4; rx: 8; }
+      .title { font: 700 22px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334155; }
+      .text { font: 500 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334155; }
+      .small { font: 500 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .mono { font: 600 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #1e293b; }
+      .cell { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; }
+      .head { fill: #e2e8f0; stroke: #cbd5e1; stroke-width: 1; }
+      .tight { fill: #dcfce7; stroke: #22c55e; stroke-width: 2; }
+      .slack { fill: #dbeafe; stroke: #3b82f6; stroke-width: 2; }
+      .node-left { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .node-right { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; }
+      .edge { stroke: #94a3b8; stroke-width: 2; fill: none; }
+      .match { stroke: #16a34a; stroke-width: 4; fill: none; marker-end: url(#arrow-green); }
+      .augment { stroke: #2563eb; stroke-width: 4; fill: none; stroke-dasharray: 8 6; marker-end: url(#arrow); }
+      .callout { fill: #fffbeb; stroke: #f59e0b; stroke-width: 1.5; rx: 8; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="920" height="520"/>
+  <text class="title" x="40" y="42">Hungarian: potential 조정으로 tight edge를 만들고 matching을 키운다</text>
+
+  <rect class="panel" x="36" y="68" width="390" height="318"/>
+  <text class="label" x="58" y="98">1. 비용 행렬과 reduced cost</text>
+  <text class="small" x="58" y="121">cost - u[row] - v[col] = 0 이면 tight edge</text>
+
+  <g transform="translate(74 146)">
+    <rect class="head" x="0" y="0" width="55" height="34"/>
+    <rect class="head" x="55" y="0" width="55" height="34"/>
+    <rect class="head" x="110" y="0" width="55" height="34"/>
+    <rect class="head" x="165" y="0" width="55" height="34"/>
+    <rect class="head" x="220" y="0" width="78" height="34"/>
+    <text class="mono" x="76" y="22">X</text>
+    <text class="mono" x="131" y="22">Y</text>
+    <text class="mono" x="186" y="22">Z</text>
+    <text class="mono" x="239" y="22">u</text>
+
+    <rect class="head" x="0" y="34" width="55" height="40"/>
+    <rect class="cell" x="55" y="34" width="55" height="40"/>
+    <rect class="tight" x="110" y="34" width="55" height="40"/>
+    <rect class="cell" x="165" y="34" width="55" height="40"/>
+    <rect class="head" x="220" y="34" width="78" height="40"/>
+    <text class="mono" x="20" y="59">A</text>
+    <text class="mono" x="76" y="59">3</text>
+    <text class="mono" x="131" y="59">0</text>
+    <text class="mono" x="186" y="59">2</text>
+    <text class="mono" x="243" y="59">1</text>
+
+    <rect class="head" x="0" y="74" width="55" height="40"/>
+    <rect class="slack" x="55" y="74" width="55" height="40"/>
+    <rect class="tight" x="110" y="74" width="55" height="40"/>
+    <rect class="cell" x="165" y="74" width="55" height="40"/>
+    <rect class="head" x="220" y="74" width="78" height="40"/>
+    <text class="mono" x="20" y="99">B</text>
+    <text class="mono" x="76" y="99">2</text>
+    <text class="mono" x="131" y="99">0</text>
+    <text class="mono" x="186" y="99">5</text>
+    <text class="mono" x="243" y="99">0</text>
+
+    <rect class="head" x="0" y="114" width="55" height="40"/>
+    <rect class="cell" x="55" y="114" width="55" height="40"/>
+    <rect class="tight" x="110" y="114" width="55" height="40"/>
+    <rect class="tight" x="165" y="114" width="55" height="40"/>
+    <rect class="head" x="220" y="114" width="78" height="40"/>
+    <text class="mono" x="20" y="139">C</text>
+    <text class="mono" x="76" y="139">1</text>
+    <text class="mono" x="131" y="139">0</text>
+    <text class="mono" x="186" y="139">0</text>
+    <text class="mono" x="243" y="139">2</text>
+
+    <rect class="head" x="0" y="154" width="55" height="34"/>
+    <rect class="head" x="55" y="154" width="55" height="34"/>
+    <rect class="head" x="110" y="154" width="55" height="34"/>
+    <rect class="head" x="165" y="154" width="55" height="34"/>
+    <rect class="head" x="220" y="154" width="78" height="34"/>
+    <text class="mono" x="17" y="176">v</text>
+    <text class="mono" x="76" y="176">0</text>
+    <text class="mono" x="131" y="176">0</text>
+    <text class="mono" x="186" y="176">0</text>
+  </g>
+
+  <g transform="translate(58 354)">
+    <rect class="tight" x="0" y="0" width="20" height="20"/>
+    <text class="small" x="30" y="15">tight edge 후보</text>
+    <rect class="slack" x="156" y="0" width="20" height="20"/>
+    <text class="small" x="186" y="15">최소 slack 2</text>
+  </g>
+
+  <rect class="panel" x="458" y="68" width="426" height="318"/>
+  <text class="label" x="480" y="98">2. tight graph에서 augmenting path 탐색</text>
+  <text class="small" x="480" y="121">B에서 시작해 Y를 거쳐 A까지 갔다가, slack 조정 후 X로 열린다.</text>
+
+  <g>
+    <circle class="node-left" cx="540" cy="170" r="25"/>
+    <circle class="node-left" cx="540" cy="245" r="25"/>
+    <circle class="node-left" cx="540" cy="320" r="25"/>
+    <text class="mono" x="535" y="175">A</text>
+    <text class="mono" x="535" y="250">B</text>
+    <text class="mono" x="535" y="325">C</text>
+
+    <circle class="node-right" cx="800" cy="170" r="25"/>
+    <circle class="node-right" cx="800" cy="245" r="25"/>
+    <circle class="node-right" cx="800" cy="320" r="25"/>
+    <text class="mono" x="795" y="175">X</text>
+    <text class="mono" x="795" y="250">Y</text>
+    <text class="mono" x="795" y="325">Z</text>
+
+    <path class="edge" d="M565 170 C635 185 705 220 775 245"/>
+    <path class="edge" d="M565 245 C635 250 705 250 775 245"/>
+    <path class="edge" d="M565 320 C635 300 705 265 775 245"/>
+    <path class="edge" d="M565 320 C635 325 705 325 775 320"/>
+
+    <path class="match" d="M565 170 C635 185 705 220 775 245"/>
+    <path class="match" d="M565 320 C635 325 705 325 775 320"/>
+    <path class="augment" d="M565 245 C635 240 705 190 775 170"/>
+  </g>
+
+  <text class="small" x="602" y="154">새 tight edge B-X</text>
+  <text class="small" x="604" y="274">기존 matching A-Y</text>
+  <text class="small" x="604" y="350">기존 matching C-Z</text>
+
+  <rect class="callout" x="70" y="414" width="780" height="72"/>
+  <text class="label" x="94" y="442">slack 2만큼 potential 조정</text>
+  <text class="text" x="94" y="468">닿은 row A,B와 닿지 않은 column X,Z 사이의 최소 slack이 2라서 B-X가 reduced cost 0이 된다.</text>
+</svg>
