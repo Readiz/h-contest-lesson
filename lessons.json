@@ -1558,7 +1558,7 @@
       "description": "이분 assignment 문제를 potential, reduced cost, tight edge, augmenting path로 해석하고 O(N^3) 구현까지 익힙니다.",
       "summary": "assignment problem, Hungarian potentials, reduced cost, tight edge graph, augmenting path trace, O(N^3) 구현",
       "order": 42,
-      "folderId": "heuristic-reference",
+      "folderId": "heuristic-notes",
       "tags": [
         "hungarian",
         "assignment",
