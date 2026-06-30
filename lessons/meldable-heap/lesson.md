@@ -92,7 +92,30 @@ struct SimpleMeldableHeap {
 };
 ```
 
-핵심은 `merge` 하나입니다. `push`는 원소 하나짜리 heap과 합치고, `pop`은 root의 두 자식을 합칩니다. 다만 쏠림을 막는 규칙이 없으므로 실전에서는 아래 Leftist Heap이나 Skew Heap으로 보완합니다.
+핵심은 `merge` 하나입니다. `push`는 원소 하나짜리 heap과 합치고, `pop`은 root의 두 자식을 합칩니다.
+
+여기서 한 단계만 개선한다면, 무조건 오른쪽으로 내려가지 않고 두 자식의 root key를 보고 더 큰 key 쪽으로 합칠 수 있습니다. min-heap에서는 key가 큰 자식이 더 "뒤에 나와도 되는" 쪽이므로, 새 heap `b`가 그보다 작으면 그 자리를 자연스럽게 차지합니다.
+
+```cpp
+static Node* merge(Node* a, Node* b) {
+    if (!a) return b;
+    if (!b) return a;
+    if (a->key > b->key) swap(a, b);
+
+    if (!a->left) {
+        a->left = b;
+    } else if (!a->right) {
+        a->right = b;
+    } else if (a->left->key < a->right->key) {
+        a->right = merge(a->right, b);
+    } else {
+        a->left = merge(a->left, b);
+    }
+    return a;
+}
+```
+
+이 버전은 단순 오른쪽 merge보다 모양이 덜 나빠지는 경우가 많습니다. 하지만 child root key는 subtree 크기나 깊이를 말해 주지 않으므로 최악의 균형을 보장하지는 않습니다. 그래서 실전에서는 아래 Leftist Heap처럼 `dist`를 두거나, Skew Heap처럼 매번 swap하는 규칙으로 보완합니다.
 
 ## 4. Leftist Heap
 
