@@ -348,8 +348,8 @@
     {
       "lessonId": "meldable-heap",
       "title": "Meldable Heap",
-      "description": "두 힙을 빠르게 합치는 meld 연산과 컴포넌트별 heap 병합 패턴을 익히고, Leftist Heap과 Skew Heap은 참고 구현으로 정리합니다.",
-      "summary": "간단 Meldable Heap, key 기준 child 선택, Union-Find component heap, priority_queue small-to-large, Leftist/Skew 참고 구현",
+      "description": "Node pool과 root 인덱스로 Skew Heap 방식 meld 연산과 컴포넌트별 heap 병합 패턴을 익히고, Leftist Heap은 참고 구현으로 정리합니다.",
+      "summary": "Node pool/index 기반 Skew Heap merge, Union-Find component heap, priority_queue small-to-large, Leftist Heap 참고 구현",
       "order": 15,
       "folderId": "heuristic-notes",
       "tags": [
