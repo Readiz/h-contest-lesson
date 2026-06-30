@@ -1555,8 +1555,8 @@
     {
       "lessonId": "hungarian-algorithm",
       "title": "Hungarian Algorithm",
-      "description": "이분 assignment 문제를 potential, reduced cost, tight edge, augmenting path로 해석하고 O(N^3) 구현까지 익힙니다.",
-      "summary": "assignment problem, Hungarian potentials, reduced cost, tight edge graph, augmenting path trace, O(N^3) 구현",
+      "description": "이분 assignment 문제를 potential, reduced cost, tight edge, augmenting path로 해석하고 순수 C 배열 구현과 COUPANG2식 batch 배정 예시까지 익힙니다.",
+      "summary": "assignment problem, Hungarian potentials, 손계산 zero trace, 순수 C 배열 구현, COUPANG2 local batch modeling",
       "order": 42,
       "folderId": "heuristic-notes",
       "tags": [
@@ -1568,7 +1568,7 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 75,
+      "estimatedMinutes": 100,
       "prerequisites": [
         "weighted-matching",
         "matching-cover-duality"
@@ -1583,7 +1583,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [

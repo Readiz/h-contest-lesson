@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Hungarian Algorithm 손계산 trace</title>
+  <desc id="desc">3x3 비용 행렬에서 row reduction, column reduction, line cover, uncovered minimum adjustment를 거쳐 독립적인 0 세 개를 찾는 과정을 보여준다.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.3; rx: 8; }
+      .title { font: 700 22px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .label { font: 700 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #334155; }
+      .small { font: 500 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .mono { font: 650 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #1e293b; }
+      .head { fill: #e2e8f0; stroke: #cbd5e1; stroke-width: 1; }
+      .cell { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1; }
+      .zero { fill: #dcfce7; stroke: #22c55e; stroke-width: 2; }
+      .pick { fill: #bbf7d0; stroke: #15803d; stroke-width: 3; }
+      .line { stroke: #2563eb; stroke-width: 5; opacity: 0.74; }
+      .adjust { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; }
+      .arrow { stroke: #64748b; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="960" height="560"/>
+  <text class="title" x="34" y="42">손으로 푸는 Hungarian trace: 0을 만들고 독립적인 0을 고른다</text>
+
+  <rect class="panel" x="34" y="68" width="276" height="192"/>
+  <text class="label" x="54" y="96">1. 원래 비용</text>
+  <g transform="translate(74 120)">
+    <rect class="head" x="0" y="0" width="42" height="30"/>
+    <rect class="head" x="42" y="0" width="48" height="30"/>
+    <rect class="head" x="90" y="0" width="48" height="30"/>
+    <rect class="head" x="138" y="0" width="48" height="30"/>
+    <text class="mono" x="60" y="20">X</text>
+    <text class="mono" x="108" y="20">Y</text>
+    <text class="mono" x="156" y="20">Z</text>
+    <rect class="head" x="0" y="30" width="42" height="34"/>
+    <rect class="cell" x="42" y="30" width="48" height="34"/>
+    <rect class="cell" x="90" y="30" width="48" height="34"/>
+    <rect class="cell" x="138" y="30" width="48" height="34"/>
+    <text class="mono" x="15" y="52">A</text><text class="mono" x="60" y="52">4</text><text class="mono" x="108" y="52">1</text><text class="mono" x="156" y="52">3</text>
+    <rect class="head" x="0" y="64" width="42" height="34"/>
+    <rect class="cell" x="42" y="64" width="48" height="34"/>
+    <rect class="cell" x="90" y="64" width="48" height="34"/>
+    <rect class="cell" x="138" y="64" width="48" height="34"/>
+    <text class="mono" x="15" y="86">B</text><text class="mono" x="60" y="86">2</text><text class="mono" x="108" y="86">0</text><text class="mono" x="156" y="86">5</text>
+    <rect class="head" x="0" y="98" width="42" height="34"/>
+    <rect class="cell" x="42" y="98" width="48" height="34"/>
+    <rect class="cell" x="90" y="98" width="48" height="34"/>
+    <rect class="cell" x="138" y="98" width="48" height="34"/>
+    <text class="mono" x="15" y="120">C</text><text class="mono" x="60" y="120">3</text><text class="mono" x="108" y="120">2</text><text class="mono" x="156" y="120">2</text>
+  </g>
+
+  <path class="arrow" d="M318 164 H366"/>
+  <rect class="panel" x="374" y="68" width="276" height="192"/>
+  <text class="label" x="394" y="96">2. row와 column 최솟값 빼기</text>
+  <g transform="translate(414 120)">
+    <rect class="head" x="0" y="0" width="42" height="30"/>
+    <rect class="head" x="42" y="0" width="48" height="30"/>
+    <rect class="head" x="90" y="0" width="48" height="30"/>
+    <rect class="head" x="138" y="0" width="48" height="30"/>
+    <text class="mono" x="60" y="20">X</text>
+    <text class="mono" x="108" y="20">Y</text>
+    <text class="mono" x="156" y="20">Z</text>
+    <rect class="head" x="0" y="30" width="42" height="34"/>
+    <rect class="cell" x="42" y="30" width="48" height="34"/>
+    <rect class="zero" x="90" y="30" width="48" height="34"/>
+    <rect class="cell" x="138" y="30" width="48" height="34"/>
+    <text class="mono" x="15" y="52">A</text><text class="mono" x="60" y="52">2</text><text class="mono" x="108" y="52">0</text><text class="mono" x="156" y="52">2</text>
+    <rect class="head" x="0" y="64" width="42" height="34"/>
+    <rect class="cell" x="42" y="64" width="48" height="34"/>
+    <rect class="zero" x="90" y="64" width="48" height="34"/>
+    <rect class="cell" x="138" y="64" width="48" height="34"/>
+    <text class="mono" x="15" y="86">B</text><text class="mono" x="60" y="86">1</text><text class="mono" x="108" y="86">0</text><text class="mono" x="156" y="86">5</text>
+    <rect class="head" x="0" y="98" width="42" height="34"/>
+    <rect class="zero" x="42" y="98" width="48" height="34"/>
+    <rect class="zero" x="90" y="98" width="48" height="34"/>
+    <rect class="zero" x="138" y="98" width="48" height="34"/>
+    <text class="mono" x="15" y="120">C</text><text class="mono" x="60" y="120">0</text><text class="mono" x="108" y="120">0</text><text class="mono" x="156" y="120">0</text>
+    <line class="line" x1="114" y1="28" x2="114" y2="134"/>
+    <line class="line" x1="0" y1="115" x2="188" y2="115"/>
+  </g>
+  <text class="small" x="394" y="238">0을 Y column과 C row, 총 2개의 선으로 덮음</text>
+
+  <path class="arrow" d="M658 164 H706"/>
+  <rect class="panel" x="714" y="68" width="212" height="192"/>
+  <text class="label" x="734" y="96">3. uncovered min = 1</text>
+  <rect class="adjust" x="742" y="126" width="156" height="40"/>
+  <text class="small" x="756" y="151">덮이지 않은 칸에서 1을 뺌</text>
+  <rect class="adjust" x="742" y="178" width="156" height="40"/>
+  <text class="small" x="756" y="203">선 교차점 C-Y에는 1을 더함</text>
+  <text class="small" x="742" y="238">새 0이 생기면 matching 후보가 늘어난다.</text>
+
+  <rect class="panel" x="214" y="306" width="532" height="206"/>
+  <text class="label" x="236" y="334">4. 조정 후 독립적인 0 세 개 선택</text>
+  <g transform="translate(380 362)">
+    <rect class="head" x="0" y="0" width="42" height="30"/>
+    <rect class="head" x="42" y="0" width="54" height="30"/>
+    <rect class="head" x="96" y="0" width="54" height="30"/>
+    <rect class="head" x="150" y="0" width="54" height="30"/>
+    <text class="mono" x="64" y="20">X</text>
+    <text class="mono" x="118" y="20">Y</text>
+    <text class="mono" x="172" y="20">Z</text>
+    <rect class="head" x="0" y="30" width="42" height="38"/>
+    <rect class="cell" x="42" y="30" width="54" height="38"/>
+    <rect class="pick" x="96" y="30" width="54" height="38"/>
+    <rect class="cell" x="150" y="30" width="54" height="38"/>
+    <text class="mono" x="15" y="54">A</text><text class="mono" x="66" y="54">1</text><text class="mono" x="120" y="54">0</text><text class="mono" x="174" y="54">1</text>
+    <rect class="head" x="0" y="68" width="42" height="38"/>
+    <rect class="pick" x="42" y="68" width="54" height="38"/>
+    <rect class="zero" x="96" y="68" width="54" height="38"/>
+    <rect class="cell" x="150" y="68" width="54" height="38"/>
+    <text class="mono" x="15" y="92">B</text><text class="mono" x="66" y="92">0</text><text class="mono" x="120" y="92">0</text><text class="mono" x="174" y="92">4</text>
+    <rect class="head" x="0" y="106" width="42" height="38"/>
+    <rect class="zero" x="42" y="106" width="54" height="38"/>
+    <rect class="cell" x="96" y="106" width="54" height="38"/>
+    <rect class="pick" x="150" y="106" width="54" height="38"/>
+    <text class="mono" x="15" y="130">C</text><text class="mono" x="66" y="130">0</text><text class="mono" x="120" y="130">1</text><text class="mono" x="174" y="130">0</text>
+  </g>
+  <text class="small" x="236" y="482">선택: A-Y, B-X, C-Z. 원래 비용 합은 1 + 2 + 2 = 5.</text>
+</svg>
