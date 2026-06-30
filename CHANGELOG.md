@@ -2,6 +2,10 @@
 
 이 문서는 이미 공개된 레슨의 이동 기록과 콘텐츠 보강 완료 내역을 보관합니다. 아직 공개하지 않은 후보와 practice link TODO는 [ROADMAP.md](ROADMAP.md)에서 관리합니다.
 
+## 2026-07 레슨 분류 및 보강
+
+- `meldable-heap`을 직접 학습 트랙인 `heuristic-notes`로 옮기고, Leftist Heap 전에 쏠림을 고려하지 않는 최소 Meldable Heap 전체 구현을 추가했습니다.
+
 ## 2026-06 구조 개편
 
 - 공개 폴더 기준을 현재 h-contest 문제 풀이와의 직접성 기준으로 재정의하고, `probabilistic-decision-ai`, `matroid-algorithms`에 더해 직접성이 낮은 고급/레퍼런스 레슨 26개를 `heuristic-reference`로 옮겼습니다.

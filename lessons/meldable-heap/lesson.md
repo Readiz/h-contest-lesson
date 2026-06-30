@@ -13,7 +13,7 @@ binary heap:
 2. B의 원소를 A에 하나씩 push -> O(m log(n + m))
 ```
 
-Meldable Heap은 이 합치기 자체를 `O(log n)` 수준으로 처리하도록 만든 힙입니다. 대표 구현으로 Leftist Heap, Skew Heap, Binomial Heap, Fibonacci Heap 등이 있습니다. 알고리즘 문제 실전에서는 Leftist Heap과 Skew Heap이 구현 난이도와 성능의 균형이 좋습니다.
+Meldable Heap은 이 합치기 자체를 빠르게 처리하도록 만든 힙입니다. 대표 구현으로 Leftist Heap, Skew Heap, Binomial Heap, Fibonacci Heap 등이 있습니다. 알고리즘 문제 실전에서는 Leftist Heap과 Skew Heap이 구현 난이도와 성능의 균형이 좋습니다.
 
 ## 1. 언제 필요한가
 
@@ -45,9 +45,56 @@ if a.key > b.key:
 b를 a의 한쪽 subtree와 다시 merge
 ```
 
-여기까지는 간단하지만, 한쪽으로만 계속 붙이면 트리가 한 줄로 길어질 수 있습니다. Leftist Heap과 Skew Heap은 이 트리가 너무 나빠지지 않도록 서로 다른 규칙을 사용합니다.
+여기까지는 간단하지만, 한쪽으로만 계속 붙이면 트리가 한 줄로 길어질 수 있습니다. 먼저 쏠림을 전혀 고려하지 않는 가장 짧은 버전을 보면 Meldable Heap의 기본 모양이 잘 보입니다.
 
-## 3. Leftist Heap
+## 3. 가장 짧은 버전
+
+아래 코드는 min-heap 전체 구현입니다. `merge`에서 항상 오른쪽으로만 내려가므로 트리가 한 줄이 되면 한 연산이 `O(n)`까지 느려질 수 있습니다. 작은 입력, 개념 확인, 또는 다음 Leftist Heap으로 넘어가기 전 출발점으로만 봅니다.
+
+```cpp
+#include <algorithm>
+using namespace std;
+
+struct SimpleMeldableHeap {
+    struct Node {
+        int key;
+        Node* left;
+        Node* right;
+
+        Node(int key) : key(key), left(nullptr), right(nullptr) {}
+    };
+
+    Node* root = nullptr;
+
+    static Node* merge(Node* a, Node* b) {
+        if (!a) return b;
+        if (!b) return a;
+        if (a->key > b->key) swap(a, b);
+
+        a->right = merge(a->right, b);
+        return a;
+    }
+
+    bool empty() const { return root == nullptr; }
+    int top() const { return root->key; }
+    void push(int key) { root = merge(root, new Node(key)); }
+
+    void pop() {
+        Node* old = root;
+        root = merge(root->left, root->right);
+        delete old;
+    }
+
+    void meld(SimpleMeldableHeap& other) {
+        root = merge(root, other.root);
+        other.root = nullptr;
+    }
+};
+```
+
+핵심은 `merge` 하나입니다. `push`는 원소 하나짜리 heap과 합치고, `pop`은 root의 두 자식을 합칩니다. 다만 쏠림을 막는 규칙이 없으므로 실전에서는 아래 Leftist Heap이나 Skew Heap으로 보완합니다.
+
+## 4. Leftist Heap
 
 Leftist Heap은 오른쪽 경로가 짧게 유지되도록 만드는 Meldable Heap입니다.
 
@@ -61,7 +108,7 @@ dist(left) >= dist(right)
 
 즉 오른쪽 subtree가 왼쪽 subtree보다 길어지면 두 자식을 바꿉니다. merge는 오른쪽으로만 내려가기 때문에 오른쪽 경로가 짧으면 merge가 빠릅니다.
 
-## 4. Leftist Heap 노드
+## 5. Leftist Heap 노드
 
 아래 구현은 min-heap입니다. 작은 key가 먼저 나옵니다.
 
@@ -85,7 +132,7 @@ int getDist(Node* node) {
 
 `dist`는 자식이 바뀔 때마다 갱신합니다. null을 0으로 두면 leaf의 dist는 1입니다.
 
-## 5. Leftist Heap merge
+## 6. Leftist Heap merge
 
 ```cpp
 Node* merge(Node* a, Node* b) {
@@ -118,7 +165,7 @@ Node* merge(Node* a, Node* b) {
 
 오른쪽으로만 재귀가 내려가므로, 오른쪽 경로가 짧다는 성질이 중요합니다.
 
-## 6. push, top, pop
+## 7. push, top, pop
 
 새 원소 삽입은 원소 하나짜리 heap을 만들어 기존 heap과 merge하면 됩니다.
 
@@ -149,7 +196,7 @@ Node* pop(Node* root) {
 
 빈 heap에서 `top`이나 `pop`을 호출하면 안 됩니다. 실제 wrapper에서는 `empty()`를 먼저 확인합니다.
 
-## 7. Wrapper 구현
+## 8. Wrapper 구현
 
 포인터를 직접 들고 다니면 실수가 나기 쉬우므로 구조체로 감싸면 좋습니다.
 
@@ -218,7 +265,7 @@ struct MeldableHeap {
 
 `meld` 후에는 `other.root = nullptr`로 비워야 합니다. 그렇지 않으면 두 heap 객체가 같은 노드를 동시에 소유하게 됩니다.
 
-## 8. 메모리 정리
+## 9. 메모리 정리
 
 위 wrapper는 간단한 설명용이라 남은 노드를 자동으로 지우지 않습니다. 긴 프로그램이나 여러 테스트 케이스에서는 destructor를 두는 것이 안전합니다.
 
@@ -255,7 +302,7 @@ Node* makeNode(int key) {
 
 이 방식은 `delete`를 하지 않는 대신, 전체 테스트 케이스가 끝날 때 한 번에 버리는 구조에 가깝습니다. 여러 테스트 케이스를 처리한다면 `initPool` 호출 시점에 주의해야 합니다. `reserve`한 크기를 넘어 `emplace_back`하면 재할당이 일어나 기존 포인터가 깨질 수 있으므로, 필요한 노드 수를 넉넉하게 잡아야 합니다.
 
-## 9. Skew Heap
+## 10. Skew Heap
 
 Skew Heap은 Leftist Heap보다 더 단순한 Meldable Heap입니다. `dist`를 저장하지 않고, merge할 때마다 양쪽 자식을 무조건 바꿉니다.
 
@@ -284,7 +331,7 @@ Node* merge(Node* a, Node* b) {
 
 Skew Heap은 개별 연산 하나가 항상 `O(log n)`이라고 보장되지는 않지만, amortized `O(log n)` 성능을 가집니다. 구현이 매우 짧아서 대회 코드에서는 Skew Heap을 선호하는 경우도 있습니다.
 
-## 10. Leftist Heap과 Skew Heap 비교
+## 11. Leftist Heap과 Skew Heap 비교
 
 | 구조 | 추가 정보 | merge 성능 | 장점 |
 | --- | --- | --- | --- |
@@ -294,7 +341,7 @@ Skew Heap은 개별 연산 하나가 항상 `O(log n)`이라고 보장되지는 
 
 대부분의 문제에서는 C++ `priority_queue`가 가장 간단합니다. 두 heap을 합치는 연산이 문제의 중심일 때만 Meldable Heap을 고려합니다.
 
-## 11. Union-Find와 함께 쓰기
+## 12. Union-Find와 함께 쓰기
 
 Meldable Heap은 컴포넌트 병합과 잘 맞습니다. 각 컴포넌트 대표가 heap root를 하나씩 들고 있고, 두 컴포넌트를 합칠 때 heap도 같이 meld합니다.
 
@@ -330,7 +377,7 @@ heaps[rootA].meld(heaps[rootB]);
 
 이 패턴은 "그룹이 합쳐지고, 각 그룹에서 가장 작은 원소를 꺼낸다" 같은 문제에 잘 맞습니다.
 
-## 12. priority_queue로 대체할 수 있는 경우
+## 13. priority_queue로 대체할 수 있는 경우
 
 두 heap을 합칠 일이 적거나, 한쪽 heap의 원소 수가 항상 작다면 `priority_queue`와 small-to-large로 충분할 수 있습니다.
 
@@ -349,7 +396,7 @@ while (!pq[b].empty()) {
 
 하지만 문제에서 merge가 매우 많고, heap 자체를 합치는 연산이 핵심이면 Meldable Heap이 더 깔끔합니다.
 
-## 13. 시간 복잡도
+## 14. 시간 복잡도
 
 Leftist Heap 기준 복잡도는 아래와 같습니다.
 
@@ -365,7 +412,7 @@ Skew Heap은 `push`, `pop`, `meld`가 amortized `O(log n)`입니다.
 
 Binary Heap의 `push`, `pop`도 `O(log n)`이지만, `meld`가 빠르지 않다는 차이가 있습니다.
 
-## 14. 자주 하는 실수
+## 15. 자주 하는 실수
 
 첫 번째 실수는 `meld` 후에도 두 heap이 같은 노드를 가리키게 두는 것입니다. `other.root = nullptr`로 소유권을 옮겨야 합니다.
 
@@ -383,7 +430,7 @@ if (a->key < b->key) {
 
 다섯 번째 실수는 같은 노드를 여러 heap에 넣는 것입니다. 한 노드는 한 heap에만 속해야 합니다. 이미 어떤 heap에 들어간 노드를 다시 다른 heap에 넣으면 구조가 깨집니다.
 
-## 15. 문제를 볼 때 체크할 조건
+## 16. 문제를 볼 때 체크할 조건
 
 1. 두 우선순위 큐를 합치는 연산이 자주 나오는가?
 2. 그룹이나 컴포넌트가 병합되며 각 그룹의 최솟값/최댓값을 계속 봐야 하는가?
@@ -393,7 +440,7 @@ if (a->key < b->key) {
 
 이 조건에 맞으면 Meldable Heap을 고려합니다. 단순히 하나의 우선순위 큐만 쓰는 문제라면 표준 `priority_queue`가 더 안전하고 빠른 선택입니다.
 
-## 16. 연습 문제
+## 17. 연습 문제
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
