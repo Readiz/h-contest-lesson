@@ -454,7 +454,7 @@
       "description": "큰 경우의 수와 곱셈을 안전하게 다루기 위한 나머지 연산, 빠른 거듭제곱, 모듈러 역원을 익힙니다.",
       "summary": "mod 덧셈/뺄셈/곱셈, 음수 처리, binary exponentiation, Fermat 역원으로 이어지는 수학 기본기",
       "order": 17,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "modular-arithmetic",
         "fast-power",
@@ -2147,7 +2147,7 @@
       "description": "정수 좌표에서 외적 부호로 방향을 판정하고, 선분 교차와 convex hull을 안정적으로 구현하는 기하 기본기를 익힙니다.",
       "summary": "CCW, 선분 교차의 일직선/끝점 처리, monotonic chain convex hull, 정수 기하와 실수 오차 구분까지 이어지는 기하 입문",
       "order": 63,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "geometry",
         "ccw",
@@ -2417,7 +2417,7 @@
       "description": "gcd, 확장 유클리드 알고리즘, 일반 모듈러 역원, CRT, 최소 소인수 전처리로 정수론 문제를 확장해 풉니다.",
       "summary": "유클리드 알고리즘, extended gcd, 합성수 mod 역원, 일반 CRT, smallest prime factor sieve까지 이어지는 정수론 심화",
       "order": 70,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "number-theory",
         "gcd",
@@ -2453,7 +2453,7 @@
       "description": "모듈러 조합 계산, 포함-배제, Lucas 정리로 경우의 수 문제를 체계적으로 세는 방법을 익힙니다.",
       "summary": "factorial과 inverse factorial nCr, 포함-배제 부호 처리, Lucas 정리와 큰 n 조합 계산까지 이어지는 수학 심화",
       "order": 71,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "combinatorics",
         "ncr",
@@ -2672,7 +2672,7 @@
       "description": "확률 분포와 기대값 DP를 세우고, DAG 전이와 순환 전이, 모듈러 확률 처리를 구분해 익힙니다.",
       "summary": "확률 DP, 기대값 식, 기대값의 선형성, 순환 상태의 연립방정식, 모듈러 확률 표현까지 이어지는 수학/DP 레슨",
       "order": 80,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "probability",
         "expected-value",
@@ -3250,7 +3250,7 @@
       "description": "Alien Optimization, Parametric DP, fractional objectives, Lagrangian relaxation을 하나의 parameter 기반 최적화 흐름으로 묶어 선택 기준과 구현 함정을 정리합니다.",
       "summary": "제약이나 답 후보를 parameter로 고정해 더 쉬운 oracle을 풀고, 단조성, tie-break, breakpoint, 답 복원으로 원래 최적화 문제를 해결하는 허브 레슨입니다.",
       "order": 90,
-      "folderId": "heuristic-notes",
+      "folderId": "heuristic-reference",
       "tags": [
         "dp-optimization",
         "parametric-search",
