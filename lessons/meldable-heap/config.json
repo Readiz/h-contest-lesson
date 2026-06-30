@@ -1,8 +1,8 @@
 {
   "lessonId": "meldable-heap",
   "title": "Meldable Heap",
-  "description": "두 힙을 빠르게 합치는 meld 연산을 중심으로 Leftist Heap과 Skew Heap의 구조와 구현을 익힙니다.",
-  "summary": "mergeable priority queue, Leftist Heap, Skew Heap, meld 연산, lazy deletion 대안까지 이어지는 힙 심화",
+  "description": "두 힙을 빠르게 합치는 meld 연산과 컴포넌트별 heap 병합 패턴을 익히고, Leftist Heap과 Skew Heap은 참고 구현으로 정리합니다.",
+  "summary": "간단 Meldable Heap, key 기준 child 선택, Union-Find component heap, priority_queue small-to-large, Leftist/Skew 참고 구현",
   "order": 15,
   "tags": [
     "meldable-heap",

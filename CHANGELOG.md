@@ -4,7 +4,7 @@
 
 ## 2026-07 레슨 분류 및 보강
 
-- `meldable-heap`을 직접 학습 트랙인 `heuristic-notes`로 옮기고, Leftist Heap 전에 쏠림을 고려하지 않는 최소 Meldable Heap 전체 구현과 key 기준 child 선택 변형을 추가했습니다.
+- `meldable-heap`을 직접 학습 트랙인 `heuristic-notes`로 옮기고, 최소 Meldable Heap 전체 구현, key 기준 child 선택 변형, Union-Find 통합 예시를 본문에 두었습니다. Leftist Heap과 Skew Heap은 참고 구현으로 분리했습니다.
 
 ## 2026-06 구조 개편
 

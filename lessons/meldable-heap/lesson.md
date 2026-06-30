@@ -13,7 +13,9 @@ binary heap:
 2. B의 원소를 A에 하나씩 push -> O(m log(n + m))
 ```
 
-Meldable Heap은 이 합치기 자체를 빠르게 처리하도록 만든 힙입니다. 대표 구현으로 Leftist Heap, Skew Heap, Binomial Heap, Fibonacci Heap 등이 있습니다. 알고리즘 문제 실전에서는 Leftist Heap과 Skew Heap이 구현 난이도와 성능의 균형이 좋습니다.
+Meldable Heap은 이 합치기 자체를 빠르게 처리하도록 만든 힙입니다. 핵심 장점은 원소를 전부 순회해서 새 heap을 만들지 않고, 두 root에서 시작해 포인터를 조금만 바꿔 합친다는 점입니다. 보장형 Meldable Heap은 전체 원소 수가 아니라 트리 높이만큼만 내려가므로 `O(log n)` 계열로 heap merge를 처리합니다.
+
+이 레슨에서는 먼저 가장 단순한 merge와 컴포넌트 병합 패턴을 보고, 성능 보장이 필요한 Leftist Heap과 Skew Heap은 참고 구현으로만 정리합니다.
 
 ## 1. 언제 필요한가
 
@@ -115,9 +117,91 @@ static Node* merge(Node* a, Node* b) {
 }
 ```
 
-이 버전은 단순 오른쪽 merge보다 모양이 덜 나빠지는 경우가 많습니다. 하지만 child root key는 subtree 크기나 깊이를 말해 주지 않으므로 최악의 균형을 보장하지는 않습니다. 그래서 실전에서는 아래 Leftist Heap처럼 `dist`를 두거나, Skew Heap처럼 매번 swap하는 규칙으로 보완합니다.
+이 버전은 단순 오른쪽 merge보다 모양이 덜 나빠지는 경우가 많습니다. 하지만 child root key는 subtree 크기나 깊이를 말해 주지 않으므로 최악의 균형을 보장하지는 않습니다. 성능 보장이 필요하면 뒤의 참고 구현처럼 Leftist Heap의 `dist`나 Skew Heap의 swap 규칙으로 보완합니다.
 
-## 4. Leftist Heap
+Union-Find와 합치면 아래처럼 각 컴포넌트 대표가 heap root를 하나씩 가집니다. 컴포넌트를 합칠 때 DSU 대표를 합치고, heap root도 같이 merge합니다.
+
+```cpp
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+struct ComponentHeapDSU {
+    struct Node {
+        int key;
+        Node* left;
+        Node* right;
+
+        Node(int key) : key(key), left(nullptr), right(nullptr) {}
+    };
+
+    vector<int> parent;
+    vector<int> size;
+    vector<Node*> heap;
+
+    ComponentHeapDSU(int n) : parent(n), size(n, 1), heap(n, nullptr) {
+        for (int i = 0; i < n; i++) parent[i] = i;
+    }
+
+    int find(int x) {
+        if (parent[x] == x) return x;
+        return parent[x] = find(parent[x]);
+    }
+
+    static Node* merge(Node* a, Node* b) {
+        if (!a) return b;
+        if (!b) return a;
+        if (a->key > b->key) swap(a, b);
+
+        if (!a->left) {
+            a->left = b;
+        } else if (!a->right) {
+            a->right = b;
+        } else if (a->left->key < a->right->key) {
+            a->right = merge(a->right, b);
+        } else {
+            a->left = merge(a->left, b);
+        }
+        return a;
+    }
+
+    void push(int x, int key) {
+        int r = find(x);
+        heap[r] = merge(heap[r], new Node(key));
+    }
+
+    void unite(int a, int b) {
+        int ra = find(a);
+        int rb = find(b);
+        if (ra == rb) return;
+
+        if (size[ra] < size[rb]) swap(ra, rb);
+        parent[rb] = ra;
+        size[ra] += size[rb];
+        heap[ra] = merge(heap[ra], heap[rb]);
+        heap[rb] = nullptr;
+    }
+
+    int top(int x) {
+        return heap[find(x)]->key;
+    }
+
+    void pop(int x) {
+        int r = find(x);
+        Node* old = heap[r];
+        heap[r] = merge(old->left, old->right);
+        delete old;
+    }
+};
+```
+
+이 예시는 설명을 짧게 하려고 빈 heap 체크와 남은 노드 전체 해제를 생략했습니다. 실제 제출 코드에서는 `top`, `pop` 전에 해당 컴포넌트 heap이 비어 있지 않은지 확인합니다.
+
+## 4. 참고: Leftist Heap과 Skew Heap
+
+여기부터는 성능 보장이 필요할 때 보는 참고 구현입니다. 앞의 간단한 DSU 통합 예시를 먼저 이해한 뒤, 쏠림을 줄이는 규칙만 추가한다고 보면 됩니다.
+
+### Leftist Heap
 
 Leftist Heap은 오른쪽 경로가 짧게 유지되도록 만드는 Meldable Heap입니다.
 
@@ -131,7 +215,7 @@ dist(left) >= dist(right)
 
 즉 오른쪽 subtree가 왼쪽 subtree보다 길어지면 두 자식을 바꿉니다. merge는 오른쪽으로만 내려가기 때문에 오른쪽 경로가 짧으면 merge가 빠릅니다.
 
-## 5. Leftist Heap 노드
+### Leftist Heap 노드
 
 아래 구현은 min-heap입니다. 작은 key가 먼저 나옵니다.
 
@@ -155,7 +239,7 @@ int getDist(Node* node) {
 
 `dist`는 자식이 바뀔 때마다 갱신합니다. null을 0으로 두면 leaf의 dist는 1입니다.
 
-## 6. Leftist Heap merge
+### Leftist Heap merge
 
 ```cpp
 Node* merge(Node* a, Node* b) {
@@ -188,7 +272,7 @@ Node* merge(Node* a, Node* b) {
 
 오른쪽으로만 재귀가 내려가므로, 오른쪽 경로가 짧다는 성질이 중요합니다.
 
-## 7. push, top, pop
+### Leftist Heap push, top, pop
 
 새 원소 삽입은 원소 하나짜리 heap을 만들어 기존 heap과 merge하면 됩니다.
 
@@ -219,7 +303,7 @@ Node* pop(Node* root) {
 
 빈 heap에서 `top`이나 `pop`을 호출하면 안 됩니다. 실제 wrapper에서는 `empty()`를 먼저 확인합니다.
 
-## 8. Wrapper 구현
+### Leftist Heap wrapper 구현
 
 포인터를 직접 들고 다니면 실수가 나기 쉬우므로 구조체로 감싸면 좋습니다.
 
@@ -288,7 +372,7 @@ struct MeldableHeap {
 
 `meld` 후에는 `other.root = nullptr`로 비워야 합니다. 그렇지 않으면 두 heap 객체가 같은 노드를 동시에 소유하게 됩니다.
 
-## 9. 메모리 정리
+### 메모리 정리
 
 위 wrapper는 간단한 설명용이라 남은 노드를 자동으로 지우지 않습니다. 긴 프로그램이나 여러 테스트 케이스에서는 destructor를 두는 것이 안전합니다.
 
@@ -325,7 +409,7 @@ Node* makeNode(int key) {
 
 이 방식은 `delete`를 하지 않는 대신, 전체 테스트 케이스가 끝날 때 한 번에 버리는 구조에 가깝습니다. 여러 테스트 케이스를 처리한다면 `initPool` 호출 시점에 주의해야 합니다. `reserve`한 크기를 넘어 `emplace_back`하면 재할당이 일어나 기존 포인터가 깨질 수 있으므로, 필요한 노드 수를 넉넉하게 잡아야 합니다.
 
-## 10. Skew Heap
+### Skew Heap
 
 Skew Heap은 Leftist Heap보다 더 단순한 Meldable Heap입니다. `dist`를 저장하지 않고, merge할 때마다 양쪽 자식을 무조건 바꿉니다.
 
@@ -354,7 +438,7 @@ Node* merge(Node* a, Node* b) {
 
 Skew Heap은 개별 연산 하나가 항상 `O(log n)`이라고 보장되지는 않지만, amortized `O(log n)` 성능을 가집니다. 구현이 매우 짧아서 대회 코드에서는 Skew Heap을 선호하는 경우도 있습니다.
 
-## 11. Leftist Heap과 Skew Heap 비교
+### Leftist Heap과 Skew Heap 비교
 
 | 구조 | 추가 정보 | merge 성능 | 장점 |
 | --- | --- | --- | --- |
@@ -364,43 +448,7 @@ Skew Heap은 개별 연산 하나가 항상 `O(log n)`이라고 보장되지는 
 
 대부분의 문제에서는 C++ `priority_queue`가 가장 간단합니다. 두 heap을 합치는 연산이 문제의 중심일 때만 Meldable Heap을 고려합니다.
 
-## 12. Union-Find와 함께 쓰기
-
-Meldable Heap은 컴포넌트 병합과 잘 맞습니다. 각 컴포넌트 대표가 heap root를 하나씩 들고 있고, 두 컴포넌트를 합칠 때 heap도 같이 meld합니다.
-
-```cpp
-vector<int> parent(n);
-vector<MeldableHeap> heaps(n);
-
-int find(int x) {
-    if (parent[x] == x) return x;
-    return parent[x] = find(parent[x]);
-}
-
-void unite(int a, int b) {
-    int rootA = find(a);
-    int rootB = find(b);
-    if (rootA == rootB) return;
-
-    parent[rootB] = rootA;
-    heaps[rootA].meld(heaps[rootB]);
-}
-```
-
-실제로는 Union-Find의 size/rank 기준 합치기도 같이 고려합니다. 대표가 바뀌면 heap도 새 대표 쪽에 합쳐야 합니다.
-
-```cpp
-if (size[rootA] < size[rootB]) {
-    swap(rootA, rootB);
-}
-parent[rootB] = rootA;
-size[rootA] += size[rootB];
-heaps[rootA].meld(heaps[rootB]);
-```
-
-이 패턴은 "그룹이 합쳐지고, 각 그룹에서 가장 작은 원소를 꺼낸다" 같은 문제에 잘 맞습니다.
-
-## 13. priority_queue로 대체할 수 있는 경우
+## 5. priority_queue로 대체할 수 있는 경우
 
 두 heap을 합칠 일이 적거나, 한쪽 heap의 원소 수가 항상 작다면 `priority_queue`와 small-to-large로 충분할 수 있습니다.
 
@@ -419,25 +467,25 @@ while (!pq[b].empty()) {
 
 하지만 문제에서 merge가 매우 많고, heap 자체를 합치는 연산이 핵심이면 Meldable Heap이 더 깔끔합니다.
 
-## 14. 시간 복잡도
+## 6. 시간 복잡도
 
-Leftist Heap 기준 복잡도는 아래와 같습니다.
+가장 단순한 구현과 key 기준 child 선택 구현은 트리 높이에 영향을 받습니다.
 
 | 작업 | 시간 |
 | --- | --- |
 | `top` | `O(1)` |
-| `push` | `O(log n)` |
-| `pop` | `O(log n)` |
-| `meld` | `O(log n)` |
+| `push` | 평균적으로는 작게 기대하지만 최악 `O(n)` |
+| `pop` | 평균적으로는 작게 기대하지만 최악 `O(n)` |
+| `meld` | 평균적으로는 작게 기대하지만 최악 `O(n)` |
 | 메모리 | `O(n)` |
 
-Skew Heap은 `push`, `pop`, `meld`가 amortized `O(log n)`입니다.
+Leftist Heap은 `push`, `pop`, `meld`가 `O(log n)`이고, Skew Heap은 amortized `O(log n)`입니다.
 
 Binary Heap의 `push`, `pop`도 `O(log n)`이지만, `meld`가 빠르지 않다는 차이가 있습니다.
 
-## 15. 자주 하는 실수
+## 7. 자주 하는 실수
 
-첫 번째 실수는 `meld` 후에도 두 heap이 같은 노드를 가리키게 두는 것입니다. `other.root = nullptr`로 소유권을 옮겨야 합니다.
+첫 번째 실수는 `meld` 후에도 두 heap이 같은 노드를 가리키게 두는 것입니다. 통합 예시처럼 합쳐진 쪽의 root를 `nullptr`로 비워야 합니다.
 
 두 번째 실수는 max-heap과 min-heap 비교식을 반대로 쓰는 것입니다. 위 구현은 min-heap입니다. max-heap이 필요하면 비교를 반대로 바꿉니다.
 
@@ -447,13 +495,13 @@ if (a->key < b->key) {
 }
 ```
 
-세 번째 실수는 Leftist Heap의 `dist`를 갱신하지 않는 것입니다. merge 후 자식 swap까지 끝난 뒤 `dist = getDist(right) + 1`로 갱신합니다.
+세 번째 실수는 key 기준 child 선택을 균형 보장으로 착각하는 것입니다. child root key는 subtree 크기나 깊이를 말해 주지 않습니다.
 
-네 번째 실수는 재귀 깊이를 무시하는 것입니다. Leftist Heap은 오른쪽 경로가 짧게 유지되므로 보통 안전하지만, 잘못 구현하면 한 줄 트리가 되어 깊은 재귀가 생길 수 있습니다.
+네 번째 실수는 재귀 깊이를 무시하는 것입니다. 단순 구현은 한 줄 트리가 될 수 있으므로 입력이 크면 참고 구현의 Leftist/Skew 같은 보완을 고려합니다.
 
 다섯 번째 실수는 같은 노드를 여러 heap에 넣는 것입니다. 한 노드는 한 heap에만 속해야 합니다. 이미 어떤 heap에 들어간 노드를 다시 다른 heap에 넣으면 구조가 깨집니다.
 
-## 16. 문제를 볼 때 체크할 조건
+## 8. 문제를 볼 때 체크할 조건
 
 1. 두 우선순위 큐를 합치는 연산이 자주 나오는가?
 2. 그룹이나 컴포넌트가 병합되며 각 그룹의 최솟값/최댓값을 계속 봐야 하는가?
@@ -463,11 +511,11 @@ if (a->key < b->key) {
 
 이 조건에 맞으면 Meldable Heap을 고려합니다. 단순히 하나의 우선순위 큐만 쓰는 문제라면 표준 `priority_queue`가 더 안전하고 빠른 선택입니다.
 
-## 17. 연습 문제
+## 9. 연습 문제
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
-| 입문 | TODO: 두 heap meld 연산 추적 문제 추가 | Leftist Heap의 오른쪽 경로와 `dist` 갱신 이해 | meld, leftist heap |
+| 입문 | TODO: 두 heap meld 연산 추적 문제 추가 | 단순 merge와 key 기준 child 선택 비교 | meld, key selection |
 | 표준 | TODO: 그룹별 최소값 조회 문제 추가 | Union-Find와 heap meld 결합 | DSU, component heap |
 | 응용 | TODO: 여러 우선순위 큐 병합 문제 추가 | `priority_queue` small-to-large와 meldable heap 비교 | small-to-large |
 | 함정 | TODO: 소유권 이전 실수 확인 문제 추가 | meld 후 원본 heap을 비워 구조 공유 방지 | ownership |
