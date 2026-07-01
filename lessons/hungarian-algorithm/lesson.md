@@ -292,13 +292,6 @@ long long hungarian_min_cost(
 }
 ```
 
-이 구현은 C 문법에 가깝게 작성했지만, validator에서는 C++17 문법 검사로 확인합니다. `cost`의 두 번째 차원은 컴파일 타임 상수여야 하므로, 호출 쪽도 아래처럼 같은 최대 폭을 사용합니다.
-
-```cpp
-static long long cost[HUNGARIAN_MAX_N][HUNGARIAN_MAX_M];
-static int assignment[HUNGARIAN_MAX_N];
-```
-
 ## 8. 구현 팁
 
 1. 비용 합의 최댓값을 먼저 계산합니다. `HUNGARIAN_INF`는 가능한 정답보다 충분히 커야 하고, `cost - u - v`에서 overflow가 나면 안 됩니다.
