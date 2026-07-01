@@ -69,7 +69,12 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 
 ## 5. 손으로 푸는 방식
 
-손으로 작은 행렬을 풀 때는 "potential"이라는 단어보다 0을 만드는 표 조작으로 보는 편이 쉽습니다. 아래 두 방식은 같은 dual 조정을 다른 언어로 말하는 것입니다.
+손으로 작은 행렬을 풀 때는 "potential"이라는 단어보다 0을 만드는 표 조작으로 보는 편이 쉽습니다. 하지만 손계산도 결국 같은 알고리즘입니다. 핵심은 다음 두 가지입니다.
+
+1. 0인 칸만 간선으로 보는 이분 그래프에서, 서로 row와 column이 겹치지 않는 0들을 최대한 많이 고른다.
+2. 아직 `N`개를 못 고르면, 현재 0 그래프의 alternating 구조로 0을 덮는 최소 선을 찾고, 덮이지 않은 칸의 최솟값만큼 행렬을 조정해 새 0을 만든다.
+
+아래 두 표현은 같은 dual 조정을 다른 언어로 말하는 것입니다.
 
 | 손계산 표현 | 구현 표현 |
 | --- | --- |
@@ -78,7 +83,7 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 | 0인 칸만 보고 독립적인 0을 고른다 | tight edge 위에서 matching을 찾는다 |
 | 모든 0을 덮는 선 수가 부족하면 uncovered 최솟값을 조정한다 | 최소 slack `delta`로 새 tight edge를 만든다 |
 
-다음 최소 비용 assignment를 손으로 따라가 보겠습니다.
+다음 최소 비용 assignment를 손으로 따라가 보겠습니다. 목표는 각 row에서 정확히 하나, 각 column에서 정확히 하나를 골라 총 비용을 최소화하는 것입니다.
 
 |  | X | Y | Z |
 | --- | ---: | ---: | ---: |
@@ -86,7 +91,7 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 | B | 2 | 0 | 5 |
 | C | 3 | 2 | 2 |
 
-먼저 각 row의 최솟값을 뺍니다.
+먼저 각 row의 최솟값을 뺍니다. `A`에서는 1, `B`에서는 0, `C`에서는 2를 뺍니다. 이렇게 해도 어떤 assignment가 다른 assignment보다 얼마나 더 싼지는 바뀌지 않습니다. 모든 row에서 정확히 하나씩 고르므로, 모든 후보 해의 비용이 같은 값 `1 + 0 + 2`만큼 줄어들기 때문입니다.
 
 |  | X | Y | Z |
 | --- | ---: | ---: | ---: |
@@ -94,7 +99,7 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 | B | 2 | 0 | 5 |
 | C | 1 | 0 | 0 |
 
-그다음 각 column의 최솟값을 뺍니다. `X` column의 최솟값은 1이고, `Y`, `Z`는 이미 0입니다.
+그다음 각 column의 최솟값을 뺍니다. `X` column의 최솟값은 1이고, `Y`, `Z`는 이미 0입니다. column도 정확히 하나씩 쓰는 정사각형 assignment에서는 같은 이유로 최적해가 보존됩니다.
 
 |  | X | Y | Z |
 | --- | ---: | ---: | ---: |
@@ -102,9 +107,40 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 | B | 1 | 0 | 5 |
 | C | 0 | 0 | 0 |
 
-0인 칸만 보면 `A-Y`, `B-Y`, `C-X`, `C-Y`, `C-Z`입니다. `A-Y`와 `C-Z`를 고르면 `B`가 남습니다. 모든 0은 `Y` column 하나와 `C` row 하나, 총 2개의 선으로 덮을 수 있습니다. 선 수가 3보다 작으므로 아직 완전 assignment가 아닙니다.
+이제 0인 칸만 봅니다.
 
-선에 덮이지 않은 칸은 `A-X`, `A-Z`, `B-X`, `B-Z`이고, 그 최솟값은 `1`입니다. 이 값을 덮이지 않은 칸에서 빼고, 두 선이 만나는 칸 `C-Y`에는 더합니다.
+```text
+A: Y
+B: Y
+C: X, Y, Z
+```
+
+서로 row와 column이 겹치지 않게 0을 고르면, 예를 들어 `A-Y`, `C-Z`까지는 고를 수 있지만 `B`가 남습니다. 최대 0 matching 크기가 2라서 아직 완전 assignment가 아닙니다.
+
+여기서 "모든 0을 덮는 최소 선"은 다음 절차로 찾습니다. 손으로 선을 감으로 긋는 대신, 이 절차를 따르면 코드의 alternating tree와 같은 구조가 됩니다.
+
+1. 현재 고른 0 matching을 하나 잡습니다. 예: `A-Y`, `C-Z`.
+2. matching되지 않은 row를 표시합니다. 여기서는 `B`를 표시합니다.
+3. 표시된 row에서 0이 있는 column을 모두 표시합니다. `B`의 0은 `Y`에 있으므로 `Y`를 표시합니다.
+4. 표시된 column에 matching된 row가 있으면 그 row를 표시합니다. `Y`에는 `A-Y`가 matching되어 있으므로 `A`를 표시합니다.
+5. 새로 표시된 row에서 다시 0 column을 표시합니다. `A`의 0은 이미 표시된 `Y`뿐이므로 멈춥니다.
+6. 표시되지 않은 row와 표시된 column에 선을 긋습니다.
+
+따라서 선은 `C` row와 `Y` column, 총 2개입니다. 실제로 모든 0인 칸 `A-Y`, `B-Y`, `C-X`, `C-Y`, `C-Z`가 이 두 선 중 하나에 덮입니다. 선 수가 3보다 작다는 것은 아직 서로 독립적인 0 세 개를 만들 수 없다는 뜻입니다.
+
+이제 덮이지 않은 칸을 봅니다. 표시된 row `A`, `B`와 표시되지 않은 column `X`, `Z`가 만나는 칸입니다.
+
+```text
+A-X = 2, A-Z = 2, B-X = 1, B-Z = 5
+```
+
+그 최솟값 `delta = 1`을 사용합니다.
+
+1. 선에 덮이지 않은 칸에서 `delta`를 뺍니다.
+2. 두 선이 교차하는 칸에는 `delta`를 더합니다.
+3. 선 하나에만 덮인 칸은 그대로 둡니다.
+
+이 조정은 모든 row와 column에서 고르는 assignment 비용의 상대 순서를 보존하면서, 적어도 하나의 새 0을 만듭니다. 여기서는 `B-X`가 새 0이 됩니다.
 
 |  | X | Y | Z |
 | --- | ---: | ---: | ---: |
@@ -116,7 +152,7 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 
 ![Hungarian 손계산 trace](lesson-assets/hungarian-hand-trace.svg)
 
-손계산에서는 "0을 만들고, 독립적인 0을 고른다"가 중심입니다. 코드에서는 이 0인 칸을 `tight edge`, 새 0을 만들기 위해 빼는 값을 `delta` 또는 최소 slack이라고 부릅니다.
+손계산에서는 "0을 만들고, 독립적인 0을 고른다"가 중심입니다. 코드에서는 이 0인 칸을 `tight edge`, 새 0을 만들기 위해 빼는 값을 `delta` 또는 최소 slack이라고 부릅니다. 표시된 row와 column을 따라가는 절차가 곧 augmenting path 탐색이고, `delta` 조정은 아직 tree에 들어오지 않은 column까지의 최소 slack을 0으로 만드는 작업입니다.
 
 ## 6. 구현 변수 읽는 법
 
@@ -133,6 +169,20 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 | `used[j]` | 이번 augmenting 탐색에서 tree에 들어온 column |
 
 핵심은 `minv[j]`입니다. tree에 들어온 row들에서 아직 쓰지 않은 column `j`로 넘어가는 최소 reduced cost를 저장합니다. `delta = min(minv[j])`를 고르면 그만큼 potential을 움직였을 때 최소 하나의 새 tight edge가 생깁니다.
+
+한 row를 추가하는 내부 루프는 다음 순서로 읽으면 됩니다.
+
+1. 새 row `i`를 dummy column `0`에 매달아 시작합니다. `p[0] = i`, `j0 = 0`입니다.
+2. `used[j0] = 1`로 현재 column을 alternating tree에 넣습니다.
+3. `i0 = p[j0]`는 현재 column을 통해 도달한 row입니다. dummy column에서는 방금 추가하려는 row가 됩니다.
+4. 아직 tree에 없는 모든 column `j`에 대해 `cur = cost[i0 - 1][j - 1] - u[i0] - v[j]`를 계산합니다. 이것이 현재 row `i0`에서 column `j`로 가는 slack입니다.
+5. `cur`가 기존 `minv[j]`보다 작으면 `minv[j] = cur`, `way[j] = j0`로 갱신합니다. `way[j]`는 나중에 path를 뒤집을 때 "이 column에 어디서 왔는가"를 복원합니다.
+6. 모든 미사용 column 중 `minv[j]`가 가장 작은 column을 `j1`로 고르고, 그 값을 `delta`로 둡니다.
+7. tree 안의 column `j`에 대해서는 `u[p[j]] += delta`, `v[j] -= delta`를 적용합니다. tree 밖 column은 `minv[j] -= delta`만 해 둡니다.
+8. `j0 = j1`로 이동합니다. `p[j0] == 0`이면 빈 column에 도달했으므로 augmenting path를 찾은 것입니다. 아니면 그 column에 이미 매칭된 row `p[j0]`로 이어서 tree를 확장합니다.
+9. 빈 column에 도달하면 `way`를 따라 뒤로 가며 `p[j0] = p[j1]`을 반복합니다. 이것이 matching edge를 뒤집는 단계입니다.
+
+손계산의 "표시된 row/column"은 코드에서 `used` column들과 그 column에 매달린 `p[j]` row들입니다. 손계산의 "덮이지 않은 칸 최솟값"은 코드에서 `delta = min(minv[j])`입니다. 손계산에서 새 0이 생기듯이, 코드에서도 `minv[j]`가 0이 된 column이 새 tight edge 후보가 됩니다.
 
 ## 7. 순수 C 배열 구현
 

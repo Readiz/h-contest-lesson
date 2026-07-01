@@ -1556,7 +1556,7 @@
       "lessonId": "hungarian-algorithm",
       "title": "Hungarian Algorithm",
       "description": "이분 assignment 문제를 potential, reduced cost, tight edge, augmenting path로 해석하고 순수 C 배열 구현과 COUPANG2 상품별 재고 매칭 예시까지 익힙니다.",
-      "summary": "assignment problem, Hungarian potentials, 손계산 zero trace, 순수 C 배열 구현, COUPANG2 product-wise stock matching",
+      "summary": "assignment problem, Hungarian potentials, 손계산 line-cover trace, 순수 C 배열 구현, COUPANG2 product-wise stock matching",
       "order": 42,
       "folderId": "heuristic-notes",
       "tags": [
@@ -1568,7 +1568,7 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 100,
+      "estimatedMinutes": 115,
       "prerequisites": [
         "weighted-matching",
         "matching-cover-duality"
