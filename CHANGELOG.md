@@ -7,6 +7,7 @@
 - `sqrt-decomposition`을 직접 학습 트랙인 `heuristic-notes`로 옮겼습니다.
 - Hungarian Algorithm 레슨을 심화 노트에 추가하고, potential/tight edge/augmenting path 시각화와 `O(N^3)` assignment 구현을 포함했습니다.
 - Hungarian Algorithm 레슨에 순수 C 배열 구현, 손계산 zero trace, 구현 실수 체크리스트, `COUPANG2` 작은 batch 배정 활용 예시를 보강했습니다.
+- Hungarian Algorithm 레슨의 손계산 trace를 minimum line cover와 alternating mark 절차 중심으로 다시 설명하고, SVG 도식의 문장 겹침을 줄였습니다.
 - `COUPANG2` 활용 설명을 작은 batch 보조 최적화가 아니라 productID별 재고 copy-고객 수요 Hungarian 매칭으로 정정했습니다.
 - Hungarian Algorithm 레슨의 표준 연습 문제를 `STOCKMAT` 상품 재고 매칭으로 연결했습니다.
 - `treap`을 직접 학습 트랙인 `heuristic-notes`로 옮기고, Treap 본문에 BST 기본 연산과 균형 필요성을 남겼습니다. AVL/Splay 내용은 `avl-splay-tree` 참고 레슨으로 분리했습니다.
