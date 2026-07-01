@@ -152,6 +152,8 @@ A
 
 이제 `A`에서 matching에 없는 다른 0 간선을 찾아 column으로 더 갈 수 있으면 tree를 확장합니다. 하지만 `A`의 0은 `Y`뿐입니다. 이미 방문한 column이라서 더 나아갈 곳이 없습니다. 즉 현재 0들만으로는 augmenting path가 없습니다.
 
+![Hungarian alternating tree와 line cover](lesson-assets/hungarian-alternating-tree.svg)
+
 1. 현재 고른 0 matching을 하나 잡습니다. 예: `A-Y`, `C-Z`.
 2. matching되지 않은 row를 표시합니다. 여기서는 `B`를 표시합니다.
 3. 표시된 row에서 0이 있는 column을 모두 표시합니다. `B`의 0은 `Y`에 있으므로 `Y`를 표시합니다.
