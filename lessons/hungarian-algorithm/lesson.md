@@ -119,6 +119,39 @@ C: X, Y, Z
 
 여기서 "모든 0을 덮는 최소 선"은 다음 절차로 찾습니다. 손으로 선을 감으로 긋는 대신, 이 절차를 따르면 코드의 alternating tree와 같은 구조가 됩니다.
 
+먼저 0인 칸을 간선으로 보는 이분 그래프를 생각합니다.
+
+```text
+row 쪽:    A, B, C
+column 쪽: X, Y, Z
+0 간선:    A-Y, B-Y, C-X, C-Y, C-Z
+```
+
+`A-Y`, `C-Z`를 이미 고른 matching이라고 합시다. 그러면 `A`와 `C`는 0으로 배정됐지만, `B`는 아직 0으로 배정되지 못했습니다. 우리가 진짜로 찾고 싶은 것은 `B`에서 시작해서 아직 matching에 쓰이지 않은 column으로 가는 alternating path입니다.
+
+alternating path는 이름 그대로 두 종류의 간선을 번갈아 탑니다.
+
+1. row에서 column으로 갈 때는 아직 matching에 들어 있지 않은 0 간선을 탑니다.
+2. column에서 row로 돌아올 때는 그 column에 현재 matching된 0 간선을 거꾸로 탑니다.
+
+이렇게 해서 matching되지 않은 column에 도착하면, 경로의 간선을 뒤집어 matching 크기를 1 키울 수 있습니다. 예를 들어 `B-X`라는 0 간선이 이미 있었다면 `B-X`만 고르면 바로 0 세 개가 됩니다. 하지만 현재는 `B`에서 갈 수 있는 0이 `Y`뿐이고, `Y`는 이미 `A-Y`가 차지하고 있습니다. 그래서 `B -> Y -> A`처럼 기존 matching을 따라 `A`까지 끌려갑니다.
+
+현재 예제의 alternating tree는 이렇게 생깁니다.
+
+```text
+B  (matching 안 된 row)
+|
+|  B-Y는 matching에 없는 0 간선
+v
+Y  (이미 A와 matching된 column)
+|
+|  A-Y는 matching 간선
+v
+A
+```
+
+이제 `A`에서 matching에 없는 다른 0 간선을 찾아 column으로 더 갈 수 있으면 tree를 확장합니다. 하지만 `A`의 0은 `Y`뿐입니다. 이미 방문한 column이라서 더 나아갈 곳이 없습니다. 즉 현재 0들만으로는 augmenting path가 없습니다.
+
 1. 현재 고른 0 matching을 하나 잡습니다. 예: `A-Y`, `C-Z`.
 2. matching되지 않은 row를 표시합니다. 여기서는 `B`를 표시합니다.
 3. 표시된 row에서 0이 있는 column을 모두 표시합니다. `B`의 0은 `Y`에 있으므로 `Y`를 표시합니다.
@@ -126,7 +159,23 @@ C: X, Y, Z
 5. 새로 표시된 row에서 다시 0 column을 표시합니다. `A`의 0은 이미 표시된 `Y`뿐이므로 멈춥니다.
 6. 표시되지 않은 row와 표시된 column에 선을 긋습니다.
 
-따라서 선은 `C` row와 `Y` column, 총 2개입니다. 실제로 모든 0인 칸 `A-Y`, `B-Y`, `C-X`, `C-Y`, `C-Z`가 이 두 선 중 하나에 덮입니다. 선 수가 3보다 작다는 것은 아직 서로 독립적인 0 세 개를 만들 수 없다는 뜻입니다.
+표시된 row는 `B`, `A`이고, 표시된 column은 `Y`입니다. 표시되지 않은 row는 `C`, 표시되지 않은 column은 `X`, `Z`입니다.
+
+최소 선을 만들 때는 **표시되지 않은 row**와 **표시된 column**에 선을 긋습니다. 그래서 선은 `C` row와 `Y` column, 총 2개입니다.
+
+왜 이 선들이 모든 0을 덮는지도 직접 확인할 수 있습니다.
+
+| 0 간선 | 덮이는 선 |
+| --- | --- |
+| `A-Y` | `Y` column |
+| `B-Y` | `Y` column |
+| `C-X` | `C` row |
+| `C-Y` | `C` row와 `Y` column |
+| `C-Z` | `C` row |
+
+더 일반적으로도 이유는 같습니다. 표시된 row에서 표시되지 않은 column으로 가는 0이 있었다면, 절차 3에서 그 column도 표시됐어야 합니다. 따라서 그런 0은 존재하지 않습니다. 남은 0은 표시되지 않은 row에 있거나 표시된 column에 있으므로, `표시되지 않은 row + 표시된 column` 선으로 전부 덮입니다.
+
+선 수가 현재 matching 크기와 같다는 점도 중요합니다. 여기서는 matching 크기가 2이고 선도 2개입니다. 0만으로 크기 3 matching을 만들 수 있었다면 모든 0을 덮는 데 최소 3개의 선이 필요해야 합니다. 그런데 2개의 선으로 모든 0을 덮었으므로, 지금 0 구조로는 아직 완전 assignment가 불가능합니다.
 
 이제 덮이지 않은 칸을 봅니다. 표시된 row `A`, `B`와 표시되지 않은 column `X`, `Z`가 만나는 칸입니다.
 
@@ -148,7 +197,9 @@ A-X = 2, A-Z = 2, B-X = 1, B-Z = 5
 | B | 0 | 0 | 4 |
 | C | 0 | 1 | 0 |
 
-이제 `A-Y`, `B-X`, `C-Z`를 서로 겹치지 않게 고를 수 있습니다. 원래 비용으로 돌아가면 총 비용은 `1 + 2 + 2 = 5`입니다.
+이제 alternating tree를 다시 보면 `B`에서 새 0 `B-X`로 갈 수 있습니다. `X`는 현재 matching `A-Y`, `C-Z`에 쓰이지 않은 column입니다. 따라서 `B -> X`가 바로 augmenting path가 되고, matching 크기를 2에서 3으로 키울 수 있습니다.
+
+결과적으로 `A-Y`, `B-X`, `C-Z`를 서로 겹치지 않게 고를 수 있습니다. 원래 비용으로 돌아가면 총 비용은 `1 + 2 + 2 = 5`입니다.
 
 ![Hungarian 손계산 trace](lesson-assets/hungarian-hand-trace.svg)
 
