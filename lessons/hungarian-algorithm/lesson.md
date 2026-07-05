@@ -429,6 +429,6 @@ dense assignment에서는 Min-Cost Flow보다 상수가 작고 코드도 짧습�
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
 | 입문 | TODO: 작은 assignment problem `/practice/...` 문제 필요 | row greedy가 깨지는 반례 직접 계산 | counterexample |
-| 표준 | [상품 재고 매칭](/practice/STOCKMAT) | 배열 기반 `hungarian_min_cost`로 최적 비용 0점과 배정 복원 | potential, tight edge |
+| 표준 | [상품 재고 매칭](/practice/STOCKMATCH) | 배열 기반 `hungarian_min_cost`로 최적 비용 0점과 배정 복원 | potential, tight edge |
 | 응용 | [물류 상품 배송 2](/practice/COUPANG2) | 상품별로 센터 재고 copy와 고객 수요를 Hungarian으로 맞춘 뒤 route heuristic에 넘기기 | product block, stock copy, Manhattan distance |
 | 함정 | TODO: forbidden edge가 있는 sparse assignment `/practice/...` 문제 필요 | Hungarian과 Min-Cost Flow 선택 비교 | dummy, INF, sparse graph |
