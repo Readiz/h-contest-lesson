@@ -29,4 +29,4 @@
 - [초기해와 지역 탐색](pages/search-strategies.md) - 초기해 구성, 지역 탐색, 나쁜 이동 수용 전략을 다룹니다.
 - [Beam Search와 시간 관리](pages/beam-and-time.md) - Beam Search, 무작위 재시도, 제한 시간 관리 방법을 정리합니다.
 - [실험 로그와 점검](pages/experiments-and-checklist.md) - 실험 로그, 개선 연산, 정확한 알고리즘과의 결합, 최종 점검을 모았습니다.
-- [배치형 문제의 destroy/repair와 부분 정확 탐색](pages/placement-and-repair.md) - 2D 배치, bitmask 상태 표현, 위치 평가식, 큰 destroy/repair, 부분 exact repair를 정리합니다.
+- [실전 예시: 광고판 도시 배치](pages/placement-and-repair.md) - `BILLCITY`를 따라가며 bitmask 상태 표현, 위치 평가식, 큰 destroy/repair, 부분 exact repair가 한 풀이 안에서 연결되는 흐름을 봅니다.
