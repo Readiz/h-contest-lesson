@@ -393,10 +393,14 @@
         "optimization",
         "local-search",
         "simulated-annealing",
+        "placement",
+        "packing",
+        "destroy-repair",
+        "bitmask",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 80,
+      "estimatedMinutes": 100,
       "prerequisites": [
         "greedy",
         "dynamic-programming"
@@ -436,6 +440,13 @@
           "description": "실험 로그, 개선 연산, 정확한 알고리즘과의 결합, 최종 점검을 모았습니다.",
           "order": 40,
           "file": "pages/experiments-and-checklist.md"
+        },
+        {
+          "pageId": "placement-and-repair",
+          "title": "배치형 문제의 destroy/repair와 부분 정확 탐색",
+          "description": "2D 배치, bitmask 상태 표현, 위치 평가식, 큰 destroy/repair, 부분 exact repair를 정리합니다.",
+          "order": 50,
+          "file": "pages/placement-and-repair.md"
         }
       ],
       "lessonType": "overview",
