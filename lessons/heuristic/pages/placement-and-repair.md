@@ -1,326 +1,251 @@
-# 휴리스틱 알고리즘: 배치형 문제의 destroy/repair와 부분 정확 탐색
+# 휴리스틱 알고리즘: 실전 예시 - 광고판 도시 배치
 
-## 18. 배치형 문제는 왜 어렵나
+## 18. 이 페이지를 읽는 방법
 
-배치형 문제에서는 선택해야 할 것이 두 가지입니다.
+앞 페이지까지는 상태 표현, 점수 함수, 초기해, 지역 탐색, Beam Search, 실험 로그를 따로 보았습니다. 실제 문제에서는 이 개념들이 분리되어 나오지 않습니다.
 
-1. 어떤 물건을 놓을 것인가
-2. 어디에 놓을 것인가
-
-일반적인 작업 배정 문제라면 `task -> machine`처럼 배정 대상만 정하면 됩니다. 하지만 2D 배치 문제에서는 같은 물건을 같은 판에 놓더라도 좌표에 따라 이후 빈 공간의 모양이 달라집니다.
-
-그래서 first-fit은 빠르지만 자주 약합니다.
+이 페이지는 [광고판 도시 배치](/practice/BILLCITY)를 따라가며, 휴리스틱 풀이가 어떻게 단계적으로 강해지는지 보는 실전 예시입니다. 목적은 광고판 문제 전용 공식을 외우는 것이 아니라, 아래 흐름을 익히는 것입니다.
 
 ```text
-나쁜 예:
-- 처음 들어가는 위치에 바로 놓는다.
-- 큰 물건이 들어갈 수 있는 공간을 작은 물건이 먼저 잘라 버린다.
-- 남은 공간이 얇고 긴 조각으로 쪼개진다.
+문제 구조 읽기
+-> 빠른 상태 표현 만들기
+-> 단순한 초기해 만들기
+-> 좋은 순서와 좋은 위치를 따로 평가하기
+-> 작은 local search의 한계를 확인하기
+-> 큰 destroy/repair로 구조를 흔들기
+-> 작은 부분만 exact repair로 보정하기
 ```
 
-배치형 문제에서는 "가능한 위치"가 아니라 "나중에도 좋은 위치"를 골라야 합니다.
+## 19. 문제 구조 요약
 
-## 19. bitmask로 점유 상태를 표현하기
+`BILLCITY`는 `process(buildings, ads)` 안에서 `place_ad(adId, buildingId, top, left)`를 호출해 광고판을 놓는 문제입니다.
 
-격자의 폭이 작다면 각 행을 bitmask 하나로 표현할 수 있습니다.
+문제 구조는 다음과 같습니다.
 
-예를 들어 폭이 24라면 `unsigned int` 하나로 한 행의 점유 상태를 저장할 수 있습니다.
+| 항목 | 내용 |
+| --- | --- |
+| 건물 수 | 20개 |
+| 광고 수 | 132개 |
+| 건물 타입 | `WAREHOUSE`, `STORE` |
+| 점수 | `WAREHOUSE`는 `ad.score`, `STORE`는 `ad.score * 2` |
+| 금지 조건 | 건물 밖, 창문 칸, 다른 광고와 겹치기, 같은 광고 재사용 |
+| 회전 | 광고는 회전하지 않는다 |
+| 출력 | 각 TC의 `SCORE`, 마지막 합산 `SCORE` |
 
-```cpp
-const int MAX_BOARD = 32;
-const int MAX_H = 32;
+이 문제는 단순히 광고를 많이 넣는 문제가 아닙니다. 좋은 광고를 골라야 하고, `STORE` 보너스를 활용해야 하며, 남은 빈 공간이 나쁘게 쪼개지지 않도록 좌표를 골라야 합니다.
 
-unsigned int occ[MAX_BOARD][MAX_H];
+## 20. 앞 페이지 개념과의 대응
 
-int canPlace(int board, int y, int x, int h, int w) {
-    unsigned int mask = ((1u << w) - 1u) << x;
+| 휴리스틱 개념 | 이 문제에서의 모습 |
+| --- | --- |
+| 상태 표현 | 건물별 점유 mask, 광고별 배치 여부, 현재 점수 |
+| 점수 함수 | 실제 점수와 배치 품질 평가를 분리 |
+| 초기해 | 광고 순서와 건물 순서를 정한 뒤 greedy 배치 |
+| 개선 연산 | 일부 광고를 제거하고 다시 채우는 destroy/repair |
+| 정확 알고리즘 결합 | 한 건물이나 작은 구역만 DFS로 다시 채우기 |
+| 실험 로그 | 단계별 score, remove count, 반복 수, 후보 수 비교 |
 
-    for (int r = 0; r < h; ++r) {
-        if (occ[board][y + r] & mask) {
-            return 0;
-        }
-    }
-    return 1;
-}
+이 대응표를 먼저 잡으면, 코드를 고칠 때 "무엇을 먼저 개선해야 하는가"가 보입니다.
 
-void setPlace(int board, int y, int x, int h, int w) {
-    unsigned int mask = ((1u << w) - 1u) << x;
+## 21. 0점에서 first-fit까지
 
-    for (int r = 0; r < h; ++r) {
-        occ[board][y + r] |= mask;
-    }
-}
+처음에는 아무것도 하지 않는 `process`로 0점을 확인합니다. 이 단계는 쓸모없어 보이지만, 채점기가 어떤 형식으로 점수를 출력하는지 확인하는 기준선입니다.
 
-void clearPlace(int board, int y, int x, int h, int w) {
-    unsigned int mask = ((1u << w) - 1u) << x;
-
-    for (int r = 0; r < h; ++r) {
-        occ[board][y + r] &= ~mask;
-    }
-}
-```
-
-이 방식의 장점은 배치 가능 여부 검사가 빠르다는 점입니다. 특히 destroy/repair처럼 배치를 수천 번 지우고 다시 채우는 알고리즘에서는 이 차이가 큽니다.
-
-주의할 점은 폭이 32 이상이면 `unsigned long long`을 쓰거나 행을 여러 블록으로 나누어야 한다는 것입니다.
-
-## 20. 금지 칸도 bitmask에 합친다
-
-창문, 벽, 장애물, 예약 구역처럼 배치할 수 없는 칸이 있다면 이를 별도 조건으로 매번 검사할 필요가 없습니다. 처음부터 점유 mask에 합치면 `canPlace`가 단순해집니다.
-
-```cpp
-unsigned int blocked[MAX_BOARD][MAX_H];
-unsigned int occ[MAX_BOARD][MAX_H];
-
-void initBoard(int board, int h) {
-    for (int y = 0; y < h; ++y) {
-        occ[board][y] = blocked[board][y];
-    }
-}
-```
-
-이렇게 하면 창문과 이미 놓인 물건을 같은 방식으로 처리할 수 있습니다.
+그다음은 가장 단순한 first-fit입니다.
 
 ```text
-배치 불가능한 칸 = blocked mask
-이미 사용한 칸 = placed item mask
-검사할 때는 둘을 구분하지 않고 occ만 본다.
-```
-
-단, 나중에 물건을 제거해야 한다면 blocked와 item mask를 분리해서 가지고 있어야 합니다. 초기화할 때는 `occ = blocked`로 시작하고, 물건을 놓고 지우는 연산은 item 영역만 바꾸는 방식이 안전합니다.
-
-## 21. first-fit 대신 위치 평가식을 만든다
-
-배치형 문제에서 가장 흔한 실수는 "처음 가능한 위치"에 바로 놓는 것입니다.
-
-```text
-for each item:
-    for y:
-        for x:
-            if canPlace(y, x):
-                place(y, x)
+for ad in input_order:
+    for building in input_order:
+        for top, left in row_major_order:
+            if place_ad(ad, building, top, left):
                 break
 ```
 
-이 방식은 빠르지만, 좋은 공간을 쉽게 망가뜨립니다. 대신 가능한 모든 좌표를 보고 점수가 가장 높은 위치를 고릅니다.
+first-fit은 빠르고 구현이 쉽습니다. 하지만 좋은 좌표를 고르지 않습니다. 처음 들어가는 위치에 바로 놓기 때문에 큰 광고가 들어갈 수 있는 공간을 작은 광고가 먼저 잘라 버릴 수 있습니다.
+
+이 단계에서 확인할 것은 점수가 높냐가 아니라, 아래 두 가지입니다.
+
+1. `place_ad` 호출 순서가 맞는가?
+2. 로컬 상태를 만들 경우 judge의 성공/실패 판단과 같은가?
+
+## 22. 정렬 greedy: 무엇을 먼저 놓을 것인가
+
+first-fit 다음에는 "무엇을 먼저 볼 것인가"를 고칩니다.
+
+이 문제에서는 광고마다 `score`, `h`, `w`가 다르고 `STORE`는 점수가 2배입니다. 그래서 입력 순서보다 아래 기준이 자연스럽습니다.
+
+```text
+광고 순서:
+- score가 높은 광고
+- score / area가 높은 광고
+- 큰 광고를 먼저 넣어야 빈 공간이 덜 망가지는 경우
+
+건물 순서:
+- STORE 먼저
+- 유효 빈칸이 큰 건물 먼저
+- 창문 때문에 모양이 까다로운 건물은 별도 평가
+```
+
+정렬 greedy는 "좋은 물건을 먼저 본다"는 의미입니다. 하지만 이것만으로는 아직 부족합니다. 같은 광고를 같은 건물에 넣더라도 좌표에 따라 이후 공간이 달라지기 때문입니다.
+
+## 23. 위치 평가식: 어디에 놓을 것인가
+
+이 문제의 분기점은 "놓을 수 있는 첫 위치"와 "나중에도 좋은 위치"를 구분하는 데 있습니다.
+
+건물 폭이 작기 때문에 각 행을 bitmask로 들면 배치 가능 여부를 빠르게 검사할 수 있습니다.
 
 ```cpp
-long long evaluatePlacement(int board, int item, int y, int x) {
-    long long value = 0;
+unsigned int occ[20][24];
 
-    value += itemScore(item);
-    value += boardBonus(board);
+int canPlaceLocal(int bid, int y, int x, int h, int w) {
+    unsigned int mask = ((1u << w) - 1u) << x;
 
-    value += contactScore(board, item, y, x);
-    value -= fragmentationPenalty(board, item, y, x);
-
-    return value;
+    for (int r = 0; r < h; ++r) {
+        if (occ[bid][y + r] & mask) return 0;
+    }
+    return 1;
 }
 ```
 
-여기서 중요한 것은 실제 점수뿐 아니라 "이 배치가 이후 repair에 좋은 형태를 남기는가"입니다.
+창문도 처음부터 `occ`에 넣어 두면, 이후 배치 검사는 "이미 막힌 칸과 겹치는가" 하나로 단순해집니다. 단, 광고를 제거해야 하므로 창문 mask와 광고 mask를 분리해서 복구할 수 있게 해야 합니다.
 
-## 22. contact-aware placement
-
-직사각형 배치 문제에서는 벽, 장애물, 기존 물건에 잘 붙여 놓는 것이 유리할 때가 많습니다. 이를 contact라고 부를 수 있습니다.
+좌표를 평가할 때는 실제 점수만 보면 부족합니다.
 
 ```text
-contact = 새 물건의 변이 벽, 장애물, 기존 물건과 맞닿는 길이
+placement value =
+    실제 점수
+  + STORE 보너스
+  + 벽, 창문, 기존 광고와 붙는 contact 보너스
+  - 빈 공간을 얇게 쪼개는 penalty
 ```
 
-contact가 높으면 빈 공간이 덜 조각나는 경우가 많습니다.
+contact가 높으면 광고가 구석이나 기존 물체에 붙어 빈 공간을 덜 조각내는 경우가 많습니다. 단, contact만 크게 주면 큰 광고가 들어갈 중앙 공간을 잃을 수 있으므로 실제 점수와 같이 봐야 합니다.
 
-```cpp
-long long placementScore(int realScore, int area, int contact) {
-    long long score = 0;
+## 24. 작은 local search의 한계
 
-    score += realScore * 1000;
-    score += contact * 10;
-    score += contact * contact * 100 / area;
-
-    return score;
-}
-```
-
-`contact * contact / area` 같은 항을 넣으면 작은 물건이 구석이나 틈에 깔끔하게 붙는 배치를 더 선호하게 만들 수 있습니다.
-
-단, contact만 너무 크게 주면 큰 물건이 들어갈 중앙 공간을 잃을 수 있습니다. 따라서 실제 점수, 면적, 남은 공간 평가와 함께 써야 합니다.
-
-## 23. repair 함수가 강해야 destroy/repair가 강하다
-
-`destroy/repair`는 일부 배치를 지운 뒤 다시 채우는 방식입니다.
+정렬 greedy 이후에는 이미 놓은 광고 하나를 빼고 다른 광고를 넣어 보는 작은 local search를 시도할 수 있습니다.
 
 ```text
-current = greedy_initial_solution()
+1. 점수 대비 효율이 낮은 광고 하나를 제거한다.
+2. 미배치 광고 중 좋은 후보를 몇 개 넣어 본다.
+3. 점수가 오르면 유지하고, 아니면 rollback한다.
+```
+
+이 방식은 local search의 감각을 잡기 좋습니다. 하지만 배치 문제에서는 광고 하나만 빼도 빈 공간 구조가 크게 바뀌지 않습니다. 이미 나쁘게 쪼개진 공간은 작은 이동만으로 회복하기 어렵습니다.
+
+이 지점에서 "작은 move가 충분한 문제인가, 큰 구조를 다시 만들어야 하는 문제인가"를 판단해야 합니다.
+
+## 25. 큰 destroy/repair
+
+배치 구조를 바꾸려면 한 번에 여러 광고를 지우고 다시 채우는 편이 강합니다.
+
+```text
+best = contact-aware greedy 결과
 
 repeat:
-    backup = current
-    remove several placed items
-    repair by greedy placement
+    current = best 복사
+    광고 여러 개를 제거한다
+    제거된 광고와 미배치 광고를 다시 후보로 만든다
+    contact-aware greedy로 다시 채운다
 
-    if score(current) improves:
-        keep current
-    else:
-        rollback to backup
+    current가 좋아졌으면 best로 채택한다
 ```
 
-여기서 핵심은 repair입니다. repair가 단순 first-fit이면, destroy를 여러 번 해도 비슷한 답으로 돌아가기 쉽습니다. 반대로 repair가 contact-aware placement를 쓰면 제거된 공간을 더 좋은 형태로 다시 채울 수 있습니다.
+여기서 중요한 것은 destroy보다 repair입니다. repair가 first-fit이면 큰 destroy를 해도 낮은 품질의 배치로 돌아가기 쉽습니다. 반대로 repair가 위치 평가식을 잘 쓰면, 같은 공간을 더 좋은 모양으로 다시 채울 수 있습니다.
 
-## 24. 작은 destroy와 큰 destroy
-
-처음에는 원소 1개나 2개를 지우는 작은 destroy를 시도할 수 있습니다. 하지만 배치형 문제에서는 작은 destroy만으로는 구조가 거의 바뀌지 않는 경우가 많습니다.
+제거 대상을 완전히 무작위로만 고를 필요도 없습니다.
 
 ```text
-작은 destroy:
-- 장점: 안정적이다.
-- 단점: 지역 최적을 벗어나기 어렵다.
-
-큰 destroy:
-- 장점: 나쁜 배치 구조를 크게 흔들 수 있다.
-- 단점: repair가 약하면 점수가 크게 떨어진다.
+- 최근에 배치한 광고
+- 점수 대비 면적 효율이 낮은 광고
+- 특정 건물 하나에 놓인 광고 전체
+- 창문 주변에서 공간을 많이 막는 광고
+- 무작위 제거와 목적 제거를 섞은 후보
 ```
 
-그래서 큰 destroy는 강한 repair 함수와 함께 써야 합니다.
+remove count는 실험값입니다. 너무 작으면 지역 최적을 벗어나지 못하고, 너무 크면 매번 거의 새로 만드는 것과 비슷해집니다.
 
-```cpp
-const int REMOVE_COUNT = 30;
-const int ITERATION_LIMIT = 10000;
+## 26. 건물 단위 partial exact repair
 
-for (int iter = 0; iter < ITERATION_LIMIT; ++iter) {
-    backupState();
-
-    for (int k = 0; k < REMOVE_COUNT; ++k) {
-        removeRandomPlacedItem();
-    }
-
-    repairByPlacementGreedy();
-
-    if (currentScore > bestScore) {
-        saveBest();
-    } else {
-        rollbackState();
-    }
-}
-```
-
-`REMOVE_COUNT`에는 정답이 없습니다. 작게 잡으면 안정적이지만 개선 폭이 작고, 크게 잡으면 넓게 움직이지만 repair 실패가 늘어납니다. 실험 로그를 남기면서 문제별로 조정해야 합니다.
-
-## 25. 제거 대상을 완전히 무작위로만 고르지 않는다
-
-큰 destroy를 할 때 제거 대상을 완전히 무작위로만 고르면 개선이 느릴 수 있습니다. 다음 기준을 섞으면 더 빠르게 좋아질 때가 많습니다.
+전체 문제를 정확히 푸는 것은 어렵습니다. 하지만 건물 하나만 떼어 내면 후보 수가 줄어듭니다.
 
 ```text
-- 최근에 배치한 물건을 지운다.
-- 점수 대비 면적 효율이 낮은 물건을 지운다.
-- 특정 구역 하나를 통째로 비운다.
-- 충돌이 많이 나는 중심 구역 주변을 비운다.
-- 랜덤 제거와 목적 제거를 일정 비율로 섞는다.
+for each building:
+    현재 building에 놓인 광고를 모두 제거한다
+    미배치 광고 중 이 building에 넣어 볼 후보를 고른다
+    DFS로 이 building만 다시 채워 본다
+    좋아졌으면 채택하고, 아니면 rollback한다
 ```
 
-예를 들어 70%는 무작위 제거, 30%는 특정 판 하나를 비우는 식으로 섞을 수 있습니다. 완전 무작위는 다양한 답을 보게 해 주고, 목적 제거는 나쁜 구조를 빠르게 고치는 데 도움이 됩니다.
+이 방식은 휴리스틱과 정확 탐색을 섞는 전형적인 패턴입니다. 전체는 greedy와 destroy/repair로 넓게 찾고, 작은 부분은 DFS나 DP로 촘촘하게 다시 봅니다.
 
-## 26. 부분 exact repair
-
-휴리스틱과 정확 알고리즘은 반대가 아닙니다. 전체 문제는 너무 커서 정확히 풀 수 없어도, 작은 부분은 정확히 다시 풀 수 있습니다.
-
-배치형 문제에서는 다음 단위를 부분 문제로 잡기 좋습니다.
+DFS는 반드시 제한을 둬야 합니다.
 
 ```text
-- 특정 판 하나
-- 특정 행 범위
-- 특정 구역
-- 최근 destroy에서 제거된 물건 집합
-- 점수가 낮은 구역과 그 주변 물건
+- 후보 수 제한
+- node 방문 수 제한
+- 남은 후보 점수 upper bound
+- 한 건물 또는 한 구역 단위 제한
 ```
 
-예를 들어 특정 판 하나에 들어갈 후보가 40개 이하라면 DFS로 다시 채워 볼 수 있습니다.
+느슨한 upper bound라도 효과가 있습니다. 남은 후보를 모두 넣는다고 가정해도 현재 best를 넘지 못하면 더 내려갈 필요가 없습니다.
 
-```cpp
-void dfsRepair(int idx, long long score) {
-    if (idx == candidateCount) {
-        updateBest(score);
-        return;
-    }
+## 27. Beam Search보다 repair가 먼저일 수 있다
 
-    int item = candidate[idx];
+Beam Search는 부분 상태의 평가식이 좋을 때 강합니다. 그런데 이 문제에서는 미완성 배치의 점수를 평가하기 어렵습니다.
 
-    // 1. 이 물건을 배치하지 않는 경우
-    dfsRepair(idx + 1, score);
-
-    // 2. 가능한 모든 위치에 배치하는 경우
-    for (int y = 0; y + height[item] <= boardH; ++y) {
-        for (int x = 0; x + width[item] <= boardW; ++x) {
-            if (!canPlace(board, y, x, height[item], width[item])) continue;
-
-            setPlace(board, y, x, height[item], width[item]);
-            dfsRepair(idx + 1, score + itemScore(item));
-            clearPlace(board, y, x, height[item], width[item]);
-        }
-    }
-}
-```
-
-이 코드는 그대로 쓰기에는 느릴 수 있습니다. 실전에서는 후보 수 제한, 점수순 정렬, 남은 최대 점수 upper bound, 시간 제한을 함께 둡니다.
-
-## 27. upper bound로 DFS 가지치기
-
-부분 exact repair가 느리면 남은 후보의 최대 가능 점수를 이용해 가지치기합니다.
-
-```cpp
-long long suffixMaxScore[MAX_CANDIDATE + 1];
-
-void dfsRepair(int idx, long long score) {
-    if (score + suffixMaxScore[idx] <= bestRepairScore) {
-        return;
-    }
-
-    if (idx == candidateCount) {
-        updateBest(score);
-        return;
-    }
-
-    // 배치하지 않는 경우와 배치하는 경우를 탐색한다.
-}
-```
-
-`suffixMaxScore[idx]`는 `idx` 이후 후보를 모두 넣는다고 가정한 느슨한 상한입니다. 실제로는 겹쳐서 모두 넣을 수 없더라도, 상한으로는 충분합니다. 이 상한조차 현재 best를 넘지 못하면 더 내려갈 필요가 없습니다.
-
-## 28. Beam Search보다 repair가 나을 때
-
-Beam Search는 후보 평가식이 정확할 때 강합니다. 하지만 배치형 문제에서는 완성 전 후보의 점수가 부정확한 경우가 많습니다.
-
-예를 들어 초반에 점수가 높은 물건을 많이 넣은 후보가 좋아 보이지만, 실제로는 남은 큰 물건이 들어갈 공간을 망쳐 최종 점수가 낮아질 수 있습니다.
-
-이런 문제에서는 다음 전략이 더 잘 맞을 수 있습니다.
+초반에 높은 점수 광고를 많이 넣은 후보가 좋아 보여도, 실제로는 큰 광고가 들어갈 공간을 망쳐 최종 점수가 낮을 수 있습니다. 이럴 때는 미완성 후보를 오래 들고 가는 것보다 완성된 답을 많이 만들고 실제 점수로 비교하는 편이 안정적입니다.
 
 ```text
-1. greedy로 빠르게 완성된 답을 만든다.
-2. 완성된 답의 실제 점수를 본다.
-3. destroy/repair로 완성된 답끼리 비교한다.
-4. 작은 구역은 exact repair로 보정한다.
+완성된 greedy 답 생성
+-> destroy/repair로 완성 답끼리 비교
+-> 작은 구역 exact repair
 ```
 
-즉, 평가가 어려운 미완성 후보를 오래 들고 가기보다, 완성된 답을 많이 만들고 실제 점수로 비교하는 쪽이 더 안정적일 수 있습니다.
+Beam Search를 쓰지 말라는 뜻은 아닙니다. 다만 이 문제에서는 repair 함수가 약한 상태에서 Beam 크기를 키우는 것보다, 먼저 repair 품질을 올리는 쪽이 점수 상승으로 이어지기 쉽습니다.
 
-## 29. 배치형 휴리스틱 체크리스트
+## 28. 단계별 로그를 읽는 방법
 
-배치형 문제를 풀 때는 아래 질문을 확인합니다.
+광고판 배치 실험 로그는 아래처럼 읽을 수 있습니다.
 
-1. 점유 상태 검사가 충분히 빠른가?
-2. first-fit으로 빈 공간을 망가뜨리고 있지 않은가?
-3. 위치 평가식에 실제 점수 외의 packing 품질이 들어 있는가?
-4. repair 함수가 destroy 이후 좋은 답을 다시 만들 수 있는가?
-5. destroy 크기가 너무 작거나 너무 크지 않은가?
-6. 작은 부분 문제를 exact DFS/DP로 다시 풀 수 있는가?
-7. seed, remove count, 반복 수, 후보 수를 실험 로그로 남겼는가?
-8. 특정 seed에서만 좋아진 파라미터를 전체에 적용하고 있지 않은가?
+| 단계 | 관찰할 변화 | 의미 |
+| ---: | --- | --- |
+| 0 | 아무것도 하지 않음 | 채점 출력과 기준선 확인 |
+| 1 | 입력 순서 first-fit | 유효한 답을 만드는 최소선 |
+| 2 | 점수순 greedy | 무엇을 먼저 놓을지의 효과 |
+| 3 | 작은 local search | 작은 move의 개선 폭과 한계 |
+| 4 | contact-aware greedy | repair 함수의 품질 개선 |
+| 5 | large destroy/repair | 배치 구조를 크게 흔드는 효과 |
+| 6 | building exact repair | 작은 부분 문제를 정확히 다시 푸는 효과 |
+| 7 | 반복 수와 제거 개수 튜닝 | seed와 파라미터 로그의 중요성 |
 
-배치형 문제는 한 번의 깔끔한 공식보다 상태 표현, 위치 평가식, repair 품질, 반복 실험이 더 중요합니다. 처음에는 단순 greedy로 시작하고, 그 다음에는 "어디에 놓을지"와 "무엇을 다시 지울지"를 점점 똑똑하게 만드는 방향으로 개선하는 것이 좋습니다.
+본문에 특정 점수를 외울 필요는 없습니다. 중요한 것은 아래 결론입니다.
+
+```text
+first-fit에서 정렬 greedy로 갈 때 큰 폭으로 좋아진다.
+contact-aware greedy는 단독 점수보다 repair 품질을 올리는 역할이 크다.
+large destroy/repair는 작은 local search가 못 바꾸는 배치 구조를 바꾼다.
+partial exact repair는 마지막 빈틈을 줄이는 보정 단계다.
+```
+
+## 29. 제출 전 체크리스트
+
+광고판 배치 같은 문제를 제출하기 전에는 아래를 확인합니다.
+
+1. 로컬 `canPlace`와 실제 `place_ad`의 판단이 같은가?
+2. 창문 mask와 광고 mask를 분리해 rollback할 수 있는가?
+3. `STORE` 2배 보너스가 광고 순서와 건물 순서에 반영되어 있는가?
+4. 위치 평가식이 실제 점수만 보지 않고 남은 공간 품질도 보는가?
+5. destroy 후 repair가 first-fit으로 돌아가지 않는가?
+6. remove count, 반복 수, 후보 수를 seed별로 기록했는가?
+7. exact repair는 node limit과 upper bound가 있어 시간 안에 끝나는가?
+8. 한두 TC에서만 좋아진 파라미터를 전체에 적용하고 있지 않은가?
 
 ## 30. 연습 문제
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
+| 입문 | [맨해튼 TSP](/practice/TSPTESTX) | 순열 해와 점수 함수를 만들고 초기해를 개선 | nearest neighbor, 2-opt |
 | 표준 | [광고판 도시 배치](/practice/BILLCITY) | 창문과 기존 광고를 bitmask 점유 상태로 합치고, contact-aware greedy repair를 구현 | bitmask, placement score, contact |
-| 응용 | [상자 쌓기](/practice/STACKING) | 3D 배치에서 작은 move와 큰 destroy/repair의 차이 확인 | packing, fragmentation, repair |
-| 함정 | TODO: 부분 exact repair 검증 `/practice/...` 문제 필요 | 작은 구역만 정확 탐색으로 다시 푸는 기준 잡기 | upper bound, candidate limit |
+| 응용 | [상자 쌓기](/practice/STACKING) | 배치 문제에서 작은 move와 큰 destroy/repair의 차이 확인 | packing, fragmentation, repair |
+| 함정 | [작업 스케줄링](/practice/SCHEDULX) | 지역 탐색이 특정 seed에만 맞춰지는 문제 점검 | load balance, seed |
