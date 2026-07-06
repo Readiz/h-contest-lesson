@@ -4,6 +4,7 @@
 
 ## 2026-07 레슨 분류 및 보강
 
+- 휴리스틱 알고리즘 레슨에 배치형 문제 전용 `placement-and-repair` 페이지를 추가하고, `BILLCITY` 연습 링크와 bitmask/contact-aware destroy-repair 패턴을 연결했습니다.
 - `sqrt-decomposition`을 직접 학습 트랙인 `heuristic-notes`로 옮겼습니다.
 - Hungarian Algorithm 레슨을 심화 노트에 추가하고, potential/tight edge/augmenting path 시각화와 `O(N^3)` assignment 구현을 포함했습니다.
 - Hungarian Algorithm 레슨에 순수 C 배열 구현, 손계산 zero trace, 구현 실수 체크리스트, `COUPANG2` 작은 batch 배정 활용 예시를 보강했습니다.
