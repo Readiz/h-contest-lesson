@@ -4,6 +4,7 @@
 
 ## 2026-07 레슨 분류 및 보강
 
+- 휴리스틱 알고리즘 레슨에 `ORDERING` 배송 순서 개선 사례를 추가해 열린 경로의 점수 계약, nearest neighbor 초기해, 2-opt 차분, insertion, 작은 입력 exact 탐색을 한 흐름으로 연결했습니다.
 - 휴리스틱 알고리즘 레슨의 하단 흐름을 `점검 질문 -> 실전 예시 -> 연습 문제`로 다듬고, `BILLCITY` case study에서 bitmask/contact-aware destroy-repair 패턴을 따라가도록 보강했습니다.
 - `sqrt-decomposition`을 직접 학습 트랙인 `heuristic-notes`로 옮겼습니다.
 - Hungarian Algorithm 레슨을 심화 노트에 추가하고, potential/tight edge/augmenting path 시각화와 `O(N^3)` assignment 구현을 포함했습니다.

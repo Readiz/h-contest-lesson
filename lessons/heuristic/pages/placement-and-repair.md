@@ -245,7 +245,10 @@ partial exact repair는 마지막 빈틈을 줄이는 보정 단계다.
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
+| 입문 | [미니 물품 배송](/practice/ORDERING) | 열린 경로의 유효한 순열을 만들고 nearest neighbor와 2-opt로 개선 | permutation, nearest neighbor, 2-opt |
 | 입문 | [맨해튼 TSP](/practice/TSPTESTX) | 순열 해와 점수 함수를 만들고 초기해를 개선 | nearest neighbor, 2-opt |
 | 표준 | [광고판 도시 배치](/practice/BILLCITY) | 창문과 기존 광고를 bitmask 점유 상태로 합치고, contact-aware greedy repair를 구현 | bitmask, placement score, contact |
 | 응용 | [상자 쌓기](/practice/STACKING) | 배치 문제에서 작은 move와 큰 destroy/repair의 차이 확인 | packing, fragmentation, repair |
 | 함정 | [작업 스케줄링](/practice/SCHEDULX) | 지역 탐색이 특정 seed에만 맞춰지는 문제 점검 | load balance, seed |
+
+다음 페이지에서는 같은 휴리스틱 설계 순서를 순열 문제에 적용합니다. [미니 물품 배송](/practice/ORDERING)에서는 배치 상태 대신 방문 순서를 들고, 전체 경로를 매번 다시 계산하지 않는 2-opt 차분 계산이 핵심이 됩니다.

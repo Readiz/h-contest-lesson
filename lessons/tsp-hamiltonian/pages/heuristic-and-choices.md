@@ -184,6 +184,6 @@ TSP나 해밀턴 경로처럼 보이는 문제를 만나면 아래 순서로 판
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
 | 입문 | TODO: 작은 해밀턴 경로 완전탐색 문제 추가 | 순열 탐색과 pruning 기준 확인 | permutation, pruning |
-| 표준 | [맨해튼 해밀턴 경로](/practice/HAMPATHX) | 시작점 고정 경로를 만들고 거리 합 줄이기 | Hamiltonian path |
+| 표준 | [미니 물품 배송](/practice/ORDERING) | 시작점 고정 열린 경로를 만들고 거리 합 줄이기 | Hamiltonian path, nearest neighbor, 2-opt |
 | 응용 | [맨해튼 TSP](/practice/TSPTESTX) | 순회 비용과 마지막 복귀 비용을 함께 최적화 | TSP cycle, 2-opt |
 | 함정 | TODO: 비트마스크 TSP DP 문제 추가 | `mask`, `last`, 경로 복원과 메모리 확인 | Held-Karp |

@@ -384,8 +384,8 @@
     {
       "lessonId": "heuristic",
       "title": "휴리스틱 알고리즘",
-      "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 익힙니다.",
-      "summary": "점수 함수, 초기해, 지역 탐색, 담금질 기법, 시간 관리와 실험 로그까지 이어지는 휴리스틱 입문",
+      "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 두 가지 실전 사례와 함께 익힙니다.",
+      "summary": "점수 함수, 초기해, 지역 탐색, 담금질 기법, 시간 관리와 실험 로그를 배치 및 경로 개선 사례로 연결하는 휴리스틱 입문",
       "order": 16,
       "folderId": "heuristic-notes",
       "tags": [
@@ -397,10 +397,12 @@
         "case-study",
         "destroy-repair",
         "bitmask",
+        "route",
+        "two-opt",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 100,
+      "estimatedMinutes": 125,
       "prerequisites": [
         "greedy",
         "dynamic-programming"
@@ -447,6 +449,13 @@
           "description": "BILLCITY를 따라가며 bitmask 상태 표현, 위치 평가식, 큰 destroy/repair, 부분 exact repair가 한 풀이 안에서 연결되는 흐름을 봅니다.",
           "order": 50,
           "file": "pages/placement-and-repair.md"
+        },
+        {
+          "pageId": "ordering-route-improvement",
+          "title": "실전 예시: 배송 순서 개선",
+          "description": "ORDERING을 따라가며 열린 경로 점수, nearest neighbor 초기해, 2-opt 차분 계산, insertion과 작은 입력 exact 탐색을 연결합니다.",
+          "order": 60,
+          "file": "pages/ordering-route-improvement.md"
         }
       ],
       "lessonType": "overview",
