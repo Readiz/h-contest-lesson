@@ -384,8 +384,8 @@
     {
       "lessonId": "heuristic",
       "title": "휴리스틱 알고리즘",
-      "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 두 가지 실전 사례와 함께 익힙니다.",
-      "summary": "점수 함수, 초기해, 지역 탐색, 담금질 기법, 시간 관리와 실험 로그를 배치 및 경로 개선 사례로 연결하는 휴리스틱 입문",
+      "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 세 가지 실전 사례와 함께 익힙니다.",
+      "summary": "점수 함수, 초기해, 지역 탐색, Beam Search, 시간 관리와 실험 로그를 배치·경로 개선·다일 일정 사례로 연결하는 휴리스틱 입문",
       "order": 16,
       "folderId": "heuristic-notes",
       "tags": [
@@ -399,10 +399,12 @@
         "bitmask",
         "route",
         "two-opt",
+        "beam-search",
+        "schedule",
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 125,
+      "estimatedMinutes": 155,
       "prerequisites": [
         "greedy",
         "dynamic-programming"
@@ -456,6 +458,13 @@
           "description": "ORDERING을 따라가며 열린 경로 점수, nearest neighbor 초기해, 2-opt 차분 계산, insertion과 작은 입력 exact 탐색을 연결합니다.",
           "order": 60,
           "file": "pages/ordering-route-improvement.md"
+        },
+        {
+          "pageId": "aircontech-beam-search",
+          "title": "실전 예시: 31일 설치 일정 Beam Search",
+          "description": "AIRCONTECH를 따라가며 다음 행동 상위 8개와 경로 상태 상위 32개를 남기는 두 단계 가지치기, 실제 점수와 탐색 평가값의 분리를 연결합니다.",
+          "order": 70,
+          "file": "pages/aircontech-beam-search.md"
         }
       ],
       "lessonType": "overview",
