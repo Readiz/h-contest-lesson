@@ -51,40 +51,71 @@
     },
     {
       "lessonId": "cpp-contest-basics",
-      "title": "대회용 C++ 기본기",
-      "description": "빠른 입출력, STL 컨테이너, long long, overflow, 디버깅 출력처럼 알고리즘 구현 전에 필요한 C++ 기본기를 정리합니다.",
-      "summary": "대회용 C++ 템플릿, vector/string/pair/struct, long long과 overflow, 컨테이너 선택, 디버깅 습관까지 이어지는 구현 기본기",
+      "title": "실전 C++ 기본기와 공통 코드",
+      "description": "함수 구현형 제출 계약, TC 초기화와 고정 배열, STL 없는 난수·정렬·큐·힙을 익히고 ORDERING 기준선으로 연결합니다.",
+      "summary": "공개 API 기반 user.cpp, 독립적으로 복사하는 공통 코드, 경계·재현성 검증, 실제 채점기로 유효한 기준선 만들기",
       "order": 3,
       "folderId": "heuristic-notes",
       "tags": [
         "cpp",
-        "io",
-        "stl",
+        "no-stl",
+        "snippets",
+        "fixed-array",
         "overflow",
-        "debugging",
         "practice"
       ],
       "level": "beginner",
-      "estimatedMinutes": 35,
+      "estimatedMinutes": 65,
       "prerequisites": [
         "complexity-input-size"
       ],
       "nextLessons": [
+        "heuristic",
         "sorting",
-        "bfs-dfs-grid",
-        "dynamic-programming"
+        "bfs-dfs-grid"
       ],
       "relatedLessons": [
-        "priority-queue-heap"
+        "priority-queue-heap",
+        "testing-and-stress"
       ],
-      "pages": [],
+      "pages": [
+        {
+          "pageId": "submission-and-state",
+          "title": "제출 계약과 상태 초기화",
+          "description": "공개 API와 함수 시그니처, 메모리·정수 범위, TC 초기화를 확인합니다.",
+          "order": 1,
+          "file": "pages/submission-and-state.md"
+        },
+        {
+          "pageId": "arrays-and-random",
+          "title": "배열과 재현 가능한 난수",
+          "description": "복사·초기화·교환과 독립적인 solver seed, 창고를 고정한 부분 셔플을 익힙니다.",
+          "order": 2,
+          "file": "pages/arrays-and-random.md"
+        },
+        {
+          "pageId": "sorting-queue-heap",
+          "title": "정렬·큐·최소 힙",
+          "description": "필요한 처리 순서에 맞춰 공통 코드를 고르고 용량과 실패 조건을 확인합니다.",
+          "order": 3,
+          "file": "pages/sorting-queue-heap.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "작은 검증부터 ORDERING까지",
+          "description": "코드 블록 자체의 실행 검증과 실제 문제 채점기를 사용한 기준선 만들기를 연결합니다.",
+          "order": 4,
+          "file": "pages/practice.md"
+        }
+      ],
       "lessonType": "core",
-      "practiceStatus": "todo",
+      "practiceStatus": "linked",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
         "implementation"
-      ]
+      ],
+      "status": "published"
     },
     {
       "lessonId": "sorting",

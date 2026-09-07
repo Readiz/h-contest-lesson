@@ -133,6 +133,12 @@ ZeroOneBFS
 
 ## 레슨 작성 스타일
 
+직접 풀이 트랙(`heuristic-notes`)의 새 제출 예제는 h-contest 함수 구현형 `user.cpp`를 기준으로 작성합니다. STL과 표준 헤더를 쓰지 않고, 공개 API·고정 배열·직접 구현을 기본으로 합니다. `struct`, 참조, `template`는 사용 가능합니다. 일반 C++/STL이 필요한 참고 예제와 로컬 테스트 하네스는 적용 환경을 명시합니다. 기존 레슨의 전환은 ROADMAP 순서로 진행합니다.
+
+배열·난수·정렬·큐·힙의 공통 코드는 [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md)를 원문으로 사용합니다. 문제별 예제에는 필요한 블록 이름, 배열 상한, 인덱스 범위, TC 초기화 위치를 함께 적습니다. 설명 없이 거대한 템플릿을 전부 복사시키지 않습니다. 새 공통 코드가 필요하면 실제 사용 문제와 경계 검증을 함께 추가합니다.
+
+이 레슨의 `cpp compile-check snippet=<name>` 블록은 `python3 scripts/check_cpp_basics.py`가 직접 추출하여 실행 검증합니다. 전체 validator에서도 호출하므로 C++17 컴파일러와 ASan/UBSan 지원이 필요합니다. 독립적으로 복사할 블록은 다른 블록에 대한 숨은 의존성을 두지 않습니다. 제출 소스에는 테스트 하네스의 헤더와 `main`을 넣지 않습니다.
+
 각 레슨은 가능하면 아래 흐름을 따릅니다.
 
 1. 언제 이 개념이 필요한가
@@ -185,11 +191,8 @@ C++ 코드 블록은 기본적으로 문법을 직접 확인합니다. 독립 tr
 
 ````markdown
 ```cpp compile-check
-#include <bits/stdc++.h>
-using namespace std;
-
-int main() {
-    return 0;
+long long square(int value) {
+    return 1LL * value * value;
 }
 ```
 ````

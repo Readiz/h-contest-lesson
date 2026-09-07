@@ -510,6 +510,7 @@ def main() -> None:
 
     validate_lesson_references(lessons, seen_ids)
     validate_generated_files()
+    subprocess.run([sys.executable, str(ROOT / "scripts/check_cpp_basics.py")], check=True)
 
     print(f"OK: {len(lessons)} lessons validated")
 

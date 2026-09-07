@@ -6,9 +6,9 @@ This repository is the source of truth for h-contest heuristic notes. Lesson sou
 
 - 전체 카탈로그: [index.html](index.html)
 - Published manifest: https://blog.readiz.com/h-contest-lesson/lessons.json
-- API mirror: https://h.readiz.com/api/lessons
+- API mirror (h-contest 로그인 필요): https://h.readiz.com/api/lessons
 - 공개 기록: [CHANGELOG.md](CHANGELOG.md)
-- 미공개 후보와 practice TODO: [ROADMAP.md](ROADMAP.md)
+- 실전 풀이 중심 개편 계획과 practice TODO: [ROADMAP.md](ROADMAP.md)
 - 기여 절차: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 작업 흐름
@@ -26,15 +26,13 @@ python3 scripts/validate_lessons.py
 
 ## 학습 로드맵
 
-처음 보는 주제라면 아래 순서로 훑는 것을 권장합니다. 이미 익숙한 내용은 건너뛰고, 각 레슨의 `prerequisites`와 `nextLessons` 메타데이터를 참고해 앞뒤 개념을 확인하세요.
+h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. 기존 카탈로그 전체의 순번과 선수 관계 개편은 [ROADMAP.md](ROADMAP.md)에 따라 진행합니다. 참고 노트를 모두 선행 학습할 필요는 없습니다.
 
-1. 입문 0단계: 복잡도 감각, 대회용 C++ 기본기
-2. 입문 1단계: 정렬, 누적합, 이분 탐색, 투 포인터
-3. 입문 2단계: BFS/DFS, 그리디, 우선순위 큐, Union-Find, 좌표 압축
-4. 중급 1단계: DP, Dijkstra, 위상 정렬, Fenwick Tree, Segment Tree, 모듈러 연산
-5. 중급 2단계: 트리 심화, TSP, Treap, 휴리스틱
-6. 심화 확장: 문자열 매칭, SCC/2-SAT, Flow, 정수론 심화, 기하, 오프라인 쿼리, 검증/증명
-7. 참고 노트: 현재 문제 대비 우선순위는 낮지만 휴리스틱 아이디어 확장에 도움이 되는 심화/레퍼런스 주제
+1. [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md): 제출 계약 → 고정 배열 → 필요한 스니펫 → ORDERING의 유효한 기준선.
+2. [ORDERING 경로 개선](lessons/heuristic/pages/ordering-route-improvement.md): 번호 순서 → nearest neighbor → 2-opt. 매 단계 같은 TC의 비용과 실행 시간을 비교합니다.
+3. [휴리스틱 모델링과 점수](lessons/heuristic/lesson.md): 상태·유효성·목적 함수·이웃 연산·차분 평가를 정리합니다.
+4. 이후 실전 연결 개편: 실험/검증 → SA → MINEEXPLORE와 AIRCONTECH의 탐색/행동 분리 → 배정·경로·배치 문제. 현재 진행 단계와 완료 기준은 로드맵을 따릅니다.
+5. 정렬·자료구조·그래프·수학과 참고 노트는 문제에서 필요한 작업과 신호를 보고 찾아봅니다.
 
 ## 문제 신호별 빠른 길찾기
 
