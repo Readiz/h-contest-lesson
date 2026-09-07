@@ -1,6 +1,6 @@
 # Segment Tree: Bottom-up 구현
 
-## 6. Bottom-up 반복 구현
+## Bottom-up 반복 구현
 
 Segment Tree는 재귀 없이 bottom-up으로도 구현할 수 있습니다. 이 방식은 leaf를 배열 뒤쪽에 놓고, 부모를 앞쪽에 채웁니다.
 

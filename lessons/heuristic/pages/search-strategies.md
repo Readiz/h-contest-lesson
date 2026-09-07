@@ -1,8 +1,8 @@
 # 휴리스틱 알고리즘: 초기해와 지역 탐색
 
-## 6. 초기해 만들기
+## 초기해 만들기
 
-좋은 초기해는 이후 탐색의 출발점을 높여 줍니다. 초기해는 반드시 복잡할 필요가 없습니다. 아래 코드는 작업 순서를 한 번 섞은 뒤, 현재 load가 가장 작은 기계에 작업을 넣습니다.
+아래 코드는 작업 순서를 한 번 섞은 뒤, 현재 load가 가장 작은 기계에 작업을 넣습니다.
 
 ```cpp
 void makeInitialState(const Problem& p, State& s, int randomized) {
@@ -34,7 +34,7 @@ void makeInitialState(const Problem& p, State& s, int randomized) {
 
 초기해를 여러 번 만들 수 있다면 `randomized = 1`로 seed마다 다른 출발점을 얻을 수 있습니다. 반대로 디버깅 중에는 `randomized = 0`으로 고정해 같은 결과를 재현하는 편이 좋습니다.
 
-## 7. 지역 탐색
+## 지역 탐색
 
 지역 탐색은 현재 답을 조금 바꾼 이웃 답을 만들어 보고, 더 좋으면 그 답으로 이동하는 방식입니다.
 
@@ -119,7 +119,7 @@ void improveByHillClimb(const Problem& p, State& current, State& best, long long
 
 이 방식은 이해하기 쉽지만, 한 번 주변에서 더 좋은 답이 없어지면 멈추기 쉽습니다. 이것을 지역 최적이라고 부릅니다.
 
-## 8. 나쁜 이동도 가끔 받아들이기
+## 나쁜 이동도 가끔 받아들이기
 
 지역 최적을 벗어나려면 가끔은 점수가 조금 나빠지는 이동도 받아들여야 합니다. 대표적인 방법이 simulated annealing, 즉 담금질 기법입니다.
 
@@ -173,7 +173,7 @@ accept_probability = 2^(-loss / temperature)
 
 ![어닐링 채택 확률 비교](../lesson-assets/annealing-acceptance.svg)
 
-헤더 없는 근사는 같은 온도에서는 더 넓게 움직입니다. 보정이 없으면 `0.5T`처럼 중간 손해도 이전 단계와 같은 확률로 받아들입니다. 선형 보정은 이 중간 구간을 완만하게 내려 주는 역할을 합니다. 전체적인 차이는 온도 스케일로 조정하면 됩니다. 같은 실제 채택률을 원하면 온도를 더 작게 잡으면 됩니다. 따라서 SA 튜닝의 핵심은 수식의 상수보다 `START_TEMP`, `END_TEMP`, 반복 횟수, move 크기입니다.
+헤더 없는 근사는 같은 온도에서는 더 넓게 움직입니다. 보정이 없으면 `0.5T`처럼 중간 손해도 이전 단계와 같은 확률로 받아들입니다. 선형 보정은 이 중간 구간을 완만하게 내려 주는 역할을 합니다. 전체적인 차이는 온도 스케일로 조정하면 됩니다. 같은 실제 채택률을 원하면 온도를 더 작게 잡으면 됩니다.
 
 ### 실전 구현: 헤더 없이 쓰는 근사
 
@@ -213,17 +213,6 @@ int acceptMove(long long diff, long long temperature) {
 ```
 
 `remain == 0`이면 `highChance`를 그대로 쓰고, `remain`이 `temperature`에 가까워질수록 `lowChance`에 가까워집니다. 보정식을 빼면 더 단순하지만, `loss < temperature`인 모든 이동이 같은 확률로 처리됩니다. 이 한 줄을 넣으면 작은 손해와 큰 손해를 조금 더 자연스럽게 구분할 수 있습니다.
-
-예를 들어 `loss == temperature`이면 약 50%만 받아들입니다. `loss == 3 * temperature`이면 확률을 세 번 절반으로 줄였으므로 약 12%만 받아들입니다. `loss`가 그 사이에 있으면 확률도 중간값으로 내려갑니다.
-
-| `loss` | 채택률 |
-| --- | --- |
-| `0` | 약 100% |
-| `temperature / 2` | 약 75% |
-| `temperature` | 약 50% |
-| `temperature + temperature / 2` | 약 37% |
-| `2 * temperature` | 약 25% |
-| `3 * temperature` | 약 12% |
 
 ### 온도는 어떻게 잡는가
 
@@ -329,5 +318,3 @@ void improveByAnnealing(const Problem& p, State& current, State& best, long long
     }
 }
 ```
-
-이 정도로 시작한 뒤 입력 묶음별 점수와 초반/중반/후반 채택률을 보고 조정합니다. SA는 한 번에 맞히는 공식이라기보다, 점수 변화 스케일을 재고 그 스케일에 맞춰 온도를 움직이는 절차입니다.

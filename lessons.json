@@ -183,7 +183,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -332,7 +332,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -471,8 +471,8 @@
         },
         {
           "pageId": "experiments-and-checklist",
-          "title": "실험 로그와 점검",
-          "description": "실험 로그, 개선 연산, 정확한 알고리즘과의 결합, 최종 점검을 모았습니다.",
+          "title": "실험 로그와 개선 연산",
+          "description": "같은 입력에서 실험을 비교하고 swap·reverse 등 개선 연산을 구현합니다.",
           "order": 40,
           "file": "pages/experiments-and-checklist.md"
         },
@@ -600,21 +600,14 @@
         },
         {
           "pageId": "digit-dp-and-optimization",
-          "title": "Digit DP와 최적화 감각",
-          "description": "Digit DP, rolling array, DP 최적화 질문, 실수 점검과 문제 신호를 정리합니다.",
+          "title": "Digit DP와 메모리 절약",
+          "description": "자릿수 상태로 수를 세고, rolling array로 DP 메모리를 줄입니다.",
           "order": 40,
           "file": "pages/digit-dp-and-optimization.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "연습 문제",
-          "description": "DP 유형별 연습 순서와 아직 필요한 h-contest 문제 TODO를 관리합니다.",
-          "order": 50,
-          "file": "pages/practice-set.md"
         }
       ],
       "lessonType": "core",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -669,8 +662,8 @@
         },
         {
           "pageId": "heuristic-and-choices",
-          "title": "휴리스틱 개선과 선택 기준",
-          "description": "큰 입력에서 쓰는 nearest neighbor, 2-opt, 근사와 선택 순서를 정리합니다.",
+          "title": "휴리스틱 개선과 근사",
+          "description": "Nearest Neighbor, 2-opt, 재시도와 근사 보장의 조건을 다룹니다.",
           "order": 30,
           "file": "pages/heuristic-and-choices.md"
         }
@@ -797,7 +790,7 @@
         {
           "pageId": "mst-kruskal-prim",
           "title": "최소 신장 트리",
-          "description": "Kruskal, Prim, 절단 성질, MST 실수와 연습 문제 TODO를 정리합니다.",
+          "description": "절단 성질로 Kruskal과 Prim의 선택을 설명하고 구현합니다.",
           "order": 30,
           "file": "pages/mst-kruskal-prim.md"
         }
@@ -1211,7 +1204,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -1505,7 +1498,7 @@
         {
           "pageId": "monoid-and-lazy-composition",
           "title": "Monoid와 Lazy 합성",
-          "description": "merge, 항등원, lazy 합성 규칙, 구현 선택 기준과 연습 문제를 정리합니다.",
+          "description": "합 이외의 질의와 덧셈·대입이 섞인 업데이트를 다룹니다.",
           "order": 40,
           "file": "pages/monoid-and-lazy-composition.md"
         }
@@ -1934,7 +1927,7 @@
         {
           "pageId": "order-statistics-and-implicit",
           "title": "순위, 전체 구현, Implicit Treap",
-          "description": "순위 질의, 전체 구현, Implicit Treap, 구조 비교와 실수 포인트를 모았습니다.",
+          "description": "subtree 크기로 순위를 찾고, 위치 기준의 split으로 구간을 자르고 붙입니다.",
           "order": 30,
           "file": "pages/order-statistics-and-implicit.md"
         }
@@ -2912,7 +2905,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -3496,7 +3489,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [

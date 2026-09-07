@@ -2,7 +2,7 @@
 
 공통 코드는 복사 직후에 작은 입력으로 검사합니다. 알고리즘과 자료구조의 오류를 한꺼번에 추적하지 않도록, 이 단계의 목표를 **범위·순서·초기화가 맞는 상태**로 잡습니다.
 
-## 1. 로컬에서 끝나는 공통 코드 연습
+## 로컬에서 끝나는 공통 코드 연습
 
 저장소 루트에서 다음 명령을 실행합니다. Python 3과 C++17 컴파일러가 필요합니다.
 
@@ -24,7 +24,7 @@ python3 scripts/check_cpp_basics.py
 
 테스트 통과는 이 블록들의 동작을 확인한 결과입니다. 실제 문제의 배열 상한, 시간 제한, 점수까지 확인한 결과는 아닙니다.
 
-## 2. 실제 ORDERING 채점기로 유효한 기준선 만들기
+## 실제 ORDERING 채점기로 유효한 기준선 만들기
 
 [ORDERING](/practice/ORDERING)의 패키지에서 `main.cpp`와 제공 `user.cpp`를 별도 작업 폴더로 복사합니다. `user.cpp`에는 첫 페이지의 `ordering-baseline` 블록을 넣습니다. 원본 문제 패키지의 템플릿은 풀이로 덮어쓰지 않습니다.
 
@@ -45,7 +45,7 @@ c++ -std=c++17 -O2 main.cpp user.cpp -o ordering-baseline
 
 첫 개선은 [ORDERING 경로 개선 사례](https://h.readiz.com/learn/heuristic/ordering-route-improvement)의 nearest neighbor입니다. 번호 순서 → 가까운 곳부터 선택 → 2-opt 순서로 한 번에 한 요소만 바꾸고 같은 TC에서 비교합니다. 난수 셔플이나 SA는 이 비교가 가능해진 다음에 추가합니다.
 
-## 3. 실전 문제로 옮길 때
+## 실전 문제로 옮길 때
 
 | 문제 | 공통 코드가 맡는 부분 | 별도로 설계할 부분 |
 | --- | --- | --- |
@@ -53,5 +53,3 @@ c++ -std=c++17 -O2 main.cpp user.cpp -o ordering-baseline
 | [MINEEXPLORE](/practice/MINEEXPLORE) | 관측 상태 배열, 탐색 후보 관리 | 공개 API로 얻는 정보, 탐색과 실제 행동의 구분 |
 | [COUPANG2](/practice/COUPANG2) | 주문 ID·정렬·인덱스 목록 | 재고 배정, 배송 경로, 적재 제약 |
 | [AIRCONTECH](/practice/AIRCONTECH) | 후보 버퍼·복사·우선순위 | 미래 평가, 빔 너비, 실행할 행동 수 |
-
-공통 코드는 기초 동작을 줄여 줍니다. 좋은 상태 표현, 제약을 지키는 이동 연산, 점수의 차분 계산까지 대신하지는 않습니다. 이 부분을 이후 문제별 레슨에서 하나씩 연결합니다.

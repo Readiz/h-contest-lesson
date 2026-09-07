@@ -1,6 +1,6 @@
 # Segment Tree: 기본 구간 질의
 
-## 1. 구간을 반으로 나누는 트리
+## 구간을 반으로 나누는 트리
 
 Segment Tree의 각 노드는 배열의 한 구간을 담당합니다.
 
@@ -24,7 +24,7 @@ node [l, r] = a[l] + a[l + 1] + ... + a[r]
 
 구간 최솟값이면 합 대신 최솟값을 저장하면 됩니다. 중요한 점은 두 자식의 값을 합쳐 부모 값을 만들 수 있어야 한다는 것입니다.
 
-## 2. Top-down 재귀 구현
+## Top-down 재귀 구현
 
 가장 설명하기 쉬운 구현은 재귀로 구간을 내려가는 top-down 방식입니다. `tree[node]`가 `[start, end]` 구간의 값을 저장한다고 합시다.
 
@@ -44,7 +44,7 @@ void build(int node, int start, int end) {
 
 `node * 2`는 왼쪽 자식, `node * 2 + 1`은 오른쪽 자식입니다. 구현을 단순하게 하기 위해 `tree` 배열 크기는 보통 `4 * n`으로 잡습니다.
 
-## 3. 구간 질의
+## 구간 질의
 
 구간 `[left, right]`의 합을 구할 때는 현재 노드의 구간 `[start, end]`와의 관계를 봅니다.
 
@@ -72,7 +72,7 @@ long long query(int node, int start, int end, int left, int right) {
 
 한 질의에서 내려가는 노드는 트리 높이마다 많아야 몇 개씩입니다. 그래서 시간 복잡도는 `O(log n)`입니다.
 
-## 4. 점 업데이트
+## 점 업데이트
 
 한 위치 `idx`의 값을 `newValue`로 바꿀 때는 leaf까지 내려간 뒤, 돌아오면서 지나온 노드 값을 다시 계산합니다.
 
@@ -96,7 +96,7 @@ void update(int node, int start, int end, int idx, long long newValue) {
 
 변한 위치를 포함하는 노드만 고치면 되므로 점 업데이트도 `O(log n)`입니다.
 
-## 5. Top-down 전체 구현
+## Top-down 전체 구현
 
 아래 구현은 0-indexed 배열에서 구간 합과 점 업데이트를 처리합니다.
 

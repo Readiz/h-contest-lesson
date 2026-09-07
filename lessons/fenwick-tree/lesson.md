@@ -14,7 +14,7 @@ Fenwick Tree는 배열의 **prefix 합**을 빠르게 관리하는 자료구조�
 
 Segment Tree보다 할 수 있는 일은 좁지만, 구간 합처럼 prefix로 표현되는 문제에서는 코드가 짧고 빠릅니다.
 
-## 1. prefix 합으로 생각하기
+## prefix 합으로 생각하기
 
 구간 합은 prefix 합 두 개로 바꿀 수 있습니다.
 
@@ -26,7 +26,7 @@ sum(l, r) = prefixSum(r) - prefixSum(l - 1)
 
 Fenwick Tree는 보통 1-indexed로 구현합니다. 입력이 0-indexed라면 함수에 넣기 전에 `idx + 1`로 바꾸거나, wrapper에서 처리하면 됩니다.
 
-## 2. lowbit
+## lowbit
 
 Fenwick Tree의 핵심은 `lowbit(x)`입니다.
 
@@ -55,7 +55,7 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 예를 들어 `tree[8]`은 `lowbit(8) = 8`이므로 `a[1]`부터 `a[8]`까지의 합을 담고, `tree[6]`은 `lowbit(6) = 2`이므로 `a[5] + a[6]`을 담습니다.
 
-## 3. prefixSum
+## prefixSum
 
 `prefixSum(idx)`는 `a[1] + ... + a[idx]`를 구합니다. 현재 위치의 구간을 더한 뒤, 그 구간 바로 앞 위치로 이동합니다.
 
@@ -78,7 +78,7 @@ long long prefixSum(int idx) {
 
 `tree[13]`은 마지막 1개, `tree[12]`는 그 앞 4개, `tree[8]`은 그 앞 8개를 담당합니다. 합치면 1부터 13까지의 합이 됩니다.
 
-## 4. add
+## add
 
 `a[idx]`에 `delta`를 더할 때는 `idx`를 포함하는 Fenwick Tree 칸들을 모두 고쳐야 합니다.
 
@@ -91,9 +91,9 @@ void add(int idx, long long delta) {
 }
 ```
 
-`prefixSum`이 아래쪽으로 내려간다면, `add`는 위쪽으로 올라갑니다. `idx += lowbit(idx)`를 반복하면 현재 원소를 포함하는 더 큰 구간으로 이동합니다.
+`prefixSum`이 아래쪽으로 내려간다면, `add`는 위쪽으로 올라갑니다. `idx += lowbit(idx)`를 반복하면 현재 원소를 포함하는 더 큰 구간으로 이동합니다. `idx = 0`에서는 `lowbit(0) = 0`이라 루프가 끝나지 않으므로, `add`에는 1 이상의 인덱스만 넘깁니다.
 
-## 5. 구간 합
+## 구간 합
 
 구간 합은 prefix 합 두 개로 계산합니다.
 
@@ -105,7 +105,7 @@ long long rangeSum(int l, int r) {
 
 여기서 `l`, `r`은 1-indexed이고, `l <= r`이라고 가정합니다. 입력이 0-indexed라면 `rangeSum(l + 1, r + 1)`처럼 호출하면 됩니다.
 
-## 6. 전체 구현
+## 전체 구현
 
 아래 구현은 1-indexed Fenwick Tree입니다.
 
@@ -155,7 +155,7 @@ struct FenwickTree {
 
 `setValue`처럼 값을 대입하는 연산을 만들 때는 기존 값을 알아야 합니다. Fenwick Tree 자체는 "얼마를 더할지"를 받는 구조이므로, 원본 배열을 따로 들고 있으면 더 편합니다.
 
-## 7. O(n) 빌드
+## O(n) 빌드
 
 위 구현처럼 모든 원소에 대해 `add`를 호출하면 빌드는 `O(n log n)`입니다. 구간 합 Fenwick Tree는 `O(n)` 빌드도 가능합니다.
 
@@ -176,7 +176,7 @@ FenwickTree(const vector<long long>& values) {
 
 각 칸이 맡은 구간 합을 만든 뒤, 그 구간을 포함하는 다음 칸에 한 번만 올려 보내는 방식입니다.
 
-## 8. lower_bound
+## lower_bound
 
 모든 값이 음수가 아니면, Fenwick Tree로 "prefix 합이 처음으로 target 이상이 되는 위치"도 찾을 수 있습니다.
 
@@ -206,7 +206,7 @@ int lowerBound(long long target) const {
 
 주의할 점은 값이 음수일 수 있으면 prefix 합이 단조 증가하지 않는다는 것입니다. 그 경우에는 이 방식으로 lower_bound를 할 수 없습니다.
 
-## 9. 가능한 변형
+## 가능한 변형
 
 Fenwick Tree는 prefix로 바꿀 수 있는 연산에 강합니다.
 
@@ -219,7 +219,7 @@ Fenwick Tree는 prefix로 바꿀 수 있는 연산에 강합니다.
 
 최솟값, 최댓값처럼 "prefix 두 개를 빼서 구간 값을 얻는" 형태가 아닌 연산은 Fenwick Tree와 잘 맞지 않습니다. 그런 문제는 Segment Tree가 더 자연스럽습니다.
 
-## 10. Segment Tree와 비교
+## Segment Tree와 비교
 
 | 관점 | Fenwick Tree | Segment Tree |
 | --- | --- | --- |
@@ -228,29 +228,3 @@ Fenwick Tree는 prefix로 바꿀 수 있는 연산에 강합니다.
 | 구간 최솟값/최댓값 | 제한적 | 자연스럽다 |
 | lazy 구간 업데이트 | 일부 형태만 간단하다 | 범용적으로 가능하다 |
 | 메모리 | `O(n)` | 보통 `O(4n)` 또는 `O(2n)` |
-
-Fenwick Tree는 "prefix 합을 빠르게 관리하는 도구"로 생각하면 실수가 줄어듭니다. 구간 합, 빈도 누적, 순위 찾기처럼 prefix 관점이 선명하면 좋은 선택입니다.
-
-## 11. 자주 하는 실수
-
-- 내부 인덱스가 1-indexed라는 점을 잊고 0을 업데이트하면 무한 루프가 날 수 있습니다.
-- 구간 합 `sum(l, r)`에서 `prefixSum(l - 1)`을 빼지 않아 왼쪽 밖의 값이 섞입니다.
-- 값이 음수일 수 있는데 `lowerBound`를 쓰면 prefix 합 단조성이 깨집니다.
-- 점 대입을 `add(idx, newValue)`로 처리해 기존 값이 누적됩니다.
-
-## 12. 문제를 볼 때 체크할 조건
-
-1. prefix 합 두 개의 차이로 구간 값을 만들 수 있는가?
-2. 업데이트가 점에 값을 더하는 형태인가?
-3. 빈도 누적으로 k번째 원소나 순위를 찾아야 하는가?
-4. 최솟값/최댓값처럼 역연산이 어려운 질의는 아닌가?
-5. 입력 인덱스와 내부 인덱스 기준을 통일했는가?
-
-## 13. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 점 업데이트 + prefix 합 문제 추가 | `add`와 `prefixSum` 구현 | lowbit, 1-index |
-| 표준 | TODO: 점 업데이트 + 구간 합 문제 추가 | `sum(r) - sum(l - 1)` 패턴 익히기 | range sum |
-| 응용 | TODO: inversion count 문제 추가 | 좌표 압축과 빈도 Fenwick 결합 | compression, frequency |
-| 함정 | TODO: k번째 원소 찾기 문제 추가 | prefix 합이 단조일 때만 lower_bound 사용 | Fenwick lower_bound |

@@ -1,6 +1,6 @@
 # Segment Tree: Lazy Propagation
 
-## 7. Lazy Propagation
+## Lazy Propagation
 
 점 하나가 아니라 구간 전체에 값을 더해야 한다면 어떻게 해야 할까요?
 
@@ -19,7 +19,7 @@
 
 그리고 자식에게는 아직 내려보내지 않은 증가량을 `lazy[node]`에 저장합니다.
 
-## 8. lazy 내려보내기
+## lazy 내려보내기
 
 재귀로 노드를 방문할 때 먼저 `push`를 호출해 현재 노드에 밀려 있는 값을 처리합니다.
 
@@ -44,7 +44,7 @@ void push(int node, int start, int end) {
 2. leaf가 아니면 자식 lazy에 증가량을 넘깁니다.
 3. 현재 노드의 lazy 값을 비웁니다.
 
-## 9. lazy 구간 업데이트
+## lazy 구간 업데이트
 
 업데이트 구간이 현재 노드를 완전히 덮으면, 그 노드의 lazy만 기록하고 바로 처리합니다. 일부만 겹치면 자식으로 내려갑니다.
 
@@ -70,7 +70,7 @@ void rangeAdd(int node, int start, int end, int left, int right, long long value
 
 완전히 포함되는 노드는 자식까지 내려가지 않습니다. 그래서 구간 업데이트도 `O(log n)`에 가까운 비용으로 처리됩니다.
 
-## 10. lazy 구간 질의
+## lazy 구간 질의
 
 질의도 마찬가지로 방문한 노드에서 `push`를 먼저 호출합니다.
 
@@ -91,11 +91,11 @@ long long query(int node, int start, int end, int left, int right) {
 }
 ```
 
-`push`를 빼먹으면 부모에는 업데이트가 반영되어 있는데 자식 값은 오래된 상태로 남을 수 있습니다. lazy Segment Tree의 버그는 대부분 "언제 push해야 하는가"에서 나옵니다.
+`push`를 빼먹으면 부모에는 업데이트가 반영되어 있는데 자식 값은 오래된 상태로 남을 수 있습니다.
 
-## 11. Lazy 전체 구현
+## Lazy 전체 구현
 
-아래 구현은 0-indexed 배열에서 구간 덧셈과 구간 합 질의를 처리합니다.
+아래 구현은 0-indexed 배열에서 구간 덧셈과 구간 합 질의를 처리합니다. 합에는 `구간 길이 × 증가량`이 누적되므로 노드 값과 lazy는 `long long`으로 저장합니다.
 
 ```cpp
 #include <vector>

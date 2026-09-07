@@ -27,7 +27,6 @@ HCONTEST_PROBLEM_ROUTE_RE = re.compile(
     r"^/practice/[A-Z0-9]{8,16}(?:/(?:editorial|submissions/[0-9]+))?$",
 )
 PRACTICE_HEADING_RE = re.compile(r"^#{2,3}\s+.*연습 문제\s*$")
-PRACTICE_TABLE_HEADER = "| 단계 | 문제 | 목표 | 힌트 키워드 |"
 TODO_RE = re.compile(r"\bTODO\b")
 
 
@@ -179,16 +178,38 @@ def practice_sections(markdown: str) -> list[str]:
     return sections
 
 
-def validate_practice_section(markdown: str, lesson_id: str) -> None:
-    sections = practice_sections(markdown)
-    if not sections:
-        fail(f"missing practice section for {lesson_id}")
+def validate_practice_content(markdown: str, lesson: dict) -> None:
+    # Endings and exercise tables are optional. The reference collection still
+    # has legacy TODO tables; its editorial migration is a separate task.
+    if lesson["folderId"] != "heuristic-notes":
+        return
 
-    combined = "\n\n".join(sections)
-    if PRACTICE_TABLE_HEADER not in combined:
-        fail(f"practice table must include hint keyword column for {lesson_id}")
-    if "/practice/" not in combined and TODO_RE.search(combined) is None:
-        fail(f"practice section must include a /practice/ link or TODO for {lesson_id}")
+    lesson_id = lesson["lessonId"]
+    if TODO_RE.search(markdown):
+        fail(f"move unfinished practice TODOs to ROADMAP.md for {lesson_id}")
+
+    if lesson["practiceStatus"] not in {"linked", "verified"}:
+        return
+
+    has_problem = any(
+        is_hcontest_problem_route_link(link)
+        or (
+            urlparse(link).netloc == "h.readiz.com"
+            and HCONTEST_PROBLEM_ROUTE_RE.fullmatch(urlparse(link).path) is not None
+        )
+        for link in markdown_regular_links(markdown)
+    )
+    # Local exercises can use prose or code; their completeness is reviewed by
+    # the author. An empty heading or table scaffolding is not exercise content.
+    has_local_exercise = any(
+        any(
+            line.strip() and not line.startswith(("#", "|", "```"))
+            for line in section.splitlines()[1:]
+        )
+        for section in practice_sections(markdown)
+    )
+    if not has_problem and not has_local_exercise:
+        fail(f"practiceStatus={lesson['practiceStatus']} needs a real exercise for {lesson_id}")
 
 
 def validate_folder_entry(folder: object) -> dict:
@@ -506,7 +527,7 @@ def main() -> None:
             for link in markdown_regular_links(page_markdown):
                 validate_local_link(page_path, link_context, link, lesson_root)
 
-        validate_practice_section("\n\n".join(lesson_markdown_parts), lesson_id)
+        validate_practice_content("\n\n".join(lesson_markdown_parts), lesson)
 
     validate_lesson_references(lessons, seen_ids)
     validate_generated_files()
