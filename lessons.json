@@ -552,22 +552,7 @@
       "relatedLessons": [
         "greedy"
       ],
-      "pages": [
-        {
-          "pageId": "state-and-transition",
-          "title": "상태와 전이",
-          "description": "격자 경로, 최소 동전 개수, 트리의 정점 선택으로 상태와 계산 순서를 익힙니다.",
-          "order": 10,
-          "file": "pages/state-and-transition.md"
-        },
-        {
-          "pageId": "knapsack-and-lis",
-          "title": "배낭과 LIS",
-          "description": "0/1 배낭의 반복 방향과 LIS의 두 가지 상태 표현을 비교합니다.",
-          "order": 20,
-          "file": "pages/knapsack-and-lis.md"
-        }
-      ],
+      "pages": [],
       "lessonType": "core",
       "practiceStatus": "todo",
       "implementationStatus": "full",
@@ -607,22 +592,7 @@
       "relatedLessons": [
         "tree-advanced"
       ],
-      "pages": [
-        {
-          "pageId": "search-and-dp",
-          "title": "완전탐색과 비트마스크 DP",
-          "description": "완전탐색을 비트마스크 DP로 줄이고 방문 순서를 복원합니다. 경로와 사이클의 차이, 실제 테이블 메모리를 다룹니다.",
-          "order": 10,
-          "file": "pages/search-and-dp.md"
-        },
-        {
-          "pageId": "heuristic-and-choices",
-          "title": "휴리스틱 개선과 근사",
-          "description": "대칭 사이클의 2-opt를 구현하고 삼각 부등식이 주는 근사 보장의 조건을 다룹니다.",
-          "order": 20,
-          "file": "pages/heuristic-and-choices.md"
-        }
-      ],
+      "pages": [],
       "lessonType": "implementation",
       "practiceStatus": "linked",
       "implementationStatus": "partial",
@@ -1421,22 +1391,7 @@
         "sqrt-decomposition",
         "sparse-table-rmq"
       ],
-      "pages": [
-        {
-          "pageId": "basic-range-query",
-          "title": "기본 구간 질의",
-          "description": "구간 합·점 갱신 구현과 다른 집계 연산의 항등원을 다룹니다.",
-          "order": 10,
-          "file": "pages/basic-range-query.md"
-        },
-        {
-          "pageId": "lazy-propagation",
-          "title": "Lazy Propagation",
-          "description": "구간 덧셈·합 질의를 구현하고 대입과 덧셈이 섞일 때의 lazy 합성을 살펴봅니다.",
-          "order": 20,
-          "file": "pages/lazy-propagation.md"
-        }
-      ],
+      "pages": [],
       "lessonType": "implementation",
       "practiceStatus": "linked",
       "implementationStatus": "full",
@@ -2175,8 +2130,8 @@
     {
       "lessonId": "rotating-calipers",
       "title": "Rotating Calipers",
-      "description": "Convex Hull 위에서 antipodal pair를 선형 시간에 훑어 지름, 폭, 가장 먼 두 점 문제를 처리합니다.",
-      "summary": "볼록 다각형의 antipodal pair, 회전하는 포인터, hull 지름과 폭 계산, collinear 처리 주의점까지 이어지는 기하 심화",
+      "description": "볼록 hull 위 포인터를 전진시키며 지름과 최소 폭을 구하고 지지선·접선·직사각형으로 연결합니다.",
+      "summary": "같은 Point와 외적 연산으로 지름·폭을 구현하고 hull 전제와 동률 처리를 확인합니다.",
       "order": 64,
       "folderId": "heuristic-reference",
       "tags": [
@@ -2188,13 +2143,12 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 55,
+      "estimatedMinutes": 75,
       "prerequisites": [
         "geometry-ccw-segment-intersection"
       ],
       "nextLessons": [
         "minkowski-sum",
-        "rotating-calipers-applications",
         "sweep-line-geometry"
       ],
       "relatedLessons": [
@@ -2570,13 +2524,6 @@
           "file": "pages/formal-power-series.md"
         },
         {
-          "pageId": "fps-log-exp",
-          "title": "FPS Log and Exp",
-          "description": "FPS log, exp, power의 조건과 구현 흐름입니다.",
-          "order": 40,
-          "file": "pages/fps-log-exp.md"
-        },
-        {
           "pageId": "multipoint-evaluation",
           "title": "Multipoint Evaluation",
           "description": "Subproduct tree의 나머지 전파를 작은 다항식으로 추적하고 고속 평가에 필요한 연산을 구분합니다.",
@@ -2612,16 +2559,9 @@
           "file": "pages/bostan-mori.md"
         },
         {
-          "pageId": "recurrence-guessing",
-          "title": "Recurrence Guessing",
-          "description": "앞 항에서 recurrence 후보를 만들고 검증합니다.",
-          "order": 110,
-          "file": "pages/recurrence-guessing.md"
-        },
-        {
           "pageId": "berlekamp-massey",
-          "title": "Berlekamp-Massey",
-          "description": "field 위 수열에서 최소 선형 점화식을 찾습니다.",
+          "title": "Berlekamp–Massey: 점화식 추정과 검증",
+          "description": "항 생성과 차수 상한, BM 구현, 별도 항 검증, Kitamasa 연결을 함께 다룹니다.",
           "order": 120,
           "file": "pages/berlekamp-massey.md"
         },
@@ -3299,8 +3239,8 @@
     {
       "lessonId": "linear-basis-xor",
       "title": "XOR Linear Basis",
-      "description": "정수를 GF(2) 벡터로 보고 xor 조합의 최댓값, 표현 가능성, rank와 경우의 수를 처리하는 기법입니다.",
-      "summary": "bitwise Gaussian elimination, maximum xor, representability, rank와 subset xor count, graph cycle xor 응용을 다루는 수학 심화 레슨",
+      "description": "XOR 기저를 만들고 표현 가능성·최댓값·k번째 값·그래프 cycle과 구간 질의로 이어갑니다.",
+      "summary": "하나의 기저 구현에서 rank와 정규화, counting, walk XOR, basis merge를 연결합니다.",
       "order": 94,
       "folderId": "heuristic-reference",
       "tags": [
@@ -3311,15 +3251,13 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 40,
+      "estimatedMinutes": 80,
       "prerequisites": [
         "modular-arithmetic",
         "proof-and-invariants",
         "polynomial-recurrence-algorithms"
       ],
-      "nextLessons": [
-        "linear-basis-applications"
-      ],
+      "nextLessons": [],
       "relatedLessons": [
         "combinatorics-ncr",
         "game-theory-grundy"
@@ -3714,47 +3652,6 @@
       ]
     },
     {
-      "lessonId": "linear-basis-applications",
-      "title": "Linear Basis Applications",
-      "description": "XOR Linear Basis를 표현 가능성, k번째 xor, graph cycle xor, range query, matroid greedy로 확장해 적용합니다.",
-      "summary": "rank와 표현 개수, normalized basis 기반 kth xor, graph cycle basis, range basis merge와 linear matroid 응용을 다루는 수학 심화 레슨",
-      "order": 104,
-      "folderId": "heuristic-reference",
-      "tags": [
-        "math",
-        "linear-basis",
-        "xor",
-        "graph-xor",
-        "matroid",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 50,
-      "prerequisites": [
-        "linear-basis-xor",
-        "proof-and-invariants",
-        "combinatorics-ncr"
-      ],
-      "nextLessons": [
-        "matroid-algorithms",
-        "linear-algebra-applications"
-      ],
-      "relatedLessons": [
-        "mobius-inversion",
-        "game-theory-grundy"
-      ],
-      "pages": [],
-      "lessonType": "overview",
-      "practiceStatus": "todo",
-      "implementationStatus": "partial",
-      "audience": "advanced-contest",
-      "difficultyAxes": [
-        "implementation",
-        "modeling",
-        "selection"
-      ]
-    },
-    {
       "lessonId": "dirichlet-convolution",
       "title": "Dirichlet Convolution",
       "description": "약수 관계 위 convolution으로 Mobius Inversion, multiplicative function, divisor transform을 하나의 틀에서 정리합니다.",
@@ -3781,7 +3678,7 @@
       ],
       "relatedLessons": [
         "modular-arithmetic",
-        "linear-basis-applications"
+        "linear-basis-xor"
       ],
       "pages": [],
       "lessonType": "overview",
@@ -3818,7 +3715,7 @@
         "geometry-ccw-segment-intersection"
       ],
       "nextLessons": [
-        "rotating-calipers-applications",
+        "rotating-calipers",
         "shape-distance-modeling"
       ],
       "relatedLessons": [
@@ -3833,47 +3730,6 @@
       "difficultyAxes": [
         "implementation",
         "modeling"
-      ]
-    },
-    {
-      "lessonId": "rotating-calipers-applications",
-      "title": "Rotating Calipers Applications",
-      "description": "지름 계산을 넘어 width, tangent, 두 convex polygon 거리, 최소 감싸는 직사각형으로 calipers를 확장합니다.",
-      "summary": "support direction이 회전할 때 포인터가 단조롭게 움직이는 성질로 width, tangent, convex polygon distance, minimum rectangle을 모델링하는 기하 응용 레슨",
-      "order": 112,
-      "folderId": "heuristic-reference",
-      "tags": [
-        "geometry",
-        "rotating-calipers",
-        "minimum-width",
-        "tangent",
-        "convex-distance",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 60,
-      "prerequisites": [
-        "rotating-calipers",
-        "minkowski-sum",
-        "closest-pair-sweep"
-      ],
-      "nextLessons": [
-        "shape-distance-modeling",
-        "convex-dp-optimization"
-      ],
-      "relatedLessons": [
-        "half-plane-intersection",
-        "line-arrangement"
-      ],
-      "pages": [],
-      "lessonType": "overview",
-      "practiceStatus": "todo",
-      "implementationStatus": "partial",
-      "audience": "advanced-contest",
-      "difficultyAxes": [
-        "implementation",
-        "modeling",
-        "selection"
       ]
     },
     {
@@ -3973,7 +3829,7 @@
       "estimatedMinutes": 60,
       "prerequisites": [
         "minkowski-sum",
-        "rotating-calipers-applications",
+        "rotating-calipers",
         "geometry-ccw-segment-intersection"
       ],
       "nextLessons": [
@@ -4300,7 +4156,7 @@
       "prerequisites": [
         "general-matching",
         "weighted-matching",
-        "linear-basis-applications",
+        "linear-basis-xor",
         "proof-and-invariants"
       ],
       "nextLessons": [
@@ -4419,7 +4275,7 @@
       "level": "advanced",
       "estimatedMinutes": 70,
       "prerequisites": [
-        "linear-basis-applications",
+        "linear-basis-xor",
         "sparse-linear-systems",
         "black-box-linear-algebra"
       ],

@@ -125,14 +125,91 @@ while area(i, j+1) > area(i, j):
 
 폭은 `area(edge, point) / edge_length`로 높이를 구합니다. 정수 비교만으로 끝나지 않고 실수 값이 필요할 수 있으므로 오차 처리까지 확인해야 합니다.
 
-## Hull 준비 조건
+## 최소 폭 구현
+
+위 지름 구현의 `Point`, `sub`, `cross`, `absll`, `dist2`를 그대로 사용합니다. 같은 코드 뒤에 아래 함수를 붙이면 같은 hull에서 최소 폭을 구할 수 있습니다. 입력 전제와 포인터 전진 조건도 같습니다.
+
+```cpp
+#include <cmath>
+
+double minimumWidth(const vector<Point>& hull) {
+    int n = (int)hull.size();
+    if (n <= 2) {
+        return 0.0;
+    }
+
+    int j = 1;
+    double best = 1e100;
+
+    for (int i = 0; i < n; ++i) {
+        int nextI = (i + 1) % n;
+        Point edge = sub(hull[nextI], hull[i]);
+
+        while (true) {
+            int nextJ = (j + 1) % n;
+            long long current = absll(cross(edge, sub(hull[j], hull[i])));
+            long long next = absll(cross(edge, sub(hull[nextJ], hull[i])));
+            if (next > current) {
+                j = nextJ;
+            } else {
+                break;
+            }
+        }
+
+        double height = (double)absll(
+            cross(edge, sub(hull[j], hull[i]))
+        ) / sqrt((double)dist2(hull[nextI], hull[i]));
+        if (height < best) {
+            best = height;
+        }
+    }
+
+    return best;
+}
+```
+
+폭은 실수 값이므로 출력 오차 조건을 확인합니다. 비교만 필요하면 제곱 형태로 변형할 수 있지만 구현이 더 복잡해집니다.
+
+## 두 Polygon 사이 거리
+
+두 convex polygon의 거리는 다음 두 방식으로 볼 수 있습니다.
+
+| 방식 | 설명 |
+| --- | --- |
+| edge-point 거리 sweep | 두 boundary의 후보 edge/point를 함께 이동 |
+| Minkowski difference | `A + (-B)`와 원점 사이 거리 |
+
+교차 여부부터 확인해야 합니다. 교차하면 거리는 `0`입니다. 교차하지 않을 때는 두 polygon의 edge direction이 만드는 후보를 훑습니다.
+
+## Tangent와 Support Line
+
+한 점 `p`에서 convex polygon에 그을 수 있는 tangent는 support line이 바뀌는 꼭짓점입니다. 두 convex polygon의 common tangent도 두 support point가 동시에 움직이는 문제입니다.
+
+접선 이동 규칙은 두 다각형의 외부/내부 접선과 방향에 따라 다릅니다. 양쪽 support 조건을 먼저 정해야 합니다.
+
+이 패턴은 convex hull trick의 "기울기 순서로 포인터 전진"과도 닮았습니다.
+
+## 최소 면적 직사각형
+
+최소 면적 enclosing rectangle은 한 변이 hull의 어떤 edge와 평행하다는 성질을 씁니다. 그래서 edge direction을 돌리며 네 support point를 관리합니다.
+
+| caliper | 의미 |
+| --- | --- |
+| bottom | 현재 edge |
+| top | edge normal 방향으로 가장 먼 점 |
+| left | edge 반대 방향 support |
+| right | edge 방향 support |
+
+구현은 지름보다 훨씬 실수와 degeneracy가 많습니다. 문제에서 꼭 필요하지 않으면 width, diameter처럼 더 단순한 값부터 분리해 구현하는 편이 안전합니다.
+
+## Hull 준비와 동률 처리
 
 Rotating Calipers 전에 hull의 형식을 통일해야 합니다.
 
-1. 점이 반시계 방향으로 정렬되어 있어야 한다.
+1. 점이 반시계 방향으로 정렬되어 있어야 하며 방향도 한쪽으로만 회전한다.
 2. 첫 점을 마지막에 중복으로 붙이지 않는다.
 3. 중복 점을 제거한다.
-4. collinear 점을 포함할지 제거할지 문제 요구와 맞춘다.
+4. collinear 점과 support point 동률 처리 정책을 고정한다. 위 지름·폭 구현은 중간 collinear 점을 제거하고 면적이 엄격히 커질 때 전진한다.
 5. hull 크기 `1`, `2`를 별도로 처리한다.
 
 Convex Hull 구현에서 collinear 경계 점을 모두 남기면 calipers가 같은 직선 위 점들을 더 많이 보게 됩니다. 대부분의 지름 문제에서는 중간 collinear 점을 제거해도 답이 유지되지만, 모든 antipodal pair를 출력해야 하는 문제라면 정책을 더 조심해야 합니다.

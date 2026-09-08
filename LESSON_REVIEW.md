@@ -1,5 +1,8 @@
 # 학습 노트 전체 본문 검토 기록
 
+2026-09-09 추가 구조 검토: XOR Basis·Rotating Calipers의 기본/응용 카드와 DP·Segment Tree·TSP의 소개/본문, FPS log·exp와 점화식 추정/구현을 통합했습니다. 공개 강의는 97개, 본문은 192개입니다. Calipers의 점·외적 코드를 공유하도록 바꾼 부분은 지름·폭의 퇴화 입력과 사각형·삼각형 검산으로 확인합니다.
+
+
 2026-09-09 후속 편집: 아래 최초 정독 기록과 별도로 Treap, 선형대수 선택·연습, Gomory-Hu, Ukkonen, Suffix Array, planar dual의 설명 경계 6개를 통합했습니다. 이동된 본문 링크는 통합 위치로 갱신했습니다. 전체 강의 수는 유지하며 본문은 208개에서 202개로 줄었습니다.
 
 
@@ -72,14 +75,14 @@
 | 56 | [lessons/polynomial-recurrence-algorithms/lesson.md](lessons/polynomial-recurrence-algorithms/lesson.md) | 완료 | 본문 정독. 반영: 학습 경로와 같은 모델 선택표 통합. |
 | 57 | [lessons/polynomial-recurrence-algorithms/pages/fft-ntt.md](lessons/polynomial-recurrence-algorithms/pages/fft-ntt.md) | 완료 | 본문·코드 정독. 반영: 입력 계수 정규화·2^23 상한, CRT 복원 범위 조건, 반복 실수표 삭제. |
 | 58 | [lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md](lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md) | 완료 | 본문·코드 정독. 반영: 적분 분모<nMod·n0 경계, modPow 중복과 실제 적분 복잡도, log 상수항 조건. |
-| 59 | [lessons/polynomial-recurrence-algorithms/pages/fps-log-exp.md](lessons/polynomial-recurrence-algorithms/pages/fps-log-exp.md) | 완료 | 본문·코드 정독. 반영: log/exp 없이 미분·곱셈만 복제한 블록 제거, 실제 log/exp 작은 점화 예제로 대체. |
+| 59 | [lessons/polynomial-recurrence-algorithms/pages/fps-log-exp.md](lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md) | 완료 | 본문·코드 정독. 반영: log/exp 없이 미분·곱셈만 복제한 블록 제거, 실제 log/exp 작은 점화 예제로 대체. |
 | 60 | [lessons/polynomial-recurrence-algorithms/pages/multipoint-evaluation.md](lessons/polynomial-recurrence-algorithms/pages/multipoint-evaluation.md) | 완료 | 본문 정독. 반영: chirp-z는 연속 정수가 아닌 등비점, x-xi 부호 반전 실수 단정 삭제, 선형몫 전제. |
 | 61 | [lessons/polynomial-recurrence-algorithms/pages/polynomial-interpolation.md](lessons/polynomial-recurrence-algorithms/pages/polynomial-interpolation.md) | 완료 | 반영: 연속점 보간의 입력 범위와 정규화, 전처리 비용, 잘못된 분모 설명을 수정한다. |
 | 62 | [lessons/polynomial-recurrence-algorithms/pages/generating-function-modeling.md](lessons/polynomial-recurrence-algorithms/pages/generating-function-modeling.md) | 완료 | 반영: 순서 있는 동전 예시를 고치고 중복 다항식 코드를 줄이며 생성함수의 성립 조건을 명시한다. |
 | 63 | [lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md](lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md) | 완료 | 반영: Kitamasa 입력 조건과 계수 정규화, 중복 설명을 정리한다. |
 | 64 | [lessons/polynomial-recurrence-algorithms/pages/bostan-mori.md](lessons/polynomial-recurrence-algorithms/pages/bostan-mori.md) | 완료 | 반영: Bostan–Mori의 빈 다항식·상수항 조건과 계수 정규화 및 복잡도를 보완한다. |
 | 65 | [lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-applications.md](lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md) | 완료 | 통합 반영: Kitamasa와 겹치는 선택 설명을 합치고 XOR 및 유리 생성함수 설명 오류를 고친다. |
-| 66 | [lessons/polynomial-recurrence-algorithms/pages/recurrence-guessing.md](lessons/polynomial-recurrence-algorithms/pages/recurrence-guessing.md) | 완료 | 반영: 임의의 holdout 10항 권장과 affine 수열 오해를 제거하고 증명된 차수 상한과 검증을 구분한다. |
+| 66 | [lessons/polynomial-recurrence-algorithms/pages/recurrence-guessing.md](lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md) | 완료 | 반영: 임의의 holdout 10항 권장과 affine 수열 오해를 제거하고 증명된 차수 상한과 검증을 구분한다. |
 | 67 | [lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md](lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md) | 완료 | 반영: 임의 dummy 초기항 삽입 안내를 제거하고 영 수열의 차수 0 처리 및 차수 상한 조건을 명시한다. |
 | 68 | [lessons/polynomial-recurrence-algorithms/pages/practice-set.md](lessons/polynomial-recurrence-algorithms/pages/practice-set.md) | 완료 | 통합 반영: Kitamasa 구현은 본문을 재사용하고 중복 다음 연습·무관한 완료 기준 삭제, K 제한 현실화. |
 | 69 | [lessons/probability-expected-value/lesson.md](lessons/probability-expected-value/lesson.md) | 완료 | 반영: 흡수하지 않는 경우 무한 기대값을 명시하고 모듈러 거듭제곱 중복과 반복 체크리스트를 줄인다. |
@@ -142,10 +145,10 @@
 | 126 | [lessons/dynamic-network-optimization/pages/dynamic-flow.md](lessons/dynamic-network-optimization/pages/dynamic-flow.md) | 완료 | 반영: 기다림 용량 1e9를 총 물량 인자로 대체하고 T+1층·정점 ID 범위를 명시. 반복 선택표 축약. |
 | 127 | [lessons/dynamic-network-optimization/pages/dynamic-mst.md](lessons/dynamic-network-optimization/pages/dynamic-mst.md) | 완료 | 반영: 정적 HLD만으로 교체 MST 유지 불가, 고정 간선 MSF block 조건 및 실제 N+B 재계산 비용 명시. 삭제 뒤 전체 재계산 기준 풀이로 Kruskal baseline은 유지. |
 | 128 | [lessons/dynamic-network-optimization/pages/practice-set.md](lessons/dynamic-network-optimization/pages/practice-set.md) | 완료 | 반영: 감소 후 flow를 알 수 없음 대신 실제 값 3과 불가능한 기존 flow를 구분. 모호한 MST 연습 삭제. |
-| 129 | [lessons/linear-basis-applications/lesson.md](lessons/linear-basis-applications/lesson.md) | 완료 | 통합 반영: basis 삽입·표현 가능성 중복은 103 재사용. bit63·rank64·kth 실제 정규화 비용·음수 가중치 greedy 조건 수정. |
+| 129 | [lessons/linear-basis-applications/lesson.md](lessons/linear-basis-xor/lesson.md) | 완료 | 통합 반영: basis 삽입·표현 가능성 중복은 103 재사용. bit63·rank64·kth 실제 정규화 비용·음수 가중치 greedy 조건 수정. |
 | 130 | [lessons/dirichlet-convolution/lesson.md](lessons/dirichlet-convolution/lesson.md) | 완료 | 반영: 입력 배열 길이·산술 범위·multiplicative f(1)=1 전제와 반복 실수 목록 정리. |
 | 131 | [lessons/minkowski-sum/lesson.md](lessons/minkowski-sum/lesson.md) | 완료 | 반영: 빈 집합 Minkowski 합을 빈 집합으로 고치고 퇴화 입력 조건·외적 범위·일반 점집합 hull은 정확 합이 아니라 볼록화임을 명시. |
-| 132 | [lessons/rotating-calipers-applications/lesson.md](lessons/rotating-calipers-applications/lesson.md) | 완료 | 반영: 최소 폭 코드에 엄격 볼록·중복 없음·좌표 범위 전제, 모호한 접선 의사코드와 반복 조건 목록 축약. |
+| 132 | [lessons/rotating-calipers-applications/lesson.md](lessons/rotating-calipers/lesson.md) | 완료 | 반영: 최소 폭 코드에 엄격 볼록·중복 없음·좌표 범위 전제, 모호한 접선 의사코드와 반복 조건 목록 축약. |
 | 133 | [lessons/multiplicative-functions/lesson.md](lessons/multiplicative-functions/lesson.md) | 완료 | 반영: limit0 처리와 f(1)=1 조건. 1e7에서 다중 int 배열 메모리 약280MB 명시, 중복 공식·실수 목록 축약. |
 | 134 | [lessons/summatory-number-theory/lesson.md](lessons/summatory-number-theory/lesson.md) | 완료 | 반영: summatory phi 항등식의 잘못된 floor 제곱 제거, 실제 Phi 재귀식 제시. 최댓값에서 right+1 overflow 처리. |
 | 135 | [lessons/shape-distance-modeling/lesson.md](lessons/shape-distance-modeling/lesson.md) | 완료 | 반영: 포함 관계인 다각형 거리를 양수로 내는 baseline 오류와 점 선분 퇴화 교차 오류 수정. SAT 포함시 단순 overlap 길이로 이동거리 산정 오류 명시. |
@@ -203,11 +206,11 @@
 | 187 | [lessons/heuristic/pages/placement-and-repair.md](lessons/heuristic/pages/placement-and-repair.md) | 완료 | 본문·코드 정독. 수정 반영: first-fit 다중 루프 탈출, bitmask 경계, 로컬 repair와 공개 API 실행 구분, 점수 이중 보너스 제거. |
 | 188 | [lessons/heuristic/pages/aircontech-beam-search.md](lessons/heuristic/pages/aircontech-beam-search.md) | 완료 | 본문·코드 정독. 수정 반영: 상태 복사·720분 검증 코드 명시, 반복 계약 설명 축약. |
 | 189 | [lessons/dynamic-programming/lesson.md](lessons/dynamic-programming/lesson.md) | 완료 | 본문 정독. 두 DP 페이지 안내 유지. |
-| 190 | [lessons/dynamic-programming/pages/state-and-transition.md](lessons/dynamic-programming/pages/state-and-transition.md) | 완료 | 본문·코드 정독. 수정 반영: 격자 양수 크기와 동전 입력 전제 보완. |
-| 191 | [lessons/dynamic-programming/pages/knapsack-and-lis.md](lessons/dynamic-programming/pages/knapsack-and-lis.md) | 완료 | 본문·코드 정독. 수정 반영: 빈 LIS 역참조, tails 인덱스 설명 수정, 배낭 입력 전제. |
+| 190 | [lessons/dynamic-programming/pages/state-and-transition.md](lessons/dynamic-programming/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 격자 양수 크기와 동전 입력 전제 보완. |
+| 191 | [lessons/dynamic-programming/pages/knapsack-and-lis.md](lessons/dynamic-programming/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 빈 LIS 역참조, tails 인덱스 설명 수정, 배낭 입력 전제. |
 | 192 | [lessons/tsp-hamiltonian/lesson.md](lessons/tsp-hamiltonian/lesson.md) | 완료 | 본문 정독. 경로/사이클 문제 구분과 페이지 안내 유지. |
-| 193 | [lessons/tsp-hamiltonian/pages/search-and-dp.md](lessons/tsp-hamiltonian/pages/search-and-dp.md) | 완료 | 본문·코드 정독. 수정 반영: INF 상태의 복귀 비용 합산 차단, 복원 가능 여부 전제. |
-| 194 | [lessons/tsp-hamiltonian/pages/heuristic-and-choices.md](lessons/tsp-hamiltonian/pages/heuristic-and-choices.md) | 완료 | 본문·코드 정독. 수정 반영: metric 대칭·비음수 전제 명시. |
+| 193 | [lessons/tsp-hamiltonian/pages/search-and-dp.md](lessons/tsp-hamiltonian/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: INF 상태의 복귀 비용 합산 차단, 복원 가능 여부 전제. |
+| 194 | [lessons/tsp-hamiltonian/pages/heuristic-and-choices.md](lessons/tsp-hamiltonian/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: metric 대칭·비음수 전제 명시. |
 | 195 | [lessons/union-find/lesson.md](lessons/union-find/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 단일 연산과 상각 비용 구분. |
 | 196 | [lessons/bfs-dfs-grid/lesson.md](lessons/bfs-dfs-grid/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: gridDistance 빈 입력·시작점 방어, 중복 그래프 설명 축약. |
 | 197 | [lessons/graph-tree-basics/lesson.md](lessons/graph-tree-basics/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 루트 깊이 초기화와 재귀 깊이 전제. |
@@ -221,8 +224,8 @@
 | 205 | [lessons/sqrt-decomposition/lesson.md](lessons/sqrt-decomposition/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 예시 배열 범위를 벗어난 질의 수정. |
 | 206 | [lessons/fenwick-tree/lesson.md](lessons/fenwick-tree/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: bit<<1 대신 n/2로 상한 비교. |
 | 207 | [lessons/segment-tree/lesson.md](lessons/segment-tree/lesson.md) | 완료 | 본문 정독. 기본/lazy 링크 안내 유지. |
-| 208 | [lessons/segment-tree/pages/basic-range-query.md](lessons/segment-tree/pages/basic-range-query.md) | 완료 | 본문·코드 정독. 비어 있지 않은 배열·항등원 계약 유지. |
-| 209 | [lessons/segment-tree/pages/lazy-propagation.md](lessons/segment-tree/pages/lazy-propagation.md) | 완료 | 본문·코드 정독. 수정 반영: 구현과 맞지 않는 lazy 저장 의미 수정. |
+| 208 | [lessons/segment-tree/pages/basic-range-query.md](lessons/segment-tree/lesson.md) | 완료 | 본문·코드 정독. 비어 있지 않은 배열·항등원 계약 유지. |
+| 209 | [lessons/segment-tree/pages/lazy-propagation.md](lessons/segment-tree/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 구현과 맞지 않는 lazy 저장 의미 수정. |
 | 210 | [lessons/hungarian-algorithm/lesson.md](lessons/hungarian-algorithm/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: n>m 전환 목적 구분, 직사각형 복잡도 정밀화, 비용 범위 구체화. |
 | 211 | [lessons/treap/lesson.md](lessons/treap/lesson.md) | 완료 | 본문 정독. BST 소개와 구현 안내 유지. |
 | 212 | [lessons/treap/pages/treap-core.md](lessons/treap/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 상위 페이지와 중복된 Treap 도입 삭제, 메모리 소유권 명시. |

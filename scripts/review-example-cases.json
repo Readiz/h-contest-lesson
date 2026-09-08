@@ -319,8 +319,8 @@
         "block": 0
       },
       {
-        "path": "lessons/linear-basis-applications/lesson.md",
-        "block": 0
+        "path": "lessons/linear-basis-xor/lesson.md",
+        "block": 1
       }
     ],
     "body": "\nNormalizedXorBasis b;for(int i=0;i<64;i++)b.insert(1ULL<<i);assert(b.rank==64);assert(b.canRepresent(1ULL<<63));assert(b.kthSmallest(ULLONG_MAX)==ULLONG_MAX);NormalizedXorBasis c;for(auto v:{3ULL,5ULL,6ULL})c.insert(v);assert(c.kthSmallest(0)==0 && c.kthSmallest(1)==3 && c.kthSmallest(2)==5 && c.kthSmallest(3)==6);\n",
@@ -516,6 +516,38 @@
       }
     ],
     "body": "\nmt19937 gen(8);for(int n=2;n<=8;n++)for(int trial=0;trial<40;trial++){\n DominatorTree dt(n);for(int i=0;i<n;i++)for(int j=0;j<n;j++)if(gen()%5==0)dt.addEdge(i,j);\n auto idom=dt.build(0);assert(idom==dt.build(0));\n auto reach=[&](int ban){vector<int>seen(n);function<void(int)>dfs=[&](int u){seen[u]=1;for(int v:dt.graph[u])if(v!=ban&&!seen[v])dfs(v);};if(ban!=0)dfs(0);return seen;};auto base=reach(-1);\n for(int v=1;v<n;v++){if(!base[v]){assert(idom[v]==-1);continue;}vector<int>dom;for(int u=0;u<n;u++)if(u!=v&&!reach(u)[v])dom.push_back(u);int expected=-1;for(int u:dom){bool nearest=true;for(int q:dom)if(q!=u && reach(q)[u])nearest=false;if(nearest)expected=u;}assert(expected>=0 && idom[v]==expected);}\n}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "calipers-shared-diameter-width",
+    "snippets": [
+      {
+        "path": "lessons/rotating-calipers/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/rotating-calipers/lesson.md",
+        "block": 1
+      }
+    ],
+    "body": "\nassert(minimumWidth({})==0);assert(minimumWidth({{0,0}})==0);assert(minimumWidth({{0,0},{5,0}})==0);mt19937 g(31);for(int t=0;t<200;t++){long long w=1+g()%1000000,h=1+g()%1000000;vector<Point> p={{0,0},{w,0},{w,h},{0,h}};assert(convexDiameter2(p)==w*w+h*h);assert(abs(minimumWidth(p)-min(w,h))<1e-7);}vector<Point> triangle={{0,0},{4,0},{0,3}};assert(convexDiameter2(triangle)==25);assert(abs(minimumWidth(triangle)-2.4)<1e-12);\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "bm-training-and-heldout-terms",
+    "snippets": [
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md",
+        "block": 1
+      }
+    ],
+    "body": "\nvector<long long> terms={2,5};for(int i=2;i<40;i++)terms.push_back((3*terms[i-1]-2*terms[i-2]+MOD_BM)%MOD_BM);vector<long long> train(terms.begin(),terms.begin()+4);auto c=berlekampMassey(train);assert(c.size()==2);assert(verifyRecurrenceGuess(terms,c));terms.back()=(terms.back()+1)%MOD_BM;assert(!verifyRecurrenceGuess(terms,c));assert(!verifyRecurrenceGuess({},c));\n",
     "stdin": "",
     "expected": ""
   }

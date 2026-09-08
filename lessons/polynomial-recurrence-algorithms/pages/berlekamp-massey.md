@@ -1,18 +1,57 @@
-# Berlekamp-Massey
+# Berlekamp–Massey: 점화식 추정과 검증
 
-Berlekamp-Massey는 field 위 수열의 앞 항들에서 가장 짧은 선형 점화식을 찾는 알고리즘입니다. Recurrence Guessing이 "어떻게 후보를 믿을 것인가"를 다룬다면, Berlekamp-Massey는 그 후보 계수를 `O(T^2)`로 구하는 표준 도구입니다.
+앞 항을 정확히 생성할 수 있는 수열에서 선형 점화식을 찾고 먼 항을 계산합니다. Berlekamp–Massey(BM)는 field 위의 계수를 구하는 알고리즘이며, 풀이에 쓰려면 수열 전체가 고정 선형 점화식을 따른다는 근거와 차수 상한이 필요합니다. 소수가 아닌 modulo에서는 역원이 없을 수 있어 아래 구현을 그대로 사용할 수 없습니다.
 
-## 문제 신호
+## Affine 전이 처리
 
-| 문제 표현 | Berlekamp-Massey 관점 |
-| --- | --- |
-| 수열 앞 항만 많이 얻을 수 있음 | 최소 recurrence 추정 |
-| mod prime으로 답을 요구 | field inverse 사용 가능 |
-| n번째 항이 매우 큼 | BM + Kitamasa |
-| recurrence 차수를 모름 | minimal linear recurrence |
-| graph walk count를 sparse하게 생성 | black-box recurrence |
+상수항이 있으면 상태에 `1`을 추가합니다.
 
-BM은 field 위 알고리즘입니다. `mod`가 소수가 아니면 역원이 항상 존재하지 않으므로 그대로 쓰면 안 됩니다.
+```text
+a[n] = 3*a[n-1] + 7
+
+state[n] = [a[n], 1]
+state[n] = [[3, 7], [0, 1]] * state[n-1]
+```
+
+고정 affine 전이는 상수 상태를 추가하면 고정 선형 전이가 됩니다. 따라서 원 수열을 BM에 넣어도 되며 차수 상한이 하나 커질 수 있습니다.
+
+## Graph Walk와 Black-box 항 생성
+
+정점 수 `S`인 graph walk count는 adjacency matrix의 거듭제곱 entry입니다. Cayley-Hamilton 정리에 의해 차수 `S` 이하 recurrence가 존재합니다.
+
+```text
+a[n] = number of walks of length n from s to t
+```
+
+`S`가 2000이면 matrix exponentiation은 부담스럽지만, sparse graph에서 앞 `2S`개 항을 `O(S + E)`씩 만들 수 있다면 recurrence guessing이 후보가 됩니다.
+
+## 몇 항이 필요한가
+
+전체 수열이 차수 K 이하의 고정 선형 점화식을 따른다는 상한을 증명했다면 앞 2K항으로 BM 복원이 가능합니다. 상한이 없는 임의 수열에서는 항을 더 검사해도 미래를 보장하지 못합니다.
+
+| 목적 | 필요한 항 |
+| --- | ---: |
+| K차 후보를 맞춤 | 최소 `2K` |
+| 후보 검증 | 별도 holdout은 오류 탐지용이며 유한 개 검사만으로 무한 수열을 증명하지 못함 |
+| K를 모름 | 가능한 상한보다 넉넉히 |
+| noisy sequence | 이 방법 자체가 부적절 |
+
+처음 `2K`개만 맞는 recurrence는 얼마든지 만들 수 있습니다. 뒤 항을 일부러 남겨 두고 검증해야 합니다.
+
+## 상수항이 있는 수열부터 살펴보기
+
+```text
+a = 2, 5, 11, 23, 47, 95, ...
+
+차분을 보면 3, 6, 12, 24, 48
+후보: a[n] = 2*a[n-1] + 1
+
+선형 recurrence 표준형으로 쓰면
+a[n] - 2*a[n-1] = 1
+상수항이 있으므로 상태에 1을 추가해야 한다.
+```
+
+이 수열 자체도 a[n]=3a[n-1]-2a[n-2]라는 homogeneous 점화식을 따르므로 BM에 직접 넣을 수 있습니다. b[n]=a[n]+1로 바꾸면 차수 1로 줄어듭니다.
 
 ## Discrepancy
 
@@ -122,15 +161,48 @@ F[n] = 1*F[n-1] + 1*F[n-2]
 
 초기항은 `sequence[0..L-1]`입니다. `n < L`이면 초기항을 그대로 반환하고, 그 이후는 Kitamasa로 계산합니다.
 
-## 왜 `2L`개 항이 필요한가
+## Holdout 검증
 
-차수 `L` recurrence는 `L`개 계수를 가집니다. 하지만 최소 차수 자체를 모르기 때문에 BM은 항을 보며 차수를 늘립니다.
+아래 코드는 이미 찾은 recurrence가 주어진 항들을 모두 설명하는지 검증합니다. `coeff[i]`는 `a[n-i-1]`에 곱해지는 계수입니다.
 
-```text
-전체 수열의 차수가 L 이하라는 보장이 있을 때 앞 2L항으로 복원할 수 있다.
+```cpp compile-check
+#include <vector>
+using namespace std;
+
+const long long MOD_GUESS = 998244353;
+
+long long normalizeGuess(long long value) {
+    value %= MOD_GUESS;
+    if (value < 0) {
+        value += MOD_GUESS;
+    }
+    return value;
+}
+
+bool verifyRecurrenceGuess(
+    const vector<long long>& terms,
+    const vector<long long>& coeff
+) {
+    int k = (int)coeff.size();
+    if ((int)terms.size() <= k) {
+        return false;
+    }
+
+    for (int n = k; n < (int)terms.size(); ++n) {
+        long long predicted = 0;
+        for (int i = 0; i < k; ++i) {
+            predicted += normalizeGuess(coeff[i]) * normalizeGuess(terms[n - i - 1]);
+            predicted %= MOD_GUESS;
+        }
+        if (predicted != normalizeGuess(terms[n])) {
+            return false;
+        }
+    }
+    return true;
+}
 ```
 
-항이 부족하면 더 짧은 가짜 recurrence가 나올 수 있습니다. BM 결과도 holdout 항으로 다시 검증하는 편이 안전합니다.
+검증은 recurrence 후보를 찾는 코드와 분리하는 편이 좋습니다. 그래야 BM 구현 실수인지 모델링 실수인지 나눠 볼 수 있습니다.
 
 ## Kitamasa와 연결
 
@@ -142,16 +214,6 @@ answer = nthByRecurrence(terms[0..L-1], coeff, n)
 ```
 
 a_1부터 생성했다면 b_i=a_{i+1}로 정의하고 원래 a_N은 b의 N-1번째를 구합니다. 임의 dummy a_0을 넣으면 점화식이 깨질 수 있습니다. BM 결과가 빈 계수(L=0)이면 관측 수열은 전부 0입니다. 점화식 상한이 보장되는 경우 결과를 0으로 처리하고, K>=1을 요구하는 Kitamasa에 빈 벡터를 넘기지 않습니다.
-
-## Mod 조건
-
-BM은 discrepancy를 이전 discrepancy로 나누어 보정합니다.
-
-```text
-factor = d / old_d
-```
-
-따라서 모든 nonzero 원소가 역원을 가져야 합니다. prime modulo에서는 Fermat inverse를 쓸 수 있지만, 합성수 modulo에서는 다른 처리가 필요합니다.
 
 ## 시간 복잡도
 

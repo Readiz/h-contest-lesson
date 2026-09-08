@@ -164,7 +164,7 @@ h-contest 문제 링크를 넣을 때는 `/practice/<PROBLEM_ID>` 형식을 사�
 
 아직 준비하지 못한 연습과 본문 보강 항목은 [ROADMAP.md](ROADMAP.md)에 둡니다. 강의 본문에 `TODO` 행이나 빈 연습 페이지를 만들지 않습니다. `practiceStatus`는 실제 내용에 맞춰 `none`/`todo`/`linked`/`verified`로 표시하며, 예정 항목만 있는 강의를 `linked`로 표시하지 않습니다.
 
-validator는 목차나 표 형식을 강제하지 않습니다. 기본 30개와 참고 70개 강의 모두 본문의 `TODO`와 근거 없는 `linked`/`verified` 표시를 검사합니다. 미완성 연습 후보는 ROADMAP에 보관하고, 실제 연습이 없는 강의를 `linked`로 표시하지 않습니다.
+validator는 목차나 표 형식을 강제하지 않습니다. 기본·심화와 참고 노트의 모든 강의에서 본문의 `TODO`와 근거 없는 `linked`/`verified` 표시를 검사합니다. 미완성 연습 후보는 ROADMAP에 보관하고, 실제 연습이 없는 강의를 `linked`로 표시하지 않습니다.
 
 C++ 코드 블록은 기본적으로 문법을 직접 확인합니다. 독립 translation unit으로 컴파일 가능한 예제는 fence에 `compile-check`를 붙이면 validator가 `c++ -std=c++17 -fsyntax-only`로 검사합니다.
 

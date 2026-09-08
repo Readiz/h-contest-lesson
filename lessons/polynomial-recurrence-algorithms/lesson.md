@@ -7,14 +7,13 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 | 단계 | 먼저 볼 페이지 |
 | --- | --- |
 | 다항식 곱셈과 convolution 모델링 | [FFT and NTT](pages/fft-ntt.md) |
-| FPS 기본 연산과 truncate/inverse | [Formal Power Series](pages/formal-power-series.md) |
-| FPS log/exp/power 조건 | [FPS Log and Exp](pages/fps-log-exp.md) |
+| FPS 미분·적분·역원에서 log와 exp까지 | [Formal Power Series](pages/formal-power-series.md) |
 | 여러 점 평가와 subproduct tree | [Multipoint Evaluation](pages/multipoint-evaluation.md) |
 | 계수 복원과 Lagrange interpolation | [Polynomial Interpolation](pages/polynomial-interpolation.md) |
 | counting 문제를 생성함수로 번역 | [Generating Function Modeling](pages/generating-function-modeling.md) |
 | 주어진 선형 점화식의 n번째 항 | [Linear Recurrence and Kitamasa](pages/linear-recurrence-kitamasa.md) |
 | rational generating function 계수 추출 | [Bostan-Mori](pages/bostan-mori.md) |
-| 앞 항에서 점화식 후보를 추정 | [Recurrence Guessing](pages/recurrence-guessing.md), [Berlekamp-Massey](pages/berlekamp-massey.md) |
+| 앞 항에서 점화식 후보를 추정 | [Berlekamp–Massey: 점화식 추정과 검증](pages/berlekamp-massey.md) |
 
 ## 계산 조건
 

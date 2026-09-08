@@ -96,50 +96,110 @@ struct XorLinearBasis {
 
 `maximize(seed)`는 이미 가진 xor 값에 basis vector를 추가로 xor해서 만들 수 있는 최댓값을 구합니다. 부분집합 xor 최댓값은 `seed = 0`입니다.
 
-## Rank와 경우의 수
+## Rank와 표현 개수
 
-서로 독립인 basis vector가 `r`개면 만들 수 있는 xor 값은 `2^r`개입니다.
-
-```text
-독립 vector마다 선택/미선택 2가지
-=> 2^rank distinct xor values
-```
-
-원소 수가 `n`이고 rank가 `r`이면 같은 xor 값을 만드는 부분집합 수는 보통 `2^(n-r)`배로 묶입니다. 단, 빈 부분집합 포함 여부와 modulo 조건을 문제마다 확인해야 합니다.
-
-## K번째 Xor 값
-
-K번째 작은 xor 값을 구하려면 basis를 reduced row echelon form처럼 정규화해야 합니다. 단순 `basis[bit]` 배열은 maximize에는 충분하지만 정렬된 순서 enumeration에는 부족합니다.
-
-정규화 방향은 아래와 같습니다.
+원소가 `n`개이고 basis rank가 `r`이면 서로 다른 subset xor 값은 `2^r`개입니다. 어떤 값 `x`를 표현할 수 있다면, 그 값을 만드는 subset 수는 `2^(n-r)`개입니다.
 
 ```text
-for high bit i:
-  for lower bit j:
-    if basis[i] has bit j:
-      basis[i] ^= basis[j]
+kernel dimension = n - rank
+각 표현 가능한 xor 값마다 같은 수의 preimage가 있음
 ```
 
-그 뒤 낮은 bit basis부터 K의 bit에 맞춰 xor하면 순서 있는 생성이 가능합니다.
+단, 빈 부분집합을 제외하거나 non-empty 조건이 있으면 `x = 0`에서 보정이 필요합니다.
 
-## 그래프와 Tree 응용
+## 정규화된 Basis와 k번째 xor
 
-무방향 그래프에서 DFS tree를 잡고 back edge가 만드는 cycle xor를 basis에 넣으면, 두 정점 사이 path xor를 basis로 최적화할 수 있습니다.
+위 `XorLinearBasis`의 high-bit basis는 maximum query에는 충분하지만, k번째 작은 xor 값을 만들려면 lower bit가 서로 정리된 형태가 필요합니다. 아래 확장은 같은 문서의 `XorLinearBasis` 뒤에 붙입니다. rank가 64이면 모든 unsigned long long k가 유효하며 `1ULL << 64`는 계산하지 않습니다.
+
+```cpp
+#include <stdexcept>
+
+struct NormalizedXorBasis : XorLinearBasis {
+    vector<unsigned long long> normalizedVectors() const {
+        array<unsigned long long, LOG + 1> reduced = basis;
+        for (int bit = 0; bit <= LOG; ++bit) {
+            if (reduced[bit] == 0) {
+                continue;
+            }
+            for (int high = bit + 1; high <= LOG; ++high) {
+                if ((reduced[high] >> bit) & 1ULL) {
+                    reduced[high] ^= reduced[bit];
+                }
+            }
+        }
+
+        vector<unsigned long long> vectors;
+        for (int bit = 0; bit <= LOG; ++bit) {
+            if (reduced[bit] != 0) {
+                vectors.push_back(reduced[bit]);
+            }
+        }
+        return vectors;
+    }
+
+    unsigned long long kthSmallest(unsigned long long k) const {
+        if (rank < 64 && k >= (1ULL << rank)) throw out_of_range("k");
+        vector<unsigned long long> vectors = normalizedVectors();
+        unsigned long long result = 0;
+        for (int i = 0; i < (int)vectors.size(); ++i) {
+            if ((k >> i) & 1ULL) {
+                result ^= vectors[i];
+            }
+        }
+        return result;
+    }
+};
+```
+
+위 `k`는 0-indexed입니다. 표현 가능한 값이 `2^rank`개이므로 `k < 2^rank` 조건을 호출자가 확인해야 합니다.
+
+## Graph Cycle Basis
+
+무방향 weighted graph에서 각 edge의 weight를 xor로 보고 DFS tree를 잡으면, non-tree edge는 cycle xor를 만듭니다.
 
 ```text
-pathXor(u, v) = prefixXor[u] ^ prefixXor[v]
-cycle basis를 더해 가능한 경로 xor 최댓값 계산
+cycleXor = distXor[u] ^ distXor[v] ^ edgeWeight
+basis.insert(cycleXor)
+pathXor(u, v) = distXor[u] ^ distXor[v]
+answer = maximize(pathXor(u, v))
 ```
 
-Tree path query에서는 Heavy-Light나 DSU on tree와 basis merge가 함께 나오기도 합니다.
+이 방식은 두 정점 사이의 walk에서 cycle을 추가로 돌아 xor 값을 바꿀 수 있을 때 사용합니다. simple path만 허용되는 문제라면 이 모델이 맞지 않을 수 있습니다.
+
+## Range Query Basis
+
+구간 `l..r`의 maximum subset xor를 묻는 문제는 basis merge가 필요합니다.
+
+| 제약 | 후보 구조 |
+| --- | --- |
+| static array, offline query | divide and conquer offline |
+| point update 없음 | segment tree of basis |
+| prefix append만 있음 | prefix basis with timestamp |
+| tree path query | HLD + segment tree basis |
+
+Basis merge는 작은 basis의 vector들을 큰 basis에 insert하면 됩니다. bit 수가 60 정도라 `O(LOG^2)`가 대개 충분합니다.
+
+## Matroid 관점
+
+XOR vector의 독립성은 linear matroid입니다. "가중치가 있는 값들 중 독립인 subset의 최대 weight"는 가중치 내림차순으로 보며 독립이면 선택하는 greedy가 맞습니다.
+
+```text
+sort by weight descending
+if weight >= 0 and insert(vector) succeeds:
+    choose it
+```
+
+이때 maximize xor greedy와 목적식이 다릅니다. 하나는 만들어지는 xor 값을 키우는 것이고, 다른 하나는 독립인 원소의 가중치 합을 키우는 것입니다.
 
 ## 시간 복잡도
 
 | 작업 | 복잡도 |
-| --- | --- |
-| 값 하나 insert | `O(LOG)` |
-| representability query | `O(LOG)` |
-| maximum xor query | `O(LOG)` |
-| basis merge | `O(LOG^2)` 또는 vector 개수만큼 insert |
+| --- | ---: |
+| basis insert | `O(LOG)` |
+| can represent | `O(LOG)` |
+| normalize | `O(LOG^2)` |
+| 현재 kthSmallest 호출(정규화 포함) | `O(LOG^2)` |
+| 정규화 벡터를 캐시한 뒤 kth xor | `O(LOG)` |
+| basis merge | `O(LOG^2)` |
 
-`LOG`는 보통 60 정도라 상수에 가깝습니다.
+정규화는 매 query마다 하면 비쌀 수 있습니다. 구조가 static이면 node마다 정규화된 basis를 캐시할지 검토합니다.

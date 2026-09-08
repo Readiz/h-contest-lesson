@@ -519,7 +519,7 @@
 - TODO: generating function convolution `/practice/...` 문제 필요 / 경우의 수 계수 결합 / generating function
 - TODO: truncate가 필요한 FPS `/practice/...` 문제 필요 / `mod x^n` 유지 / truncation
 
-### [FPS Log와 Exp](lessons/polynomial-recurrence-algorithms/pages/fps-log-exp.md)
+### [FPS Log와 Exp](lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md)
 
 - TODO: FPS log `/practice/...` 문제 필요 / `integral(F'/F)` 구현 / FPS logarithm
 - TODO: FPS exp `/practice/...` 문제 필요 / Newton iteration 보정 / FPS exponential
@@ -570,7 +570,7 @@
 - TODO: generating function coefficient `/practice/...` 문제 필요 / rational form 계수 추출 / Bostan-Mori
 - TODO: Berlekamp-Massey `/practice/...` 문제 필요 / 앞 항에서 최소 점화식 찾기 / discrepancy
 
-### [Recurrence Guessing](lessons/polynomial-recurrence-algorithms/pages/recurrence-guessing.md)
+### [Recurrence Guessing](lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md)
 
 - TODO: recurrence guessing `/practice/...` 문제 필요 / 앞 항 생성과 holdout 검증 / sequence modeling
 - TODO: graph walk recurrence `/practice/...` 문제 필요 / Cayley-Hamilton 활용 / black-box sequence
@@ -959,7 +959,7 @@
 - TODO: MST block rebuild `/practice/...` 문제 필요 / 변경 edge 후보만 합치기 / sqrt decomposition
 - TODO: flow decrease counterexample `/practice/...` 문제 필요 / 용량 감소에서 repair 필요성 확인 / infeasible flow
 
-### [Linear Basis Applications](lessons/linear-basis-applications/lesson.md)
+### [Linear Basis Applications](lessons/linear-basis-xor/lesson.md)
 
 - TODO: linear basis applications `/practice/...` 문제 필요 / 표현 가능성과 rank / representability
 - TODO: kth subset xor `/practice/...` 문제 필요 / normalized basis / kth xor
@@ -980,7 +980,7 @@
 - TODO: expanded obstacle `/practice/...` 문제 필요 / configuration space obstacle 모델링 / robot shape
 - TODO: collinear Minkowski `/practice/...` 문제 필요 / 같은 방향 edge와 중복 점 처리 / collinear edge
 
-### [Rotating Calipers Applications](lessons/rotating-calipers-applications/lesson.md)
+### [Rotating Calipers Applications](lessons/rotating-calipers/lesson.md)
 
 - TODO: rotating calipers width `/practice/...` 문제 필요 / edge-point 높이 sweep / minimum width
 - TODO: convex polygon tangent `/practice/...` 문제 필요 / support point 포인터 전진 / tangent

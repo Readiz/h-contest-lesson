@@ -161,7 +161,7 @@ TRACK_GUIDES = [
         "rows": [
             ("수학 기본 계산", ["modular-arithmetic", "gcd-extended-euclid-crt", "combinatorics-ncr", "matrix-exponentiation"], " / "),
             ("정수론 변환", ["mobius-inversion", "dirichlet-convolution", "multiplicative-functions", "summatory-number-theory"], " / "),
-            ("선형대수 모델링", ["linear-basis-xor", "linear-basis-applications", "black-box-linear-algebra", "linear-algebra-applications"], " / "),
+            ("선형대수 모델링", ["linear-basis-xor", "black-box-linear-algebra", "linear-algebra-applications"], " / "),
             ("확률/게임", ["probability-expected-value", "game-theory-grundy", "game-theory-applications", "probabilistic-decision-ai"], " / "),
         ],
     },
@@ -170,7 +170,7 @@ TRACK_GUIDES = [
         "description": "predicate에서 시작해 convex, sweep, arrangement, duality와 robustness로 확장합니다.",
         "rows": [
             ("기하 입문", ["geometry-ccw-segment-intersection", "rotating-calipers"], " / "),
-            ("Convex polygon", ["minkowski-sum", "rotating-calipers-applications", "shape-distance-modeling"], " / "),
+            ("Convex polygon", ["minkowski-sum", "rotating-calipers", "shape-distance-modeling"], " / "),
             ("Sweep/Arrangement", ["sweep-line-geometry", "closest-pair-sweep", "line-arrangement", "circle-arrangement"], " / "),
             ("Half-plane/Voronoi", ["half-plane-intersection", "voronoi-delaunay", "geometry-robustness-and-duality"], " / "),
             ("Robustness/Advanced", ["geometry-robustness-and-duality", "inversion-geometry"], " / "),

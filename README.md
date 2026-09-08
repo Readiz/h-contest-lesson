@@ -110,7 +110,7 @@ h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. �
 
 - 수학 기본 계산: [모듈러 연산과 빠른 거듭제곱](lessons/modular-arithmetic/lesson.md) / [정수론 심화: GCD, Extended Euclid, CRT, Sieve](lessons/gcd-extended-euclid-crt/lesson.md) / [조합론: nCr, 포함-배제, Lucas](lessons/combinatorics-ncr/lesson.md) / [Matrix Exponentiation](lessons/matrix-exponentiation/lesson.md)
 - 정수론 변환: [Mobius Inversion](lessons/mobius-inversion/lesson.md) / [Dirichlet Convolution](lessons/dirichlet-convolution/lesson.md) / [Multiplicative Functions](lessons/multiplicative-functions/lesson.md) / [Summatory Number Theory](lessons/summatory-number-theory/lesson.md)
-- 선형대수 모델링: [XOR Linear Basis](lessons/linear-basis-xor/lesson.md) / [Linear Basis Applications](lessons/linear-basis-applications/lesson.md) / [Black-Box Linear Algebra](lessons/black-box-linear-algebra/lesson.md) / [Linear Algebra Applications](lessons/linear-algebra-applications/lesson.md)
+- 선형대수 모델링: [XOR Linear Basis](lessons/linear-basis-xor/lesson.md) / [Black-Box Linear Algebra](lessons/black-box-linear-algebra/lesson.md) / [Linear Algebra Applications](lessons/linear-algebra-applications/lesson.md)
 - 확률/게임: [확률과 기대값](lessons/probability-expected-value/lesson.md) / [Game Theory와 Grundy Number](lessons/game-theory-grundy/lesson.md) / [Game Theory Applications](lessons/game-theory-applications/lesson.md) / [Probabilistic Decision AI](lessons/probabilistic-decision-ai/lesson.md)
 
 ### 기하 트랙
@@ -118,7 +118,7 @@ h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. �
 predicate에서 시작해 convex, sweep, arrangement, duality와 robustness로 확장합니다.
 
 - 기하 입문: [기하 기본: CCW, 선분 교차, Convex Hull](lessons/geometry-ccw-segment-intersection/lesson.md) / [Rotating Calipers](lessons/rotating-calipers/lesson.md)
-- Convex polygon: [Minkowski Sum](lessons/minkowski-sum/lesson.md) / [Rotating Calipers Applications](lessons/rotating-calipers-applications/lesson.md) / [Shape Distance Modeling](lessons/shape-distance-modeling/lesson.md)
+- Convex polygon: [Minkowski Sum](lessons/minkowski-sum/lesson.md) / [Rotating Calipers](lessons/rotating-calipers/lesson.md) / [Shape Distance Modeling](lessons/shape-distance-modeling/lesson.md)
 - Sweep/Arrangement: [Sweep Line Geometry](lessons/sweep-line-geometry/lesson.md) / [Closest Pair Sweep](lessons/closest-pair-sweep/lesson.md) / [Line Arrangement](lessons/line-arrangement/lesson.md) / [Circle Arrangement](lessons/circle-arrangement/lesson.md)
 - Half-plane/Voronoi: [Half-Plane Intersection](lessons/half-plane-intersection/lesson.md) / [Voronoi와 Delaunay](lessons/voronoi-delaunay/lesson.md) / [Geometry Robustness and Duality](lessons/geometry-robustness-and-duality/lesson.md)
 - Robustness/Advanced: [Geometry Robustness and Duality](lessons/geometry-robustness-and-duality/lesson.md) / [Inversion Geometry](lessons/inversion-geometry/lesson.md)
@@ -137,6 +137,6 @@ predicate에서 시작해 convex, sweep, arrangement, duality와 robustness로 �
 | 카테고리 | 설명 | 레슨 수 |
 | --- | --- | ---: |
 | 휴리스틱 기본 및 심화 노트 | 현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 개념을 모은 직접 학습 트랙입니다. | 30 |
-| 휴리스틱 참고 노트 | 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 희소 고급 도구, 장기 확장용 레퍼런스 노트입니다. | 69 |
+| 휴리스틱 참고 노트 | 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 희소 고급 도구, 장기 확장용 레퍼런스 노트입니다. | 67 |
 
 전체 레슨과 하위 페이지 링크는 [index.html](index.html)에서 확인합니다.
