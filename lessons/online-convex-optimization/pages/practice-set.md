@@ -117,17 +117,3 @@ int main() {
 2. `eta = 0`에 가까운 작은 값에서는 거의 uniform 평균과 같아지는지 확인합니다.
 3. 한 expert가 모든 round에서 loss 0인 입력, 모든 expert loss가 같은 입력을 deterministic case로 둡니다.
 4. 선택한 expert의 loss만 주어지는 bandit 입력으로 바꾸면 이 구현을 쓰면 안 됩니다.
-
-## 추가 로컬 연습 후보
-
-### Projected Gradient on a Box
-
-매 라운드 linear loss `a_t * x`가 공개되고, `x`는 항상 `[L, R]` 범위 안에 있어야 합니다. Online Gradient Descent와 clamp projection을 구현하고, 작은 입력에서 `x_t`가 어떻게 이동하는지 손으로 추적합니다.
-
-## 제출 전 체크리스트
-
-- loss와 reward의 부호를 맞췄는가?
-- full-information feedback인지 bandit feedback인지 표로 설명할 수 있는가?
-- probability vector 합이 1인지 매 라운드 검증했는가?
-- exponential update에서 max-shift를 했는가?
-- learning rate가 입력 scale과 horizon에 맞는가?

@@ -49,6 +49,7 @@ maximum matching을 구한 뒤, 매칭되지 않은 왼쪽 정점에서 alternat
 아래 구현은 작은 입력에서 쓰기 쉬운 DFS augmenting path 매칭입니다. 매칭을 구한 뒤 alternating BFS로 minimum vertex cover를 복원합니다.
 
 ```cpp compile-check
+#include <algorithm>
 #include <queue>
 #include <utility>
 #include <vector>
@@ -90,6 +91,9 @@ struct BipartiteMatchingCover {
     }
 
     int maximumMatching() {
+        fill(matchLeft.begin(), matchLeft.end(), -1);
+        fill(matchRight.begin(), matchRight.end(), -1);
+        fill(seen.begin(), seen.end(), 0);
         int result = 0;
         for (int left = 0; left < nLeft; ++left) {
             if (dfs(left, left + 1)) {
@@ -144,6 +148,8 @@ struct BipartiteMatchingCover {
 };
 ```
 
+`minimumVertexCover()`는 모든 간선을 추가하고 `maximumMatching()`을 호출한 뒤 사용합니다. 정점 번호는 각 파티션의 0-index이며 DFS 깊이는 매칭 크기까지 늘어납니다.
+
 DFS 매칭은 `O(VE)` 정도로 생각하면 됩니다. 정점과 간선이 크면 Hopcroft-Karp의 `O(E sqrt(V))` 구현을 검토합니다.
 
 ## Maximum Independent Set
@@ -185,14 +191,3 @@ N - maximum matching size
 | DAG path cover 변환 | `O(V + E)` + matching | split graph |
 
 입력이 작다면 DFS 매칭이 구현 실수도 적고 충분합니다. 제한이 커지면 Hopcroft-Karp로 넘어갑니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 일반 그래프에 이분 매칭 공식 적용 | 오답 | 그래프가 좌/우로 나뉘는지 확인 |
-| cover 복원에서 시작점을 모든 unmatched 정점으로 잡지 않음 | cover 누락 | unmatched left 전체에서 시작 |
-| alternating edge 방향을 반대로 탐색 | cover 공식 깨짐 | 왼쪽은 unmatched edge, 오른쪽은 matched edge |
-| maximum independent set을 cover 자체로 출력 | 보수 집합 필요 | `V - cover` 확인 |
-| DAG path cover에 cycle 있는 그래프 사용 | 해석 오류 | DAG 여부 먼저 검사 |
-| 1-index/0-index 혼동 | 매칭 배열 범위 오류 | 좌/우 크기 분리 |

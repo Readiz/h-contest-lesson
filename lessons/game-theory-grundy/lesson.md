@@ -2,6 +2,9 @@
 
 Game Theory 문제 중 impartial game은 두 플레이어가 같은 선택지를 가지고, 마지막 수를 둔 사람이 이기는 형태가 많습니다. 이런 게임은 각 상태의 Grundy number를 계산해 여러 게임의 합까지 판정할 수 있습니다.
 
+
+Grundy DFS의 memo는 -1로 초기화합니다. 유한 DAG와 normal play를 전제로 하며 긴 경로는 재귀 스택을 넘을 수 있습니다. 아래 mex와 임시 벡터 처리를 포함한 시간은 O(V+E), 재귀 경로에 남는 임시 벡터까지 포함한 추가 공간 상한은 O(V+E)입니다.
+
 ## Impartial Game
 
 Impartial game은 현재 가능한 움직임이 플레이어에 따라 달라지지 않는 게임입니다.
@@ -149,19 +152,8 @@ bool firstPlayerWins(const vector<int>& grundyValues) {
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
 | win/lose DAG DP | `O(V + E)` | `O(V)` |
-| Grundy DFS | `O(V + E + mex cost)` | `O(V)` |
+| Grundy DFS | `O(V + E)` | `O(V + E)` |
 | 여러 게임 xor | `O(K)` | `O(1)` |
 | 주기 탐색 | 문제별 | 값 배열 |
 
 mex 계산은 outdegree 크기만큼의 seen 배열이면 충분합니다. 전역 큰 배열을 매번 초기화하면 느릴 수 있으니 timestamp trick을 쓰기도 합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| terminal state를 winning으로 둠 | 전체 승패 반전 | 움직임 없음 = losing |
-| cycle 있는 게임에 DFS memo만 사용 | 무한 재귀 | 상태 그래프 DAG 확인 |
-| 여러 게임을 합산으로 더함 | 오답 | Grundy는 xor |
-| Grundy 0과 losing의 관계를 반대로 봄 | 승패 반전 | `G=0`이면 losing |
-| misere play를 normal로 처리 | 마지막 수 조건 오답 | statement 문장 확인 |
-| 주기를 근거 없이 사용 | 숨은 케이스 오답 | 주기 증명 또는 충분한 조건 |

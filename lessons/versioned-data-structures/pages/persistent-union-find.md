@@ -39,7 +39,7 @@ component size는 root마다 `(time, size)` history를 저장하고, query time 
 
 ## 구현
 
-아래 구현은 union operation이 한 번 호출될 때마다 시간이 1씩 증가하는 모델입니다.
+정점은 `1..n`, 조회 시각은 `0..currentTime`이고 전체 union 호출 수는 `INF`보다 작아야 합니다. 아래 구현은 union operation이 한 번 호출될 때마다 시간이 1씩 증가하는 모델입니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -47,7 +47,7 @@ component size는 root마다 `(time, size)` history를 저장하고, query time 
 using namespace std;
 
 struct PersistentUnionFind {
-    static const int INF = 1'000'000'000;
+    inline static constexpr int INF = 1'000'000'000;
     int currentTime = 0;
     vector<int> parent;
     vector<int> parentTime;
@@ -153,11 +153,3 @@ dfs(time interval):
 | memory | `O(N + union count)` |
 
 상수는 작지만 재귀 `find`가 깊어질 수 있으므로 union by size/rank는 필수입니다.
-
-## 자주 하는 실수
-
-1. path compression을 켜서 과거 parent 구조를 망가뜨린다.
-2. `parentTime[x] > t`와 `>= t` 경계를 헷갈린다.
-3. 같은 component union에서도 time 증가 여부를 문제의 version 정의와 다르게 처리한다.
-4. component size를 현재 root 기준으로만 저장해 과거 root query가 깨진다.
-5. 삭제가 있는 문제를 partially persistent DSU만으로 처리하려고 한다.

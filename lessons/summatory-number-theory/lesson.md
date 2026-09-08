@@ -46,6 +46,7 @@ vector<FloorBlock> floorDivisionBlocks(long long n) {
         long long quotient = n / left;
         long long right = n / quotient;
         blocks.push_back({left, right, quotient});
+        if (right == n) break;
         left = right + 1;
     }
     return blocks;
@@ -101,7 +102,9 @@ sum_{d|n} phi(d) = n
 이를 summatory로 누적하면 작은 prefix와 큰 quotient 구간을 나눠 `Phi(n) = sum_{i<=n} phi(i)`를 재귀적으로 구할 수 있습니다.
 
 ```text
-sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
+n(n+1)/2 = sum_{d=1}^n phi(d)*floor(n/d)
+             = sum_{k=1}^n Phi(floor(n/k))
+Phi(n) = n(n+1)/2 - sum_{k=2}^n Phi(floor(n/k))
 ```
 
 실전에서는 Du Jiao sieve 같은 이름으로 등장합니다. 구현 전에 필요한 항등식과 base prefix를 정확히 적는 것이 먼저입니다.
@@ -139,12 +142,3 @@ sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
 | memoized summatory recursion | 식과 cache 범위에 따라 달라짐 |
 
 여러 query가 있으면 큰 값의 quotient 결과가 재사용되는지에 따라 성능이 크게 갈립니다.
-
-## 자주 하는 실수
-
-1. `right = n / quotient` 대신 `right = n / (quotient + 1)` 같은 식으로 off-by-one을 만든다.
-2. `i = 0`이 포함되지 않는 식에 0을 넣는다.
-3. Mobius prefix의 음수를 modulo로 제대로 정리하지 않는다.
-4. `floor(n / d)^2`를 `long long` 범위라고 가정한다.
-5. multiplicative function의 point value와 summatory value를 같은 cache에 넣는다.
-6. convolution 항등식을 확인하지 않고 Du Jiao 형태를 외워서 적용한다.

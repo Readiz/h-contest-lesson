@@ -44,7 +44,7 @@ Dinic은 Max Flow의 대표적인 구현입니다.
 2. DFS로 level이 1씩 증가하는 간선만 따라 blocking flow를 보낸다.
 3. 더 이상 `S`에서 `T`로 갈 수 없을 때 종료한다.
 
-BFS level은 "현재 residual graph에서 sink까지 가는 shortest edge count 구조"를 만듭니다. DFS는 그 구조 위에서 더 보낼 수 있는 유량을 여러 번 흘립니다.
+BFS level은 "현재 residual graph에서 source에서 각 정점까지의 shortest edge count 구조"를 만듭니다. DFS는 그 구조 위에서 더 보낼 수 있는 유량을 여러 번 흘립니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -68,7 +68,7 @@ struct Dinic {
     explicit Dinic(int n) : n(n), graph(n), level(n), work(n) {}
 
     void addEdge(int from, int to, long long cap) {
-        Edge forward{to, (int)graph[to].size(), cap};
+        Edge forward{to, (int)graph[to].size() + (from == to ? 1 : 0), cap};
         Edge backward{from, (int)graph[from].size(), 0};
         graph[from].push_back(forward);
         graph[to].push_back(backward);
@@ -146,38 +146,7 @@ maximum flow value = minimum cut capacity
 
 Dinic이 끝난 뒤 residual graph에서 source로부터 아직 도달 가능한 정점들을 표시하면, 그 집합이 min cut의 source 쪽입니다. 원래 그래프에서 `reachable[u] == true`, `reachable[v] == false`인 간선 `u -> v`들이 cut 경계가 됩니다.
 
-```cpp compile-check
-#include <queue>
-#include <vector>
-using namespace std;
-
-struct ResidualEdge {
-    int to;
-    long long cap;
-};
-
-vector<int> reachableInResidual(const vector<vector<ResidualEdge>>& graph, int source) {
-    vector<int> reachable(graph.size(), 0);
-    queue<int> q;
-    reachable[source] = 1;
-    q.push(source);
-
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        for (const ResidualEdge& edge : graph[u]) {
-            if (edge.cap <= 0 || reachable[edge.to]) {
-                continue;
-            }
-            reachable[edge.to] = 1;
-            q.push(edge.to);
-        }
-    }
-    return reachable;
-}
-```
-
-실제 구현에서는 Dinic의 residual graph를 그대로 탐색하면 됩니다. 단, cut 용량을 다시 계산하려면 원래 간선 용량도 따로 보관해야 합니다.
+위 `maxFlow`가 종료할 때 마지막 BFS의 `level[v] != -1`인 정점이 source 쪽 집합입니다. 별도 BFS를 복제할 필요가 없습니다. cut 용량은 이 집합에서 바깥으로 나가는 **원래 용량**을 합하므로 원본 간선 목록은 보관합니다.
 
 ## Bipartite Matching으로 바꾸기
 
@@ -210,25 +179,6 @@ right nodes -> sink       capacity 1
 
 ## 시간 복잡도와 선택 기준
 
-Dinic의 일반적인 최악 시간 복잡도는 그래프 형태에 따라 다르게 설명됩니다. 대회 입문 단계에서는 아래처럼 판단하면 충분합니다.
+일반 그래프에서 시간은 `O(V²E)`, 메모리는 `O(V + E)`입니다. 위의 용량 1 이분 매칭 네트워크에서는 `O(E sqrt(V))`를 얻습니다. [Dinic 시간 분석](https://cp-algorithms.com/graph/dinic.html)을 참고합니다.
 
-| 상황 | 감각 |
-| --- | --- |
-| 정점/간선이 수천~수만 규모 | Dinic 우선 검토 |
-| 모든 용량이 1인 이분 매칭 | Dinic 또는 Hopcroft-Karp |
-| 비용까지 최소화해야 함 | Min-Cost Flow 필요 |
-| source/sink 분리 최소 비용 | Max Flow 후 Min Cut 해석 |
-
-Flow는 상수가 큰 편입니다. 입력 제한이 크고 문제 구조가 순수 이분 매칭이면 전용 알고리즘을 고려합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 역방향 간선을 만들지 않음 | 이전 선택을 취소하지 못함 | forward/reverse edge pair 유지 |
-| reverse index를 잘못 저장 | residual graph 손상 | `rev`가 상대 adjacency 위치를 가리키는지 확인 |
-| 정점 용량을 간선 용량처럼 처리 | 같은 정점이 여러 번 사용됨 | `in/out` split 사용 |
-| 무방향 간선을 한 방향만 추가 | 가능한 경로 누락 | 문제의 간선 방향 확인 |
-| `int` capacity 사용 | 큰 유량 overflow | capacity와 flow는 `long long` 검토 |
-| min cut을 원래 그래프가 아니라 residual capacity로 계산 | cut 간선 누락 | reachable은 residual, cut 용량은 원래 capacity 기준 |
-| 매칭에서 capacity를 1로 두지 않음 | 한 정점이 여러 번 매칭 | source/left/right/sink capacity 확인 |
+`source != sink`, 용량은 음이 아닌 정수이며 총유량이 `long long` 범위 안이어야 합니다. DFS 재귀 깊이는 최대 `V`입니다. 무향 용량 간선은 필요한 두 방향을 각각 추가합니다.

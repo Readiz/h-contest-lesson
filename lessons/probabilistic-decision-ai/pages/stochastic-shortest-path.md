@@ -2,6 +2,9 @@
 
 Stochastic Shortest Path는 상태와 행동이 있고, 행동 결과가 확률적으로 다음 상태를 정하는 문제에서 terminal state까지의 기대 비용을 최소화하는 모델입니다. Markov Decision Process의 특수한 형태이지만, absorbing state와 hitting time이 중심이라 shortest path, Bellman equation, linear equation 관점이 함께 등장합니다.
 
+
+아래 예시는 모든 비목표 상태에 행동이 있고 모든 정책이 proper인 유한 모델로 제한합니다. proper 정책 하나의 존재와 비음수 비용만으로는 충분하지 않습니다. 예를 들어 비용 0 자기 반복과 비용 1 종료 행동이 있으면 0에서 시작한 반복이 종료 정책의 비용 1을 찾지 못합니다. 고정 반복 횟수는 오차 보장을 대신하지 않습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Stochastic Shortest Path 관점 |
@@ -49,7 +52,7 @@ V(A) = 1 / 0.7
 
 ## Value Iteration 골격
 
-아래 코드는 모든 비용이 비음수이고 proper policy가 있다고 가정한 value iteration 예시입니다.
+아래 코드는 모든 비용이 비음수이고 모든 정책이 proper인 유한 모델의 value iteration 예시입니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -108,7 +111,7 @@ policy가 고정되어 있으면 min이 사라지고 선형 방정식이 됩니�
 V(s) - sum P(s'|s,pi(s)) * V(s') = c(s,pi(s))
 ```
 
-상태 수가 작고 policy가 고정되어 있거나, 가능한 policy를 따로 고를 수 있다면 Gaussian elimination이나 sparse linear solver로 기대 비용을 정확히 계산할 수 있습니다.
+상태 수가 작고 policy가 고정되어 있거나, 가능한 policy를 따로 고를 수 있다면 Gaussian elimination이나 sparse linear solver로 기대 비용을 선형계로 구할 수 있습니다. 실수 소거에는 조건수와 반올림 오차가 남습니다.
 
 ## Deterministic Shortest Path와의 관계
 
@@ -130,12 +133,3 @@ V(s) = min_a cost(s,a) + V(next(s,a))
 | 실패 시 제자리 확률이 큼 | 수렴이 느려질 수 있음 |
 
 문제에서 "항상 언젠가 도착한다"는 조건이 없다면, 무한 기대 비용 상태를 어떻게 출력해야 하는지도 확인해야 합니다.
-
-## 자주 하는 실수
-
-1. terminal state에서도 future value를 더한다.
-2. 실패해서 같은 상태로 돌아오는 항을 빼지 않고 단순 기대값만 계산한다.
-3. 확률 합이 1인지 검증하지 않는다.
-4. 모든 정책이 proper하다고 가정한다.
-5. discounted MDP와 undiscounted hitting cost를 섞는다.
-6. value iteration 수렴 오차를 출력 오차보다 크게 둔다.

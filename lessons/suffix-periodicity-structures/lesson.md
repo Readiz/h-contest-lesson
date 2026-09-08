@@ -16,18 +16,7 @@ Suffix and Periodicity Structures는 suffix array, suffix automaton, suffix tree
 | prefix-function 기반 상태 전이가 필요하다 | [Border Automaton](pages/border-automaton.md) |
 | period query를 여러 번 처리해야 한다 | [String Period Query Applications](pages/string-period-query-applications.md) |
 
-## 자료구조별 강점
-
-| 구조 | 강점 | 약점 |
-| --- | --- | --- |
-| Suffix Array + LCP | 정렬 순서, LCP RMQ, offline pattern search | dynamic update에 약함 |
-| Suffix Automaton | substring 상태 압축, count/DP | 사전순/구간 위치 복원이 별도 작업 |
-| Generalized SAM | 여러 문자열 공통 substring | source mask/count 관리가 중요 |
-| Suffix Tree | explicit edge와 깊이 기반 탐색 | 구현 난도가 높음 |
-| Runs/Periodicity | 반복 구조와 최소 주기 | 기본 matching과 관점이 다름 |
-| Border Automaton | prefix-function 상태 전이 | suffix 전체 정렬 문제에는 맞지 않음 |
-
-## 공개 상태
+## 연습
 
 문자열 구조를 비교하는 로컬 연습은 [Practice Set](pages/practice-set.md)에서 진행합니다.
 

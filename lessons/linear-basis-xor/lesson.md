@@ -2,6 +2,9 @@
 
 XOR Linear Basis는 여러 수의 xor 조합으로 만들 수 있는 값의 공간을 선형대수처럼 다루는 기법입니다. GF(2) 위의 벡터 기저로 생각하면 maximum xor, representability, rank, 부분집합 xor 개수 문제를 일관되게 처리할 수 있습니다.
 
+
+모든 64비트를 사용합니다. rank=64이면 2^rank는 unsigned long long 한 칸에 표현되지 않습니다. 그래프 cycle XOR 응용은 같은 연결 성분의 walk에 적용하며 단순 경로만 허용하면 별도 문제입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Linear Basis 관점 |
@@ -37,7 +40,7 @@ if x remains nonzero, it becomes a new basis vector
 using namespace std;
 
 struct XorLinearBasis {
-    static const int LOG = 62;
+    static const int LOG = 63;
     array<unsigned long long, LOG + 1> basis{};
     int rank = 0;
 
@@ -140,11 +143,3 @@ Tree path query에서는 Heavy-Light나 DSU on tree와 basis merge가 함께 나
 | basis merge | `O(LOG^2)` 또는 vector 개수만큼 insert |
 
 `LOG`는 보통 60 정도라 상수에 가깝습니다.
-
-## 자주 하는 실수
-
-1. signed `long long`의 최상위 bit를 다루다 비교가 꼬인다.
-2. dependent vector를 rank에 포함한다.
-3. maximum xor와 minimum xor의 greedy 방향을 섞는다.
-4. distinct xor 개수 `2^rank`와 부분집합 개수 `2^n`을 혼동한다.
-5. K번째 xor를 구하면서 basis를 정규화하지 않는다.

@@ -2,6 +2,9 @@
 
 Regular Triangulation은 weighted point를 3차원으로 lifting한 뒤 lower hull을 투영해서 얻는 Power Diagram의 dual 구조입니다. 일반 Delaunay Triangulation이 Voronoi Diagram의 dual이라면, Regular Triangulation은 Power Diagram의 dual입니다.
 
+
+일반 위치가 아니면 lower hull의 투영은 삼각형보다 큰 cell을 가진 regular subdivision일 수 있습니다. 이를 일관되게 삼각분할하는 tie 정책이 필요합니다. cell의 내부가 비는 퇴화 상태와 완전히 빈 cell도 구분합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Regular Triangulation 관점 |
@@ -50,7 +53,7 @@ B = (2, 0), w = 0  -> z = 4
 C = (1, 1), w = 3  -> z = -1
 ```
 
-가중치가 없다면 `C`의 lifted z는 2입니다. 하지만 weight 3 때문에 z가 -1까지 내려갑니다. 그래서 `C`는 Power Diagram에서 더 넓은 영역을 차지하고, regular triangulation의 face 구성도 일반 Delaunay와 달라질 수 있습니다.
+가중치가 없다면 `C`의 lifted z는 2입니다. 하지만 weight 3 때문에 z가 -1까지 내려갑니다. 그래서 `C`는 Power Diagram에서 더 넓은 영역을 차지하고, 이 세 비공선 점만으로는 삼각형 연결 구조가 바뀌지 않습니다. 더 많은 점에서는 lower hull 참여 여부와 연결 구조가 달라질 수 있습니다.
 
 ## In-Power-Circle 관점
 
@@ -86,11 +89,3 @@ Power Diagram에서는 어떤 weighted site의 cell이 비어 있을 수 있습�
 | query only | 필요한 cell만 계산 | 전역 구조는 없음 |
 
 대부분의 대회 문제는 full regular triangulation보다 작은 cell 계산, weighted nearest comparison, 또는 determinant predicate 일부만 요구합니다.
-
-## 자주 하는 실수
-
-1. lifting 식에서 `-w`가 아니라 `+w`를 쓴다.
-2. weight가 반지름인지 반지름 제곱인지 확인하지 않는다.
-3. lower hull 대신 upper hull을 투영한다.
-4. 일반 Delaunay의 incircle predicate를 weight 없이 그대로 쓴다.
-5. empty cell을 입력 오류로 처리한다.

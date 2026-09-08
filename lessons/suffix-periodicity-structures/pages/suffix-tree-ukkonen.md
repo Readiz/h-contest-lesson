@@ -68,7 +68,7 @@ Ukkonen 알고리즘은 현재까지 만든 implicit suffix tree 위에서 activ
 
 작은 문자열에서 active point와 split이 어떻게 움직이는지는 [abab$ phase trace](suffix-tree-phase-trace.md)에서 먼저 확인할 수 있습니다. 코드를 읽기 전에 phase trace를 보면 `go`, `split`, `getLink`, `extend`가 왜 서로 맞물리는지 훨씬 덜 추상적으로 보입니다.
 
-## 구현 골격
+## 구현
 
 ```cpp compile-check
 #include <map>
@@ -151,11 +151,12 @@ struct SuffixTree {
             return tree[state.v].parent;
         }
 
-        Node old = tree[state.v];
+        int oldLeft = tree[state.v].l;
+        int oldParent = tree[state.v].parent;
         int id = (int)tree.size();
-        tree.push_back(Node(old.l, old.l + state.pos, old.parent));
-        tree[old.parent].child(s[old.l]) = id;
-        tree[id].child(s[old.l + state.pos]) = state.v;
+        tree.push_back(Node(oldLeft, oldLeft + state.pos, oldParent));
+        tree[oldParent].child(s[oldLeft]) = id;
+        tree[id].child(s[oldLeft + state.pos]) = state.v;
         tree[state.v].parent = id;
         tree[state.v].l += state.pos;
         return id;
@@ -197,7 +198,7 @@ struct SuffixTree {
 };
 ```
 
-실전 구현에서는 생성자에 들어가기 전에 문자열 끝에 sentinel을 붙여 둡니다. Sentinel이 없으면 마지막 suffix들이 implicit 상태로 남을 수 있고, leaf 기반 질의가 한 칸씩 비게 됩니다.
+위 코드는 최종 문자열을 한 번에 받아 leaf 끝을 `s.size()`로 고정합니다. 생성 후 문자열을 append하는 API가 아닙니다. 실전 구현에서는 생성자에 들어가기 전에 문자열 끝에 sentinel을 붙여 둡니다. Sentinel이 없으면 마지막 suffix들이 implicit 상태로 남을 수 있고, leaf 기반 질의가 한 칸씩 비게 됩니다.
 
 ## Suffix Array와 비교
 
@@ -227,11 +228,3 @@ Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 
 | Ukkonen build with fixed array/hash | 평균 또는 상수 alphabet에서 `O(N)` |
 | pattern 탐색 | `O(|pattern| log alphabet)` |
 | subtree leaf 순회 | 출력 크기에 비례 |
-
-## 자주 하는 실수
-
-1. Sentinel을 붙이지 않아 leaf가 명시적으로 끝나지 않는다.
-2. 간선 구간을 inclusive/exclusive로 섞어 off-by-one을 만든다.
-3. split 후 parent와 child map을 한쪽만 갱신한다.
-4. root에서 suffix link를 따라갈 때 첫 글자 skip 규칙을 빠뜨린다.
-5. 여러 문자열 sentinel을 같은 문자로 둔다.

@@ -2,6 +2,9 @@
 
 Sweep Line은 좌표 평면의 이벤트를 한 방향으로 정렬해 훑으면서, 현재 선을 가로지르는 active object만 관리하는 기법입니다. 모든 쌍을 직접 비교하면 `O(N^2)`이 되는 기하 문제를 정렬과 자료구조로 줄일 때 자주 씁니다.
 
+
+직사각형은 `x1<=x2`, `y1<=y2`로 정렬된 좌표를 받습니다. 좌표 차·덮인 길이·넓이 합은 long long 범위여야 합니다. 길이 0인 직사각형은 넓이에 기여하지 않습니다. 교차하는 선분을 set에 둔 채 comparator의 x만 바꾸면 순서가 깨지므로 이벤트에서 교차·재삽입을 처리해야 합니다.
+
 ## 문제 신호
 
 Sweep line은 평면 객체를 한 축 기준으로 훑을 수 있을 때 나옵니다.
@@ -75,8 +78,8 @@ struct CoverSegmentTree {
     vector<int> cover;
     vector<long long> length;
 
-    explicit CoverSegmentTree(vector<long long> ys)
-        : ys(move(ys)), cover(4 * (int)ys.size(), 0), length(4 * (int)ys.size(), 0) {}
+    explicit CoverSegmentTree(vector<long long> coordinates)
+        : ys(move(coordinates)), cover(4 * (int)ys.size(), 0), length(4 * (int)ys.size(), 0) {}
 
     void pull(int node, int start, int end) {
         if (cover[node] > 0) {
@@ -191,14 +194,3 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 | active set 기반 선분 sweep | `O(N log N)` + 교차 검사 | `O(N)` |
 
 여기서 `N`은 보통 이벤트 수입니다. 직사각형 `R`개면 이벤트는 `2R`개입니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 좌표 압축 index를 점으로 해석 | 구간 길이 off-by-one | `ys[i]..ys[i+1]` 구간 관리 |
-| 같은 x 이벤트를 따로 면적 계산 | 폭 0 처리 혼동 | 같은 x를 묶어서 update |
-| y2를 inclusive로 업데이트 | 한 구간 더 덮음 | `[y1, y2)`면 `r - 1` |
-| cover count가 있는데 child length만 사용 | 중복 직사각형 누락 | `cover[node] > 0`이면 전체 길이 |
-| 선분 active comparator가 현재 x를 반영하지 않음 | set 순서 깨짐 | comparator 설계 주의 |
-| 좌표 곱을 int로 계산 | overflow | `long long` |

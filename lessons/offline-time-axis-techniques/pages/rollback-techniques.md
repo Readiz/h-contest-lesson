@@ -2,6 +2,9 @@
 
 Rollback Techniques는 오프라인 알고리즘에서 상태를 적용한 뒤 정확히 이전 snapshot으로 되돌리는 구현 패턴입니다. 대표 예시는 Rollback DSU지만, stack에 변경 전 값을 기록하는 방식은 Fenwick, segment tree, DP state, frequency table에도 적용할 수 있습니다.
 
+
+snapshot은 현재 history 크기 이하인 유효한 조상 상태여야 합니다. find/unite는 union by size로 O(log N), rollback은 실제 제거하는 기록 수에 비례합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Rollback 관점 |
@@ -103,7 +106,7 @@ struct RollbackDsu {
 
 ## Segment Tree over Time
 
-간선이 시간 구간 `[l, r]` 동안 활성이라면 segment tree의 해당 구간을 덮는 노드들에 간선을 넣습니다.
+간선이 시간 구간 `[l, r)` 동안 활성이라면 segment tree의 해당 구간을 덮는 노드들에 간선을 넣습니다.
 
 ```text
 dfs(node):
@@ -156,11 +159,3 @@ Rollback은 "변경 전 값을 기록하고 원복"할 수 있으면 됩니다.
 | Full persistence | version branching 가능 | 구현과 메모리 부담 큼 |
 
 오프라인 DFS처럼 상태가 stack discipline을 따르면 rollback이 가장 실용적입니다.
-
-## 자주 하는 실수
-
-1. DSU rollback에서 path compression을 사용한다.
-2. answer 변수나 component count 같은 전역 상태를 기록하지 않는다.
-3. same-component union의 marker 처리 방식을 섞는다.
-4. recursion child 사이에 snapshot을 복구하지 않는다.
-5. hash map에서 "기존에 없던 key"와 "값이 0인 key"를 구분하지 않는다.

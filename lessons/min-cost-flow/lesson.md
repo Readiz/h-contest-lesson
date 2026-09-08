@@ -60,7 +60,7 @@ struct MinCostFlow {
     explicit MinCostFlow(int n) : n(n), graph(n) {}
 
     void addEdge(int from, int to, long long cap, long long cost) {
-        Edge forward{to, (int)graph[to].size(), cap, cost};
+        Edge forward{to, (int)graph[to].size() + (from == to ? 1 : 0), cap, cost};
         Edge backward{from, (int)graph[from].size(), 0, -cost};
         graph[from].push_back(forward);
         graph[to].push_back(backward);
@@ -133,6 +133,8 @@ struct MinCostFlow {
 };
 ```
 
+이 구현은 초기 양의 용량 그래프에 음수 비용 사이클이 없는 경우를 다룹니다. 음수 사이클의 최적 순환을 처리하거나 탐지하지 않으므로 그런 입력에는 사용할 수 없습니다. `source != sink`, `cap, requiredFlow >= 0`이며 비용의 부호 반전·거리 합·`flow * dist`까지 `long long` 범위 안이어야 합니다.
+
 반환된 `totalFlow`가 `requiredFlow`보다 작으면 필요한 양을 모두 보낼 수 없다는 뜻입니다. 문제에서 "가능하지 않으면 -1" 같은 처리가 필요할 수 있습니다.
 
 ## 모델링 예시: Assignment
@@ -173,14 +175,3 @@ SPFA shortest augmenting path 구현은 augment 횟수를 `F`, 정점 수를 `V`
 | Potential + Dijkstra 한 번 | `O(E log V)` 수준 |
 
 capacity가 크더라도 한 번에 경로의 병목만큼 보내므로 augment 횟수는 보낸 유량 값보다 작을 수 있습니다. 하지만 모든 간선 capacity가 1이면 보낸 유량 횟수만큼 반복합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 역방향 간선 cost를 `-cost`로 두지 않음 | 이전 선택을 취소할 때 비용이 깨짐 | forward/reverse pair 확인 |
-| 필요한 유량을 다 못 보냈는데 비용만 출력 | 불가능 케이스 오답 | `totalFlow == requiredFlow` 확인 |
-| 이익 최대화에서 부호를 반대로 둠 | 최소 이익 선택 | `cost = -profit`인지 확인 |
-| capacity 1 모델링을 빠뜨림 | 한 작업자나 일이 여러 번 선택됨 | source/job/sink capacity 확인 |
-| `int` 비용 사용 | 비용 합 overflow | `flow * dist`는 `long long` |
-| 큰 입력에 SPFA만 사용 | 시간 초과 | potential + Dijkstra 검토 |

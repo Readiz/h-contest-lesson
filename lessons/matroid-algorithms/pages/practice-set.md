@@ -117,21 +117,3 @@ Partition matroid의 독립 집합은 "각 class에서 capacity 이하로 고른
 1. `N <= 20`에서는 모든 subset을 열거해 class별 capacity를 만족하는 최대 weight와 비교합니다.
 2. capacity가 0인 class, 같은 weight가 많은 입력, item이 한 class에 몰린 입력을 deterministic case로 둡니다.
 3. class별로 따로 상위 `cap_c`개를 고른 합과 greedy 결과가 같은지도 cross-check할 수 있습니다.
-
-## 추가 로컬 연습 후보
-
-### Graphic Matroid Greedy
-
-간선마다 weight가 있을 때 cycle이 생기지 않도록 최대 weight forest를 고릅니다. Kruskal의 maximum spanning forest 버전으로 구현하고, "graphic matroid greedy" 관점으로 증명을 다시 써 봅니다.
-
-### Naive Union Failure Trace
-
-간선을 두 forest로 색칠하는 작은 그래프를 만들고, 입력 순서 greedy가 실패하지만 교환하면 성공하는 예시를 손으로 추적합니다. 이 연습은 Matroid Union이 독립 구현 레슨으로 올라가려면 필요한 trace의 최소 형태입니다.
-
-## 제출 전 체크리스트
-
-- 제약이 정말 matroid 공리를 만족하는가?
-- 단일 matroid greedy인지, intersection/union/parity인지 구분했는가?
-- 독립성 oracle의 시간 복잡도를 입력 제한에 맞췄는가?
-- greedy가 깨지는 반례를 하나 만들었는가?
-- 일반 이론 대신 문제 특수 구조로 더 쉬워지는 부분이 있는가?

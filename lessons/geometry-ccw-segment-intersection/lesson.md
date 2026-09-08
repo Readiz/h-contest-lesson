@@ -2,6 +2,9 @@
 
 기하 문제는 공식을 많이 외우는 것보다 **좌표를 벡터로 보고 방향과 경계를 정확히 처리하는 것**이 중요합니다. 특히 정수 좌표 문제에서는 부동소수점 계산을 피하고, 외적(cross product)의 부호로 판단할 수 있는 경우가 많습니다.
 
+
+아래 정수 코드는 좌표 절댓값이 `10^9` 이하라는 전제입니다. 외적과 제곱 거리 중간값도 long long 범위에 들어갑니다. 경계의 일직선 점을 모두 남기려면 전체가 일직선인 입력은 별도로 처리해야 양쪽 hull에서 같은 점을 중복 출력하지 않습니다.
+
 ## 점과 벡터
 
 2차원 점은 보통 `(x, y)`로 표현합니다. 두 점 `a`, `b`가 있으면 `a -> b` 벡터는 `(b.x - a.x, b.y - a.y)`입니다.
@@ -39,6 +42,7 @@ ccw(c, d, a) * ccw(c, d, b) <= 0
 
 ```cpp compile-check
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 struct Point {
@@ -85,28 +89,6 @@ bool segmentsIntersect(Point a, Point b, Point c, Point d) {
 
     return abC * abD < 0 && cdA * cdB < 0;
 }
-```
-
-끝점에서 만나는 것도 교차로 볼지, 내부에서만 만나는 것을 교차로 볼지는 문제마다 다릅니다. 위 구현은 끝점 접촉과 겹침을 모두 교차로 봅니다.
-
-## Convex Hull
-
-Convex Hull은 모든 점을 포함하는 가장 작은 볼록 다각형입니다. 대표적인 구현은 monotonic chain입니다.
-
-1. 점을 `(x, y)` 기준으로 정렬한다.
-2. 아래쪽 hull을 왼쪽에서 오른쪽으로 만든다.
-3. 위쪽 hull을 오른쪽에서 왼쪽으로 만든다.
-4. 두 hull을 합친다.
-
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-struct Point {
-    long long x;
-    long long y;
-};
 
 bool operator<(const Point& a, const Point& b) {
     if (a.x != b.x) return a.x < b.x;
@@ -115,14 +97,6 @@ bool operator<(const Point& a, const Point& b) {
 
 bool operator==(const Point& a, const Point& b) {
     return a.x == b.x && a.y == b.y;
-}
-
-long long cross(Point a, Point b, Point c) {
-    long long x1 = b.x - a.x;
-    long long y1 = b.y - a.y;
-    long long x2 = c.x - a.x;
-    long long y2 = c.y - a.y;
-    return x1 * y2 - y1 * x2;
 }
 
 vector<Point> convexHull(vector<Point> points) {
@@ -156,7 +130,26 @@ vector<Point> convexHull(vector<Point> points) {
     lower.insert(lower.end(), upper.begin(), upper.end());
     return lower;
 }
+
+long long dist2(Point a, Point b) {
+    long long dx = a.x - b.x;
+    long long dy = a.y - b.y;
+    return dx * dx + dy * dy;
+}
 ```
+
+끝점에서 만나는 것도 교차로 볼지, 내부에서만 만나는 것을 교차로 볼지는 문제마다 다릅니다. 위 구현은 끝점 접촉과 겹침을 모두 교차로 봅니다.
+
+## Convex Hull
+
+Convex Hull은 모든 점을 포함하는 가장 작은 볼록 다각형입니다. 대표적인 구현은 monotonic chain입니다.
+
+1. 점을 `(x, y)` 기준으로 정렬한다.
+2. 아래쪽 hull을 왼쪽에서 오른쪽으로 만든다.
+3. 위쪽 hull을 오른쪽에서 왼쪽으로 만든다.
+4. 두 hull을 합친다.
+
+위 공통 구현의 `convexHull`을 사용합니다. 점·외적 정의를 함께 두어 교차 판정과 hull이 같은 좌표 규약을 쓰게 합니다.
 
 위 구현은 한 직선 위에 있는 중간 점을 hull에서 제거합니다. 경계 위의 모든 점을 포함해야 하는 문제라면 `<= 0` 조건을 `< 0`으로 바꾸는 식으로 collinear 처리 정책을 바꿔야 합니다.
 
@@ -175,18 +168,7 @@ vector<Point> convexHull(vector<Point> points) {
 
 거리 비교만 필요하면 `sqrt`를 쓰지 말고 제곱 거리로 비교합니다.
 
-```cpp compile-check
-struct Point {
-    long long x;
-    long long y;
-};
-
-long long dist2(Point a, Point b) {
-    long long dx = a.x - b.x;
-    long long dy = a.y - b.y;
-    return dx * dx + dy * dy;
-}
-```
+제곱 거리는 위 공통 구현의 `dist2`를 사용합니다.
 
 ## 시간 복잡도
 
@@ -198,14 +180,3 @@ long long dist2(Point a, Point b) {
 | Convex Hull monotonic chain | `O(n log n)` |
 
 Convex Hull의 병목은 정렬입니다. 정렬 이후 hull을 만드는 while loop는 각 점이 들어가고 빠지는 횟수가 상수 번이라 전체 `O(n)`입니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 외적을 `int`로 계산 | overflow | 좌표 범위가 크면 `long long` |
-| 선분 교차에서 일직선 겹침 누락 | 끝점/겹침 케이스 오답 | `onSegment` 별도 처리 |
-| 끝점 접촉을 교차로 볼지 확인하지 않음 | 판정 기준 불일치 | 문제의 교차 정의 확인 |
-| Convex Hull에서 중복 점 제거 누락 | 같은 점 반복, hull 오염 | `sort + unique` |
-| collinear 점 처리 정책을 무심코 선택 | 경계 점 포함 여부 오답 | `<= 0`와 `< 0` 차이 확인 |
-| 실수 좌표를 정확 비교 | 오차 오답 | `eps` 또는 정수식 유지 |

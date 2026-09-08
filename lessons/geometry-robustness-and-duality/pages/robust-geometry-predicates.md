@@ -2,6 +2,9 @@
 
 Robust Geometry Predicates는 orientation, incircle, 교차 판정처럼 기하 알고리즘의 분기 조건을 안정적으로 계산하는 방법을 정리합니다. 좌표를 구하는 공식보다 `왼쪽인가`, `겹치는가`, `원 안인가` 같은 predicate가 틀리면 전체 알고리즘이 무너집니다.
 
+
+아래 orientation은 좌표 절댓값<=10^18에서 __int128 중간값이 안전합니다. long long 전체 범위를 자동으로 지원하지는 않습니다. EPS comparator의 문제는 근사 동치가 추이적이지 않아 strict weak ordering을 깨뜨릴 수 있다는 것입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Robust Predicate 관점 |
@@ -134,11 +137,11 @@ construction: 교점 좌표는 어디인가?
 ## 작은 예시
 
 ```text
-a = (0, 0), b = (1e9, 1e9)
-c = (1e9, 1e9 - 1), d = (0, 1)
+a = (0, 0), b = (1000000000, 999999999)
+c = (0, 0), d = (999999999, 999999998)
 ```
 
-두 선분은 거의 평행해 보이지만 cross product의 작은 차이가 교차 여부를 결정합니다. double로 계산하면 입력 범위와 정렬 순서에 따라 부호가 흔들릴 수 있습니다.
+두 방향 벡터 외적은 정확히 -1입니다. 약 10^18인 두 곱의 차이를 double로 계산하면 이 부호를 잃을 수 있습니다. 선분들은 원점을 공유하므로 교차 여부 자체는 YES이고, 여기서 검사할 것은 방향 부호입니다.
 
 ## Sweep Line Comparator
 
@@ -149,11 +152,3 @@ Sweep line에서 active segment를 정렬할 때 `currentX`에서의 y좌표를 
 1. event x 사이에서 순서가 변하는 지점을 명시적으로 처리한다.
 2. exact orientation으로 두 segment의 상대 순서를 비교한다.
 3. tie-breaking을 segment id로 고정한다.
-
-## 자주 하는 실수
-
-1. 정수 좌표 판정을 double cross product로 처리한다.
-2. `long long` 곱셈 overflow를 놓친다.
-3. EPS comparator로 `set`의 strict weak ordering을 깨뜨린다.
-4. 접하는 경우를 교차하지 않는 것으로 처리한다.
-5. predicate 결과와 좌표 construction 결과를 서로 다른 기준으로 섞는다.

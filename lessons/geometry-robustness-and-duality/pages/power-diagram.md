@@ -2,6 +2,9 @@
 
 Power Diagram은 점마다 가중치가 있을 때 "가까움"을 `거리 제곱 - weight`로 정의하는 weighted Voronoi 구조입니다. 일반 Voronoi가 가장 가까운 점을 나누는 구조라면, Power Diagram은 반지름이 다른 원이나 영향력이 다른 점의 지배 영역을 선형 경계로 나눕니다.
 
+
+Power diagram은 제곱 거리에서 가중치를 빼는 모델입니다. 거리에서 가중치를 빼거나 거리에 가중치를 곱하는 다른 weighted Voronoi와 구분합니다. cell은 비어 있거나 무한할 수 있습니다. 동일 좌표면 더 큰 weight가 지배하며 같은 weight의 tie 정책은 별도로 정합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Power Diagram 관점 |
@@ -86,11 +89,3 @@ site 수가 작으면 site마다 half-plane intersection을 돌려도 됩니다.
 | regular triangulation 기반 전체 구성 | 구현/라이브러리 의존 |
 
 대회에서는 보통 전체 diagram 라이브러리 구현보다 "특정 점이 어느 site에 속하는지", "site 몇 개의 경계가 어디인지", "cell이 비었는지" 같은 제한된 형태로 나옵니다.
-
-## 자주 하는 실수
-
-1. `dist - weight`로 정의해서 경계가 직선이 아니게 만든다.
-2. weight를 반지름으로 넣고 `r^2`를 빼야 하는 문제에서 `r`만 뺀다.
-3. cell이 사라질 수 있다는 점을 잊는다.
-4. 일반 Voronoi처럼 경계가 항상 두 점의 수직이등분선이라고 가정한다.
-5. floating EPS와 exact predicate 정책을 섞어 경계 위 점을 불안정하게 처리한다.

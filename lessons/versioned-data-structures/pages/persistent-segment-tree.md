@@ -31,7 +31,7 @@ old root
 
 ## 기본 구현
 
-아래 코드는 점 업데이트와 구간 합 질의를 지원하는 Persistent Segment Tree입니다. `roots[v]`가 버전 `v`의 root node index입니다.
+`n >= 1`, 위치는 `1..n`, 질의는 `1 <= left <= right <= n`이며 버전 번호는 이미 생성된 버전입니다. 아래 코드는 점 업데이트와 구간 합 질의를 지원하는 Persistent Segment Tree입니다. `roots[v]`가 버전 `v`의 root node index입니다.
 
 ```cpp compile-check
 #include <vector>
@@ -192,7 +192,7 @@ struct PersistentKthTree {
 };
 ```
 
-위 구현은 `tree[0]`을 null node로 씁니다. null node의 child와 count가 모두 0이기 때문에, 아직 만들어지지 않은 범위도 안전하게 차이를 계산할 수 있습니다.
+`valueCount >= 1`, 압축값은 `1..valueCount`, 질의는 `1 <= leftIndex <= rightIndex <= 삽입 수`, `1 <= k <= rightIndex-leftIndex+1`입니다. 위 구현은 `tree[0]`을 null node로 씁니다. null node의 child와 count가 모두 0이기 때문에, 아직 만들어지지 않은 범위도 안전하게 차이를 계산할 수 있습니다.
 
 ## 좌표 압축
 
@@ -202,7 +202,7 @@ k번째 수 질의에서는 tree의 index가 실제 값이 아니라 압축된 �
 2. 각 `a[i]`를 압축 index로 바꾼다.
 3. query 결과로 나온 압축 index를 원래 값 배열에서 복원한다.
 
-값 범위가 `10^9`여도 서로 다른 값이 `N`개라면 tree 범위는 `1..N`이면 됩니다. 압축 없이 실제 값 범위로 tree를 만들면 메모리가 터집니다.
+값 범위가 `10^9`여도 서로 다른 값이 `N`개라면 tree 범위는 `1..N`이면 됩니다. 전체 값 범위를 미리 build하면 메모리가 커집니다. 위 kth 구현은 null 노드에서 필요한 경로만 생성하므로 넓은 범위도 처리할 수 있지만, 압축하면 높이와 노드 수를 줄일 수 있습니다.
 
 ## 시간과 메모리
 
@@ -211,17 +211,11 @@ k번째 수 질의에서는 tree의 index가 실제 값이 아니라 압축된 �
 | 버전 하나 추가 | `O(log N)` | `O(log N)` node |
 | 버전 하나의 구간 합 질의 | `O(log N)` | 없음 |
 | prefix 차이 k번째 값 | `O(log N)` | 없음 |
-| 전체 `M`번 업데이트 | `O(M log N)` | `O(M log N)` node |
+| 전체 build + `M`번 업데이트 | `O(N + M log N)` | `O(N + M log N)` node |
 
 메모리는 node 개수로 계산합니다. `N = 200000`, 업데이트 `M = 200000`이면 대략 `M * log2(N)` 수준의 노드가 생깁니다. 각 node가 `int left, int right, long long sum`이면 수십 MB 이상이 될 수 있으므로 제한을 먼저 계산해야 합니다.
 
-## 자주 하는 실수
 
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| old node를 직접 수정 | 과거 버전이 같이 바뀜 | update에서 반드시 clone |
-| root 배열을 덮어씀 | 버전 질의 불가 | 새 root를 별도 저장 |
-| 좌표 압축 복원 누락 | 압축 index를 답으로 출력 | result index를 original value로 변환 |
-| null node 처리 누락 | k번째 질의에서 범위 밖 접근 | `tree[0]`을 0 node로 유지 |
-| k가 구간 원소 수보다 큼 | 잘못된 leaf 도달 | 질의 전 count 확인 |
-| 노드 수 메모리 계산 누락 | 메모리 초과 | `updates * logN * sizeof(Node)` 추정 |
+## Prefix kth 예시와 sequence 경계
+
+배열 [5,1,4,2]의 [2,4]에서 두 번째 값은 root[4]-root[1]의 빈도 {1,2,4}를 내려가 얻는 2입니다. 압축 index를 원래 값으로 되돌립니다. 중간 삽입·삭제로 위치가 바뀌는 sequence는 고정 index tree 대신 persistent implicit treap의 split/merge가 필요합니다.

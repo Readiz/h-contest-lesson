@@ -2,6 +2,9 @@
 
 Circle Geometry는 점, 직선, 원 사이의 거리와 교점을 계산하고 tangent construction으로 이어지는 계산기하 레슨입니다. Segment intersection이나 convex polygon보다 실수 오차와 case 분기가 더 자주 등장하므로, 공식을 쓰기 전에 어떤 기하 관계를 판정하는지 분리해야 합니다.
 
+
+원-직선 코드는 a!=b, radius>=0인 유한 좌표를 받습니다. 두 원은 d=0일 때 동심·일치·서로 다른 반지름을 먼저 분리합니다. arc 공식은 r1*d!=0이며 부분 교차일 때만 적용하고 acos 인자를 [-1,1]로 clamp합니다. 완전 포함·분리·반지름0은 별도 판정합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Circle Geometry 관점 |
@@ -64,6 +67,26 @@ double normCircle(CirclePoint a) {
 CirclePoint rotate90(CirclePoint a) {
     return {-a.y, a.x};
 }
+vector<CirclePoint> circleLineIntersection(
+    CirclePoint center,
+    double radius,
+    CirclePoint a,
+    CirclePoint b
+) {
+    CirclePoint dir = b - a;
+    double len2 = norm2Circle(dir);
+    CirclePoint foot = a + dir * (dotCircle(center - a, dir) / len2);
+    double d2 = norm2Circle(foot - center);
+    double r2 = radius * radius;
+    if (d2 > r2 + 1e-10) {
+        return {};
+    }
+    if (fabs(d2 - r2) <= 1e-10) {
+        return {foot};
+    }
+    double offset = sqrt(max(0.0, r2 - d2)) / normCircle(dir);
+    return {foot + dir * offset, foot - dir * offset};
+}
 ```
 
 정수 좌표 입력이어도 교점은 실수가 됩니다. 출력 오차 기준을 확인하고 `double` 또는 `long double`을 고릅니다.
@@ -77,49 +100,9 @@ foot = a + dir * dot(c - a, dir) / |dir|^2
 distance = |foot - c|
 ```
 
-`distance > r`이면 교점이 없습니다. 같으면 접점 하나, 작으면 수직 방향으로 두 교점입니다.
+`distance > r`이면 교점이 없습니다. 같으면 접점 하나, 작으면 직선 방향으로 두 교점입니다.
 
-```cpp compile-check
-#include <cmath>
-#include <vector>
-using namespace std;
-
-struct CircleLinePoint {
-    double x = 0;
-    double y = 0;
-};
-
-CircleLinePoint operator+(CircleLinePoint a, CircleLinePoint b) { return {a.x + b.x, a.y + b.y}; }
-CircleLinePoint operator-(CircleLinePoint a, CircleLinePoint b) { return {a.x - b.x, a.y - b.y}; }
-CircleLinePoint operator*(CircleLinePoint a, double k) { return {a.x * k, a.y * k}; }
-
-double dotLine(CircleLinePoint a, CircleLinePoint b) { return a.x * b.x + a.y * b.y; }
-double norm2Line(CircleLinePoint a) { return dotLine(a, a); }
-double normLine(CircleLinePoint a) { return sqrt(norm2Line(a)); }
-CircleLinePoint normalLine(CircleLinePoint a) { return {-a.y, a.x}; }
-
-vector<CircleLinePoint> circleLineIntersection(
-    CircleLinePoint center,
-    double radius,
-    CircleLinePoint a,
-    CircleLinePoint b
-) {
-    CircleLinePoint dir = b - a;
-    double len2 = norm2Line(dir);
-    CircleLinePoint foot = a + dir * (dotLine(center - a, dir) / len2);
-    double d2 = norm2Line(foot - center);
-    double r2 = radius * radius;
-    if (d2 > r2 + 1e-10) {
-        return {};
-    }
-    if (fabs(d2 - r2) <= 1e-10) {
-        return {foot};
-    }
-    double offset = sqrt(max(0.0, r2 - d2)) / normLine(dir);
-    CircleLinePoint unitNormal = normalLine(dir);
-    return {foot + unitNormal * offset, foot - unitNormal * offset};
-}
-```
+위 circleLineIntersection은 projection foot에서 직선 방향으로 이동합니다.
 
 선분과 원의 교점이면 나온 점이 선분 bounding box 또는 parameter `t in [0,1]` 안에 있는지 추가로 봅니다.
 
@@ -183,11 +166,3 @@ intersection = (-4, 3), (4, 3)
 | 원 arc sweep | 보통 `O(N^2 log N)` |
 
 기하 문제는 공식보다 case 수가 병목입니다. 접함, 포함, 같은 중심, 반지름 0 같은 조건을 먼저 정리합니다.
-
-## 자주 하는 실수
-
-1. 두 원 중심이 같은데 `d`로 나누어 NaN을 만든다.
-2. 접하는 경우를 교점 2개로 중복 출력한다.
-3. `acos` 인자가 오차로 `[-1,1]`을 살짝 벗어나는 것을 clamp하지 않는다.
-4. 선분-원 교점에서 무한 직선 교점을 그대로 사용한다.
-5. 각도 구간이 `pi` 경계를 넘는 경우를 놓친다.

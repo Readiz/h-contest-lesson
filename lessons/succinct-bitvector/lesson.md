@@ -46,8 +46,8 @@ struct SuccinctBitvector {
 
     int n = 0;
     vector<unsigned long long> words;
-    vector<int> superRank;
-    vector<unsigned short> blockRank;
+    vector<int> superRank{0};
+    vector<unsigned short> blockRank{0};
 
     SuccinctBitvector() = default;
 
@@ -70,7 +70,7 @@ struct SuccinctBitvector {
         blockRank.assign(wordCount + 1, 0);
 
         int total = 0;
-        for (int w = 0; w < wordCount; ++w) {
+        for (int w = 0; w <= wordCount; ++w) {
             if (w % SUPER_WORDS == 0) {
                 superRank[w / SUPER_WORDS] = total;
             }
@@ -80,9 +80,8 @@ struct SuccinctBitvector {
                 inside += __builtin_popcountll(words[x]);
             }
             blockRank[w] = (unsigned short)inside;
-            total += __builtin_popcountll(words[w]);
+            if (w < wordCount) total += __builtin_popcountll(words[w]);
         }
-        superRank[(wordCount + SUPER_WORDS - 1) / SUPER_WORDS] = total;
     }
 
     int rankOne(int pos) const {
@@ -92,19 +91,31 @@ struct SuccinctBitvector {
 
         int result = superRank[wordIndex / SUPER_WORDS] + blockRank[wordIndex];
         if (wordIndex < (int)words.size() && offset > 0) {
-            unsigned long long mask = (offset == 64 ? ~0ULL : ((1ULL << offset) - 1));
+            unsigned long long mask = (1ULL << offset) - 1;
             result += __builtin_popcountll(words[wordIndex] & mask);
         }
         return result;
     }
 
     int rankZero(int pos) const {
+        pos = max(0, min(pos, n));
         return pos - rankOne(pos);
     }
 
     bool access(int pos) const {
         return (words[pos / WORD_BITS] >> (pos % WORD_BITS)) & 1ULL;
     }
+
+int selectOne(int kth) const {
+    if (kth < 0 || kth >= rankOne(n)) return -1;
+    int low = 0, high = n - 1;
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (rankOne(mid + 1) > kth) high = mid;
+        else low = mid + 1;
+    }
+    return low;
+}
 };
 ```
 
@@ -112,48 +123,11 @@ struct SuccinctBitvector {
 
 ## Select 구현
 
-가장 단순한 select는 rank를 이용한 binary search입니다.
+다음 멤버를 위 `SuccinctBitvector`에 추가합니다. 0-indexed k번째 1의 위치를 찾고, 없으면 -1을 반환합니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
+selectOne은 위 구조에 포함되어 있으며 0번째부터 셉니다. 없는 순번은 -1을 반환합니다.
 
-struct SimpleRankForSelect {
-    vector<int> prefix;
-
-    explicit SimpleRankForSelect(const vector<int>& bits) {
-        prefix.assign(bits.size() + 1, 0);
-        for (int i = 0; i < (int)bits.size(); ++i) {
-            prefix[i + 1] = prefix[i] + bits[i];
-        }
-    }
-
-    int rankOne(int pos) const {
-        return prefix[pos];
-    }
-
-    int selectOne(int kth) const {
-        int total = prefix.back();
-        if (kth < 0 || kth >= total) {
-            return -1;
-        }
-        int low = 0;
-        int high = (int)prefix.size() - 1;
-        while (low < high) {
-            int mid = (low + high) / 2;
-            if (rankOne(mid + 1) >= kth + 1) {
-                high = mid;
-            } else {
-                low = mid + 1;
-            }
-        }
-        return low;
-    }
-};
-```
-
-실전 succinct 구현에서는 select도 block index를 따로 두어 더 빠르게 만들 수 있습니다. 하지만 많은 대회 문제에서는 rank가 핵심이고 select는 binary search로 충분한 경우가 많습니다.
+별도 prefix 배열을 다시 만들지 않고 같은 rank 구조를 사용합니다.
 
 ## Wavelet Matrix와 연결
 
@@ -176,9 +150,9 @@ Wavelet Matrix의 level bitvector에서 필요한 연산은 대부분 rank입니
 | --- | ---: |
 | raw bit words | `N` bits |
 | prefix int per position | `32N` bits |
-| 512-bit superblock + 64-bit block | `N + O(N/64 log N)` bits |
+| 512-bit superblock + 64-bit block | 약 `1.3125N` bits (32비트 int·16비트 short 기준, 끝 칸 제외) |
 
-대회 구현에서는 완전한 이론적 succinct보다 "raw bit + rank table"의 균형점이 더 실용적입니다.
+위 고정 블록 구현은 엄밀한 `N + o(N)` 공간 보장은 아닙니다. 대회 구현에서는 완전한 이론적 succinct보다 "raw bit + rank table"의 균형점이 더 실용적입니다.
 
 ## Index Convention
 
@@ -204,11 +178,3 @@ rank/select는 index convention이 중요합니다.
 | build | `O(N)` | `O(N)` |
 
 select까지 `O(1)` 또는 `O(log word)`로 만들려면 추가 index가 필요합니다.
-
-## 자주 하는 실수
-
-1. `rank(pos)`에 pos 위치 bit를 포함할지 헷갈린다.
-2. `1ULL << 64` 같은 undefined shift를 만든다.
-3. 마지막 word의 padding bit를 실제 bit로 센다.
-4. select의 k를 0-indexed/1-indexed로 섞는다.
-5. `unsigned short` block count가 superblock 크기보다 작다는 전제를 깨뜨린다.

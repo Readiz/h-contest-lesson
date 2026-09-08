@@ -66,78 +66,10 @@ Eertree는 두 root를 먼저 둡니다.
 
 ## 구현 기준
 
-```cpp compile-check
-#include <array>
+```cpp
+// https://h.readiz.com/learn/palindrome-structures/palindromic-tree의 PalindromicTree를 앞에 둔다.
 #include <iostream>
-#include <string>
-#include <vector>
 using namespace std;
-
-struct Eertree {
-    struct Node {
-        int len = 0;
-        int link = 0;
-        array<int, 26> next{};
-
-        Node() {
-            next.fill(0);
-        }
-    };
-
-    vector<Node> tree;
-    string s;
-    int last = 1;
-
-    Eertree() {
-        tree.push_back(Node{});
-        tree.push_back(Node{});
-        tree[0].len = -1;
-        tree[0].link = 0;
-        tree[1].len = 0;
-        tree[1].link = 0;
-    }
-
-    int findExtendableSuffix(int node, int pos) const {
-        while (true) {
-            int mirrored = pos - 1 - tree[node].len;
-            if (mirrored >= 0 && s[mirrored] == s[pos]) {
-                return node;
-            }
-            node = tree[node].link;
-        }
-    }
-
-    void add(char ch) {
-        s.push_back(ch);
-        int pos = (int)s.size() - 1;
-        int c = ch - 'a';
-
-        int current = findExtendableSuffix(last, pos);
-        if (tree[current].next[c] != 0) {
-            last = tree[current].next[c];
-            return;
-        }
-
-        int created = (int)tree.size();
-        tree.push_back(Node{});
-        tree[created].len = tree[current].len + 2;
-        tree[current].next[c] = created;
-
-        if (tree[created].len == 1) {
-            tree[created].link = 1;
-        } else {
-            int linkBase = findExtendableSuffix(tree[current].link, pos);
-            tree[created].link = tree[linkBase].next[c];
-        }
-
-        last = created;
-    }
-
-    int distinctCount() const {
-        return (int)tree.size() - 2;
-    }
-};
-
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -145,11 +77,11 @@ int main() {
     string s;
     cin >> s;
 
-    Eertree tree;
+    PalindromicTree tree;
     for (char ch : s) {
-        tree.add(ch);
+        tree.addChar(ch);
     }
-    cout << tree.distinctCount() << '\n';
+    cout << (tree.tree.size() - 2) << '\n';
 }
 ```
 
@@ -173,17 +105,3 @@ int main() {
 3. Eertree의 `distinctCount()`와 brute force set size가 항상 같은지 비교합니다.
 
 이 stress를 통과하면 root 개수 제외, suffix link 후보 탐색, 새 node 생성 조건의 흔한 실수를 대부분 잡을 수 있습니다.
-
-## 다음 연습 후보
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | 로컬: distinct palindrome count | Eertree node 개수 | palindromic tree |
-
-## 완료 기준
-
-- 판정/열거/집계 중 어떤 문제인지 먼저 적습니다.
-- Manacher나 hash의 index 변환을 작은 문자열로 검증합니다.
-- Eertree occurrence count는 suffix link 역순 누적 후 사용합니다.
-- DP는 `O(N^2)` 가능 여부를 제한에서 확인합니다.
-- distinct count만 필요할 때는 두 root를 제외한 node 수를 답으로 씁니다.

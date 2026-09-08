@@ -22,7 +22,7 @@ Suffix and Periodicity Structures 계열은 같은 문제를 suffix array와 SAM
 인접 suffix의 LCP는 아래입니다.
 
 ```text
-LCP = [1, 3, 0, 0, 2]
+LCP = [0, 1, 3, 0, 0, 2]
 ```
 
 길이 `N=6`인 문자열의 모든 substring 개수는 `N*(N+1)/2 = 21`입니다. suffix array에서 새 suffix가 추가하는 새로운 substring 수는 `suffixLength - previousLcp`입니다. 따라서 distinct substring 수는 아래처럼 계산합니다.
@@ -93,11 +93,3 @@ for seed in 1..1000:
 ```
 
 반드시 포함할 case는 모든 문자가 같은 문자열, 모두 다른 문자열, `abababab`처럼 period가 강한 문자열입니다.
-
-## 완료 기준
-
-- suffix array와 LCP index 정의를 고정합니다.
-- SAM occurrence count는 suffix link 역순 누적 뒤에 사용합니다.
-- 여러 문자열을 합칠 때 separator 충돌을 막습니다.
-- period query에서는 inclusive/exclusive 구간을 통일합니다.
-- naive substring set과 비교하는 작은 stress test를 준비합니다.

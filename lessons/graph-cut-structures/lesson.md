@@ -6,12 +6,12 @@ Graph Cut Structures는 s-t min cut 이후의 무향 cut 구조를 하나의 학
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
-| 특정 `s, t`가 주어져 있다 | Max Flow Min Cut을 먼저 본다 |
+| 특정 `s, t`가 주어져 있다 | [Max Flow, Min Cut, Bipartite Matching](https://h.readiz.com/learn/max-flow-min-cut) |
 | 아무 두 그룹으로 나누는 최약 cut 값이 필요하다 | [Global Min Cut](pages/global-min-cut.md) |
 | 구현은 짧아도 randomized 반복을 허용한다 | [Randomized Min Cut](pages/randomized-min-cut.md) |
 | 모든 pair min cut 질의가 많다 | [Gomory-Hu Tree](pages/gomory-hu-tree.md) |
 | dense graph에서 작은 cut만 보존하면 된다 | [Cut Sparsification](pages/cut-sparsification.md) |
-| minimum cut family 자체를 다뤄야 한다 | [Cactus Representation](pages/cactus-representation.md), [Cut Cactus Applications](pages/cactus-representation.md) |
+| minimum cut family 자체를 다뤄야 한다 | [Cactus Representation](pages/cactus-representation.md) |
 
 ## 입력과 출력의 구분
 

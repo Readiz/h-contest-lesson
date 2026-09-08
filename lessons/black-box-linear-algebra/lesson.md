@@ -2,6 +2,9 @@
 
 Black-Box Linear Algebra는 큰 행렬을 직접 저장하거나 `O(N^3)`으로 다루지 않고, sparse matrix-vector product만으로 rank, determinant, linear recurrence 정보를 얻는 관점입니다. 구현 대회에서 자주 쓰는 완성 템플릿은 아니지만, 큰 선형 시스템과 recurrence를 연결하는 중요한 모델입니다.
 
+
+투영 수열의 최소 다항식은 행렬 최소 다항식의 약수일 수 있습니다. 한 번의 BM 결과가 곧 행렬의 최소 다항식이라는 뜻은 아닙니다. state·probe·entry는 [0,MOD)로 정규화하고 길이·인덱스 및 terms>=0을 맞춥니다. 현재 matvec는 0 초기화까지 O(N+nnz), T항은 O(T*(N+nnz))입니다. 여러 소수의 rank를 CRT로 합쳐 일반 해를 얻을 수는 없습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Black-box 관점 |
@@ -129,7 +132,7 @@ s_k = u^T A^k v
 
 Berlekamp-Massey와 많은 black-box 선형대수 기법은 field가 필요합니다. 즉 modulo가 prime이어야 나눗셈이 안전합니다.
 
-합성수 modulo에서 그대로 inverse를 쓰면 깨집니다. 필요하면 여러 prime에서 계산한 뒤 CRT로 합치거나, 문제 조건을 다시 확인해야 합니다.
+합성수 modulo에서는 이 field 알고리즘을 그대로 적용하지 않습니다. 정수 determinant처럼 정수 값의 크기 상한과 각 소수에서의 올바른 잔여값이 있는 경우에는 CRT 복원이 가능하지만, rank나 일반 선형계의 해에 같은 조언을 적용할 수는 없습니다.
 
 ## 검증 전략
 
@@ -146,17 +149,9 @@ Randomized algorithm은 한 번 맞아 보이는 것으로 충분하지 않습�
 
 | 단계 | 시간 |
 | --- | ---: |
-| sparse matvec 1회 | `O(nnz)` |
-| `T`개 Krylov 항 생성 | `O(T * nnz)` |
+| sparse matvec 1회 | `O(N+nnz)` |
+| `T`개 Krylov 항 생성 | `O(T * (N+nnz))` |
 | 기본 Berlekamp-Massey | `O(T^2)` |
 | dense elimination baseline | `O(N^3)` |
 
 `nnz`가 `N^2`에 가깝다면 black-box 접근의 장점이 줄어듭니다. sparse일 때만 의미가 큽니다.
-
-## 자주 하는 실수
-
-1. modulo가 prime인지 확인하지 않고 inverse를 쓴다.
-2. projection vector가 나쁜 경우를 고려하지 않고 한 번만 시도한다.
-3. 필요한 항 개수보다 짧은 수열로 recurrence를 확정한다.
-4. sparse entry의 row/col 방향을 뒤집어 `A` 대신 `A^T`를 곱한다.
-5. dense matrix를 만들 수 있는데도 과한 randomized 기법을 써서 구현 위험을 키운다.

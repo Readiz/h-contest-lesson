@@ -9,7 +9,7 @@ Palindrome Structures는 회문 substring을 판정, 열거, 집계, DP로 처�
 | 서로 다른 palindrome substring 개수와 occurrence를 관리한다 | [Palindromic Tree](pages/palindromic-tree.md) |
 | substring palindrome 판정을 많이 한다 | [Palindrome Query Structures](pages/palindrome-query-structures.md) |
 | 구간 자체를 상태로 두고 palindrome partition/count를 계산한다 | [Palindrome Range DP](pages/palindrome-range-dp.md) |
-| suffix 구조와 palindrome 조건을 함께 써야 한다 | [Suffix and Palindrome Applications](pages/suffix-palindrome-applications.md) |
+| suffix 구조와 palindrome 조건을 함께 써야 한다 | [Suffix and Palindrome Applications](https://h.readiz.com/learn/suffix-periodicity-structures/suffix-automaton-applications) |
 
 ## 표현 범위
 

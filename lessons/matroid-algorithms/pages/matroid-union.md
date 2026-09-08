@@ -8,6 +8,9 @@ Matroid Union은 여러 개의 matroid 독립 집합을 합쳐 얼마나 많은 
 2. 각 원소를 어떤 layer에 배치할 수 있는지 확인한다.
 3. union rank와 covering 조건을 matroid 성질로 해석한다.
 
+
+class ID는 capacity 배열 범위, copies와 capacity는 비음수이며 item 개수는 int 범위입니다. 용량 곱은 long long으로 계산한 뒤 실제 item 개수로 제한합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Matroid Union 관점 |
@@ -67,7 +70,7 @@ int partitionMatroidUnionRank(
 
     int rank = 0;
     for (int cls = 0; cls < (int)capacityPerClass.size(); ++cls) {
-        rank += min(count[cls], copies * capacityPerClass[cls]);
+        rank += (int)min((long long)count[cls], 1LL * copies * capacityPerClass[cls]);
     }
     return rank;
 }
@@ -109,11 +112,3 @@ old edge b moves from layer 2 to layer 3
 | 일반 oracle matroid | 대회 구현 범위를 넘기 쉬움 |
 
 문제가 일반 matroid union을 요구하는 것처럼 보여도, 실제로는 그래프 density 조건이나 partition capacity로 단순화되는 경우가 많습니다.
-
-## 자주 하는 실수
-
-1. 각 layer에 greedy로 넣다 막히면 불가능하다고 판단한다.
-2. union을 intersection처럼 "모든 matroid에서 독립"이라고 해석한다.
-3. 같은 원소를 여러 layer에 중복 배치해 버린다.
-4. graphic matroid union에서 cycle 교환을 고려하지 않는다.
-5. rank formula를 알고도 실제 입력 구조에 맞는 더 쉬운 풀이를 찾지 않는다.

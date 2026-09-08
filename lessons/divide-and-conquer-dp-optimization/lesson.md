@@ -1,6 +1,9 @@
 # Divide and Conquer DP Optimization
 
-Divide and Conquer DP Optimization은 `dp[layer][mid]`의 최적 선택 위치가 오른쪽으로 갈수록 뒤로만 움직이는 단조성을 이용해, 한 층의 DP 계산을 `O(N^2)`에서 `O(N log N)` 또는 `O(KN log N)` 수준으로 줄이는 기법입니다.
+Divide and Conquer DP Optimization은 `dp[layer][mid]`의 최적 선택 위치가 오른쪽으로 갈수록 뒤로만 움직이는 단조성을 이용해, 한 층의 DP 계산을 `O(N^2)`에서 한 층 `O(N log N)`, K층 `O(KN log N)` 수준으로 줄이는 기법입니다.
+
+
+K개 비어 있지 않은 구간 분할에서는 g층을 computeLayer(g,N,g-1,N-1,...)로 계산하고 previous[0]=0은 0층에만 둡니다. 불가능한 previous 상태는 전이에서 제외합니다. 모든 유한 비용과 합은 INF보다 작은 산술 범위여야 합니다. cost 배열의 인덱스는 cost[j+1][i]입니다.
 
 ## 문제 신호
 
@@ -59,6 +62,7 @@ void computeLayer(
     int upper = min(optRight, mid - 1);
 
     for (int j = optLeft; j <= upper; ++j) {
+        if (previous[j] == INF) continue;
         long long candidate = previous[j] + cost[j + 1][mid];
         if (candidate < best.first) {
             best = {candidate, j};
@@ -105,7 +109,7 @@ Knuth Optimization도 최적 분할점 단조성을 쓰지만 조건과 계산 �
 
 | 기법 | 대표 형태 | 시간 |
 | --- | --- | ---: |
-| Divide and Conquer DP | layer별 `dp[g][i]` | `O(KN log N)` 또는 `O(KN)` 후보 구조 |
+| Divide and Conquer DP | layer별 `dp[g][i]` | `O(KN log N)` |
 | Knuth Optimization | interval DP `dp[l][r]` | `O(N^2)` |
 | Convex Hull Trick | 직선 query DP | `O(N log X)` |
 
@@ -132,15 +136,4 @@ layer 2 opt: 0 1 1 2 3 3 5 ...
 | K layer 전체 | 보통 `O(KN log N)` |
 | cost가 `O(C)`이면 | 위 시간에 `C` 곱 |
 
-일부 표준 문제는 후보 범위 합 분석으로 `O(KN log N)`이 충분하고, 더 최적화된 구현은 `O(KN)`에 가까운 형태가 되기도 합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| opt 단조성 없이 적용 | 특정 케이스 오답 | 증명 또는 editorial 조건 확인 |
-| 후보 범위에 `mid` 포함 여부 오류 | 빈 구간/자기 전이 오답 | `j < i` 조건 재확인 |
-| tie-breaking이 불안정 | 단조성 깨짐 | 가장 작은 opt 또는 큰 opt로 일관 |
-| current 초기화 누락 | 이전 layer 값 섞임 | layer마다 INF 초기화 |
-| cost 계산이 느림 | 시간 초과 | prefix sum 등으로 `O(1)`화 |
-| 재귀 범위 인자 반대로 전달 | 후보 누락 | 왼쪽 `optLeft..opt`, 오른쪽 `opt..optRight` |
+선형 시간의 SMAWK는 별도의 totally monotone 조건과 알고리즘이 필요합니다.

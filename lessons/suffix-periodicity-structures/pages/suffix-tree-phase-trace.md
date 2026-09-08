@@ -126,4 +126,4 @@ root
 | 다음 suffix 처리 위치로 이동 | `active.v = getLink(middle)` |
 | root에서 첫 글자 skip | `skipRootCharacter` 처리 |
 
-디버깅할 때는 phase마다 active point와 생성된 internal node의 edge label을 출력하는 것이 좋습니다. `abab$`, `banana$`, `aaaa$`처럼 반복이 있는 문자열에서 split 위치와 suffix link가 맞으면 큰 입력에서도 안정적입니다.
+디버깅할 때는 phase마다 active point와 생성된 internal node의 edge label을 출력하는 것이 좋습니다. `abab$`, `banana$`, `aaaa$`에서 split과 suffix link를 추적한 뒤, 작은 무작위 문자열의 모든 suffix·substring을 직접 비교합니다. 큰 입력의 시간·메모리는 별도로 측정합니다.

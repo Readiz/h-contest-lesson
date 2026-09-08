@@ -21,7 +21,7 @@ Grundy를 쓰려면 보통 아래 조건이 필요합니다.
 
 1. 두 플레이어가 같은 move set을 가진다.
 2. 확률이 없다.
-3. 각 state의 승패가 이후 state들로만 결정된다.
+3. 게임이 유한하며 수를 둘 수 없는 플레이어가 지는 normal play다.
 4. 여러 subgame이 독립이면 xor로 합성된다.
 
 move set이 플레이어마다 다르거나 점수가 누적되는 게임이면 Grundy가 아닐 가능성이 큽니다.
@@ -41,7 +41,7 @@ Grundy의 mex 계산과 독립 합성 구현은 [Game Theory와 Grundy 수](http
 | depth limit과 평가 함수가 있음 | game tree search |
 | move ordering/pruning이 중요 | alpha-beta 후보 |
 
-minimax는 state 수가 작거나 depth가 제한될 때 정확합니다. branching이 크면 pruning, memoization, heuristic evaluation이 필수입니다.
+minimax는 terminal까지 탐색하고 정확한 보상을 쓸 때 정확합니다. 깊이 제한에서 heuristic 평가로 끊으면 근사입니다. branching이 크면 pruning, memoization, heuristic evaluation이 필수입니다.
 
 ## 확률이 있으면 MDP
 
@@ -108,11 +108,3 @@ Grundy xor는 subgame이 독립일 때만 됩니다.
 | 실시간 AI | MCTS/heuristic |
 
 정확한 정답을 요구하는 문제에서 MCTS 같은 근사를 쓰면 보통 틀립니다. 근사가 허용되는 문제인지부터 확인합니다.
-
-## 자주 하는 실수
-
-1. partisan game에 Grundy xor를 적용한다.
-2. 반복 상태를 무조건 losing으로 처리한다.
-3. hidden state를 알고 있는 것처럼 minimax를 돌린다.
-4. 확률 node와 opponent choice node를 같은 `min`/`max`로 처리한다.
-5. score game인데 win/lose DP만 저장한다.

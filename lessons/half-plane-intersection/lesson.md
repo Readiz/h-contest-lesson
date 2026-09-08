@@ -1,203 +1,45 @@
 # Half-Plane Intersection
 
-Half-Plane Intersection은 여러 반평면의 공통 영역을 구하는 계산기하 기법입니다. Convex polygon clipping의 일반화로 볼 수 있고, Voronoi cell, 선형 제약, convex feasibility 문제에서 자주 등장합니다.
+반평면들의 공통 영역을 구합니다. 각 제약을 `a*x+b*y<=c`로 쓰면 볼록 영역이 남습니다. Power cell이나 선형 제약의 가능한 위치를 계산할 때 사용합니다.
 
-## 문제 신호
+## 작은 입력: 볼록 영역 자르기
 
-| 문제 표현 | Half-Plane 관점 |
-| --- | --- |
-| 여러 선형 부등식의 공통 영역 | half-plane intersection |
-| convex polygon을 직선으로 계속 자른다 | polygon clipping |
-| 한 점이 모든 왼쪽/오른쪽 조건을 만족해야 한다 | feasibility |
-| Voronoi cell 하나를 구한다 | 수직이등분선 half-plane |
-| convex polygon의 kernel | visibility half-planes |
-
-공통 영역이 볼록하다는 점이 핵심입니다. 입력이 비볼록 polygon이면 먼저 어떤 반평면 집합으로 표현되는지 확인해야 합니다.
-
-## 반평면 표현
-
-직선은 한 점 `p`와 방향 벡터 `v`로 표현합니다. 반평면은 이 방향으로 바라볼 때 왼쪽입니다.
-
-```text
-inside(line, q) <=> cross(v, q - p) >= 0
-```
-
-오른쪽 영역을 쓰고 싶으면 방향 벡터를 반대로 뒤집으면 됩니다.
-
-## Deque 알고리즘
-
-1. 모든 반평면을 angle 기준으로 정렬한다.
-2. 같은 angle의 평행 반평면은 더 안쪽 제약만 남긴다.
-3. 새 반평면을 넣기 전에 뒤쪽 교점이 새 반평면 밖이면 뒤 반평면을 제거한다.
-4. 앞쪽 교점도 새 반평면 밖이면 앞 반평면을 제거한다.
-5. 마지막에 앞/뒤가 서로를 위반하는지 정리하고 polygon을 만든다.
-
-## 구현
-
-아래 구현은 bounded polygon을 반환합니다. 무한 영역까지 다루려면 충분히 큰 bounding box 반평면을 함께 넣는 방식이 실전에서 자주 쓰입니다.
+아래 구현은 주어진 반시계 볼록 다각형을 제약마다 자릅니다. 초기 영역이 사각형이고 제약이 N개면 최악 `O(N²)`, 메모리 `O(N)`입니다. 무한 영역 전체를 표현하는 구현이 아니므로 bounding box 자체가 문제의 제약이어야 합니다. 임의로 큰 상자를 넣어 무한 영역·공집합을 구분할 수는 없습니다.
 
 ```cpp compile-check
-#include <algorithm>
-#include <cmath>
-#include <deque>
 #include <vector>
 using namespace std;
-
-const double EPS_HALF_PLANE = 1e-10;
-
-struct PointHalfPlane {
-    double x = 0;
-    double y = 0;
-
-    PointHalfPlane() = default;
-    PointHalfPlane(double xValue, double yValue) : x(xValue), y(yValue) {}
-
-    PointHalfPlane operator+(const PointHalfPlane& other) const {
-        return {x + other.x, y + other.y};
-    }
-
-    PointHalfPlane operator-(const PointHalfPlane& other) const {
-        return {x - other.x, y - other.y};
-    }
-
-    PointHalfPlane operator*(double scalar) const {
-        return {x * scalar, y * scalar};
-    }
-};
-
-double crossHalfPlane(PointHalfPlane a, PointHalfPlane b) {
-    return a.x * b.y - a.y * b.x;
-}
-
-struct HalfPlaneLine {
-    PointHalfPlane p;
-    PointHalfPlane v;
-    double angle = 0;
-
-    HalfPlaneLine() = default;
-    HalfPlaneLine(PointHalfPlane point, PointHalfPlane direction)
-        : p(point), v(direction), angle(atan2(direction.y, direction.x)) {}
-};
-
-bool parallelHalfPlane(const HalfPlaneLine& a, const HalfPlaneLine& b) {
-    return fabs(crossHalfPlane(a.v, b.v)) < EPS_HALF_PLANE;
-}
-
-bool outsideHalfPlane(const HalfPlaneLine& line, PointHalfPlane point) {
-    return crossHalfPlane(line.v, point - line.p) < -EPS_HALF_PLANE;
-}
-
-PointHalfPlane intersectionHalfPlane(const HalfPlaneLine& a, const HalfPlaneLine& b) {
-    PointHalfPlane diff = b.p - a.p;
-    double t = crossHalfPlane(diff, b.v) / crossHalfPlane(a.v, b.v);
-    return a.p + a.v * t;
-}
-
-vector<PointHalfPlane> halfPlaneIntersection(vector<HalfPlaneLine> lines) {
-    sort(lines.begin(), lines.end(), [](const HalfPlaneLine& a, const HalfPlaneLine& b) {
-        if (fabs(a.angle - b.angle) > EPS_HALF_PLANE) {
-            return a.angle < b.angle;
-        }
-        return crossHalfPlane(a.v, b.p - a.p) < 0;
-    });
-
-    vector<HalfPlaneLine> uniqueLines;
-    for (const auto& line : lines) {
-        if (!uniqueLines.empty() && parallelHalfPlane(uniqueLines.back(), line)) {
-            if (outsideHalfPlane(line, uniqueLines.back().p)) {
-                uniqueLines.back() = line;
+struct HpiPoint { long double x, y; };
+struct HalfPlane { long double a, b, c; };
+vector<HpiPoint> clipHalfPlanes(vector<HpiPoint> polygon, const vector<HalfPlane>& constraints) {
+    for (auto h : constraints) {
+        vector<HpiPoint> next;
+        for (int i=0; i<(int)polygon.size(); ++i) {
+            auto p=polygon[i], q=polygon[(i+1)%polygon.size()];
+            long double fp=h.a*p.x+h.b*p.y-h.c;
+            long double fq=h.a*q.x+h.b*q.y-h.c;
+            bool pin=fp<=0, qin=fq<=0;
+            if (pin) next.push_back(p);
+            if (pin!=qin) {
+                long double t=fp/(fp-fq);
+                next.push_back({p.x+t*(q.x-p.x), p.y+t*(q.y-p.y)});
             }
-        } else {
-            uniqueLines.push_back(line);
         }
+        polygon.swap(next);
+        if (polygon.empty()) break;
     }
-
-    deque<HalfPlaneLine> dequeLines;
-    deque<PointHalfPlane> intersections;
-
-    for (const auto& line : uniqueLines) {
-        while (!intersections.empty() && outsideHalfPlane(line, intersections.back())) {
-            intersections.pop_back();
-            dequeLines.pop_back();
-        }
-        while (!intersections.empty() && outsideHalfPlane(line, intersections.front())) {
-            intersections.pop_front();
-            dequeLines.pop_front();
-        }
-
-        if (!dequeLines.empty()) {
-            if (parallelHalfPlane(dequeLines.back(), line)) {
-                if (outsideHalfPlane(line, dequeLines.back().p)) {
-                    dequeLines.back() = line;
-                }
-                continue;
-            }
-            intersections.push_back(intersectionHalfPlane(dequeLines.back(), line));
-        }
-        dequeLines.push_back(line);
-    }
-
-    while (!intersections.empty() && outsideHalfPlane(dequeLines.front(), intersections.back())) {
-        intersections.pop_back();
-        dequeLines.pop_back();
-    }
-    while (!intersections.empty() && outsideHalfPlane(dequeLines.back(), intersections.front())) {
-        intersections.pop_front();
-        dequeLines.pop_front();
-    }
-
-    if (dequeLines.size() < 3) {
-        return {};
-    }
-
-    intersections.push_back(intersectionHalfPlane(dequeLines.back(), dequeLines.front()));
-    return vector<PointHalfPlane>(intersections.begin(), intersections.end());
+    return polygon;
 }
 ```
 
-## Bounding Box
+유한한 실수 입력을 전제로 한 수치 구현입니다. 경계가 거의 일치하면 계산 오차가 결과의 차원을 바꿀 수 있습니다. 정확한 판정이 필요하면 유리수 또는 검증된 exact predicate를 사용합니다. `a=b=0`인 제약은 `c>=0`이면 전체, 아니면 공집합으로 위 식에서 처리됩니다.
 
-반평면들의 교집합이 무한 영역이면 polygon 꼭짓점을 유한 개로 반환하기 어렵습니다. 실전에서는 좌표 범위가 정해져 있으면 큰 사각형을 먼저 넣습니다.
+## 큰 입력: 각도 정렬과 deque
 
-```text
--B <= x <= B
--B <= y <= B
-```
+반평면 경계를 방향별로 정렬하고, 새 경계 밖에 있는 deque 앞·뒤 교점을 제거하는 방법은 `O(N log N)`입니다. 같은 방향의 평행선은 더 강한 제약만 남기지만 반대 방향 평행선은 서로 다른 제약입니다. 교점 계산 전 평행 여부를 확인하고, 정렬 comparator에 EPS를 넣지 않습니다.
 
-그 뒤 원래 반평면을 추가하면 bounded polygon으로 계산할 수 있습니다.
+전체 알고리즘과 평행·무한 영역 처리는 [CP-Algorithms의 Half-plane intersection](https://cp-algorithms.com/geometry/halfplane-intersection.html)을 참고합니다. 위 clipping 구현의 복잡도와 구분합니다.
 
-## Polygon Clipping과 비교
+## 검산
 
-| 방법 | 특징 |
-| --- | --- |
-| Sutherland-Hodgman clipping | 현재 polygon을 반평면 하나로 자름, `O(NM)` |
-| Half-plane intersection deque | 모든 직선을 각도순으로 처리, `O(N log N)` |
-| Linear programming in 2D | 최적화 목적식이 있을 때 사용 |
-
-제약 수가 작거나 이미 polygon이 작다면 clipping이 더 단순합니다. 일반 반평면 집합이 크면 deque 알고리즘이 낫습니다.
-
-## Voronoi Cell과 연결
-
-점 `p_i`의 Voronoi cell은 다른 모든 점 `p_j`에 대해 아래 조건의 교집합입니다.
-
-```text
-dist(x, p_i) <= dist(x, p_j)
-```
-
-이 식은 두 점의 수직이등분선으로 만들어지는 반평면입니다. 따라서 특정 점 하나의 Voronoi cell은 half-plane intersection으로 구할 수 있습니다.
-
-## 시간 복잡도
-
-| 작업 | 복잡도 |
-| --- | --- |
-| angle sort | `O(N log N)` |
-| deque 처리 | `O(N)` |
-| bounded polygon 반환 | 꼭짓점 수에 비례 |
-
-## 자주 하는 실수
-
-1. 반평면 방향을 오른쪽/왼쪽으로 섞는다.
-2. 평행 직선 중 더 안쪽 제약을 남기지 않는다.
-3. 무한 교집합인데 polygon으로 바로 반환하려 한다.
-4. EPS가 너무 커서 얇은 영역을 지운다.
-5. 같은 angle 정렬 tie-break를 반대로 둔다.
+`0<=x,y<=2` 상자에 `x+y<=2`를 적용하면 `(0,0),(2,0),(0,2)` 삼각형이 남습니다. 여기에 `x+y>=3`을 추가하면 공집합입니다. 같은 방향 중복 제약, 반대 방향 평행 제약, 한 점에서 접하는 경우를 함께 확인합니다.

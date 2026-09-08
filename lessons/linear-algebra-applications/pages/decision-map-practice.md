@@ -1,6 +1,9 @@
 # Decision Map Practice
 
-이 페이지는 Linear Algebra Applications의 선택표를 실제 풀이 결정으로 이어 가는 로컬 완결형 연습입니다. 아직 맞는 h-contest practice 문제가 없는 항목은 임의 ID를 만들지 않고, 여기서 작은 입력과 trace로 먼저 검증합니다.
+이 페이지는 Linear Algebra Applications의 선택표를 실제 풀이 결정으로 이어 가는 로컬 완결형 연습입니다.
+
+
+u=v인 제약을 augmented row로 만들 때 같은 변수 bit를 두 번 XOR해야 상쇄됩니다. 단순 OR로 한 번 켜면 x_u xor x_u=0을 잘못 표현합니다.
 
 ## 먼저 분류하기
 
@@ -143,11 +146,3 @@ aM bM
 3. 남은 `(N-1) x (N-1)` matrix의 determinant를 modulo prime에서 계산한다.
 
 이 연습은 determinant가 "행렬 값"이 아니라 graph counting을 압축한 값이라는 감각을 확인합니다.
-
-## 선택 실패를 잡는 체크리스트
-
-- xor가 보이면 carry 없는 GF(2) 연산인지 먼저 확인했는가?
-- modulo가 prime이 아니라면 Gaussian elimination의 나눗셈이 안전한가?
-- determinant가 필요한 문제인지, rank만 알면 되는 문제인지 구분했는가?
-- sparse graph count를 dense determinant로 밀어도 제한에 맞는가?
-- randomized determinant를 쓰는 경우 실패 확률과 반복 횟수를 설명할 수 있는가?

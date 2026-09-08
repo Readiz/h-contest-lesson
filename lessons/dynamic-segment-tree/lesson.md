@@ -27,7 +27,7 @@ node {
 }
 ```
 
-아래 구현의 모든 구간은 half-open `[left, right)`입니다. 중간점은 `left + (right - left) / 2`로 계산하며, 구간 길이와 `길이 × 증가량`이 `long long` 범위에 들어와야 합니다.
+아래 구현의 모든 구간은 정수 좌표의 half-open `[left, right)`입니다. 루트는 `left < right`, 질의와 갱신은 루트 내부의 `left <= right` 범위입니다. 중간점은 `left + (right - left) / 2`로 계산하며, 구간 길이와 `길이 × 증가량`이 `long long` 범위에 들어와야 합니다.
 
 ## Range Add / Range Sum 구현
 
@@ -166,6 +166,6 @@ node count = O(number_of_operations * log coordinate_range)
 | 작업 | 복잡도 |
 | --- | --- |
 | point update/query | `O(log C)` |
-| range update/query | `O(log C)`개의 canonical node 중심 |
+| range update/query | `O(log C)` |
 | 생성 node 수 | touched interval 수에 비례 |
 | 전체 메모리 | 보통 `O(Q log C)` |

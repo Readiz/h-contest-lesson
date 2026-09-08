@@ -2,6 +2,9 @@
 
 Border Automaton은 KMP의 prefix function을 상태 전이표로 바꿔, 문자열을 한 글자씩 읽으면서 현재 matched prefix 길이를 즉시 갱신하는 기법입니다. 패턴 하나를 여러 텍스트, 여러 DP 상태, 혹은 online stream에 반복 적용할 때 KMP fallback을 매번 따라가지 않고 automaton 전이로 처리합니다.
 
+
+패턴은 소문자로 구성합니다. 빈 패턴의 검색 결과는 빈 목록으로 정합니다. 텍스트의 소문자 이외 문자는 매칭을 끊습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Border Automaton 관점 |
@@ -87,6 +90,7 @@ struct BorderAutomaton {
 
     vector<int> matchPositions(const string& text) const {
         vector<int> positions;
+        if (pattern.empty()) return positions;
         int state = 0;
         int m = (int)pattern.size();
         for (int i = 0; i < (int)text.size(); ++i) {
@@ -98,7 +102,7 @@ struct BorderAutomaton {
             }
             if (state == m) {
                 positions.push_back(i - m + 1);
-                state = pi[m - 1];
+                // go[m]이 실패 링크 전이를 포함하므로 다음 문자에 그대로 사용한다.
             }
         }
         return positions;
@@ -144,11 +148,3 @@ fallback pi[pi[k - 1] - 1]
 | forbidden pattern DP | `O(N * M * sigma)` |
 
 `sigma`는 alphabet 크기입니다. lowercase만 보면 26이지만, 전체 ASCII나 압축되지 않은 정수 alphabet이면 전이표 크기를 먼저 확인합니다.
-
-## 자주 하는 실수
-
-1. 매칭 상태 `m`에서 겹치는 매칭을 위해 `pi[m-1]`로 돌아가지 않는다.
-2. `state == 0`일 때 `pi[state - 1]`를 참조한다.
-3. alphabet에 없는 문자를 만났을 때 상태 초기화를 정의하지 않는다.
-4. 여러 forbidden pattern을 하나의 border automaton으로 억지로 합친다.
-5. DP에서 accepting state를 허용할지 금지할지 목적식을 혼동한다.

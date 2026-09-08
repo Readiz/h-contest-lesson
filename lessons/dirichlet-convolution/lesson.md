@@ -2,6 +2,9 @@
 
 Dirichlet Convolution은 약수 관계 위에서 두 산술 함수 `f`, `g`를 합성하는 연산입니다. `h(n) = sum_{d|n} f(d)g(n/d)` 형태가 보이면 Mobius Inversion, multiplicative function, divisor transform을 하나의 언어로 정리할 수 있습니다.
 
+
+배열은 0번을 사용하지 않는 limit+1 길이이며 limit>=0입니다. 곱과 누적합은 long long 범위여야 합니다. multiplicative 함수는 f(1)=1을 포함하는 정의를 사용합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Dirichlet Convolution 관점 |
@@ -139,11 +142,3 @@ Dirichlet convolution은 divisor lattice 위 convolution입니다. subset zeta t
 | linear sieve로 기본 함수 계산 | `O(N)` |
 
 `N`이 크고 실제 값 개수가 적으면 모든 범위를 훑는 대신 각 수의 약수만 열거하는 sparse 접근이 낫습니다.
-
-## 자주 하는 실수
-
-1. convolution의 `g(n/d)`를 `g(d)`로 잘못 쓴다.
-2. `mu * 1 = epsilon` 관계에서 `epsilon`과 상수 1 함수를 혼동한다.
-3. multiplicative와 completely multiplicative를 섞는다.
-4. ordered pair와 unordered pair 보정을 빠뜨린다.
-5. 값 범위가 큰데 `O(maxA log maxA)` 배열을 무리하게 잡는다.

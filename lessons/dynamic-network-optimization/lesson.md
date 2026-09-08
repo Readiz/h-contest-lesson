@@ -36,32 +36,6 @@ Dynamic MST는 cut/cycle property를 쓰지만 Graph Cut Structures의 prerequis
 
 Offline and Time-Axis Techniques는 이 허브의 공통 바닥입니다. update 구간을 만들 수 있으면 rollback, segment tree over time, divide and conquer over time이 먼저 후보가 됩니다. 다만 flow나 MST는 leaf에서 단순 DSU 상태만으로 답하지 못할 수 있으므로 추가 최적화 구조가 필요합니다.
 
-## 로컬 완결형 연습
+## 연습
 
-### Incremental Max Flow
-
-처음에는 정점 `N`, 간선 `M`, source `S`, sink `T`가 주어집니다. 이후 query는 간선 용량 증가만 들어오고, 각 query 뒤 max flow 값을 출력합니다.
-
-```text
-입력
-N M Q S T
-u v capacity
-Q개의 (edgeId, delta)
-
-목표
-초기 Dinic을 한 번 돌린 뒤, capacity가 증가한 간선만 residual capacity를 늘리고 추가 augment를 수행한다.
-```
-
-이 연습은 old flow가 계속 feasible하다는 조건이 핵심입니다. capacity decrease query를 하나 섞으면 같은 구현이 왜 깨지는지 작은 반례를 직접 만들어 봅니다.
-
-### Block Rebuild Dynamic MST
-
-간선 활성 여부가 바뀌는 query와 MST cost query가 섞입니다. 완전 동적 MST를 만들지 말고, block 시작마다 활성 간선으로 Kruskal baseline을 rebuild하고 block 안에서 바뀐 간선만 후보로 다시 합칩니다.
-
-```text
-제한
-N, M, Q <= 200000
-한 block 안에서 바뀌는 간선 수 B를 sqrt(Q) 근처로 제한해 실험
-```
-
-정답 검증은 작은 입력에서 매 query Kruskal과 비교합니다. 이 연습을 통과하면 완전 동적 구조를 쓰지 않아도 되는 문제와 써야 하는 문제를 구분하기 쉬워집니다.
+[Dynamic Network Optimization Practice Set](https://h.readiz.com/learn/dynamic-network-optimization/practice-set)에서 용량 증가만 있는 max-flow를 residual reuse와 매번 재계산으로 비교합니다. Block MST는 block 안에서 변하는 간선을 모두 제외한 고정 간선의 MSF를 만들고, 그 MSF와 현재 변경 간선을 합쳐 재계산합니다. 후보가 O(N+B)이므로 N이 크면 추가 축소 없이는 빠르지 않습니다.

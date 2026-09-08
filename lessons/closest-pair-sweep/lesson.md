@@ -2,6 +2,9 @@
 
 Closest Pair는 평면 위 점들 중 가장 가까운 두 점의 거리를 찾는 문제입니다. 모든 쌍을 비교하면 `O(N^2)`이지만, 점을 x좌표 순서로 훑으며 y좌표 active set을 유지하면 `O(N log N)`에 처리할 수 있습니다.
 
+
+최소 두 점을 입력하며 좌표 절댓값은 `10^9` 이하입니다. 제곱 거리는 최대 `8*10^18`이므로 작은 INF로 초기화하지 않습니다. 활성 구간의 점 사이 거리가 현재 최솟값 이상이라는 packing 성질로 후보 수가 제한되며, 전체 시간은 `O(N log N)`입니다.
+
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -32,6 +35,8 @@ Closest Pair는 평면 위 점들 중 가장 가까운 두 점의 거리를 찾�
 
 ```cpp compile-check
 #include <algorithm>
+#include <cmath>
+#include <stdexcept>
 #include <limits>
 #include <set>
 #include <vector>
@@ -50,6 +55,7 @@ long long squaredDistance(const Point& a, const Point& b) {
 }
 
 long long closestPairSquared(vector<Point> points) {
+    if (points.size() < 2) throw invalid_argument("at least two points required");
     sort(points.begin(), points.end(), [](const Point& a, const Point& b) {
         if (a.x != b.x) {
             return a.x < b.x;
@@ -57,8 +63,9 @@ long long closestPairSquared(vector<Point> points) {
         return a.y < b.y;
     });
 
-    const long long INF = numeric_limits<long long>::max() / 4;
-    long long best = INF;
+    long long best = squaredDistance(points[0], points[1]);
+    for (int i = 1; i < (int)points.size(); ++i)
+        if (squaredDistance(points[i-1], points[i]) == 0) return 0;
     set<pair<long long, int>> activeByY;
     int left = 0;
 
@@ -72,10 +79,7 @@ long long closestPairSquared(vector<Point> points) {
             ++left;
         }
 
-        long long limit = 1;
-        while (limit * limit < best) {
-            limit <<= 1;
-        }
+        long long limit = (long long)sqrtl((long double)best) + 1;
 
         auto it = activeByY.lower_bound({points[i].y - limit, -1});
         while (it != activeByY.end() && it->first <= points[i].y + limit) {
@@ -135,14 +139,3 @@ Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 | 후보 거리 검사 | 평균/기하적으로 제한 | active range |
 
 랜덤 데이터에서는 빠르지만, 구현이 y 후보를 지나치게 넓게 보면 최악에 가까워질 수 있습니다. `dy` 범위를 반드시 제한해야 합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 전체 active set을 모두 검사 | 시간 초과 | y 범위 lower_bound 사용 |
-| x 차이 제거 조건에서 제곱 비교 누락 | 후보 누락/과다 | `dx*dx < best` 유지 |
-| set key에 index를 안 넣음 | 같은 y 점 삭제 오류 | `{y, index}` 사용 |
-| 중복 점 처리 누락 | 답 0 늦게 발견 | 정렬 후 adjacent 검사 |
-| int로 거리 제곱 계산 | overflow | `long long` 또는 `__int128` |
-| 실제 거리와 제곱 거리 혼용 | 비교 오류 | 내부는 제곱 거리로 통일 |

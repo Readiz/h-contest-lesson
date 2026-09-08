@@ -166,7 +166,7 @@ struct DominatorTree {
 `idom[v]`를 구하면 아래처럼 tree를 만들 수 있습니다.
 
 ```text
-for each v != root:
+for each v != root with idom[v] != -1:
     tree[idom[v]].push_back(v)
 ```
 
@@ -197,18 +197,13 @@ Dominator는 시작점에서 도달 가능한 정점에 대해서만 의미가 �
 
 ## 시간 복잡도
 
-Lengauer-Tarjan 구현은 거의 선형 시간으로 동작합니다.
+단순 link/eval을 쓰는 위 구현과 균형 기법을 더한 역 Ackermann 시간 변형을 구분합니다. DFS와 find 재귀의 스택 깊이도 확인합니다. arr/parent/semi는 DFS 번호, graph/idom은 원래 정점 번호입니다.
 
 ```text
-O((N + M) alpha(N))
+O((N + M) log N)  // 위의 단순 link/eval 구현
 ```
 
 구현 상수는 작은 편이 아니므로, 작은 DAG에서는 모든 predecessor idom을 LCA처럼 처리하는 단순 DP가 더 편할 수 있습니다.
 
-## 자주 하는 실수
 
-1. reverse edge를 DFS reachable 기준으로 필터링하지 않는다.
-2. DFS order index와 원래 vertex id를 섞는다.
-3. root의 `idom` convention을 문제 출력과 맞추지 않는다.
-4. 도달 불가능 정점을 dominator tree에 포함한다.
-5. tree ancestor 판정 전 Euler tour를 만들지 않는다.
+단순 link/eval 구현의 복잡도 근거는 [Lengauer–Tarjan 원 논문](https://doi.org/10.1145/357062.357071)을 참고합니다.

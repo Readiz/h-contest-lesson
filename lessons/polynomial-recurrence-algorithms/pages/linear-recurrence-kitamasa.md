@@ -2,6 +2,9 @@
 
 Linear Recurrence는 앞의 몇 항으로 다음 항이 결정되는 수열입니다. Matrix Exponentiation으로도 풀 수 있지만, 차수 `K`가 크고 `N`이 매우 클 때는 characteristic polynomial을 이용하는 Kitamasa 방식이 더 직접적입니다.
 
+
+`K>=1`, initial.size()==coeff.size()==K, n>=0을 전제로 합니다. 공개 nth 함수는 계수를 정규화합니다. 내부 함수에는 정규화된 길이 K 벡터를 전달합니다. Kitamasa 자체는 역원이 필요 없으므로 합성수 modulus에도 적용할 수 있지만 BM은 field가 필요합니다.
+
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -119,7 +122,9 @@ long long nthLinearRecurrence(
         return normalizeMod(initial[(int)n]);
     }
 
-    vector<long long> weight = coefficientOfNthPower(n, coeff);
+    vector<long long> normalizedCoeff = coeff;
+    for (auto& value : normalizedCoeff) value = normalizeMod(value);
+    vector<long long> weight = coefficientOfNthPower(n, normalizedCoeff);
     long long answer = 0;
     for (int i = 0; i < k; ++i) {
         answer = (answer + weight[i] * normalizeMod(initial[i])) % MOD_RECURRENCE;
@@ -179,10 +184,8 @@ O(K^2 log N)
 
 `K`가 5000 이상이면 이 구현도 부담될 수 있습니다. 그때는 NTT 기반 polynomial reduction이나 Bostan-Mori를 고려합니다.
 
-## 자주 하는 실수
+## 상태 DP에서 점화식 찾기
 
-1. `coeff` 순서를 거꾸로 넣는다.
-2. `a_0` 기반인지 `a_1` 기반인지 섞는다.
-3. `n < K`일 때 초기항을 바로 반환하지 않는다.
-4. 음수 계수를 모듈러 정규화하지 않는다.
-5. characteristic relation의 degree reduction 방향을 잘못 잡는다.
+길이 n에서 11을 포함하지 않는 이진 문자열 수는 a[0]=1,a[1]=2, 계수 [1,1]을 위 함수에 넣습니다. 끝 문자가 0/1인 두 상태의 선형 전이를 합치면 이 점화식이 나옵니다.
+
+S개 상태의 고정 선형 전이 A에서 uᵀAⁿv는 Cayley-Hamilton에 의해 차수 S 이하 점화식을 가집니다. 이 상한을 알고 field 위에서 정확한 앞 2S항을 만들면 BM으로 복원할 수 있습니다. min/max는 일반 field 선형 전이가 아니지만 XOR는 GF(2) 덧셈입니다. 다항식 방정식의 생성함수가 항상 유리함수인 것은 아니며, 유한 선형 전이는 유리 생성함수로 연결됩니다.

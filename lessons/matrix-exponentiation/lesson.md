@@ -2,6 +2,9 @@
 
 Matrix Exponentiation은 선형 점화식이나 상태 전이를 행렬로 만들고, 빠른 거듭제곱으로 `K`번 적용하는 기법입니다. 피보나치 수처럼 이전 몇 항의 선형 결합으로 다음 항이 정해지거나, 그래프에서 길이 `K`인 walk 수를 세는 문제에 자주 나옵니다.
 
+
+아래 곱셈은 비어 있지 않은 직사각 행렬의 차원이 맞고 원소가 `[0,mod)`에 정규화되어 있다는 전제입니다. 거듭제곱은 정방행렬, exp>=0, `1<=mod<=10^9`를 받습니다. min-plus 전이는 덧셈·곱셈 정의까지 바꿔야 하므로 이 코드를 그대로 쓰지 않습니다.
+
 ## 문제 신호
 
 행렬 거듭제곱은 같은 전이를 아주 많이 반복할 때 사용합니다.
@@ -43,10 +46,10 @@ using namespace std;
 
 using Matrix = vector<vector<long long>>;
 
-Matrix identityMatrix(int n) {
+Matrix identityMatrix(int n, long long mod) {
     Matrix result(n, vector<long long>(n, 0));
     for (int i = 0; i < n; ++i) {
-        result[i][i] = 1;
+        result[i][i] = 1 % mod;
     }
     return result;
 }
@@ -72,7 +75,7 @@ Matrix multiply(const Matrix& a, const Matrix& b, long long mod) {
 }
 
 Matrix power(Matrix base, long long exp, long long mod) {
-    Matrix result = identityMatrix((int)base.size());
+    Matrix result = identityMatrix((int)base.size(), mod);
     while (exp > 0) {
         if (exp & 1LL) {
             result = multiply(result, base, mod);
@@ -131,14 +134,3 @@ A^2[i][j] = sum A[i][mid] * A[mid][j]
 | 행렬과 벡터 곱 | `O(D^2)` | `O(D)` |
 
 `D`가 2~50 정도면 일반 구현으로 충분할 수 있습니다. `D`가 수백이면 `O(D^3 log K)`가 부담이므로 sparse matrix, min-plus 최적화, Kitamasa 같은 다른 방법을 검토합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 행렬을 반대로 곱함 | 상태 전이가 뒤집힘 | `next = T * current`인지 고정 |
-| base case 지수 off-by-one | `F(n)` 대신 `F(n+1)` 출력 | 초기 벡터와 거듭제곱 횟수 확인 |
-| 항등행렬 초기화 누락 | exp 0 처리 실패 | `result = I` |
-| 상수항을 상태에 넣지 않음 | affine 전이 누락 | 마지막 상태 1 추가 |
-| 곱셈 중 overflow | 모듈러 전 값 overflow | `long long`, 필요 시 `__int128` |
-| `D`가 큰데 무작정 행렬 사용 | 시간 초과 | `D^3 log K` 계산 |

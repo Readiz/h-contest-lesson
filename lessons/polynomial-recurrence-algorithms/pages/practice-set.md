@@ -1,6 +1,9 @@
 # Practice Set
 
-Polynomial and Recurrence Algorithms 계열은 모델링 실수가 많으므로 작은 naive 구현과 비교하는 연습이 중요합니다. 아직 적절한 h-contest 문제 링크가 없는 항목은 임의 ID를 만들지 않고, 이 페이지에 로컬 완결형 연습과 검증 기준을 둡니다.
+Polynomial and Recurrence Algorithms 계열은 모델링 실수가 많으므로 작은 naive 구현과 비교하는 연습이 중요합니다.
+
+
+입출력 코드는 [Linear Recurrence와 Kitamasa](https://h.readiz.com/learn/polynomial-recurrence-algorithms/linear-recurrence-kitamasa)의 구현 뒤에 붙입니다.
 
 ## 대표 로컬 연습: K차 선형 점화식의 N번째 항
 
@@ -20,7 +23,7 @@ a_0 a_1 ... a_{K-1}
 c0 c1 ... c_{K-1}
 ```
 
-- `1 <= K <= 2000`
+- `1 <= K <= 300`
 - `0 <= N <= 10^18`
 - 모든 항과 계수는 `0 <= value < 998244353`
 
@@ -72,88 +75,10 @@ F_N = p0*F_0 + p1*F_1
 
 ## 구현 기준
 
-```cpp compile-check
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
-
-const long long MOD = 998244353;
-
-long long normalize(long long value) {
-    value %= MOD;
-    if (value < 0) {
-        value += MOD;
-    }
-    return value;
-}
-
-vector<long long> combine(
-    const vector<long long>& left,
-    const vector<long long>& right,
-    const vector<long long>& coeff
-) {
-    int k = (int)coeff.size();
-    vector<long long> temp(2 * k - 1, 0);
-
-    for (int i = 0; i < k; ++i) {
-        for (int j = 0; j < k; ++j) {
-            temp[i + j] = (temp[i + j] + left[i] * right[j]) % MOD;
-        }
-    }
-
-    for (int degree = 2 * k - 2; degree >= k; --degree) {
-        long long value = temp[degree];
-        if (value == 0) {
-            continue;
-        }
-        for (int j = 1; j <= k; ++j) {
-            temp[degree - j] = (temp[degree - j] + value * coeff[j - 1]) % MOD;
-        }
-    }
-
-    temp.resize(k);
-    return temp;
-}
-
-vector<long long> coefficientOfPower(long long n, const vector<long long>& coeff) {
-    int k = (int)coeff.size();
-    vector<long long> result(k, 0);
-    vector<long long> base(k, 0);
-
-    result[0] = 1;
-    if (k == 1) {
-        base[0] = coeff[0];
-    } else {
-        base[1] = 1;
-    }
-
-    while (n > 0) {
-        if (n & 1LL) {
-            result = combine(result, base, coeff);
-        }
-        base = combine(base, base, coeff);
-        n >>= 1LL;
-    }
-
-    return result;
-}
-
-long long nthTerm(
-    const vector<long long>& initial,
-    const vector<long long>& coeff,
-    long long n
-) {
-    if (n < (long long)initial.size()) {
-        return normalize(initial[(int)n]);
-    }
-
-    vector<long long> weight = coefficientOfPower(n, coeff);
-    long long answer = 0;
-    for (int i = 0; i < (int)initial.size(); ++i) {
-        answer = (answer + weight[i] * normalize(initial[i])) % MOD;
-    }
-    return answer;
-}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -166,14 +91,14 @@ int main() {
     vector<long long> initial(k), coeff(k);
     for (long long& value : initial) {
         cin >> value;
-        value = normalize(value);
+        value = normalizeMod(value);
     }
     for (long long& value : coeff) {
         cin >> value;
-        value = normalize(value);
+        value = normalizeMod(value);
     }
 
-    cout << nthTerm(initial, coeff, n) << '\n';
+    cout << nthLinearRecurrence(initial, coeff, n) << '\n';
 }
 ```
 
@@ -196,19 +121,4 @@ int main() {
 3. 같은 입력을 Kitamasa 구현에 넣어 결과가 같은지 비교합니다.
 4. `K=1`, `N<K`, 계수가 0인 경우, 모든 초기항이 0인 경우를 별도 deterministic case로 둡니다.
 
-Berlekamp-Massey와 연결할 때는 BM이 찾은 coeff로 이 연습의 `nthTerm`을 호출하고, BM에 쓰지 않은 holdout 항을 하나 더 비교해야 합니다.
-
-## 다음 연습 후보
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 표준 | 로컬: K차 선형 점화식의 N번째 항 | Kitamasa `O(K^2 log N)` 구현 | linear recurrence |
-
-## 완료 기준
-
-- 작은 차수 naive polynomial 연산과 비교합니다.
-- mod/root/primitive root 조건을 명시합니다.
-- FPS 연산의 상수항 조건을 확인합니다.
-- BM 결과는 holdout 항으로 검증합니다.
-- n번째 항 알고리즘은 0-index/1-index를 고정합니다.
-- 점화식 계수 순서를 `a_{n-1}`부터 `a_{n-K}`까지로 고정합니다.
+Berlekamp-Massey와 연결할 때는 BM이 찾은 coeff로 이 연습의 `nthLinearRecurrence`을 호출하고, BM에 쓰지 않은 holdout 항을 하나 더 비교해야 합니다.

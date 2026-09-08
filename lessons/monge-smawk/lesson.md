@@ -2,6 +2,9 @@
 
 Monge array는 행과 열의 최솟값 위치가 단조로 움직이는 특수한 행렬입니다. 이런 구조에서는 각 행의 최솟값을 모든 열에 대해 직접 보지 않고도 빠르게 찾을 수 있습니다. SMAWK는 totally monotone matrix에서 행 최솟값을 선형에 가깝게 구하는 알고리즘입니다.
 
+
+행·열 ID는 각각 증가 순서이며 행이 있으면 열도 비어 있지 않아야 합니다. 모든 부분행렬에서 가장 왼쪽 최소 열이 아래로 갈수록 감소하지 않는 totally monotone 조건을 사용합니다. 위 strict 부등식은 이 tie 규칙에 맞춘 방향입니다.
+
 ## Monge Array
 
 행렬 `A`가 Monge라는 것은 모든 `i1 < i2`, `j1 < j2`에 대해 아래가 성립한다는 뜻입니다.
@@ -18,7 +21,7 @@ SMAWK가 요구하는 조건은 Monge보다 약한 totally monotone입니다.
 
 ```text
 어떤 두 행 i1 < i2와 두 열 j1 < j2에 대해
-A[i1][j1] <= A[i1][j2] 이면 A[i2][j1] <= A[i2][j2]
+A[i1][j1] > A[i1][j2] 이면 A[i2][j1] > A[i2][j2]
 ```
 
 이 조건은 row minimum의 단조성을 보장합니다. Monge array는 totally monotone이지만, totally monotone이 항상 Monge인 것은 아닙니다.
@@ -58,7 +61,7 @@ void monotoneRowMinima(
     }
 
     int rowMid = (rowLeft + rowRight) / 2;
-    pair<long long, int> best = {numeric_limits<long long>::max() / 4, colLeft};
+    pair<long long, int> best = {value(rowMid,colLeft), colLeft};
     for (int col = colLeft; col <= colRight; ++col) {
         long long current = value(rowMid, col);
         if (current < best.first) {
@@ -130,8 +133,9 @@ void smawk(
         int row = rows[i];
         int end = (int)reducedCols.size() - 1;
         if (i + 1 < (int)rows.size()) {
+            end = start;
             while (reducedCols[end] != answer[rows[i + 1]]) {
-                --end;
+                ++end;
             }
         }
 
@@ -164,18 +168,11 @@ dp[i] = min_j previous[j] + cost(j, i)
 | 방법 | 시간 |
 | --- | ---: |
 | 모든 행/열 확인 | `O(RC)` |
-| monotone D&C row minima | `O(R log R * 후보)` 형태 |
+| monotone D&C row minima | `O(R + C log(R+1))` |
 | SMAWK | `O(R + C)` value calls 수준 |
 
 SMAWK의 이론적 성능은 좋지만 구현 실수 비용도 큽니다. value 계산이 비싸면 호출 횟수 관리가 중요합니다.
 
-## 자주 하는 실수
+## Monge에서 argmin 단조성
 
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| Monge/totally monotone 증명 없이 적용 | 오답 | inequality 또는 editorial 확인 |
-| 최소/최대 방향 혼동 | 반대 최적값 | 비교 연산 통일 |
-| tie-breaking 불안정 | 단조성 흔들림 | 같은 값일 때 작은 column 유지 |
-| value 함수가 범위 밖을 허용 | 런타임 오류 | valid column set 제한 |
-| SMAWK reduced column stack index 혼동 | 열 누락 | rows size와 stack size 관계 확인 |
-| D&C 최적화와 SMAWK 조건 혼동 | 과한 구현 | 필요한 row minima 형태인지 확인 |
+위 행 i의 왼쪽 최소 열 p와 아래 행 j의 왼쪽 최소 열 q가 p>q라고 가정합니다. 최소성으로 A[i,p]<=A[i,q], A[j,q]<=A[j,p]입니다. Monge 부등식은 반대 방향 합을 강제하므로 두 차이는 모두 0이어야 합니다. 그러면 위 행에서도 q가 최소여서 p가 가장 왼쪽이라는 선택과 모순입니다. 이전 DP 열별 상수를 더해도 교차 부등식에서 상쇄됩니다.

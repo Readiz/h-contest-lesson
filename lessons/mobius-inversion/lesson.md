@@ -2,6 +2,9 @@
 
 Mobius Inversion은 divisor lattice 위에서 "약수들의 합"으로 정의된 값을 원래 함수로 되돌리는 포함-배제 도구입니다. gcd 조건, 서로소 pair count, divisor multiple count처럼 수의 약수 관계가 핵심인 문제에서 자주 등장합니다.
 
+
+입력 값은 양수이고 frequency[0]=0입니다. frequency 범위는 미리 만든 mu 범위를 넘지 않아야 합니다. countOrderedCoprimePairs는 같은 인덱스도 허용하는 순서 있는 원소 쌍을 셉니다. 서로 다른 인덱스의 무순서 쌍이면 (answer-frequency[1])/2입니다. 모든 중간 합산은 long long 범위여야 합니다. 단순 순위 좌표 압축은 약수 관계를 보존하지 않습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Mobius Inversion 관점 |
@@ -61,6 +64,7 @@ struct MobiusSieve {
     vector<int> isComposite;
 
     explicit MobiusSieve(int limit) : mu(limit + 1, 0), isComposite(limit + 1, 0) {
+        if (limit == 0) return;
         mu[1] = 1;
         for (int i = 2; i <= limit; ++i) {
             if (!isComposite[i]) {
@@ -133,11 +137,3 @@ f = F * mu
 | 단일 query after preprocessing | 문제 구조에 따라 `O(1)` 또는 `O(log N)` |
 
 입력 값의 최댓값 `A`가 크고 원소 수 `N`이 작으면 좌표 압축이나 divisor enumeration이 더 나을 수 있습니다.
-
-## 자주 하는 실수
-
-1. `mu[1] = 1` 초기화를 빠뜨린다.
-2. square factor가 있는 수의 `mu`를 0으로 만들지 않는다.
-3. ordered pair와 unordered pair를 혼동한다.
-4. `gcd = g` 조건에서 `g`로 나눈 뒤의 서로소 조건을 빼먹는다.
-5. 값의 최댓값이 너무 큰데 배열 sieve를 무리하게 잡는다.

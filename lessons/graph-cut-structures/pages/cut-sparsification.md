@@ -2,6 +2,9 @@
 
 Cut Sparsification은 그래프의 모든 cut 값을 정확히 또는 근사적으로 보존하면서 edge 수를 줄이는 관점입니다. 대회 문제에서는 이론적인 spectral sparsifier보다, MST/forest 기반 certificate, Nagamochi-Ibaraki 스타일의 edge connectivity 보존, cut 후보를 줄이는 모델링으로 자주 등장합니다.
 
+
+각 cut에 대해 certificate의 간선 수는 원래 cut 수 이하이며 min(k,원래 cut 수) 이상입니다. 따라서 크기 k 이하 cut은 정확히 보존하고 더 큰 cut도 k 아래로 줄이지 않습니다. 각 forest는 남은 cut이 비어 있지 않으면 반드시 그 cut을 건넙니다.
+
 ## 문제 신호
 
 | 문제 표현 | Cut Sparsification 관점 |
@@ -61,6 +64,7 @@ struct CutCertificate {
 
         int find(int x) {
             while (parent[x] != x) {
+                parent[x] = parent[parent[x]];
                 x = parent[x];
             }
             return x;
@@ -146,11 +150,3 @@ dense graph
 | 이후 min cut | certificate 크기에 따라 감소 |
 
 k가 작을 때 edge 수가 `M`에서 `O(kN)`으로 줄어드는 것이 핵심 이점입니다.
-
-## 자주 하는 실수
-
-1. directed graph에 undirected certificate 논리를 그대로 적용한다.
-2. weighted cut에서 unweighted forest layer를 그대로 쓰면 된다고 가정한다.
-3. threshold 이하 cut만 보존하는데 모든 cut 값이 보존된다고 착각한다.
-4. certificate를 만든 뒤 원래 그래프 기준 검증이 필요한 문제에서 검증을 생략한다.
-5. multi-edge를 하나로 합치며 cut capacity를 잃어버린다.

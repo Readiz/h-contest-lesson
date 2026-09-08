@@ -145,7 +145,7 @@ Leftist Heap은 각 노드에서 빈 자식까지의 최단 거리 `dist`를 저
 
 ## 시간 복잡도
 
-오른쪽으로만 내려가는 naive merge는 트리 높이에 그대로 영향을 받아 최악 `O(n)`이 될 수 있습니다. Skew Heap은 같은 node-index 구조에 swap 규칙만 추가해 amortized `O(log n)`을 얻습니다.
+아래는 힙 자체의 비용입니다. 컴포넌트 번호를 받는 위 메서드에는 DSU의 상각 `O(alpha(n))` 조회 비용도 추가됩니다.
 
 | 작업 | 시간 |
 | --- | --- |
@@ -154,7 +154,5 @@ Leftist Heap은 각 노드에서 빈 자식까지의 최단 거리 `dist`를 저
 | `pop` | amortized `O(log n)` |
 | `meld` | amortized `O(log n)` |
 | 메모리 | `O(총 push 횟수)` |
-
-Leftist Heap은 `push`, `pop`, `meld`가 worst-case `O(log n)`이고, Skew Heap은 amortized `O(log n)`입니다. Skew Heap의 개별 연산은 깊이 `O(n)`까지 내려갈 수 있으므로, 재귀 스택 상한도 따로 확인해야 합니다.
 
 Binary Heap의 `push`, `pop`도 `O(log n)`이지만, `meld`가 빠르지 않다는 차이가 있습니다.

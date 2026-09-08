@@ -2,6 +2,9 @@
 
 Shape Distance Modeling은 점, 선분, 원, 볼록 다각형 사이의 거리와 충돌 문제를 어떤 수학 모델로 바꿀지 정리하는 기하 심화 레슨입니다. Minkowski Sum이나 Rotating Calipers를 바로 구현하기 전에, 어떤 도형을 점으로 줄이고 어떤 도형을 확장할지 결정하는 단계입니다.
 
+
+polygonDistance2는 구멍 없는 단순 다각형의 내부를 포함한 거리를 구합니다. 한 도형이 다른 도형 안에 있으면 0입니다. 이 실수 baseline의 절대 오차 기준은 좌표 scale에 맞춰야 하며 exact predicate가 아닙니다. SAT의 최소 분리 이동은 포함된 투영에서도 두 끝점까지의 이동량을 비교해야 하므로 단순 교집합 길이가 아닙니다.
+
 ## 문제 신호
 
 | 문제 표현 | 모델링 후보 |
@@ -21,6 +24,7 @@ Shape Distance Modeling은 점, 선분, 원, 볼록 다각형 사이의 거리�
 ```cpp compile-check
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <vector>
 using namespace std;
 
@@ -78,25 +82,16 @@ int sign(double value) {
 
 bool segmentsIntersect(PointDistance a, PointDistance b, PointDistance c, PointDistance d) {
     auto orient = [](PointDistance p, PointDistance q, PointDistance r) {
-        return sign(crossDistance(q - p, r - p));
+        return sign(crossDistance(q-p,r-p));
     };
-    int abC = orient(a, b, c);
-    int abD = orient(a, b, d);
-    int cdA = orient(c, d, a);
-    int cdB = orient(c, d, b);
-    if (abC == 0 && abD == 0) {
-        auto overlap = [](double l1, double r1, double l2, double r2) {
-            if (l1 > r1) {
-                swap(l1, r1);
-            }
-            if (l2 > r2) {
-                swap(l2, r2);
-            }
-            return max(l1, l2) <= min(r1, r2) + 1e-10;
-        };
-        return overlap(a.x, b.x, c.x, d.x) && overlap(a.y, b.y, c.y, d.y);
-    }
-    return abC * abD <= 0 && cdA * cdB <= 0;
+    auto on = [&](PointDistance p, PointDistance q, PointDistance r) {
+        return orient(p,q,r)==0 &&
+            min(p.x,q.x)-1e-10<=r.x && r.x<=max(p.x,q.x)+1e-10 &&
+            min(p.y,q.y)-1e-10<=r.y && r.y<=max(p.y,q.y)+1e-10;
+    };
+    int u=orient(a,b,c), v=orient(a,b,d), w=orient(c,d,a), z=orient(c,d,b);
+    return (u==0 && on(a,b,c)) || (v==0 && on(a,b,d)) ||
+           (w==0 && on(c,d,a)) || (z==0 && on(c,d,b)) || (u*v<0 && w*z<0);
 }
 
 double segmentDistance2(PointDistance a, PointDistance b, PointDistance c, PointDistance d) {
@@ -109,8 +104,23 @@ double segmentDistance2(PointDistance a, PointDistance b, PointDistance c, Point
     );
 }
 
+bool insideOrBoundary(PointDistance p, const vector<PointDistance>& polygon) {
+    bool inside=false;
+    for (int i=0,j=(int)polygon.size()-1;i<(int)polygon.size();j=i++) {
+        auto a=polygon[j],b=polygon[i];
+        if (pointSegmentDistance2(p,a,b)<=1e-20) return true;
+        if ((a.y>p.y)!=(b.y>p.y)) {
+            double x=a.x+(b.x-a.x)*(p.y-a.y)/(b.y-a.y);
+            if (p.x<x) inside=!inside;
+        }
+    }
+    return inside;
+}
+
 double polygonDistance2(const vector<PointDistance>& left, const vector<PointDistance>& right) {
-    double best = 1e100;
+    if (left.empty() || right.empty()) return numeric_limits<double>::infinity();
+    if (insideOrBoundary(left[0],right) || insideOrBoundary(right[0],left)) return 0;
+    double best = numeric_limits<double>::infinity();
     int n = (int)left.size();
     int m = (int)right.size();
     for (int i = 0; i < n; ++i) {
@@ -205,12 +215,3 @@ B를 -B로 반사해 A + (-B)를 만들면
 | point to convex polygon query | 전처리에 따라 `O(log n)` 가능 |
 
 대회에서는 입력 크기가 작으면 baseline이 더 안전합니다. 큰 convex 입력에서만 calipers와 support 최적화가 필요합니다.
-
-## 자주 하는 실수
-
-1. polygon이 convex인지 확인하지 않고 convex 전용 모델을 쓴다.
-2. 충돌하면 거리 0이라는 case를 baseline보다 뒤에 처리한다.
-3. edge normal projection에서 axis 길이 정규화를 빼고 실제 거리로 출력한다.
-4. Minkowski difference에서 `A + B`를 만들고 `-B` 반사를 빼먹는다.
-5. 접하는 경우를 겹침으로 볼지 분리로 볼지 문제 조건을 확인하지 않는다.
-6. 실수 EPS를 너무 크게 잡아 작은 간격을 0으로 만든다.

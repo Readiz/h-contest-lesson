@@ -45,51 +45,7 @@ s[l, r-p) == s[l+p, r)
 
 ## Rolling Hash 기반 Equality
 
-아래 코드는 단일 mod hash로 substring equality를 확인하는 형태입니다. 실전에서는 충돌 위험이 있으면 double hash를 씁니다.
-
-```cpp compile-check
-#include <string>
-#include <vector>
-using namespace std;
-
-struct RollingHashPeriod {
-    static const long long MOD = 1000000007LL;
-    static const long long BASE = 911382323LL;
-
-    vector<long long> power;
-    vector<long long> prefix;
-
-    explicit RollingHashPeriod(const string& s) {
-        int n = (int)s.size();
-        power.assign(n + 1, 1);
-        prefix.assign(n + 1, 0);
-        for (int i = 0; i < n; ++i) {
-            power[i + 1] = power[i] * BASE % MOD;
-            prefix[i + 1] = (prefix[i] * BASE + (unsigned char)s[i] + 1) % MOD;
-        }
-    }
-
-    long long hashRange(int left, int right) const {
-        long long value = prefix[right] - prefix[left] * power[right - left] % MOD;
-        if (value < 0) {
-            value += MOD;
-        }
-        return value;
-    }
-
-    bool same(int a, int b, int length) const {
-        return hashRange(a, a + length) == hashRange(b, b + length);
-    }
-};
-
-bool isPeriodInRange(const RollingHashPeriod& hash, int left, int right, int period) {
-    int length = right - left;
-    if (period <= 0 || period > length) {
-        return false;
-    }
-    return hash.same(left, left + period, length - period);
-}
-```
+[KMP·Z와 문자열 해시 자료](https://h.readiz.com/learn/string-matching-kmp-z)와 기존 Rolling Hash의 구간 비교를 재사용합니다. 길이 `L`인 구간에서 `0 < p <= L`일 때 앞 `L-p`자와 뒤 `L-p`자가 같은지 비교하면 됩니다. 해시 일치는 충돌 가능성이 있습니다.
 
 후보 `p`가 구간 길이를 나누어야 하는지는 문제 표현에 따라 다릅니다. "완전히 반복되는 문자열"이면 `len % p == 0`이 필요하고, "period" 자체만 묻는다면 나누어떨어지지 않아도 됩니다.
 
@@ -108,16 +64,7 @@ bool isPeriodInRange(const RollingHashPeriod& hash, int left, int right, int per
 
 ## LCP/LCS로 반복 확장
 
-반복 후보 `s[i..i+p)`가 두 번 이상 이어지는지 보려면 오른쪽 LCP와 왼쪽 LCS를 합칩니다.
-
-```text
-right = LCP(i, i+p)
-left = LCS(i-1, i+p-1)
-covered length = left + right
-covered length >= p 이면 두 복사본이 겹치며 반복 구간을 만든다.
-```
-
-이 관점은 run 판정과 query 응용에서 중요합니다. 반복이 한 점에서만 보이는 것이 아니라 좌우로 얼마나 확장되는지 봐야 maximality를 확인할 수 있습니다.
+거리 `p`인 두 위치의 일치 구간을 왼쪽으로 `left`, 오른쪽으로 `right`만큼 확장하면 주기 구간의 길이는 `left+right+p`입니다. `left+right >= p`이면 길이가 최소 `2p`인 반복을 얻습니다. 경계를 넘지 않도록 확장 길이를 제한합니다.
 
 ## 작은 예시
 
@@ -157,11 +104,3 @@ Rolling hash는 빠르지만 확률적입니다. 엄밀성이 필요한 환경�
 | LCP/LCS query | `O(1)` RMQ 이후 |
 
 구간마다 모든 period 후보를 보는 방식은 최악에서 느립니다. query 수와 문자열 길이에 맞춰 후보 생성 방식을 제한해야 합니다.
-
-## 자주 하는 실수
-
-1. `len % p == 0`이 필요한 문제와 아닌 문제를 섞는다.
-2. 전체 문자열 prefix function 결과를 임의 구간에 그대로 적용한다.
-3. `p`가 period인지 확인하지 않고 약수라는 이유만으로 답으로 쓴다.
-4. hash 충돌 가능성을 무시해야 하는 문제에서 단일 hash만 사용한다.
-5. run의 maximality를 보지 않고 같은 반복을 여러 번 센다.

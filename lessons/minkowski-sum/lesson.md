@@ -2,6 +2,9 @@
 
 Minkowski Sum은 두 점 집합 `A`, `B`의 모든 합 `a + b`로 새 집합을 만드는 연산입니다. 볼록 다각형끼리의 합은 다시 볼록 다각형이 되므로, 장애물 확장, 두 물체의 충돌 판정, 볼록 다각형 사이 거리 같은 문제를 기하 문제 하나로 정리할 수 있습니다.
 
+
+이 edge-merge 구현은 빈 집합 또는 꼭짓점 3개 이상의 엄격한 CCW 볼록 다각형을 입력받습니다. 중복·연속 collinear 꼭짓점은 사전에 제거하고 좌표 절댓값은 10^8 이하로 둡니다. 점·선분 입력은 평행이동 또는 별도 퇴화 처리가 필요합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Minkowski Sum 관점 |
@@ -123,12 +126,7 @@ vector<PointMinkowski> minkowskiSum(
 ) {
     left = normalizeConvexPolygon(left);
     right = normalizeConvexPolygon(right);
-    if (left.empty()) {
-        return right;
-    }
-    if (right.empty()) {
-        return left;
-    }
+    if (left.empty() || right.empty()) return {};
 
     int n = (int)left.size();
     int m = (int)right.size();
@@ -202,12 +200,4 @@ support(A + B, dir) = support(A, dir) + support(B, dir)
 | collinear 정리 | `O(n + m)` |
 | naive pairwise sum 후 hull | `O(nm log(nm))` |
 
-입력이 convex hull이 아니라 일반 점 집합이면 먼저 각 집합의 hull을 만들어야 합니다.
-
-## 자주 하는 실수
-
-1. polygon 방향이 clockwise인데 그대로 edge를 merge한다.
-2. 시작점을 맞추지 않아 angle order가 끊긴다.
-3. 같은 방향 edge를 따로 넣어 중복 collinear 점이 생긴다.
-4. `A + B`와 `A - B`를 혼동한다.
-5. 일반 polygon에도 convex polygon 알고리즘을 그대로 적용한다.
+일반 점 집합에서 먼저 hull을 취하면 원래 이산 Minkowski sum이 아니라 그 convex hull을 계산하게 됩니다. 목적이 모든 합점의 hull일 때만 이 변환을 사용합니다.

@@ -4,7 +4,7 @@ Suffix Automaton은 한 문자열의 모든 부분 문자열을 압축해서 표
 
 ## 왜 automaton인가
 
-문자열 `s`의 모든 부분 문자열은 suffix들의 prefix입니다. 이를 그대로 저장하면 부분 문자열 수가 `O(N^2)`입니다. Suffix Automaton은 같은 "앞으로 이어질 수 있는 문자열 집합"을 가진 부분 문자열들을 하나의 상태로 합쳐 `O(N)` 상태만 만듭니다.
+문자열 `s`의 모든 부분 문자열은 suffix들의 prefix입니다. 이를 그대로 저장하면 부분 문자열 수가 `O(N^2)`입니다. Suffix Automaton은 등장 끝 위치 집합인 `endpos`가 같은 부분 문자열들을 하나의 상태로 합쳐 `O(N)` 상태만 만듭니다.
 
 | 질문 | Suffix Automaton 관점 |
 | --- | --- |
@@ -23,7 +23,7 @@ Suffix Automaton은 한 문자열의 모든 부분 문자열을 압축해서 표
 | 값 | 의미 |
 | --- | --- |
 | `len[v]` | 이 상태가 대표하는 문자열 중 가장 긴 길이 |
-| `link[v]` | 가장 긴 문자열의 proper suffix가 속한 상태 |
+| `link[v]` | 현재 상태와 다른 상태에 속하는 가장 긴 proper suffix의 상태 |
 | transition | 뒤에 문자를 하나 붙였을 때 이동하는 상태 |
 
 상태 `v`가 새로 기여하는 서로 다른 부분 문자열 수는 아래와 같습니다.
@@ -99,6 +99,8 @@ struct SuffixAutomaton {
     }
 
     void build(const string& s) {
+        st.assign(1, State{});
+        last = 0;
         for (char ch : s) {
             extend(ch);
         }
@@ -116,12 +118,8 @@ struct SuffixAutomaton {
 #include <vector>
 using namespace std;
 
-struct SamCounterState {
-    int link;
-    int len;
-};
-
-long long countDistinctSubstrings(const vector<SamCounterState>& states) {
+template<class State>
+long long countDistinctSubstrings(const vector<State>& states) {
     long long result = 0;
     for (int v = 1; v < (int)states.size(); ++v) {
         int parent = states[v].link;
@@ -154,17 +152,8 @@ clone 상태는 새 prefix가 직접 끝나는 상태가 아니므로 처음 cou
 #include <vector>
 using namespace std;
 
-struct SamStateForLcs {
-    int link = -1;
-    int len = 0;
-    array<int, 26> next{};
-
-    SamStateForLcs() {
-        next.fill(-1);
-    }
-};
-
-int longestCommonSubstring(const vector<SamStateForLcs>& st, const string& other) {
+template<class State>
+int longestCommonSubstring(const vector<State>& st, const string& other) {
     int state = 0;
     int matched = 0;
     int best = 0;
@@ -191,27 +180,16 @@ int longestCommonSubstring(const vector<SamStateForLcs>& st, const string& other
 }
 ```
 
-이 함수도 `next`가 `-1`로 초기화되어 있다는 전제가 있습니다. 상태 구조를 따로 쓸 때는 constructor에서 초기화하는 습관이 중요합니다.
+두 함수는 위 `sam.st`를 직접 인자로 받습니다. 이 함수도 `next`가 `-1`로 초기화되어 있다는 전제가 있습니다. 상태 구조를 따로 쓸 때는 constructor에서 초기화하는 습관이 중요합니다.
 
 ## 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
-| automaton construction | `O(N * alphabet transition cost)` | 최대 `2N - 1` 상태 |
+| automaton construction | `O(N * alphabet transition cost)` | `N >= 2`에서 최대 `2N - 1` 상태 |
 | 패턴 포함 여부 | `O(M)` | automaton 사용 |
 | 서로 다른 부분 문자열 수 | `O(number of states)` | 없음 |
 | occurrence 누적 | `O(number of states + alphabet edges)` | count 배열 |
 | 두 문자열 LCS | `O(|B|)` | automaton 사용 |
 
 고정 소문자 alphabet이면 transition cost가 `O(1)`입니다. 큰 alphabet에서 map을 쓰면 로그 또는 해시 비용이 붙습니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| clone의 transition 복사 누락 | automaton 경로가 끊김 | `clone = q` 복사 후 len만 조정 |
-| clone occurrence를 1로 둠 | 등장 횟수 과대 계산 | 새 prefix 상태만 count 1 |
-| suffix link 역순 누적 순서 오류 | occurrence가 덜 모임 | `len` 내림차순 처리 |
-| alphabet 초기화 누락 | 임의 transition 사용 | `next.fill(-1)` 확인 |
-| `int`로 부분 문자열 개수 계산 | overflow | `long long` 사용 |
-| 상태가 부분 문자열 하나만 뜻한다고 오해 | 공식 적용 오류 | 상태는 길이 구간을 대표 |

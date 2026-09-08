@@ -2,6 +2,9 @@
 
 Convex Hull Trick Variants는 직선 최솟값 또는 최댓값 질의를 처리할 때 어떤 구현을 골라야 하는지 정리하는 레슨입니다. 기본 Convex Hull Trick과 Li Chao Tree를 알고 있어도, slope 순서, query 순서, 같은 slope, min/max convention이 조금만 달라지면 구현 선택이 바뀝니다.
 
+
+이 최소값 deque는 기울기를 비증가 순서로 삽입하고 x를 비감소 순서로 질의합니다. 모든 평가값과 128비트 교차곱이 범위 안이어야 합니다. __int128 변환은 뺄셈 전에 합니다. 임의 삭제는 삽입 전용 multiset LineContainer로 해결되지 않습니다.
+
 ## 구현 선택표
 
 | 조건 | 추천 구현 |
@@ -10,7 +13,7 @@ Convex Hull Trick Variants는 직선 최솟값 또는 최댓값 질의를 처리
 | slope 추가 단조, query x 임의 | hull breakpoints + binary search |
 | slope와 query 모두 임의, x 범위 고정 | Li Chao Tree |
 | query x 좌표를 모두 미리 안다 | compressed Li Chao |
-| 직선 삭제가 필요하다 | multiset line container 또는 rollback/offline |
+| 직선 삭제가 필요하다 | 임의 삭제 전용 구조 또는 rollback/offline |
 
 가장 빠른 구현보다 조건에 맞는 구현이 중요합니다. 단조 조건을 착각하면 deque CHT는 조용히 틀립니다.
 
@@ -27,7 +30,7 @@ max(m*x + b)
 
 ## Monotone Deque CHT
 
-아래 구현은 slope가 증가하는 순서로 들어오고 query x도 증가하는 최솟값 문제를 처리합니다.
+아래 구현은 slope가 감소하는 순서로 들어오고 query x도 증가하는 최솟값 문제를 처리합니다.
 
 ```cpp compile-check
 #include <deque>
@@ -47,8 +50,8 @@ struct MonotoneMinCht {
     deque<Line> hull;
 
     static bool isBad(const Line& left, const Line& middle, const Line& right) {
-        __int128 a = (__int128)(middle.intercept - left.intercept) * (left.slope - right.slope);
-        __int128 b = (__int128)(right.intercept - left.intercept) * (left.slope - middle.slope);
+        __int128 a = ((__int128)middle.intercept - left.intercept) * ((__int128)left.slope - right.slope);
+        __int128 b = ((__int128)right.intercept - left.intercept) * ((__int128)left.slope - middle.slope);
         return a >= b;
     }
 
@@ -101,7 +104,7 @@ query x: 마지막 p <= x인 line 선택
 | --- | --- | --- |
 | Li Chao Tree | 구현 규칙이 명확, segment line 확장 가능 | x 범위 필요 |
 | Compressed Li Chao | query 좌표만 관리해 메모리 절약 | offline 필요 |
-| multiset LineContainer | x 범위가 없어도 가능 | 교점 정수 나눗셈과 삭제가 까다로움 |
+| multiset LineContainer | x 범위가 없어도 가능 | 교점 정수 나눗셈 필요, 임의 삭제 미지원 |
 
 대회에서는 삭제가 없다면 Li Chao가 더 실수하기 어렵습니다.
 
@@ -142,12 +145,3 @@ query x = X[i]
 | compressed Li Chao | `O(log Q)` | `O(log Q)` |
 
 상수까지 보면 monotone deque가 가장 빠릅니다. 하지만 조건 하나라도 부족하면 안정성을 위해 Li Chao로 가는 편이 낫습니다.
-
-## 자주 하는 실수
-
-1. slope가 증가인지 감소인지 반대로 넣는다.
-2. query x가 단조가 아닌데 front pop을 쓴다.
-3. 같은 slope를 제거하지 않아 division by zero가 난다.
-4. max 문제를 min 구현에 그대로 넣는다.
-5. 교점 계산에서 음수 나눗셈의 floor/ceil을 틀린다.
-6. `m*x+b` overflow를 확인하지 않는다.

@@ -36,9 +36,9 @@ Blossom 수축의 관점은 단순합니다.
 
 수축 후에도 augmenting path가 존재하면 원래 그래프에서도 존재합니다. path가 blossom을 통과하면 cycle 내부의 alternating 구조를 따라 펴면 됩니다.
 
-## 구현 골격
+## 구현
 
-아래 코드는 최대 cardinality matching을 구하는 표준 Edmonds blossom 구현 골격입니다. 정점은 `0..n-1`입니다.
+아래 코드는 최대 cardinality matching을 구하는 Edmonds blossom 구현입니다. 정점은 `0..n-1`입니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -181,7 +181,7 @@ struct GeneralMatching {
 };
 ```
 
-이 구현은 cardinality matching용입니다. 가중치가 붙으면 dual variable과 slack을 관리하는 weighted blossom이 필요하므로 별도 알고리즘으로 봐야 합니다.
+여기서 maximum은 간선 수가 가장 큰 매칭이며, 더 이상 간선 하나를 바로 추가할 수 없다는 maximal과 다릅니다. 이 구현은 cardinality matching용입니다. 가중치가 붙으면 dual variable과 slack을 관리하는 weighted blossom이 필요하므로 별도 알고리즘으로 봐야 합니다.
 
 ## Augmenting Path 뒤집기
 
@@ -225,11 +225,3 @@ Blossom 알고리즘도 결국 augmenting path를 찾아 이 뒤집기를 수행
 | 전체 | `O(N^3)` |
 
 그래프가 조밀하고 `N`이 수백 단위라면 C++로 충분한 경우가 많습니다. `N`이 수천 이상이면 문제 제약과 그래프 특성을 다시 봐야 합니다.
-
-## 자주 하는 실수
-
-1. 일반 그래프인데 이분 matching을 적용한다.
-2. self-loop를 matching 후보로 넣는다.
-3. blossom 수축 후 `base`를 갱신했지만 queue에 필요한 정점을 다시 넣지 않는다.
-4. augmenting path를 뒤집을 때 이전 matching partner를 잃어버린다.
-5. maximum matching과 maximal matching을 혼동한다.

@@ -130,7 +130,7 @@ int lowerBound(long long target) const {
 
     int idx = 0;
     int bit = 1;
-    while ((bit << 1) <= n) bit <<= 1;
+    while (bit <= n / 2) bit <<= 1;
 
     for (; bit > 0; bit >>= 1) {
         int next = idx + bit;

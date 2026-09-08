@@ -1,0 +1,522 @@
+[
+  {
+    "name": "bitvector-word-boundaries",
+    "snippets": [
+      {
+        "path": "lessons/succinct-bitvector/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nSuccinctBitvector empty; assert(empty.rankOne(0)==0 && empty.selectOne(0)==-1);\nfor(int n: {0,1,63,64,65,256,512,513}) {\n vector<int> b(n); for(int i=0;i<n;i++) b[i]=(i%3==0);\n SuccinctBitvector x(b);int count=0;\n for(int i=0;i<=n;i++){assert(x.rankOne(i)==count);assert(x.rankZero(i)==i-count);if(i<n)count+=b[i];}\n int k=0;for(int i=0;i<n;i++)if(b[i])assert(x.selectOne(k++)==i);\n assert(x.rankZero(n+3)==n-count);assert(x.selectOne(k)==-1);\n}",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "scc-and-unsatisfiable",
+    "snippets": [
+      {
+        "path": "lessons/scc-2sat/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "TwoSat s(1);s.addOr(0,true,0,true);assert(s.satisfiable());s.addOr(0,false,0,false);assert(!s.satisfiable());",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "lower-flow-shared-dinic",
+    "snippets": [
+      {
+        "path": "lessons/max-flow-min-cut/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/flow-with-lower-bound/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "LowerBoundFlow a(2);a.addBoundedEdge(0,0,2,4);a.addBoundedEdge(0,1,2,3);a.addBoundedEdge(1,0,0,3);assert(a.feasible());LowerBoundFlow b(2);b.addBoundedEdge(0,1,2,3);assert(!b.feasible());",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "eertree-shared-driver",
+    "snippets": [
+      {
+        "path": "lessons/palindrome-structures/pages/palindromic-tree.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/palindrome-structures/pages/practice-set.md",
+        "block": 0
+      }
+    ],
+    "body": null,
+    "stdin": "ababa\n",
+    "expected": "5\n"
+  },
+  {
+    "name": "eertree-reset",
+    "snippets": [
+      {
+        "path": "lessons/palindrome-structures/pages/palindromic-tree.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/palindrome-structures/pages/palindromic-tree.md",
+        "block": 1
+      }
+    ],
+    "body": "PalindromicTree t;t.build(\"ababa\");assert(t.tree.size()==7);t.build(\"a\");assert(t.tree.size()==3);accumulatePalindromeCounts(t.tree);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "sam-occurrence-idempotent",
+    "snippets": [
+      {
+        "path": "lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md",
+        "block": 0
+      }
+    ],
+    "body": "SuffixAutomatonApplications t;t.build(\"ababa\");auto a=t.occurrenceByState();assert(a==t.occurrenceByState());int v=0;v=t.st[v].next[0];assert(a[v]==3);t.build(\"b\");assert(t.st.size()==2);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "geometry-common-definitions",
+    "snippets": [
+      {
+        "path": "lessons/geometry-ccw-segment-intersection/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "assert(segmentsIntersect({0,0},{0,0},{0,0},{1,1}));assert(!segmentsIntersect({0,0},{0,0},{1,1},{2,2}));assert(convexHull({{0,0},{1,0},{2,0},{1,0}}).size()==2);assert(dist2({-1000000000,-1000000000},{1000000000,1000000000})==8000000000000000000LL);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "rectangle-union-random",
+    "snippets": [
+      {
+        "path": "lessons/sweep-line-geometry/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nmt19937 gen(7);for(int t=0;t<100;t++){vector<Rectangle> rs;bool grid[8][8]={};for(int j=0;j<8;j++){int a=gen()%8,b=gen()%8,c=gen()%8,d=gen()%8;if(a>b)swap(a,b);if(c>d)swap(c,d);rs.push_back({a-4,c-4,b-4,d-4});for(int x=a;x<b;x++)for(int y=c;y<d;y++)grid[x][y]=true;}int want=0;for(auto& row:grid)for(bool x:row)want+=x;assert(unionArea(rs)==want);}assert(unionArea({})==0);\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "closest-pair-random-and-range",
+    "snippets": [
+      {
+        "path": "lessons/closest-pair-sweep/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nassert(closestPairSquared({{-1000000000,-1000000000,0},{1000000000,1000000000,1}})==8000000000000000000LL);\nmt19937 gen(8);for(int t=0;t<100;t++){vector<Point> p;for(int i=0;i<30;i++)p.push_back({(int)(gen()%100)-50,(int)(gen()%100)-50,i});long long ans=LLONG_MAX;for(int i=0;i<30;i++)for(int j=0;j<i;j++)ans=min(ans,squaredDistance(p[i],p[j]));assert(closestPairSquared(p)==ans);}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "halfplane-bounded-and-empty",
+    "snippets": [
+      {
+        "path": "lessons/half-plane-intersection/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nvector<HpiPoint> box={{-10,-10},{10,-10},{10,10},{-10,10}};\nauto p=clipHalfPlanes(box,{{-1,0,0},{0,-1,0},{1,1,1}});long double a=0;for(int i=0;i<(int)p.size();i++){auto u=p[i],v=p[(i+1)%p.size()];a+=u.x*v.y-u.y*v.x;}assert(fabsl(a-1)<1e-12L);\nassert(clipHalfPlanes(box,{{1,0,0},{-1,0,-1}}).empty());\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "crt-large-intermediate",
+    "snippets": [
+      {
+        "path": "lessons/gcd-extended-euclid-crt/lesson.md",
+        "block": 1
+      }
+    ],
+    "body": "\nauto r=mergeCRT(1000000006,1000000007,1000000008,1000000009);assert(r.exists && r.remainder%1000000007==1000000006 && r.remainder%1000000009==1000000008);assert(!mergeCRT(0,2,1,4).exists);assert(inverseIfExists(-3,11)==7);\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "lucas-shared-factorials",
+    "snippets": [
+      {
+        "path": "lessons/combinatorics-ncr/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "Combination s(6,7);assert(lucas(10,3,s)==1);assert(lucas(7,1,s)==0);assert(lucas(0,0,s)==1);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "matrix-mod-one-exp-zero",
+    "snippets": [
+      {
+        "path": "lessons/matrix-exponentiation/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "assert(power({{0}},0,1)==Matrix{{0}});assert(power({{1,1},{1,0}},10,1000000007)[0][1]==55);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "recurrences-random-differential",
+    "snippets": [
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/bostan-mori.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md",
+        "block": 0
+      }
+    ],
+    "body": "\nmt19937 gen(9);for(int k=1;k<=7;k++)for(int t=0;t<20;t++){\n vector<long long> c(k),s(100);for(auto& v:c)v=gen()%20;for(int i=0;i<k;i++)s[i]=gen()%20;\n for(int n=k;n<100;n++)for(int j=0;j<k;j++)s[n]=(s[n]+c[j]*s[n-j-1])%MOD_BM;\n vector<long long> init(s.begin(),s.begin()+k),q(k+1),p(k);q[0]=1;for(int i=0;i<k;i++)q[i+1]=(MOD_BM-c[i])%MOD_BM;\n for(int n=0;n<k;n++)for(int j=0;j<=n;j++)p[n]=(p[n]+s[n-j]*q[j])%MOD_BM;\n auto bm=berlekampMassey(vector<long long>(s.begin(),s.begin()+2*k));\n for(int n=0;n<100;n++){assert(nthLinearRecurrence(init,c,n)==s[n]);assert(bostanMori(p,q,n)==s[n]);if(!bm.empty())assert(nthLinearRecurrence(vector<long long>(s.begin(),s.begin()+bm.size()),bm,n)==s[n]);else assert(s[n]==0);}\n}assert(berlekampMassey(vector<long long>(20)).empty());\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "kitamasa-shared-driver",
+    "snippets": [
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/practice-set.md",
+        "block": 0
+      }
+    ],
+    "body": null,
+    "stdin": "2 10\n0 1\n1 1\n",
+    "expected": "55\n"
+  },
+  {
+    "name": "mdp-shared-driver",
+    "snippets": [
+      {
+        "path": "lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/probabilistic-decision-ai/pages/practice-set.md",
+        "block": 0
+      }
+    ],
+    "body": null,
+    "stdin": "1 1 2 0\n1 0 1 3\n",
+    "expected": "6.0000000000\n"
+  },
+  {
+    "name": "average-shared-driver",
+    "snippets": [
+      {
+        "path": "lessons/parametric-optimization/pages/fractional-objectives.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/parametric-optimization/pages/practice-set.md",
+        "block": 0
+      }
+    ],
+    "body": null,
+    "stdin": "4 2\n1 2 3 4\n",
+    "expected": "3.5000000000\n"
+  },
+  {
+    "name": "connectivity-shared-rollback",
+    "snippets": [
+      {
+        "path": "lessons/offline-time-axis-techniques/pages/rollback-techniques.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/offline-time-axis-techniques/pages/dynamic-connectivity.md",
+        "block": 0
+      }
+    ],
+    "body": "\nOfflineDynamicConnectivity s(7);s.addActiveEdgeInterval(0,3,0,1);s.addActiveEdgeInterval(1,7,1,2);s.addActiveEdgeInterval(5,7,2,3);s.setConnectivityQuery(2,0,2);s.setConnectivityQuery(4,0,2);s.setConnectivityQuery(6,1,3);RollbackDsu d(4);s.solve(1,0,7,d);assert(s.answer[2]==1 && s.answer[4]==0 && s.answer[6]==1);assert(d.components==4);OfflineDynamicConnectivity e(0);e.solve(1,0,0,d);\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "smawk-rectangular-monge",
+    "snippets": [
+      {
+        "path": "lessons/monge-smawk/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/monge-smawk/lesson.md",
+        "block": 1
+      }
+    ],
+    "body": "\nfor(int n:{1,2,17,100})for(int m:{1,3,20,300}){vector<int> rows(n),cols(m),ans(n,-1),dc(n,-1);iota(rows.begin(),rows.end(),0);iota(cols.begin(),cols.end(),0);function<long long(int,int)> f=[](int r,int c){return 1LL*(r-c)*(r-c)+c;};smawk(rows,cols,f,ans);monotoneRowMinima(0,n-1,0,m-1,f,dc);for(int r=0;r<n;r++){int b=0;for(int c=1;c<m;c++)if(f(r,c)<f(r,b))b=c;assert(ans[r]==b && dc[r]==b);}}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "li-chao-negative-domain",
+    "snippets": [
+      {
+        "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md",
+        "block": 0
+      }
+    ],
+    "body": "\nLiChaoTree tree(-100,100);vector<pair<long long,long long>> ls;mt19937 gen(4);for(int j=0;j<80;j++){long long m=(int)(gen()%101)-50,b=(int)(gen()%201)-100;ls.push_back({m,b});tree.addLine({m,b});for(int x=-100;x<=100;x++){long long best=LLONG_MAX;for(auto l:ls)best=min(best,l.first*x+l.second);assert(tree.query(x)==best);}}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "cht-shared-quadratic-dp",
+    "snippets": [
+      {
+        "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-variants.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/convex-dp-optimization/pages/cht-dp-applications.md",
+        "block": 0
+      }
+    ],
+    "body": "\nmt19937 gen(6);for(int t=0;t<100;t++){vector<long long> p(50),dp(50);for(int i=1;i<50;i++)p[i]=p[i-1]+gen()%5;for(int i=1;i<50;i++){dp[i]=LLONG_MAX;for(int j=0;j<i;j++)dp[i]=min(dp[i],dp[j]+(p[i]-p[j])*(p[i]-p[j])+3);}assert(optimizeQuadraticPartition(p,3)==dp);}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "li-chao-shared-driver",
+    "snippets": [
+      {
+        "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/convex-dp-optimization/pages/practice-set.md",
+        "block": 0
+      }
+    ],
+    "body": null,
+    "stdin": "4 5\n0 10 5 20\n0 10 12 25\n",
+    "expected": "335\n"
+  },
+  {
+    "name": "normalized-basis-rank-64",
+    "snippets": [
+      {
+        "path": "lessons/linear-basis-xor/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/linear-basis-applications/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nNormalizedXorBasis b;for(int i=0;i<64;i++)b.insert(1ULL<<i);assert(b.rank==64);assert(b.canRepresent(1ULL<<63));assert(b.kthSmallest(ULLONG_MAX)==ULLONG_MAX);NormalizedXorBasis c;for(auto v:{3ULL,5ULL,6ULL})c.insert(v);assert(c.kthSmallest(0)==0 && c.kthSmallest(1)==3 && c.kthSmallest(2)==5 && c.kthSmallest(3)==6);\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "karger-disconnected",
+    "snippets": [
+      {
+        "path": "lessons/graph-cut-structures/pages/randomized-min-cut.md",
+        "block": 0
+      }
+    ],
+    "body": "mt19937 g(1);assert(kargerTrial(0,{},g)==0);assert(kargerTrial(5,{},g)==0);assert(kargerTrial(4,{{0,1},{2,3}},g)==0);for(int t=0;t<30;t++)assert(kargerTrial(3,{{0,1},{1,2},{2,0}},g)==2);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "stoer-wagner-brute",
+    "snippets": [
+      {
+        "path": "lessons/graph-cut-structures/pages/global-min-cut.md",
+        "block": 0
+      }
+    ],
+    "body": "\nmt19937 gen(5);for(int n=2;n<=7;n++)for(int t=0;t<50;t++){vector<vector<long long>> w(n,vector<long long>(n));for(int i=0;i<n;i++)for(int j=0;j<i;j++)w[i][j]=w[j][i]=gen()%10;long long best=LLONG_MAX;for(int mask=1;mask<(1<<n)-1;mask++){long long v=0;for(int i=0;i<n;i++)for(int j=0;j<i;j++)if(((mask>>i)^(mask>>j))&1)v+=w[i][j];best=min(best,v);}assert(stoerWagnerMinCut(w)==best);}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "minkowski-empty-and-square",
+    "snippets": [
+      {
+        "path": "lessons/minkowski-sum/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "assert(minkowskiSum({},{{0,0},{1,0},{0,1}}).empty());auto p=minkowskiSum({{0,0},{1,0},{1,1},{0,1}},{{0,0},{1,0},{1,1},{0,1}});assert(p.size()==4);long long area=0;for(int i=0;i<4;i++)area+=crossMinkowski(p[i],p[(i+1)%4]);assert(area==8);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "filled-polygon-and-degenerate-segment",
+    "snippets": [
+      {
+        "path": "lessons/shape-distance-modeling/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "assert(!segmentsIntersect({0,0},{0,0},{1,0},{2,0}));assert(polygonDistance2({{0,0},{10,0},{10,10},{0,10}},{{2,2},{3,2},{2,3}})==0);assert(polygonDistance2({{0,0},{1,0},{1,1},{0,1}},{{3,0},{4,0},{4,1},{3,1}})==4);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "circle-line-offset-direction",
+    "snippets": [
+      {
+        "path": "lessons/circle-geometry/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "auto p=circleLineIntersection({0,0},5,{-10,3},{10,3});assert(p.size()==2);for(auto x:p){assert(abs(x.y-3)<1e-10);assert(abs(abs(x.x)-4)<1e-10);}assert(circleLineIntersection({0,0},1,{0,2},{1,2}).empty());",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "robust-predicate-shared-driver",
+    "snippets": [
+      {
+        "path": "lessons/geometry-robustness-and-duality/pages/robust-geometry-predicates.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/geometry-robustness-and-duality/pages/practice-set.md",
+        "block": 0
+      }
+    ],
+    "body": null,
+    "stdin": "3\n0 0 4 4 0 4 4 0\n0 0 0 0 1 0 2 0\n0 0 4 0 2 0 6 0\n",
+    "expected": "YES\nNO\nYES\n"
+  },
+  {
+    "name": "matrix-tree-selfloop",
+    "snippets": [
+      {
+        "path": "lessons/randomized-determinant/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/matrix-tree-theorem-applications/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "assert(determinantMod(buildCofactor(3,{{0,1},{1,2},{2,0},{0,0}},1000000007,0),1000000007)==3);assert(determinantMod(buildCofactor(1,{{0,0}},1000000007,0),1000000007)==1);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "face-embedding-tree-triangle-singleton",
+    "snippets": [
+      {
+        "path": "lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md",
+        "block": 0
+      }
+    ],
+    "body": "assert(buildFaceEmbedding({{0,0}},{}).faceHalfEdges.size()==1);assert(buildFaceEmbedding({{0,0},{1,0},{1,1}},{{0,1,1},{1,2,1}}).faceHalfEdges.size()==1);auto e=buildFaceEmbedding({{0,0},{1,0},{0,1}},{{0,1,1},{1,2,1},{2,0,1}});assert(e.faceHalfEdges.size()==2);assert(e.signedDoubleArea[e.outerFace]<0);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "dual-shared-dijkstra",
+    "snippets": [
+      {
+        "path": "lessons/dijkstra/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/planar-graph-duality/pages/practice-set.md",
+        "block": 0
+      }
+    ],
+    "body": null,
+    "stdin": "3 5 1 2\n0 1 4\n0 1 2\n0 2 3\n0 2 5\n1 2 1\n",
+    "expected": "1\n"
+  },
+  {
+    "name": "wavelet-int-boundary",
+    "snippets": [
+      {
+        "path": "lessons/wavelet-matrix/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "WaveletMatrix w({0,2147483647,3,3});assert(w.countLess(0,4,2147483648LL)==4);assert(w.countLess(0,4,0)==0);assert(w.kth(0,4,3)==2147483647);assert(w.rangeFreq(0,4,3,4)==2);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "multi-string-sam-empty-and-reset",
+    "snippets": [
+      {
+        "path": "lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md",
+        "block": 0
+      }
+    ],
+    "body": "GeneralizedSamLcs s;s.build(\"ababa\");assert(s.longestCommonSubstring({})==5);assert(s.longestCommonSubstring({\"baba\",\"aba\"})==3);assert(s.longestCommonSubstring({\"\"})==0);s.build(\"c\");assert(s.longestCommonSubstring({\"a\"})==0);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "ntt-naive-product",
+    "snippets": [
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/fft-ntt.md",
+        "block": 0
+      }
+    ],
+    "body": "assert((convolution({1,2,3},{4,5})==vector<long long>{4,13,22,15}));assert(convolution({}, {1}).empty());",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "fps-inverse-product",
+    "snippets": [
+      {
+        "path": "lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md",
+        "block": 0
+      }
+    ],
+    "body": "assert(inversePolynomial({},0).empty());vector<long long>a={1,2,3};auto b=inversePolynomial(a,16);auto c=multiplyTruncated(a,b,16);assert(c[0]==1);for(int i=1;i<16;i++)assert(c[i]==0);assert(derivative(integral(a))==a);",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "gomory-hu-brute-all-pairs-and-rebuild",
+    "snippets": [
+      {
+        "path": "lessons/graph-cut-structures/pages/gomory-hu-tree.md",
+        "block": 0
+      }
+    ],
+    "body": "\nmt19937 gen(3);for(int n=2;n<=7;n++)for(int trial=0;trial<15;trial++){\n vector<vector<long long>> w(n,vector<long long>(n));for(int i=0;i<n;i++)for(int j=0;j<i;j++)w[i][j]=w[j][i]=gen()%6;\n auto oracle=[&](int s,int t){long long best=LLONG_MAX;int chosen=0;for(int mask=1;mask<(1<<n)-1;mask++)if((mask>>s&1)&&!(mask>>t&1)){long long v=0;for(int i=0;i<n;i++)for(int j=0;j<i;j++)if(((mask>>i)^(mask>>j))&1)v+=w[i][j];if(v<best){best=v;chosen=mask;}}vector<int>side(n);for(int i=0;i<n;i++)side[i]=chosen>>i&1;return MinCutResult{best,side};};\n GomoryHuTree g(n,oracle);auto edges=g.build();assert(edges==g.build());vector<vector<pair<int,long long>>>tree(n);for(auto [a,b,c]:edges){tree[a].push_back({b,c});tree[b].push_back({a,c});}\n for(int s=0;s<n;s++){vector<long long>d(n,-1);function<void(int,int,long long)> dfs=[&](int u,int p,long long v){d[u]=v;for(auto [to,c]:tree[u])if(to!=p)dfs(to,u,min(v,c));};dfs(s,-1,LLONG_MAX);for(int t=0;t<n;t++)if(t!=s)assert(d[t]==oracle(s,t).value);}\n}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "dominator-removal-oracle",
+    "snippets": [
+      {
+        "path": "lessons/dominator-tree/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nmt19937 gen(8);for(int n=2;n<=8;n++)for(int trial=0;trial<40;trial++){\n DominatorTree dt(n);for(int i=0;i<n;i++)for(int j=0;j<n;j++)if(gen()%5==0)dt.addEdge(i,j);\n auto idom=dt.build(0);assert(idom==dt.build(0));\n auto reach=[&](int ban){vector<int>seen(n);function<void(int)>dfs=[&](int u){seen[u]=1;for(int v:dt.graph[u])if(v!=ban&&!seen[v])dfs(v);};if(ban!=0)dfs(0);return seen;};auto base=reach(-1);\n for(int v=1;v<n;v++){if(!base[v]){assert(idom[v]==-1);continue;}vector<int>dom;for(int u=0;u<n;u++)if(u!=v&&!reach(u)[v])dom.push_back(u);int expected=-1;for(int u:dom){bool nearest=true;for(int q:dom)if(q!=u && reach(q)[u])nearest=false;if(nearest)expected=u;}assert(expected>=0 && idom[v]==expected);}\n}\n",
+    "stdin": "",
+    "expected": ""
+  }
+]

@@ -61,46 +61,10 @@ dot(p_i(t), d)
 
 따라서 "방향이 고정된 support point"는 line envelope 문제로 바뀝니다. 하지만 전체 convex hull의 vertex 순서를 유지하려면 adjacent edge orientation이 바뀌는 event를 추적해야 하므로 훨씬 어렵습니다.
 
-## Kinetic과 Offline의 경계
+## 적용 범위를 구분하기
 
-모든 query 시간이 미리 주어지면 kinetic structure를 만들지 않고 offline으로 정렬할 수 있습니다.
+고정 후보 value_i(t)=a_i*t+b_i의 최적값만 묻는다면 t를 query x로 보는 정적 CHT입니다. 질의 시각을 정렬할 수 있고 직선의 유효 기간까지 알려져 있다면 시간 구간 분해도 검토할 수 있습니다. 질의 시각을 안다는 사실만으로 일반 moving-point hull 문제가 정적 CHT로 바뀌지는 않습니다.
 
-| 상황 | 우선 후보 |
-| --- | --- |
-| query 시간이 모두 주어짐 | offline CHT, divide and conquer over time |
-| 시간이 실시간으로 증가 | kinetic event queue |
-| update가 많고 event bound가 애매함 | rebuild/sqrt decomposition |
-| 삭제와 삽입까지 섞임 | fully dynamic CHT 또는 segment tree over time |
+전체 2D hull 유지에는 hull 바깥 점이 경계에 진입하는 사건도 검출해야 합니다. 현재 hull의 이웃 세 점 orientation만 감시하면 이를 놓칩니다. 유지할 certificate의 완전성, 실패 시 재구성 방법, 총 사건 수 상한을 별도로 증명해야 하며 이 페이지는 범용 kinetic hull 구현을 제공하지 않습니다.
 
-대회에서는 kinetic이라는 이름보다 "time을 x로 보는 envelope"로 단순화되는 경우가 더 많습니다.
-
-## 유효 Event 확인
-
-event queue에서 꺼낸 쌍이 지금도 구조상 이웃인지 확인해야 합니다.
-
-```text
-초기 이웃: A - B - C
-event(A,C)가 queue에 있어도 A와 C는 이웃이 아니면 무시
-event(A,B) 처리 후 순서가 바뀌면 B와 C event의 version도 다시 확인
-```
-
-이 검사를 빼면 이미 사라진 후보가 다시 답을 바꾸는 것처럼 처리됩니다.
-
-## 구현 전략
-
-1. 후보 값을 시간에 대한 함수로 만든다.
-2. 두 후보의 교차 시간이 현재 시간 이후인지 계산한다.
-3. hull/envelope에서 이웃 후보끼리만 event를 만든다.
-4. event를 처리할 때 후보 version과 이웃 관계를 확인한다.
-5. 바뀐 이웃 주변의 event만 다시 넣는다.
-
-정수 좌표라도 교차 시간은 유리수가 될 수 있습니다. 비교는 곱셈으로 처리하거나 `long double` 오차를 받아들일 수 있는 문제인지 확인합니다.
-
-## 자주 하는 실수
-
-1. 모든 후보 쌍 event를 넣어 `O(N^2 log N)`으로 터진다.
-2. 오래된 event를 무효화하지 않아 답이 되돌아간다.
-3. 교차 시간이 현재 시간보다 과거인데도 queue에 넣는다.
-4. 같은 속도 후보의 우열을 따로 처리하지 않는다.
-5. floating comparison으로 동시에 일어나는 event 순서가 흔들린다.
-6. kinetic이 필요한 문제를 offline query 정렬로 더 쉽게 풀 수 있는데도 어렵게 구현한다.
+교차 시각은 유리수가 될 수 있습니다. 정수 교차곱으로 비교할 때도 중간값 범위를 확인합니다.

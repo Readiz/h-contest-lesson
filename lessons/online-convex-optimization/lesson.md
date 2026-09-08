@@ -1,6 +1,6 @@
 # Online Convex Optimization
 
-Online Convex Optimization은 입력이 순차적으로 공개되는 상황에서 매 라운드 결정을 먼저 내리고, 이후 관측한 loss나 gradient로 다음 결정을 갱신하는 온라인 최적화 허브입니다. 기존 Online Convex Optimization과 Dual Averaging은 같은 regret minimization 흐름 안에 있으므로, 이 허브에서 문제 모델을 먼저 구분한 뒤 필요한 update 방식으로 내려갑니다.
+Online Convex Optimization은 입력이 순차적으로 공개되는 상황에서 매 라운드 결정을 먼저 내리고, 이후 관측한 loss나 gradient로 다음 결정을 갱신하는 온라인 최적화 허브입니다.
 
 ## 모델 선택 표
 

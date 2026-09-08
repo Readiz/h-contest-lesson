@@ -2,6 +2,9 @@
 
 Matrix-Tree Theorem은 그래프의 spanning tree 개수를 Laplacian matrix의 cofactor determinant로 계산하는 정리입니다. 단순 count뿐 아니라 edge criticality, rooted arborescence, graph reliability 모델링으로 이어집니다.
 
+
+cofactor 입력은 n>=1, 유효한 정점·removed, 양수 mod를 받습니다. n=1이면 0x0 determinant를 1로 정의하여 단일 정점 tree 하나를 셉니다. 간선 포함 contraction 공식은 self-loop가 아닌 특정 간선에 적용합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Matrix-Tree 관점 |
@@ -63,6 +66,7 @@ vector<vector<long long>> buildCofactor(
 ) {
     vector<vector<long long>> laplacian(n, vector<long long>(n, 0));
     for (auto [u, v] : edges) {
+        if (u == v) continue;
         laplacian[u][u] = (laplacian[u][u] + 1) % mod;
         laplacian[v][v] = (laplacian[v][v] + 1) % mod;
         laplacian[u][v] = (laplacian[u][v] + mod - 1) % mod;
@@ -101,7 +105,7 @@ L[v][v] += 1
 L[v][u] -= 1
 ```
 
-root `r`의 행과 열을 지운 determinant는 모든 정점이 root에서 도달되는 방향 tree count가 아니라, 선택한 convention에 맞는 rooted arborescence count입니다. 방향 convention을 문제의 "root로 모이는가/뻗어나가는가"와 반드시 맞춰야 합니다.
+이 in-degree Laplacian에서 root r의 행·열을 지운 determinant는 root에서 바깥으로 뻗는 arborescence를 셉니다. root로 모이는 tree는 out-degree Laplacian을 사용합니다. `0->1` 한 간선에서 root 0의 outward count가 1인지 검산하면 방향을 고정할 수 있습니다.
 
 ## 간선 포함과 제외
 
@@ -128,11 +132,3 @@ count(exclude e) = treeCount(G - e)
 정점 수가 수백 정도면 dense determinant가 가능합니다. 정점 수가 수천 이상이면 sparse structure, modulo 특성, 또는 그래프 형태를 더 이용해야 합니다.
 
 검산할 때는 완전 그래프의 spanning tree 수 `n^(n-2)`와, 연결되지 않은 그래프의 cofactor determinant가 0인 경우를 비교합니다.
-
-## 자주 하는 실수
-
-1. 한 행만 지우고 열을 지우지 않는다.
-2. multi-edge를 1개 간선처럼 처리한다.
-3. self-loop를 degree에 넣는다. self-loop는 spanning tree에 기여하지 않습니다.
-4. 방향 그래프에서 in/out convention을 뒤집는다.
-5. 합성수 modulo에서 modular inverse를 사용한다.

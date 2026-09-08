@@ -92,14 +92,14 @@ P에서 보이는 face들을 제거하고,
 보이는 영역의 boundary edge에 P를 붙여 새 삼각형 face를 만든다.
 ```
 
-2D hull에서 바깥 점이 보이는 edge 구간을 대체하는 것과 비슷하지만, 3D에서는 보이는 face의 boundary가 cycle 여러 개처럼 보일 수 있어 edge counting이 더 중요합니다.
+2D hull에서 바깥 점이 보이는 edge 구간을 대체하는 것과 비슷하지만, 3D에서는 경계 edge의 방향과 면 인접 정보를 일관되게 유지해야 합니다.
 
 ## Coplanar 처리
 
 | 상황 | 처리 선택 |
 | --- | --- |
 | coplanar point를 face 위 점으로 보존 | face polygon 병합 필요 |
-| triangular face만 필요 | coplanar point는 hull vertex에서 제외 가능 |
+| triangular face만 필요 | 기존 face 내부의 점은 제외 가능, 바깥으로 확장하는 점은 처리 |
 | 모든 boundary point 필요 | face별 2D hull 재구성 |
 | floating input | EPS 정책 일관성 필요 |
 
@@ -116,22 +116,8 @@ lower convex hull projection -> Delaunay triangulation
 
 따라서 3D hull predicate는 고급 Voronoi/Delaunay 구현의 기반이 됩니다. 다만 실제로 robust Delaunay를 만들려면 incircle predicate와 degeneracy 처리가 추가로 필요합니다.
 
-## 시간 복잡도 감각
+## 시간 복잡도
 
-| 접근 | 시간 |
-| --- | ---: |
-| incremental naive visible scan | `O(NF)` |
-| random incremental expected | 보통 `O(N log N)` 계열 분석 가능 |
-| 모든 face pair 검증 baseline | `O(N^4)` |
-| output face 수 | 최악 `O(N^2)` |
+3차원 볼록 다면체의 꼭짓점이 V개이면 삼각분할한 최종 면 수는 최대 2V-4로 O(N)입니다. 매 삽입마다 모든 현재 면을 훑는 단순 incremental 방식은 O(N²)이며, random shuffle만으로 O(N log N)이 되지는 않습니다. 더 빠른 기대 시간에는 conflict graph 등 추가 구조가 필요합니다. 모든 점 삼중항과 나머지 점을 검사하는 검산법은 O(N⁴)입니다.
 
-입력이 수천 점 이하이고 random shuffle이 가능하면 incremental 구현이 실용적입니다. 큰 입력에서는 라이브러리나 더 정교한 구조가 필요합니다.
-
-## 자주 하는 실수
-
-1. face normal 방향을 섞어 visible 판정이 뒤집힌다.
-2. 초기 사면체 네 점이 coplanar인 경우를 처리하지 않는다.
-3. horizon edge를 양방향으로 중복 저장해 새 face가 두 번 생긴다.
-4. coplanar hull point를 내부 점처럼 버려야 하는지 세야 하는지 확인하지 않는다.
-5. EPS를 너무 크게 잡아 얇은 tetrahedron을 평면으로 오판한다.
-6. face count가 `O(N)`이라고 가정해 최악 입력에서 메모리가 터진다.
+일반 위치의 볼록 다면체에 바깥 점을 추가할 때 horizon은 하나의 닫힌 경계입니다. 일직선·동일 평면 입력은 초기 사면체를 만들 수 없으므로 저차원 hull로 분기합니다. 같은 평면에 있다는 이유만으로 새 점을 버리면 기존 면 밖으로 확장하는 점을 놓칩니다.

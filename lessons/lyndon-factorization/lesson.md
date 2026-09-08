@@ -2,6 +2,9 @@
 
 Lyndon Factorization은 문자열을 사전순으로 엄격히 작은 Lyndon word들의 비증가열로 분해하는 기법입니다. Duval algorithm을 쓰면 전체 문자열을 선형 시간에 분해할 수 있고, 최소 회전이나 문자열 주기 분석에도 연결됩니다.
 
+
+빈 문자열의 최소 회전 시작점은 0으로 정합니다. Duval 회전 구현은 두 배 문자열을 훑으며 첫 원본 길이를 지나기 직전의 후보 시작점을 보존합니다. 단순히 첫 번째 factor를 고르는 규칙은 아닙니다. `ababbab`의 분해는 `ababb | ab`입니다.
+
 ## Lyndon Word
 
 문자열 `w`가 Lyndon word라는 것은, `w`의 모든 non-empty proper suffix보다 `w`가 사전순으로 작다는 뜻입니다.
@@ -78,7 +81,7 @@ Duval algorithm은 비교 포인터 `i, j, k`를 움직이며 현재 후보보�
 
 ## 최소 회전
 
-문자열의 lexicographically minimum rotation을 찾을 때도 비슷한 아이디어를 씁니다. 가장 단순한 방식은 `s+s`에 대해 Duval을 적용하고 시작 위치가 `n`보다 작은 첫 factor 후보를 찾는 것입니다.
+문자열의 lexicographically minimum rotation을 찾을 때도 비슷한 아이디어를 씁니다. 아래 구현은 `s+s`의 후보들을 진행하며 시작 위치가 n을 넘기 직전의 후보를 반환합니다.
 
 ```cpp compile-check
 #include <string>
@@ -134,11 +137,3 @@ Lyndon factorization은 suffix index라기보다 문자열 자체의 분해입�
 | 모든 factor 출력 | `O(number of factors)` | - |
 
 `s+s`를 실제로 만들지 않고 modulo index로 처리하면 minimum rotation 메모리를 줄일 수 있습니다.
-
-## 자주 하는 실수
-
-1. `s[k] <= s[j]` 조건을 `<`로 써서 같은 문자 반복을 깨뜨린다.
-2. factor 길이 `j-k`를 `j-i`로 착각한다.
-3. Lyndon factor들이 사전순 비증가라는 조건을 반대로 기억한다.
-4. minimum rotation에서 `s+s` 전체 factor를 끝까지 보며 시작점 `>= n`을 반환한다.
-5. empty string 처리를 빼먹는다.

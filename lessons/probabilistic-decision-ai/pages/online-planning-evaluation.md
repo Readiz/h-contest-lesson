@@ -2,6 +2,9 @@
 
 Online Planning Evaluation은 simulator 기반 policy나 search agent를 제출하기 전에, rollout score를 통계적으로 비교하고 시간 예산 안에서 안정성을 검증하는 절차입니다. 좋은 policy를 만드는 것만큼, 우연히 좋아 보이는 policy를 걸러내는 일이 중요합니다.
 
+
+paired 비교는 같은 문제 인스턴스에서 수행합니다. 정책마다 난수를 소비하는 순서가 달라지면 같은 seed라도 같은 외생 사건열이 아닐 수 있습니다. mean±2*stderr는 독립 표본이 충분하고 근사 정규성이 타당할 때의 근사 구간입니다. 적은 표본·heavy tail·반복 후보 선택에는 별도 분석이 필요합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Online Planning Evaluation 관점 |
@@ -45,17 +48,19 @@ rough 95% interval = mean +- 2 * stderr
 
 ```cpp
 #include <cmath>
+#include <limits>
 #include <vector>
 using namespace std;
 
 struct Summary {
     double mean = 0.0;
-    double stderr = 0.0;
+    double stderr = numeric_limits<double>::quiet_NaN();
 };
 
 Summary summarizeDifferences(const vector<double>& diff) {
     Summary result;
     if (diff.empty()) {
+        result.mean = numeric_limits<double>::quiet_NaN();
         return result;
     }
     for (double value : diff) {
@@ -121,11 +126,3 @@ MCTS나 POMCP는 simulation count만 비교하면 안 됩니다. state transitio
 후보 policy가 random보다만 좋다고 충분한 것은 아닙니다. 이전 안정 버전과 같은 seed로 비교해야 실제 개선을 볼 수 있습니다.
 
 Random legal policy가 항상 유효한 trajectory를 만드는지 먼저 확인하면 simulator 오류와 policy 오류를 구분하는 데 도움이 됩니다. Simulation 수를 늘릴 때는 평균 점수뿐 아니라 deadline 부근의 timeout 빈도도 측정합니다.
-
-## 자주 하는 실수
-
-1. 평균 점수만 보고 timeout 수를 보지 않는다.
-2. seed를 고정하지 않아 policy 간 비교가 noise에 묻힌다.
-3. tuning에 사용한 seed로 최종 성능을 선언한다.
-4. invalid action을 낮은 점수로만 기록하고 원인을 잃어버린다.
-5. elapsed time을 local debug build에서만 측정한다.

@@ -2,18 +2,6 @@
 
 Linear Algebra Applications는 rank, determinant, basis, recurrence, graph counting을 각각 따로 외우는 대신 "무엇을 vector space로 볼 수 있는가"를 기준으로 문제를 번역하는 decision map입니다.
 
-## 문제 신호
-
-| 문제 표현 | 선형대수 모델 |
-| --- | --- |
-| xor로 만들 수 있는 최댓값/개수 | GF(2) basis |
-| 조건식이 모두 합과 계수로 표현된다 | linear system |
-| perfect matching 존재성을 빠르게 판정 | determinant/randomized algebra |
-| walk 수, recurrence, transition 반복 | matrix power/minimal polynomial |
-| 독립인 object 최대 개수 | rank/matroid |
-
-선형대수 모델은 답을 직접 주기보다 문제를 "차원", "span", "kernel", "rank"로 바꿔 줍니다. 이 번역이 맞으면 구현은 기존 알고리즘 중 하나를 선택하는 문제가 됩니다.
-
 ## 선택 표
 
 | 먼저 보이는 조건 | 우선 선택 | 대표 하위 주제 |
@@ -84,61 +72,8 @@ answer_t = c^T * state_t
 
 `t`가 매우 크면 `A^t`를 직접 거듭제곱합니다. `A`가 너무 크지만 matvec이 빠르면 Krylov sequence와 Berlekamp-Massey로 `answer_t`의 recurrence를 찾는 선택지도 있습니다.
 
-## 구현 선택표
-
-| 조건 | 우선 선택 |
-| --- | --- |
-| `N <= 500`, dense | Gaussian elimination |
-| GF(2), `N`이 큼 | bitset elimination |
-| vector xor 최댓값 | XOR basis |
-| sparse matrix, matvec 빠름 | black-box linear algebra |
-| transition 차원이 작음 | matrix exponentiation |
-| determinant/counting | modular determinant + randomization |
-
-한 문제 안에서 여러 모델이 동시에 보일 수 있습니다. 예를 들어 graph cycle xor는 graph traversal로 cycle basis를 만든 뒤 XOR basis로 답을 냅니다.
-
-## C++ 구현 조각: GF(2) Rank
-
-```cpp
-int rankOverGF2(vector<unsigned long long> basisInput) {
-    int rank = 0;
-    for (int bit = 63; bit >= 0; --bit) {
-        int pivot = -1;
-        for (int row = rank; row < (int)basisInput.size(); ++row) {
-            if ((basisInput[row] >> bit) & 1ULL) {
-                pivot = row;
-                break;
-            }
-        }
-        if (pivot == -1) {
-            continue;
-        }
-        swap(basisInput[rank], basisInput[pivot]);
-        for (int row = 0; row < (int)basisInput.size(); ++row) {
-            if (row != rank && ((basisInput[row] >> bit) & 1ULL)) {
-                basisInput[row] ^= basisInput[rank];
-            }
-        }
-        ++rank;
-    }
-    return rank;
-}
-```
-
-`unsigned long long` 하나로는 64차원까지만 됩니다. 더 큰 GF(2) matrix는 `bitset`, `vector<unsigned long long>`, 또는 block basis로 바꿔야 합니다.
-
-## 자주 하는 실수
-
-1. modulo가 prime이 아닌데 field처럼 나눗셈을 한다.
-2. rank와 determinant를 같은 정보로 착각한다.
-3. randomized determinant 판정을 한 번만 실행한다.
-4. 선형이 아닌 transition에 matrix power를 억지로 적용한다.
-5. 자유 변수 수를 `N - equations`로 계산하고 rank를 빼지 않는다.
+64비트 이하 GF(2) rank는 [XOR Linear Basis](https://h.readiz.com/learn/linear-basis-xor)의 rank를 사용합니다. 더 큰 행렬은 bitset 또는 word-block 소거가 필요합니다.
 
 ## 연습 문제
 
-로컬 완결형 연습은 [Decision Map Practice](pages/decision-map-practice.md)에서 먼저 진행합니다.
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | [Decision Map Practice](pages/decision-map-practice.md) | rank, determinant, recurrence 중 먼저 고르기 | model selection |
+[Decision Map Practice](pages/decision-map-practice.md)에서 parity 제약과 Matrix-Tree를 풀어 봅니다.

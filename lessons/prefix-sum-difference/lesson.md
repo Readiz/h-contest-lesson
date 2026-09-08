@@ -132,12 +132,12 @@ vector<long long> addRangesToArray(
 
 격자에서 직사각형 합을 많이 물어보면 2차원 누적합을 씁니다.
 
-`prefix[y][x]`를 왼쪽 위부터 `(y - 1, x - 1)`까지의 직사각형 합으로 정의합니다. 배열 크기는 `(h + 1) x (w + 1)`로 둡니다.
+`prefix[y][x]`를 왼쪽 위부터 `(y - 1, x - 1)`까지의 직사각형 합으로 정의합니다. 모든 행의 길이가 같은 직사각형 격자를 받으며, 배열 크기는 `(h + 1) x (w + 1)`로 둡니다.
 
 ```cpp
 vector<vector<long long>> buildPrefix2D(const vector<vector<int>>& grid) {
     int h = (int)grid.size();
-    int w = (int)grid[0].size();
+    int w = h == 0 ? 0 : (int)grid[0].size();
     vector<vector<long long>> prefix(h + 1, vector<long long>(w + 1, 0));
 
     for (int y = 0; y < h; ++y) {

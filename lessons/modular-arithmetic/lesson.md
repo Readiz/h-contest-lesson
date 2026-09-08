@@ -47,6 +47,7 @@ ways = normalize(ways - badWays, MOD);
 long long modPow(long long base, long long exp, long long mod) {
     long long result = 1 % mod;
     base %= mod;
+    if (base < 0) base += mod;
     while (exp > 0) {
         if (exp & 1LL) result = result * base % mod;
         base = base * base % mod;
@@ -56,7 +57,7 @@ long long modPow(long long base, long long exp, long long mod) {
 }
 ```
 
-`exp`가 매우 크면 반복 횟수는 지수의 비트 수입니다. 예를 들어 `10^18`도 약 60번만 반복합니다.
+`mod > 0`, `exp >= 0`이며 `(mod - 1)²`이 `long long` 범위 안인 입력을 받습니다. `exp`가 매우 크면 반복 횟수는 지수의 비트 수입니다. 예를 들어 `10^18`도 약 60번만 반복합니다.
 
 ## 모듈러 역원
 
@@ -65,8 +66,6 @@ long long modPow(long long base, long long exp, long long mod) {
 대신 `b * inv(b) = 1 mod MOD`를 만족하는 `inv(b)`를 곱합니다. `MOD`가 소수이고 `b`가 `MOD`의 배수가 아니면 페르마 소정리로 역원을 구할 수 있습니다.
 
 위 `modPow`를 사용하면 `modPow(x, mod - 2, mod)`입니다.
-
-## 소수 mod와 페르마 소정리
 
 `MOD`가 소수이고 `x`가 그 배수가 아닐 때 `x^(MOD - 1) = 1 mod MOD`입니다. 그래서 `x^(MOD - 2)`가 `x`의 역원이 됩니다.
 
@@ -83,15 +82,3 @@ Factorial과 inverse factorial을 이용한 여러 `nCr` 질의 구현은 [조�
 | 덧셈/뺄셈/곱셈 mod | `O(1)` |
 | 빠른 거듭제곱 | `O(log exponent)` |
 | 역원 1개 | `O(log MOD)` |
-| factorial 전처리 | `O(n + log MOD)` |
-| nCr 질의 | `O(1)` |
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 점검 |
-| --- | --- | --- |
-| 뺄셈 후 음수 방치 | 음수 출력 | `normalize` 적용 |
-| 나눗셈을 `/`로 처리 | 오답 | 역원 곱셈으로 바꾸기 |
-| `int`로 곱셈 | overflow | 중간 계산은 `long long` |
-| 합성수 mod에서 Fermat 사용 | 역원 오답 | `MOD`가 소수인지 확인 |
-| DP 전이에 mod를 늦게 적용 | overflow | 전이마다 mod 적용 |

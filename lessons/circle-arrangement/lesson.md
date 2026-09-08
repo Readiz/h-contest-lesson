@@ -39,52 +39,13 @@ midpoint가 몇 개 원 안에 들어가는지 세면 그 arc의 depth를 알 �
 distance(centerA, centerB) + rA <= rB
 ```
 
-같은 중심, 같은 반지름 원은 중복입니다. 중복 원을 그대로 두면 depth 계산은 가능하지만 perimeter나 boundary arc를 중복 처리하기 쉽습니다.
+같은 중심, 같은 반지름 원은 중복입니다. union 면적·둘레에서는 같은 원을 하나로 합칩니다. depth별 면적에서는 중복 개수를 multiplicity로 보존해야 하므로 단순 제거하면 안 됩니다.
 
 ## Angle 정규화
 
 각도는 `[0, 2pi)`로 정규화하고, wrap-around interval을 처리하기 위해 `0`과 `2pi`를 항상 넣습니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <cmath>
-#include <vector>
-using namespace std;
-
-const double PI_CIRCLE_ARR = acos(-1.0);
-
-double normalizeAngle(double angle) {
-    double twoPi = 2.0 * PI_CIRCLE_ARR;
-    while (angle < 0) {
-        angle += twoPi;
-    }
-    while (angle >= twoPi) {
-        angle -= twoPi;
-    }
-    return angle;
-}
-
-vector<double> uniqueAngles(vector<double> angles) {
-    const double EPS = 1e-10;
-    for (double& angle : angles) {
-        angle = normalizeAngle(angle);
-    }
-    angles.push_back(0.0);
-    angles.push_back(2.0 * PI_CIRCLE_ARR);
-    sort(angles.begin(), angles.end());
-
-    vector<double> result;
-    for (double angle : angles) {
-        if (result.empty() || fabs(result.back() - angle) > EPS) {
-            result.push_back(angle);
-        }
-    }
-    if (result.back() < 2.0 * PI_CIRCLE_ARR - EPS) {
-        result.push_back(2.0 * PI_CIRCLE_ARR);
-    }
-    return result;
-}
-```
+각도를 정규화한 뒤 정렬하고 같은 교점 각도를 합칩니다. 0과 2π 경계는 유지합니다.
 
 교점이 접하는 경우 같은 angle이 두 번 나올 수 있습니다. 중복 제거를 하지 않으면 길이 0 arc가 생깁니다.
 
@@ -97,7 +58,7 @@ p = center_i + r_i * (cos m, sin m)
 depth = p를 포함하는 원 개수
 ```
 
-union perimeter를 구하려면 `depth == 1`인 arc 길이 `r_i * (b-a)`를 더합니다. 다른 원 안에 들어간 arc는 외곽이 아닙니다.
+같은 원을 제거한 union 계산에서는 현재 원 이외의 어느 원 내부에도 들어가지 않는 arc 길이 `r_i * (b-a)`를 더합니다. 현재 원 위 점을 실수 오차 때문에 자기 자신의 바깥으로 세지 않도록 other-depth=0으로 검사합니다. 다른 원 안에 들어간 arc는 외곽이 아닙니다.
 
 ## Area 계산 관점
 
@@ -135,11 +96,3 @@ B도 대칭적으로 boundary arc를 낸다.
 | depth sweep 최적화 | 구현에 따라 `O(N^2 log N)` |
 
 원 개수가 작으면 midpoint마다 모든 원을 검사해도 됩니다. `N`이 커지면 각도 이벤트로 depth를 갱신하는 방식이 필요합니다.
-
-## 자주 하는 실수
-
-1. 완전히 포함된 원의 arc를 union boundary에 더한다.
-2. 접점 중복 angle 때문에 0 길이 arc를 처리한다.
-3. `atan2` 결과가 음수인 것을 정규화하지 않는다.
-4. midpoint가 원 경계에 걸릴 때 EPS 없이 depth가 흔들린다.
-5. area contribution의 방향과 sector 보정을 섞는다.

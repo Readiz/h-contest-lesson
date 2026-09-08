@@ -2,6 +2,9 @@
 
 Palindromic Tree는 문자열의 모든 서로 다른 palindrome substring을 노드로 압축해 저장하는 자료구조입니다. Eertree라고도 부르며, 문자열을 왼쪽에서 오른쪽으로 읽으면서 새로 생기는 palindrome을 `O(1)` amortized에 가까운 방식으로 추가합니다.
 
+
+입력은 소문자입니다. 등장 횟수 누적은 모든 문자를 추가한 뒤 `accumulatePalindromeCounts(eertree.tree)`로 한 번만 호출합니다. suffix link는 항상 먼저 생성된 노드를 가리키므로 생성 번호 역순 누적이 가능합니다. 노드 길이가 생성 순서대로 증가하는 것은 아닙니다.
+
 ## 문제 신호
 
 Palindromic Tree는 palindrome substring을 "모두" 다뤄야 할 때 강합니다.
@@ -104,6 +107,7 @@ struct PalindromicTree {
     }
 
     void build(const string& text) {
+        *this = PalindromicTree();
         for (char ch : text) {
             addChar(ch);
         }
@@ -131,12 +135,8 @@ distinct palindrome count = number of nodes - 2
 #include <vector>
 using namespace std;
 
-struct PalNodeCount {
-    int link;
-    int count;
-};
-
-void accumulatePalindromeCounts(vector<PalNodeCount>& nodes) {
+template<class Node>
+void accumulatePalindromeCounts(vector<Node>& nodes) {
     for (int v = (int)nodes.size() - 1; v >= 2; --v) {
         nodes[nodes[v].link].count += nodes[v].count;
     }
@@ -165,14 +165,3 @@ construction 중 노드는 길이가 대체로 증가하는 순서로 만들어�
 | occurrence 누적 | `O(number of nodes)` | count 배열 |
 
 각 위치에서 새 palindrome은 최대 하나만 생깁니다. 그래서 전체 노드 수도 `N + 2`를 넘지 않습니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 길이 `-1` root를 생략 | 경계 처리 복잡/오류 | odd root와 even root 둘 다 유지 |
-| 새 노드 suffix link를 current에서 바로 찾음 | link가 자기 자신으로 꼬임 | `tree[current].link`부터 후보 탐색 |
-| transition 기본값과 node index 충돌 | root transition 오해 | 0번 root를 특수값으로 쓸 때 설계 고정 |
-| occurrence를 생성 횟수로만 사용 | 짧은 palindrome 등장 누락 | suffix link 역순 누적 |
-| alphabet 범위 가정 오류 | 범위 밖 접근 | 입력 문자 set 확인 |
-| Manacher로 충분한 문제에 과한 구현 | 시간 낭비 | 필요한 정보가 distinct인지 확인 |

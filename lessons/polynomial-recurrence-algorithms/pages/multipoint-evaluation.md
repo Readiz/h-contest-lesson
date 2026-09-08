@@ -2,6 +2,9 @@
 
 Multipoint Evaluation은 하나의 polynomial `P(x)`를 여러 점 `x_0, x_1, ..., x_{m-1}`에서 빠르게 평가하는 기법입니다. 각 점마다 Horner를 쓰면 `O(NM)`이지만, subproduct tree와 polynomial remainder를 쓰면 NTT 기반으로 훨씬 빠르게 만들 수 있습니다.
 
+
+Product tree의 점 개수 M과 다항식 길이 N이 같은 규모일 때 빠른 평가 비용을 `O(N log² N)`으로 씁니다. 선형 인수는 monic인 `x-x_i`로 통일합니다. `x_i-x`도 근은 같지만 계수 스케일을 일관되게 처리해야 합니다.
+
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -10,7 +13,7 @@ Multipoint Evaluation은 하나의 polynomial `P(x)`를 여러 점 `x_0, x_1, ..
 | 많은 점의 값을 바탕으로 다항식 복원 | interpolation |
 | 점 개수와 차수가 모두 크다 | subproduct tree |
 | mod prime과 NTT-friendly modulus | NTT 최적화 가능 |
-| 평가점이 연속된 정수 | chirp z-transform 등 별도 후보 |
+| 평가점이 기하급수열의 점 | chirp z-transform 등 별도 후보 |
 
 점이 몇 개 안 되면 Horner가 더 간단합니다. Multipoint evaluation은 차수와 점 개수가 모두 커서 `O(NM)`이 부담될 때 사용합니다.
 
@@ -79,11 +82,3 @@ subproduct tree를 만들고 derivative of product polynomial을 평가해 Lagra
 | 특수한 연속점 평가 | 더 빠른 전용 기법 가능 |
 
 여기서 `N`은 다항식 차수, `M`은 평가점 수입니다. 보통 `N`과 `M`이 같은 규모일 때 `O(N log^2 N)` 형태로 설명합니다.
-
-## 자주 하는 실수
-
-1. coefficient 순서를 고차항부터 저장한다.
-2. `x - x_i` leaf를 `x_i - x`로 만들어 부호가 바뀐다.
-3. 같은 평가점이 여러 번 나오는 경우 interpolation까지 그대로 적용한다.
-4. polynomial division에서 leading coefficient inverse를 빼먹는다.
-5. 작은 입력에도 복잡한 NTT 구현을 넣어 디버깅 비용을 키운다.

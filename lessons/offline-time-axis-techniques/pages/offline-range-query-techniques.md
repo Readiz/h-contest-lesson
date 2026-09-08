@@ -2,6 +2,9 @@
 
 Offline Range Query Techniques는 정적 배열과 구간 질의가 섞인 문제에서 질의 순서를 바꾸거나 시간축을 나눠서 전체 비용을 줄이는 레슨입니다. 기본 Offline Queries 레슨이 Mo, rollback, parallel binary search의 큰 그림을 다뤘다면, 여기서는 배열 구간 질의에서 add/remove 상태를 어떻게 설계하고 어떤 변형을 고를지에 집중합니다.
 
+
+압축값은 0..V-1, 질의는 0<=l<=r<N, index는 0..Q-1의 순열입니다. N=0이면 질의도 없어야 합니다. 수정 Mo의 흔한 O(N^(5/3)) 설명은 배열·질의·수정 수가 같은 규모이고 블록 크기를 N^(2/3)으로 정한 경우입니다.
+
 ## 문제 신호
 
 | 문제 표현 | 우선 후보 |
@@ -190,12 +193,3 @@ Mo order가 Q0 -> Q2 -> Q1이면
 | parallel binary search | `O((update cost + query cost) log answer)` |
 
 Mo는 상수가 큽니다. Fenwick이나 Segment Tree sweep으로 풀리는 문제를 굳이 Mo로 바꾸지 않습니다.
-
-## 자주 하는 실수
-
-1. 구간을 `[l, r]`로 둘지 `[l, r)`로 둘지 섞는다.
-2. 좌표 압축 전 값을 frequency index로 바로 쓴다.
-3. Mo with modifications에서 구간 안 update와 구간 밖 update를 구분하지 않는다.
-4. 원래 출력 순서를 저장하지 않아 정렬된 순서로 답을 낸다.
-5. add/remove가 역연산인지 작은 예시로 검증하지 않는다.
-6. offline sorting으로 더 쉽게 풀 문제를 Mo로 구현해 시간 제한을 잃는다.

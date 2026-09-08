@@ -2,6 +2,9 @@
 
 Bostan-Mori는 rational generating function `P(x) / Q(x)`의 `x^n` 계수를 빠르게 구하는 알고리즘입니다. 선형 점화식의 n번째 항을 characteristic polynomial이 아니라 생성함수 관점에서 계산할 수 있습니다.
 
+
+p,q는 비어 있지 않고 q[0] mod MOD !=0, n>=0이어야 합니다. 입력은 시작 시 정규화합니다. 복잡도의 K는 P와 Q 중 큰 차수이며, 아래 단순 곱셈 버전은 `O(K² log n)`입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Bostan-Mori 관점 |
@@ -89,6 +92,8 @@ vector<long long> takeParity(const vector<long long>& poly, int parity) {
 }
 
 long long bostanMori(vector<long long> p, vector<long long> q, long long n) {
+    for (auto& x : p) x=normalizeBostan(x);
+    for (auto& x : q) x=normalizeBostan(x);
     while (n > 0) {
         vector<long long> qNeg = negateOddTerms(q);
         vector<long long> numerator = multiplyBostan(p, qNeg);
@@ -145,11 +150,3 @@ O(K^2 log N)
 ```
 
 NTT 곱셈과 trimming을 쓰면 더 빨라집니다. 하지만 구현 복잡도가 커지므로 제약이 작으면 나이브 버전으로도 충분합니다.
-
-## 자주 하는 실수
-
-1. `Q(-x)`를 만들 때 홀수 차수만 부호를 바꿔야 하는데 전체를 바꾼다.
-2. n이 홀수일 때 분자의 홀수 계수를 골라야 하는데 짝수를 고른다.
-3. denominator는 항상 짝수 계수만 취해야 한다는 점을 빼먹는다.
-4. `Q(0)` inverse가 필요하다는 조건을 확인하지 않는다.
-5. 점화식에서 분자 `P`를 만들 때 초기항 보정을 빼먹는다.

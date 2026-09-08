@@ -2,6 +2,13 @@
 
 이 문서는 이미 공개된 레슨의 이동 기록과 콘텐츠 보강 완료 내역을 보관합니다. 아직 공개하지 않은 후보와 practice link TODO는 [ROADMAP.md](ROADMAP.md)에서 관리합니다.
 
+## 2026-09-09 기본·심화와 참고 노트 전체 정독 및 교정
+
+- 기준 `6df3fec`의 참고 본문 169개와 기본·심화 본문 47개, 총 216개를 읽고 [문서별 검토 기록](LESSON_REVIEW.md)을 남겼습니다. 중복 페이지 8개를 관련 본문으로 합쳐 현재 본문은 208개입니다. 고유 예시·적용 조건은 남기고 반복 선택표·체크리스트·불완전 연습·빈 구현 골격을 정리했습니다.
+- lower-bound Dinic, Eertree, Kitamasa, 유한 지평 MDP, 평균 이분 탐색, Rollback DSU, CHT/Li Chao, 64비트 basis, 기하 predicate와 Dijkstra의 중복 구현을 본문 정의 재사용으로 바꿨습니다. 기하 Point·CRT·Lucas 같은 같은 문서 내 공통 연산도 합쳤습니다.
+- 기본 노트의 예제 보상 중복, 탐색 종료, 빈 입력·INF·인덱스, Kruskal 실패값, 시간·메모리 조건을 교정했습니다. 참고 노트에서는 bitvector 경계, 원-직선 교점 방향, 다각형 포함 거리, 음수 Li Chao 분할, 비연결 Karger 종료, SAM 초기화, CRT 중간 곱 등을 고쳤습니다. ETT tour·Exact-K 복원·half-plane clipping·Minimax/MDP 적용 범위도 구체화했습니다.
+- `validate_lessons.py`에서 99개 강의 구조·링크·C++ 블록, STL 없는 공통 코드 7개, 본문 조합·경계·단순 풀이 비교 38개를 검증했습니다. 새 회귀 검사는 실제 Markdown을 추출해 ASan/UBSan으로 실행하며 CI에도 포함됩니다.
+
 ## 2026-09-09 참고 본문의 중복 코드와 페이지 통합
 
 - 반복되는 선수/후속 학습 나열과 마지막 선택 질문을 정리했습니다. 본문의 정의·조건·반례·실수 설명과 실제 로컬 연습은 남겼습니다.

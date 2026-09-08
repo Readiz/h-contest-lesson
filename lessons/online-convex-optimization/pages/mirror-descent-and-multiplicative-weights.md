@@ -2,6 +2,9 @@
 
 Mirror Descent는 Euclidean distance가 문제의 decision space와 잘 맞지 않을 때, 다른 regularizer가 만드는 geometry에서 한 걸음 이동하는 관점입니다. Online Convex Optimization에서 가장 자주 쓰는 예시는 simplex 위의 entropy regularizer이고, 이는 Multiplicative Weights update로 나타납니다.
 
+
+제약 집합 C에서 Mirror Descent는 x_{t+1}=argmin_{x∈C}{η〈g_t,x〉+D_ψ(x,x_t)}입니다. D_ψ(x,y)=ψ(x)-ψ(y)-〈∇ψ(y),x-y〉이며 일반적으로 단순 mirror-map 역변환만으로 제약이 만족되지는 않습니다. Simplex의 음의 entropy는 KL divergence와 정규화된 지수 갱신으로 이어집니다.
+
 ## 왜 projection만으로 부족한가
 
 Projected Gradient Descent는 아래 형태입니다.
@@ -28,7 +31,7 @@ weight_i <- weight_i * exp(-eta * loss_i)
 p_i <- weight_i / sum_j weight_j
 ```
 
-loss가 큰 action은 weight가 감소하고, loss가 작은 action은 상대적으로 커집니다. 모든 action의 weight가 양수로 유지되므로 탐색이 완전히 사라지지는 않지만, 이 자체가 bandit exploration을 해결한다는 뜻은 아닙니다.
+loss가 큰 action은 weight가 감소하고, loss가 작은 action은 상대적으로 커집니다. 정확한 실수 연산에서는 양수 weight가 유지되지만 부동소수점에서는 underflow로 0이 될 수 있습니다. log-weight에서 최대값을 뺀 뒤 exp하는 방식으로 완화하며, 이 자체가 bandit exploration을 해결한다는 뜻은 아닙니다.
 
 ## 작은 추적 예시
 
@@ -55,11 +58,3 @@ p_i ∝ exp(-eta * L_i)
 ```
 
 이 두 표현은 고정 `eta`에서는 같은 update를 다른 방식으로 본 것입니다. [Dual Averaging](dual-averaging.md)은 이 누적 gradient 표현을 regularized surrogate minimization으로 일반화합니다.
-
-## 실수 포인트
-
-1. reward를 loss처럼 넣어 부호를 반대로 갱신한다.
-2. exponential overflow를 막기 위한 max-shift를 하지 않는다.
-3. bandit 문제에서 관측하지 않은 action loss까지 안다고 가정한다.
-4. simplex가 아닌 feasible set에 softmax update를 억지로 적용한다.
-5. `eta`가 너무 커서 초반 몇 라운드만에 한 action으로 확률이 붕괴한다.

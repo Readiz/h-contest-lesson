@@ -87,7 +87,7 @@ LCP 배열은 Suffix Array에서 이웃한 suffix 사이의 최장 공통 접두
 lcp[i] = LCP(suffix sa[i - 1], suffix sa[i])
 ```
 
-Kasai 알고리즘은 suffix 시작 위치의 rank를 이용해 전체 LCP를 `O(N)`에 계산합니다. 핵심은 다음 suffix로 한 칸 이동하면 기존 LCP 길이가 최소 1 줄어든 상태에서 시작할 수 있다는 점입니다.
+Kasai 알고리즘은 suffix 시작 위치의 rank를 이용해 전체 LCP를 `O(N)`에 계산합니다. 핵심은 다음 suffix로 한 칸 이동하면 새 LCP가 이전 값보다 최대 1만 작아져, `max(이전 값-1,0)`부터 비교할 수 있다는 점입니다.
 
 ```cpp compile-check
 #include <string>
@@ -106,6 +106,7 @@ vector<int> buildLcpArray(const string& s, const vector<int>& sa) {
     for (int i = 0; i < n; ++i) {
         int order = rank[i];
         if (order == 0) {
+            matched = 0;
             continue;
         }
 
@@ -143,13 +144,14 @@ int compareSuffixWithPattern(const string& s, int start, const string& pattern) 
             return -1;
         }
         if (s[start + i] != pattern[i]) {
-            return s[start + i] < pattern[i] ? -1 : 1;
+            return (unsigned char)s[start + i] < (unsigned char)pattern[i] ? -1 : 1;
         }
     }
     return 0;
 }
 
 bool containsPattern(const string& s, const vector<int>& sa, const string& pattern) {
+    if (pattern.empty()) return true;
     int left = 0;
     int right = (int)sa.size();
     while (left < right) {
@@ -204,14 +206,3 @@ combined = A + '$' + B + '#'
 | 서로 다른 부분 문자열 수 | `O(N)` | LCP 배열 사용 |
 
 `N`이 수십만이고 시간 제한이 빡빡하면 `sort` 기반 `O(N log^2 N)` 구현은 위험할 수 있습니다. 그때는 radix/counting sort 기반 doubling 또는 suffix automaton을 검토합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| suffix를 실제 `substr`로 만들어 정렬 | 시간/메모리 초과 | 시작 인덱스만 정렬 |
-| `rank[i + len]` 경계 처리 누락 | 범위 밖 접근 | 범위 밖은 `-1`로 둔다 |
-| 빈 문자열 또는 길이 1 처리 누락 | 런타임 에러 | `n == 0`, `n == 1` 별도 확인 |
-| LCP 인덱스 정의 혼동 | RMQ 구간 off-by-one | `lcp[i] = LCP(sa[i-1], sa[i])`로 고정 |
-| 구분자가 입력에 등장 | 문자열 경계 넘어 매칭 | 입력 alphabet 밖 문자 사용 |
-| `int`로 부분 문자열 개수 계산 | overflow | `long long` 사용 |

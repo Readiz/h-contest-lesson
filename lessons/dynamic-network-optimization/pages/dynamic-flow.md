@@ -2,6 +2,9 @@
 
 Dynamic Flow는 간선 용량, 비용, 활성 상태, 시간 단계가 바뀌는 상황에서 flow 값을 매번 처음부터 계산하지 않도록 모델링하는 주제입니다. 완전한 online dynamic max flow는 매우 어렵지만, 대회에서는 residual graph 재사용, 시간 확장 네트워크, batch rebuild, offline interval 처리처럼 제한된 형태로 자주 나타납니다.
 
+
+totalSupply는 비음수이며 기다림을 허용할 때의 충분한 용량 상한입니다. 각 arc capacity와 정점 번호는 유효해야 하고 (timeCount+1)*vertexCount가 int 범위여야 합니다. 실제 저장은 T+1층이며 이동·기다림은 한 시간 단위입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Dynamic Flow 관점 |
@@ -81,7 +84,8 @@ int timedNode(int time, int vertex, int vertexCount) {
 vector<ExpandedArc> buildTimeExpandedNetwork(
     int vertexCount,
     int timeCount,
-    const vector<DynamicArc>& arcs
+    const vector<DynamicArc>& arcs,
+    int totalSupply
 ) {
     vector<ExpandedArc> result;
 
@@ -90,7 +94,7 @@ vector<ExpandedArc> buildTimeExpandedNetwork(
             result.push_back({
                 timedNode(t, v, vertexCount),
                 timedNode(t + 1, v, vertexCount),
-                1000000000
+                totalSupply
             });
         }
     }
@@ -148,12 +152,3 @@ capacity decrease on used critical edge -> answer may decrease
 ```
 
 하지만 "critical edge인지"를 유지하는 것도 쉽지 않습니다. 이 관점은 proof와 pruning에는 좋지만, 구현은 residual augment나 rebuild로 시작하는 편이 안전합니다.
-
-## 자주 하는 실수
-
-1. capacity 감소 후에도 기존 flow가 feasible하다고 가정한다.
-2. time-expanded network에서 wait edge를 빼서 도달 가능한 경로를 없앤다.
-3. 시간 node 수를 `T`개로 만들고 `T+1`번째 도착 상태를 잊는다.
-4. residual graph를 재사용하면서 reverse edge의 flow를 초기화해 버린다.
-5. dynamic connectivity처럼 rollback DSU만으로 flow 최적화까지 해결하려고 한다.
-6. source/sink가 바뀌는데 이전 max flow 값을 그대로 이어 쓴다.

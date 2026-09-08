@@ -2,6 +2,9 @@
 
 CHT DP Applications는 Convex Hull Trick을 실제 DP 식으로 바꾸는 과정을 다룹니다. CHT 구현을 알고 있어도, `j`가 만드는 직선과 `i`가 던지는 query를 정확히 분리하지 못하면 최적화가 아니라 다른 문제를 풀게 됩니다.
 
+
+아래 함수는 [Convex Hull Trick Variants](https://h.readiz.com/learn/convex-dp-optimization/convex-hull-trick-variants)의 MonotoneMinCht 뒤에 붙입니다. prefix는 비감소하고 비어 있지 않아야 하며, 이때 slope=-2*prefix는 비증가합니다. 모든 DP/곱셈 결과가 long long 범위여야 합니다.
+
 ## 문제 신호
 
 | DP 전이 형태 | CHT 관점 |
@@ -37,61 +40,20 @@ dp[i] = prefix[i]^2 + C + min_j(
 
 아래 코드는 `x`가 증가하고 slope도 증가하는 최솟값 문제를 처리하는 monotone CHT skeleton입니다.
 
-```cpp compile-check
-#include <deque>
+```cpp
 #include <vector>
 using namespace std;
-
-struct ChtDpLine {
-    long long m = 0;
-    long long b = 0;
-
-    long long value(long long x) const {
-        return m * x + b;
-    }
-};
-
-struct MonotoneChtDp {
-    deque<ChtDpLine> hull;
-
-    static bool bad(const ChtDpLine& a, const ChtDpLine& b, const ChtDpLine& c) {
-        __int128 left = (__int128)(b.b - a.b) * (a.m - c.m);
-        __int128 right = (__int128)(c.b - a.b) * (a.m - b.m);
-        return left >= right;
-    }
-
-    void add(long long m, long long b) {
-        ChtDpLine line{m, b};
-        if (!hull.empty() && hull.back().m == m) {
-            if (hull.back().b <= b) {
-                return;
-            }
-            hull.pop_back();
-        }
-        while (hull.size() >= 2 && bad(hull[hull.size() - 2], hull[hull.size() - 1], line)) {
-            hull.pop_back();
-        }
-        hull.push_back(line);
-    }
-
-    long long queryIncreasingX(long long x) {
-        while (hull.size() >= 2 && hull[0].value(x) >= hull[1].value(x)) {
-            hull.pop_front();
-        }
-        return hull.front().value(x);
-    }
-};
 
 vector<long long> optimizeQuadraticPartition(const vector<long long>& prefix, long long cost) {
     int n = (int)prefix.size() - 1;
     vector<long long> dp(n + 1, 0);
-    MonotoneChtDp cht;
-    cht.add(-2 * prefix[0], dp[0] + prefix[0] * prefix[0]);
+    MonotoneMinCht cht;
+    cht.addLine(-2 * prefix[0], dp[0] + prefix[0] * prefix[0]);
 
     for (int i = 1; i <= n; ++i) {
         long long x = prefix[i];
         dp[i] = x * x + cost + cht.queryIncreasingX(x);
-        cht.add(-2 * prefix[i], dp[i] + prefix[i] * prefix[i]);
+        cht.addLine(-2 * prefix[i], dp[i] + prefix[i] * prefix[i]);
     }
     return dp;
 }
@@ -134,14 +96,7 @@ dp[2] = 25 + 3 - 9 = 19
 
 ## Li Chao로 가야 하는 경우
 
-아래 조건 중 하나라도 깨지면 monotone deque 대신 Li Chao를 먼저 고려합니다.
-
-1. slope가 입력 순서대로 단조가 아니다.
-2. query x가 되돌아갈 수 있다.
-3. 중간에 과거 line 삭제가 필요하지는 않다.
-4. x 좌표 범위를 알고 있거나 모든 query 좌표를 미리 압축할 수 있다.
-
-삭제가 필요한 경우는 rollback/offline 또는 multiset line container까지 봐야 합니다.
+삽입 slope가 비증가하거나 query x가 비감소한다는 조건이 깨지면 Li Chao를 사용합니다. 정수 x의 범위를 알거나 query 좌표를 미리 압축해야 합니다. 일반 Li Chao와 multiset line container는 임의 삭제를 지원하지 않으므로, 삭제에는 시간 구간 분해/rollback 등 별도 설계가 필요합니다.
 
 ## D&C DP와 구분
 
@@ -153,11 +108,3 @@ dp[2] = 25 + 3 - 9 = 19
 | `cost(j, i)`가 Monge | D&C DP |
 | convex function에 point update | Slope Trick |
 | 선택 개수 penalty | Parametric DP |
-
-## 자주 하는 실수
-
-1. `prefix[i]^2`처럼 query에만 의존하는 항을 line intercept에 넣는다.
-2. slope가 감소하는데 증가용 hull 조건을 그대로 쓴다.
-3. `x`가 단조가 아닌데 deque query를 쓴다.
-4. 같은 slope에서 더 나쁜 line을 제거하지 않는다.
-5. `m*x+b` overflow를 `long long`으로 방치한다.

@@ -2,6 +2,9 @@
 
 Runs와 Periodicity는 문자열 안에서 반복되는 구간을 구조적으로 다루는 주제입니다. KMP의 border, Z algorithm의 일치 길이, Suffix 구조를 배운 뒤 "반복이 어디에 얼마나 조밀하게 있는가"를 보는 단계입니다.
 
+
+일반 주기는 나누어떨어질 필요가 없습니다. 비어 있지 않은 문자열의 최소 주기는 `N-pi[N-1]`입니다. 아래 `smallestRepeatingBlockLength`는 문자열 전체를 같은 블록으로 정확히 분할하는 최소 블록 길이를 구하므로 추가로 나눗셈 조건을 검사합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Periodicity 관점 |
@@ -35,6 +38,7 @@ period candidate = 9 - 6 = 3
 아래 함수는 문자열 전체의 최소 반복 단위를 찾습니다. 완전히 반복되지 않으면 원래 길이를 반환합니다.
 
 ```cpp compile-check
+#include <algorithm>
 #include <string>
 #include <vector>
 using namespace std;
@@ -55,7 +59,7 @@ vector<int> prefixFunctionPeriod(const string& s) {
     return pi;
 }
 
-int minimalPeriodLength(const string& s) {
+int smallestRepeatingBlockLength(const string& s) {
     if (s.empty()) {
         return 0;
     }
@@ -69,40 +73,12 @@ int minimalPeriodLength(const string& s) {
 }
 
 bool isWholeStringRepetition(const string& s) {
-    int period = minimalPeriodLength(s);
+    int period = smallestRepeatingBlockLength(s);
     return period > 0 && period < (int)s.size();
-}
-```
-
-이 판정은 "전체 문자열" 기준입니다. 부분 문자열의 반복까지 모두 찾으려면 suffix/LCP나 run enumeration이 필요합니다.
-
-## Border Chain
-
-가장 긴 border만 보는 것으로 부족할 때는 border chain을 따라 내려갑니다.
-
-```cpp compile-check
-#include <algorithm>
-#include <string>
-#include <vector>
-using namespace std;
-
-vector<int> prefixFunctionBorder(const string& s) {
-    vector<int> pi(s.size(), 0);
-    for (int i = 1; i < (int)s.size(); ++i) {
-        int j = pi[i - 1];
-        while (j > 0 && s[i] != s[j]) {
-            j = pi[j - 1];
-        }
-        if (s[i] == s[j]) {
-            ++j;
-        }
-        pi[i] = j;
-    }
-    return pi;
 }
 
 vector<int> allBorderLengths(const string& s) {
-    vector<int> pi = prefixFunctionBorder(s);
+    vector<int> pi = prefixFunctionPeriod(s);
     vector<int> borders;
     int current = s.empty() ? 0 : pi.back();
     while (current > 0) {
@@ -113,6 +89,14 @@ vector<int> allBorderLengths(const string& s) {
     return borders;
 }
 ```
+
+이 판정은 "전체 문자열" 기준입니다. 부분 문자열의 반복까지 모두 찾으려면 suffix/LCP나 run enumeration이 필요합니다.
+
+## Border Chain
+
+가장 긴 border만 보는 것으로 부족할 때는 border chain을 따라 내려갑니다.
+
+`allBorderLengths`는 위 구현의 실패 링크를 따라갑니다.
 
 Border chain은 "이 prefix가 몇 번 등장하는가", "접두사와 접미사가 동시에 되는 길이" 같은 문제에서 자주 쓰입니다.
 
@@ -161,11 +145,3 @@ abcabcabcx 에는 abc 반복 구간이 run 후보가 된다.
 | 전체 minimal period | `O(N)` |
 | border chain 출력 | border 개수에 비례 |
 | 모든 run enumeration | 알려진 알고리즘으로 `O(N)` 또는 `O(N log N)` 구현 가능 |
-
-## 자주 하는 실수
-
-1. `n - longestBorder`가 period 후보라는 것과 `n % p == 0` 조건을 섞는다.
-2. 전체 문자열 반복 판정을 부분 문자열 반복 판정으로 착각한다.
-3. 같은 period를 유지하며 더 확장 가능한 구간을 run으로 세어 중복을 만든다.
-4. `abababa`처럼 마지막 반복이 덜 끝나는 문자열을 완전 반복으로 처리한다.
-5. border 길이와 period 길이를 같은 의미로 쓴다.

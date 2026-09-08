@@ -48,7 +48,7 @@ for state in decreasing len:
 using namespace std;
 
 struct SuffixAutomatonApplications {
-    static const long long LIMIT = (1LL << 60);
+    inline static constexpr long long LIMIT = (1LL << 60);
 
     struct State {
         int link = -1;
@@ -106,24 +106,45 @@ struct SuffixAutomatonApplications {
     }
 
     void build(const string& s) {
+        st.assign(1, State{});
+        last = 0;
         for (char ch : s) {
             extend(ch);
         }
     }
 
-    void buildOccurrences() {
-        vector<int> order(st.size());
-        for (int i = 0; i < (int)st.size(); ++i) {
-            order[i] = i;
-        }
-        sort(order.begin(), order.end(), [&](int a, int b) {
-            return st[a].len > st[b].len;
-        });
-        for (int v : order) {
-            if (st[v].link != -1) {
-                st[st[v].link].occ += st[v].occ;
+    vector<long long> occurrenceByState() const {
+        int maxLen = 0;
+        for (const State& state : st) {
+            if (state.len > maxLen) {
+                maxLen = state.len;
             }
         }
+
+        vector<int> bucket(maxLen + 1, 0);
+        for (const State& state : st) {
+            ++bucket[state.len];
+        }
+        for (int i = 1; i <= maxLen; ++i) {
+            bucket[i] += bucket[i - 1];
+        }
+
+        vector<int> order(st.size());
+        for (int i = (int)st.size() - 1; i >= 0; --i) {
+            order[--bucket[st[i].len]] = i;
+        }
+
+        vector<long long> occ(st.size());
+        for (int i = 0; i < (int)st.size(); ++i) {
+            occ[i] = st[i].occ;
+        }
+        for (int i = (int)order.size() - 1; i > 0; --i) {
+            int v = order[i];
+            if (st[v].link != -1) {
+                occ[st[v].link] += occ[v];
+            }
+        }
+        return occ;
     }
 
     long long countPaths(int v) {
@@ -178,13 +199,14 @@ struct SuffixAutomatonApplications {
 };
 ```
 
-위 함수는 k를 1-indexed로 받습니다. 같은 substring을 여러 번 세지 않으려면 transition DAG의 path만 세고 occurrence는 섞지 않습니다.
+모든 문자 추가 후 occurrenceByState()로 등장 수 벡터를 얻습니다. 원본 occ를 바꾸지 않으므로 반복 호출해도 같습니다. path DP나 occurrence 집계 뒤에는 extend하지 말고 새 문자열로 build합니다. path DP 재귀 깊이는 문자열 길이까지 늘어납니다. 위 함수는 k를 1-indexed로 받습니다. 같은 substring을 여러 번 세지 않으려면 transition DAG의 path만 세고 occurrence는 섞지 않습니다.
 
 ## 가장 긴 반복 Substring
 
 반복 substring은 occurrence가 2 이상인 문자열입니다. state `v`가 occurrence 2 이상이면 그 state가 대표하는 길이 구간 중 최댓값 `len[v]`가 후보가 됩니다.
 
 ```text
+occ = sam.occurrenceByState()
 answer = max(len[v]) over occ[v] >= 2
 ```
 
@@ -213,17 +235,9 @@ answer = max(len[v]) over occ[v] >= 2
 | 작업 | 복잡도 |
 | --- | ---: |
 | construction | `O(N * transition cost)` |
-| occurrence 누적 | `O(number of states + edges)` |
+| occurrence 누적 | counting sort 포함 `O(states + N)` |
 | path count DP | `O(edges)` |
 | k번째 substring | `O(answer length * alphabet)` |
 | 한 문자열 scan | `O(length)` |
 
 상태 수는 최대 `2N-1`입니다. alphabet이 크면 transition을 `array` 대신 map이나 압축 vector로 바꿉니다.
-
-## 자주 하는 실수
-
-1. suffix link tree와 transition DAG를 같은 방향 그래프로 취급한다.
-2. clone state의 occurrence를 1로 둔다.
-3. state 하나가 정확히 한 substring만 뜻한다고 생각한다.
-4. k번째 substring에서 빈 문자열을 포함할지 제외할지 정하지 않는다.
-5. 여러 문자열 공통 substring에서 state별 match를 suffix link로 전파하지 않는다.

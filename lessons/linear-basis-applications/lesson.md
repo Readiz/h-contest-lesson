@@ -2,6 +2,9 @@
 
 Linear Basis Applications는 maximum xor를 넘어서 표현 가능성, k번째 xor, graph cycle xor, range query처럼 XOR Linear Basis를 여러 문제 형태에 적용하는 레슨입니다. 핵심은 "xor 조합으로 만들 수 있는 값의 공간"과 "basis를 어떤 형태로 정규화해야 하는가"를 분리해서 보는 것입니다.
 
+
+아래 확장은 [XOR Linear Basis](https://h.readiz.com/learn/linear-basis-xor)의 XorLinearBasis(LOG=63) 뒤에 붙입니다. rank=64이면 모든 unsigned long long k가 유효하며 1ULL<<64는 계산하지 않습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Linear Basis 응용 관점 |
@@ -29,44 +32,10 @@ kernel dimension = n - rank
 
 일반적인 high-bit basis는 maximum query에는 충분하지만, k번째 작은 xor 값을 만들려면 lower bit가 서로 정리된 형태가 필요합니다.
 
-```cpp compile-check
-#include <array>
-#include <vector>
-using namespace std;
+```cpp
+#include <stdexcept>
 
-struct NormalizedXorBasis {
-    static const int LOG = 62;
-    array<unsigned long long, LOG + 1> basis{};
-    int rank = 0;
-
-    bool insert(unsigned long long value) {
-        for (int bit = LOG; bit >= 0; --bit) {
-            if (((value >> bit) & 1ULL) == 0) {
-                continue;
-            }
-            if (basis[bit] == 0) {
-                basis[bit] = value;
-                ++rank;
-                return true;
-            }
-            value ^= basis[bit];
-        }
-        return false;
-    }
-
-    bool canRepresent(unsigned long long value) const {
-        for (int bit = LOG; bit >= 0; --bit) {
-            if (((value >> bit) & 1ULL) == 0) {
-                continue;
-            }
-            if (basis[bit] == 0) {
-                return false;
-            }
-            value ^= basis[bit];
-        }
-        return true;
-    }
-
+struct NormalizedXorBasis : XorLinearBasis {
     vector<unsigned long long> normalizedVectors() const {
         array<unsigned long long, LOG + 1> reduced = basis;
         for (int bit = 0; bit <= LOG; ++bit) {
@@ -90,6 +59,7 @@ struct NormalizedXorBasis {
     }
 
     unsigned long long kthSmallest(unsigned long long k) const {
+        if (rank < 64 && k >= (1ULL << rank)) throw out_of_range("k");
         vector<unsigned long long> vectors = normalizedVectors();
         unsigned long long result = 0;
         for (int i = 0; i < (int)vectors.size(); ++i) {
@@ -136,7 +106,7 @@ XOR vector의 독립성은 linear matroid입니다. "가중치가 있는 값들 
 
 ```text
 sort by weight descending
-if insert(vector) succeeds:
+if weight >= 0 and insert(vector) succeeds:
     choose it
 ```
 
@@ -149,15 +119,8 @@ if insert(vector) succeeds:
 | basis insert | `O(LOG)` |
 | can represent | `O(LOG)` |
 | normalize | `O(LOG^2)` |
-| kth xor after normalize | `O(LOG)` |
+| 현재 kthSmallest 호출(정규화 포함) | `O(LOG^2)` |
+| 정규화 벡터를 캐시한 뒤 kth xor | `O(LOG)` |
 | basis merge | `O(LOG^2)` |
 
 정규화는 매 query마다 하면 비쌀 수 있습니다. 구조가 static이면 node마다 정규화된 basis를 캐시할지 검토합니다.
-
-## 자주 하는 실수
-
-1. `k`를 1-indexed로 받았는데 0-indexed kth 함수에 그대로 넣는다.
-2. `rank`와 원소 수를 혼동해 표현 개수를 잘못 계산한다.
-3. graph cycle basis를 simple path 문제에 적용한다.
-4. signed integer 비교로 maximum xor가 깨진다.
-5. range basis를 merge할 때 dependent vector 개수를 counting에 반영하지 않는다.

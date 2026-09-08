@@ -2,6 +2,9 @@
 
 Palindrome Range DP는 "구간이 palindrome인가"라는 판정 구조를 DP 전이와 결합하는 문자열/DP 응용 레슨입니다. Palindrome Query Structures가 판정 도구를 고르는 레슨이라면, 이 레슨은 그 판정값을 어떻게 구간 DP, 분할 DP, 최소 편집 DP의 상태로 넣을지 다룹니다.
 
+
+빈 문자열의 분할 조각 수와 삽입 수는 0입니다. 최소 cut 수는 `max(0, 조각 수-1)`이고, 삽입 DP는 빈 구간·길이 1 구간에서 0으로 시작합니다.
+
 ## 문제 신호
 
 | 문제 표현 | 우선 모델 |
@@ -150,14 +153,5 @@ prefix DP:
 | `O(N^2)` palindrome table + prefix DP | `O(N^2)` | `O(N^2)` |
 | Manacher + prefix DP | `O(N^2)` | `O(N)` |
 | interval DP | 보통 `O(N^2)` | `O(N^2)` |
-| 모든 분할 복원 | 답 개수에 따라 증가 | parent 저장 필요 |
 
 문자열 길이가 2만 이상이면 모든 pair 전이가 이미 위험합니다. 그때는 문제에 있는 추가 조건을 찾아야 합니다.
-
-## 자주 하는 실수
-
-1. `isPal[left][right]`와 substring `[left, right)` convention을 섞는다.
-2. 길이 2 palindrome에서 내부 구간을 잘못 참조한다.
-3. 조각 수와 컷 수를 혼동한다.
-4. Manacher radius의 odd/even 중심을 한 칸 밀린다.
-5. interval DP를 prefix 순서로 채워 아직 계산되지 않은 값을 읽는다.

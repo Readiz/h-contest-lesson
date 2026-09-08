@@ -2,6 +2,9 @@
 
 Point-Based Value Iteration(PBVI)은 POMDP의 연속적인 belief space 전체를 다루지 않고, 대표 belief point 집합에서 value function을 근사하는 planning 기법입니다. 정확한 대회 정답용 알고리즘이라기보다, POMDP가 왜 어려운지와 belief 기반 근사가 어떻게 구성되는지 이해하는 레슨입니다.
 
+
+유한 지평·유한 상태/행동/관측에서 보상 최대화의 value는 piecewise-linear convex입니다. 대표 belief에서의 근사 정확도는 점 집합과 오차 분석에 달려 있으며, 단순히 출력 허용 오차가 있다고 PBVI가 그 오차를 만족하는 것은 아닙니다.
+
 ## 문제 신호
 
 | 문제 표현 | PBVI 관점 |
@@ -38,35 +41,7 @@ B = {b_1, b_2, ..., b_m}
 
 아래 코드는 belief 하나에서 가장 큰 값을 주는 alpha vector를 고릅니다.
 
-```cpp compile-check
-#include <limits>
-#include <vector>
-using namespace std;
-
-double dotBeliefAlpha(const vector<double>& belief, const vector<double>& alpha) {
-    double value = 0.0;
-    for (int i = 0; i < (int)belief.size(); ++i) {
-        value += belief[i] * alpha[i];
-    }
-    return value;
-}
-
-int bestAlphaIndex(
-    const vector<double>& belief,
-    const vector<vector<double>>& alphaVectors
-) {
-    int best = -1;
-    double bestValue = -numeric_limits<double>::infinity();
-    for (int index = 0; index < (int)alphaVectors.size(); ++index) {
-        double value = dotBeliefAlpha(belief, alphaVectors[index]);
-        if (value > bestValue) {
-            bestValue = value;
-            best = index;
-        }
-    }
-    return best;
-}
-```
+각 alpha는 state 수와 같은 길이입니다. belief와 alpha의 내적이 최대인 벡터를 고른 뒤 아래 backup에 사용합니다. 단순 내적 루프를 PBVI 구현으로 따로 싣지 않습니다.
 
 실제 PBVI backup은 action과 observation별 alpha 조합을 만들지만, 최종적으로는 각 belief에서 가장 좋은 alpha를 고르는 이 구조가 반복됩니다.
 
@@ -120,7 +95,7 @@ observations: good / bad
 | 병목 | observation tree 폭발 | point 품질 |
 | 출력 | optimal value/policy | approximate policy |
 
-문제가 "정답과 오차 허용" 형태인지, 아니면 judge가 정확한 값만 받는지에 따라 선택이 갈립니다.
+정답 대비 허용 오차가 주어졌다면 근사 오차 상한까지 증명해야 합니다. 단순한 샘플 belief 집합만으로는 이를 보장하지 못합니다.
 
 ## MCTS와의 비교
 
@@ -132,11 +107,3 @@ PBVI는 model을 알고 있고 반복 planning을 할 때 유리합니다. POMCP
 | simulator만 있고 model table이 큼 | POMCP/MCTS |
 | horizon이 매우 작음 | exact belief tree |
 | policy를 미리 계산 | PBVI |
-
-## 자주 하는 실수
-
-1. 대표 belief를 초기 근처에만 두어 실제 도달 영역을 놓친다.
-2. observation probability로 belief를 정규화하지 않는다.
-3. alpha vector가 state별 값이라는 점을 잊고 belief별 scalar만 저장한다.
-4. 근사 알고리즘인데 정확 judge 문제에 사용한다.
-5. discount `gamma`와 horizon 종료 조건을 섞는다.

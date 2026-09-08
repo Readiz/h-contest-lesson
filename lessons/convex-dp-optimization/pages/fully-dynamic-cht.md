@@ -68,16 +68,7 @@ query 2에서는 A만 보이고, query 5에서는 B만 보입니다. Segment tre
 
 ## 삭제가 작을 때
 
-삭제가 드물다면 완전 동적 구조보다 rebuild가 더 쉽습니다.
-
-```text
-base lines: 삭제되지 않은 대부분의 직선
-buffer lines: 최근 추가/삭제가 얽힌 작은 집합
-query: base structure answer + buffer scan
-periodically rebuild
-```
-
-복잡도는 보통 `O((N/B) rebuild + B scan)` 식으로 조절합니다. 구현 난도를 낮추고 싶을 때 실용적인 선택입니다.
+삽입 전용 base hull에서 삭제된 최적 직선을 buffer로 가리는 것은 불가능합니다. 삭제마다 활성 직선 전체로 재구축하거나, 연산을 미리 아는 block에서는 그 block 중 바뀔 직선을 모두 base에서 제외합니다. 남은 고정 base와 현재 활성 buffer의 답 중 좋은 값을 택합니다. 재구축과 buffer 스캔 비용을 실제 크기로 계산합니다.
 
 ## 구현 전 결정표
 
@@ -90,12 +81,3 @@ periodically rebuild
 | 진짜 online인가? | 별도 동적 hull 검토 |
 
 이 표에서 위쪽일수록 구현이 단순하고 검증하기 쉽습니다.
-
-## 자주 하는 실수
-
-1. 삭제를 처리하려고 Li Chao node에서 직선을 직접 제거한다.
-2. 활성 구간의 오른쪽 끝을 inclusive로 처리해 삭제된 직선이 query에 남는다.
-3. rollback change log에 child pointer 변경을 기록하지 않는다.
-4. 같은 slope 직선을 여러 개 넣고 삭제할 때 identity를 잃는다.
-5. max/min convention을 offline과 online 구현에서 다르게 둔다.
-6. 모든 query를 읽을 수 있는데도 online container부터 구현한다.

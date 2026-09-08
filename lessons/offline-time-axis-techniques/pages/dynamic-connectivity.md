@@ -2,6 +2,12 @@
 
 Dynamic Connectivity는 간선이 추가되고 삭제되는 그래프에서 두 정점의 연결 여부를 묻는 주제입니다. 온라인으로 처리하면 Link-Cut Tree나 Euler Tour Tree 같은 고급 구조가 필요하지만, 질의를 모두 알고 있다면 시간축 Segment Tree와 Rollback DSU로 실용적으로 풀 수 있습니다.
 
+
+정점 번호는 아래 공유 DSU 기준 0..N-1입니다. queryCount>=0, 활성 구간은 0<=l<=r<=Q입니다. 일반 그래프 온라인 연결성은 동적 forest 외에 대체 간선 탐색 구조가 필요합니다. 전체 비용은 O(N+Q+(M log(Q+1)+Q)log(N+1))이며 M은 활성 구간 수입니다.
+
+
+아래 시간축 어댑터는 [Rollback Techniques](https://h.readiz.com/learn/offline-time-axis-techniques/rollback-techniques)의 RollbackDsu 정의 뒤에 붙입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Dynamic Connectivity 관점 |
@@ -55,66 +61,10 @@ Path compression은 rollback과 잘 맞지 않습니다. 대신 union by size만
 
 아래 구조는 이미 계산된 edge interval을 받아 query answer를 채웁니다. 실제 입력 파싱에서는 `map<pair<int,int>, int>`로 add 시점을 저장하고 remove 때 interval을 닫습니다.
 
-```cpp compile-check
+```cpp
 #include <utility>
 #include <vector>
 using namespace std;
-
-struct RollbackDSUConnectivity {
-    vector<int> parent;
-    vector<int> size;
-    vector<pair<int, int>> history;
-
-    explicit RollbackDSUConnectivity(int n) : parent(n + 1), size(n + 1, 1) {
-        for (int i = 1; i <= n; ++i) {
-            parent[i] = i;
-        }
-    }
-
-    int find(int x) const {
-        while (parent[x] != x) {
-            x = parent[x];
-        }
-        return x;
-    }
-
-    void unite(int a, int b) {
-        a = find(a);
-        b = find(b);
-        if (a == b) {
-            history.push_back({-1, -1});
-            return;
-        }
-        if (size[a] < size[b]) {
-            int temp = a;
-            a = b;
-            b = temp;
-        }
-        parent[b] = a;
-        size[a] += size[b];
-        history.push_back({a, b});
-    }
-
-    int snapshot() const {
-        return (int)history.size();
-    }
-
-    void rollback(int snapshotSize) {
-        while ((int)history.size() > snapshotSize) {
-            pair<int, int> last = history.back();
-            history.pop_back();
-            if (last.first == -1) {
-                continue;
-            }
-            size[last.first] -= size[last.second];
-            parent[last.second] = last.second;
-        }
-    }
-
-    bool connected(int a, int b) const {
-        return find(a) == find(b);
-    }
-};
 
 struct OfflineDynamicConnectivity {
     struct Edge {
@@ -155,7 +105,8 @@ struct OfflineDynamicConnectivity {
         hasQuery[time] = 1;
     }
 
-    void solve(int node, int left, int right, RollbackDSUConnectivity& dsu) {
+    void solve(int node, int left, int right, RollbackDsu& dsu) {
+        if (left >= right) return;
         int snapshot = dsu.snapshot();
         for (Edge edge : tree[node]) {
             dsu.unite(edge.u, edge.v);
@@ -164,7 +115,7 @@ struct OfflineDynamicConnectivity {
         if (right - left == 1) {
             if (hasQuery[left]) {
                 Edge query = connectivityQueries[left];
-                answer[left] = dsu.connected(query.u, query.v) ? 1 : 0;
+                answer[left] = (dsu.find(query.u) == dsu.find(query.v)) ? 1 : 0;
             }
         } else {
             int mid = (left + right) / 2;
@@ -206,14 +157,6 @@ key = (u, v)
 | 간선 interval 하나 삽입 | `O(log Q)`개 node에 저장 |
 | DFS 전체 union 횟수 | `O(M log Q)` |
 | DSU 연산 | union by size로 `O(log N)` 이하 깊이 |
-| 전체 | 보통 `O((M log Q) log N)` 또는 충분히 빠른 상수 |
+| 전체 | `O(N+Q+(M log(Q+1)+Q)log(N+1))` |
 
 Path compression을 쓰지 않으므로 이론상 inverse Ackermann은 아니지만, rollback이 가능한 구조가 더 중요합니다.
-
-## 자주 하는 실수
-
-1. DSU path compression을 켜서 rollback이 깨진다.
-2. 간선 활성 구간을 `[l, r]`로 착각해 삭제 시점 query에 간선을 남긴다.
-3. 무향 간선 endpoint 정규화를 빠뜨린다.
-4. 같은 간선이 중복 추가되는 입력에서 add 시점을 하나만 저장한다.
-5. rollback snapshot을 node 진입 전이 아니라 union 후에 잡는다.

@@ -2,6 +2,9 @@
 
 Slope Trick은 `min |x-a|`, `max(x-a,0)` 같은 convex piecewise-linear cost를 heap 두 개로 유지하는 DP 최적화 기법입니다. 상태가 "현재 위치 x를 고를 때의 최소 비용 함수"로 표현되고, 그 함수가 볼록이면 전체 함수를 배열로 들고 있지 않고 기울기 변화점만 관리할 수 있습니다.
 
+
+이 표현은 f=0에서 단위 hinge를 추가하며 시작합니다. 일반 실수 기울기의 모든 볼록 함수를 그대로 표현하는 코드는 아닙니다. 왼쪽 heap이 비면 최적 구간은 -∞까지, 오른쪽이 비면 +∞까지 열립니다. top/pop은 비어 있지 않을 때만 호출하고 offset·minimum의 합산 범위를 확인합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Slope Trick 관점 |
@@ -164,11 +167,3 @@ break point도 전부 `+d` 이동하므로 모든 값을 직접 바꾸지 말고
 | 최소값 조회 | `O(1)` |
 
 Heap에 들어간 break point 수는 추가한 hinge 수에 비례합니다.
-
-## 자주 하는 실수
-
-1. `max(a-x,0)`와 `max(x-a,0)`의 heap 방향을 반대로 구현한다.
-2. minimum 증가분을 heap top과 `a`의 차이로 더하지 않는다.
-3. lazy shift를 heap에 들어간 raw value와 실제 value에 동시에 적용한다.
-4. 함수가 convex가 아닌데 slope trick으로 억지로 관리한다.
-5. minimizer 하나만 필요하다고 생각하고 구간 전체 정보를 잃는다.

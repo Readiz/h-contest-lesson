@@ -36,7 +36,7 @@ leftR = prefixLeft[r]
 
 ## 기본 구현
 
-아래 구현은 1-indexed query를 사용합니다.
+아래 구현은 `1 <= l <= r <= N`, `1 <= k <= r-l+1`인 1-indexed query를 사용합니다. 값은 `[low,high]` 안이고 `high-low`가 int 범위 안이어야 합니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -75,6 +75,9 @@ struct WaveletTree {
             right = new WaveletTree(pivot, to, mid + 1, high);
         }
     }
+
+    WaveletTree(const WaveletTree&) = delete;
+    WaveletTree& operator=(const WaveletTree&) = delete;
 
     ~WaveletTree() {
         delete left;
@@ -143,7 +146,7 @@ leftCount = prefixLeft[r] - prefixLeft[l - 1]
 freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 ```
 
-좌표 압축을 쓴다면 `x - 1`이 아니라 압축 순서에서 이전 값까지를 묻는 방식으로 바꿉니다.
+`x`가 int 최솟값이면 `x-1`을 계산하지 말고 두 번째 항을 0으로 둡니다. 좌표 압축을 쓴다면 압축 순서의 이전 값까지를 묻습니다.
 
 ## Persistent Segment Tree와 비교
 
@@ -159,20 +162,9 @@ freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
-| build | `O(N log V)` | `O(N log V)` bits/ints |
+| build | `O(N log V)` | `O(N log V)`개의 int |
 | kth query | `O(log V)` | 없음 |
 | count `<= x` | `O(log V)` | 없음 |
 | frequency | `O(log V)` | 없음 |
 
 여기서 `V`는 값 범위 또는 압축된 값 개수입니다. 큰 값 범위에서는 좌표 압축으로 `log V`를 줄이는 편이 좋습니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| query index를 0-index와 섞음 | 한 칸 밀림 | public query를 1-index로 고정 |
-| 오른쪽 child index 변환 오류 | kth 오답 | `rightL = l - leftBefore` 확인 |
-| `stable_partition`이 원본을 바꾸는 점 무시 | 이후 배열 사용 오류 | build용 복사본 사용 |
-| 빈 child에서 재귀 호출 | null 접근 | child 존재 또는 count 확인 |
-| k 범위 검증 누락 | leaf까지 잘못 이동 | `1 <= k <= r-l+1` 확인 |
-| 좌표 압축 복원 누락 | 압축 값 출력 | 원래 값 배열로 복원 |

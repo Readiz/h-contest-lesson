@@ -1,0 +1,10 @@
+{
+  "lessons/versioned-data-structures/pages/persistent-sequence-queries.md": "lessons/versioned-data-structures/pages/persistent-segment-tree.md",
+  "lessons/palindrome-structures/pages/suffix-palindrome-applications.md": "lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md",
+  "lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-applications.md": "lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md",
+  "lessons/probabilistic-decision-ai/pages/exact-model-vs-sampling.md": "lessons/probabilistic-decision-ai/lesson.md",
+  "lessons/parametric-optimization/pages/feasibility-and-answer-search.md": "lessons/parametric-optimization/lesson.md",
+  "lessons/parametric-optimization/pages/tie-breaking-and-breakpoints.md": "lessons/parametric-optimization/pages/exact-k-alien-optimization.md",
+  "lessons/graph-cut-structures/pages/global-min-cut-applications.md": "lessons/graph-cut-structures/pages/global-min-cut.md",
+  "lessons/quadrangle-inequality-proofs/lesson.md": "lessons/knuth-optimization/lesson.md"
+}

@@ -190,3 +190,5 @@ long long square(int value) {
 - `lessonType`, `practiceStatus`, `implementationStatus`가 실제 문서 완성도와 맞나요?
 - `difficultyAxes`가 레슨의 어려운 이유를 정확히 설명하나요?
 - 새 허브나 트랙 역할이 생겼다면 생성 카탈로그의 빠른 길찾기와 트랙 지도도 맞게 갱신했나요?
+
+공통 구현을 참조하는 예제는 의존 본문의 정의를 먼저 붙인다고 명시합니다. `scripts/review-example-cases.json`은 실제 Markdown 블록을 조합하고 `scripts/check_review_examples.py`로 경계·단순 풀이 비교를 실행합니다. 전체 validator에도 포함되어 있습니다. 전체 재검토 기록은 [LESSON_REVIEW.md](LESSON_REVIEW.md)에 남깁니다.

@@ -2,6 +2,9 @@
 
 Finite Horizon MDP는 남은 턴 수가 정해져 있을 때의 확률적 의사결정 문제입니다. 수렴 반복이 아니라 시간 축이 줄어드는 DP이므로, 가능한 경우 가장 먼저 의심해야 하는 모델입니다.
 
+
+코드는 종료 보상 0인 유한 지평 모델입니다. turns>=0, 유효한 nextState, 각 action의 비음수 확률 합 1, 유한 보상을 전제로 합니다. 행동이 없는 상태는 이후 보상 0으로 처리합니다. 일반 terminal reward가 있으면 초기 value와 terminal 갱신을 함께 바꿉니다.
+
 ## 기본 식
 
 남은 턴이 `t`이고 현재 상태가 `s`일 때의 최적 기대 보상을 `dp[t][s]`라고 둡니다.
@@ -17,6 +20,7 @@ dp[t][s] = max_a sum P(s' | s, a) * (reward(s,a,s') + dp[t-1][s'])
 
 ```cpp compile-check
 #include <algorithm>
+#include <limits>
 #include <vector>
 using namespace std;
 
@@ -42,7 +46,7 @@ vector<double> finiteHorizonValue(
                 nextValue[state] = 0.0;
                 continue;
             }
-            double best = -1e100;
+            double best = -numeric_limits<double>::infinity();
             for (const Action& action : actions[state]) {
                 double candidate = 0.0;
                 for (const Transition& transition : action) {
@@ -68,10 +72,3 @@ vector<double> finiteHorizonValue(
 | 정확도 | layer 수만큼 정확 계산 | 오차 기준 필요 |
 | 상태 | 보통 `turn`을 포함 | stationary value |
 | 구현 | 뒤에서 앞으로 DP | 반복 수렴 또는 contraction |
-
-## 자주 하는 실수
-
-- 남은 턴 수를 상태에 넣지 않아 같은 상태의 다른 time layer를 섞습니다.
-- terminal 보상을 매 턴 반복해서 더합니다.
-- finite horizon 문제에 감으로 정한 value iteration 횟수를 씁니다.
-- reward가 transition마다 다른데 action reward 하나로 합쳐 버립니다.

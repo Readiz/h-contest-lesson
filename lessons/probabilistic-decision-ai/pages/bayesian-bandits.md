@@ -2,6 +2,9 @@
 
 Bayesian Bandits는 여러 선택지의 보상 확률을 모르는 상태에서, 관측할수록 posterior를 갱신하며 다음 선택을 정하는 모델입니다. 단순한 multi-armed bandit이 "탐색과 활용의 균형"을 다룬다면, Bayesian 관점은 불확실성을 확률분포로 들고 다닙니다.
 
+
+Beta 사전분포는 alpha,beta>0이고 각 arm의 성공 확률이 고정된 독립 Bernoulli 모델을 가정합니다. 표준 Bayesian UCB는 라운드별 높은 posterior 분위수를 사용합니다. mean+c*std는 별도 근사 휴리스틱이며 같은 보장을 자동으로 갖지 않습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Bayesian Bandit 관점 |
@@ -59,7 +62,7 @@ update posterior of chosen arm
 
 ## Bayesian UCB
 
-Bayesian UCB는 posterior의 높은 분위수나 mean + uncertainty bonus를 씁니다.
+Bayesian UCB는 시각 t에 따른 높은 posterior 분위수 Q(1-delta_t)를 점수로 씁니다. 아래 mean/std 식은 이와 구분되는 휴리스틱입니다.
 
 ```text
 score_i = posterior_mean_i + c * posterior_std_i
@@ -117,11 +120,3 @@ regret = optimal_fixed_arm_reward - algorithm_reward
 ```
 
 Bayesian 분석에서는 prior에 대한 기대 regret을 보거나, posterior가 수렴하면서 잘못된 arm을 고르는 횟수가 줄어드는지를 봅니다. 구현 문제에서는 보통 정확한 증명보다 "왜 불확실한 arm도 가끔 선택해야 하는가"를 설명하는 데 쓰입니다.
-
-## 자주 하는 실수
-
-1. posterior mean만 보고 항상 greedy하게 고른다.
-2. 선택하지 않은 arm의 posterior까지 갱신한다.
-3. Beta prior의 `alpha`, `beta`를 성공/실패 횟수와 반대로 더한다.
-4. horizon이 1인 문제와 여러 번 남은 문제를 같은 정책으로 푼다.
-5. sampling이 필요한 문제에서 seed와 반복 횟수 검증을 하지 않는다.

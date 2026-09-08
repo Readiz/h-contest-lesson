@@ -2,6 +2,9 @@
 
 Formal Power Series는 다항식을 무한히 긴 계수열처럼 다루며, 미분, 적분, 역원, 로그, 지수 같은 연산을 계수 관점에서 정의하는 도구입니다. 대회에서는 NTT 기반 다항식 곱셈을 익힌 뒤, 조합론 생성함수와 polynomial DP를 빠르게 처리할 때 등장합니다.
 
+
+계수는 `[0,MOD)`로 정규화합니다. n과 truncate 길이는 비음수, 역원은 n>0이면 a가 비어 있지 않고 a[0]!=0이어야 합니다. 적분은 분모가 MOD 배수가 되지 않는 길이에서만 사용합니다. 현재 적분은 `O(N log MOD)`, 단순 곱셈 기반 역원은 `O(N²)`입니다.
+
 ## Formal의 의미
 
 Formal Power Series에서는 `x`에 실제 값을 대입하기보다 계수들의 규칙을 다룹니다.
@@ -60,6 +63,49 @@ vector<long long> integral(const vector<long long>& a) {
     }
     return result;
 }
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+
+
+
+vector<long long> multiplyTruncated(
+    const vector<long long>& a,
+    const vector<long long>& b,
+    int limit
+) {
+    vector<long long> result(limit, 0);
+    for (int i = 0; i < (int)a.size(); ++i) {
+        for (int j = 0; j < (int)b.size() && i + j < limit; ++j) {
+            result[i + j] = (result[i + j] + a[i] * b[j]) % MOD;
+        }
+    }
+    return result;
+}
+
+vector<long long> inversePolynomial(const vector<long long>& a, int n) {
+    if (n == 0) return {};
+    vector<long long> result(1, modPow(a[0], MOD - 2));
+
+    while ((int)result.size() < n) {
+        int nextSize = min(2 * (int)result.size(), n);
+        vector<long long> prefix(min((int)a.size(), nextSize));
+        for (int i = 0; i < (int)prefix.size(); ++i) {
+            prefix[i] = a[i];
+        }
+
+        vector<long long> product = multiplyTruncated(prefix, result, nextSize);
+        for (long long& value : product) {
+            value = (MOD - value) % MOD;
+        }
+        product[0] = (product[0] + 2) % MOD;
+        result = multiplyTruncated(result, product, nextSize);
+    }
+
+    result.resize(n);
+    return result;
+}
 ```
 
 실전에서는 inverse number를 미리 전처리해 적분을 `O(N)`으로 처리합니다. 위 구현은 개념을 보여 주기 위해 `modPow`를 직접 호출했습니다.
@@ -96,59 +142,7 @@ B_new = B * (2 - A * B) mod x^(2k)
 
 아래 코드는 구조를 보여 주기 위해 단순 곱셈을 사용합니다. 큰 입력에서는 `multiplyTruncated`를 NTT 기반으로 바꿉니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-const long long MOD_FPS = 998244353;
-
-long long modPowFps(long long base, long long exp) {
-    long long result = 1;
-    while (exp > 0) {
-        if (exp & 1LL) result = result * base % MOD_FPS;
-        base = base * base % MOD_FPS;
-        exp >>= 1LL;
-    }
-    return result;
-}
-
-vector<long long> multiplyTruncated(
-    const vector<long long>& a,
-    const vector<long long>& b,
-    int limit
-) {
-    vector<long long> result(limit, 0);
-    for (int i = 0; i < (int)a.size(); ++i) {
-        for (int j = 0; j < (int)b.size() && i + j < limit; ++j) {
-            result[i + j] = (result[i + j] + a[i] * b[j]) % MOD_FPS;
-        }
-    }
-    return result;
-}
-
-vector<long long> inversePolynomial(const vector<long long>& a, int n) {
-    vector<long long> result(1, modPowFps(a[0], MOD_FPS - 2));
-
-    while ((int)result.size() < n) {
-        int nextSize = min(2 * (int)result.size(), n);
-        vector<long long> prefix(min((int)a.size(), nextSize));
-        for (int i = 0; i < (int)prefix.size(); ++i) {
-            prefix[i] = a[i];
-        }
-
-        vector<long long> product = multiplyTruncated(prefix, result, nextSize);
-        for (long long& value : product) {
-            value = (MOD_FPS - value) % MOD_FPS;
-        }
-        product[0] = (product[0] + 2) % MOD_FPS;
-        result = multiplyTruncated(result, product, nextSize);
-    }
-
-    result.resize(n);
-    return result;
-}
-```
+위 `inversePolynomial`은 Newton 갱신에 단순 곱셈을 사용하는 검산용 구현입니다.
 
 `a[0]`이 0이면 역원이 없습니다. 이 조건을 빼먹으면 첫 상수항 inverse부터 실패합니다.
 
@@ -178,19 +172,8 @@ F(x) = sum ways[n] * x^n
 | 작업 | 단순 구현 | NTT 기반 |
 | --- | ---: | ---: |
 | 곱셈 | `O(N^2)` | `O(N log N)` |
-| 미분/적분 | `O(N)` | `O(N)` |
+| 미분 / 현재 적분 | `O(N)` / `O(N log MOD)` | 역원 전처리 시 적분 `O(N)` |
 | 역원 | `O(N^2)` 또는 그 이상 | `O(N log N)` 수준 |
 | log | 곱셈/역원 비용 포함 | NTT 필요 |
 
 실제 FPS 라이브러리는 상수와 메모리 사용량도 큽니다. 문제 제한이 작으면 단순 polynomial DP가 더 낫습니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| `a[0] == 0`인데 역원 계산 | inverse 불가능 | 상수항 확인 |
-| truncate를 안 함 | 시간/메모리 폭증 | 모든 연산 뒤 `resize(n)` |
-| 적분에서 modular inverse 누락 | 계수 오답 | `(i+1)^{-1}` 곱 |
-| mod가 NTT friendly가 아님 | NTT 오답 | mod/root 세트 확인 |
-| 작은 입력에 과한 FPS 구현 | 복잡도 손해 | 단순 DP와 비교 |
-| 계수 차수와 배열 index 혼동 | 한 칸 밀림 | `a[i]`는 `x^i` 계수 |

@@ -2,6 +2,9 @@
 
 POMCP(Partially Observable Monte Carlo Planning)는 POMDP를 belief table 전체로 풀지 않고, particle belief와 UCT 탐색을 결합해 online action을 고르는 방법입니다. PBVI가 대표 belief point에서 value function을 근사한다면, POMCP는 현재 belief에서 simulation tree를 키워 다음 행동을 고릅니다.
 
+
+각 simulation은 현재 root belief에서 상태를 새로 뽑아 시작합니다. rollout policy도 관측 가능한 history로 행동해야 하며 숨은 상태를 직접 이용하지 않습니다. 실제 관측 뒤 particle이 소진되면 모델에 맞는 보강이 필요합니다.
+
 ## 문제 신호
 
 | 문제 표현 | POMCP 관점 |
@@ -39,35 +42,7 @@ belief particles:
 
 아래 코드는 history node에서 action을 고르는 UCT 부분만 분리한 skeleton입니다.
 
-```cpp compile-check
-#include <cmath>
-#include <limits>
-#include <vector>
-using namespace std;
-
-struct ActionStats {
-    int visits = 0;
-    double valueSum = 0.0;
-};
-
-int selectUctAction(const vector<ActionStats>& actions, int parentVisits, double exploration) {
-    int bestAction = -1;
-    double bestScore = -numeric_limits<double>::infinity();
-    for (int action = 0; action < (int)actions.size(); ++action) {
-        if (actions[action].visits == 0) {
-            return action;
-        }
-        double mean = actions[action].valueSum / actions[action].visits;
-        double bonus = exploration * sqrt(log((double)parentVisits) / actions[action].visits);
-        double score = mean + bonus;
-        if (score > bestScore) {
-            bestScore = score;
-            bestAction = action;
-        }
-    }
-    return bestAction;
-}
-```
+UCT의 보상 평균+탐색 항은 [Monte Carlo Tree Search](https://h.readiz.com/learn/probabilistic-decision-ai/monte-carlo-tree-search)을 재사용합니다. POMCP에서는 같은 history의 action 통계를 사용하며, 한 플레이어의 할인 return을 누적하므로 플레이어 교대 보상 반전은 적용하지 않습니다.
 
 POMCP 전체 구현에서는 action 이후 simulator가 next state, observation, reward를 반환하고, observation별 child history로 내려갑니다.
 
@@ -79,7 +54,9 @@ simulate(state s, history h, depth d):
   if h not in tree: expand h and rollout from s
   choose action a by UCT at h
   simulator samples (s', observation o, reward r)
-  return r + gamma * simulate(s', h+a+o, d+1)
+  R = r + gamma * simulate(s', h+a+o, d+1)
+  N(h)++, N(h,a)++, valueSum(h,a) += R
+  return R
 ```
 
 tree policy는 방문한 history에서만 쓰고, 처음 보는 history는 rollout policy로 값을 추정합니다.
@@ -119,12 +96,3 @@ new root: h+a+o
 ```
 
 새 root의 particle이 부족하면 rejection sampling이나 particle reinvigoration으로 채웁니다. 이 단계가 약하면 belief가 빈약해져 탐색이 한쪽으로 쏠립니다.
-
-## 자주 하는 실수
-
-1. node를 hidden state로 만들어 partial observability를 잃는다.
-2. observation probability와 particle resampling을 무시한다.
-3. rollout policy가 너무 나빠 모든 action value가 noise가 된다.
-4. exploration constant를 보상 scale과 맞추지 않는다.
-5. root update 후 particle을 보강하지 않아 belief collapse가 난다.
-6. 정확한 judge 문제에 sampling planner를 사용한다.

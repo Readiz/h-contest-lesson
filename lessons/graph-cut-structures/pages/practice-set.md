@@ -109,11 +109,3 @@ for seed in 1..1000:
 ### Karger Repetition Experiment
 
 cycle graph와 complete graph에서 Karger contraction을 여러 seed로 반복하고, trial 수가 늘어날 때 best cut 값이 어떻게 안정되는지 확인합니다.
-
-## 제출 전 체크리스트
-
-- `s-t`, global, all-pairs, family, threshold 중 어떤 모델인지 명시했는가?
-- 무향/방향 조건을 확인했는가?
-- disconnected graph의 global min cut 값 0을 처리했는가?
-- Gomory-Hu 질의에서 path sum이 아니라 path minimum을 썼는가?
-- randomized 풀이를 쓴다면 반복 횟수와 seed 정책을 설명했는가?

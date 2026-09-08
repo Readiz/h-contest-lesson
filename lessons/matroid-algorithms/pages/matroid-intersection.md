@@ -8,6 +8,9 @@ Matroid Intersection은 두 개의 독립성 조건을 동시에 만족하는 �
 2. 두 독립성 조건이 모두 matroid 교환 성질을 가지는지 확인한다.
 3. exchange graph에서 augmenting path를 찾아 선택 집합을 뒤집는다.
 
+
+예시의 색상 제한은 red 1개·blue 1개라 현재 크기 2가 이미 최대입니다. 나열한 교환 가능성이 곧 증가 경로의 존재를 뜻하지 않습니다. 임의 DFS 경로를 뒤집는 대신 최단 증가 경로 조건을 사용합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Matroid Intersection 관점 |
@@ -18,7 +21,7 @@ Matroid Intersection은 두 개의 독립성 조건을 동시에 만족하는 �
 | 단순 greedy가 앞 선택 때문에 막힌다 | exchange path 필요 |
 | 최대 크기뿐 아니라 가중치 확장이 보인다 | weighted matroid intersection 후보 |
 
-Matroid는 모든 부분집합이 독립이고, 작은 독립 집합은 큰 독립 집합의 어떤 원소를 받아 더 커질 수 있다는 교환 성질을 가집니다. 이 성질 덕분에 augmenting path 기반 알고리즘이 맞습니다.
+Matroid는 독립 집합의 모든 부분집합도 독립이고, 작은 독립 집합은 큰 독립 집합의 어떤 원소를 받아 더 커질 수 있다는 교환 성질을 가집니다. 이 성질 덕분에 augmenting path 기반 알고리즘이 맞습니다.
 
 ## 핵심 모델
 
@@ -32,7 +35,7 @@ M1에서 x를 넣으려면 어떤 y in S를 빼야 하는가?
 M2에서 x를 넣으려면 어떤 y in S를 빼야 하는가?
 ```
 
-이 질문들의 답을 방향 그래프로 만들면 exchange graph가 됩니다. 시작점은 `S + x`가 `M1`에서 바로 독립인 원소이고, 도착점은 `S + x`가 `M2`에서 바로 독립인 원소입니다. 시작점에서 도착점까지 가는 경로가 있으면, 그 경로의 원소 선택 여부를 뒤집어 `|S|`를 1 늘립니다.
+이 질문들의 답을 방향 그래프로 만들면 exchange graph가 됩니다. 시작점은 `S + x`가 `M1`에서 바로 독립인 원소이고, 도착점은 `S + x`가 `M2`에서 바로 독립인 원소입니다. 시작점에서 도착점까지 BFS로 간선 수가 가장 적은 증가 경로를 찾으면, 그 경로의 원소 선택 여부를 뒤집어 `|S|`를 1 늘립니다.
 
 ## 작은 예시
 
@@ -74,15 +77,7 @@ e4: 3-4, blue
 | --- | ---: |
 | exchange graph 후보 쌍 | `O(|E| * |S|)` |
 | 독립성 oracle 1회 | matroid 종류에 따라 다름 |
-| augmenting path 1회 | graph BFS/DFS |
+| augmenting path 1회 | 최단 증가 경로 BFS |
 | 총 증가 횟수 | 최대 rank |
 
 순진하게 매번 oracle을 rebuild하면 `O(r * |E| * r * oracle)`이 됩니다. 대회에서는 partition/graphic/linear처럼 oracle을 빠르게 만들 수 있는 구조가 있는지 먼저 봐야 합니다.
-
-## 자주 하는 실수
-
-1. 두 조건이 matroid인지 확인하지 않고 이 모델을 적용한다.
-2. exchange graph의 방향을 양쪽 matroid에서 같은 방향으로 만든다.
-3. 선택 집합을 뒤집을 때 path의 inside/outside 원소를 반대로 처리한다.
-4. graphic matroid에서 multi-edge와 self-loop를 빠뜨린다.
-5. weighted 문제를 unweighted augmenting path로 풀려고 한다.

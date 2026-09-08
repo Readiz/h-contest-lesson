@@ -2,6 +2,9 @@
 
 Robust Delaunay는 Delaunay triangulation을 구현하거나 검증할 때 orientation, incircle, degeneracy 처리를 안정화하는 레슨입니다. Voronoi-Delaunay의 개념을 알아도 실제 좌표 문제에서는 거의 같은 점, 같은 원 위 점, collinear case가 답을 흔듭니다.
 
+
+네 점의 incircle 판정만으로 전역 Delaunay 간선 여부를 확정하지 않습니다. 삼각분할의 인접·볼록성 조건과 다른 점들의 빈 원 조건이 함께 필요합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Robust Delaunay 관점 |
@@ -29,33 +32,7 @@ orientation 부호가 바뀌면 incircle 부호 convention도 바뀝니다. 따�
 
 좌표가 정수이고 범위가 작다면 `__int128` determinant로 predicate를 안정화할 수 있습니다.
 
-```cpp compile-check
-#include <cstdint>
-using namespace std;
-
-struct Point {
-    long long x = 0;
-    long long y = 0;
-};
-
-__int128 cross(Point a, Point b, Point c) {
-    __int128 x1 = b.x - a.x;
-    __int128 y1 = b.y - a.y;
-    __int128 x2 = c.x - a.x;
-    __int128 y2 = c.y - a.y;
-    return x1 * y2 - y1 * x2;
-}
-
-int sign128(__int128 value) {
-    if (value < 0) return -1;
-    if (value > 0) return 1;
-    return 0;
-}
-
-int orientation(Point a, Point b, Point c) {
-    return sign128(cross(a, b, c));
-}
-```
+orientation은 [Robust Geometry Predicates](https://h.readiz.com/learn/geometry-robustness-and-duality/robust-geometry-predicates)의 정수 구현을 사용합니다. incircle은 4차식이므로 좌표 범위에 따라 128비트보다 큰 정확 연산이 필요할 수 있습니다.
 
 incircle determinant는 좌표 제곱이 들어가므로 overflow 여유를 더 크게 잡아야 합니다. 좌표가 `1e9`급이면 `__int128`로도 중간식 설계를 조심해야 합니다.
 
@@ -72,13 +49,7 @@ if d is inside circumcircle(a,b,c):
 
 ## 작은 예시
 
-```text
-a=(0,0), b=(2,0), c=(0,2)
-circumcircle center=(1,1), radius^2=2
-d=(1,1)
-```
-
-`d`는 원 내부이므로 edge flip 후보입니다. 반면 `d=(2,2)`는 같은 원 위에 있습니다. 이때 flip을 할지 말지는 Delaunay가 unique하지 않은 degeneracy case라서, 구현 전체에서 일관된 tie policy를 써야 합니다.
+공유 대각선 a=(0,0), b=(2,0)에 대해 c=(0,2), d=(1,-0.1)은 반대쪽에 있고 사각형을 이룹니다. d는 abc의 외접원 내부이므로 ab를 cd로 바꾸는 flip 후보입니다. d=(1,1-sqrt(2))이면 같은 원 위의 경우가 되어 tie 규칙을 정해야 합니다. 실제 flip은 인접한 두 삼각형이 볼록 사각형을 이루는지까지 확인합니다.
 
 ## Degeneracy 처리
 
@@ -113,12 +84,3 @@ construction: circumcenter coordinate, edge length, angle
 | Library use | 실전 서비스/연구에서는 가장 안전 |
 
 대회에서 직접 Delaunay를 짜야 한다면 입력 제약이 강한지 먼저 확인합니다. 제약이 약하면 문제 의도가 다른 변환일 가능성도 큽니다.
-
-## 자주 하는 실수
-
-1. triangle 방향을 통일하지 않고 incircle 부호를 해석한다.
-2. cocircular case에서 flip을 계속 반복한다.
-3. duplicate point를 남겨 zero-area triangle을 만든다.
-4. EPS로 predicate와 construction을 동시에 처리한다.
-5. super triangle의 가짜 vertex가 최종 edge에 남는다.
-6. Delaunay graph가 MST의 superset이라는 성질만 필요할 때 전체 triangulation을 구현한다.

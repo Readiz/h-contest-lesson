@@ -2,6 +2,9 @@
 
 조합론 문제는 "몇 가지 방법이 있는가"를 세는 문제입니다. 가장 자주 나오는 도구는 `nCr`이고, 조건을 만족하지 않는 경우를 빼는 포함-배제, 큰 `n`을 작은 자리로 쪼개는 Lucas 정리까지 이어집니다.
 
+
+factorial 방식은 소수 p에 대해 `0<=maxN<p`이며 질의 n은 전처리 범위 안이어야 합니다. Lucas는 자릿수 조합을 위해 p보다 작은 범위를 준비하므로 큰 p 전체를 전처리할 수는 없습니다. 포함·배제의 상자는 서로 구분되는 상자입니다.
+
 ## `nCr`의 의미
 
 `nCr`은 서로 다른 `n`개 중에서 순서 없이 `r`개를 고르는 경우의 수입니다.
@@ -57,6 +60,16 @@ struct Combination {
         return fact[n] * invFact[r] % mod * invFact[n - r] % mod;
     }
 };
+
+long long lucas(long long n, long long r, const Combination& small) {
+    if (n < 0 || r < 0 || r > n) return 0;
+    long long answer = 1, p = small.mod;
+    while (n || r) {
+        answer = answer * small.nCr(n % p, r % p) % p;
+        n /= p; r /= p;
+    }
+    return answer;
+}
 ```
 
 전처리는 `O(N + log MOD)`, 각 질의는 `O(1)`입니다. `MOD`가 소수일 때 Fermat 역원을 쓴다는 조건을 잊으면 안 됩니다.
@@ -104,24 +117,7 @@ answer = sum_{i=0..k} (-1)^i * C(k, i) * (k - i)^n
 
 모듈러에서 빼기가 반복되므로 음수 정규화가 중요합니다.
 
-```cpp compile-check
-long long normalize(long long x, long long mod) {
-    x %= mod;
-    if (x < 0) {
-        x += mod;
-    }
-    return x;
-}
-
-long long addSigned(long long current, long long term, int sign, long long mod) {
-    if (sign > 0) {
-        current += term;
-    } else {
-        current -= term;
-    }
-    return normalize(current, mod);
-}
-```
+각 항을 `[0,mod)`로 정규화한 뒤 더하거나 빼고 다시 정규화합니다. 위 구현의 곱셈은 `p<=2*10^9`를 전제로 합니다.
 
 포함-배제 문제는 부호보다 "무엇을 위반한 것으로 고를지"가 더 중요합니다. 조건 집합을 고르고, 그 조건들이 동시에 위반될 때 남는 자유도를 계산하는 식으로 접근합니다.
 
@@ -140,60 +136,7 @@ C(n, r) mod p = product C(ni, ri) mod p
 
 각 자리의 `ri > ni`이면 그 자리 조합이 0이므로 전체도 0입니다.
 
-```cpp compile-check
-#include <vector>
-using namespace std;
-
-long long modPow(long long base, long long exp, long long mod) {
-    long long result = 1 % mod;
-    base %= mod;
-    while (exp > 0) {
-        if (exp & 1LL) result = result * base % mod;
-        base = base * base % mod;
-        exp >>= 1LL;
-    }
-    return result;
-}
-
-struct LucasCombination {
-    long long p;
-    vector<long long> fact;
-    vector<long long> invFact;
-
-    explicit LucasCombination(long long primeMod) : p(primeMod), fact(primeMod), invFact(primeMod) {
-        fact[0] = 1;
-        for (int i = 1; i < (int)p; ++i) {
-            fact[i] = fact[i - 1] * i % p;
-        }
-        invFact[p - 1] = modPow(fact[p - 1], p - 2, p);
-        for (int i = (int)p - 1; i >= 1; --i) {
-            invFact[i - 1] = invFact[i] * i % p;
-        }
-    }
-
-    long long smallCr(long long n, long long r) const {
-        if (r < 0 || r > n) {
-            return 0;
-        }
-        return fact[n] * invFact[r] % p * invFact[n - r] % p;
-    }
-
-    long long nCr(long long n, long long r) const {
-        long long result = 1;
-        while (n > 0 || r > 0) {
-            long long ni = n % p;
-            long long ri = r % p;
-            if (ri > ni) {
-                return 0;
-            }
-            result = result * smallCr(ni, ri) % p;
-            n /= p;
-            r /= p;
-        }
-        return result;
-    }
-};
-```
+위 `lucas(n,r,small)`에 `Combination small(p-1,p)`를 전달합니다.
 
 이 구현은 `p` 크기만큼 배열을 만듭니다. `p`가 너무 크면 Lucas용 factorial 전처리 자체가 부담이므로 문제 제한을 먼저 봐야 합니다.
 
@@ -208,14 +151,3 @@ struct LucasCombination {
 | Lucas 질의 | `O(log_p n)` | 전처리 사용 |
 
 포함-배제는 조건 수가 크면 그대로 `2^k`를 돌 수 없습니다. 대칭성이 있으면 `C(k, i)`로 묶어 `O(k)` 공식으로 줄이는 것이 핵심입니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| `MOD`가 합성수인데 Fermat 역원 사용 | 역원 오답 | `MOD` 소수 여부 확인 |
-| `n >= MOD`인데 factorial 방식 사용 | factorial이 0이 되어 오답 | Lucas 또는 다른 방법 검토 |
-| 포함-배제 부호 반대 | 전체적으로 틀린 답 | 작은 예제를 직접 세기 |
-| 빼기 후 음수 방치 | 음수 출력 | normalize 적용 |
-| `nCr(n, r)`에서 `r < 0` 처리 누락 | 범위 밖 접근 | 불가능한 조합은 0 |
-| 조합과 순열을 혼동 | `r!` 배 차이 | 순서가 의미 있는지 확인 |

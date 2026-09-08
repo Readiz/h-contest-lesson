@@ -2,6 +2,9 @@
 
 Generating Function Modeling은 counting 문제나 DP 식을 계수열로 보고, 곱셈, 나눗셈, rational form으로 바꾸는 모델링 레슨입니다. Formal Power Series가 연산 도구를 다룬다면, 이 레슨은 문제 문장을 어떤 생성함수 식으로 번역할지에 집중합니다.
 
+
+무한 반복의 weight는 양수여야 합니다. `maxDegree>=0`이며 1/(1-A)의 형식적 급수는 A(0)=0일 때 정의됩니다. 다항식 곱셈은 [Formal Power Series](https://h.readiz.com/learn/polynomial-recurrence-algorithms/formal-power-series)의 multiplyTruncated를 사용하되 그 함수의 n은 최대 차수가 아닌 계수 개수이므로 maxDegree+1을 전달합니다.
+
 ## 문제 신호
 
 | 문제 표현 | 생성함수 관점 |
@@ -52,7 +55,7 @@ sequence of choices = 1 + A + A^2 + A^3 + ...
                    = 1 / (1 - A(x))
 ```
 
-이제 `S=6`은 `2+2+2`, `3+3`뿐 아니라 순서가 다른 `2+?` 조합까지 세는 방식이 됩니다. "조합"과 "수열"을 구분하지 않으면 가장 쉽게 틀립니다.
+S=6에서는 두 방식 모두 2입니다. 차이가 드러나는 S=5에서는 조합은 {2,3} 하나지만 수열은 (2,3), (3,2) 두 개입니다.
 
 ## DP와 생성함수의 연결
 
@@ -75,29 +78,8 @@ dp[s] += dp[s - w]
 아래 코드는 필요한 차수까지만 다항식을 곱합니다.
 
 ```cpp compile-check
-#include <algorithm>
 #include <vector>
 using namespace std;
-
-const long long MOD_GEN_FUNC = 998244353;
-
-vector<long long> multiplyTruncated(
-    const vector<long long>& left,
-    const vector<long long>& right,
-    int maxDegree
-) {
-    vector<long long> result(maxDegree + 1, 0);
-    for (int i = 0; i < (int)left.size() && i <= maxDegree; ++i) {
-        if (left[i] == 0) {
-            continue;
-        }
-        int limit = min((int)right.size() - 1, maxDegree - i);
-        for (int j = 0; j <= limit; ++j) {
-            result[i + j] = (result[i + j] + left[i] * right[j]) % MOD_GEN_FUNC;
-        }
-    }
-    return result;
-}
 
 vector<long long> unboundedChoicePolynomial(int weight, int maxDegree) {
     vector<long long> poly(maxDegree + 1, 0);
@@ -158,11 +140,3 @@ DP로 풀 수도 있고, `n`이 매우 크면 recurrence로 풀 수도 있습니
 | 조건이 여러 변수 | multivariate는 피하고 상태 DP로 압축 검토 |
 
 변수가 두 개 이상이면 식은 예뻐져도 구현이 급격히 어려워집니다. 대회에서는 한 변수를 계수로 두고 나머지는 DP state로 남기는 혼합 모델이 자주 더 실용적입니다.
-
-## 자주 하는 실수
-
-1. 순서 있는 경우와 순서 없는 경우의 생성함수를 섞는다.
-2. `x`가 나타내는 값을 중간에 바꾼다.
-3. `1/(1-x^w)`를 무한히 펼치려다가 필요한 차수 truncate를 잊는다.
-4. rational form이 나왔는데 분모 차수와 초기항 index를 맞추지 않는다.
-5. negative coefficient나 subtraction이 있는 식에서 모듈러 정규화를 빼먹는다.

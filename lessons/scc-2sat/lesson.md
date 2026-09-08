@@ -71,7 +71,6 @@ using namespace std;
 struct SCCResult {
     int componentCount;
     vector<int> componentOf;
-    vector<vector<int>> components;
 };
 
 void dfsOrder(int u, const vector<vector<int>>& graph, vector<int>& visited, vector<int>& order) {
@@ -111,7 +110,7 @@ SCCResult kosaraju(const vector<vector<int>>& graph) {
             ++componentCount;
         }
     }
-    return {componentCount, comp, {}};
+    return {componentCount, comp};
 }
 
 struct TwoSat {
@@ -155,11 +154,9 @@ struct TwoSat {
 
 ## 값을 실제로 정해야 할 때
 
-만족 가능 여부만 묻는 문제도 있지만, 실제 변수 값을 하나 출력해야 하는 문제도 있습니다. SCC 번호가 위상 순서와 어떤 방향으로 매겨졌는지에 따라 비교식이 달라질 수 있으므로 구현마다 확인해야 합니다.
+위 구현은 압축 DAG의 출발 쪽 SCC에 작은 번호를 줍니다. 만족 가능한 경우 변수 `i`의 값은 `comp[2*i] < comp[2*i+1]`로 정합니다. 예를 들어 절 `(x or x)`는 `false -> true`를 만들므로 이 식이 true를 반환합니다. 다른 SCC 구현을 가져오면 번호 방향도 다시 확인합니다.
 
-Kosaraju를 위 코드처럼 종료 순서 역순으로 두 번째 DFS를 돌리면, 앞쪽 SCC부터 번호가 작게 붙습니다. 일반적으로는 `comp[false]`와 `comp[true]`의 위상 순서 관계로 값을 정합니다. 불안하면 압축 DAG를 만들고 역위상 순서로 값을 배정하는 방식이 더 명시적입니다.
-
-입문 단계에서는 먼저 만족 가능성 판정까지 정확히 익히고, 값 복원은 문제 요구가 있을 때 SCC 번호 방향을 작은 예제로 검증하세요.
+재귀 DFS는 일자 그래프에서 깊이가 `V`까지 늘어나므로 큰 입력에서는 명시적 스택을 사용합니다.
 
 ## 시간 복잡도
 
@@ -171,14 +168,3 @@ Kosaraju를 위 코드처럼 종료 순서 역순으로 두 번째 DFS를 돌리
 | 2-SAT 판정 | `O(variable + C)` | `O(variable + C)` |
 
 2-SAT에서 정점 수는 변수 수의 2배이고, 절 하나는 implication 간선 2개가 됩니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 일반 연결 요소처럼 무방향으로 처리 | 방향성 손실 | 반드시 방향 그래프 DFS 사용 |
-| reversed graph를 만들지 않음 | Kosaraju 두 번째 단계 실패 | 모든 간선 `u -> v`를 `v -> u`로 뒤집기 |
-| 2-SAT에서 `x or y`를 `x -> y`로 잘못 변환 | 전혀 다른 조건 | `!x -> y`, `!y -> x` 사용 |
-| 변수와 부정 번호를 일관되지 않게 매핑 | 모순 판정 오류 | `x ^ 1`로 부정이 되게 번호 설계 |
-| 값 복원에서 SCC 번호 방향을 착각 | 만족하지 않는 배정 출력 | 작은 식으로 comp 순서 검증 |
-| 재귀 DFS 깊이 초과 | 런타임 에러 | 입력이 크면 반복 DFS 또는 스택 제한 검토 |

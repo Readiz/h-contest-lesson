@@ -8,6 +8,9 @@ Dual Averaging은 online convex optimization에서 매 라운드 gradient를 바
 2. 누적 gradient에 regularizer를 더한 surrogate를 최소화한다.
 3. simplex, box, ball 같은 feasible set에 맞는 closed form update를 고른다.
 
+
+actionCount>0, loss 벡터 길이 일치, eta>=0과 유한 누적 손실을 전제로 합니다. 반환값은 모든 관측 뒤 다음 라운드의 분포입니다. 실수 exp는 underflow로 0이 될 수 있으므로 수학적으로 양수라는 사실과 구분합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Dual Averaging 관점 |
@@ -69,7 +72,7 @@ vector<double> dualAveragingSimplex(
             cumulative[i] += loss[i];
         }
 
-        double maxLogWeight = -1e100;
+        double maxLogWeight = -eta * cumulative[0];
         vector<double> logWeight(actionCount);
         for (int i = 0; i < actionCount; ++i) {
             logWeight[i] = -eta * cumulative[i];
@@ -143,12 +146,3 @@ relaxed oracle solve -> new primal decision
 ```
 
 이 관점은 Lagrangian relaxation에서 단일 `lambda` 이분 탐색이 어려울 때 유용합니다.
-
-## 자주 하는 실수
-
-1. bandit feedback인데 모든 action의 loss를 안다고 가정한다.
-2. exponential update에서 overflow 방지를 하지 않는다.
-3. loss scale에 비해 learning rate를 너무 크게 둔다.
-4. feasible set이 simplex가 아닌데 softmax update를 그대로 쓴다.
-5. gradient를 누적해야 하는데 현재 gradient만 사용해 mirror descent와 섞는다.
-6. regularizer가 만드는 bias를 해석하지 않고 답안에 넣는다.

@@ -46,7 +46,7 @@ struct PersistentLazySegmentTree {
     vector<Node> nodes;
 
     explicit PersistentLazySegmentTree(int n) : n(n) {
-        nodes.reserve(n * 40);
+        // 필요한 노드는 build와 update에서 생성한다.
     }
 
     int newNode() {
@@ -120,39 +120,23 @@ struct PersistentLazySegmentTree {
         return cur;
     }
 
-    long long rangeSum(int idx, int left, int right, int queryLeft, int queryRight) {
+    long long rangeSum(int idx, int left, int right, int queryLeft, int queryRight, long long carry = 0) const {
         if (queryRight <= left || right <= queryLeft) {
             return 0;
         }
         if (queryLeft <= left && right <= queryRight) {
-            return nodes[idx].sum;
+            return nodes[idx].sum + carry * (right - left);
         }
 
-        push(idx, left, right);
+        carry += nodes[idx].lazy;
         int mid = (left + right) / 2;
-        return rangeSum(nodes[idx].left, left, mid, queryLeft, queryRight)
-            + rangeSum(nodes[idx].right, mid, right, queryLeft, queryRight);
+        return rangeSum(nodes[idx].left, left, mid, queryLeft, queryRight, carry)
+            + rangeSum(nodes[idx].right, mid, right, queryLeft, queryRight, carry);
     }
 };
 ```
 
-주의할 점은 `rangeSum`에서 `push`가 node를 바꾸는 구현이라는 점입니다. 완전한 read-only query가 필요하면 query 중 lazy carry를 인자로 넘기는 방식으로 바꾸는 편이 더 엄격합니다.
-
-## Read-only Query 변형
-
-과거 version을 질의하는 작업이 tree를 바꾸면 디버깅이 어려울 수 있습니다. 이때는 query에서 lazy를 내려보내지 않고 누적 lazy를 들고 갑니다.
-
-```text
-query(node, l, r, ql, qr, carryLazy)
-```
-
-완전히 포함된 구간에서는:
-
-```text
-return node.sum + carryLazy * (r-l)
-```
-
-부분 겹침에서는 `carryLazy + node.lazy`를 자식으로 넘깁니다. 이 방식은 query가 node를 clone하지 않으므로 순수합니다.
+질의는 조상 lazy를 `carry`로 전달하므로 노드 생성이나 변경을 하지 않습니다. 완전히 포함된 구간은 저장 합에 조상 증가량만 더합니다. `build(0, n, values)`로 `n >= 1`인 초기 루트를 만들고, 각 갱신 반환 루트를 별도로 저장합니다. 구간은 `[0,n)` 내부의 반열린 구간이며 합·곱은 정수 범위 안이어야 합니다.
 
 ## 메모리 계산
 
@@ -186,11 +170,3 @@ return node.sum + carryLazy * (r-l)
 | version root 저장 | `O(1)` |
 
 lazy propagation이 있어도 segment tree의 높이는 유지됩니다.
-
-## 자주 하는 실수
-
-1. 기존 node에 lazy를 직접 더해 과거 version을 깨뜨린다.
-2. `push`에서 자식을 clone하지 않는다.
-3. query가 node를 바꾸는 구현인데 read-only라고 착각한다.
-4. node pool 크기를 point update 기준으로 너무 작게 잡는다.
-5. range boundary를 `[l, r]`와 `[l, r)`로 섞는다.

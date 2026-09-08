@@ -2,6 +2,9 @@
 
 Randomized Min Cut은 Karger contraction처럼 무작위 edge 수축을 반복해 무향 그래프의 global min cut을 찾는 그래프 레슨입니다. Stoer-Wagner가 결정적 알고리즘이라면, Karger 계열은 구현이 짧고 확률 증폭으로 성공률을 높이는 randomized 접근입니다.
 
+
+각 trial은 간선 인스턴스의 균등 무작위 순열을 훑습니다. 이미 수축된 내부 간선은 계속 내부 간선이므로 건너뛰어도 남은 crossing edge의 균등 선택과 같습니다. 빈·비연결 입력도 유한 시간에 0을 반환합니다. trial 비용은 O(N+M alpha(N)), 저장은 O(N+M)입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Randomized Min Cut 관점 |
@@ -89,16 +92,16 @@ struct KargerEdge {
 };
 
 int kargerTrial(int n, const vector<KargerEdge>& edges, mt19937& rng) {
+    if (n <= 1) return 0;
     KargerDsu dsu(n);
     int components = n;
-    uniform_int_distribution<int> pick(0, (int)edges.size() - 1);
-
-    while (components > 2) {
-        const KargerEdge& edge = edges[pick(rng)];
-        if (dsu.unite(edge.u, edge.v)) {
-            --components;
-        }
+    vector<KargerEdge> shuffled=edges;
+    shuffle(shuffled.begin(),shuffled.end(),rng);
+    for (const auto& edge : shuffled) {
+        if (components <= 2) break;
+        if (dsu.unite(edge.u,edge.v)) --components;
     }
+    if (components > 2) return 0;
 
     int cut = 0;
     for (const KargerEdge& edge : edges) {
@@ -157,11 +160,3 @@ contraction은 graph를 단순화하지만 모든 cut을 보존하지는 않습�
 | Gomory-Hu Tree | pair cut query 가능 | 여러 max-flow 필요 |
 
 정답 보장이 필요한 문제에서는 Stoer-Wagner를 먼저 검토합니다. Karger는 randomized가 허용되거나 그래프가 작아 반복이 충분할 때 유효합니다.
-
-## 자주 하는 실수
-
-1. directed graph에 contraction min cut을 적용한다.
-2. self-loop를 cut edge로 세어 답을 크게 만든다.
-3. 한 번의 trial 결과만 믿고 제출한다.
-4. weighted edge를 단순 unweighted edge처럼 처리한다.
-5. 난수 seed가 고정되지 않아 디버깅 재현이 어렵다.

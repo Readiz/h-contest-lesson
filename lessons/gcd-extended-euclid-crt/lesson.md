@@ -2,6 +2,9 @@
 
 정수론 문제는 나눗셈, 나머지, 약수, 소수, 합동식을 정확히 다루는 문제입니다. 모듈러 연산을 익힌 뒤에는 `gcd`, 확장 유클리드 알고리즘, CRT, 소수 전처리로 자연스럽게 확장됩니다.
 
+
+`gcdLong` 입력은 LLONG_MIN을 제외하며 gcd(0,0)=0으로 정합니다. extendedGcd는 비음수 입력, 역원은 mod>1, CRT는 양수 modulus와 long long에 들어가는 lcm을 전제로 합니다. 곱의 중간값은 __int128로 계산합니다. SPF 분해는 `1<=x<spf.size()` 범위에서만 호출합니다.
+
 ## GCD와 유클리드 알고리즘
 
 `gcd(a, b)`는 `a`와 `b`를 모두 나누는 가장 큰 양의 정수입니다. 유클리드 알고리즘은 아래 성질을 이용합니다.
@@ -33,23 +36,7 @@ long long gcdLong(long long a, long long b) {
 a*x + b*y = gcd(a, b)
 ```
 
-```cpp compile-check
-struct EGResult {
-    long long gcd;
-    long long x;
-    long long y;
-};
-
-EGResult extendedGcd(long long a, long long b) {
-    if (b == 0) {
-        return {a, 1, 0};
-    }
-    EGResult next = extendedGcd(b, a % b);
-    long long x = next.y;
-    long long y = next.x - (a / b) * next.y;
-    return {next.gcd, x, y};
-}
-```
+확장 유클리드와 정규화 함수는 아래 CRT 구현에 한 번만 둡니다.
 
 `a`와 `mod`가 서로소이면 `a*x + mod*y = 1`입니다. 따라서 `a*x = 1 mod mod`가 되어 `x`가 `a`의 모듈러 역원입니다.
 
@@ -57,33 +44,7 @@ EGResult extendedGcd(long long a, long long b) {
 
 Fermat 역원은 mod가 소수일 때만 바로 쓸 수 있습니다. mod가 합성수일 수 있으면 `gcd(a, mod) == 1`인지 확인해야 합니다.
 
-```cpp compile-check
-struct EGResult {
-    long long gcd;
-    long long x;
-    long long y;
-};
-
-EGResult extendedGcd(long long a, long long b) {
-    if (b == 0) return {a, 1, 0};
-    EGResult next = extendedGcd(b, a % b);
-    return {next.gcd, next.y, next.x - (a / b) * next.y};
-}
-
-long long normalize(long long x, long long mod) {
-    x %= mod;
-    if (x < 0) x += mod;
-    return x;
-}
-
-long long inverseIfExists(long long a, long long mod) {
-    EGResult result = extendedGcd(a, mod);
-    if (result.gcd != 1) {
-        return -1;
-    }
-    return normalize(result.x, mod);
-}
-```
+역원은 아래 `inverseIfExists`를 재사용합니다. 역원이 없으면 -1을 반환합니다.
 
 역원이 없을 수 있다는 점이 중요합니다. `a`와 `mod`가 서로소가 아니면 나눗셈을 역원 곱셈으로 바꿀 수 없습니다.
 
@@ -124,6 +85,7 @@ struct CRTResult {
 };
 
 CRTResult mergeCRT(long long r1, long long m1, long long r2, long long m2) {
+    r1=normalize(r1,m1); r2=normalize(r2,m2);
     EGResult eg = extendedGcd(m1, m2);
     long long g = eg.gcd;
     long long diff = r2 - r1;
@@ -132,10 +94,15 @@ CRTResult mergeCRT(long long r1, long long m1, long long r2, long long m2) {
     }
 
     long long m2Reduced = m2 / g;
-    long long t = normalize((diff / g) * eg.x, m2Reduced);
+    long long t = normalize((long long)((__int128)(diff / g) * eg.x % m2Reduced), m2Reduced);
     long long lcm = m1 / g * m2;
-    long long remainder = normalize(r1 + m1 * t, lcm);
+    long long remainder = (long long)(((__int128)r1 + (__int128)m1 * t) % lcm);
     return {remainder, lcm, true};
+}
+
+long long inverseIfExists(long long a,long long mod) {
+    auto eg=extendedGcd(normalize(a,mod),mod);
+    return eg.gcd==1 ? normalize(eg.x,mod) : -1;
 }
 ```
 
@@ -197,14 +164,3 @@ vector<pair<int, int>> factorize(int x, const vector<int>& spf) {
 | 반복되는 약수/배수 질의 | sieve, divisor enumeration |
 
 mod가 소수가 아니면 "나누기"가 바로 되지 않는다는 점을 항상 먼저 확인합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 합성수 mod에서 Fermat 역원 사용 | 역원 오답 | mod가 소수인지 확인 |
-| `gcd(a, mod) != 1`인데 역원 계산 | 존재하지 않는 나눗셈 | extended gcd로 조건 확인 |
-| CRT에서 나머지 모순을 확인하지 않음 | 존재하지 않는 해 출력 | `(r2-r1) % gcd == 0` 검사 |
-| lcm 계산 overflow | 음수/잘못된 mod | `m1 / g * m2` 범위 확인 |
-| sieve에서 `i*i`를 int로 계산 | overflow | `1LL * i * i` |
-| 음수 나머지를 방치 | 출력 형식 오답 | normalize 사용 |

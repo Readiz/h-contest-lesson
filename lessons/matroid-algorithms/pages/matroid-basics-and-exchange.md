@@ -1,6 +1,9 @@
 # Matroid Basics and Exchange
 
-Matroid는 greedy가 맞는 독립성 구조를 추상화한 모델입니다. 모든 부분집합이 독립이고, 작은 독립 집합은 큰 독립 집합의 어떤 원소를 받아 더 커질 수 있다는 exchange 성질이 핵심입니다.
+Matroid는 greedy가 맞는 독립성 구조를 추상화한 모델입니다. 독립 집합의 모든 부분집합도 독립이고, 작은 독립 집합은 큰 독립 집합의 어떤 원소를 받아 더 커질 수 있다는 exchange 성질이 핵심입니다.
+
+
+최대 가중치 독립 집합은 음수 weight 원소를 건너뜁니다. 반드시 기저를 골라야 하는 문제는 최대 rank까지 채워야 하므로 음수도 필요할 수 있습니다. 단일 matroid의 가중치 문제 자체는 greedy 적용 대상입니다.
 
 ## 독립성 공리
 
@@ -32,7 +35,7 @@ Matroid는 greedy가 맞는 독립성 구조를 추상화한 모델입니다. �
 ```text
 sort elements by weight desc
 for e in sorted order:
-    if S + e is independent:
+    if weight(e) >= 0 and S + e is independent:
         add e
 ```
 
@@ -46,12 +49,9 @@ for e in sorted order:
 - pair 단위로만 선택할 수 있다.
 - 여러 independent set으로 전체를 나눠야 한다.
 - 이미 고른 원소를 빼고 다른 원소를 넣는 연쇄 교환이 필요하다.
-- weight가 있고 단순 cardinality augmenting이 아니다.
 
 이때부터 Matroid Intersection, Parity, Union 같은 reference 페이지로 내려갑니다.
 
-## 작은 반례 관점
+## 교환 공리가 깨지는 반례
 
-Matroid가 아닌 제약에서는 "무거운 것부터 넣기"가 쉽게 깨집니다. 예를 들어 정확히 두 원소를 골라야 하고 두 원소의 합이 특정 값 이하이어야 하는 제약은 부분집합 폐쇄성은 있어도 exchange 성질이 깨질 수 있습니다. 큰 독립 집합의 어떤 원소를 작은 집합에 넣어도 constraint가 복구되지 않는 경우가 생기기 때문입니다.
-
-문제를 matroid로 부르기 전에 작은 독립 집합 두 개를 만들어 exchange 성질을 손으로 확인하는 습관이 필요합니다.
+양수 크기 3,2,2인 원소 a,b,c에서 총 크기<=4인 집합을 독립이라고 둡니다. 부분집합 폐쇄성은 성립하지만 A={a}, B={b,c}에서 |A|<|B|이고 B의 어느 원소도 A에 추가할 수 없습니다. 따라서 matroid가 아닙니다. “정확히 2개” 조건은 애초에 빈 집합·부분집합 폐쇄성을 만족하지 않습니다.

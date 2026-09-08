@@ -2,6 +2,9 @@
 
 Cactus Representation은 여러 cut이나 biconnected 구조를 "각 edge가 하나의 cycle에만 속하는" 그래프로 압축해 보는 관점입니다. 특히 모든 global minimum cut을 compact하게 표현할 때 cactus가 등장하지만, 구현 난도 때문에 먼저 어떤 문제에서 cactus 모델이 필요한지 구분하는 것이 중요합니다.
 
+
+min-cut cactus의 통상적인 압축 표현은 global min-cut 값이 양수인 무향 그래프를 대상으로 합니다. 비연결 그래프의 0-cut family는 별도로 다룹니다. 아래 DFS는 cactus가 보장되고 self-loop가 없으며 무향 간선마다 고유 ID를 쓰는 입력에서 각 연결 성분에 한 번 실행합니다. 재귀 깊이는 N까지 늘어납니다.
+
 ## 문제 신호
 
 | 문제 표현 | Cactus 관점 |
@@ -152,13 +155,6 @@ edge 3-4는 bridge라서 모든 1쪽 정점과 5쪽 정점을 분리한다.
 
 입력이 cactus라고 보장되면 처리가 가벼워집니다. 일반 그래프에서 cactus representation을 만들어야 한다면 별도 이론이 필요합니다.
 
-## 자주 하는 실수
-
-1. cactus 입력 처리와 min cut cactus 구성을 같은 문제로 생각한다.
-2. vertex가 여러 cycle에 속할 수 있는 cactus 변형을 잘못 금지한다.
-3. edge가 두 cycle에 속하는지 검증하지 않는다.
-4. cycle 내부 거리에서 두 방향 중 하나만 본다.
-5. bridge tree로 압축해 cycle 내부 정보를 잃는다.
 
 ## Cut family의 분리 선택
 

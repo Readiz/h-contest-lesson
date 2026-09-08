@@ -28,12 +28,12 @@ Recurrence Guessing은 처음 몇 항만 만들어 낼 수 있을 때 "이 수�
 
 ## 몇 항이 필요한가
 
-차수 `K`의 선형 recurrence를 찾으려면 최소한 `2K`개 항이 필요합니다. 하지만 실제로는 검증용 holdout이 더 필요합니다.
+전체 수열이 차수 K 이하의 고정 선형 점화식을 따른다는 상한을 증명했다면 앞 2K항으로 BM 복원이 가능합니다. 상한이 없는 임의 수열에서는 항을 더 검사해도 미래를 보장하지 못합니다.
 
 | 목적 | 필요한 항 |
 | --- | ---: |
 | K차 후보를 맞춤 | 최소 `2K` |
-| 후보 검증 | `2K + 10` 이상 권장 |
+| 후보 검증 | 별도 holdout은 오류 탐지용이며 유한 개 검사만으로 무한 수열을 증명하지 못함 |
 | K를 모름 | 가능한 상한보다 넉넉히 |
 | noisy sequence | 이 방법 자체가 부적절 |
 
@@ -52,7 +52,7 @@ a[n] - 2*a[n-1] = 1
 상수항이 있으므로 상태에 1을 추가해야 한다.
 ```
 
-이 예시는 순수 homogeneous linear recurrence가 아닙니다. `b[n] = a[n] + 1`로 바꾸면 `b[n] = 2*b[n-1]`가 됩니다. 항이 맞아 보인다고 바로 BM에 넣기 전에 상수항, affine 전이, 주기성을 분리합니다.
+이 수열 자체도 a[n]=3a[n-1]-2a[n-2]라는 homogeneous 점화식을 따르므로 BM에 직접 넣을 수 있습니다. b[n]=a[n]+1로 바꾸면 차수 1로 줄어듭니다.
 
 ## Holdout 검증
 
@@ -108,7 +108,7 @@ state[n] = [a[n], 1]
 state[n] = [[3, 7], [0, 1]] * state[n-1]
 ```
 
-BM은 homogeneous recurrence를 찾으므로 affine 구조를 그대로 넣으면 더 높은 차수로 보이거나 검증에서 흔들릴 수 있습니다.
+고정 affine 전이는 상수 상태를 추가하면 고정 선형 전이가 됩니다. 따라서 원 수열을 BM에 넣어도 되며 차수 상한이 하나 커질 수 있습니다.
 
 ## Graph Walk와 Black-box 항 생성
 
@@ -143,11 +143,3 @@ a[n] = number of walks of length n from s to t
 | recurrence 존재 증명이 불명확 | 더 많은 holdout 또는 다른 모델 |
 
 실전에서는 BM으로 coeff를 찾고 Kitamasa로 `a_n`을 구하는 조합이 가장 흔합니다.
-
-## 자주 하는 실수
-
-1. 앞 `2K`개를 모두 fitting에 쓰고 검증 항을 남기지 않는다.
-2. 합성수 mod에서 field inverse가 필요한 알고리즘을 쓴다.
-3. affine recurrence를 homogeneous recurrence로 착각한다.
-4. 수열 index 기준을 `a_0`와 `a_1` 사이에서 섞는다.
-5. recurrence가 존재하는 이유를 설명하지 않고 추정 결과만 제출한다.

@@ -2,6 +2,9 @@
 
 Convex Cost Flow는 한 간선이나 선택 항목의 사용량이 늘수록 marginal cost가 증가하는 상황을 flow 모델로 표현하는 기법입니다. 일반 Min-Cost Flow는 edge cost가 단위 유량마다 일정하지만, convex cost는 단위별 비용을 여러 edge로 쪼개서 표현할 수 있습니다.
 
+
+누적 비용은 C(0)=0, 보낼 총 수요는 고정합니다. 아래 생성기는 비감소 marginal cost만 받습니다. 음수 marginal cost가 있으면 사용하는 MCF의 초기 음수 cycle 조건도 별도로 확인합니다. 비볼록 비용은 단순 edge split이나 음수 cycle 처리만으로 해결되지 않습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Convex Cost Flow 관점 |
@@ -38,6 +41,7 @@ u -> v (cap 1, cost 7)
 
 ```cpp compile-check
 #include <vector>
+#include <stdexcept>
 using namespace std;
 
 struct ConvexCostEdgeBuilder {
@@ -60,6 +64,7 @@ struct ConvexCostEdgeBuilder {
     }
 
     void addConvexUnits(int from, int to, const vector<long long>& marginalCosts) {
+        if (!isNondecreasing(marginalCosts)) throw invalid_argument("nonconvex cost");
         if (marginalCosts.empty()) {
             return;
         }
@@ -179,11 +184,3 @@ source -> B3 cap 1 cost 4
 | min-cost flow | 사용한 알고리즘과 edge 수에 의존 |
 
 convex cost를 무작정 unit edge로 쪼개면 edge 수가 폭발할 수 있습니다. marginal cost가 같은 구간을 합치거나, cost scaling/문제 특화 DP를 고려합니다.
-
-## 자주 하는 실수
-
-1. 누적 비용 `C(k)`를 edge cost로 넣고 marginal cost로 바꾸지 않는다.
-2. marginal cost가 감소하는데 convex라고 착각한다.
-3. 같은 cost 구간을 합치지 않아 edge 수가 너무 커진다.
-4. 음수 marginal cost가 있을 때 potential 초기화나 negative edge 처리를 빼먹는다.
-5. demand를 정확히 보내야 하는지, 최대한 많이 보내야 하는지 목적식을 혼동한다.

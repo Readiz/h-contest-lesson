@@ -31,6 +31,7 @@ Small-to-large: subtree 정보를 큰 쪽에 작은 쪽을 합치며 관리한�
 DFS로 정점을 처음 방문한 시간을 `tin[u]`, subtree를 빠져나온 직후를 `tout[u]`라고 합시다.
 
 ```cpp
+// 각 독립 예제의 vector는 사용 전에 정점 수 n으로 resize한다.
 int timer = 0;
 vector<int> tin, tout, order;
 
@@ -111,7 +112,7 @@ int lca(int a, int b) {
 }
 ```
 
-`LOG`는 `2^LOG > n`이 되도록 잡습니다. `n <= 200000`이면 `LOG = 20`보다 `19`가 딱 맞지만, 여유 있게 `20` 또는 `21`을 쓰는 식입니다.
+`LOG`는 `2^LOG > n`이 되도록 잡습니다. `n <= 200000`이면 `LOG = 20`보다 `18`이면 충분하지만, 여유 있게 `20` 또는 `21`을 쓰는 식입니다.
 
 루트의 부모는 보통 자기 자신으로 둡니다. 예를 들어 `root = 0`이면 아래처럼 호출합니다. 루트 부모를 `-1`로 둘 경우에는 `up[u][k]`를 계산할 때 `-1` 접근을 막는 별도 처리가 필요합니다.
 
@@ -194,7 +195,8 @@ best[c] + dist(u, c)
 
 ```cpp
 const int INF = 1e9;
-vector<int> best;
+vector<int> best; // best.assign(n, INF), centroidParent 루트는 -1
+// calcSize 전에 sub/blocked/centroidParent를 n칸 초기화한다.
 
 void paintRed(int x) {
     for (int c = x; c != -1; c = centroidParent[c]) {
@@ -321,14 +323,14 @@ void updatePath(int a, int b, long long delta) {
             swap(a, b);
         }
 
-        segmentTree.add(pos[head[a]], pos[a], delta);
+        segmentTree.rangeAdd(pos[head[a]], pos[a], delta);
         a = parent[head[a]];
     }
 
     if (depth[a] > depth[b]) {
         swap(a, b);
     }
-    segmentTree.add(pos[a], pos[b], delta);
+    segmentTree.rangeAdd(pos[a], pos[b], delta);
 }
 ```
 
@@ -360,6 +362,7 @@ subtree마다 색 종류 수, 값 빈도, 문자열 집합 같은 것을 모아�
 
 ```cpp
 vector<unordered_map<int, int>*> bag;
+vector<int> distinctCount; // n칸으로 초기화, 각 subtree의 답을 따로 보관
 
 void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const vector<int>& color) {
     int heavyChild = -1;
@@ -384,28 +387,16 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
         for (auto [key, value] : *bag[v]) {
             (*bag[u])[key] += value;
         }
+        delete bag[v]; // 하위 bag 포인터는 재사용하지 않는다.
+        bag[v] = nullptr;
     }
+    distinctCount[u] = (int)bag[u]->size();
 }
 ```
 
-각 원소는 자신보다 큰 컨테이너로 이동할 때마다 소속 컨테이너 크기가 적어도 두 배 가까이 커집니다. 그래서 전체 이동 횟수를 `O(n log n)` 수준으로 볼 수 있습니다.
+합쳐진 뒤 자식 bag의 내용은 부모에 흡수되므로 자식별 답은 `distinctCount`에서 읽습니다. 모든 작업이 끝나면 `delete bag[root]`로 마지막 map만 해제합니다. 중복 key가 합쳐져 사라지는 비용까지 상각하면 총 원소 처리량은 `O(n log n)`이며, unordered_map 연산은 평균 시간 기준입니다.
 
 실전에서는 메모리 관리가 번거로우면 포인터 대신 `vector<map<int, int>>`와 swap을 쓰기도 합니다.
-
-## 어떤 기법을 고를까
-
-| 필요한 작업 | 우선 후보 |
-| --- | --- |
-| subtree 업데이트/질의 | Euler Tour + Fenwick/Segment Tree |
-| 두 정점 거리만 빠르게 계산 | LCA |
-| 경로 합/최댓값/업데이트 | Heavy-Light Decomposition |
-| 동적 거리 후보 질의 | Centroid Decomposition |
-| subtree별 값 종류/빈도 집계 | small-to-large, DSU on tree |
-| 중요 정점 집합 위에서 DP | Virtual Tree |
-
-센트로이드 분할과 HLD는 둘 다 트리를 쪼개지만 목적이 다릅니다. 센트로이드 분할은 트리를 균형 있게 줄여 거리 후보를 압축하고, HLD는 경로를 배열 구간으로 압축합니다.
-
-정리하면, subtree는 Euler Tour, 경로는 HLD, 거리 후보는 센트로이드 분할로 먼저 분류하면 됩니다. 그 뒤 필요한 연산이 합인지 최댓값인지, 업데이트가 있는지에 따라 Fenwick Tree나 Segment Tree를 붙이면 됩니다.
 
 ## 시간 복잡도
 
@@ -416,11 +407,3 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
 | Centroid Decomposition | `O(n log n)` | 보통 `O(log n)` |
 | Heavy-Light Decomposition | `O(n)` | 경로당 `O(log^2 n)` 또는 구현에 따라 `O(log n)` |
 | small-to-large | 전체 `O(n log n)` 수준 | subtree 집계 문제에 따라 다름 |
-
-## 자주 하는 실수
-
-- Euler Tour에서 subtree 구간의 오른쪽 끝을 `tin[u] + sub[u] - 1`로 잡지 않습니다.
-- LCA 전처리 루프에서 없는 조상을 참조합니다.
-- HLD에서 간선 값을 더 깊은 정점 위치에 저장한다는 규칙을 잊습니다.
-- Centroid Decomposition의 "이미 제거한 centroid" 표시를 빼먹어 같은 정점을 다시 처리합니다.
-- small-to-large에서 작은 컨테이너를 큰 컨테이너로 합치지 않아 `O(n^2)`가 됩니다.

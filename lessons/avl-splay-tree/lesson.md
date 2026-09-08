@@ -2,7 +2,7 @@
 
 AVL Tree와 Splay Tree는 Treap과 같은 BST 계열이지만, 현재 기본 학습 트랙에서는 Treap을 먼저 봅니다. Treap은 `split`과 `merge` 구현이 짧고 order statistics나 implicit sequence로 확장하기 쉬워 대회 코드에서 바로 쓰기 좋습니다.
 
-이 문서는 Treap 이후에 "다른 균형 BST는 어떤 보장을 주는가"를 확인하는 참고 노트입니다. BST 기본 연산과 회전이 낯설다면 먼저 기본 트랙의 `Treap과 BST 기본`에서 BST 페이지를 봅니다.
+이 문서는 Treap 이후에 "다른 균형 BST는 어떤 보장을 주는가"를 확인하는 참고 노트입니다. BST 기본 연산과 회전이 낯설다면 먼저 [Treap과 BST 기본](https://h.readiz.com/learn/treap)을 봅니다.
 
 ## AVL Tree
 
@@ -80,6 +80,7 @@ AvlNode* rotateLeft(AvlNode* x) {
 }
 
 AvlNode* rebalance(AvlNode* node) {
+    if (!node) return nullptr;
     pull(node);
 
     if (balance(node) > 1) {
@@ -136,21 +137,7 @@ Splay는 노드 `x`를 root로 올릴 때 부모 `p`, 조부모 `g`의 위치에
   x                                        g
 ```
 
-Splay Tree는 구현에서 parent pointer를 쓰는 경우가 많습니다.
-
-```cpp
-struct SplayNode {
-    int key;
-    SplayNode* left;
-    SplayNode* right;
-    SplayNode* parent;
-
-    SplayNode(int key)
-        : key(key), left(nullptr), right(nullptr), parent(nullptr) {}
-};
-```
-
-회전할 때 child와 parent pointer를 모두 정확히 갱신해야 합니다. 그래서 구현 난이도는 Treap보다 높은 편입니다.
+회전할 때 자식과 부모 포인터를 함께 갱신합니다. Splay의 완성 예제는 [Link-Cut Tree](https://h.readiz.com/learn/link-cut-tree)의 `rotate`와 `splay`에 있습니다.
 
 ## Splay의 특징
 

@@ -2,6 +2,9 @@
 
 이 페이지는 robust predicate와 weighted Voronoi duality를 작은 입력에서 끝까지 따라가기 위한 연습을 모읍니다.
 
+
+입출력 코드는 [Robust Geometry Predicates](https://h.readiz.com/learn/geometry-robustness-and-duality/robust-geometry-predicates)의 공통 predicate 정의 뒤에 붙입니다.
+
 ## 로컬 완결형 연습
 
 ### Exact Segment Intersection
@@ -54,67 +57,8 @@ YES
 
 #### 구현 기준
 
-```cpp compile-check
-#include <algorithm>
+```cpp
 #include <iostream>
-using namespace std;
-
-struct Point {
-    long long x = 0;
-    long long y = 0;
-};
-
-int sign(__int128 value) {
-    if (value < 0) {
-        return -1;
-    }
-    if (value > 0) {
-        return 1;
-    }
-    return 0;
-}
-
-int orientation(Point a, Point b, Point c) {
-    __int128 x1 = (__int128)b.x - a.x;
-    __int128 y1 = (__int128)b.y - a.y;
-    __int128 x2 = (__int128)c.x - a.x;
-    __int128 y2 = (__int128)c.y - a.y;
-    return sign(x1 * y2 - y1 * x2);
-}
-
-bool between(long long left, long long right, long long value) {
-    if (left > right) {
-        swap(left, right);
-    }
-    return left <= value && value <= right;
-}
-
-bool onSegment(Point a, Point b, Point p) {
-    return orientation(a, b, p) == 0
-        && between(a.x, b.x, p.x)
-        && between(a.y, b.y, p.y);
-}
-
-bool intersects(Point a, Point b, Point c, Point d) {
-    int abC = orientation(a, b, c);
-    int abD = orientation(a, b, d);
-    int cdA = orientation(c, d, a);
-    int cdB = orientation(c, d, b);
-
-    if (abC == 0 && onSegment(a, b, c)) {
-        return true;
-    }
-    if (abD == 0 && onSegment(a, b, d)) {
-        return true;
-    }
-    if (cdA == 0 && onSegment(c, d, a)) {
-        return true;
-    }
-    if (cdB == 0 && onSegment(c, d, b)) {
-        return true;
-    }
-    return abC * abD < 0 && cdA * cdB < 0;
-}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -123,9 +67,9 @@ int main() {
     int queries;
     cin >> queries;
     while (queries-- > 0) {
-        Point a, b, c, d;
+        RobustPoint a, b, c, d;
         cin >> a.x >> a.y >> b.x >> b.y >> c.x >> c.y >> d.x >> d.y;
-        cout << (intersects(a, b, c, d) ? "YES" : "NO") << '\n';
+        cout << (segmentsIntersect(a, b, c, d) ? "YES" : "NO") << '\n';
     }
 }
 ```
@@ -137,17 +81,6 @@ int main() {
 3. collinear disjoint, collinear overlap, endpoint touch, duplicate point segment를 deterministic case로 둡니다.
 4. 좌표 범위를 키울 때는 cross product가 `__int128` 범위 안인지 계산합니다.
 
-### Weighted Boundary Trace
+### Power Cell 경계와 빈 Cell
 
-두 weighted site `A=(0,0,w=0)`, `B=(4,0,w=12)`의 power boundary를 전개합니다.
-
-```text
-|x-A|^2 - 0 = |x-B|^2 - 12
-=> x = 0.5
-```
-
-가중치가 없을 때의 경계 `x=2`와 비교하고, weight가 커질수록 어느 site의 cell이 넓어지는지 설명합니다.
-
-### Empty Cell Example
-
-세 weighted site를 만들어 한 site의 power cell이 비도록 합니다. 답안에는 각 boundary half-plane과, 왜 교집합이 비는지 쓰면 됩니다. full diagram 구현은 필요 없습니다.
+[Power Diagram](https://h.readiz.com/learn/geometry-robustness-and-duality/power-diagram)의 power 부등식을 사용합니다. A=(0,0,w=0), B=(4,0,w=12)의 경계는 x=0.5입니다. 여기에 C=(-4,0,w=20)를 추가하면 A가 C보다 가까운 영역은 x>=0.5가 되어 A의 cell은 선으로 퇴화합니다. C의 w를 24로 바꾸면 x>=1과 x<=0.5를 동시에 만족해야 하므로 A의 cell은 비어 있습니다.

@@ -2,6 +2,9 @@
 
 Generalized Suffix Automaton은 여러 문자열의 substring 집합을 하나의 automaton에 합치고, 문자열별 등장 여부나 occurrence를 상태 단위로 집계하는 문자열 심화 기법입니다. 단일 문자열 SAM이 "한 문자열의 모든 substring"을 압축한다면, generalized SAM은 여러 문자열에서 공통으로 등장하는 substring, 특정 그룹에만 등장하는 substring, dictionary 전체의 substring 통계를 다룹니다.
 
+
+아래 코드는 모든 문자열의 substring을 합친 generalized SAM을 구축하지 않습니다. 첫 문자열의 SAM을 만든 뒤 나머지를 순회하여 공통 substring 길이를 구하는 제한형입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Generalized SAM 관점 |
@@ -105,6 +108,8 @@ struct GeneralizedSamLcs {
     }
 
     void build(const string& s) {
+        st.assign(1, State{});
+        last = 0;
         for (char ch : s) {
             extend(ch);
         }
@@ -122,8 +127,8 @@ struct GeneralizedSamLcs {
     }
 
     int longestCommonSubstring(const vector<string>& others) {
-        const int INF = 1 << 30;
-        vector<int> common(st.size(), INF);
+        vector<int> common(st.size());
+        for (int i = 0; i < (int)st.size(); ++i) common[i] = st[i].len;
         vector<int> order = orderByLengthDesc();
 
         for (const string& t : others) {
@@ -161,9 +166,7 @@ struct GeneralizedSamLcs {
 
         int answer = 0;
         for (int value : common) {
-            if (value != INF) {
-                answer = max(answer, value);
-            }
+            answer = max(answer, value);
         }
         return answer;
     }
@@ -206,15 +209,7 @@ state `v`가 대표하는 길이 구간은 `(len[link[v]], len[v]]`입니다. �
 | 기준 SAM 구성 | `O(|S| * transition cost)` |
 | 각 문자열 scan | `O(|T| * suffix fallback cost)` |
 | state별 역순 전파 | 문자열마다 `O(number of states)` |
-| 전체 LCS | `O(total length + number of strings * states)` |
+| 전체 LCS | `O(total length + states log states + number of strings * states)` |
 | 메모리 | `O(states * alphabet)` 또는 map 기반 |
 
 문자열 개수가 매우 많으면 `number of strings * states`가 병목이 됩니다. 이때는 bitset, sparse visited list, group별 aggregation을 고려합니다.
-
-## 자주 하는 실수
-
-1. state 하나가 정확히 하나의 substring이라고 가정한다.
-2. best length를 suffix link 부모에게 전파할 때 `len[parent]`로 clamp하지 않는다.
-3. separator를 포함한 substring을 제거하지 않는다.
-4. clone state의 occurrence와 coverage를 construction 시점에 확정하려고 한다.
-5. 문자열별 occurrence와 전체 occurrence를 같은 값으로 취급한다.

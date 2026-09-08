@@ -24,7 +24,7 @@ suffix starts p     -> 정답 구간
 suffix > p          -> 오른쪽 구간
 ```
 
-`upper_bound`는 보통 `p`보다 바로 큰 문자열을 직접 만들거나, 비교 함수에서 "p가 prefix이면 같음"으로 둔 뒤 첫 번째 non-match 지점을 따로 찾습니다. alphabet이 고정되어 있지 않으면 sentinel 처리를 조심합니다.
+기본 페이지의 비교 함수를 그대로 쓰고, 반환값이 0인 경우도 왼쪽으로 넘기면 첫 양수 위치가 upper bound입니다. 별도의 다음 문자열을 만들 필요가 없습니다.
 
 ## LCP RMQ
 
@@ -38,57 +38,7 @@ lcp(i, j) = min(lcp[ri + 1], ..., lcp[rj])
 
 이 구간 최솟값을 자주 묻는다면 Sparse Table을 올립니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-struct LcpSparseTable {
-    vector<int> logValue;
-    vector<vector<int>> table;
-
-    explicit LcpSparseTable(const vector<int>& lcp) {
-        int n = (int)lcp.size();
-        logValue.assign(n + 1, 0);
-        for (int i = 2; i <= n; ++i) {
-            logValue[i] = logValue[i / 2] + 1;
-        }
-
-        int levels = n == 0 ? 1 : logValue[n] + 1;
-        table.assign(levels, vector<int>(n, 0));
-        if (n > 0) {
-            table[0] = lcp;
-        }
-        for (int k = 1; k < levels; ++k) {
-            int len = 1 << k;
-            for (int i = 0; i + len <= n; ++i) {
-                table[k][i] = min(table[k - 1][i], table[k - 1][i + (len >> 1)]);
-            }
-        }
-    }
-
-    int rangeMin(int left, int right) const {
-        if (left > right) {
-            return 0;
-        }
-        int length = right - left + 1;
-        int k = logValue[length];
-        return min(table[k][left], table[k][right - (1 << k) + 1]);
-    }
-
-    int lcpBetweenRanks(int rankA, int rankB) const {
-        if (rankA == rankB) {
-            return -1;
-        }
-        if (rankA > rankB) {
-            swap(rankA, rankB);
-        }
-        return rangeMin(rankA + 1, rankB);
-    }
-};
-```
-
-같은 suffix끼리의 LCP는 문자열 끝까지의 길이이므로 호출자가 따로 처리하는 편이 명확합니다.
+[Sparse Table](https://h.readiz.com/learn/sparse-table-rmq)의 `SparseTableMin(lcp)`를 그대로 사용합니다. `i == j`이면 `N-i`, 아니면 `queryMin(min(ri,rj)+1,max(ri,rj))`가 답입니다.
 
 ## 서로 다른 Substring과 k번째 Substring
 
@@ -130,24 +80,16 @@ LCP 값이 크다는 것은 인접 suffix 두 개가 긴 prefix를 공유한다�
 | 적어도 k번 등장 | suffix array에서 크기 k window의 LCP 최솟값 |
 | 서로 다른 source에 등장 | source id count |
 
-`k`번 이상 등장하는 substring 길이는 size `k` window마다 LCP 최솟값을 보며 최댓값을 취합니다. 구간 최솟값은 Sparse Table 또는 deque로 처리할 수 있습니다.
+겹치지 않는 반복은 인접 suffix만 검사하면 놓칠 수 있습니다. 후보 길이 이상 LCP로 연결된 전체 그룹의 최소·최대 시작 위치 차이를 봅니다. `k=1`이면 전체 문자열 길이가 답입니다. `k >= 2`에서 `k`번 이상 등장하는 substring 길이는 size `k` window마다 LCP 최솟값을 보며 최댓값을 취합니다. 구간 최솟값은 Sparse Table 또는 deque로 처리할 수 있습니다.
 
 ## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
-| Suffix Array construction | `O(N log N)` 또는 `O(N)` |
+| Suffix Array construction | 기본 페이지 구현은 `O(N log² N)` |
 | LCP construction | `O(N)` |
 | Sparse Table build | `O(N log N)` |
 | suffix LCP query | `O(1)` |
 | 패턴 구간 탐색 | `O(|P| log N)` |
 
 패턴 탐색에서 suffix와 pattern 비교를 매번 처음부터 하면 최악 입력에서 느려질 수 있습니다. 많은 패턴을 처리한다면 LCP 가속 이분 탐색, suffix automaton, trie 계열도 비교합니다.
-
-## 자주 하는 실수
-
-1. LCP 배열 index를 `lcp[rank]`와 `lcp[rank + 1]` 중 무엇인지 혼동한다.
-2. separator가 원문 alphabet에 들어 있어 문자열 경계를 넘는 substring을 세어 버린다.
-3. k번째 substring에서 이미 이전 suffix와 겹친 `lcp[i]` 길이를 다시 센다.
-4. 반복 substring 길이만 보고 non-overlap 위치 조건을 확인하지 않는다.
-5. substring 수를 `int`에 담는다.

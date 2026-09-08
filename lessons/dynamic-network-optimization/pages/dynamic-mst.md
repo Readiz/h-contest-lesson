@@ -2,6 +2,9 @@
 
 Dynamic MST는 그래프의 간선 가중치나 활성 상태가 바뀔 때 minimum spanning tree를 유지하는 주제입니다. 완전한 online dynamic MST는 매우 어렵지만, 대회에서는 "작은 변경은 MST 성질로 갱신"하거나 "질의를 모아서 오프라인으로 처리"하는 형태가 더 자주 등장합니다.
 
+
+block에서 가중치·활성 여부가 바뀌는 간선을 전부 먼저 제외하고 나머지 고정 활성 간선의 MSF를 만듭니다. 각 질의는 그 MSF와 현재 활성인 변경 간선을 합쳐 Kruskal을 돌립니다. 후보는 O(N+B)개라 큰 N에서 자동으로 빠른 방법은 아닙니다. 정적 HLD는 tree 교체 뒤 재구축 없이는 쓸 수 없고, 온라인 교체는 LCT 등 동적 tree가 필요합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Dynamic MST 관점 |
@@ -150,23 +153,15 @@ Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지�
 2. block 안에서 바뀐 간선만 별도 후보로 모은다.
 3. query마다 고정 MST edge와 변경 후보를 합쳐 작은 Kruskal을 돌린다.
 
-이 방식은 구현 난도가 낮고, `Q sqrt Q` 계열 제한에서 잘 맞습니다.
+block마다 고정 MSF 구성 비용과 질의마다 O((N+B)log(N+B)) 비용을 함께 계산합니다.
 
 ## 시간 복잡도 감각
 
 | 접근 | 대략적인 비용 | 특징 |
 | --- | ---: | --- |
 | 매 query rebuild | `O(M log M)` | 단순하고 안전 |
-| 추가만 처리 | `O(log^2 N)` path max query | 삭제 없음 |
+| 추가만 처리 | LCT 사용 시 상각 `O(log N)` 갱신 | 서로 다른 component면 link, 같으면 path max 교체 |
 | block rebuild | `O((M log M) * blocks + small Kruskal)` | 변경 수가 작을 때 |
 | full online dynamic MST | 고급 자료구조 필요 | 구현 위험 큼 |
 
 문제 제한이 아주 크지 않다면 먼저 baseline으로 correctness를 잡고, 병목이 확인되면 block/offline으로 줄입니다.
-
-## 자주 하는 실수
-
-1. MST 밖 간선 삭제도 MST를 바꾼다고 처리한다.
-2. 새 간선 추가 때 cycle의 최대 간선이 아니라 전체 MST의 최대 간선을 본다.
-3. 같은 weight edge가 있을 때 tie가 바뀌어도 MST cost만 유지하면 되는 문제인지 확인하지 않는다.
-4. disconnected 상태를 MST cost 0처럼 출력한다.
-5. 완전한 online dynamic MST가 필요한 문제를 단순 rollback DSU로 풀려고 한다.

@@ -2,6 +2,9 @@
 
 Rotating Calipers Applications는 기본 지름 계산을 넘어 width, tangent, 두 convex polygon 사이 거리, 최소 enclosing rectangle 같은 응용을 다룹니다. 공통 원리는 convex polygon 위의 support direction이 한 방향으로만 이동한다는 점입니다.
 
+
+아래 최소 폭 구현은 중복점·연속 일직선점을 제거한 반시계 hull과 좌표 절댓값<=10^9를 전제로 합니다. 길이 0인 변을 넣지 않습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Calipers 응용 관점 |
@@ -107,10 +110,7 @@ double minimumWidth(const vector<PointCalipersApp>& hull) {
 
 한 점 `p`에서 convex polygon에 그을 수 있는 tangent는 support line이 바뀌는 꼭짓점입니다. 두 convex polygon의 common tangent도 두 support point가 동시에 움직이는 문제입니다.
 
-```text
-while next point makes a better support line:
-    pointer++
-```
+접선 이동 규칙은 두 다각형의 외부/내부 접선과 방향에 따라 다릅니다. 양쪽 support 조건을 먼저 정해야 합니다.
 
 이 패턴은 convex hull trick의 "기울기 순서로 포인터 전진"과도 닮았습니다.
 
@@ -149,11 +149,3 @@ calipers가 성립하려면 후보 함수가 방향을 따라 unimodal이어야 
 | convex hull 생성 포함 | `O(n log n)` |
 
 `h`는 hull 위 꼭짓점 수입니다.
-
-## 자주 하는 실수
-
-1. polygon 내부 점까지 포함해 calipers를 돌린다.
-2. width에서 height를 edge length로 나누지 않는다.
-3. 같은 방향 edge tie에서 포인터를 하나만 움직여 후보를 놓친다.
-4. 두 polygon 문제에서 교차 여부를 먼저 보지 않는다.
-5. 최소 면적 직사각형의 네 포인터를 같은 기준 방향으로 업데이트하지 않는다.

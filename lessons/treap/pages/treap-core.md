@@ -1,25 +1,5 @@
 # Treap과 BST 기본: 핵심 연산과 순위
 
-## Treap
-
-Treap은 Tree와 Heap을 합친 randomized BST입니다. 각 노드는 `key`와 `priority`를 가집니다.
-
-| 값 | 의미 |
-| --- | --- |
-| `key` | BST 순서를 정하는 값 |
-| `priority` | heap 순서를 정하는 무작위 우선순위 |
-
-Treap은 두 조건을 동시에 만족합니다.
-
-```text
-1. key 기준으로는 BST다.
-2. priority 기준으로는 heap이다.
-```
-
-`priority`를 무작위로 뽑으면 root와 subtree 모양이 입력 순서에 덜 휘둘립니다. 그래서 삽입, 삭제, 탐색, 순위 질의가 모두 기대 `O(log n)`에 동작합니다.
-
-Treap의 장점은 `split`과 `merge`가 자연스럽다는 것입니다. 이 때문에 단순 ordered set뿐 아니라 구간을 자르고 붙이는 Implicit Treap으로도 확장하기 좋습니다.
-
 ## Treap 노드와 size
 
 순위 질의와 k번째 원소를 처리하려면 각 subtree 크기를 저장합니다.
@@ -104,7 +84,7 @@ void split(Node* root, int key, Node*& a, Node*& b) {
 
 ## Treap 삽입과 삭제
 
-삽입은 split 후 가운데에 새 노드를 끼우고 다시 merge합니다.
+삽입은 split 후 가운데에 새 노드를 끼우고 다시 merge합니다. `node`는 `new Node(key, priority)`로 만든 독립 노드이며, 삭제가 `delete`를 사용하므로 배열 pool의 주소를 넘기지 않습니다. TC가 끝나면 남은 노드도 해제합니다.
 
 ```cpp
 Node* insert(Node* root, Node* node) {

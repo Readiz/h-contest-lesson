@@ -121,7 +121,9 @@ struct WaveletMatrix {
         return result;
     }
 
-    int countLess(int l, int r, int x) const {
+    int countLess(int l, int r, long long x) const {
+        if (x <= 0) return 0;
+        if (x >= (1LL << LOG)) return r - l;
         int result = 0;
         for (int depth = 0; depth < LOG; ++depth) {
             int bit = LOG - 1 - depth;
@@ -142,7 +144,7 @@ struct WaveletMatrix {
         return result;
     }
 
-    int rangeFreq(int l, int r, int low, int high) const {
+    int rangeFreq(int l, int r, long long low, long long high) const {
         return countLess(l, r, high) - countLess(l, r, low);
     }
 };
@@ -181,12 +183,4 @@ struct WaveletMatrix {
 | countLess | `O(log V)` | - |
 | rangeFreq | `O(log V)` | - |
 
-실제 succinct bitvector를 쓰면 메모리는 더 줄일 수 있습니다. 위 구현은 이해를 위해 prefix int 배열을 사용합니다.
-
-## 자주 하는 실수
-
-1. `[l, r]`과 `[l, r)` 구간 convention을 섞는다.
-2. `k`를 1-indexed로 넣고 kth 결과가 한 칸 밀린다.
-3. 1-bit 영역으로 이동할 때 `zeroCount` offset을 빼먹는다.
-4. 음수 값을 그대로 bit shift해 정렬 순서가 깨진다.
-5. 좌표 압축 후 kth 결과를 원래 값으로 복원하지 않는다.
+위 코드는 값 크기와 관계없이 31층을 사용하므로 build는 `O(31N)`, 각 질의는 `O(31)`, 저장량은 `31(N+1)`개의 int입니다. `0 <= l <= r <= N`, `0 <= k < r-l`, `low <= high`를 지킵니다. 실제 succinct bitvector를 쓰면 메모리는 더 줄일 수 있습니다. 위 구현은 이해를 위해 prefix int 배열을 사용합니다.

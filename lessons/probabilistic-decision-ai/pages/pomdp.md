@@ -2,6 +2,9 @@
 
 Partially Observable MDP(POMDP)는 실제 상태를 직접 볼 수 없고, action 이후 관측만 받는 Markov Decision Process입니다. Imperfect Information Search가 게임/탐색 관점에서 정보 집합을 다룬다면, POMDP는 belief distribution을 상태로 올려 기대 보상을 계산합니다.
 
+
+관측 likelihood와 전이 확률은 모델에 맞게 정규화되어야 합니다. 확률 0인 관측의 posterior는 정의되지 않으며 빈 벡터로 실패를 알립니다. 이를 영 확률분포로 다음 계산에 넘기지 않습니다. belief 반올림·격자화는 근사이며 정확 memoization과 다릅니다.
+
 ## 문제 신호
 
 | 문제 표현 | POMDP 관점 |
@@ -69,7 +72,7 @@ vector<double> updatePomdpBelief(
     }
 
     if (total == 0.0) {
-        return vector<double>(stateCount, 0.0);
+        return {}; // 모델에서 확률 0인 관측: posterior 미정의
     }
     for (double& value : nextBelief) {
         value /= total;
@@ -140,11 +143,3 @@ belief = 각 상태의 확률까지 포함한 정보 집합
 | value function 근사 가능 | point-based value iteration |
 
 문제에서 정확한 최적값을 요구하면 근사 방법은 보통 부적절합니다. 반대로 heuristic AI 문제라면 sampling이 현실적입니다.
-
-## 자주 하는 실수
-
-1. observation likelihood를 곱하지 않고 transition만 적용한다.
-2. 갱신 뒤 belief를 정규화하지 않는다.
-3. action 선택을 실제 hidden state 기준으로 해 정보 누출을 만든다.
-4. observation이 불가능한 경우 `total=0` 처리를 하지 않는다.
-5. belief vector를 부동소수 key로 쓰면서 같은 상태를 계속 새로 만든다.

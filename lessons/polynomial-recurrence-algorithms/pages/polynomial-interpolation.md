@@ -2,6 +2,9 @@
 
 Polynomial Interpolation은 몇 개의 점을 지나는 다항식을 복원하거나, 복원하지 않고 특정 위치의 값을 계산하는 기법입니다. Multipoint Evaluation이 "하나의 다항식을 여러 점에서 평가"하는 방향이라면, Interpolation은 "여러 점에서 다항식을 되찾는" 반대 방향입니다.
 
+
+`1<=y.size()<MOD`, deg(F)<y.size()를 전제로 합니다. 이 구현은 factorial 전처리까지 포함해 한 질의 `O(N+log MOD)`입니다. 일반 보간을 O(N²)에 하려면 공통 곱 다항식을 만든 뒤 각 선형 인수로 synthetic division합니다. basis를 매번 처음부터 곱하면 O(N³)이 될 수 있습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Interpolation 관점 |
@@ -70,6 +73,7 @@ long long inverseInterpolation(long long value) {
 }
 
 long long lagrangeConsecutive(const vector<long long>& y, long long x) {
+    x = normalizeInterpolation(x);
     int n = (int)y.size();
     if (0 <= x && x < n) {
         return normalizeInterpolation(y[(int)x]);
@@ -132,21 +136,13 @@ L_i(x) = product_{j != i} (x - x_j) / (x_i - x_j)
 f(x) = sum y_i L_i(x)
 ```
 
-나이브로는 각 basis를 만드는 데 `O(N^2)`입니다. N이 크면 subproduct tree, multipoint evaluation, polynomial inverse를 조합해야 합니다.
+각 basis를 처음부터 곱하면 하나에 O(N²), 전체 O(N³)입니다. 공통 곱을 한 번 만들고 선형 인수로 나누면 전체 O(N²)로 줄어듭니다. N이 크면 subproduct tree, multipoint evaluation, polynomial inverse를 조합해야 합니다.
 
 ## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | --- |
-| 연속 x좌표 한 점 평가 | `O(N)` |
+| 현재 구현의 연속 x좌표 한 점 평가 | `O(N+log MOD)` |
 | 임의 x좌표 나이브 한 점 평가 | `O(N^2)` 또는 전처리 후 `O(N)` 형태 |
 | 전체 계수 나이브 복원 | `O(N^2)` |
 | product tree 기반 계수 복원 | `O(M(N) log N)` 계열 |
-
-## 자주 하는 실수
-
-1. 점의 개수가 차수보다 하나 더 필요하다는 조건을 잊는다.
-2. `x`가 이미 주어진 점이면 분모가 0이 되는데도 공식을 그대로 적용한다.
-3. mod가 prime이 아닌데 페르마 역원을 쓴다.
-4. `(-1)^(n-1-i)` 부호를 빠뜨린다.
-5. 값 몇 개가 맞는다는 이유만으로 다항식임을 증명하지 않는다.

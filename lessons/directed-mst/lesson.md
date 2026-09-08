@@ -138,23 +138,9 @@ optional<long long> directedMST(int n, int root, vector<DirectedEdge> edges) {
 1. 루트는 incoming edge를 선택하지 않는다.
 2. 모든 정점이 루트에서 방향 경로로 도달 가능해야 한다.
 3. 선택된 간선 수는 `N - 1`개다.
-4. 여러 루트 후보가 있으면 super root를 추가하고 root edge 비용을 조절한다.
+4. super root 간선을 여러 개 허용하면 여러 루트의 숲을 고를 수 있습니다. 원래 루트 하나만 고르는 문제라면 선택되는 super root 간선을 하나로 강제하는 추가 모델링이 필요합니다.
 5. 최대 비용 arborescence는 cost 부호를 뒤집어 처리할 수 있다.
 
 ## 시간 복잡도
 
-| 구현 | 복잡도 |
-| --- | --- |
-| 단순 Chu-Liu/Edmonds | `O(VE)` |
-| heap 최적화 | `O(E log V)` 계열 |
-| 작은 그래프 bitmask | `O(2^V V^2)` 가능하지만 일반적으로 비권장 |
-
-대부분의 대회 입력에서는 `O(VE)` 구현이 가장 안정적입니다.
-
-## 자주 하는 실수
-
-1. 루트의 incoming edge를 고른다.
-2. cycle 수축 후 간선 비용에서 `in[to]`를 빼지 않는다.
-3. 도달 불가능 정점을 cycle로 오해한다.
-4. self-loop를 제거하지 않아 cycle 판정이 꼬인다.
-5. answer에 `in[v]`를 cycle 수축마다 더하는 이유를 잊고 중복 보정한다.
+위 단순 Chu-Liu/Edmonds 구현은 `O(VE)` 시간, `O(V + E)` 추가 공간을 사용합니다. 간선 비용의 차이와 누적 답이 `long long` 범위 안이며 각 비용이 `INF`보다 작아야 합니다.

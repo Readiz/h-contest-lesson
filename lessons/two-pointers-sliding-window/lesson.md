@@ -11,7 +11,7 @@
 - 오른쪽 끝을 늘리면 조건이 좋아지거나 나빠지는 방향이 일정하다.
 - 같은 원소를 여러 번 세지 않으면서 모든 후보 구간을 훑어야 한다.
 
-핵심은 **한 포인터가 되돌아가지 않아도 되는가**입니다. 왼쪽 포인터와 오른쪽 포인터가 각각 최대 `n`번만 움직이면 전체 시간은 `O(n)`입니다.
+핵심은 **한 포인터가 되돌아가지 않아도 되는가**입니다. 왼쪽 포인터와 오른쪽 포인터가 각각 최대 `n`번만 움직이고 이동당 갱신이 `O(1)`이면 전체 시간은 `O(n)`입니다.
 
 ## 정렬된 배열에서 양끝 포인터
 
@@ -71,6 +71,7 @@ int minLengthAtLeastSum(const vector<int>& a, long long target) {
 
 ```cpp
 int longestAtMostKDistinct(const vector<int>& a, int k) {
+    if (k <= 0) return 0;
     unordered_map<int, int> freq;
     int left = 0;
     int answer = 0;
@@ -87,5 +88,7 @@ int longestAtMostKDistinct(const vector<int>& a, int k) {
     return answer;
 }
 ```
+
+해시 테이블 연산이 평균 `O(1)`이라는 전제에서 전체 평균 시간은 `O(n)`입니다.
 
 `while` 조건에는 "현재 창이 유효하지 않은 동안"을 넣습니다. 유효해진 뒤에 답을 갱신하면 창이 항상 문제 조건을 만족합니다.

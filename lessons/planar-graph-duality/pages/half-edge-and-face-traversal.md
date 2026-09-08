@@ -2,6 +2,9 @@
 
 좌표와 간선만 주어진 planar graph에서 dual graph를 만들려면 먼저 face를 찾아야 합니다. 가장 안정적인 방법은 무향 간선을 양방향 half-edge로 쪼개고, 각 정점의 outgoing half-edge를 polar angle 순서로 정렬한 뒤, 아직 방문하지 않은 half-edge를 따라 face를 순회하는 것입니다.
 
+
+이 구현은 연결된 straight-line planar embedding, 서로 다른 정점 좌표, self-loop·중첩 간선·간선 내부의 다른 정점 없음, 좌표 절댓값<=10^9를 전제로 합니다. 비연결 입력에서는 순회 하나가 face가 아니라 boundary component일 수 있어 포함 관계로 합쳐야 합니다. 연결된 단일 정점은 outer face 하나로 처리합니다. 정렬은 정수 반평면과 외적을 사용하고 면적 합은 __int128입니다.
+
 ## Half-edge 구조
 
 무향 edge `(u, v)` 하나는 두 directed half-edge `u -> v`, `v -> u`가 됩니다. 각 half-edge는 반대 방향 half-edge와 같은 primal edge id를 공유합니다.
@@ -50,19 +53,19 @@ struct HalfEdge {
     int to = 0;
     int edgeId = 0;
     int opposite = 0;
-    double angle = 0.0;
+
 };
 
 struct FaceEmbedding {
     vector<HalfEdge> halfEdges;
     vector<vector<int>> faceHalfEdges;
     vector<int> faceOfHalfEdge;
-    vector<long long> signedDoubleArea;
+    vector<__int128> signedDoubleArea;
     int outerFace = -1;
 };
 
-long long cross(const Point& a, const Point& b) {
-    return a.x * b.y - a.y * b.x;
+__int128 cross(const Point& a, const Point& b) {
+    return (__int128)a.x * b.y - (__int128)a.y * b.x;
 }
 
 FaceEmbedding buildFaceEmbedding(
@@ -70,6 +73,11 @@ FaceEmbedding buildFaceEmbedding(
     const vector<InputEdge>& edges
 ) {
     int n = (int)points.size();
+    if (n==1 && edges.empty()) {
+        FaceEmbedding result; result.outerFace=0;
+        result.faceHalfEdges.push_back({}); result.signedDoubleArea.push_back(0);
+        return result;
+    }
     vector<HalfEdge> halfEdges;
     vector<vector<int>> outgoing(n);
 
@@ -79,17 +87,8 @@ FaceEmbedding buildFaceEmbedding(
         int first = (int)halfEdges.size();
         int second = first + 1;
 
-        double angleUV = atan2(
-            (double)(points[v].y - points[u].y),
-            (double)(points[v].x - points[u].x)
-        );
-        double angleVU = atan2(
-            (double)(points[u].y - points[v].y),
-            (double)(points[u].x - points[v].x)
-        );
-
-        halfEdges.push_back({u, v, edgeId, second, angleUV});
-        halfEdges.push_back({v, u, edgeId, first, angleVU});
+        halfEdges.push_back({u, v, edgeId, second});
+        halfEdges.push_back({v, u, edgeId, first});
         outgoing[u].push_back(first);
         outgoing[v].push_back(second);
     }
@@ -97,10 +96,13 @@ FaceEmbedding buildFaceEmbedding(
     vector<int> position(halfEdges.size(), -1);
     for (int v = 0; v < n; ++v) {
         sort(outgoing[v].begin(), outgoing[v].end(), [&](int a, int b) {
-            if (halfEdges[a].angle != halfEdges[b].angle) {
-                return halfEdges[a].angle < halfEdges[b].angle;
-            }
-            return halfEdges[a].to < halfEdges[b].to;
+            Point da{points[halfEdges[a].to].x-points[v].x,points[halfEdges[a].to].y-points[v].y};
+            Point db{points[halfEdges[b].to].x-points[v].x,points[halfEdges[b].to].y-points[v].y};
+            auto half=[](Point d){return d.y<0 || (d.y==0 && d.x<0);};
+            if (half(da)!=half(db)) return half(da)<half(db);
+            auto turn=cross(da,db);
+            if (turn!=0) return turn>0;
+            return a<b;
         });
         for (int i = 0; i < (int)outgoing[v].size(); ++i) {
             position[outgoing[v][i]] = i;
@@ -129,7 +131,7 @@ FaceEmbedding buildFaceEmbedding(
 
         int faceId = (int)result.faceHalfEdges.size();
         vector<int> boundary;
-        long long area = 0;
+        __int128 area = 0;
         int h = start;
         do {
             visited[h] = 1;
@@ -180,7 +182,7 @@ V - E + F = 1 + C
 - 간선이 실제로 교차한다.
 - 정점별 angle 정렬 tie가 embedding과 다르다.
 - half-edge를 양방향으로 만들지 않았다.
-- next half-edge를 이전이 아니라 다음으로 잡아 좌우 face가 뒤집혔다.
+- 비연결 성분의 boundary walk를 서로 다른 face로 잘못 셌다.
 - 입력이 겹치는 multi-edge를 포함해 좌표만으로 rotation order를 알 수 없다.
 
 ## Bridge와 Multi-edge 정책

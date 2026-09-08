@@ -232,7 +232,7 @@
 - TODO: 과거 버전 분기 업데이트 `/practice/...` 문제 필요 / 특정 버전에서 새 버전 생성 / version tree
 - TODO: 메모리 제한이 빡빡한 persistent tree `/practice/...` 문제 필요 / node 수와 값 타입 계산 / memory budget
 
-### [Persistent Sequence Queries](lessons/versioned-data-structures/pages/persistent-sequence-queries.md)
+### [Persistent Sequence Queries](https://h.readiz.com/learn/versioned-data-structures/persistent-segment-tree)
 
 - TODO: persistent array `/practice/...` 문제 필요 / point update version 보존 / path copying
 - TODO: persistent kth query `/practice/...` 문제 필요 / prefix root 차이 / order statistic
@@ -407,7 +407,7 @@
 - TODO: palindrome partition `/practice/...` 문제 필요 / range DP / palindrome table
 - TODO: suffix palindrome application `/practice/...` 문제 필요 / suffix 구조와 회문 보조 정보 결합 / suffix + palindrome
 
-### [Suffix와 Palindrome 응용](lessons/palindrome-structures/pages/suffix-palindrome-applications.md)
+### [Suffix와 Palindrome 응용](https://h.readiz.com/learn/suffix-periodicity-structures/suffix-automaton-applications)
 
 - TODO: 서로 다른 substring 개수 `/practice/...` 문제 필요 / SAM 기여 또는 SA LCP 합 사용 / distinct substring
 - TODO: 최장 공통 substring `/practice/...` 문제 필요 / SAM walk 또는 combined SA / longest common substring
@@ -533,7 +533,7 @@
 - TODO: rational generating function `/practice/...` 문제 필요 / Bostan-Mori 입력 구성 / coefficient extraction
 - TODO: ordered vs unordered counting `/practice/...` 문제 필요 / sequence와 product 구분 / combinatorial model
 
-### [Linear Recurrence Applications](lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-applications.md)
+### [Linear Recurrence Applications](https://h.readiz.com/learn/polynomial-recurrence-algorithms/linear-recurrence-kitamasa)
 
 - TODO: recurrence modeling `/practice/...` 문제 필요 / DP에서 recurrence 추출 / state compression
 - TODO: many nth recurrence `/practice/...` 문제 필요 / Kitamasa 선택 / characteristic polynomial
@@ -605,7 +605,7 @@
 - TODO: absorbing MDP `/practice/...` 문제 필요 / terminal value와 기대 보상 / absorbing state
 - TODO: non-convergent MDP `/practice/...` 문제 필요 / discount/종료 조건 확인 / gamma
 
-### [Reinforcement Learning Basics](lessons/probabilistic-decision-ai/pages/exact-model-vs-sampling.md)
+### [Reinforcement Learning Basics](https://h.readiz.com/learn/probabilistic-decision-ai)
 
 - TODO: finite-horizon MDP `/practice/...` 문제 필요 / 뒤에서 앞으로 기대값 DP / Bellman
 - TODO: discounted value iteration `/practice/...` 문제 필요 / 반복 갱신과 수렴 / gamma
@@ -755,7 +755,7 @@
 - TODO: tree/path 선택 최적화 `/practice/...` 문제 필요 / relaxed transition 설계 / parametric DP
 - TODO: tie-break 반례 `/practice/...` 문제 필요 / 같은 비용에서 count 방향 고정 / monotonicity
 
-### [Parametric DP](lessons/parametric-optimization/pages/feasibility-and-answer-search.md)
+### [Parametric DP](https://h.readiz.com/learn/parametric-optimization)
 
 - TODO: max average DP `/practice/...` 문제 필요 / answer binary search / `a_i - x`
 - TODO: penalty segment DP `/practice/...` 문제 필요 / value + count 저장 / Alien Optimization
@@ -874,7 +874,7 @@
 - TODO: repeated connectivity threshold `/practice/...` 문제 필요 / dense graph pruning / certificate verification
 - TODO: weighted cut certificate `/practice/...` 문제 필요 / 적용 조건 구분 / weighted vs unweighted
 
-### [Global Min Cut Applications](lessons/graph-cut-structures/pages/global-min-cut-applications.md)
+### [Global Min Cut Applications](https://h.readiz.com/learn/graph-cut-structures/global-min-cut)
 
 - TODO: global min cut partition `/practice/...` 문제 필요 / partition 복원 / Stoer-Wagner group tracking
 - TODO: all pair cut query `/practice/...` 문제 필요 / pair min cut 질의 / Gomory-Hu Tree
@@ -1015,7 +1015,7 @@
 - TODO: common tangents `/practice/...` 문제 필요 / 외접선/내접선 변환 / tangent construction
 - TODO: angular interval sweep `/practice/...` 문제 필요 / 각도 wrap 처리 / atan2, acos
 
-### [Quadrangle Inequality Proofs](lessons/quadrangle-inequality-proofs/lesson.md)
+### [Quadrangle Inequality Proofs](https://h.readiz.com/learn/knuth-optimization)
 
 - TODO: quadrangle inequality `/practice/...` 문제 필요 / 구간 합 cost 전개 / interval DP
 - TODO: Knuth proof `/practice/...` 문제 필요 / opt bound 증명 / monotone opt

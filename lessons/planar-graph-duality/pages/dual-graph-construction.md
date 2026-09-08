@@ -33,16 +33,7 @@ outer face도 하나의 face입니다. 외부와 내부를 구분해야 하는 �
 
 ## Cut-Cycle 대응
 
-평면 그래프에서 중요한 대응은 아래와 같습니다.
-
-| Primal | Dual |
-| --- | --- |
-| cycle | cut |
-| cut | cycle |
-| s-t cut | s와 t가 있는 face를 분리하는 dual cycle/path |
-| face adjacency | dual edge |
-
-예를 들어 어떤 장애물을 피해 boundary를 자르는 최소 비용을 묻는 문제가 dual shortest path로 바뀌는 경우가 있습니다. primal에서 "막아야 하는 edge 집합"이 dual에서는 "연결해야 하는 path"가 됩니다.
+단순 cycle과 bond의 대응 및 s-t를 공통 face 안에서 분리하는 구성은 [Cut-Cycle Duality](https://h.readiz.com/learn/planar-graph-duality/cut-cycle-duality)에 둡니다. 일반 cut을 항상 dual 경로 하나로 보지 않습니다.
 
 ## 작은 예시
 
@@ -75,14 +66,14 @@ struct EdgeFace {
     int v = 0;
     int leftFaceUV = 0;
     int leftFaceVU = 0;
-    int weight = 0;
+    long long weight = 0;
 };
 
-vector<vector<pair<int, int>>> buildDualGraph(
+vector<vector<pair<int, long long>>> buildDualGraph(
     int faceCount,
     const vector<EdgeFace>& edges
 ) {
-    vector<vector<pair<int, int>>> dual(faceCount);
+    vector<vector<pair<int, long long>>> dual(faceCount);
     for (const EdgeFace& edge : edges) {
         int a = edge.leftFaceUV;
         int b = edge.leftFaceVU;
@@ -95,13 +86,7 @@ vector<vector<pair<int, int>>> buildDualGraph(
 
 문제에서 face 정보가 없고 좌표만 있다면, 각 정점의 incident edge를 polar angle로 정렬하고 half-edge traversal로 face를 찾아야 합니다. 이 단계가 구현의 대부분입니다.
 
-좌표만 있는 입력의 최소 구현 순서는 아래처럼 분리해 두는 편이 안전합니다.
-
-1. 무향 간선 하나를 양방향 half-edge 두 개로 만든다.
-2. 각 정점의 outgoing half-edge를 polar angle 순서로 정렬한다.
-3. 아직 방문하지 않은 half-edge에서 시작해, 반대 방향으로 건너간 뒤 정렬 순서에서 다음 왼쪽 회전 edge를 고른다.
-4. 시작 half-edge로 돌아올 때까지 반복해 face 하나를 기록한다.
-5. 모든 half-edge를 한 번씩 방문했는지, `V - E + F` 검증이 맞는지 확인한 뒤 dual graph를 만든다.
+[Half-edge and Face Traversal](https://h.readiz.com/learn/planar-graph-duality/half-edge-and-face-traversal)에서 정수 각도 정렬과 연결 embedding의 face 순회를 확인합니다.
 
 ## Euler Formula로 검증
 
@@ -131,12 +116,3 @@ minimum separating cut = shortest dual path
 ```
 
 모든 max-flow가 이렇게 단순히 바뀌지는 않습니다. source/sink 위치, directed edge, capacity 방향, embedding 조건을 확인해야 합니다.
-
-## 자주 하는 실수
-
-1. 좌표가 있다는 이유만으로 embedding을 고정됐다고 가정한다.
-2. outer face를 dual 정점에서 빼 버린다.
-3. primal edge의 양쪽 face가 같은 bridge edge를 일반 edge처럼 처리한다.
-4. directed graph에서 dual edge 방향을 무시한다.
-5. cut과 cycle 대응을 반대로 적용한다.
-6. face traversal 후 Euler formula 검증을 하지 않는다.

@@ -144,7 +144,7 @@ for (int mask = 0; mask < full; ++mask) {
 
 long long answer = INF;
 for (int last = 1; last < n; ++last) {
-    if (cost[last][0] == INF) continue;
+    if (dp[full - 1][last] == INF || cost[last][0] == INF) continue;
     answer = min(answer, dp[full - 1][last] + cost[last][0]);
 }
 ```
@@ -155,7 +155,7 @@ for (int last = 1; last < n; ++last) {
 
 ## 경로 복원과 메모리
 
-방문 순서가 필요하면 `parent[mask][last]`를 -1로 초기화합니다. 더 작은 비용으로 `dp[nextMask][next]`를 갱신하는 순간 `parent[nextMask][next] = last`도 기록합니다. 최종 비용을 결정한 정점을 `bestLast`에 저장한 뒤 거꾸로 따라갑니다.
+최종 답이 `INF`이면 경로가 없으므로 복원하지 않습니다. 방문 순서가 필요하면 `parent[mask][last]`를 -1로 초기화합니다. 더 작은 비용으로 `dp[nextMask][next]`를 갱신하는 순간 `parent[nextMask][next] = last`도 기록합니다. 최종 비용을 결정한 정점을 `bestLast`에 저장한 뒤 거꾸로 따라갑니다.
 
 ```cpp
 int mask = full - 1;

@@ -8,6 +8,7 @@ This repository is the source of truth for h-contest heuristic notes. Lesson sou
 - Published manifest: https://blog.readiz.com/h-contest-lesson/lessons.json
 - API mirror (h-contest 로그인 필요): https://h.readiz.com/api/lessons
 - 공개 기록: [CHANGELOG.md](CHANGELOG.md)
+- 학습 노트 전체 본문 검토: [LESSON_REVIEW.md](LESSON_REVIEW.md)
 - 실전 풀이 중심 개편 계획과 practice TODO: [ROADMAP.md](ROADMAP.md)
 - 기여 절차: [CONTRIBUTING.md](CONTRIBUTING.md)
 
@@ -57,7 +58,7 @@ h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. �
 - DP 전이 최적화: [Divide and Conquer DP Optimization](lessons/divide-and-conquer-dp-optimization/lesson.md) / [Knuth Optimization](lessons/knuth-optimization/lesson.md) / [Monge와 SMAWK](lessons/monge-smawk/lesson.md) / [Convex DP Optimization](lessons/convex-dp-optimization/lesson.md)
 - 정확히 K개/penalty: [Parametric Optimization](lessons/parametric-optimization/lesson.md) / [Convex Cost Flow](lessons/convex-cost-flow/lesson.md)
 - convex 비용: [Convex DP Optimization](lessons/convex-dp-optimization/lesson.md) / [Convex Cost Flow](lessons/convex-cost-flow/lesson.md) / [Online Convex Optimization](lessons/online-convex-optimization/lesson.md)
-- 검증/증명: [Quadrangle Inequality Proofs](lessons/quadrangle-inequality-proofs/lesson.md) / [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
+- 검증/증명: `quadrangle-inequality-proofs` / [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
 
 ### 그래프
 
@@ -91,7 +92,7 @@ h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. �
 - A. 판정으로 바꾸기: [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md) → [Parametric Optimization](lessons/parametric-optimization/lesson.md)
 - B. DP 전이 줄이기: [Divide and Conquer DP Optimization](lessons/divide-and-conquer-dp-optimization/lesson.md) / [Knuth Optimization](lessons/knuth-optimization/lesson.md) / [Monge와 SMAWK](lessons/monge-smawk/lesson.md) / [Convex DP Optimization](lessons/convex-dp-optimization/lesson.md)
 - C. 제약 완화: [Parametric Optimization](lessons/parametric-optimization/lesson.md) / [Convex Cost Flow](lessons/convex-cost-flow/lesson.md)
-- D. 증명/검증: [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / [Quadrangle Inequality Proofs](lessons/quadrangle-inequality-proofs/lesson.md) / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
+- D. 증명/검증: [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / `quadrangle-inequality-proofs` / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
 
 ### 그래프 트랙
 
@@ -136,6 +137,6 @@ predicate에서 시작해 convex, sweep, arrangement, duality와 robustness로 �
 | 카테고리 | 설명 | 레슨 수 |
 | --- | --- | ---: |
 | 휴리스틱 기본 및 심화 노트 | 현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 개념을 모은 직접 학습 트랙입니다. | 30 |
-| 휴리스틱 참고 노트 | 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 희소 고급 도구, 장기 확장용 레퍼런스 노트입니다. | 70 |
+| 휴리스틱 참고 노트 | 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 희소 고급 도구, 장기 확장용 레퍼런스 노트입니다. | 69 |
 
 전체 레슨과 하위 페이지 링크는 [index.html](index.html)에서 확인합니다.

@@ -2,6 +2,12 @@
 
 Planar Graph Duality 허브의 연습은 face traversal, dual graph 구성, cut-cycle 변환을 순서대로 확인하는 흐름이 좋습니다.
 
+
+0<=E<=400000, 0<=startFace,targetFace<F를 추가 입력 제한으로 둡니다. F<=200000과 간선 비용<=10^12이므로 단순 최단 경로 비용은 INF보다 작습니다.
+
+
+입출력 코드는 [Dijkstra 최단거리](https://h.readiz.com/learn/dijkstra)의 Edge, INF, dijkstra 뒤에 붙입니다.
+
 ## 로컬 완결형 연습: Face Incidence Dual Shortest Path
 
 평면 그래프의 각 primal edge가 양쪽 face 번호와 비용을 알고 있다고 합시다. 각 face를 dual graph의 정점으로 만들고, primal edge 하나를 양쪽 face 사이의 dual edge로 바꾼 뒤 `startFace`에서 `targetFace`까지의 최단거리를 구합니다.
@@ -61,20 +67,8 @@ primal edge를 dual edge로 바꾸면 아래와 같습니다.
 
 ### 구현 기준
 
-```cpp compile-check
-#include <functional>
+```cpp
 #include <iostream>
-#include <queue>
-#include <utility>
-#include <vector>
-using namespace std;
-
-const long long INF = (1LL << 62);
-
-struct Edge {
-    int to = 0;
-    long long cost = 0;
-};
 
 int main() {
     ios::sync_with_stdio(false);
@@ -99,25 +93,7 @@ int main() {
         }
     }
 
-    vector<long long> dist(faceCount, INF);
-    priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> pq;
-    dist[startFace] = 0;
-    pq.push({0, startFace});
-
-    while (!pq.empty()) {
-        auto [cost, face] = pq.top();
-        pq.pop();
-        if (cost != dist[face]) {
-            continue;
-        }
-        for (const Edge& edge : graph[face]) {
-            long long nextCost = cost + edge.cost;
-            if (nextCost < dist[edge.to]) {
-                dist[edge.to] = nextCost;
-                pq.push({nextCost, edge.to});
-            }
-        }
-    }
+    vector<long long> dist = dijkstra(graph, startFace);
 
     if (dist[targetFace] == INF) {
         cout << -1 << '\n';
@@ -144,14 +120,4 @@ int main() {
 
 간선이 모두 bridge인 tree를 입력으로 넣고 face traversal 결과를 확인합니다. 이 경우 dual graph에 self-loop가 생기거나 모든 edge가 같은 face 양쪽을 가질 수 있음을 관찰합니다.
 
-### Boundary Cut to Dual Path
-
-작은 격자 그래프에서 위쪽 boundary와 아래쪽 boundary를 분리하는 최소 edge cut을 만들고, dual graph에서 좌우 또는 boundary arc 사이 shortest path와 비용이 같은지 비교합니다.
-
-## 제출 전 체크리스트
-
-- `V - E + F = 1 + C`를 출력해 확인했는가?
-- outer face 번호를 signed area로 찾았는가?
-- dual graph가 multi-edge와 self-loop를 허용하는가?
-- directed 문제를 무향 dual shortest path로 바꾸지 않았는가?
-- 작은 그림에서 primal edge id와 dual edge id가 같은 비용으로 대응하는가?
+경계 cut 변환의 정확한 조건은 [Cut-Cycle Duality](https://h.readiz.com/learn/planar-graph-duality/cut-cycle-duality)에서 확인합니다.

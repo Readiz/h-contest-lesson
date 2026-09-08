@@ -28,7 +28,7 @@ table[k][i] = min(table[k-1][i], table[k-1][i + 2^(k-1)])
 
 ## RMQ 구현
 
-아래 구현은 정적 배열에서 inclusive 구간 `[left, right]`의 최솟값을 `O(1)`에 구합니다.
+질의 범위는 `0 <= left <= right < N`입니다. 아래 구현은 정적 배열에서 inclusive 구간 `[left, right]`의 최솟값을 `O(1)`에 구합니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -94,7 +94,7 @@ sum처럼 겹치면 안 되는 연산도 Sparse Table로 `O(log N)` 질의는 �
 
 ## LCP 배열과 RMQ
 
-Suffix Array에서 두 suffix의 LCP를 묻고 싶다면, 두 suffix의 rank 사이에 있는 LCP 배열의 최솟값을 구합니다.
+`lcp[i] = LCP(sa[i-1], sa[i])`로 정의합니다. 같은 suffix끼리는 남은 문자열 길이가 답입니다. 서로 다른 두 suffix의 LCP를 묻고 싶다면, 두 suffix의 rank 사이에 있는 LCP 배열의 최솟값을 구합니다.
 
 ```text
 rank[a] < rank[b] 라면
@@ -107,7 +107,7 @@ LCP(suffix a, suffix b) = min(lcp[rank[a] + 1 ... rank[b]])
 
 트리의 LCA도 RMQ로 바꿀 수 있습니다.
 
-1. DFS Euler Tour를 하며 방문한 정점과 depth를 기록한다.
+1. DFS에서 정점 진입 때와 자식에서 돌아올 때마다 정점과 depth를 기록한다(총 2N-1개).
 2. 각 정점이 처음 등장한 위치를 저장한다.
 3. 두 정점의 첫 등장 위치 사이에서 depth가 최소인 정점이 LCA다.
 
@@ -123,14 +123,3 @@ LCP(suffix a, suffix b) = min(lcp[rank[a] + 1 ... rank[b]])
 | sum 같은 비-idempotent 질의 | `O(log N)` | table 사용 |
 
 메모리는 `N log N`입니다. `N = 200000`이면 약 18단계 정도라 충분할 수 있지만, 값 타입이 크거나 여러 table을 만들면 메모리를 먼저 계산해야 합니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 업데이트가 있는데 Sparse Table 사용 | 변경 후 질의 오답 | 정적 배열인지 확인 |
-| `right - blockLength + 1` 계산 누락 | 구간 오른쪽 일부 누락 | 두 블록이 구간 양끝에서 시작하는지 확인 |
-| sum을 `O(1)` 겹침 방식으로 처리 | 중복 합산 오답 | idempotent 연산인지 확인 |
-| `log2`를 실수 함수로 매번 계산 | 느리거나 오차 가능 | 정수 로그 배열 전처리 |
-| 빈 구간 질의 처리 누락 | 런타임 에러 | `left <= right` 보장 |
-| LCP RMQ 인덱스 off-by-one | 한 칸 밀린 LCP | `rank[a] + 1 ... rank[b]` 범위 확인 |

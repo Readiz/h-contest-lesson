@@ -2,6 +2,9 @@
 
 Knuth Optimization은 interval DP에서 최적 분할점의 범위가 좁아지는 성질을 이용해 `O(N^3)` DP를 `O(N^2)`로 줄이는 기법입니다. 파일 합치기, optimal binary search tree처럼 구간을 둘로 나누는 DP에서 자주 등장합니다.
 
+
+파일 크기는 비음수여야 구간 포함 단조성이 성립합니다. 비용 합과 DP 중간값은 INF 미만이어야 합니다. 빈 배열의 합병 비용은 0입니다.
+
 ## 문제 신호
 
 Knuth Optimization은 interval DP에서 나옵니다.
@@ -49,6 +52,7 @@ long long mergeCost(const vector<long long>& prefix, int left, int right) {
 
 long long knuthMergeCost(const vector<int>& values) {
     int n = (int)values.size();
+    if (n == 0) return 0;
     vector<long long> prefix(n + 1, 0);
     for (int i = 0; i < n; ++i) {
         prefix[i + 1] = prefix[i] + values[i];
@@ -138,13 +142,6 @@ candidate <= best 일 때 갱신: 가장 큰 split 유지
 
 `N`이 수천이면 `O(N^2)`도 메모리와 시간이 부담될 수 있습니다. `dp`와 `opt`가 각각 `N^2`이므로 메모리 제한을 먼저 계산해야 합니다.
 
-## 자주 하는 실수
+## 구간 합 비용의 증명
 
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 적용 조건 없이 Knuth 사용 | 숨은 케이스 오답 | opt 단조성 증명 확인 |
-| `end`를 `right - 1`로 제한하지 않음 | 빈 오른쪽 구간 접근 | split 범위는 `l..r-1` |
-| base opt 초기화 누락 | 길이 2부터 범위 오류 | `opt[i][i] = i` |
-| cost가 split에 의존 | 전이 형태 불일치 | `cost(l,r)`만 추가되는지 확인 |
-| tie-breaking 불일치 | opt 범위 흔들림 | `<` 또는 `<=` 고정 |
-| prefix sum off-by-one | 비용 오답 | `prefix[r+1]-prefix[l]` |
+a<=b<=c<=d에서 w(a,c)+w(b,d)=w(a,d)+w(b,c)는 각 원소의 중복 횟수가 같아 성립합니다. 파일 크기가 비음수이면 w(b,c)<=w(a,d)도 성립합니다. 두 조건을 함께 확인해야 Knuth 단조성으로 이어집니다. 음수에서는 첫 등식만 남아 충분하지 않습니다.

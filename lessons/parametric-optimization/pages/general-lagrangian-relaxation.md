@@ -2,6 +2,9 @@
 
 Lagrangian Relaxation Patterns는 딱 맞춰야 하는 제약을 penalty로 목적식에 흡수해, DP, flow, greedy, shortest path 같은 더 단순한 oracle을 반복 호출하는 모델링 패턴입니다. Alien Optimization은 그중 "정확히 K개" 제약을 DP count와 함께 다루는 대표 사례이고, 이 레슨은 같은 생각을 더 넓은 최적화 문제에 적용하는 기준을 정리합니다.
 
+
+아래 함수는 long long에 들어가는 점수·penalty 및 곱을 전제로 합니다. relaxed.score+penalty*K는 일반적으로 최대화 원문제의 상계입니다. 정확한 K 해 또는 강한 복원 조건 없이는 정답이라고 반환하지 않습니다. 예산 부등식 완화는 최대화에서 value-lambda*(cost-B), lambda>=0처럼 부호를 정합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Lagrangian 관점 |
@@ -97,7 +100,7 @@ Result solveRelaxedPath(const vector<int>& value, long long penalty) {
     return prev1;
 }
 
-long long candidateExactK(const vector<int>& value, int targetCount, long long penalty) {
+long long dualUpperBound(const vector<int>& value, int targetCount, long long penalty) {
     Result relaxed = solveRelaxedPath(value, penalty);
     return relaxed.score + penalty * targetCount;
 }
@@ -111,7 +114,7 @@ Lagrangian relaxation은 DP에만 붙지 않습니다.
 
 | 원래 제약 | Relaxed oracle |
 | --- | --- |
-| 정확히 `K`개 간선 선택 | 간선 선택당 penalty가 붙은 MST/greedy |
+| 특정 색 간선 수 제한 | 해당 색에만 penalty를 붙인 MST oracle, 복원 조건 별도 |
 | 예산 안에서 최대 flow | 비용에 multiplier를 붙인 min-cost flow |
 | coverage를 일정 이상 만족 | uncovered item penalty가 붙은 set 선택 |
 | 평균 또는 비율 목적식 | `value - lambda * weight` 판정 |
@@ -141,12 +144,3 @@ Lagrangian 이분 탐색은 response가 단조적일 때 안전합니다.
 | violation | 감소 |
 
 동점 처리에 따라 count가 흔들리면 breakpoint 주변에서 같은 `lambda`로 서로 다른 해가 나올 수 있습니다. 그래서 DP 상태에 `(score, count)`를 같이 두고, 최대화 기준 다음의 tie-break를 명시합니다.
-
-## 자주 하는 실수
-
-1. penalty를 더해야 하는데 빼서 단조 방향을 반대로 만든다.
-2. relaxed 해의 count가 목표와 다르다는 사실을 무시하고 답을 보정한다.
-3. tie-break가 없어 이분 탐색 중 count가 불안정하게 튄다.
-4. 원래 제약이 equality인지 inequality인지 구분하지 않는다.
-5. penalty를 실수로 둬야 하는 문제를 정수 이분 탐색으로 자른다.
-6. relaxation 후 oracle이 여전히 어려운 문제인데 억지로 적용한다.

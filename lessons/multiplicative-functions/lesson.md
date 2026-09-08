@@ -2,6 +2,9 @@
 
 Multiplicative Functions는 `gcd(a, b)=1`일 때 `f(ab)=f(a)f(b)`를 만족하는 산술 함수입니다. Euler phi, Mobius function, divisor count, divisor sum처럼 정수론 문제에서 반복되는 함수들을 linear sieve로 한 번에 계산할 수 있습니다.
 
+
+multiplicative 함수는 f(1)=1입니다. 아래 여러 int 배열을 함께 만들면 N=10^7에서 약 280MB와 primes 공간이 필요하므로 필요한 함수만 남깁니다.
+
 ## 문제 신호
 
 | 문제 표현 | Multiplicative Function 관점 |
@@ -62,6 +65,7 @@ struct MultiplicativeSieve {
           exponent(limit + 1, 0),
           coreTau(limit + 1, 1),
           tau(limit + 1, 1) {
+        if (limit == 0) return;
         phi[1] = 1;
         mu[1] = 1;
         exponent[1] = 0;
@@ -141,11 +145,3 @@ sum_{i=1..N} floor(N / i) * f(i)
 | prefix sum query | 전처리 후 `O(1)` |
 
 여러 함수를 동시에 구해도 sieve loop는 하나로 묶을 수 있습니다.
-
-## 자주 하는 실수
-
-1. multiplicative와 completely multiplicative를 혼동한다.
-2. `p | i`인 경우에 break하지 않아 같은 수를 여러 번 갱신한다.
-3. `mu[p^2] = 0` 처리를 빠뜨린다.
-4. `tau`나 `sigma`에서 prime exponent 상태를 따로 관리하지 않는다.
-5. 함수 값이 커지는데 모듈러 또는 `long long` 범위를 확인하지 않는다.

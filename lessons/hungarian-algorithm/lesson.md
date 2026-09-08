@@ -16,7 +16,7 @@ Hungarian Algorithm은 이분 assignment 문제를 `O(N^3)`에 푸는 표준 알
 
 최대 이익 문제는 `cost = -profit`으로 바꿉니다.
 
-직사각형 행렬도 처리할 수 있습니다. 아래 구현은 `n <= m`일 때 `n`개의 row를 서로 다른 column에 배정합니다. 정사각형 assignment는 그대로 넣으면 되고, `n > m`이면 행과 열을 바꾸거나 dummy column을 추가합니다.
+직사각형 행렬도 처리할 수 있습니다. 아래 구현은 `n <= m`일 때 `n`개의 row를 서로 다른 column에 배정합니다. 정사각형 assignment는 그대로 넣으면 되고, `n > m`이면 모든 row를 서로 다른 실제 column에 배정할 수 없습니다. 일부 row를 남겨도 되는 목적이라면 전치해 배정 방향을 복원하고, 미배정 비용을 모델링하려면 그 비용의 dummy column을 추가합니다.
 
 ## 쓰지 말아야 할 경우
 
@@ -268,7 +268,7 @@ long long hungarian_min_cost(
 }
 ```
 
-`HUNGARIAN_INF`는 가능한 비용 합보다 커야 하며, `cost - u - v`도 `long long` 범위 안에 있어야 합니다. 금지된 배정을 큰 비용으로 표시했다면 반환된 `assignment`에 그 배정이 포함됐는지 별도로 검사합니다.
+예제는 유한 비용의 절댓값이 `10^12` 이하인 입력을 전제로 합니다. `N,M <= 1000`에서 potential과 slack 계산에 충분한 여유를 둡니다. `HUNGARIAN_INF`는 가능한 비용 합보다 커야 하며, `cost - u - v`도 `long long` 범위 안에 있어야 합니다. 금지된 배정을 큰 비용으로 표시했다면 반환된 `assignment`에 그 배정이 포함됐는지 별도로 검사합니다.
 
 작은 `N <= 8`에서는 모든 순열의 비용과 비교할 수 있습니다. 최적 배정이 여러 개일 수 있으므로 배열 자체 대신 총 비용과 column 중복 여부를 비교합니다. 이 구현의 작업 배열은 static이어서 동시에 호출할 수 없습니다.
 
@@ -276,11 +276,13 @@ long long hungarian_min_cost(
 
 | 항목 | 복잡도 |
 | --- | ---: |
-| 한 row를 추가하는 augmenting 과정 | `O(M^2)` |
-| 전체 `N`개 row 처리 | `O(NM^2)` |
+| 한 row를 추가하는 augmenting 과정 | `O(NM)` |
+| 전체 `N`개 row 처리 | `O(N²M)` |
 | 정사각형 `N x N` | `O(N^3)` |
 | 작업 배열 메모리 | `O(N + M)` |
 | 입력 비용 행렬 | `O(NM)` |
+
+직사각형 시간 분석과 구현 원리는 [cp-algorithms Hungarian 문서](https://cp-algorithms.com/graph/hungarian-algorithm.html)를 참고합니다.
 
 ## COUPANG2에서 어떻게 쓸 수 있는가
 

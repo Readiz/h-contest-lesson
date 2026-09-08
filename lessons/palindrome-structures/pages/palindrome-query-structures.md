@@ -43,50 +43,7 @@ else:
 
 Forward hash와 reversed string hash를 준비하면 substring과 그 reverse를 비교할 수 있습니다.
 
-```cpp compile-check
-#include <string>
-#include <vector>
-using namespace std;
-
-struct PalindromeHash {
-    static const long long MOD = 1000000007LL;
-    static const long long BASE = 911382323LL;
-
-    string s;
-    vector<long long> power;
-    vector<long long> forwardHash;
-    vector<long long> reverseHash;
-
-    explicit PalindromeHash(const string& input) : s(input) {
-        int n = (int)s.size();
-        string reversed(s.rbegin(), s.rend());
-        power.assign(n + 1, 1);
-        forwardHash.assign(n + 1, 0);
-        reverseHash.assign(n + 1, 0);
-
-        for (int i = 0; i < n; ++i) {
-            power[i + 1] = power[i] * BASE % MOD;
-            forwardHash[i + 1] = (forwardHash[i] * BASE + s[i]) % MOD;
-            reverseHash[i + 1] = (reverseHash[i] * BASE + reversed[i]) % MOD;
-        }
-    }
-
-    long long getHash(const vector<long long>& h, int left, int right) const {
-        long long value = (h[right] - h[left] * power[right - left]) % MOD;
-        if (value < 0) {
-            value += MOD;
-        }
-        return value;
-    }
-
-    bool isPalindrome(int left, int right) const {
-        int n = (int)s.size();
-        int revLeft = n - right - 1;
-        int revRight = n - left;
-        return getHash(forwardHash, left, right + 1) == getHash(reverseHash, revLeft, revRight);
-    }
-};
-```
+원문과 뒤집은 문자열에 기존 Rolling Hash를 각각 만듭니다. 원문의 `[l,r)`와 역문자열의 `[N-r,N-l)` 해시를 비교합니다. 코드 복제 없이 같은 해시 구현을 두 번 사용하며, 충돌 없는 정적 판정에는 위 Manacher 반지름을 씁니다.
 
 Hash는 충돌 가능성이 있습니다. 중요한 판정이면 double hash를 쓰거나 Manacher처럼 deterministic한 방법을 선택합니다.
 
@@ -120,19 +77,6 @@ query [l, r]:
 
 이 모델은 판정에는 강하지만 palindrome 개수 집계에는 약합니다. update 뒤 "구간 안 palindrome substring 수"를 묻는 문제는 훨씬 어렵고, 제한이 작은지 또는 offline 성질이 있는지 먼저 봐야 합니다.
 
-## 구조 선택표
-
-| 질의 형태 | 추천 |
-| --- | --- |
-| 정적 문자열, substring palindrome 판정 | Manacher |
-| 정적 문자열, LCP/비교와 함께 판정 | rolling hash |
-| 동적 point update + 판정 | hash segment tree |
-| 모든 palindrome 종류/occurrence | Palindromic Tree |
-| 가장 긴 palindrome substring | Manacher |
-| 온라인 append 통계 | Palindromic Tree |
-
-복잡한 구조를 고르기 전에, 문제에서 정말 palindrome을 "세는지" 아니면 "판정하는지"를 분리합니다.
-
 ## 시간 복잡도
 
 | 작업 | 복잡도 |
@@ -145,11 +89,3 @@ query [l, r]:
 | Eertree construction | `O(N * suffix fallback cost)` |
 
 alphabet과 hash collision 정책에 따라 상수와 안정성이 달라집니다.
-
-## 자주 하는 실수
-
-1. odd/even radius의 중심 index를 한 칸 밀린다.
-2. substring hash의 reverse 좌표를 `n-1-r`, `n-1-l`로 뒤집지 않는다.
-3. hash 하나만 쓰고 collision 가능성을 전혀 고려하지 않는다.
-4. 판정 문제에 Eertree를 써서 구현량을 불필요하게 키운다.
-5. Eertree occurrence를 suffix link 역순으로 누적하지 않는다.

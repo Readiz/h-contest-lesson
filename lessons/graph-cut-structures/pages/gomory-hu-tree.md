@@ -2,6 +2,9 @@
 
 Gomory-Hu Tree는 무향 그래프의 모든 정점 쌍 minimum cut 값을 `N-1`번의 min-cut 계산으로 압축하는 구조입니다. 완성된 tree에서는 두 정점 사이 경로의 최소 edge weight가 원래 그래프에서의 두 정점 min cut 값이 됩니다.
 
+
+n>=1, 비음수 무향 용량, oracle의 길이 n인 source-side 배열을 전제로 합니다. side[s]=true, side[t]=false이며 매 호출은 원본 용량에서 시작합니다. 질의 u,v는 서로 달라야 합니다. 병렬 간선은 합산하거나 별개의 용량 간선으로 보존할 수 있습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Gomory-Hu Tree 관점 |
@@ -67,6 +70,8 @@ struct GomoryHuTree {
         : n(vertexCount), parent(vertexCount, 0), weightToParent(vertexCount, 0), minCut(oracle) {}
 
     vector<tuple<int, int, long long>> build() {
+        parent.assign(n,0);
+        weightToParent.assign(n,0);
         for (int s = 1; s < n; ++s) {
             int t = parent[s];
             MinCutResult result = minCut(s, t);
@@ -133,11 +138,3 @@ answer(u, v):
 | LCA 전처리 후 질의 | `O(log N)` |
 
 전체 병목은 max-flow입니다. `N`이 크고 edge도 많은 경우에는 global min cut만 필요한지, 모든 쌍 질의가 정말 필요한지 먼저 확인합니다.
-
-## 자주 하는 실수
-
-1. 방향 그래프에 Gomory-Hu Tree를 그대로 적용한다.
-2. min-cut 값만 받고 reachable side를 저장하지 않는다.
-3. 매 max-flow마다 capacity/residual graph를 초기화하지 않는다.
-4. tree path의 합을 답으로 착각한다. 답은 path minimum이다.
-5. parallel edge와 undirected capacity를 입력에서 합치지 않는다.

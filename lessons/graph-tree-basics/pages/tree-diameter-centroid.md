@@ -42,6 +42,7 @@ pair<int, int> farthest(int start, const vector<vector<int>>& tree) {
 }
 
 int treeDiameter(const vector<vector<int>>& tree) {
+    if (tree.empty()) return 0;
     auto [x, ignored] = farthest(0, tree);
     auto [y, diameter] = farthest(x, tree);
     return diameter;
@@ -87,7 +88,7 @@ void findCentroids(
         findCentroids(v, u, tree, subtreeSize, n, centroids);
     }
 
-    if (largestPart * 2 <= n) {
+    if (largestPart <= n / 2) {
         centroids.push_back(u);
     }
 }

@@ -2,6 +2,9 @@
 
 Flow with Lower Bound는 각 간선에 `lower <= flow <= upper` 제약이 있는 유량 모델입니다. 일반 Max Flow는 간선마다 `0..capacity`만 생각하지만, lower bound가 있으면 반드시 흘려야 하는 최소량 때문에 feasibility를 먼저 확인해야 합니다.
 
+
+아래 코드는 [Max Flow, Min Cut, Bipartite Matching](https://h.readiz.com/learn/max-flow-min-cut)의 Dinic 정의 뒤에 붙이는 lower-bound 어댑터입니다.
+
 ## 문제 신호
 
 아래 표현이 있으면 lower bound flow를 의심합니다.
@@ -48,88 +51,11 @@ v는 lower만큼 받았으므로 demand[v] += lower
 
 ## Dinic 기반 feasibility 구현
 
-아래 코드는 lower/upper 간선을 추가하고 feasibility를 검사합니다.
+아래 코드는 lower/upper 간선을 추가하고 feasibility를 검사합니다. `0 <= lower <= upper`와 정점 범위를 확인하고, 모든 간선 추가 후 `feasible()`을 한 번만 호출합니다. demand 합과 유량은 `long long` 범위 안이어야 합니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <queue>
+```cpp
 #include <vector>
 using namespace std;
-
-struct Dinic {
-    struct Edge {
-        int to;
-        int rev;
-        long long cap;
-    };
-
-    int n;
-    vector<vector<Edge>> graph;
-    vector<int> level;
-    vector<int> work;
-
-    explicit Dinic(int n) : n(n), graph(n), level(n), work(n) {}
-
-    void addEdge(int from, int to, long long cap) {
-        Edge forward{to, (int)graph[to].size(), cap};
-        Edge backward{from, (int)graph[from].size(), 0};
-        graph[from].push_back(forward);
-        graph[to].push_back(backward);
-    }
-
-    bool bfs(int source, int sink) {
-        fill(level.begin(), level.end(), -1);
-        queue<int> q;
-        level[source] = 0;
-        q.push(source);
-        while (!q.empty()) {
-            int u = q.front();
-            q.pop();
-            for (const Edge& edge : graph[u]) {
-                if (edge.cap > 0 && level[edge.to] == -1) {
-                    level[edge.to] = level[u] + 1;
-                    q.push(edge.to);
-                }
-            }
-        }
-        return level[sink] != -1;
-    }
-
-    long long dfs(int u, int sink, long long pushed) {
-        if (u == sink) {
-            return pushed;
-        }
-        for (int& i = work[u]; i < (int)graph[u].size(); ++i) {
-            Edge& edge = graph[u][i];
-            if (edge.cap <= 0 || level[edge.to] != level[u] + 1) {
-                continue;
-            }
-            long long flow = dfs(edge.to, sink, min(pushed, edge.cap));
-            if (flow > 0) {
-                edge.cap -= flow;
-                graph[edge.to][edge.rev].cap += flow;
-                return flow;
-            }
-        }
-        return 0;
-    }
-
-    long long maxFlow(int source, int sink) {
-        long long result = 0;
-        const long long INF = (1LL << 60);
-        while (bfs(source, sink)) {
-            fill(work.begin(), work.end(), 0);
-            while (true) {
-                long long pushed = dfs(source, sink, INF);
-                if (pushed == 0) {
-                    break;
-                }
-                result += pushed;
-            }
-        }
-        return result;
-    }
-};
 
 struct LowerBoundFlow {
     int n;
@@ -172,7 +98,7 @@ source `s`에서 sink `t`로 lower bound flow를 보내고 싶다면, circulatio
 t -> s, lower = 0, upper = INF
 ```
 
-이렇게 하면 전체가 순환 구조가 되고, super source/sink 변환으로 feasible 여부를 확인할 수 있습니다. feasible flow를 만든 뒤 추가 최대 유량을 구하려면 super 간선을 제거하고 residual graph에서 `s -> t` max flow를 더 구하는 식으로 확장합니다.
+이렇게 하면 전체가 순환 구조가 되고, super source/sink 변환으로 feasible 여부를 확인할 수 있습니다. feasible flow를 만든 뒤 `t -> s` 보조 간선에 흐른 유량을 초기값으로 기록합니다. 이어 super 간선과 `t -> s` 보조 간선의 정방향·역방향 residual 용량을 모두 제거하고, 원래 간선의 residual graph에서 `s -> t` 추가 최대 유량을 구해 초기값에 더합니다.
 
 ## 모델링 예시
 
@@ -197,14 +123,3 @@ sink -> source         [0, INF] for circulation
 | 추가 max flow | Dinic 한 번 더 | 변환 후 graph |
 
 전체 병목은 결국 max flow입니다. lower bound 변환 자체는 선형입니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| demand 부호를 반대로 둠 | feasibility 반전 | `from -= lower`, `to += lower` |
-| capacity를 `upper`로 둠 | lower만큼 중복 허용 | residual cap은 `upper - lower` |
-| `t -> s` 간선 누락 | s-t flow feasibility 실패 | circulation 변환 확인 |
-| super source 간선 포화 확인 누락 | 불가능 케이스를 가능 처리 | max flow == required |
-| lower > upper 입력 처리 누락 | 음수 capacity | 입력 검증 |
-| 실제 flow 복원에서 lower 누락 | 출력이 최소량만큼 작음 | `flow = lower + used` |

@@ -2,6 +2,9 @@
 
 Randomized Determinant는 determinant를 직접 수식 전개하지 않고, 무작위 값을 대입한 뒤 modular Gaussian elimination으로 nonzero 여부나 rank 성질을 확률적으로 판정하는 관점입니다. Polynomial Identity Testing과 Schwartz-Zippel lemma가 핵심 안전장치입니다.
 
+
+정방행렬과 소수 2<=mod<=10^9+7을 전제로 하며 입력을 정규화합니다. Tutte 예시는 홀수 소수 field를 사용하고 각 간선 변수에 독립·균등 대입합니다. 0 대입도 Schwartz-Zippel의 정상 표본이며 이를 임의로 편향시키지 않습니다. 반복 실패 확률은 독립 trial에서 (degree/fieldSize)^K 이하로 평가합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Randomized Determinant 관점 |
@@ -30,7 +33,10 @@ Pr[P(random values) = 0] <= degree(P) / fieldSize
 
 아래는 prime modulo에서 determinant를 계산하는 기본 골격입니다.
 
-```cpp
+```cpp compile-check
+#include <algorithm>
+#include <vector>
+using namespace std;
 long long modPow(long long base, long long exponent, long long mod) {
     long long result = 1;
     while (exponent > 0) {
@@ -45,6 +51,7 @@ long long modPow(long long base, long long exponent, long long mod) {
 
 long long determinantMod(vector<vector<long long>> matrix, long long mod) {
     int n = (int)matrix.size();
+    for (auto& row : matrix) for (auto& x : row) { x%=mod; if(x<0)x+=mod; }
     long long det = 1;
     for (int col = 0; col < n; ++col) {
         int pivot = col;
@@ -112,18 +119,9 @@ A[j][i] = -r
 
 이 방식은 matching 자체를 복원하는 알고리즘과는 다릅니다. "존재성 판정"과 "구성 복원"을 분리해서 생각해야 합니다.
 
-## Rank 판정과 Random Weight
+## Rank와 무작위 대입의 구분
 
-rank를 안정적으로 드러내기 위해 행이나 열에 random diagonal scaling을 곱하는 기법도 있습니다. 특정 구조 때문에 pivot이 우연히 상쇄되는 일을 줄이려는 목적입니다.
-
-| 목적 | 흔한 장치 |
-| --- | --- |
-| nonzero determinant 판정 | random substitution |
-| maximum rank 추정 | random projection/scaling |
-| matching existence | Tutte matrix |
-| symbolic cancellation 회피 | 여러 prime과 반복 |
-
-결과가 확률적이라는 점은 숨기면 안 됩니다. 문제에서 deterministic answer가 요구되면, 작은 입력 검증이나 여러 반복으로 실패 확률을 충분히 낮춰야 합니다.
+고정 행렬에 가역인 무작위 대각 행렬을 곱해도 rank는 그대로입니다. 이를 pivot 상쇄를 없애 rank를 높이는 기법으로 설명할 수 없습니다. 여기의 확률성은 symbolic 행렬의 변수에 독립적인 값을 대입하는 데서 옵니다. 원래 field에서 다항식이 0이 아니라는 조건과 총차수/표본 집합 크기를 확인합니다.
 
 ## 반복 전략
 
@@ -150,11 +148,3 @@ return "probably zero"
 `N`이 수천 이상이면 dense determinant는 어렵습니다. 그때는 sparse elimination, black-box linear algebra, 또는 문제 특화 reduction을 봐야 합니다.
 
 Nonzero determinant는 존재성을 판정하지만 객체 자체를 복원하지는 않습니다. 실제 matching 등이 출력에 필요하면 복원 절차를 별도로 준비합니다.
-
-## 자주 하는 실수
-
-1. modulo가 prime인지 확인하지 않고 inverse를 계산한다.
-2. random 값에 0을 너무 자주 넣어 구조를 스스로 지운다.
-3. determinant가 0이면 "항상 불가능"이라고 단정한다.
-4. existence 판정 알고리즘으로 실제 해를 복원하려고 한다.
-5. signed matrix에서 `A[j][i] = -A[i][j]` 처리를 빼먹는다.

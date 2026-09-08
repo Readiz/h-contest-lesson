@@ -2,6 +2,9 @@
 
 Global Min Cut은 무향 가중 그래프에서 두 집합으로 정점을 나눌 때 끊기는 edge capacity 합의 최솟값을 찾는 문제입니다. 특정 두 정점 `s`, `t`를 분리하는 min cut이 아니라, 어떤 두 집합이든 허용하는 전체 graph connectivity의 최약 지점을 찾습니다.
 
+
+입력은 비음수 대칭 용량 행렬이며 self-loop를 제외합니다. 모든 용량 합은 INF 미만이어야 합니다. n<=1의 반환 0은 코드의 관례이며 비자명한 cut이 존재한다는 뜻은 아닙니다. 고정 root와 나머지 정점 간 N-1번 min-cut의 최솟값으로도 global cut을 구할 수 있습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Global Min Cut 관점 |
@@ -141,10 +144,10 @@ self-loop는 cut을 가로지르지 않으므로 무시합니다. capacity가 0�
 
 `N`이 수천 이상이면 matrix 방식은 어렵습니다. 문제 제한을 보고 sparse graph 전용 구현이나 다른 접근을 검토합니다.
 
-## 자주 하는 실수
+## 최소 cut 한쪽 집합 복원
 
-1. 방향 그래프에 Stoer-Wagner를 적용한다.
-2. global min cut과 특정 `s-t` min cut을 혼동한다.
-3. parallel edge를 덮어쓰고 합치지 않는다.
-4. contract 후 matrix를 대칭으로 갱신하지 않는다.
-5. disconnected graph의 답 0을 예외로 잘못 처리한다.
+각 active vertex에 원래 정점 목록 group[v]를 둡니다. phase의 마지막 t가 답을 갱신하면 group[t]를 저장합니다. s,t를 합칠 때 group[t]를 group[s]에 이어 붙입니다. 이 방법은 최소 cut 하나를 복원하며 모든 최소 cut family를 나열하지는 않습니다.
+
+## 간선 용량의 민감도
+
+간선 e의 용량을 늘려 global cut 값이 엄격히 증가하려면 e가 모든 기존 global minimum cut을 가로질러야 합니다. 일부 최소 cut만 가로지르면 다른 최소 cut이 그대로 남습니다. 반대로 양의 용량을 조금 줄일 때 e를 가로지르는 최소 cut 하나가 있으면 그 cut 값이 감소합니다. “어떤 최소 cut에 포함”과 “모든 최소 cut에 포함”을 구분합니다.

@@ -30,51 +30,7 @@ information set = 관측과 일치하는 모든 실제 상태
 
 행동과 관측이 들어오면 가능한 상태를 걸러내고 확률을 다시 정규화합니다.
 
-```cpp compile-check
-#include <vector>
-using namespace std;
-
-struct HiddenStateCandidate {
-    int stateId = 0;
-    double probability = 0.0;
-};
-
-struct ObservationModel {
-    int observedState = 0;
-    int action = 0;
-};
-
-bool isConsistentWithObservation(
-    const HiddenStateCandidate& candidate,
-    const ObservationModel& observation
-) {
-    return (candidate.stateId + observation.action) % 3 == observation.observedState;
-}
-
-vector<HiddenStateCandidate> updateBelief(
-    const vector<HiddenStateCandidate>& belief,
-    const ObservationModel& observation
-) {
-    vector<HiddenStateCandidate> next;
-    double total = 0.0;
-
-    for (const HiddenStateCandidate& candidate : belief) {
-        if (isConsistentWithObservation(candidate, observation)) {
-            next.push_back(candidate);
-            total += candidate.probability;
-        }
-    }
-
-    if (total == 0.0) {
-        return {};
-    }
-
-    for (HiddenStateCandidate& candidate : next) {
-        candidate.probability /= total;
-    }
-    return next;
-}
-```
+임의 상태 ID의 나머지 연산으로 관측 모델을 대신하지 않습니다. 실제 전이 확률과 관측 likelihood를 사용하는 [POMDP belief 갱신](https://h.readiz.com/learn/probabilistic-decision-ai/pomdp)을 재사용합니다. 정적인 숨은 상태의 결정적 관측인 경우에만 후보 제거 후 정규화로 줄어듭니다.
 
 예시의 `isConsistentWithObservation`은 문제별 규칙으로 바꿔야 합니다. 핵심은 불가능한 상태를 제거하고 남은 확률을 다시 합 1로 만드는 것입니다.
 
@@ -147,11 +103,3 @@ belief --action--> observation distribution --updated belief
 | exact belief DP | belief state 수에 따라 지수적으로 증가 가능 |
 
 숨은 상태 후보가 너무 많으면 sampling이나 compressed belief가 필요합니다.
-
-## 자주 하는 실수
-
-1. 실제 플레이어가 모르는 정보를 evaluation에 넣는다.
-2. determinization 결과를 평균내면서 strategy fusion을 인식하지 못한다.
-3. 관측 후 불가능해진 hidden state를 제거하지 않는다.
-4. belief 확률 정규화를 빠뜨린다.
-5. 상대가 관측한 정보와 내가 관측한 정보를 같은 것으로 둔다.

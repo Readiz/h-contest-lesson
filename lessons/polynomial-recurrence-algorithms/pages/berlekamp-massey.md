@@ -127,7 +127,7 @@ F[n] = 1*F[n-1] + 1*F[n-2]
 차수 `L` recurrence는 `L`개 계수를 가집니다. 하지만 최소 차수 자체를 모르기 때문에 BM은 항을 보며 차수를 늘립니다.
 
 ```text
-앞 2L개 항을 보면 L차 recurrence가 계속 맞는지 확인할 수 있다.
+전체 수열의 차수가 L 이하라는 보장이 있을 때 앞 2L항으로 복원할 수 있다.
 ```
 
 항이 부족하면 더 짧은 가짜 recurrence가 나올 수 있습니다. BM 결과도 holdout 항으로 다시 검증하는 편이 안전합니다.
@@ -141,7 +141,7 @@ terms -> BM -> coeff
 answer = nthByRecurrence(terms[0..L-1], coeff, n)
 ```
 
-이때 BM에 넣은 수열과 nth 함수의 index 기준이 같아야 합니다. `a_1`부터 생성한 수열이면 `n`도 1-based로 맞추거나 앞에 dummy `a_0`을 넣습니다.
+a_1부터 생성했다면 b_i=a_{i+1}로 정의하고 원래 a_N은 b의 N-1번째를 구합니다. 임의 dummy a_0을 넣으면 점화식이 깨질 수 있습니다. BM 결과가 빈 계수(L=0)이면 관측 수열은 전부 0입니다. 점화식 상한이 보장되는 경우 결과를 0으로 처리하고, K>=1을 요구하는 Kitamasa에 빈 벡터를 넘기지 않습니다.
 
 ## Mod 조건
 
@@ -162,11 +162,3 @@ factor = d / old_d
 | Kitamasa nth term | `O(L^2 log N)` |
 
 `T`는 보통 찾으려는 차수의 두 배 이상으로 잡습니다. 차수가 너무 크면 항 생성과 BM 둘 다 병목이 됩니다.
-
-## 자주 하는 실수
-
-1. 합성수 mod에서 Fermat inverse를 쓴다.
-2. 반환 coeff 부호 convention을 nth 함수와 반대로 쓴다.
-3. BM에 넣은 항이 부족한데 결과를 확정한다.
-4. noisy sequence나 floating point sequence에 BM을 적용한다.
-5. 초기항 index를 `a_0` 기준으로 맞추지 않는다.

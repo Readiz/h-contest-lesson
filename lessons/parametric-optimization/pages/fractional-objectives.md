@@ -2,6 +2,9 @@
 
 Fractional Programming DP는 `benefit / cost`, 평균값, 밀도, 비율 목적식을 직접 최적화하기 어려울 때 `benefit - lambda * cost` 형태의 판정 문제로 바꾸는 기법입니다. DP나 graph feasibility가 비율 안쪽에 들어가면 parametric search, Dinkelbach iteration, binary search on answer를 함께 봅니다.
 
+
+모든 feasible 해의 분모 합이 양수이고 해가 비어 있지 않아야 부등식 변환이 맞습니다. 아래 배열은 비어 있지 않고 1<=minLength<=N, 값은 유한한 실수입니다. 반복 횟수는 초기 폭/2^iterations를 줄이지만 판정의 반올림 오차는 없애지 못합니다.
+
 ## 문제 신호
 
 | 문제 표현 | Fractional 관점 |
@@ -145,12 +148,3 @@ transformed:
 | 후보 비율 exact search | `판정 비용 * log candidates` |
 
 비율 최적화는 판정 함수를 수십 번 부릅니다. 판정 DP가 충분히 빠른지 먼저 계산합니다.
-
-## 자주 하는 실수
-
-1. `sum value / sum weight`를 item별 ratio 평균으로 바꿔 버린다.
-2. weight가 0일 수 있는 경우를 처리하지 않는다.
-3. 최대화 문제와 최소화 문제의 부등호 방향을 뒤집는다.
-4. DP 초기값의 `-inf`가 transformed score와 섞여 overflow를 만든다.
-5. 실수 오차 때문에 `>= 0` 판정이 흔들리는 입력을 고려하지 않는다.
-6. binary search iteration 수가 부족해 출력 오차를 넘긴다.

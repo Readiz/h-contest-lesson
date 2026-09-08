@@ -2,6 +2,9 @@
 
 Voronoi Diagram과 Delaunay Triangulation은 평면의 점 집합에서 "가장 가까운 점" 구조를 다루는 쌍대 개념입니다. 구현 난도는 높지만, 문제에서 어떤 성질을 써야 하는지 알면 closest pair, nearest neighbor, Euclidean MST를 더 구조적으로 볼 수 있습니다.
 
+
+incircle 부호 보정 함수는 triangle 방향을 내부에서 반영합니다. 세 기준점이 일직선이면 외접원이 정의되지 않으므로 호출하지 않습니다. 고정 EPS는 모든 좌표 크기에 대한 정확성 보장이 아닙니다.
+
 ## 문제 신호
 
 | 문제 표현 | 관점 |
@@ -131,11 +134,3 @@ Voronoi/Delaunay 전체 구현은 degenerate case가 많습니다. 온라인 저
 | 모든 triangle empty circle brute force | `O(N^4)` |
 
 직접 Delaunay를 구현하는 대신 문제의 제약에 맞는 더 단순한 구조가 있는지 먼저 찾습니다.
-
-## 자주 하는 실수
-
-1. Delaunay triangulation이 항상 유일하다고 가정한다.
-2. cocircular case에서 edge 선택이 달라져도 되는지 확인하지 않는다.
-3. Voronoi cell이 무한할 수 있다는 점을 잊는다.
-4. in-circle predicate에서 orientation 부호를 보정하지 않는다.
-5. Euclidean MST 후보를 Delaunay가 아니라 nearest neighbor 한 개로만 줄인다.

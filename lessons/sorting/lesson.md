@@ -60,9 +60,11 @@ for (int i = 0; i < n; ) {
 | 방식 | 대표 예시 | 시간 복잡도 | 쓰기 좋은 상황 |
 | --- | --- | ---: | --- |
 | 단순 비교 정렬 | 선택 정렬, 삽입 정렬 | `O(n^2)` | 입력이 작거나 구현 원리를 확인할 때 |
-| 빠른 비교 정렬 | merge sort, heap sort, quick sort, `std::sort` | `O(n log n)` | 일반적인 정렬 문제 대부분 |
+| 빠른 비교 정렬 | merge sort, heap sort, `std::sort` | `O(n log n)` | 일반적인 정렬 문제 대부분 |
 | 값 범위 활용 | counting sort | `O(n + K)` | 값의 범위 `K`가 작을 때 |
 | 자릿수 활용 | radix sort | `O(pass * (n + K))` | 정수나 문자열처럼 자릿수로 나눌 수 있을 때 |
+
+일반적인 quick sort는 평균 `O(n log n)`이지만 최악에는 `O(n²)`입니다.
 
 `O(n^2)` 정렬은 구현이 쉽지만 `n`이 커지면 급격히 느려집니다. 예를 들어 `n = 100000`이면 비교 횟수가 대략 100억 번까지 커질 수 있습니다. 작은 테스트에서는 맞아 보여도 큰 테스트에서 바로 막힙니다.
 
@@ -110,7 +112,11 @@ for (int value = 0; value < K; ++value) {
 
 이 코드는 값 자체만 정렬할 때는 충분합니다. 하지만 원소에 다른 정보가 붙어 있고 안정성이 필요하다면 누적합을 써서 각 값이 들어갈 위치를 계산해야 합니다.
 
+앞 코드가 `cnt`를 소모했으므로 빈도를 다시 센 뒤 배치합니다. `0 <= a[i] < K <= 1000`이고 `tmp`의 용량은 `n` 이상이어야 합니다.
+
 ```cpp
+for (int i = 0; i < K; ++i) cnt[i] = 0;
+for (int i = 0; i < n; ++i) cnt[a[i]]++;
 for (int i = 1; i < K; ++i) {
     cnt[i] += cnt[i - 1];
 }
@@ -183,4 +189,4 @@ void radix_sort_u32(int n, unsigned int values[]) {
 
 ![16비트 radix sort 흐름](lesson-assets/radix-sort-passes.svg)
 
-각 pass 전에 `cnt`를 0으로 초기화합니다. 이 구현은 `unsigned int`의 32비트 패턴을 다루므로, 중간에 부호 있는 타입으로 바꾸면 shift와 정렬 순서가 달라질 수 있습니다.
+입력은 `0 <= n <= 4,000,000`이며 `values`와 전역 버퍼 `tmp`는 겹치지 않아야 합니다. 두 pass가 끝나면 결과는 원래 `values`에 있습니다. 각 pass 전에 `cnt`를 0으로 초기화합니다. 이 구현은 `unsigned int`의 32비트 패턴을 다루므로, 중간에 부호 있는 타입으로 바꾸면 shift와 정렬 순서가 달라질 수 있습니다.

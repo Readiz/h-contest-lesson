@@ -85,11 +85,11 @@ Queue는 stack보다 어렵습니다. front에서 pop하고 back에 push하기 �
 | parent pointer + index | append-only queue에 단순 | pop이 앞 index 증가일 때만 가능 |
 | rollback queue | offline undo에 쉬움 | version branching에는 약함 |
 
-많은 문제는 "version별 배열 구간 `[head, tail)`"로 queue를 모델링할 수 있습니다. push만 새 원소를 전역 배열 끝에 붙이고, pop은 head index만 증가시키는 식입니다.
+버전이 분기하면 전역 배열의 연속 구간만으로는 큐를 표현할 수 없습니다. 같은 꼬리에서 서로 다른 값을 push한 두 버전이 같은 위치를 공유하기 때문입니다. 아래처럼 배열 자체도 persistent하게 저장합니다.
 
 ## Append-only Persistent Queue
 
-각 version이 이전 version에서 push/pop만 한다면, root에 `head`, `tail`, 그리고 원소 배열의 persistent sequence root를 저장합니다. 더 단순한 변형에서는 모든 push node가 전역으로 쌓이고, queue 원소가 append order 그대로 유지됩니다.
+각 version이 이전 version에서 push/pop만 한다면, root에 `head`, `tail`, 그리고 원소 배열의 persistent sequence root를 저장합니다.
 
 ```text
 version state:
@@ -107,19 +107,6 @@ pop():
 ```
 
 이 모델은 중간 삽입이 없을 때 강합니다. Deque처럼 양쪽 push/pop이 있으면 implicit treap 같은 persistent sequence가 더 자연스럽습니다.
-
-## Persistence와 Rollback
-
-Rollback은 현재 상태를 과거 snapshot으로 되돌리는 데 강합니다. Persistence는 여러 과거 version이 동시에 살아 있고, 그중 하나에서 새 branch를 만들 수 있습니다.
-
-| 요구 | 적합한 방식 |
-| --- | --- |
-| DFS에서 들어갔다 나오기 | rollback |
-| query가 version id를 직접 지정 | persistence |
-| 과거 operation 삭제 | retroactivity |
-| 모든 version이 선형으로만 진행 | undo stack 또는 rollback |
-
-version branching이 있으면 단순 undo log만으로는 부족합니다.
 
 ## 작은 예시
 
@@ -148,11 +135,3 @@ v2와 v4는 v1에서 갈라진 서로 다른 branch다.
 | persistent implicit treap | expected `O(log Q)` | split/merge 기반 | operation당 `O(log Q)` |
 
 문제에서 queue가 정말 필요한지, stack parent pointer로 바꿀 수 있는지 먼저 확인합니다.
-
-## 자주 하는 실수
-
-1. pop이 old version을 수정한다고 착각해 parent node를 바꾼다.
-2. 빈 stack root와 실제 value 0을 구분하지 않는다.
-3. queue pop을 stack parent처럼 처리해 FIFO 순서를 깨뜨린다.
-4. rollback만 구현해 놓고 version branching query를 처리하려 한다.
-5. persistent segment tree의 index 범위를 operation 수보다 작게 잡는다.

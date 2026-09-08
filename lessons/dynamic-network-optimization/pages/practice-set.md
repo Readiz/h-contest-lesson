@@ -33,7 +33,7 @@ S -> B -> T : 2
 | --- | ---: | --- | --- |
 | 초기 | 3 | 없음 | Dinic 한 번 |
 | capacity 증가 | 4 | `A -> T += 1` | residual에서 추가 augment |
-| capacity 감소 | 알 수 없음 | `S -> B -= 1` | repair 또는 rebuild |
+| capacity 감소 | 3 (재계산) | `S -> B -= 1` | repair 또는 rebuild |
 | source/sink 변경 | 알 수 없음 | `S/T` 변경 | batch query나 rebuild |
 
 핵심은 "capacity 증가에서는 기존 flow가 계속 feasible하다"는 조건입니다. 이 조건을 놓치면 dynamic flow를 dynamic connectivity처럼 단순 rollback으로 착각하게 됩니다.
@@ -109,7 +109,3 @@ for seed in 1..1000:
 ```
 
 capacity decrease query를 일부러 섞으면 이 assert가 깨질 수 있어야 합니다. 그 반례가 바로 이 기법의 적용 경계입니다.
-
-### MST Replacement Counterexample
-
-네 정점 cycle에 diagonal 하나를 추가한 그래프를 만듭니다. MST에 들어간 edge를 삭제하면 어떤 non-tree edge가 replacement가 되는지 직접 찾고, MST 밖 edge를 삭제하면 답이 변하지 않는다는 것도 같이 확인합니다.

@@ -2,6 +2,9 @@
 
 Min-Plus Convolution은 두 수열 `A`, `B`에서 `C[k] = min_i A[i] + B[k-i]`를 계산하는 연산입니다. 일반적으로는 느리지만, convex sequence, Monge 성질, DP 전이 구조가 있으면 argmin 단조성을 이용해 크게 줄일 수 있습니다.
 
+
+유한 원소의 합은 INF보다 작고 long long 범위여야 합니다. 아래 구현에는 INF 입력을 넣지 않습니다. 불가능 상태를 허용하려면 스킵뿐 아니라 유효 후보 존재와 opt 단조성 증명을 다시 설계해야 합니다. 두 배열 중 하나라도 비면 convolution도 빈 배열입니다.
+
 ## 문제 신호
 
 | 문제 표현 | Min-Plus Convolution 관점 |
@@ -71,9 +74,10 @@ B = [0, 100, 0]
 using namespace std;
 
 struct MinPlusConvolution {
-    static const long long INF = (1LL << 60);
+    inline static constexpr long long INF = (1LL << 60);
 
     static vector<long long> naive(const vector<long long>& a, const vector<long long>& b) {
+        if (a.empty() || b.empty()) return {};
         int n = (int)a.size();
         int m = (int)b.size();
         vector<long long> result(n + m - 1, INF);
@@ -86,6 +90,7 @@ struct MinPlusConvolution {
     }
 
     static vector<long long> monotoneArgmin(const vector<long long>& a, const vector<long long>& b) {
+        if (a.empty() || b.empty()) return {};
         int n = (int)a.size();
         int m = (int)b.size();
         int total = n + m - 1;
@@ -161,35 +166,6 @@ child가 많으면 merge 비용이 커집니다. 배열 길이 합, convex 여�
 
 같은 convex DP라도 함수 update가 단순하면 Slope Trick, 두 함수 merge가 핵심이면 Min-Plus Convolution이 더 직접적입니다.
 
-## 시간 복잡도와 적용 조건
+## 시간 복잡도
 
-### 8.1 naive가 충분한 경우
-
-배열 길이 합이 작거나 merge 횟수가 적으면 `O(NM)`이 가장 안전합니다. 특히 상태 수 제한, pruning, small-to-large merge만으로 통과하는 문제라면 opt 단조성을 억지로 증명할 필요가 없습니다.
-
-### 8.2 opt monotone이 증명되는 경우
-
-`argmin(k)`가 감소하지 않는다는 것을 증명할 수 있으면 divide and conquer 최적화를 씁니다. 위 구현처럼 결과 index 구간을 반으로 나누고 opt 후보 범위를 함께 줄이면 대략 `O((N+M) log(N+M))` 스캔으로 줄어듭니다.
-
-### 8.3 convex sequence라서 더 특수한 알고리즘이 가능한 경우
-
-두 수열이 discrete convex이고 문제에서 필요한 연산이 순수 min-plus convolution이면 더 특화된 `O(N+M)` 계열 알고리즘을 검토할 수 있습니다. 다만 구현 난도가 높고 전제 조건이 좁기 때문에, 대회 풀이에서는 Monge/SMAWK 또는 D&C 최적화로 충분한지 먼저 계산합니다.
-
-### 8.4 조건을 못 증명하면 쓰면 안 되는 경우
-
-최적화의 전제 조건을 증명하지 못하면 naive나 제한 기반 pruning으로 돌아가는 편이 안전합니다. 특히 입력 비용이 임의 배열이거나, DP transition에 추가 조건이 붙어 행렬이 Monge가 아니면 monotone D&C는 답을 틀릴 수 있습니다.
-
-| 접근 | 복잡도 | 사용할 조건 |
-| --- | ---: | --- |
-| naive | `O(NM)` | 항상 안전 |
-| argmin monotone divide and conquer | 대략 `O((N+M) log(N+M))` | opt 단조성 증명 필요 |
-| 특수 convex linear algorithm | 조건에 따라 `O(N+M)` | discrete convex 조건과 전용 구현 필요 |
-| tree DP repeated merge | 총 상태 수와 merge 순서에 의존 | merge 순서와 상태 크기 관리 필요 |
-
-## 자주 하는 실수
-
-1. 일반 convolution처럼 FFT로 풀 수 있다고 착각한다.
-2. argmin 단조성이 없는데 divide and conquer를 적용한다.
-3. 결과 index `k`에서 가능한 `i` 범위를 잘못 잡는다.
-4. `INF + value` overflow를 확인하지 않는다.
-5. max-plus와 min-plus를 부호 변환 없이 섞는다.
+일반 입력은 O(NM), opt 단조성이 증명되면 위 D&C는 O((N+M)log(N+M))입니다. 두 배열 모두 이산 볼록이면 각 차분 배열이 정렬되어 있으므로 두 차분 배열을 merge합니다. C[0]=A[0]+B[0]에서 작은 차분을 차례로 더하면 O(N+M)에 전체 결과를 얻습니다. 불가능 상태나 추가 선택 제약이 있으면 이 단순 merge 조건부터 다시 확인합니다.

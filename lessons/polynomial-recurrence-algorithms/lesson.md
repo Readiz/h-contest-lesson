@@ -14,21 +14,7 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 | counting 문제를 생성함수로 번역 | [Generating Function Modeling](pages/generating-function-modeling.md) |
 | 주어진 선형 점화식의 n번째 항 | [Linear Recurrence and Kitamasa](pages/linear-recurrence-kitamasa.md) |
 | rational generating function 계수 추출 | [Bostan-Mori](pages/bostan-mori.md) |
-| 문제에서 점화식을 찾아 방법 선택 | [Linear Recurrence Applications](pages/linear-recurrence-applications.md) |
 | 앞 항에서 점화식 후보를 추정 | [Recurrence Guessing](pages/recurrence-guessing.md), [Berlekamp-Massey](pages/berlekamp-massey.md) |
-
-## 모델 선택 표
-
-| 문제 신호 | 우선 후보 |
-| --- | --- |
-| `sum a[i] * b[k-i]` 꼴 | FFT/NTT |
-| 다항식 inverse/log/exp가 필요 | Formal Power Series |
-| `P(x_i)`를 많은 점에서 평가 | Multipoint Evaluation |
-| 점 몇 개로 다항식을 복원 | Polynomial Interpolation |
-| counting 구조가 product/sequence/set로 조합 | Generating Function Modeling |
-| 낮은 차수 선형 점화식이 주어짐 | Kitamasa, Bostan-Mori |
-| 처음 항만 많이 만들 수 있음 | Berlekamp-Massey + nth term |
-| 큰 행렬을 직접 저장하기 어렵고 matvec만 가능 | Black-Box Linear Algebra로 이동 |
 
 ## 계산 조건
 

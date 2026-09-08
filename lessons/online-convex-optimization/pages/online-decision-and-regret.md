@@ -8,6 +8,9 @@ Online Decision and Regret은 매 라운드 선택을 먼저 하고 그 뒤 손�
 2. 손실을 본 뒤 gradient나 subgradient로 다음 decision을 갱신한다.
 3. 최적 고정 decision과의 차이인 regret을 작게 만드는 것이 목표다.
 
+
+아래 함수는 선형 손실 gradient 목록을 재생해 마지막 갱신점 x_(T+1)을 반환합니다. 일반 online 환경은 x_t를 먼저 선택한 뒤 그 점의 subgradient를 받아 갱신합니다. dimension·gradient 길이 일치, radius>=0, 유한 값·학습률을 전제로 합니다. 유계 convex 영역·유계 subgradient와 적절한 학습률에서 누적 regret을 제어하며 마지막 점의 최적성을 보장하는 것은 아닙니다.
+
 ## 문제 신호
 
 | 문제 표현 | OCO 관점 |
@@ -130,12 +133,3 @@ normalize weights
 | multiplicative weights | `O(d)` |
 
 dimension이 크면 projection이 병목이 됩니다. feasible set이 단순한지부터 확인합니다.
-
-## 자주 하는 실수
-
-1. 손실을 본 뒤에 같은 라운드 선택을 바꾸는 offline 풀이로 착각한다.
-2. projection을 하지 않아 feasible constraint를 깨뜨린다.
-3. learning rate를 손실 scale과 맞추지 않는다.
-4. regret 비교 대상을 매 라운드 바뀌는 최적 선택으로 잡는다.
-5. bandit feedback 문제에서 full gradient를 안다고 가정한다.
-6. convex가 아닌 손실에 OGD 보장을 그대로 적용한다.

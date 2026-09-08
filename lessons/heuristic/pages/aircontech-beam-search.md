@@ -37,12 +37,6 @@ struct House {
 };
 ```
 
-날짜가 바뀌어도 위치는 유지되며, 시간 초과는 해당 TC의 0점으로 이어집니다.
-
-- 다음 날은 원점이 아니라 전날 마지막 좌표에서 시작한다.
-- `move` 직전 시각과 설치 완료 시각으로 480분 이후 수당을 계산한다.
-- 720분을 넘는 이동이나 설치는 단순 손해가 아니라 해당 테스트 0점이다.
-
 ## 하루 경로의 정확한 깊이 상한
 
 가장 짧은 타입 1 설치도 60분이 걸립니다. 이동 시간이 0이어도 하루 최대 방문 수는 다음과 같습니다.
@@ -186,6 +180,8 @@ void keepState(State states[], int &count, const State &next) {
 후보를 붙일 때는 채점기와 같은 순서로 시간을 계산합니다.
 
 ```cpp
+State next = state;
+if (state.minute + travel + service[type] > 720) continue;
 int startMinute = state.minute;
 
 next.minute += travel + service[type];

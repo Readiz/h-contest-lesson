@@ -1506,13 +1506,6 @@
           "file": "pages/persistent-queue-stack.md"
         },
         {
-          "pageId": "persistent-sequence-queries",
-          "title": "Persistent Sequence Queries",
-          "description": "version별 배열과 sequence에서 kth, count, range query를 처리합니다.",
-          "order": 60,
-          "file": "pages/persistent-sequence-queries.md"
-        },
-        {
           "pageId": "practice-set",
           "title": "Practice Set",
           "description": "Versioned Data Structures 계열을 하나의 흐름으로 연습합니다.",
@@ -1993,7 +1986,7 @@
         {
           "pageId": "generalized-suffix-automaton",
           "title": "Generalized Suffix Automaton",
-          "description": "여러 문자열을 한 automaton에서 처리합니다.",
+          "description": "첫 문자열의 SAM으로 여러 문자열의 공통 substring 길이를 구하고 generalized 구성과 구분합니다.",
           "order": 60,
           "file": "pages/generalized-suffix-automaton.md"
         },
@@ -2105,13 +2098,6 @@
           "description": "구간 palindrome table과 range DP 응용입니다.",
           "order": 40,
           "file": "pages/palindrome-range-dp.md"
-        },
-        {
-          "pageId": "suffix-palindrome-applications",
-          "title": "Suffix and Palindrome Applications",
-          "description": "suffix 구조와 palindrome 보조 정보를 결합합니다.",
-          "order": 50,
-          "file": "pages/suffix-palindrome-applications.md"
         },
         {
           "pageId": "practice-set",
@@ -2403,8 +2389,8 @@
     {
       "lessonId": "half-plane-intersection",
       "title": "Half-Plane Intersection",
-      "description": "방향 있는 직선의 왼쪽 반평면들을 각도순 deque로 처리해 convex feasible region을 구합니다.",
-      "summary": "반평면 표현, angle sort, parallel tie-break, deque intersection, bounding box와 Voronoi cell 연결까지 이어지는 계산기하 심화",
+      "description": "주어진 볼록 영역을 반평면으로 자르는 구현과 각도 정렬 deque의 적용 범위를 구분합니다.",
+      "summary": "bounded polygon clipping, 평행 제약, 수치 오차와 무한 영역 처리의 차이",
       "order": 69,
       "folderId": "heuristic-reference",
       "tags": [
@@ -2416,7 +2402,7 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 75,
+      "estimatedMinutes": 35,
       "prerequisites": [
         "line-arrangement",
         "voronoi-delaunay"
@@ -2648,13 +2634,6 @@
           "file": "pages/bostan-mori.md"
         },
         {
-          "pageId": "linear-recurrence-applications",
-          "title": "Linear Recurrence Applications",
-          "description": "문제에서 선형 점화식을 찾고 방법을 고릅니다.",
-          "order": 100,
-          "file": "pages/linear-recurrence-applications.md"
-        },
-        {
           "pageId": "recurrence-guessing",
           "title": "Recurrence Guessing",
           "description": "앞 항에서 recurrence 후보를 만들고 검증합니다.",
@@ -2878,13 +2857,6 @@
           "file": "pages/stochastic-shortest-path.md"
         },
         {
-          "pageId": "exact-model-vs-sampling",
-          "title": "Exact Model vs Sampling",
-          "description": "전이표 기반 DP와 sample 기반 RL/planning을 구분합니다.",
-          "order": 70,
-          "file": "pages/exact-model-vs-sampling.md"
-        },
-        {
           "pageId": "monte-carlo-tree-search",
           "title": "Monte Carlo Tree Search",
           "description": "UCT, rollout, backpropagation으로 큰 game tree를 근사 탐색합니다.",
@@ -2993,8 +2965,8 @@
       "pages": [
         {
           "pageId": "offline-queries",
-          "title": "Offline Queries",
-          "description": "Mo, DSU rollback, parallel binary search의 큰 그림입니다.",
+          "title": "Parallel Binary Search",
+          "description": "단조 판정 질의를 묶는 Parallel Binary Search의 진행과 불변식을 설명합니다.",
           "order": 20,
           "file": "pages/offline-queries.md"
         },
@@ -3222,7 +3194,7 @@
       ],
       "nextLessons": [
         "parametric-optimization",
-        "quadrangle-inequality-proofs"
+        "knuth-optimization"
       ],
       "relatedLessons": [
         "convex-dp-optimization"
@@ -3271,13 +3243,6 @@
       ],
       "pages": [
         {
-          "pageId": "feasibility-and-answer-search",
-          "title": "Feasibility and Answer Search",
-          "description": "답 후보와 penalty를 고정한 DP/feasibility oracle의 공통 구조입니다.",
-          "order": 10,
-          "file": "pages/feasibility-and-answer-search.md"
-        },
-        {
           "pageId": "exact-k-alien-optimization",
           "title": "Exact-K Alien Optimization",
           "description": "정확히 K개 선택 제약을 count와 penalty로 다루는 Alien Optimization입니다.",
@@ -3297,13 +3262,6 @@
           "description": "여러 제약과 relaxed oracle을 dual variable 관점에서 다룹니다.",
           "order": 40,
           "file": "pages/general-lagrangian-relaxation.md"
-        },
-        {
-          "pageId": "tie-breaking-and-breakpoints",
-          "title": "Tie-breaking and Breakpoints",
-          "description": "count 동점 처리와 breakpoint 주변의 답 복원 함정을 정리합니다.",
-          "order": 50,
-          "file": "pages/tie-breaking-and-breakpoints.md"
         },
         {
           "pageId": "practice-set",
@@ -3572,13 +3530,6 @@
           "file": "pages/cut-sparsification.md"
         },
         {
-          "pageId": "global-min-cut-applications",
-          "title": "Global Min Cut Applications",
-          "description": "partition 복원, pair cut query, edge criticality 같은 global cut 응용입니다.",
-          "order": 70,
-          "file": "pages/global-min-cut-applications.md"
-        },
-        {
           "pageId": "cactus-representation",
           "title": "Cactus Representation",
           "description": "cactus graph와 min cut family 표현을 구분합니다.",
@@ -3609,7 +3560,7 @@
       "lessonId": "euler-tour-tree",
       "title": "Euler Tour Tree",
       "description": "dynamic forest를 Euler tour sequence와 balanced binary tree로 표현해 online link, cut, connectivity를 처리합니다.",
-      "summary": "Euler tour sequence, implicit treap split/merge, reroot, edge arc 관리, Link-Cut Tree와의 선택 기준을 설명하는 자료구조 심화 레슨",
+      "summary": "정점 marker와 양방향 arc로 일관된 link/cut 순환 tour를 추적하고 필요한 parent와 handle 관리를 설명합니다.",
       "order": 98,
       "folderId": "heuristic-reference",
       "tags": [
@@ -3621,7 +3572,7 @@
         "practice"
       ],
       "level": "advanced",
-      "estimatedMinutes": 60,
+      "estimatedMinutes": 30,
       "prerequisites": [
         "link-cut-tree",
         "offline-time-axis-techniques",
@@ -3635,9 +3586,9 @@
         "offline-time-axis-techniques"
       ],
       "pages": [],
-      "lessonType": "implementation",
+      "lessonType": "reference",
       "practiceStatus": "todo",
-      "implementationStatus": "partial",
+      "implementationStatus": "concept-only",
       "audience": "advanced-contest",
       "difficultyAxes": [
         "implementation",
@@ -4112,42 +4063,6 @@
       "difficultyAxes": [
         "implementation",
         "modeling"
-      ]
-    },
-    {
-      "lessonId": "quadrangle-inequality-proofs",
-      "title": "Quadrangle Inequality Proofs",
-      "description": "Knuth, Monge, divide-and-conquer DP 최적화 전에 필요한 부등식과 opt 단조성 증명 패턴을 익힙니다.",
-      "summary": "quadrangle inequality, Monge inequality, opt monotonicity, tie-breaking, 작은 반례 탐색을 연결하는 DP 최적화 증명 레슨",
-      "order": 134,
-      "folderId": "heuristic-reference",
-      "tags": [
-        "dp-optimization",
-        "quadrangle-inequality",
-        "monge",
-        "knuth",
-        "opt-monotonicity",
-        "practice"
-      ],
-      "level": "advanced",
-      "estimatedMinutes": 55,
-      "prerequisites": [
-        "knuth-optimization",
-        "monge-smawk",
-        "divide-and-conquer-dp-optimization"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "convex-dp-optimization"
-      ],
-      "pages": [],
-      "lessonType": "implementation",
-      "practiceStatus": "todo",
-      "implementationStatus": "concept-only",
-      "audience": "advanced-contest",
-      "difficultyAxes": [
-        "proof",
-        "selection"
       ]
     },
     {

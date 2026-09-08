@@ -2,6 +2,9 @@
 
 Line Arrangement는 여러 직선이 평면을 어떻게 나누는지, 교점이 어떤 순서로 생기는지, 그리고 각 직선이 arrangement에 몇 개의 새 영역을 추가하는지 분석하는 주제입니다. Segment intersection sweep보다 한 단계 더 구조적인 기하 관점입니다.
 
+
+직선 `ax+by+c=0`에서 `(a,b)!=(0,0)`이어야 합니다. 계수 절댓값·gcd 부호 변경·교점 determinant가 사용 타입에 들어가는 입력만 받습니다. 평행과 일치 직선은 교점 나눗셈 전에 구분합니다.
+
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -36,43 +39,7 @@ a*x + b*y + c = 0
 
 동일한 직선은 `(a, b, c)`를 gcd로 나누고 부호를 통일하면 같은 tuple이 됩니다.
 
-```cpp compile-check
-#include <cstdlib>
-#include <numeric>
-#include <tuple>
-using namespace std;
-
-struct NormalizedLine {
-    long long a;
-    long long b;
-    long long c;
-};
-
-long long absLongLong(long long x) {
-    return x < 0 ? -x : x;
-}
-
-NormalizedLine normalizeLine(long long a, long long b, long long c) {
-    long long g = gcd(absLongLong(a), gcd(absLongLong(b), absLongLong(c)));
-    if (g == 0) {
-        return {0, 0, 0};
-    }
-    a /= g;
-    b /= g;
-    c /= g;
-
-    if (a < 0 || (a == 0 && b < 0) || (a == 0 && b == 0 && c < 0)) {
-        a = -a;
-        b = -b;
-        c = -c;
-    }
-    return {a, b, c};
-}
-
-tuple<long long, long long, long long> lineKey(const NormalizedLine& line) {
-    return {line.a, line.b, line.c};
-}
-```
+정규화와 비교 구현은 아래의 한 코드 블록에 모읍니다.
 
 입력이 두 점으로 주어지면 `a = y1 - y2`, `b = x2 - x1`, `c = -(a*x1 + b*y1)`로 만들 수 있습니다.
 
@@ -224,11 +191,3 @@ V - E + F = 1 + C
 | arrangement face count | 교점 수에 따라 큼 | 구현 복잡 |
 
 `N`이 2000 이하이면 exact pairwise가 더 안전할 때가 많습니다. `N`이 크고 교점 수가 작을 때 sweep이 효과적입니다.
-
-## 자주 하는 실수
-
-1. 같은 직선을 여러 번 추가해 영역 수를 늘린다.
-2. 평행 직선을 교점이 있는 것처럼 처리한다.
-3. 세 직선이 한 점에서 만날 때 교점 수를 중복으로 센다.
-4. rational 좌표를 double로 비교한다.
-5. 선분 문제를 무한 직선 공식으로 푼다.

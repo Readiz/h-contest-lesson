@@ -2,6 +2,9 @@
 
 Sparse Linear Systems는 대부분의 계수가 0인 큰 연립방정식 `A x = b`를 푸는 관점입니다. 모든 원소를 dense matrix로 펼치면 `O(N^3)` Gaussian elimination이 필요하지만, nonzero 구조와 matvec oracle을 이용하면 훨씬 큰 상태를 다룰 수 있습니다.
 
+
+연결된 무향 양의 가중치 실수 Laplacian은 rank N-1입니다. 비연결이면 성분 수만큼 영공간이 생기고, 유한체로 줄이면 추가 rank 감소가 가능하므로 실수 성질을 그대로 적용하지 않습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Sparse Linear System 관점 |
@@ -42,7 +45,7 @@ x0 + 2*x3 = 5
 
 ```text
 rank(A) == rank([A|b])이면 해가 있다.
-rank(A) < number_of_variables이면 해가 여러 개다.
+일관성이 있고 rank(A) < number_of_variables이면 해가 여러 개다.
 ```
 
 해 하나가 필요하면 자유 변수를 0으로 두고 back substitution합니다.
@@ -51,25 +54,7 @@ rank(A) < number_of_variables이면 해가 여러 개다.
 
 Sparse row를 map이나 sorted vector로 저장하면 pivot 제거 때 nonzero만 갱신할 수 있습니다.
 
-```cpp
-using SparseRow = vector<pair<int, long long>>;
-
-long long modNormalize(long long value, long long mod) {
-    value %= mod;
-    if (value < 0) {
-        value += mod;
-    }
-    return value;
-}
-
-long long dotSparseRow(const SparseRow& row, const vector<long long>& x, long long mod) {
-    long long result = 0;
-    for (auto [column, value] : row) {
-        result = (result + value * x[column]) % mod;
-    }
-    return result;
-}
-```
+희소 matvec는 [Black-Box Linear Algebra](https://h.readiz.com/learn/black-box-linear-algebra)의 구현을 재사용합니다. sparse elimination은 pivot row와 현재 row의 같은 열 계수를 더하고 빼며 0 항을 제거해야 하고, fill-in 때문에 희소성이 유지되지 않을 수 있습니다.
 
 이 코드는 matvec용입니다. Elimination까지 하려면 pivot row를 더하고 빼면서 같은 column을 합쳐야 하므로 자료구조 선택이 중요합니다. column 수가 작으면 dense vector가 오히려 빠를 수 있습니다.
 
@@ -112,11 +97,3 @@ minimal polynomial 또는 recurrence를 찾음
 | Wiedemann 계열 | 대략 여러 번의 matvec + BM | 큰 sparse matrix, randomized 허용 |
 
 `nnz`는 nonzero entry 수입니다. `nnz`가 `N^2`에 가까우면 sparse로 저장해도 의미가 거의 없습니다.
-
-## 자주 하는 실수
-
-1. 합성수 modulo에서 inverse를 사용한다.
-2. rank가 부족한 system을 유일해로 가정한다.
-3. sparse elimination 중 fill-in 때문에 메모리가 폭발한다.
-4. row/column 방향을 뒤집어 `A x` 대신 `A^T x`를 계산한다.
-5. randomized solver의 결과를 `A*x == b`로 검증하지 않는다.

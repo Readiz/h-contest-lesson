@@ -2,6 +2,9 @@
 
 Feedback Model Boundary는 Online Convex Optimization, Bayesian Bandits, MCTS, POMDP를 섞어 읽지 않기 위한 판독 페이지입니다. 같은 "매 턴 하나를 선택한다"는 문장이라도, 선택 뒤 무엇을 관측하는지에 따라 쓸 수 있는 알고리즘이 달라집니다.
 
+
+이 표의 네 항목은 배타적인 분류가 아닙니다. 숨은 상태 모델에도 simulator가 있을 수 있습니다. 관측 정보와 모델 접근 방식은 서로 다른 축으로 함께 기록합니다.
+
 ## 네 가지 관측 모델
 
 | 모델 | 선택 뒤 보이는 것 | 대표 접근 | 착각하면 생기는 문제 |
@@ -70,23 +73,3 @@ node를 실제 hidden state로 만들면 정보 누출이 생깁니다. 통계�
 | "simulator를 많이 돌려 평균을 내면 exact DP다" | sample 평균은 근사이며 variance가 남음 | simulator feedback |
 | "관측값을 state로 두면 POMDP가 MDP가 된다" | 같은 observation 뒤에 여러 hidden state가 가능 | hidden-state observation |
 | "loss vector가 공개되지만 선택한 loss만 update한다" | 사용할 수 있는 정보를 버림 | full-information |
-
-## 로컬 완결형 연습
-
-아래 네 문제 설명을 읽고 모델을 분류합니다. 답안에는 `full-information`, `bandit`, `simulator`, `hidden-state` 중 하나 이상을 쓰고, 쓰면 안 되는 대표 알고리즘도 함께 적습니다.
-
-```text
-A. 각 round가 끝나면 모든 서버의 latency가 공개된다.
-B. 선택한 슬롯머신의 성공/실패만 관측된다.
-C. 게임 state를 넣으면 simulator가 random rollout 하나를 반환한다.
-D. 관측은 센서 값뿐이고 실제 위치는 확률적으로만 추정된다.
-```
-
-기대 답:
-
-| 항목 | 분류 | 피해야 할 해석 |
-| --- | --- | --- |
-| A | full-information | bandit exploration이 필수라고 가정 |
-| B | bandit feedback | 선택하지 않은 arm reward를 알고 있다고 가정 |
-| C | simulator feedback | exact transition table이 있다고 가정 |
-| D | hidden-state observation | 실제 state 기준으로 policy를 학습 |

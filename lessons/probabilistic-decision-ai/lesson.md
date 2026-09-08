@@ -23,10 +23,14 @@ Probabilistic Decision AI는 확률 전이, 숨은 상태, simulation 기반 탐
 | `0 <= gamma < 1`인 할인 보상 | [Discounted Value Iteration](pages/discounted-value-iteration.md) |
 | 상태별 행동이 고정됨 | [Policy Evaluation and Improvement](pages/policy-evaluation-and-improvement.md) |
 | absorbing goal까지 기대 비용 | [Stochastic Shortest Path](pages/stochastic-shortest-path.md) |
-| 전이표 없이 sample만 관측함 | [Exact Model vs Sampling](pages/exact-model-vs-sampling.md) |
+| 전이표 없이 sample만 관측함 | [Exact Model vs Sampling](https://h.readiz.com/learn/probabilistic-decision-ai) |
 
 Finite horizon, 할인 무한 horizon, 목표 도달 비용은 종료·수렴 조건이 다릅니다. `gamma = 1`이라는 이유만으로 할인 모델의 반복 계산을 그대로 적용할 수 없습니다. 상태가 숨겨져 있으면 관측값만 상태로 쓰지 말고 belief 갱신을 먼저 정합니다.
 
 ## 연습
 
 [로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.
+
+## 전이표와 표본의 차이
+
+전이·보상표가 있으면 Bellman 합을 직접 계산합니다. simulator만 있으면 전이와 보상을 표본으로 추정하므로 통계 오차가 남습니다. 표본에서 모델을 추정하는 model-based 접근과 Q-value를 직접 갱신하는 model-free 접근 모두 가능합니다. 표본 문제를 임의로 정확한 전이표가 주어진 문제로 바꾸지 않습니다.

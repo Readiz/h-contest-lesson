@@ -1,6 +1,9 @@
 # Monte Carlo Tree Search
 
-Monte Carlo Tree Search(MCTS)는 게임 트리를 모두 탐색하기 어려울 때, 유망한 수를 통계적으로 더 많이 시도하면서 선택을 개선하는 탐색 방법입니다. Minimax가 정확한 evaluation을 전제로 한다면, MCTS는 simulation 결과를 누적해 선택을 근사합니다.
+Monte Carlo Tree Search(MCTS)는 게임 트리를 모두 탐색하기 어려울 때, 유망한 수를 통계적으로 더 많이 시도하면서 선택을 개선하는 탐색 방법입니다. Minimax는 terminal까지 탐색하면 정확하지만 깊이 제한 평가를 쓰면 근사입니다. MCTS는 simulation 결과를 누적해 선택을 근사합니다.
+
+
+아래 통계는 각 노드로 들어오는 수를 둔 플레이어의 승리 확률입니다. 따라서 부모는 자식의 평균 보상을 최대화합니다. backpropagate에 전달하는 값도 이 관점이며, 두 플레이어가 번갈아 한 수씩 두고 보상이 [0,1]인 게임에 한해 1-result로 전환합니다. 연속 턴·chance node·일반 점수형에는 별도 변환이 필요합니다.
 
 ## 언제 MCTS인가
 
@@ -53,7 +56,7 @@ struct MctsNode {
     vector<int> children;
     int visits = 0;
     double reward = 0.0;
-    bool fullyExpanded = false;
+    // 실제 탐색기는 미시도 행동을 별도로 관리한다.
 };
 
 double ucbScore(const MctsNode& parent, const MctsNode& child, double exploration) {
@@ -68,6 +71,7 @@ double ucbScore(const MctsNode& parent, const MctsNode& child, double exploratio
 
 int selectChild(const vector<MctsNode>& tree, int nodeIndex, double exploration) {
     const MctsNode& node = tree[nodeIndex];
+    if (node.children.empty()) return -1;
     return *max_element(
         node.children.begin(),
         node.children.end(),
@@ -77,8 +81,8 @@ int selectChild(const vector<MctsNode>& tree, int nodeIndex, double exploration)
     );
 }
 
-void backpropagate(vector<MctsNode>& tree, int nodeIndex, double resultForCurrentPlayer) {
-    double result = resultForCurrentPlayer;
+void backpropagate(vector<MctsNode>& tree, int nodeIndex, double resultForPlayerJustMoved) {
+    double result = resultForPlayerJustMoved;
     while (nodeIndex != -1) {
         tree[nodeIndex].visits += 1;
         tree[nodeIndex].reward += result;
@@ -146,15 +150,8 @@ rollout이 너무 느리면 iteration 수가 줄고, 너무 무작위면 통계�
 MCTS는 iteration 수를 직접 제한합니다.
 
 ```text
-O(iterations * (selection depth + rollout length))
+O(iterations * (selection depth * 최대 자식 수 + rollout length))
+각 rollout의 상태 전이와 보상 계산 비용은 별도로 곱한다.
 ```
 
 메모리는 확장한 node 수에 비례합니다. 제한 시간형 문제에서는 iteration을 `while time remains`로 돌리지만, 온라인 저지에서는 시간 측정이 불안정할 수 있어 고정 iteration을 쓰기도 합니다.
-
-## 자주 하는 실수
-
-1. parent visit이 0인 상태에서 `log(0)`을 계산한다.
-2. 한 플레이어 관점 reward를 다른 플레이어 node에 그대로 더한다.
-3. rollout이 terminal에 도달하지 않는 상태를 만든다.
-4. exploration constant를 문제에 맞게 조정하지 않는다.
-5. 최종 선택에서도 UCB exploration을 그대로 사용한다.

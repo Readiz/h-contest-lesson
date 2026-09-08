@@ -90,7 +90,7 @@ tree[u].child[1] == 0
 
 ## 구현
 
-아래 구현은 정점 값의 path sum을 관리합니다. 간선 weight 문제는 각 간선을 별도 노드로 만들어 두 endpoint와 연결하는 방식으로 확장합니다.
+아래 구현의 정점 번호는 `1..n`이며, `queryPathSum(u,v)`는 `connected(u,v)`가 true일 때만 호출합니다. 정점 값의 path sum을 관리합니다. 간선 weight 문제는 각 간선을 별도 노드로 만들어 두 endpoint와 연결하는 방식으로 확장합니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -204,8 +204,9 @@ struct LinkCutTree {
 
     int findRoot(int x) {
         access(x);
-        while (tree[x].child[0]) {
+        while (true) {
             push(x);
+            if (!tree[x].child[0]) break;
             x = tree[x].child[0];
         }
         splay(x);
@@ -286,11 +287,3 @@ value(original vertex) = 0
 | `access`, `makeRoot`, `findRoot` | amortized `O(log N)` |
 | `link`, `cut` | amortized `O(log N)` |
 | path query/update | amortized `O(log N)` |
-
-## 자주 하는 실수
-
-1. `splay` 전에 ancestor path의 lazy reverse를 push하지 않는다.
-2. `isSplayRoot`와 represented tree root를 혼동한다.
-3. `makeRoot` 없이 `link`나 path query를 수행한다.
-4. `cut`에서 두 정점이 직접 연결됐는지 확인하지 않는다.
-5. edge weight를 정점 값과 섞어 path sum이 한 칸 어긋난다.

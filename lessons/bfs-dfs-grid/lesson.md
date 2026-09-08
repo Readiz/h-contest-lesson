@@ -11,13 +11,6 @@ BFS: 시작점에서 가까운 곳부터 차례로 본다.
 
 ## 그래프로 생각하기
 
-그래프는 정점과 간선으로 이루어집니다.
-
-```text
-정점: 위치, 사람, 도시, 상태
-간선: 한 번에 이동할 수 있는 관계
-```
-
 격자에서는 보통 한 칸이 정점이고, 상하좌우로 이동할 수 있으면 간선이 있다고 봅니다.
 
 ```text
@@ -135,13 +128,14 @@ vector<vector<int>> gridDistance(
     int sx
 ) {
     int h = (int)grid.size();
-    int w = (int)grid[0].size();
+    int w = h == 0 ? 0 : (int)grid[0].size();
     vector<vector<int>> dist(h, vector<int>(w, -1));
     queue<pair<int, int>> q;
 
     int dy[4] = {-1, 1, 0, 0};
     int dx[4] = {0, 0, -1, 1};
 
+    if (sy < 0 || sy >= h || sx < 0 || sx >= w || grid[sy][sx] == '#') return dist;
     dist[sy][sx] = 0;
     q.push({sy, sx});
 

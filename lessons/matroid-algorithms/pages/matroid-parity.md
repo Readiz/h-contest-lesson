@@ -8,6 +8,9 @@ Matroid Parity는 원소가 짝으로 묶여 있을 때, 선택한 짝들의 원
 2. 선택한 pair들의 원소 전체가 어떤 독립성 조건을 만족해야 하는지 이름 붙인다.
 3. 일반 matroid oracle 문제가 아니라, contest에서 다룰 수 있는 특수 구조인지 확인한다.
 
+
+pair 내부 두 vector의 순서는 독립성 결과에 영향을 주지 않습니다. 둘 다 검사해야 한다는 점이 중요합니다. matching 환원에서는 간선별 endpoint occurrence를 서로 다른 원소로 두고, 같은 정점 occurrence를 capacity 1인 partition class에 넣습니다.
+
 ## 문제 신호
 
 | 문제 표현 | Matroid Parity 관점 |
@@ -71,39 +74,7 @@ underlying matroid를 "선택된 vector들이 선형 독립"인 linear matroid�
 
 작은 입력이나 검증용 baseline은 선택한 pair들의 vector를 모두 모아 rank를 계산하면 됩니다.
 
-```cpp
-struct XorBasis {
-    static const int BITS = 60;
-    long long basis[BITS] = {};
-
-    bool insert(long long value) {
-        for (int bit = BITS - 1; bit >= 0; --bit) {
-            if (((value >> bit) & 1LL) == 0) {
-                continue;
-            }
-            if (basis[bit] == 0) {
-                basis[bit] = value;
-                return true;
-            }
-            value ^= basis[bit];
-        }
-        return false;
-    }
-};
-
-bool independentPairs(const vector<pair<long long, long long>>& pairs, const vector<int>& chosen) {
-    XorBasis basis;
-    for (int id : chosen) {
-        if (!basis.insert(pairs[id].first)) {
-            return false;
-        }
-        if (!basis.insert(pairs[id].second)) {
-            return false;
-        }
-    }
-    return true;
-}
-```
+[XOR Linear Basis](https://h.readiz.com/learn/linear-basis-xor)의 basis를 새로 만들고 선택한 각 pair의 두 vector를 차례로 insert합니다. 어느 하나라도 종속이면 해당 선택 집합은 불가능합니다. 이것은 GF(2)의 독립성 oracle이며 최대 pair 선택 알고리즘 자체는 아닙니다.
 
 이 코드는 GF(2) linear matroid에만 맞습니다. 일반 field vector라면 Gaussian elimination, sparse vector라면 basis representation을 따로 잡아야 합니다.
 
@@ -135,11 +106,3 @@ bool independentPairs(const vector<pair<long long, long long>>& pairs, const vec
 | 문제 특화 reduction | 문제 구조에 따라 다름 |
 
 실전에서는 "이 문제가 정말 matroid parity 완성 알고리즘을 요구하는가"를 의심해야 합니다. 많은 경우 작은 rank, 특수 그래프, determinant 판정, 또는 matching reduction이 같이 주어집니다.
-
-## 자주 하는 실수
-
-1. pair를 원소 두 개의 독립 선택으로 풀어 parity 제약을 잃는다.
-2. matroid intersection exchange graph를 그대로 적용한다.
-3. greedy로 pair를 추가하다 막히면 최적이라고 판단한다.
-4. linear independence 판정에서 pair 내부 두 vector의 순서를 무시한다.
-5. 일반 matroid parity와 linear matroid parity의 난이도 차이를 구분하지 않는다.

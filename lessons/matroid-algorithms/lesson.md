@@ -1,15 +1,15 @@
 # Matroid Algorithms
 
-Matroid Algorithms는 greedy가 맞는 독립성 구조와, greedy가 막힐 때 필요한 exchange 기반 조합 최적화를 묶는 reference 허브입니다. Matroid Intersection, Matroid Union, Matroid Parity는 모두 가치 있는 모델이지만 일반 구현 난도가 높고, 현재 저장소의 본문도 완성된 범용 알고리즘보다 문제 신호와 특수형 판독에 가깝습니다.
+Matroid Algorithms는 greedy가 맞는 독립성 구조와, greedy가 막힐 때 필요한 exchange 기반 조합 최적화를 묶는 reference 허브입니다. 각 페이지는 모델과 제한형을 다루며 범용 구현을 제공하지 않습니다.
 
 ## 모델 선택 표
 
-| 문제 신호 | 먼저 볼 페이지 | 상태 |
-| --- | --- | --- |
-| greedy가 맞는 독립성 구조인지 판정해야 한다 | [Matroid Basics and Exchange](pages/matroid-basics-and-exchange.md) | 개념 기반 |
-| 두 독립성 조건을 동시에 만족해야 한다 | [Matroid Intersection](pages/matroid-intersection.md) | reference |
-| 여러 독립 집합의 합이나 분해를 묻는다 | [Matroid Union](pages/matroid-union.md) | reference |
-| pair 단위 선택과 독립성 조건이 결합된다 | [Matroid Parity](pages/matroid-parity.md) | reference |
+| 문제 신호 | 먼저 볼 페이지 |
+| --- | --- |
+| greedy가 맞는 독립성 구조인지 판정해야 한다 | [Matroid Basics and Exchange](pages/matroid-basics-and-exchange.md) |
+| 두 독립성 조건을 동시에 만족해야 한다 | [Matroid Intersection](pages/matroid-intersection.md) |
+| 여러 독립 집합의 합이나 분해를 묻는다 | [Matroid Union](pages/matroid-union.md) |
+| pair 단위 선택과 독립성 조건이 결합된다 | [Matroid Parity](pages/matroid-parity.md) |
 
 ## 독립성 판정 비용
 

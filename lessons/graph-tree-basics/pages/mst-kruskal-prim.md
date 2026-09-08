@@ -28,13 +28,14 @@ struct Edge {
     long long cost;
 };
 
-long long kruskal(int n, vector<Edge> edges) {
+// 반환값은 연결 가능 여부, total은 성공 시 MST 비용. n >= 1.
+bool kruskal(int n, vector<Edge> edges, long long& total) {
     sort(edges.begin(), edges.end(), [](const Edge& a, const Edge& b) {
         return a.cost < b.cost;
     });
 
     DSU dsu(n);
-    long long total = 0;
+    total = 0;
     int used = 0;
 
     for (const Edge& edge : edges) {
@@ -44,9 +45,9 @@ long long kruskal(int n, vector<Edge> edges) {
     }
 
     if (used != n - 1) {
-        return -1; // 모든 정점을 연결할 수 없음
+        return false; // 모든 정점을 연결할 수 없음
     }
-    return total;
+    return true;
 }
 ```
 

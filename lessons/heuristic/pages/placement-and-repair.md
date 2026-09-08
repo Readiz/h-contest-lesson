@@ -29,7 +29,7 @@ for ad in input_order:
     for building in input_order:
         for top, left in row_major_order:
             if place_ad(ad, building, top, left):
-                break
+                다음 광고로 넘어간다 // 좌표·건물 반복을 모두 종료
 ```
 
 first-fit은 빠르고 구현이 쉽습니다. 하지만 좋은 좌표를 고르지 않습니다. 처음 들어가는 위치에 바로 놓기 때문에 큰 광고가 들어갈 수 있는 공간을 작은 광고가 먼저 잘라 버릴 수 있습니다.
@@ -63,6 +63,7 @@ first-fit 다음에는 "무엇을 먼저 볼 것인가"를 고칩니다.
 건물 폭이 작기 때문에 각 행을 bitmask로 들면 배치 가능 여부를 빠르게 검사할 수 있습니다.
 
 ```cpp
+// 호출 전: 건물 내부 좌표, 1 <= w < 32, x + w <= 32, y + h <= 24 확인
 unsigned int occ[20][24];
 
 int canPlaceLocal(int bid, int y, int x, int h, int w) {
@@ -81,13 +82,14 @@ int canPlaceLocal(int bid, int y, int x, int h, int w) {
 
 ```text
 placement value =
-    실제 점수
-  + STORE 보너스
+    건물 배율을 반영한 실제 점수
   + 벽, 창문, 기존 광고와 붙는 contact 보너스
   - 빈 공간을 얇게 쪼개는 penalty
 ```
 
 contact가 높으면 광고가 구석이나 기존 물체에 붙어 빈 공간을 덜 조각내는 경우가 많습니다. 단, contact만 크게 주면 큰 광고가 들어갈 중앙 공간을 잃을 수 있으므로 실제 점수와 같이 봐야 합니다.
+
+탐색 중 제거·복구는 풀이가 가진 로컬 배치에서만 수행합니다. 최종 배치를 고른 뒤 `place_ad`를 호출합니다. 이미 공개 API로 배치한 광고를 로컬 배열에서 지워도 채점기 상태가 되돌아가지는 않습니다.
 
 ## 작은 local search의 한계
 

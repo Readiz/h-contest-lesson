@@ -120,19 +120,3 @@ for seed in 1..1000:
 ```
 
 중복 add를 허용하는 문제라면 edge별 reference count가 필요합니다. 이 로컬 연습은 "동시에 한 번만 활성"이라는 조건에서 active interval 변환과 rollback 구현을 먼저 고정하는 목적입니다.
-
-## 다른 로컬 연습 아이디어
-
-| 연습 | 제한 | 확인할 것 |
-| --- | --- | --- |
-| 배열 distinct query | `N,Q <= 200000` | Mo의 block size와 value compression |
-| kth active update | `Q <= 200000` | PBS에서 Fenwick 초기화/복구 비용 |
-| 과거 operation 삭제 | `Q <= 100000` | operation id별 active interval |
-
-## 완료 기준
-
-- query를 원래 순서로 출력하는지 확인합니다.
-- active interval을 `[l, r)`로 통일합니다.
-- rollback snapshot 크기를 재귀 진입 직후에 저장합니다.
-- 현재 상태만으로 leaf query를 답할 수 있는지 확인합니다.
-- online 요구를 offline으로 바꿔도 되는지 문제 조건에서 확인합니다.

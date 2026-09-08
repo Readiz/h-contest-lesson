@@ -2,7 +2,6 @@
 
 Geometry Robustness and Duality는 robust predicate, Voronoi/Delaunay, Power Diagram, 3D lifting, Regular Triangulation을 하나의 계산기하 심화 흐름으로 묶는 허브입니다. 이 묶음은 전체 구현을 외우기보다 "어떤 predicate가 필요하고, 어떤 duality로 문제를 낮출 수 있는가"를 먼저 판단해야 합니다.
 
-기존 단발 문서들은 각각 의미가 있지만, 독자가 바로 구현 레슨으로 받아들이면 위험합니다. 특히 weighted Voronoi와 regular triangulation은 대회에서 전체 구조를 직접 구현하는 경우보다 cell 계산, predicate, lifting 해석만 필요한 경우가 많습니다.
 
 ## 모델 선택 표
 
@@ -36,22 +35,6 @@ robust predicate 없이 duality만 쓰면 구현이 불안정해지고, duality 
 - 3D hull degeneracy를 처리할 준비가 없는데 regular triangulation 전체 구조를 직접 만듭니다.
 - EPS comparator로 balanced tree의 strict ordering을 깨뜨립니다.
 
-## 로컬 완결형 연습
+## 연습
 
-Practice Set은 `__int128` orientation 기반 선분 교차 구현을 대표 predicate 연습으로 제공하고, weighted power boundary trace로 duality 흐름을 이어갑니다.
-
-### Power Cell by Half-Planes
-
-작은 weighted point set과 bounding box가 주어졌다고 가정합니다. 한 site `i`에 대해 모든 다른 site `j`가 만드는 부등식 `power_i(x) <= power_j(x)`를 half-plane으로 바꾸고, 남는 polygon을 손으로 계산합니다.
-
-```text
-A = (0, 0), w = 0
-B = (4, 0), w = 12
-bounding box: -10 <= x,y <= 10
-```
-
-먼저 두 site의 경계가 `x = 0.5`가 되는지 확인합니다. 그다음 site를 하나 더 추가해 cell이 사라지는 입력을 만듭니다.
-
-### Predicate Policy Table
-
-정수 좌표 orientation, 실수 좌표 circle intersection, sweep comparator를 각각 한 줄씩 적고, 어떤 부분은 exact predicate로 처리하고 어떤 부분은 floating construction으로 처리할지 표로 분리합니다.
+[Geometry Robustness and Duality Practice Set](https://h.readiz.com/learn/geometry-robustness-and-duality/practice-set)에서 정수 선분 교차와 weighted power 경계를 검증합니다.

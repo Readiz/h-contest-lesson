@@ -1,6 +1,9 @@
-# Markov Decision Process
+# Discounted Value Iteration
 
 Markov Decision Process(MDP)는 상태, 행동, 확률 전이, 보상으로 이루어진 의사결정 모델입니다. 단순 확률 DP가 "정해진 전이의 기대값"을 계산한다면, MDP는 각 상태에서 어떤 행동을 고를지까지 함께 최적화합니다.
+
+
+유한 상태·행동, 유계 보상, 행동별 확률 합 1과 0<=gamma<1을 전제로 합니다. Bellman 연산자는 gamma 수축입니다. delta=||V_new-V_old||∞라면 반환 V_new의 오차는 gamma*delta/(1-gamma) 이하입니다. gamma=0이면 한 번 갱신으로 충분합니다. 반복 횟수만 정해 반환한 값은 정확해가 아닙니다.
 
 ## 문제 신호
 
@@ -79,16 +82,6 @@ vector<double> valueIteration(
 
 반복 횟수는 오차 허용 기준으로 정합니다. 실전에서는 `max |newV - oldV|`가 충분히 작아질 때 멈추기도 합니다.
 
-## Finite Horizon DP
-
-남은 턴 수가 정해져 있으면 수렴 반복이 아니라 layer DP로 풉니다.
-
-```text
-dp[turn][state] = best expected reward from this state with turn steps left
-```
-
-이 경우 `turn`이 줄어드는 DAG가 되므로 뒤에서부터 정확히 계산할 수 있습니다.
-
 ## Policy
 
 Policy는 각 상태에서 고를 행동을 정한 함수입니다.
@@ -112,17 +105,6 @@ MDP에서 무한히 보상을 받을 수 있으면 값이 발산할 수 있습�
 
 대회 문제에서는 finite horizon이나 absorbing state가 가장 흔합니다.
 
-## MCTS와 비교
-
-| 기준 | MDP Value Iteration | MCTS |
-| --- | --- |
-| 상태 공간 | 명시적으로 열거 가능해야 함 | 큰 상태 공간도 sampling 가능 |
-| 전이 확률 | 알고 있어야 함 | simulation으로 대체 가능 |
-| 답 성격 | 기대값 근사/정확 DP | 행동 선택 통계 근사 |
-| 시간 제어 | iteration/layer 수 | rollout 횟수 |
-
-전이 모델을 정확히 알고 상태 수가 작으면 MDP DP가 더 명확합니다. 상태가 너무 크면 MCTS나 heuristic search가 현실적입니다.
-
 ## 시간 복잡도
 
 | 작업 | 복잡도 |
@@ -133,11 +115,3 @@ MDP에서 무한히 보상을 받을 수 있으면 값이 발산할 수 있습�
 | policy 저장 | `O(states)` |
 
 transition list가 dense하면 상태 수의 제곱이 됩니다. sparse representation을 유지하는 편이 좋습니다.
-
-## 자주 하는 실수
-
-1. 행동별 전이 확률 합이 1이 아닌데 그대로 계산한다.
-2. 보상을 state 보상인지 action 보상인지 섞는다.
-3. terminal state도 계속 갱신해 값이 흔들린다.
-4. `gamma = 1`인 순환 MDP에서 value iteration 수렴을 기대한다.
-5. 최적 행동을 출력해야 하는데 value만 저장한다.

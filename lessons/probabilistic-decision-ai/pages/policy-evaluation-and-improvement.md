@@ -2,6 +2,9 @@
 
 Policy Evaluation은 각 상태에서 행동이 이미 정해졌을 때 그 policy의 기대값을 계산하는 과정입니다. 최적 action을 고르는 Bellman optimality와 달리, max/min이 사라져 선형 방정식이나 반복 평가로 다룰 수 있습니다.
 
+
+할인 정책 반복은 0<=gamma<1과 유계 보상에서 다룹니다. 선형 해법도 실수 연산이면 반올림 오차가 있습니다. 동률에는 기존 행동을 유지하면 의미 없는 정책 교체를 피할 수 있습니다.
+
 ## 고정 Policy의 Bellman 식
 
 policy `pi(s)`가 고정되어 있으면 아래 식이 됩니다.
@@ -40,11 +43,3 @@ policy가 바뀌지 않으면 policy iteration이 종료됩니다.
 | policy | 결과로 복원 가능 | 중간에 명시적으로 유지 |
 | 작은 상태 수 | 간단함 | 빠르게 안정될 수 있음 |
 | linear solve | 필요 없음 | policy evaluation에 쓸 수 있음 |
-
-## 자주 하는 실수
-
-- 고정 policy 평가인데 max/min을 계속 취합니다.
-- policy improvement 후 value를 다시 평가하지 않습니다.
-- 같은 expected value에서 tie-break가 흔들려 policy가 불필요하게 바뀝니다.
-- terminal state의 policy를 의미 있게 설정하려고 합니다.
-- `gamma = 1` 순환 문제에서 선형 시스템의 해가 항상 존재한다고 가정합니다.

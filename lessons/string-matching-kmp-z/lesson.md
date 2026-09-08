@@ -26,7 +26,7 @@ for start in 0..N-M:
 
 ## KMP와 실패 함수
 
-KMP는 패턴 내부에서 **접두사이면서 접미사인 가장 긴 길이**를 미리 계산합니다. 보통 이 배열을 `pi` 또는 failure function이라고 부릅니다.
+KMP는 패턴 내부에서 **현재 prefix 전체보다 짧으면서 접두사이자 접미사인 최대 길이**를 미리 계산합니다. 보통 이 배열을 `pi` 또는 failure function이라고 부릅니다.
 
 예를 들어 `pattern = ababc`에서 앞부분 `abab`까지 봤다면, 접두사 `ab`와 접미사 `ab`가 일치합니다. 다음 문자가 틀렸을 때 패턴을 처음부터 다시 비교하지 않고, 이미 맞는 `ab` 길이만큼 상태를 유지할 수 있습니다.
 
@@ -81,7 +81,7 @@ vector<int> kmpSearch(const string& text, const string& pattern) {
 }
 ```
 
-시간 복잡도는 `O(N + M)`입니다. `matched`가 증가하거나, 실패 함수로 감소하는 이동 전체가 선형 횟수 안에 묶이기 때문입니다.
+빈 패턴은 이 API에서 등장 위치를 반환하지 않습니다. 매칭 후 실패 함수로 돌아가므로 겹친 등장도 찾습니다. 시간 복잡도는 `O(N + M)`입니다. `matched`가 증가하거나, 실패 함수로 감소하는 이동 전체가 선형 횟수 안에 묶이기 때문입니다.
 
 ## Z algorithm
 
@@ -92,7 +92,7 @@ s = aabcaab
 z[4] = 3  // s[4..] = aab, 접두사 aab와 3글자 일치
 ```
 
-패턴을 텍스트에서 찾고 싶다면 `pattern + separator + text`를 만들고 Z 값을 계산합니다. 텍스트 영역에서 `z[i] >= pattern.size()`인 위치가 등장 위치입니다.
+구분자는 두 입력에 없는 문자로 고릅니다. 패턴을 텍스트에서 찾고 싶다면 `pattern + separator + text`를 만들고 Z 값을 계산합니다. 텍스트 영역에서 `z[i] >= pattern.size()`인 위치가 등장 위치입니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -178,20 +178,9 @@ KMP와 Z는 정확한 선형 알고리즘입니다. Rolling Hash는 구현이 �
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
 | KMP 실패 함수 | `O(M)` | `O(M)` |
-| KMP 검색 | `O(N + M)` | `O(M)` |
+| KMP 검색 | `O(N + M)` | `O(M + 등장 수)` |
 | Z function | `O(N)` | `O(N)` |
 | Rolling Hash 전처리 | `O(N)` | `O(N)` |
 | Rolling Hash 구간 비교 | `O(1)` | 전처리 배열 사용 |
 
 입력 문자열이 여러 개인 경우에는 전체 길이 합을 기준으로 봐야 합니다. 테스트 케이스마다 큰 문자열을 복사하거나 `substr`를 많이 만들면 의도한 복잡도보다 느려질 수 있습니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| KMP에서 매칭 후 `matched = 0`으로 초기화 | 겹치는 등장 위치 누락 | `pi[matched - 1]`로 이동 |
-| Z에서 구간 경계 `right`를 inclusive/exclusive로 혼동 | off-by-one 오답 | `[left, right]` inclusive로 통일 |
-| 패턴과 텍스트 사이 구분자를 생략 | 경계 넘어 매칭 | 입력에 없는 separator 사용 |
-| Rolling Hash 충돌을 무시 | 낮은 확률의 오답 | double hash 또는 후보 직접 비교 |
-| `substr`를 반복 생성 | 시간/메모리 증가 | 인덱스와 해시로 비교 |
-| 문자 signedness를 고려하지 않음 | 음수 문자가 해시에 섞임 | `(unsigned char)s[i]` 사용 |

@@ -2,6 +2,9 @@
 
 확률과 기대값 문제는 경우의 수를 직접 세는 대신, 상태별로 "앞으로 얼마나 걸리는가" 또는 "성공할 가능성이 얼마인가"를 식으로 세웁니다. 대회에서는 주사위, 랜덤 이동, 흡수 상태, 기댓값 DP 형태로 자주 등장합니다.
 
+
+코드는 target·던짐 수가 비음수이고 배열 크기 계산이 int 범위인 입력을 받습니다. 자기 반복 예시는 p>0일 때만 E=1/p이며, p=0이면 종료까지의 기대 횟수는 무한대입니다. 일반 순환계는 목표 도달과 유한 기대값 조건을 먼저 확인합니다.
+
 ## 확률 DP와 기대값 DP
 
 확률은 특정 사건이 일어날 가능성을 구합니다. 기대값은 어떤 값의 평균적인 결과를 구합니다.
@@ -107,24 +110,7 @@ E = 1 / p
 
 정답을 `MOD`로 출력하라는 문제에서는 확률 `a / b`를 `a * inv(b) mod MOD`로 표현합니다. `MOD`가 소수이고 `b`가 `MOD`의 배수가 아니어야 Fermat 역원을 사용할 수 있습니다.
 
-```cpp compile-check
-long long modPow(long long base, long long exp, long long mod) {
-    long long result = 1 % mod;
-    base %= mod;
-    while (exp > 0) {
-        if (exp & 1LL) {
-            result = result * base % mod;
-        }
-        base = base * base % mod;
-        exp >>= 1LL;
-    }
-    return result;
-}
-
-long long probabilityMod(long long numerator, long long denominator, long long mod) {
-    return numerator % mod * modPow(denominator, mod - 2, mod) % mod;
-}
-```
+모듈러 나눗셈은 [모듈러 연산과 빠른 거듭제곱](https://h.readiz.com/learn/modular-arithmetic)의 역원 함수를 사용합니다. 확률의 분모가 modulus의 배수이면 이 표현을 사용할 수 없습니다.
 
 실수 출력 문제인지 모듈러 출력 문제인지에 따라 구현이 완전히 달라집니다. 문제의 출력 형식을 먼저 확인합니다.
 
@@ -148,14 +134,3 @@ E[state] = min_action( cost(action) + sum p(next) * E[next] )
 | Monte Carlo simulation | 정확도에 따라 다름 |
 
 대회 문제는 보통 정확한 값을 요구합니다. "랜덤으로 많이 돌려 평균"은 검증용으로는 쓸 수 있지만 정답 제출용으로는 거의 맞지 않습니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| 기대값 식에 현재 1회를 더하지 않음 | 1씩 작아짐 | 행동 횟수의 단위 확인 |
-| 확률 합이 1이 아님 | 전체 값 왜곡 | transition probability 합 검사 |
-| 순환 상태를 역순 DP로 처리 | 아직 모르는 값 사용 | DAG인지 확인 |
-| 독립성이 필요 없는 선형성을 독립 조건으로 오해 | 풀이 과복잡 | indicator expectation 활용 |
-| 모듈러 확률에서 나눗셈 직접 사용 | 오답 | modular inverse 사용 |
-| 실수 오차 출력 형식 무시 | Wrong Answer | 오차 허용/자리수 확인 |

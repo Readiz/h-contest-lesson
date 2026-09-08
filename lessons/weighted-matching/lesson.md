@@ -37,7 +37,7 @@ weighted:    maximize sum of selected edge weights
 using namespace std;
 
 long long maxWeightPerfectMatchingSmall(const vector<vector<long long>>& weight) {
-    int n = (int)weight.size();
+    int n = (int)weight.size(); // n <= 22, 정사각 대칭 행렬
     int totalMask = 1 << n;
     const long long NEG = -(1LL << 60);
     vector<long long> dp(totalMask, NEG);
@@ -63,6 +63,7 @@ long long maxWeightPerfectMatchingSmall(const vector<vector<long long>>& weight)
             if ((mask >> j) & 1) {
                 continue;
             }
+            if (weight[first][j] == NEG) continue; // 없는 간선
             int nextMask = mask | (1 << first) | (1 << j);
             dp[nextMask] = max(dp[nextMask], dp[mask] + weight[first][j]);
         }
@@ -72,7 +73,9 @@ long long maxWeightPerfectMatchingSmall(const vector<vector<long long>>& weight)
 }
 ```
 
-이 방식은 `O(2^N * N^2)`라서 `N`이 20대만 되어도 부담됩니다. 하지만 weighted blossom이 과한 small constraint 문제에서는 매우 실용적입니다.
+`NEG`는 없는 간선과 불가능한 결과를 나타냅니다. 유효한 비용 합은 `NEG`보다 크고 `long long` 범위 안이어야 합니다. 홀수 정점 수는 perfect matching이 불가능하여 `NEG`를 반환합니다.
+
+이 방식은 `O(2^N * N)`라서 `N`이 20대만 되어도 부담됩니다. 하지만 weighted blossom이 과한 small constraint 문제에서는 매우 실용적입니다.
 
 ## 이분 Weighted Matching
 
@@ -90,38 +93,7 @@ Hungarian은 potential 또는 dual variable을 관리하며 reduced cost가 0인
 
 일반 그래프 weighted matching은 cardinality blossom에 가중치 dual 조건이 추가됩니다.
 
-```text
-edge slack = dual[u] + dual[v] + blossomDuals - weight[u][v]
-```
-
-slack이 0인 tight edge만 alternating forest 확장에 사용하고, 더 이상 확장할 수 없으면 dual variable을 조정해 새로운 tight edge를 만듭니다. odd cycle blossom을 수축하는 흐름은 유지되지만, 각 blossom의 dual 값과 slack 갱신이 추가되어 구현 난도가 크게 올라갑니다.
-
-### 왜 일반 그래프가 이분 그래프보다 어려운가
-
-이분 matching에서는 alternating path가 layer를 왼쪽, 오른쪽으로 번갈아 움직입니다. 홀수 cycle이 없으므로 BFS/DFS layer 구조가 깨지지 않습니다.
-
-일반 그래프에는 삼각형이나 오각형 같은 홀수 cycle이 있습니다.
-
-```text
-0 -- 1
- \  /
-  2
-```
-
-삼각형에서 cardinality matching은 간선 하나만 고르면 끝이라 쉬워 보이지만, 더 큰 그래프에서는 홀수 cycle 안의 어떤 정점을 밖으로 노출해야 augmenting path가 이어지는지 추적해야 합니다. Cardinality blossom은 이 odd cycle을 하나의 super node처럼 수축해서 "cycle 내부 선택은 나중에 복원"합니다.
-
-Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수축하는 것만으로는 부족하고, 어떤 edge가 현재 dual 기준으로 tight한지, blossom 내부 dual 값이 slack 계산에 어떻게 들어가는지 계속 유지해야 합니다.
-
-예를 들어 오각형 cycle 바깥에서 들어오는 간선이 여러 개 있으면 cardinality 관점에서는 "어느 한 정점이 노출된다" 정도면 충분하지만, weighted 관점에서는 그 노출 선택이 내부 matching weight와 외부 edge weight를 동시에 바꿉니다. 그래서 slack과 dual 조정이 핵심이 됩니다.
-
-이 레슨에서는 이 복잡한 구현을 전개하지 않습니다. 대신 아래 판단을 먼저 합니다.
-
-| 그래프/제약 | 먼저 볼 선택지 |
-| --- | --- |
-| 이분 그래프 assignment | Hungarian |
-| 이분 그래프에 capacity/forbidden edge/penalty | Min-Cost Flow |
-| 일반 그래프이지만 `N <= 24` 정도 | bitmask DP |
-| 일반 그래프이고 큰 weighted matching | 검증된 weighted blossom |
+Weighted blossom은 홀수 사이클의 수축과 dual/slack 조건을 함께 관리합니다. 이 문서의 코드는 작은 그래프용 DP이며 weighted blossom 구현을 대신하지 않습니다. 큰 일반 그래프는 가중 매칭 전용 구현이 필요합니다.
 
 ## 목적식 모델링
 
@@ -151,17 +123,9 @@ Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수�
 
 | 알고리즘 | 대상 | 시간 |
 | --- | --- | ---: |
-| bitmask DP | small general graph perfect matching | `O(2^N N^2)` |
+| bitmask DP | small general graph perfect matching | `O(2^N N)` |
 | Hungarian | bipartite assignment | `O(N^3)` |
 | Min-Cost Flow | sparse/constraint bipartite | flow량에 의존 |
 | weighted blossom | general graph | polynomial 구현이 알려져 있지만 직접 구현 비권장 |
 
 일반 weighted blossom은 검증된 라이브러리를 쓰는 편이 안전합니다. 이분 그래프라면 weighted blossom부터 생각하지 말고 Hungarian이나 Min-Cost Flow로 모델을 낮추는 것이 좋습니다. 직접 구현해야 한다면 cardinality blossom을 완전히 이해한 뒤 dual/slack을 추가합니다.
-
-## 자주 하는 실수
-
-1. 이분 그래프인지 확인하지 않고 weighted blossom을 고민한다.
-2. maximum cardinality와 maximum weight의 우선순위를 섞는다.
-3. perfect matching 요구에서 홀수 정점 수를 처리하지 않는다.
-4. 음수 가중치가 있는데 빈 matching 허용 여부를 확인하지 않는다.
-5. 큰 상수 tie-break에서 overflow를 낸다.

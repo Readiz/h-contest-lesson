@@ -2,6 +2,9 @@
 
 Convex Hull Trick은 여러 직선 중 특정 x에서 최솟값이나 최댓값을 빠르게 찾는 기법입니다. DP 전이가 `dp[i] = min_j(a_j * x_i + b_j)` 꼴로 정리되면, 각 후보 `j`를 직선으로 보고 query를 빠르게 처리할 수 있습니다.
 
+
+좌표는 xLeft<=xRight, xRight-xLeft가 long long 범위이며 모든 질의 x가 이 안에 있어야 합니다. 아래 sentinel 구현은 모든 실제 m*x+b가 long long 범위이면서 INF보다 작다는 전제입니다. 직선이 없으면 INF를 반환합니다.
+
 ## 문제 신호
 
 아래처럼 후보 `j`와 현재 `i`가 곱으로 분리되면 CHT를 의심합니다.
@@ -77,7 +80,7 @@ struct LiChaoTree {
     }
 
     void addLine(int node, long long left, long long right, Line line) {
-        long long mid = (left + right) / 2;
+        long long mid = left + (right - left) / 2;
         bool betterLeft = line.value(left) < tree[node].line.value(left);
         bool betterMid = line.value(mid) < tree[node].line.value(mid);
 
@@ -110,7 +113,7 @@ struct LiChaoTree {
         if (left == right) {
             return result;
         }
-        long long mid = (left + right) / 2;
+        long long mid = left + (right - left) / 2;
         if (x <= mid && tree[node].left != -1) {
             result = min(result, query(tree[node].left, left, mid, x));
         }
@@ -166,14 +169,3 @@ line 추가 순서가 오답을 만드는 경우가 많습니다. `j < i`만 허
 | 단조 deque CHT | amortized `O(1)` | `O(N)` |
 
 여기서 `X`는 x좌표 범위 크기, `Q`는 압축된 query x 개수입니다.
-
-## 자주 하는 실수
-
-| 실수 | 결과 | 확인 방법 |
-| --- | --- | --- |
-| DP 전이를 직선으로 잘못 분리 | 전혀 다른 값 query | slope/intercept/x를 식으로 다시 확인 |
-| x 범위를 너무 좁게 잡음 | query 누락 | 모든 query x의 min/max 확인 |
-| 최댓값 문제에 최솟값 Li Chao 사용 | 부호 반대 오답 | line 부호를 뒤집거나 비교 변경 |
-| 같은 slope 처리 누락 | 불필요한 line 또는 overflow | 더 좋은 intercept만 남기기 |
-| `m*x+b` overflow | 음수 wrap | `long long` 범위 계산 |
-| 자기 자신 line을 먼저 추가 | 불가능한 전이 사용 | add/query 순서 점검 |
