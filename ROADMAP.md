@@ -344,7 +344,7 @@
 - TODO: repeated substring query `/practice/...` 문제 필요 / LCP/LCS로 확장 길이 계산 / suffix array RMQ
 - TODO: maximal run query `/practice/...` 문제 필요 / maximality와 중복 제거 / runs
 
-### [Suffix Array 응용 패턴](lessons/suffix-periodicity-structures/pages/suffix-array-applications.md)
+### [Suffix Array 응용 패턴](lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md)
 
 - TODO: 패턴 등장 구간 `/practice/...` 문제 필요 / suffix array binary search / pattern interval
 - TODO: k번째 substring `/practice/...` 문제 필요 / 새 substring 수 누적 / lexicographic kth
@@ -1174,7 +1174,7 @@
 - TODO: edge criticality `/practice/...` 문제 필요 / include/exclude edge count / contraction, deletion
 - TODO: multigraph tree count `/practice/...` 문제 필요 / multi-edge와 self-loop 처리 / Laplacian weight
 
-### [Dual Graph Construction](lessons/planar-graph-duality/pages/dual-graph-construction.md)
+### [Dual Graph Construction](lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md)
 
 - TODO: planar dual construction `/practice/...` 문제 필요 / face adjacency로 dual 만들기 / outer face
 - TODO: planar cut shortest path `/practice/...` 문제 필요 / cut을 dual path로 변환 / cut-cycle duality

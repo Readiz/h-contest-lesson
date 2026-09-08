@@ -8,10 +8,8 @@ Planar Graph Duality는 평면에 교차 없이 그린 그래프에서 face를 �
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
-| 좌표와 무향 간선만 주어진다 | [Half-edge and Face Traversal](pages/half-edge-and-face-traversal.md) |
-| 각 edge 양쪽 face 번호가 이미 주어진다 | [Dual Graph Construction](pages/dual-graph-construction.md) |
+| 좌표·간선에서 face를 찾거나 주어진 face 번호로 dual을 만든다 | [Face 순회와 Dual Graph 구성](pages/half-edge-and-face-traversal.md) |
 | cut-cycle 대응과 dual shortest path 변환 조건이 필요하다 | [Cut-Cycle Duality](pages/cut-cycle-duality.md) |
-| bridge, outer face, multi-edge 때문에 헷갈린다 | [Half-edge and Face Traversal](pages/half-edge-and-face-traversal.md) |
 
 ## 연습
 

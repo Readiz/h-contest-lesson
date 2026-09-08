@@ -6,8 +6,7 @@ Suffix and Periodicity Structures는 suffix array, suffix automaton, suffix tree
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
-| suffix의 사전순 순서와 LCP가 필요하다 | [Suffix Array and LCP](pages/suffix-array-lcp.md) |
-| suffix array로 반복 부분 문자열, distinct substring, pattern search를 처리한다 | [Suffix Array Applications](pages/suffix-array-applications.md) |
+| suffix 순서와 LCP로 패턴 검색·반복·서로 다른 부분 문자열을 처리한다 | [Suffix Array와 LCP](pages/suffix-array-lcp.md) |
 | substring 존재/개수/등장 횟수를 상태로 세고 싶다 | [Suffix Automaton](pages/suffix-automaton.md) |
 | SAM 위 DP, k번째 substring, 여러 응용을 다룬다 | [Suffix Automaton Applications](pages/suffix-automaton-applications.md) |
 | 여러 문자열의 공통 substring을 한 구조로 관리한다 | [Generalized Suffix Automaton](pages/generalized-suffix-automaton.md) |

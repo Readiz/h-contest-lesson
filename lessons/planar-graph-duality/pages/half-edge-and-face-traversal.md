@@ -1,4 +1,4 @@
-# Half-edge and Face Traversal
+# Face 순회와 Dual Graph 구성
 
 좌표와 간선만 주어진 planar graph에서 dual graph를 만들려면 먼저 face를 찾아야 합니다. 가장 안정적인 방법은 무향 간선을 양방향 half-edge로 쪼개고, 각 정점의 outgoing half-edge를 polar angle 순서로 정렬한 뒤, 아직 방문하지 않은 half-edge를 따라 face를 순회하는 것입니다.
 
@@ -193,3 +193,67 @@ Multi-edge는 두 종류로 나눕니다.
 
 - 서로 다른 곡선이나 embedding 순서가 주어진 multi-edge: rotation order를 입력으로 받아 처리합니다.
 - 같은 두 좌표를 잇는 겹친 straight segment: 좌표만으로 face를 복원할 수 없으므로 이 구현의 전제 밖입니다.
+
+## Dual Graph 만들기
+
+primal graph의 face 하나를 dual graph의 정점 하나로 둡니다. primal edge `e`가 face `a`와 face `b` 사이의 경계라면 dual edge `(a, b)`를 만듭니다.
+
+```text
+primal edge e separates face left(e), right(e)
+dual edge e* connects left(e) and right(e)
+```
+
+outer face도 하나의 face입니다. 외부와 내부를 구분해야 하는 문제에서는 outer face의 번호를 특별히 관리합니다.
+
+## Cut-Cycle 대응
+
+단순 cycle과 bond의 대응 및 s-t를 공통 face 안에서 분리하는 구성은 [Cut-Cycle Duality](https://h.readiz.com/learn/planar-graph-duality/cut-cycle-duality)에 둡니다. 일반 cut을 항상 dual 경로 하나로 보지 않습니다.
+
+## 작은 예시
+
+사각형에 대각선 하나가 있는 planar graph를 봅니다.
+
+```text
+1 ---- 2
+|    / |
+|  /   |
+4 ---- 3
+```
+
+대각선 `2-4`가 내부 사각형을 두 삼각형 face로 나눕니다. dual graph에는 아래 face들이 생깁니다.
+
+```text
+F0 = outer face
+F1 = triangle 1-2-4
+F2 = triangle 2-3-4
+```
+
+edge `2-4`는 `F1`과 `F2` 사이의 dual edge가 됩니다. 바깥 경계 edge들은 outer face `F0`와 내부 face 하나를 잇는 dual edge가 됩니다.
+
+## Face 순회 결과로 dual 간선 만들기
+
+위 `buildFaceEmbedding`의 결과에서 원본 간선 `i` 양쪽 face는 `faceOfHalfEdge[2*i]`와 `faceOfHalfEdge[2*i+1]`입니다. 이를 아래 `leftFaceUV`, `leftFaceVU`에 넣고, face 수는 `faceHalfEdges.size()`를 사용합니다. 문제에서 face 번호를 직접 주면 순회를 생략하고 같은 구성 함수를 사용합니다.
+
+```cpp
+struct EdgeFace {
+    int u = 0;
+    int v = 0;
+    int leftFaceUV = 0;
+    int leftFaceVU = 0;
+    long long weight = 0;
+};
+
+vector<vector<pair<int, long long>>> buildDualGraph(
+    int faceCount,
+    const vector<EdgeFace>& edges
+) {
+    vector<vector<pair<int, long long>>> dual(faceCount);
+    for (const EdgeFace& edge : edges) {
+        int a = edge.leftFaceUV;
+        int b = edge.leftFaceVU;
+        dual[a].push_back({b, edge.weight});
+        dual[b].push_back({a, edge.weight});
+    }
+    return dual;
+}
+```

@@ -1,5 +1,8 @@
 # 학습 노트 전체 본문 검토 기록
 
+2026-09-09 후속 편집: 아래 최초 정독 기록과 별도로 Treap, 선형대수 선택·연습, Gomory-Hu, Ukkonen, Suffix Array, planar dual의 설명 경계 6개를 통합했습니다. 이동된 본문 링크는 통합 위치로 갱신했습니다. 전체 강의 수는 유지하며 본문은 208개에서 202개로 줄었습니다.
+
+
 [README로 돌아가기](README.md)
 
 기준: `6df3fec`, 2026-09-09 시작. 참고노트 70개 강의 169개 본문과 기본·심화 노트 30개 강의 47개 본문, 총 216개를 대상으로 합니다. 앞선 일괄 편집을 정독 완료로 세지 않습니다. 본문과 코드 블록을 처음부터 끝까지 읽은 뒤 개별 판단을 기록합니다. 정독 여부와 수정·실행 검증 여부는 구분합니다.
@@ -39,12 +42,12 @@
 | 26 | [lessons/trie-aho-corasick/lesson.md](lessons/trie-aho-corasick/lesson.md) | 완료 | 본문·코드 정독. 반영: build 단발·빈 패턴 금지, 출력 ID 복사 비용 주의, 겹친 예시/실수표 중복 삭제. |
 | 27 | [lessons/suffix-periodicity-structures/lesson.md](lessons/suffix-periodicity-structures/lesson.md) | 완료 | 본문 정독. 반영: 도입·중복 구조표 축약, 공개 상태 제목 정리. |
 | 28 | [lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md](lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md) | 완료 | 본문·코드 정독. 반영: Kasai 감소 방향 설명, unsigned 비교 통일, 빈 패턴 계약, 반복 실수표 삭제. |
-| 29 | [lessons/suffix-periodicity-structures/pages/suffix-array-applications.md](lessons/suffix-periodicity-structures/pages/suffix-array-applications.md) | 완료 | 본문·코드 정독. 반영: SparseTable 중복 구현을 기존 API 사용으로 통합, non-overlap 전체 suffix 그룹 범위 명시, SA 복잡도 맞춤. |
+| 29 | [lessons/suffix-periodicity-structures/pages/suffix-array-applications.md](lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md) | 완료 | 본문·코드 정독. 반영: SparseTable 중복 구현을 기존 API 사용으로 통합, non-overlap 전체 suffix 그룹 범위 명시, SA 복잡도 맞춤. |
 | 30 | [lessons/suffix-periodicity-structures/pages/suffix-automaton.md](lessons/suffix-periodicity-structures/pages/suffix-automaton.md) | 완료 | 본문·코드 정독. 반영: build 초기화, endpos/가장 긴 다른 상태 suffix 정의, 호환되지 않는 상태 구조 중복을 템플릿 함수로 통합. |
 | 31 | [lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md](lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md) | 완료 | 본문·코드 정독. 반영: build 초기화·집계 후 append 금지, LIMIT 링크 상수, occurrence 정렬 비용, 중복 소개 제거. |
 | 32 | [lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md](lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md) | 완료 | 본문·코드 정독. 반영: others 빈 경우가 0인 버그, build 초기화, 전체 비용 정렬항, 실제 구현이 첫문자열 SAM임을 명확히. |
 | 33 | [lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md](lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md) | 완료 | 본문·코드 정독. 반영: 실제 코드는 완성 문자열 일괄 빌드임을 명시, 불필요 map 복사 제거, 반복 비교·실수표 축약. |
-| 34 | [lessons/suffix-periodicity-structures/pages/suffix-tree-phase-trace.md](lessons/suffix-periodicity-structures/pages/suffix-tree-phase-trace.md) | 완료 | 본문 정독. 반영: 작은 trace 통과가 큰 입력 안정성을 보장한다는 단정 삭제. |
+| 34 | [lessons/suffix-periodicity-structures/pages/suffix-tree-phase-trace.md](lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md) | 완료 | 본문 정독. 반영: 작은 trace 통과가 큰 입력 안정성을 보장한다는 단정 삭제. |
 | 35 | [lessons/suffix-periodicity-structures/pages/runs-periodicity.md](lessons/suffix-periodicity-structures/pages/runs-periodicity.md) | 완료 | 본문·코드 정독. 반영: 일반 period와 완전 반복 함수명 분리, 두 prefixFunction 중복 통합. |
 | 36 | [lessons/suffix-periodicity-structures/pages/border-automaton.md](lessons/suffix-periodicity-structures/pages/border-automaton.md) | 완료 | 본문·코드 정독. 반영: 빈 패턴 matchPositions 접근 방어, m 상태 전이가 있어 수동 fallback 필수라는 설명 수정. |
 | 37 | [lessons/suffix-periodicity-structures/pages/string-period-query-applications.md](lessons/suffix-periodicity-structures/pages/string-period-query-applications.md) | 완료 | 본문·코드 정독. 반영: RollingHash 중복 구현 제거·기존 get 사용, 반복확장 구간 길이 정확화, 전처리 비용 맞춤. |
@@ -127,7 +130,7 @@
 | 114 | [lessons/graph-cut-structures/pages/global-min-cut.md](lessons/graph-cut-structures/pages/global-min-cut.md) | 완료 | 반영: 비음수 대칭 행렬·총 용량 범위 명시, 모든 쌍 대신 고정 root의 N-1 flow로도 global cut 가능 정정. |
 | 115 | [lessons/graph-cut-structures/pages/randomized-min-cut.md](lessons/graph-cut-structures/pages/randomized-min-cut.md) | 완료 | 반영: 빈·비연결 그래프에서 무한 반복/잘못된 난수 범위 오류를 없애고 무작위 간선 순열 contraction으로 유한 실행 보장. |
 | 116 | [lessons/graph-cut-structures/pages/gomory-hu-tree.md](lessons/graph-cut-structures/pages/gomory-hu-tree.md) | 완료 | 반영: build 재호출 초기화와 비음수 용량·side 계약, 서로 다른 정점 질의 전제. 병렬 간선은 합산이 필수 아님 수정. |
-| 117 | [lessons/graph-cut-structures/pages/gomory-hu-tree-construct-trace.md](lessons/graph-cut-structures/pages/gomory-hu-tree-construct-trace.md) | 완료 | 반영: 첫 단계 그림이 parent 배열과 달리 1-2-3 사슬로 그려져 있어 형제 구조로 정정. 수치 trace 보존. |
+| 117 | [lessons/graph-cut-structures/pages/gomory-hu-tree-construct-trace.md](lessons/graph-cut-structures/pages/gomory-hu-tree.md) | 완료 | 반영: 첫 단계 그림이 parent 배열과 달리 1-2-3 사슬로 그려져 있어 형제 구조로 정정. 수치 trace 보존. |
 | 118 | [lessons/graph-cut-structures/pages/cut-sparsification.md](lessons/graph-cut-structures/pages/cut-sparsification.md) | 완료 | 반영: 경로 압축 없는 DSU와 alpha 복잡도 불일치 수정. 각 cut의 min(k,cut) 보존 명확화. |
 | 119 | [lessons/graph-cut-structures/pages/global-min-cut-applications.md](lessons/graph-cut-structures/pages/global-min-cut.md) | 완료 | 통합 반영: partition 복원은 114로, 간선 민감도는 모든 최소 cut과 일부 최소 cut을 구분해 허브에 통합. 나머지 선택표 중복 삭제. |
 | 120 | [lessons/graph-cut-structures/pages/cactus-representation.md](lessons/graph-cut-structures/pages/cactus-representation.md) | 완료 | 반영: min-cut cactus의 양의 최소 cut 전제와 원래 정점 mapping 조건, DFS는 cactus 입력·고유 간선 ID·self-loop 없음 전제 명시. |
@@ -167,7 +170,7 @@
 | 154 | [lessons/matroid-algorithms/pages/practice-set.md](lessons/matroid-algorithms/pages/practice-set.md) | 완료 | 반영: 완결된 partition 연습·교환 증명 유지. 모호한 union 실패 연습과 반복 체크리스트 삭제. |
 | 155 | [lessons/sparse-linear-systems/lesson.md](lessons/sparse-linear-systems/lesson.md) | 완료 | 반영: 일관성 없는 rank 부족계는 다중 해가 아님. elimination 절의 matvec 복제 삭제 및 실수/유한체 Laplacian rank 조건 구분. |
 | 156 | [lessons/linear-algebra-applications/lesson.md](lessons/linear-algebra-applications/lesson.md) | 완료 | 반영: 선택표 3개를 실제 링크 있는 1개로 통합, XOR rank 중복 코드는103 연결. determinant 자체는 확률 알고리즘 아님 구분. |
-| 157 | [lessons/linear-algebra-applications/pages/decision-map-practice.md](lessons/linear-algebra-applications/pages/decision-map-practice.md) | 완료 | 반영: 자기 제약 u=v 행 생성은 XOR toggle임을 명시. 실제 두 연습·trace 유지, 반복 체크리스트 삭제. |
+| 157 | [lessons/linear-algebra-applications/pages/decision-map-practice.md](lessons/linear-algebra-applications/lesson.md) | 완료 | 반영: 자기 제약 u=v 행 생성은 XOR toggle임을 명시. 실제 두 연습·trace 유지, 반복 체크리스트 삭제. |
 | 158 | [lessons/online-convex-optimization/lesson.md](lessons/online-convex-optimization/lesson.md) | 완료 | 반영: 이전 문서 편집 내역 도입 삭제, 관측 모델·연결 허브 유지. |
 | 159 | [lessons/online-convex-optimization/pages/online-decision-and-regret.md](lessons/online-convex-optimization/pages/online-decision-and-regret.md) | 완료 | 반영: gradient 일괄 함수는 선형 손실 재생/최종점 반환임을 명시. 일반 online은 선택 뒤 gradient 계산, regret 보장 조건과 최종점 보장 구분. |
 | 160 | [lessons/online-convex-optimization/pages/mirror-descent-and-multiplicative-weights.md](lessons/online-convex-optimization/pages/mirror-descent-and-multiplicative-weights.md) | 완료 | 반영: 일반 mirror descent는 Bregman 제약 최소화 포함. log weight 수치 안정성과 고정 eta 동치 보존, 반복 목록 축약. |
@@ -177,7 +180,7 @@
 | 164 | [lessons/matrix-tree-theorem-applications/lesson.md](lessons/matrix-tree-theorem-applications/lesson.md) | 완료 | 반영: 제시한 in-degree Laplacian은 root에서 뻗는 arborescence라는 방향 오류 정정. self-loop 명시적 제외와 n1 빈 determinant 계약. |
 | 165 | [lessons/planar-graph-duality/lesson.md](lessons/planar-graph-duality/lesson.md) | 완료 | 반영: 이전 편집 내역 도입 삭제, embedding 조건과 페이지 연결 유지. |
 | 166 | [lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md](lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md) | 완료 | 반영: 비연결 성분의 boundary walk는 face와 다름을 명시하여 연결 입력으로 제한, 정수 polar comparator·128비트 면적 및 간선 없는 경우 처리. Euler는 좌우 반전 검출 못함. |
-| 167 | [lessons/planar-graph-duality/pages/dual-graph-construction.md](lessons/planar-graph-duality/pages/dual-graph-construction.md) | 완료 | 반영: bond와 simple dual cycle 대응으로 정정, 중복 face 순회는166 링크, face ID·비용 자료형 계약 보완. |
+| 167 | [lessons/planar-graph-duality/pages/dual-graph-construction.md](lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md) | 완료 | 반영: bond와 simple dual cycle 대응으로 정정, 중복 face 순회는166 링크, face ID·비용 자료형 계약 보완. |
 | 168 | [lessons/planar-graph-duality/pages/cut-cycle-duality.md](lessons/planar-graph-duality/pages/cut-cycle-duality.md) | 완료 | 반영: 일반 cut은 dual Eulerian 부분그래프. 공통 face를 둘로 분할해야 s-t min-cut이 경로가 되는 실제 구성과 조건 명시. |
 | 169 | [lessons/planar-graph-duality/pages/practice-set.md](lessons/planar-graph-duality/pages/practice-set.md) | 완료 | 반영: E·시작/끝 face 제한 추가, 중복 Dijkstra는 기본노트 재사용, 모호한 boundary 연습·반복 체크리스트 축약. |
 | 170 | [lessons/complexity-input-size/lesson.md](lessons/complexity-input-size/lesson.md) | 완료 | 본문·코드 정독. canExtend의 상수 시간 전제 보완. 예시 유지. |
@@ -222,7 +225,7 @@
 | 209 | [lessons/segment-tree/pages/lazy-propagation.md](lessons/segment-tree/pages/lazy-propagation.md) | 완료 | 본문·코드 정독. 수정 반영: 구현과 맞지 않는 lazy 저장 의미 수정. |
 | 210 | [lessons/hungarian-algorithm/lesson.md](lessons/hungarian-algorithm/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: n>m 전환 목적 구분, 직사각형 복잡도 정밀화, 비용 범위 구체화. |
 | 211 | [lessons/treap/lesson.md](lessons/treap/lesson.md) | 완료 | 본문 정독. BST 소개와 구현 안내 유지. |
-| 212 | [lessons/treap/pages/treap-core.md](lessons/treap/pages/treap-core.md) | 완료 | 본문·코드 정독. 수정 반영: 상위 페이지와 중복된 Treap 도입 삭제, 메모리 소유권 명시. |
+| 212 | [lessons/treap/pages/treap-core.md](lessons/treap/lesson.md) | 완료 | 본문·코드 정독. 수정 반영: 상위 페이지와 중복된 Treap 도입 삭제, 메모리 소유권 명시. |
 | 213 | [lessons/minimax-alpha-beta/lesson.md](lessons/minimax-alpha-beta/lesson.md) | 완료 | 본문 정독. Alpha-Beta 상한/하한 예시 유지. |
 | 214 | [lessons/testing-and-stress/lesson.md](lessons/testing-and-stress/lesson.md) | 완료 | 본문 정독. 별도 기준 답·차분 복구·재현 절차 유지. |
 | 215 | [lessons/proof-and-invariants/lesson.md](lessons/proof-and-invariants/lesson.md) | 완료 | 본문 정독. 이분 탐색 불변식·교환·경우의 수 증명은 역할이 달라 유지. |

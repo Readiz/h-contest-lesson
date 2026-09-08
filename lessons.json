@@ -1829,15 +1829,7 @@
         "tree-advanced",
         "avl-splay-tree"
       ],
-      "pages": [
-        {
-          "pageId": "treap-core",
-          "title": "핵심 연산과 순위",
-          "description": "split·merge로 삽입·삭제를 구현하고 부분트리 크기로 순위와 k번째 원소를 찾습니다.",
-          "order": 10,
-          "file": "pages/treap-core.md"
-        }
-      ],
+      "pages": [],
       "lessonType": "implementation",
       "practiceStatus": "todo",
       "implementationStatus": "full",
@@ -1958,16 +1950,9 @@
         {
           "pageId": "suffix-array-lcp",
           "title": "Suffix Array and LCP",
-          "description": "suffix 정렬과 LCP 배열, RMQ 기반 질의를 다룹니다.",
+          "description": "Suffix Array와 LCP를 구현하고 패턴 검색, LCP 질의, 반복·서로 다른 부분 문자열 계산으로 이어갑니다.",
           "order": 20,
           "file": "pages/suffix-array-lcp.md"
-        },
-        {
-          "pageId": "suffix-array-applications",
-          "title": "Suffix Array Applications",
-          "description": "반복 부분 문자열, distinct substring, pattern search 응용입니다.",
-          "order": 30,
-          "file": "pages/suffix-array-applications.md"
         },
         {
           "pageId": "suffix-automaton",
@@ -1993,16 +1978,9 @@
         {
           "pageId": "suffix-tree-ukkonen",
           "title": "Suffix Tree and Ukkonen",
-          "description": "explicit suffix tree edge와 Ukkonen construction을 다룹니다.",
+          "description": "Ukkonen의 상태를 abab$ 예제로 따라간 뒤 압축 간선과 suffix link 구현을 읽습니다.",
           "order": 70,
           "file": "pages/suffix-tree-ukkonen.md"
-        },
-        {
-          "pageId": "suffix-tree-phase-trace",
-          "title": "Suffix Tree Phase Trace",
-          "description": "abab$ 예제로 Ukkonen active point와 split 과정을 추적합니다.",
-          "order": 75,
-          "file": "pages/suffix-tree-phase-trace.md"
         },
         {
           "pageId": "runs-periodicity",
@@ -3511,16 +3489,9 @@
         {
           "pageId": "gomory-hu-tree",
           "title": "Gomory-Hu Tree",
-          "description": "모든 pair min cut 값을 cut-equivalent tree로 압축합니다.",
+          "description": "4정점에서 parent 갱신을 따라가고 구성 구현과 모든 쌍 min-cut 질의로 연결합니다.",
           "order": 40,
           "file": "pages/gomory-hu-tree.md"
-        },
-        {
-          "pageId": "gomory-hu-tree-construct-trace",
-          "title": "Gomory-Hu Construction Trace",
-          "description": "4정점 예시로 parent 갱신과 reachable side를 추적합니다.",
-          "order": 50,
-          "file": "pages/gomory-hu-tree-construct-trace.md"
         },
         {
           "pageId": "cut-sparsification",
@@ -4462,15 +4433,7 @@
         "matroid-algorithms",
         "matrix-exponentiation"
       ],
-      "pages": [
-        {
-          "pageId": "decision-map-practice",
-          "title": "Decision Map Practice",
-          "description": "GF(2) rank, determinant counting, recurrence 선택을 작은 입력과 trace로 연습합니다.",
-          "order": 10,
-          "file": "pages/decision-map-practice.md"
-        }
-      ],
+      "pages": [],
       "status": "published",
       "lessonType": "overview",
       "seriesId": "linear-algebra-modeling",
@@ -4668,17 +4631,10 @@
       "pages": [
         {
           "pageId": "half-edge-and-face-traversal",
-          "title": "Half-edge and Face Traversal",
-          "description": "좌표와 간선에서 directed half-edge를 만들고 face를 순회하는 구현입니다.",
+          "title": "Face 순회와 Dual Graph 구성",
+          "description": "Half-edge로 face를 찾고 그 결과를 dual graph의 정점과 간선으로 연결합니다.",
           "order": 10,
           "file": "pages/half-edge-and-face-traversal.md"
-        },
-        {
-          "pageId": "dual-graph-construction",
-          "title": "Dual Graph Construction",
-          "description": "primal edge 양쪽 face를 dual edge로 바꾸는 기본 구성입니다.",
-          "order": 20,
-          "file": "pages/dual-graph-construction.md"
         },
         {
           "pageId": "cut-cycle-duality",

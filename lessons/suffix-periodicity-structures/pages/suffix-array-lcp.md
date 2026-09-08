@@ -169,31 +169,63 @@ bool containsPattern(const string& s, const vector<int>& sa, const string& patte
 
 패턴 길이가 `M`이면 비교 한 번이 최악 `O(M)`입니다. 단순 이분 탐색은 `O(M log N)`이고, 여러 패턴을 많이 처리한다면 LCP를 활용한 최적화나 다른 자료구조도 고려합니다.
 
-## 대표 응용
+패턴 등장 횟수가 필요하면 위 비교 함수가 처음 0 이상이 되는 위치와 처음 양수가 되는 위치를 각각 이분 탐색합니다. 두 경계의 차이가 등장 횟수이며, 별도의 다음 문자열을 만들 필요가 없습니다.
 
-Suffix Array와 LCP의 대표 응용은 아래처럼 계산합니다.
+## LCP RMQ
 
-| 문제 | 해석 |
-| --- | --- |
-| 가장 긴 반복 부분 문자열 | `max(lcp)` |
-| 서로 다른 부분 문자열 수 | `N * (N + 1) / 2 - sum(lcp)` |
-| 두 suffix의 LCP | suffix rank 사이의 LCP 구간 최솟값 |
-| 사전순 k번째 suffix | `sa[k]` |
-| 패턴 등장 개수 | pattern과 일치하는 suffix 구간 길이 |
-
-서로 다른 부분 문자열 개수 공식은 각 suffix가 만드는 새 부분 문자열 개수를 세는 방식입니다. suffix `sa[i]`는 길이 `N - sa[i]`개의 prefix 부분 문자열을 만들 수 있지만, 바로 앞 suffix와 겹치는 `lcp[i]`개는 이미 나온 부분 문자열입니다.
-
-## 여러 문자열을 붙일 때
-
-두 문자열의 가장 긴 공통 부분 문자열 같은 문제에서는 구분자를 넣어 문자열을 합칩니다.
+`rank[i]`를 suffix `s[i..]`의 suffix array 위치라고 하겠습니다. 두 suffix `i`, `j`의 LCP는 rank 사이의 LCP 배열 최솟값입니다.
 
 ```text
-combined = A + '$' + B + '#'
+ri = rank[i], rj = rank[j]
+if ri > rj swap(ri, rj)
+lcp(i, j) = min(lcp[ri + 1], ..., lcp[rj])
 ```
 
-구분자는 입력에 등장하지 않는 문자여야 하고, 서로 다른 구분자를 쓰는 편이 안전합니다. Suffix Array를 만든 뒤 인접 suffix가 서로 다른 원본 문자열에서 왔는지 확인하고, 그때의 LCP를 후보로 봅니다.
+이 구간 최솟값을 자주 묻는다면 Sparse Table을 올립니다.
 
-문자열이 여러 개라면 sliding window와 LCP RMQ를 결합하거나, suffix automaton 같은 다른 구조가 더 자연스러울 수 있습니다.
+[Sparse Table](https://h.readiz.com/learn/sparse-table-rmq)의 `SparseTableMin(lcp)`를 그대로 사용합니다. `i == j`이면 `N-i`, 아니면 `queryMin(min(ri,rj)+1,max(ri,rj))`가 답입니다.
+
+## 서로 다른 부분 문자열과 k번째 부분 문자열
+
+suffix `sa[i]`가 새로 만드는 substring 수는 이전 suffix와 겹치지 않는 prefix 개수입니다.
+
+```text
+newCount(i) = (N - sa[i]) - lcp[i]
+```
+
+따라서 서로 다른 substring 총수는 모든 `newCount`의 합입니다. 사전순 k번째 substring은 suffix array 순서로 `newCount`를 빼다가, 남은 k만큼 suffix prefix를 늘려 찾습니다.
+
+```text
+answer length = lcp[i] + k
+answer = s.substr(sa[i], answer length)
+```
+
+`k`와 substring 수는 쉽게 `O(N^2)`까지 커지므로 `long long`을 씁니다.
+
+## 여러 문자열의 공통 Substring
+
+입력에 없는 서로 다른 separator로 여러 문자열을 이어 붙이고 suffix array를 만들면, 각 suffix의 원본 문자열 id를 알 수 있습니다.
+
+```text
+s1 + # + s2 + $ + s3
+```
+
+모든 문자열을 포함하는 suffix array window를 two pointers로 유지하고, 그 window 내부 인접 LCP의 최솟값이 공통 substring 길이 후보가 됩니다. window 안에 source id가 모두 들어왔는지 count 배열로 관리합니다.
+
+이 방식은 "모든 문자열에 등장하는 가장 긴 substring"에 잘 맞습니다. 특정 두 문자열만 비교한다면 combined suffix array에서 인접한 서로 다른 source suffix의 LCP 최댓값만 봐도 됩니다.
+
+## 반복 Substring과 위치 조건
+
+LCP 값이 크다는 것은 인접 suffix 두 개가 긴 prefix를 공유한다는 뜻입니다. 하지만 문제는 종종 위치 조건을 함께 요구합니다.
+
+| 조건 | 추가로 볼 값 |
+| --- | --- |
+| 두 번 이상 등장 | LCP 최댓값 |
+| 겹치지 않고 등장 | suffix 위치 차이 `>= length` |
+| 적어도 k번 등장 | suffix array에서 크기 k window의 LCP 최솟값 |
+| 서로 다른 source에 등장 | source id count |
+
+겹치지 않는 반복은 인접 suffix만 검사하면 놓칠 수 있습니다. 후보 길이 이상 LCP로 연결된 전체 그룹의 최소·최대 시작 위치 차이를 봅니다. `k=1`이면 전체 문자열 길이가 답입니다. `k >= 2`에서 `k`번 이상 등장하는 substring 길이는 size `k` window마다 LCP 최솟값을 보며 최댓값을 취합니다. 구간 최솟값은 Sparse Table 또는 deque로 처리할 수 있습니다.
 
 ## 시간 복잡도
 
