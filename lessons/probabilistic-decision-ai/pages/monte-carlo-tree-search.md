@@ -2,18 +2,6 @@
 
 Monte Carlo Tree Search(MCTS)는 게임 트리를 모두 탐색하기 어려울 때, 유망한 수를 통계적으로 더 많이 시도하면서 선택을 개선하는 탐색 방법입니다. Minimax가 정확한 evaluation을 전제로 한다면, MCTS는 simulation 결과를 누적해 선택을 근사합니다.
 
-이 레슨은 Minimax와 Alpha-Beta Pruning 이후에 보는 확률적 game tree search를 정리합니다.
-
-1. 선택(selection) 단계에서 UCB로 child를 고른다.
-2. 확장(expansion) 단계에서 새 수를 tree에 추가한다.
-3. rollout으로 결과를 추정하고 backpropagation으로 통계를 갱신한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: game tree, minimax, 확률과 기대값, random simulation
-- 함께 보면 좋은 레슨: Minimax와 Alpha-Beta Pruning, 확률과 기대값, 휴리스틱 알고리즘
-- 다음에 볼 레슨: UCT tuning, rollout policy, imperfect information search
-
 ## 언제 MCTS인가
 
 | 문제 신호 | 접근 |
@@ -170,11 +158,3 @@ O(iterations * (selection depth + rollout length))
 3. rollout이 terminal에 도달하지 않는 상태를 만든다.
 4. exploration constant를 문제에 맞게 조정하지 않는다.
 5. 최종 선택에서도 UCB exploration을 그대로 사용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 게임이 deterministic인가, stochastic인가?
-- 상태를 빠르게 복사하거나 move apply/undo할 수 있는가?
-- rollout이 제한 시간 안에 충분히 많이 가능한가?
-- reward가 현재 player 관점인지 root player 관점인지 명확한가?
-- 온라인 저지에서 random seed와 반복 수가 재현 가능한가?

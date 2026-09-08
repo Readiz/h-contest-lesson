@@ -2,18 +2,6 @@
 
 Mobius Inversion은 divisor lattice 위에서 "약수들의 합"으로 정의된 값을 원래 함수로 되돌리는 포함-배제 도구입니다. gcd 조건, 서로소 pair count, divisor multiple count처럼 수의 약수 관계가 핵심인 문제에서 자주 등장합니다.
 
-이 레슨은 정수론 심화와 조합론 이후에 보는 수학 심화입니다.
-
-1. `F(n) = sum_{d|n} f(d)` 형태를 찾는다.
-2. Mobius function `mu`로 `f(n) = sum_{d|n} mu(d) F(n/d)`를 복원한다.
-3. gcd 조건을 divisor multiple count로 바꿔 빠르게 센다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: gcd, prime factorization, inclusion-exclusion, sieve
-- 함께 보면 좋은 레슨: 정수론 심화, 조합론, XOR Linear Basis
-- 다음에 볼 레슨: Dirichlet convolution, multiplicative function, divisor transform
-
 ## 문제 신호
 
 | 문제 표현 | Mobius Inversion 관점 |
@@ -153,11 +141,3 @@ f = F * mu
 3. ordered pair와 unordered pair를 혼동한다.
 4. `gcd = g` 조건에서 `g`로 나눈 뒤의 서로소 조건을 빼먹는다.
 5. 값의 최댓값이 너무 큰데 배열 sieve를 무리하게 잡는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 조건이 gcd, divisor, multiple 관계로 표현되는가?
-- "약수들의 합" 또는 "배수들의 합" 형태가 보이는가?
-- 필요한 pair가 ordered인지 unordered인지 명확한가?
-- 모든 값의 최댓값 기준 sieve가 가능한가?
-- prime subset 포함-배제를 `mu` 합으로 압축할 수 있는가?

@@ -2,18 +2,6 @@
 
 Suffix와 Palindrome 응용은 Suffix Array, Suffix Automaton, Palindromic Tree를 문제 신호에 맞게 선택하는 레슨입니다. 구조를 하나씩 구현할 줄 아는 것과, 어떤 문제에서 어떤 구조를 꺼낼지 판단하는 것은 별개의 기술입니다.
 
-이 레슨은 Suffix Automaton과 Palindromic Tree 이후에 보는 문자열 심화 응용 정리입니다.
-
-1. 부분 문자열 전체를 다루면 suffix 계열을 먼저 본다.
-2. palindrome substring을 보존해야 하면 Palindromic Tree를 본다.
-3. 여러 문자열 사이의 공통성은 separator, product automaton, LCP 구간으로 모델링한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Suffix Array, LCP, Suffix Automaton, Palindromic Tree
-- 함께 보면 좋은 레슨: Suffix Array와 LCP, Suffix Automaton, Palindromic Tree
-- 다음에 볼 레슨: Lyndon factorization, palindromic DP, suffix tree intuition
-
 ## 문제 신호별 선택
 
 | 문제 신호 | 우선 후보 |
@@ -207,11 +195,3 @@ alphabet이 작으면 배열 transition이 빠릅니다. alphabet이 크면 map 
 3. 여러 문자열을 합칠 때 separator가 원문에 등장한다.
 4. palindrome 문제인데 suffix 구조만으로 풀려고 한다.
 5. substring과 subsequence를 혼동한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 대상이 substring인가 suffix인가 palindrome인가?
-- 서로 다른 개수가 필요한가, 등장 횟수가 필요한가?
-- 온라인 처리가 필요한가?
-- 문자열이 여러 개인가, 경계가 중요한가?
-- alphabet 크기가 작아 배열 transition이 가능한가?

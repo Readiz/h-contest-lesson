@@ -2,18 +2,6 @@
 
 Power Diagram은 점마다 가중치가 있을 때 "가까움"을 `거리 제곱 - weight`로 정의하는 weighted Voronoi 구조입니다. 일반 Voronoi가 가장 가까운 점을 나누는 구조라면, Power Diagram은 반지름이 다른 원이나 영향력이 다른 점의 지배 영역을 선형 경계로 나눕니다.
 
-이 레슨은 Voronoi와 Delaunay, Half-Plane Intersection, Shape Distance Modeling 이후에 보는 기하 심화입니다.
-
-1. weighted distance를 power distance로 바꾼다.
-2. 두 site의 경계가 직선이 된다는 점을 이용한다.
-3. cell을 half-plane intersection이나 lower envelope로 계산한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Voronoi/Delaunay, Half-Plane Intersection, Robust Geometry Predicates
-- 함께 보면 좋은 레슨: Shape Distance Modeling, Circle Geometry, Robust Delaunay
-- 다음에 볼 레슨: regular triangulation, weighted nearest neighbor, 3D convex hull lifting
-
 ## 문제 신호
 
 | 문제 표현 | Power Diagram 관점 |
@@ -83,28 +71,6 @@ power_i(x) <= power_j(x)
 
 site 수가 작으면 site마다 half-plane intersection을 돌려도 됩니다. 전체 diagram을 효율적으로 만들려면 regular triangulation이나 lifting 관점을 사용하지만, 구현 난도는 훨씬 높습니다.
 
-## 구현 조각
-
-```cpp
-struct WeightedPoint {
-    long double x = 0;
-    long double y = 0;
-    long double weight = 0;
-};
-
-long double powerDistance(const WeightedPoint& point, long double x, long double y) {
-    long double dx = x - point.x;
-    long double dy = y - point.y;
-    return dx * dx + dy * dy - point.weight;
-}
-
-long double boundaryValue(const WeightedPoint& a, const WeightedPoint& b, long double x, long double y) {
-    return powerDistance(a, x, y) - powerDistance(b, x, y);
-}
-```
-
-`boundaryValue(a, b, x, y) <= 0`이면 점 `(x, y)`는 `a`가 `b`보다 같거나 더 가까운 쪽입니다. 실제 half-plane intersection에서는 이 부등식을 직선 계수로 바꿔 사용하는 편이 안정적입니다.
-
 ## Radical Axis와 원
 
 원 `i`의 중심을 `p_i`, 반지름을 `r_i`라고 하면 `w_i = r_i^2`로 둘 수 있습니다. 그러면 power distance는 점이 원에 대해 가지는 power와 같습니다.
@@ -128,11 +94,3 @@ long double boundaryValue(const WeightedPoint& a, const WeightedPoint& b, long d
 3. cell이 사라질 수 있다는 점을 잊는다.
 4. 일반 Voronoi처럼 경계가 항상 두 점의 수직이등분선이라고 가정한다.
 5. floating EPS와 exact predicate 정책을 섞어 경계 위 점을 불안정하게 처리한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 거리 정의가 `squared distance - weight`인가?
-- weight가 반지름인지, 반지름 제곱인지 문제에서 어떻게 주는가?
-- 전체 diagram이 필요한가, 한 cell이나 query만 필요한가?
-- 좌표 범위가 exact integer predicate로 처리 가능한가?
-- cell이 비어도 되는 입력인가?

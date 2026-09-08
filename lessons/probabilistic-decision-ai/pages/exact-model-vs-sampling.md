@@ -2,18 +2,6 @@
 
 Reinforcement Learning Basics는 상태, 행동, 보상, 전이 확률이 있는 환경에서 policy를 평가하거나 개선하는 기본 틀입니다. contest에서는 실제 학습보다 Markov Decision Process를 반복 갱신으로 푸는 모델링, finite-horizon decision, exploration과 exploitation 구분을 위해 등장합니다.
 
-이 레슨은 Markov Decision Process, Probability, Game Theory Applications 이후에 보는 확률적 의사결정 기초입니다.
-
-1. value는 현재 policy나 최적 policy의 기대 누적 보상이다.
-2. policy evaluation은 고정 policy의 value를 계산한다.
-3. policy iteration과 value iteration은 Bellman update로 policy를 개선한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: expected value, Markov Decision Process, dynamic programming
-- 함께 보면 좋은 레슨: Bayesian Bandits, POMDP, POMCP
-- 다음에 볼 레슨: Q-learning, policy gradient, online planning evaluation
-
 ## 문제 신호
 
 | 문제 표현 | RL 관점 |
@@ -36,59 +24,9 @@ V(s) = max_a sum_{s'} P(s' | s, a) * (r(s,a,s') + gamma * V(s'))
 
 finite horizon이면 시간 `t`를 상태에 넣거나 뒤에서 앞으로 DP를 합니다. infinite discounted case에서는 value iteration으로 수렴시킬 수 있습니다.
 
-## Value Iteration 구현 조각
+## 전이표가 있는 계산
 
-아래 코드는 작은 MDP에서 discounted value iteration을 수행합니다.
-
-```cpp compile-check
-#include <algorithm>
-#include <cmath>
-#include <vector>
-using namespace std;
-
-struct Transition {
-    int nextState = 0;
-    double probability = 0.0;
-    double reward = 0.0;
-};
-
-using Action = vector<Transition>;
-using StateActions = vector<Action>;
-
-vector<double> valueIteration(
-    const vector<StateActions>& mdp,
-    double gamma,
-    int iterations
-) {
-    int stateCount = (int)mdp.size();
-    vector<double> value(stateCount, 0.0);
-    vector<double> nextValue(stateCount, 0.0);
-
-    for (int iter = 0; iter < iterations; ++iter) {
-        for (int state = 0; state < stateCount; ++state) {
-            if (mdp[state].empty()) {
-                nextValue[state] = 0.0;
-                continue;
-            }
-            double best = -1e100;
-            for (const Action& action : mdp[state]) {
-                double score = 0.0;
-                for (const Transition& transition : action) {
-                    score += transition.probability *
-                        (transition.reward + gamma * value[transition.nextState]);
-                }
-                best = max(best, score);
-            }
-            nextValue[state] = best;
-        }
-        value.swap(nextValue);
-    }
-
-    return value;
-}
-```
-
-문제에서 정확한 오차 한계를 요구하면 iteration 횟수를 `gamma`와 reward bound에 맞춰 계산해야 합니다.
+할인 모델의 반복 갱신 구현과 오차 조건은 [Discounted Value Iteration](discounted-value-iteration.md)에 둡니다. Sample만 관측하는 경우에는 이 코드에 필요한 전이 확률표가 없다는 차이가 있습니다.
 
 ## Policy Evaluation과 Policy Improvement
 
@@ -154,12 +92,3 @@ transition이 sparse하면 edge list로 저장합니다. dense matrix를 만들�
 4. finite horizon 문제를 infinite discounted 문제처럼 반복한다.
 5. hidden state가 있는데 MDP value iteration으로 푼다.
 6. model-free sample 학습을 exact judge 답안처럼 사용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 상태가 완전히 관측되는가?
-- transition probability가 주어지는가, simulator sample만 가능한가?
-- horizon이 finite인가 infinite discounted인가?
-- terminal state와 absorbing state를 구분했는가?
-- 필요한 출력이 value인지 policy인지 action 하나인지 확인했는가?
-- 오차 허용과 반복 횟수를 계산했는가?

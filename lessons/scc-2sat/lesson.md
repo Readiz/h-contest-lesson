@@ -4,12 +4,6 @@ SCC(Strongly Connected Component)는 방향 그래프에서 서로 왕복 도달
 
 2-SAT은 각 조건이 두 개의 boolean literal로 이루어진 논리식을 만족시킬 수 있는지 판정하는 문제입니다. `x 또는 y` 형태의 절을 implication graph로 바꾸면 SCC로 모순 여부를 판단할 수 있습니다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: DFS, 방향 그래프, 위상 정렬과 DAG DP
-- 함께 보면 좋은 레슨: 그래프와 트리 기본 성질, Bellman-Ford와 음수 사이클
-- 다음에 볼 레슨: Flow와 Bipartite Matching
-
 ## SCC가 필요한 상황
 
 방향 그래프에서 아래 질문이 나오면 SCC를 떠올립니다.
@@ -33,76 +27,7 @@ SCC를 구하는 대표적인 방법 중 하나가 Kosaraju 알고리즘입니�
 
 첫 번째 DFS의 종료 순서는 "나중에 닫힌 정점일수록 압축 DAG에서 앞쪽 후보"라는 정보를 줍니다. 간선을 뒤집은 뒤 그 순서로 탐색하면 한 SCC를 밖으로 새지 않고 모을 수 있습니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-struct SCCResult {
-    int componentCount;
-    vector<int> componentOf;
-    vector<vector<int>> components;
-};
-
-void dfsOrder(int u, const vector<vector<int>>& graph, vector<int>& visited, vector<int>& order) {
-    visited[u] = 1;
-    for (int v : graph[u]) {
-        if (!visited[v]) {
-            dfsOrder(v, graph, visited, order);
-        }
-    }
-    order.push_back(u);
-}
-
-void dfsComponent(
-    int u,
-    int componentId,
-    const vector<vector<int>>& reversed,
-    vector<int>& componentOf,
-    vector<int>& current
-) {
-    componentOf[u] = componentId;
-    current.push_back(u);
-    for (int v : reversed[u]) {
-        if (componentOf[v] == -1) {
-            dfsComponent(v, componentId, reversed, componentOf, current);
-        }
-    }
-}
-
-SCCResult kosaraju(const vector<vector<int>>& graph) {
-    int n = (int)graph.size();
-    vector<vector<int>> reversed(n);
-    for (int u = 0; u < n; ++u) {
-        for (int v : graph[u]) {
-            reversed[v].push_back(u);
-        }
-    }
-
-    vector<int> visited(n, 0);
-    vector<int> order;
-    for (int i = 0; i < n; ++i) {
-        if (!visited[i]) {
-            dfsOrder(i, graph, visited, order);
-        }
-    }
-    reverse(order.begin(), order.end());
-
-    vector<int> componentOf(n, -1);
-    vector<vector<int>> components;
-    for (int start : order) {
-        if (componentOf[start] != -1) {
-            continue;
-        }
-        vector<int> current;
-        int componentId = (int)components.size();
-        dfsComponent(start, componentId, reversed, componentOf, current);
-        components.push_back(current);
-    }
-
-    return {(int)components.size(), componentOf, components};
-}
-```
+구현은 아래의 결합 예제에 한 번만 싣습니다.
 
 시간 복잡도는 `O(V + E)`입니다. DFS를 두 번 하고, 간선을 한 번 뒤집기 때문입니다.
 
@@ -257,14 +182,3 @@ Kosaraju를 위 코드처럼 종료 순서 역순으로 두 번째 DFS를 돌리
 | 변수와 부정 번호를 일관되지 않게 매핑 | 모순 판정 오류 | `x ^ 1`로 부정이 되게 번호 설계 |
 | 값 복원에서 SCC 번호 방향을 착각 | 만족하지 않는 배정 출력 | 작은 식으로 comp 순서 검증 |
 | 재귀 DFS 깊이 초과 | 런타임 에러 | 입력이 크면 반복 DFS 또는 스택 제한 검토 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 방향 그래프에서 서로 도달 가능한 묶음이 필요한가?
-2. 사이클을 묶은 뒤 DAG로 처리해야 하는가?
-3. 조건이 `A이면 B` 형태의 implication으로 바뀌는가?
-4. 각 제약이 `(x or y)` 꼴의 2-SAT 절로 표현되는가?
-5. 만족 가능성만 필요한가, 실제 배정도 출력해야 하는가?
-6. DFS 재귀 깊이가 입력 제한에서 안전한가?
-
-정리하면, SCC는 방향 그래프의 사이클을 압축해 DAG로 바꾸는 도구이고, 2-SAT은 boolean 조건을 implication graph로 바꾼 뒤 SCC 모순을 찾는 응용입니다.

@@ -2,22 +2,6 @@
 
 Convex DP Optimization은 DP 전이식의 모양을 보고 어떤 최적화 기법을 골라야 하는지 정리하는 허브입니다. Convex Hull Trick, Li Chao Tree, Slope Trick, Min-Plus Convolution, Kinetic Hull은 모두 강력하지만, 적용 조건이 조금만 어긋나도 틀리거나 과한 구현이 됩니다.
 
-이 허브의 목표는 개별 자료구조를 평면적으로 나열하지 않고, 아래 질문에서 시작하게 하는 것입니다.
-
-1. 전이가 `line at x` 꼴로 분리되는가?
-2. 최적 decision index가 단조인가?
-3. convex piecewise-linear function 자체를 유지해야 하는가?
-4. 두 cost 배열을 min-plus로 합치는 문제인가?
-5. 직선 집합이 시간에 따라 움직이거나 삭제되는가?
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Dynamic Programming, Segment Tree, Divide and Conquer DP Optimization
-- 함께 보면 좋은 레슨: Monge and SMAWK, Parametric Optimization, Convex Cost Flow, Versioned Data Structures
-- 다음에 볼 레슨: Offline and Time-Axis Techniques, Geometry Sweep
-
-Parametric Optimization은 이 허브의 prerequisite이 아니라 related track입니다. `lambda`나 penalty를 고정해 DP oracle을 만드는 문제는 Parametric Optimization 쪽으로, 이미 주어진 DP 전이식의 최적화 구조를 판정하는 문제는 이 허브로 들어옵니다.
-
 ## 결정 트리
 
 | 전이식/문제 신호 | 먼저 볼 페이지 |
@@ -29,19 +13,24 @@ Parametric Optimization은 이 허브의 prerequisite이 아니라 related track
 | 두 cost sequence를 `min_i A[i] + B[k-i]`로 합친다 | [Min-Plus Convolution](pages/min-plus-convolution.md) |
 | 직선이나 hull이 시간에 따라 움직인다 | [Kinetic Hull](pages/kinetic-hull.md) |
 | 직선 삽입과 삭제가 모두 필요하다 | [Fully Dynamic CHT](pages/fully-dynamic-cht.md) |
-| 조건을 먼저 판정해야 한다 | [Technique Decision Tree](pages/technique-decision-tree.md), [Convex DP Modeling](pages/convex-dp-modeling.md) |
 
-## 먼저 증명할 조건
+## 전이식부터 분해하기
 
-| 기법 | 필요한 조건 |
+`dp[i] = min_j(previous[j] + cost(j, i))`에서 후보 `j`에만 의존하는 항과 현재 위치 `i`에만 의존하는 항을 분리합니다. `m[j] * x[i] + b[j]`로 쓰이면 직선 질의가 됩니다. `j`와 `i`가 비선형으로 섞인 식은 Li Chao Tree를 가져오는 것만으로 해결되지 않습니다.
+
+1차원 convex 수열은 차분이 증가하는지, Monge 비용은 교차 부등식이 성립하는지 봅니다. `argmin`이 `0, 2, 1, 3`처럼 되돌아가는 작은 입력이 있으면 단조 argmin을 전제로 한 최적화는 적용할 수 없습니다. 작은 입력의 전수 DP 비교는 반례를 찾는 방법이며 조건 증명을 대신하지 않습니다.
+
+같은 기울기·같은 비용의 tie-break도 조건에 포함됩니다. 분할정복 전이 구현은 [Divide and Conquer DP Optimization](https://h.readiz.com/learn/divide-and-conquer-dp-optimization)에 두고, 이 개요에서는 식과 적용 조건을 구분합니다.
+
+| 구현 | 조건 |
 | --- | --- |
-| Deque CHT | slope 추가 순서와 query x 순서가 단조이거나, 한쪽 단조성과 이분 탐색이 가능 |
-| Li Chao Tree | query x domain이 정해져 있고 line 삽입/point query로 모델링 가능 |
-| D&C DP Optimization | 각 layer의 argmin index가 단조 |
-| Monge/SMAWK | cost matrix가 Monge 또는 totally monotone |
-| Slope Trick | 유지하는 함수가 convex piecewise-linear |
-| Min-Plus Convolution | sequence 구조가 일반인지, convex/Monge 특수형인지 구분 |
+| Deque CHT | slope 삽입과 query x가 모두 단조 |
+| Hull + 이분 탐색 | slope 삽입만 단조 |
+| Li Chao Tree | 일반 삽입·질의 순서, 정해진 x 범위 |
+| D&C DP | layer별 argmin 단조 |
+| SMAWK | totally monotone matrix |
+| Slope Trick | convex piecewise-linear 함수 갱신 |
 
-## 공개 상태
+## 연습
 
-하위 페이지들은 구현과 판단 기준을 담고 있습니다. [Practice Set](pages/practice-set.md)은 line-query DP를 Li Chao Tree로 계산하는 로컬 구현, trace, stress 기준을 대표 흐름으로 제공합니다.
+[로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.

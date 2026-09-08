@@ -2,18 +2,6 @@
 
 Alien Optimization은 "정확히 K개를 선택해야 하는 최적화"를 직접 풀기 어려울 때, 선택 개수에 벌점 `lambda`를 붙여 parametric search로 맞추는 기법입니다. Lagrangian relaxation이라고도 부르며, DP 최적화 문제에서 자주 등장합니다.
 
-이 레슨은 Divide and Conquer DP Optimization, Knuth Optimization, Monge/SMAWK 이후에 보는 비용 함수 관점의 최적화입니다.
-
-1. 선택 하나마다 벌점 `lambda`를 더하거나 뺀다.
-2. 바뀐 목적식으로 "선택 개수 제한 없는" 최적 DP를 푼다.
-3. `lambda`를 이분 탐색해 선택 개수가 K에 맞는 지점을 찾는다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: DP, 이분 탐색, 최적화 목적식, monotonicity
-- 함께 보면 좋은 레슨: Divide and Conquer DP Optimization, Monge와 SMAWK, Convex Hull Trick
-- 다음에 볼 레슨: Lagrangian relaxation, slope trick, convex DP
-
 ## 문제 신호
 
 | 문제 표현 | Alien Optimization 관점 |
@@ -73,63 +61,11 @@ RelaxedValue betterMin(const RelaxedValue& a, const RelaxedValue& b) {
 
 위 tie-break는 같은 relaxed cost라면 선택 개수가 큰 해를 고릅니다. 이분 탐색 조건을 어떻게 잡느냐에 따라 반대로 둘 수도 있습니다.
 
-## 단순 DP 예시
+## 실제 전이에 붙이기
 
-아래 예시는 각 item을 선택하면 `value[i]` 비용을 얻고, 선택할 때마다 penalty를 추가하는 최소화 DP 골격입니다. 실제 문제에서는 transition이 더 복잡하지만, penalty가 들어가는 위치는 같습니다.
+인접 선택이 금지된 경우처럼 이전 선택이 다음 전이에 영향을 주는 [relaxed path DP](general-lagrangian-relaxation.md)를 봅니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-struct AlienResult {
-    long long cost;
-    int count;
-};
-
-AlienResult minPair(const AlienResult& a, const AlienResult& b) {
-    if (a.cost != b.cost) {
-        return a.cost < b.cost ? a : b;
-    }
-    return a.count > b.count ? a : b;
-}
-
-AlienResult solveRelaxed(const vector<long long>& value, long long penalty) {
-    const long long INF = (1LL << 60);
-    AlienResult dpSkip{0, 0};
-    AlienResult dpTake{INF, 0};
-
-    for (long long x : value) {
-        AlienResult nextSkip = minPair(dpSkip, dpTake);
-        AlienResult bestPrev = minPair(dpSkip, dpTake);
-        AlienResult nextTake{bestPrev.cost + x + penalty, bestPrev.count + 1};
-        dpSkip = nextSkip;
-        dpTake = nextTake;
-    }
-
-    return minPair(dpSkip, dpTake);
-}
-
-long long exactlyKByAlien(const vector<long long>& value, int k) {
-    long long low = -1000000000LL;
-    long long high = 1000000000LL;
-
-    while (low < high) {
-        long long mid = (low + high + 1) / 2;
-        AlienResult result = solveRelaxed(value, mid);
-        if (result.count >= k) {
-            low = mid;
-        } else {
-            high = mid - 1;
-        }
-    }
-
-    AlienResult result = solveRelaxed(value, low);
-    return result.cost - low * k;
-}
-```
-
-이 예시는 구조 설명용입니다. 실제 alien optimization은 segment DP, tree DP, path cover류에서 transition 비용을 penalty와 함께 넣는 형태로 자주 쓰입니다.
+Relaxed 해의 개수가 K를 건너뛸 수 있습니다. 단조성만으로 `relaxedCost - lambda*K`가 원래 정답이라고 결론내리지 말고, [동점과 breakpoint](tie-breaking-and-breakpoints.md)의 복원 조건을 확인합니다.
 
 ## Binary Search 방향
 
@@ -186,11 +122,3 @@ O(T(N) * log C)
 3. 최소화/최대화에 따라 binary search 조건을 반대로 쓴다.
 4. 원하는 K가 불가능한데도 답을 보정한다.
 5. penalty 범위를 너무 좁게 잡는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 정확히 K개 조건을 penalty로 옮길 수 있는가?
-- penalty가 커질 때 선택 개수가 단조적인가?
-- relaxed DP가 count를 함께 반환하는가?
-- 최종 답 보정 부호가 맞는가?
-- cost 범위에 맞는 penalty search bounds를 잡았는가?

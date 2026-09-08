@@ -2,18 +2,6 @@
 
 Summatory Number Theory는 `sum_{i=1}^n f(i)` 형태의 누적 정수론 값을 큰 `n`에 대해 빠르게 계산하는 관점입니다. `phi`, `mu`, divisor count 같은 multiplicative function을 전부 직접 구할 수 없는 범위에서는 floor division grouping, prefix transform, memoized recursion을 조합합니다.
 
-이 레슨은 Multiplicative Functions, Mobius Inversion 이후에 보는 정수론 심화입니다.
-
-1. `n / i` 값이 같은 구간을 한 번에 묶는다.
-2. divisor sum 식을 prefix sum 형태로 바꾼다.
-3. sieve 가능한 범위와 큰 `n` query를 분리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: multiplicative function, Mobius inversion, linear sieve, prefix sum
-- 함께 보면 좋은 레슨: Multiplicative Functions, Dirichlet Convolution, Mobius Inversion
-- 다음에 볼 레슨: Min_25 sieve, Du Jiao sieve, floor-sum applications
-
 ## 문제 신호
 
 | 문제 표현 | Summatory 관점 |
@@ -160,11 +148,3 @@ sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
 4. `floor(n / d)^2`를 `long long` 범위라고 가정한다.
 5. multiplicative function의 point value와 summatory value를 같은 cache에 넣는다.
 6. convolution 항등식을 확인하지 않고 Du Jiao 형태를 외워서 적용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 식에 `floor(n / i)`가 반복되는가?
-- divisor 기준으로 합의 순서를 바꿀 수 있는가?
-- 필요한 `f(i)`가 sieve로 prefix 가능인가?
-- 큰 `n`에서 만나는 quotient를 memoization할 수 있는가?
-- modulo와 overflow 처리를 식마다 분리했는가?

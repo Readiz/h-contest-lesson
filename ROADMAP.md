@@ -671,7 +671,7 @@
 - TODO: bandit simulation `/practice/...` 문제 필요 / posterior update와 regret / Thompson sampling
 - TODO: online planning evaluation `/practice/...` 문제 필요 / paired seed benchmark / time budget
 
-### [Stochastic Decision Process Practice Set](lessons/probabilistic-decision-ai/pages/stochastic-decision-practice-set.md)
+### [Stochastic Decision Process Practice Set](lessons/probabilistic-decision-ai/pages/practice-set.md)
 
 - TODO: finite horizon MDP `/practice/...` 문제 필요 / 남은 턴 DP 작성 / layer DP
 - TODO: discounted value iteration `/practice/...` 문제 필요 / 오차 기준이 있는 Bellman 반복 / gamma
@@ -796,7 +796,7 @@
 - TODO: online CHT DP `/practice/...` 문제 필요 / add/query 순서 설계 / transition ordering
 - TODO: non-monotone CHT `/practice/...` 문제 필요 / deque 전제 검증 / counterexample
 
-### [Convex DP Modeling](lessons/convex-dp-optimization/pages/convex-dp-modeling.md)
+### [Convex DP Modeling](lessons/convex-dp-optimization/lesson.md)
 
 - TODO: convex DP modeling `/practice/...` 문제 필요 / 전이식 분리 / decision variable
 - TODO: quadrangle inequality `/practice/...` 문제 필요 / argmin 단조 증명 / Monge
@@ -860,7 +860,7 @@
 - TODO: min cut cactus `/practice/...` 문제 필요 / minimum cut family 해석 / cut representation
 - TODO: bridge tree is not enough `/practice/...` 문제 필요 / cycle 내부 정보 보존 / block compression
 
-### [Cut Cactus Applications](lessons/graph-cut-structures/pages/cut-cactus-applications.md)
+### [Cut Cactus Applications](lessons/graph-cut-structures/pages/cactus-representation.md)
 
 - TODO: cactus cut query `/practice/...` 문제 필요 / tree edge와 cycle cut 구분 / cactus
 - TODO: min cut family count `/practice/...` 문제 필요 / cycle pair 선택 세기 / global min cut
@@ -1186,3 +1186,9 @@
 - TODO: half-edge face traversal `/practice/...` 문제 필요 / 좌표에서 face 번호 찾기 / angle sort
 - TODO: planar cut shortest path `/practice/...` 문제 필요 / cut을 dual path로 변환 / cut-cycle duality
 - TODO: bridge in dual graph `/practice/...` 문제 필요 / self-loop와 bridge 처리 / Euler formula
+
+## 참고 구현의 보강 조건
+
+- Multipoint Evaluation은 product tree만 만드는 골격 대신, remainder를 실제로 전파하는 구현과 작은 Horner 기준 답 비교를 준비한 뒤 구현 예제를 보강합니다.
+- Kinetic Hull은 event별 version·이웃 검증과 실제 event 갱신까지 포함한 문제를 확보해야 합니다. 단순 priority queue wrapper는 예제로 다시 추가하지 않습니다.
+- Cut cactus 구성과 질의는 원래 정점 mapping 및 cycle block 처리가 있는 경우에만 구현으로 보강합니다. 일반 tree DFS만으로 대체하지 않습니다.

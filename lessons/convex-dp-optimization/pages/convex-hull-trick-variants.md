@@ -2,18 +2,6 @@
 
 Convex Hull Trick Variants는 직선 최솟값 또는 최댓값 질의를 처리할 때 어떤 구현을 골라야 하는지 정리하는 레슨입니다. 기본 Convex Hull Trick과 Li Chao Tree를 알고 있어도, slope 순서, query 순서, 같은 slope, min/max convention이 조금만 달라지면 구현 선택이 바뀝니다.
 
-이 레슨은 Convex Hull Trick과 Li Chao Tree 이후에 보는 DP 최적화 심화입니다.
-
-1. slope 추가 순서와 query x 순서를 먼저 분류한다.
-2. min/max 문제를 하나의 convention으로 통일한다.
-3. 같은 slope, overflow, tie-breaking을 구현 전에 결정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Convex Hull Trick, Li Chao Tree, DP transition modeling
-- 함께 보면 좋은 레슨: Convex Hull Trick과 Li Chao Tree, Convex DP Modeling, Divide and Conquer DP Optimization
-- 다음에 볼 레슨: parametric DP, kinetic hull, fully dynamic CHT
-
 ## 구현 선택표
 
 | 조건 | 추천 구현 |
@@ -163,12 +151,3 @@ query x = X[i]
 4. max 문제를 min 구현에 그대로 넣는다.
 5. 교점 계산에서 음수 나눗셈의 floor/ceil을 틀린다.
 6. `m*x+b` overflow를 확인하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 전이가 정말 직선과 점 질의로 분리되는가?
-- slope 추가 순서를 보장하거나 정렬할 수 있는가?
-- query x가 단조인가?
-- 최솟값/최댓값 convention을 통일했는가?
-- 같은 slope와 overflow 처리를 넣었는가?
-- 삭제가 필요한 문제라면 offline으로 바꿀 수 있는가?

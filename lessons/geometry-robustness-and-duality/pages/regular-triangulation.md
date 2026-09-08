@@ -2,18 +2,6 @@
 
 Regular Triangulation은 weighted point를 3차원으로 lifting한 뒤 lower hull을 투영해서 얻는 Power Diagram의 dual 구조입니다. 일반 Delaunay Triangulation이 Voronoi Diagram의 dual이라면, Regular Triangulation은 Power Diagram의 dual입니다.
 
-이 레슨은 Power Diagram, Robust Delaunay, 3D Convex Hull 이후에 보는 계산기하 심화입니다.
-
-1. weight가 있는 점을 `z = x^2 + y^2 - w`로 lifting한다.
-2. lifted point들의 lower convex hull을 본다.
-3. lower face를 평면에 투영해 weighted Delaunay 구조를 얻는다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Power Diagram, Voronoi/Delaunay, 3D Convex Hull
-- 함께 보면 좋은 레슨: Robust Geometry Predicates, Half-Plane Intersection, Power Diagram
-- 다음에 볼 레슨: weighted Delaunay, power cell query, robust computational geometry
-
 ## 문제 신호
 
 | 문제 표현 | Regular Triangulation 관점 |
@@ -74,34 +62,6 @@ point q is inside weighted circle of triangle abc
 ```
 
 구현은 4x4 determinant나 lifted orientation으로 표현할 수 있습니다. 하지만 부호 convention, 좌표 범위, cocircular degeneracy가 까다롭습니다.
-
-## Lifting 코드 조각
-
-전체 hull 구현은 길기 때문에, 먼저 lifting과 z값 계산을 명확히 분리합니다.
-
-```cpp
-struct WeightedPoint2D {
-    long double x = 0;
-    long double y = 0;
-    long double weight = 0;
-};
-
-struct Point3D {
-    long double x = 0;
-    long double y = 0;
-    long double z = 0;
-};
-
-Point3D liftToRegularTriangulation(const WeightedPoint2D& point) {
-    return {
-        point.x,
-        point.y,
-        point.x * point.x + point.y * point.y - point.weight
-    };
-}
-```
-
-실제 lower hull을 만들 때는 3D Convex Hull의 face orientation과 exact predicate 정책을 재사용해야 합니다.
 
 ## Cell이 사라지는 경우
 

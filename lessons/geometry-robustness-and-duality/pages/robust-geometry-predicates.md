@@ -2,18 +2,6 @@
 
 Robust Geometry Predicates는 orientation, incircle, 교차 판정처럼 기하 알고리즘의 분기 조건을 안정적으로 계산하는 방법을 정리합니다. 좌표를 구하는 공식보다 `왼쪽인가`, `겹치는가`, `원 안인가` 같은 predicate가 틀리면 전체 알고리즘이 무너집니다.
 
-이 레슨은 CCW/Segment Intersection, Circle Geometry, Sweep Line Geometry 이후에 보는 계산기하 안정성 레슨입니다.
-
-1. 정수 좌표 predicate는 가능한 한 exact arithmetic으로 처리한다.
-2. 실수 좌표는 EPS 정책과 출력 오차를 분리한다.
-3. predicate와 construction을 같은 기준으로 섞지 않는다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: dot product, cross product, segment intersection, circle geometry
-- 함께 보면 좋은 레슨: Geometry CCW와 Segment Intersection, Circle Geometry, Sweep Line Geometry
-- 다음에 볼 레슨: Voronoi와 Delaunay, circle arrangement, half-plane intersection
-
 ## 문제 신호
 
 | 문제 표현 | Robust Predicate 관점 |
@@ -169,11 +157,3 @@ Sweep line에서 active segment를 정렬할 때 `currentX`에서의 y좌표를 
 3. EPS comparator로 `set`의 strict weak ordering을 깨뜨린다.
 4. 접하는 경우를 교차하지 않는 것으로 처리한다.
 5. predicate 결과와 좌표 construction 결과를 서로 다른 기준으로 섞는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 입력 좌표가 정수인가 실수인가?
-- 필요한 것은 판정인가, 좌표 출력인가?
-- 좌표 범위에서 cross/determinant가 overflow하지 않는가?
-- collinear, tangent, duplicate point를 어떻게 처리할 것인가?
-- comparator에 tie-breaking이 있는가?

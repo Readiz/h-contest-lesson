@@ -36,21 +36,30 @@ primal에서 s와 t를 분리하는 edge set
 - source/sink가 face인지 vertex인지?
 - 문제에서 요구하는 것이 min cut인지, circulation인지, shortest separating curve인지?
 
-## 작은 검증
+## 필요한 조건
 
-사각형 안쪽에 장애물 face가 있고, outer boundary의 두 arc를 분리해야 한다고 합시다. Primal에서 선택한 cut edge들이 장애물 주변을 둘러싸면, dual에서는 outer face에서 장애물 face로 들어가는 path 또는 두 boundary face를 잇는 path로 보입니다.
+- planar embedding이 고정되어 있어야 합니다.
+- cut의 양 끝 조건이 dual에서 시작/도착 face로 표현되어야 합니다.
+- edge cost가 음수가 아니어야 Dijkstra를 바로 쓸 수 있습니다.
+- directed capacity가 아니라 무향 cut cost이거나, 방향 처리를 별도로 증명해야 합니다.
+- bridge와 self-loop를 dual graph에서 어떻게 다룰지 정해야 합니다.
 
-작은 그림에서는 다음을 손으로 확인합니다.
+## 풀이 흐름
 
-1. 선택한 primal edge들이 실제로 s와 t를 분리하는가?
-2. 그 edge들의 dual edge가 끊기지 않은 연속 path를 이루는가?
-3. 같은 edge cost 합이 유지되는가?
-4. outer face 번호가 올바른가?
+1. half-edge traversal 또는 입력 face 정보로 face 번호를 구합니다.
+2. outer face와 boundary arc가 닿는 face를 표시합니다.
+3. primal edge마다 양쪽 face를 찾아 dual edge를 추가합니다.
+4. 문제의 분리 조건을 dual의 시작/도착 집합으로 바꿉니다.
+5. Dijkstra 또는 0-1 BFS 같은 shortest path 알고리즘을 실행합니다.
+6. 작은 입력에서 primal cut과 dual path의 edge id 집합을 비교합니다.
 
-## 실수 포인트
+## 복잡도
 
-1. primal cycle과 dual cycle을 그대로 대응시킨다.
-2. bridge의 dual self-loop를 shortest path에 넣어 의미 없는 완화를 만든다.
-3. outer face를 제거해 boundary 조건을 잃는다.
-4. directed capacity 문제를 무향 dual shortest path로 바꾼다.
-5. embedding이 바뀌어도 dual이 같다고 가정한다.
+| 단계 | 시간 |
+| --- | ---: |
+| half-edge angle sort | `O(E log E)` |
+| face traversal | `O(E)` |
+| dual graph construction | `O(E)` |
+| Dijkstra | `O(E log F)` |
+
+face 정보가 입력으로 직접 주어지면 첫 두 단계는 사라집니다.

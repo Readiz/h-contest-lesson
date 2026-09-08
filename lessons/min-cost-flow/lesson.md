@@ -2,18 +2,6 @@
 
 Min-Cost Flow는 source에서 sink로 유량을 보내되, 보낸 유량의 총 비용을 최소화하는 문제입니다. Max Flow가 "얼마나 많이 보낼 수 있는가"를 묻는다면, Min-Cost Flow는 "정해진 양을 가장 싸게 보낼 수 있는가" 또는 "보낼 수 있는 만큼 보내면서 비용을 최소화할 수 있는가"를 함께 봅니다.
 
-이 레슨은 Max Flow 위에 비용을 붙이는 관점으로 정리합니다.
-
-1. residual graph에 capacity와 cost를 함께 둔다.
-2. residual graph에서 가장 싼 augmenting path를 찾는다.
-3. assignment, transportation, weighted matching 계열 모델링으로 연결한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Max Flow, residual graph, 최단거리 알고리즘
-- 함께 보면 좋은 레슨: Max Flow, Min Cut, Bipartite Matching, Bellman-Ford와 음수 사이클
-- 다음에 볼 레슨: matching/cover duality, linear programming duality
-
 ## 비용이 붙은 Flow 모델
 
 각 간선 `u -> v`에 capacity와 cost가 함께 있습니다.
@@ -196,14 +184,3 @@ capacity가 크더라도 한 번에 경로의 병목만큼 보내므로 augment 
 | capacity 1 모델링을 빠뜨림 | 한 작업자나 일이 여러 번 선택됨 | source/job/sink capacity 확인 |
 | `int` 비용 사용 | 비용 합 overflow | `flow * dist`는 `long long` |
 | 큰 입력에 SPFA만 사용 | 시간 초과 | potential + Dijkstra 검토 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 최대 유량뿐 아니라 비용/이익 최적화가 필요한가?
-2. 정확히 몇 단위의 유량을 보내야 하는가?
-3. 각 선택이 한 번만 가능한가, capacity가 여러 개인가?
-4. 음수 비용이나 이익 최대화가 섞여 있는가?
-5. 입력 크기가 SPFA 구현으로 감당 가능한가?
-6. 불가능할 때 어떤 출력을 해야 하는가?
-
-Min-Cost Flow는 "선택의 개수 제한"과 "선택 비용"이 동시에 있는 문제를 그래프로 바꾸는 도구입니다. 먼저 Max Flow 모델을 만들고, 선택 간선에 비용을 붙인 뒤 필요한 유량을 명시하면 모델링이 단순해집니다.

@@ -2,18 +2,6 @@
 
 Circle Geometry는 점, 직선, 원 사이의 거리와 교점을 계산하고 tangent construction으로 이어지는 계산기하 레슨입니다. Segment intersection이나 convex polygon보다 실수 오차와 case 분기가 더 자주 등장하므로, 공식을 쓰기 전에 어떤 기하 관계를 판정하는지 분리해야 합니다.
 
-이 레슨은 Shape Distance Modeling과 기본 CCW/거리 계산 이후에 보는 기하 심화입니다.
-
-1. 원과 점/직선/원 사이의 거리 관계를 먼저 판정한다.
-2. 교점 좌표는 projection과 수직 방향 벡터로 만든다.
-3. tangent와 intersection은 EPS 정책을 명확히 한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: dot product, cross product, point-line distance, Shape Distance Modeling
-- 함께 보면 좋은 레슨: Geometry CCW와 Segment Intersection, Closest Pair Sweep, Voronoi와 Delaunay
-- 다음에 볼 레슨: circle arrangement, inversion geometry, robust predicates
-
 ## 문제 신호
 
 | 문제 표현 | Circle Geometry 관점 |
@@ -203,11 +191,3 @@ intersection = (-4, 3), (4, 3)
 3. `acos` 인자가 오차로 `[-1,1]`을 살짝 벗어나는 것을 clamp하지 않는다.
 4. 선분-원 교점에서 무한 직선 교점을 그대로 사용한다.
 5. 각도 구간이 `pi` 경계를 넘는 경우를 놓친다.
-
-## 문제를 볼 때 체크할 조건
-
-- 교점 개수를 출력해야 하는가, 좌표를 출력해야 하는가?
-- 직선인지 선분인지 구분했는가?
-- 같은 중심 원과 포함 관계를 처리했는가?
-- EPS와 출력 오차 조건을 정했는가?
-- 각도 sweep이면 구간 wrap-around를 처리했는가?

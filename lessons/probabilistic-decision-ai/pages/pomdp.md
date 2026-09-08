@@ -2,18 +2,6 @@
 
 Partially Observable MDP(POMDP)는 실제 상태를 직접 볼 수 없고, action 이후 관측만 받는 Markov Decision Process입니다. Imperfect Information Search가 게임/탐색 관점에서 정보 집합을 다룬다면, POMDP는 belief distribution을 상태로 올려 기대 보상을 계산합니다.
 
-이 레슨은 Markov Decision Process와 Imperfect Information Search 이후에 보는 확률적 의사결정 심화입니다.
-
-1. 숨은 상태와 관측 가능한 observation을 분리한다.
-2. action과 observation으로 belief를 갱신한다.
-3. belief state 위에서 finite horizon DP 또는 근사 탐색을 수행한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: MDP, probability distribution, belief update, expected value DP
-- 함께 보면 좋은 레슨: Markov Decision Process, Imperfect Information Search, Monte Carlo Tree Search
-- 다음에 볼 레슨: belief-state planning, point-based value iteration, reinforcement learning basics
-
 ## 문제 신호
 
 | 문제 표현 | POMDP 관점 |
@@ -160,11 +148,3 @@ belief = 각 상태의 확률까지 포함한 정보 집합
 3. action 선택을 실제 hidden state 기준으로 해 정보 누출을 만든다.
 4. observation이 불가능한 경우 `total=0` 처리를 하지 않는다.
 5. belief vector를 부동소수 key로 쓰면서 같은 상태를 계속 새로 만든다.
-
-## 문제를 볼 때 체크할 조건
-
-- hidden state와 observation이 무엇인가?
-- action이 transition과 observation probability를 모두 바꾸는가?
-- belief를 압축하거나 정확히 표현할 수 있는가?
-- horizon이 유한한가, discount가 있는가?
-- 정확 DP가 필요한가, sampling 근사가 허용되는가?

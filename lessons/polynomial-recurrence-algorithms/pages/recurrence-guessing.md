@@ -2,18 +2,6 @@
 
 Recurrence Guessing은 처음 몇 항만 만들어 낼 수 있을 때 "이 수열이 낮은 차수의 선형 점화식을 따르는가"를 실험적으로 확인하는 모델링 기법입니다. Berlekamp-Massey를 쓰기 전에, 어떤 항을 만들고 어떻게 검증할지 정하지 않으면 그럴듯한 잘못된 점화식을 얻기 쉽습니다.
 
-이 레슨은 Linear Recurrence Applications 이후, Berlekamp-Massey를 구현하기 전에 보는 수학 모델링 레슨입니다.
-
-1. 수열 항을 충분히 만들 수 있는지 확인한다.
-2. 낮은 차수 recurrence 후보를 찾고 holdout 항으로 검증한다.
-3. 추정 결과를 Kitamasa, Bostan-Mori, Matrix Exponentiation 중 하나로 연결한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: linear recurrence, modular arithmetic, matrix exponentiation
-- 함께 보면 좋은 레슨: Linear Recurrence Applications, Linear Recurrence와 Kitamasa, Bostan-Mori
-- 다음에 볼 레슨: Berlekamp-Massey, linear recurrence applications, sequence model validation
-
 ## 문제 신호
 
 | 문제 표현 | Recurrence Guessing 관점 |
@@ -163,11 +151,3 @@ a[n] = number of walks of length n from s to t
 3. affine recurrence를 homogeneous recurrence로 착각한다.
 4. 수열 index 기준을 `a_0`와 `a_1` 사이에서 섞는다.
 5. recurrence가 존재하는 이유를 설명하지 않고 추정 결과만 제출한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 항을 정확히 생성할 수 있는가?
-- recurrence 차수의 상한을 추정할 수 있는가?
-- mod가 prime field인가?
-- 검증용 holdout 항을 충분히 남겼는가?
-- 찾은 recurrence로 큰 `n`을 계산하는 방법이 있는가?

@@ -2,18 +2,6 @@
 
 Runs와 Periodicity는 문자열 안에서 반복되는 구간을 구조적으로 다루는 주제입니다. KMP의 border, Z algorithm의 일치 길이, Suffix 구조를 배운 뒤 "반복이 어디에 얼마나 조밀하게 있는가"를 보는 단계입니다.
 
-이 레슨은 Suffix Tree와 Ukkonen 이후에 보는 문자열 심화입니다.
-
-1. 주기 `p`는 `s[i] == s[i + p]`가 반복되는 간격이다.
-2. border는 문자열 전체의 prefix이면서 suffix인 길이다.
-3. run은 같은 minimal period가 두 번 이상 반복되는 maximal substring이다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: prefix function, Z algorithm, suffix array/tree, gcd 성질
-- 함께 보면 좋은 레슨: KMP/Z, Suffix Array와 LCP, Suffix Tree와 Ukkonen
-- 다음에 볼 레슨: suffix array applications, Lyndon 기반 run enumeration, periodicity 응용
-
 ## 문제 신호
 
 | 문제 표현 | Periodicity 관점 |
@@ -181,11 +169,3 @@ abcabcabcx 에는 abc 반복 구간이 run 후보가 된다.
 3. 같은 period를 유지하며 더 확장 가능한 구간을 run으로 세어 중복을 만든다.
 4. `abababa`처럼 마지막 반복이 덜 끝나는 문자열을 완전 반복으로 처리한다.
 5. border 길이와 period 길이를 같은 의미로 쓴다.
-
-## 문제를 볼 때 체크할 조건
-
-- 전체 문자열만 보면 되는가, 임의 substring을 봐야 하는가?
-- 반복 단위가 정확히 몇 번 반복되어야 하는가?
-- maximal 반복 구간이 필요한가, 존재 여부만 필요한가?
-- 주기 후보가 여러 개일 때 최소 period가 필요한가?
-- cyclic shift나 reverse가 섞여 period가 깨지는가?

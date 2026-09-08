@@ -2,18 +2,6 @@
 
 Stochastic Shortest Path는 상태와 행동이 있고, 행동 결과가 확률적으로 다음 상태를 정하는 문제에서 terminal state까지의 기대 비용을 최소화하는 모델입니다. Markov Decision Process의 특수한 형태이지만, absorbing state와 hitting time이 중심이라 shortest path, Bellman equation, linear equation 관점이 함께 등장합니다.
 
-이 레슨은 Markov Decision Process, Reinforcement Learning Basics, Probability 이후에 보는 확률적 의사결정 심화입니다.
-
-1. terminal 또는 absorbing state를 명확히 둔다.
-2. 각 행동의 기대 비용과 다음 상태 분포를 Bellman 식으로 쓴다.
-3. proper policy가 존재하는지, 무한 기대 비용이 가능한지 확인한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Markov Decision Process, Probability Expected Value, Dijkstra
-- 함께 보면 좋은 레슨: Reinforcement Learning Basics, Sparse Linear Systems, Bayesian Bandits
-- 다음에 볼 레슨: risk-sensitive planning, constrained MDP, policy gradient basics
-
 ## 문제 신호
 
 | 문제 표현 | Stochastic Shortest Path 관점 |
@@ -151,12 +139,3 @@ V(s) = min_a cost(s,a) + V(next(s,a))
 4. 모든 정책이 proper하다고 가정한다.
 5. discounted MDP와 undiscounted hitting cost를 섞는다.
 6. value iteration 수렴 오차를 출력 오차보다 크게 둔다.
-
-## 문제를 볼 때 체크할 조건
-
-- terminal state가 absorbing인가?
-- 모든 action의 transition probability 합이 1인가?
-- 비용이 비음수인가, 음수 cycle이 가능한가?
-- fixed policy 평가인가, optimal policy 선택인가?
-- linear equation으로 풀 수 있는 상태 수인가?
-- 무한 기대 비용을 어떻게 다뤄야 하는가?

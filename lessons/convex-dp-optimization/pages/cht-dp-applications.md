@@ -2,18 +2,6 @@
 
 CHT DP Applications는 Convex Hull Trick을 실제 DP 식으로 바꾸는 과정을 다룹니다. CHT 구현을 알고 있어도, `j`가 만드는 직선과 `i`가 던지는 query를 정확히 분리하지 못하면 최적화가 아니라 다른 문제를 풀게 됩니다.
 
-이 레슨은 Convex DP Modeling, Convex Hull Trick Variants 이후에 보는 DP 최적화 응용 레슨입니다.
-
-1. 전이식을 `line_j(x_i)` 형태로 분해한다.
-2. slope 추가 순서와 query 순서를 확인한다.
-3. 구현 선택과 tie-breaking을 문제 조건에 맞춘다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: DP transition, CHT/Li Chao Tree, convex DP modeling
-- 함께 보면 좋은 레슨: Convex Hull Trick Variants, Convex DP Modeling, Divide and Conquer DP Optimization
-- 다음에 볼 레슨: parametric DP, slope trick, kinetic hull
-
 ## 문제 신호
 
 | DP 전이 형태 | CHT 관점 |
@@ -173,11 +161,3 @@ dp[2] = 25 + 3 - 9 = 19
 3. `x`가 단조가 아닌데 deque query를 쓴다.
 4. 같은 slope에서 더 나쁜 line을 제거하지 않는다.
 5. `m*x+b` overflow를 `long long`으로 방치한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 전이식을 line과 query x로 분리했는가?
-- line 추가 시점이 `j < i` 제약과 맞는가?
-- slope/query 단조성이 입력에서 보장되는가?
-- min/max convention을 통일했는가?
-- naive DP와 작은 입력에서 비교했는가?

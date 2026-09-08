@@ -2,18 +2,6 @@
 
 Divide and Conquer DP Optimization은 `dp[layer][mid]`의 최적 선택 위치가 오른쪽으로 갈수록 뒤로만 움직이는 단조성을 이용해, 한 층의 DP 계산을 `O(N^2)`에서 `O(N log N)` 또는 `O(KN log N)` 수준으로 줄이는 기법입니다.
 
-이 레슨은 DP 전이의 argmin 단조성을 어떻게 쓰는지에 집중합니다.
-
-1. 전이식을 `dp_cur[i] = min_j(dp_prev[j] + cost(j, i))` 꼴로 정리한다.
-2. 최적 `j`가 단조인지 확인한다.
-3. 구간의 가운데 값을 먼저 계산하고, 왼쪽/오른쪽의 후보 범위를 줄인다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 동적 계획법, 재귀 분할, prefix sum
-- 함께 보면 좋은 레슨: 동적 계획법, Proof와 Invariant, Convex Hull Trick과 Li Chao Tree
-- 다음에 볼 레슨: Knuth optimization, SMAWK, quadrangle inequality
-
 ## 문제 신호
 
 다음 형태의 여러 layer DP에서 자주 등장합니다.
@@ -156,14 +144,3 @@ layer 2 opt: 0 1 1 2 3 3 5 ...
 | current 초기화 누락 | 이전 layer 값 섞임 | layer마다 INF 초기화 |
 | cost 계산이 느림 | 시간 초과 | prefix sum 등으로 `O(1)`화 |
 | 재귀 범위 인자 반대로 전달 | 후보 누락 | 왼쪽 `optLeft..opt`, 오른쪽 `opt..optRight` |
-
-## 문제를 볼 때 체크할 조건
-
-1. DP가 layer와 prefix 끝점 형태인가?
-2. 전이가 이전 layer의 후보 `j` 전체를 훑는가?
-3. `cost(j, i)`를 빠르게 계산할 수 있는가?
-4. 최적 후보 `opt[i]`가 단조임을 보일 수 있는가?
-5. 후보 경계가 `j < i`인지 `j <= i`인지 명확한가?
-6. tie-breaking을 단조성에 맞게 고정했는가?
-
-Divide and Conquer DP Optimization은 구현보다 적용 조건이 더 중요합니다. 단조성이 확인되면 재귀 구현은 짧지만, 조건이 틀리면 빠르게 틀린 답을 내는 기법입니다.

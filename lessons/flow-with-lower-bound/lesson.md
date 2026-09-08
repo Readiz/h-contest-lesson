@@ -2,18 +2,6 @@
 
 Flow with Lower Bound는 각 간선에 `lower <= flow <= upper` 제약이 있는 유량 모델입니다. 일반 Max Flow는 간선마다 `0..capacity`만 생각하지만, lower bound가 있으면 반드시 흘려야 하는 최소량 때문에 feasibility를 먼저 확인해야 합니다.
 
-이 레슨은 Max Flow와 Min-Cost Flow 이후에 보는 circulation 변환을 정리합니다.
-
-1. 각 간선의 lower bound를 미리 보냈다고 생각한다.
-2. 정점별 demand imbalance를 계산한다.
-3. super source/sink를 추가해 feasible circulation을 검사한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Max Flow, residual graph, circulation 감각
-- 함께 보면 좋은 레슨: Max Flow, Min Cut, Bipartite Matching, Min-Cost Flow
-- 다음에 볼 레슨: min-cost circulation, flow with demands, feasible schedule modeling
-
 ## 문제 신호
 
 아래 표현이 있으면 lower bound flow를 의심합니다.
@@ -45,7 +33,7 @@ u는 lower만큼 내보냈으므로 demand[u] -= lower
 v는 lower만큼 받았으므로 demand[v] += lower
 ```
 
-`demand[x] > 0`이면 x는 그만큼 더 받아야 합니다. `demand[x] < 0`이면 x는 그만큼 더 내보내야 합니다.
+`demand[x] > 0`이면 최소 유량으로 받은 양이 내보낸 양보다 많으므로, 남은 원래 간선을 통해 그만큼 더 내보내야 합니다. `demand[x] < 0`이면 반대로 더 받아야 합니다. Super 간선은 이 불균형을 원래 간선의 추가 유량으로 해소하도록 연결합니다. 변환의 근거는 [Flows with demands](https://cp-algorithms.com/graph/flow_with_demands.html)에서 확인할 수 있습니다.
 
 ## Super source/sink 변환
 
@@ -220,14 +208,3 @@ sink -> source         [0, INF] for circulation
 | super source 간선 포화 확인 누락 | 불가능 케이스를 가능 처리 | max flow == required |
 | lower > upper 입력 처리 누락 | 음수 capacity | 입력 검증 |
 | 실제 flow 복원에서 lower 누락 | 출력이 최소량만큼 작음 | `flow = lower + used` |
-
-## 문제를 볼 때 체크할 조건
-
-1. 간선이나 선택에 최소량 제약이 있는가?
-2. 각 정점의 유입/유출 balance가 보존되어야 하는가?
-3. 단순 max flow 전에 feasibility를 확인해야 하는가?
-4. source-sink flow를 circulation으로 바꾸기 위해 `t -> s`가 필요한가?
-5. 답으로 가능 여부만 필요한가, 실제 flow 복원도 필요한가?
-6. lower/upper 범위가 `long long`이 필요한가?
-
-Lower bound flow는 "최소량을 먼저 흘려 보낸다"는 생각으로 시작하면 변환이 단순해집니다. demand 배열의 부호만 흔들리지 않게 고정하면 대부분의 모델을 같은 방식으로 처리할 수 있습니다.

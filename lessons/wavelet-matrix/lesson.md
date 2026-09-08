@@ -2,18 +2,6 @@
 
 Wavelet Matrix는 Wavelet Tree의 포인터 구조를 level별 bitvector로 평평하게 만든 자료구조입니다. 정적 배열에서 구간 kth, rank, frequency, 값 범위 count를 빠르게 처리하며, 큰 값 범위에서도 메모리 locality가 좋습니다.
 
-이 레슨은 Wavelet Tree 이후에 보는 같은 아이디어의 더 구현 친화적인 형태입니다.
-
-1. 값을 bit의 높은 자리부터 본다.
-2. 각 level에서 0-bit 원소를 앞, 1-bit 원소를 뒤로 안정적으로 재배치한다.
-3. bitvector rank로 원래 구간이 다음 level에서 어디로 이동하는지 계산한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 좌표 압축, Wavelet Tree, prefix count, bit operation
-- 함께 보면 좋은 레슨: Wavelet Tree, Persistent Segment Tree, 오프라인 쿼리
-- 다음에 볼 레슨: succinct bitvector, compressed wavelet matrix, range quantile
-
 ## 문제 신호
 
 | 질의 | Wavelet Matrix 관점 |
@@ -40,31 +28,6 @@ Wavelet Tree는 node마다 값 범위를 나누고 child pointer를 둡니다. W
 ## BitVector Rank
 
 가장 먼저 필요한 것은 bitvector의 prefix rank입니다.
-
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-struct BitVectorRank {
-    vector<int> prefixOne;
-
-    void build(const vector<int>& bits) {
-        prefixOne.assign(bits.size() + 1, 0);
-        for (int i = 0; i < (int)bits.size(); ++i) {
-            prefixOne[i + 1] = prefixOne[i] + bits[i];
-        }
-    }
-
-    int rankOne(int pos) const {
-        return prefixOne[pos];
-    }
-
-    int rankZero(int pos) const {
-        return pos - prefixOne[pos];
-    }
-};
-```
 
 `rankOne(pos)`은 `[0, pos)` 안의 1 개수입니다. 구간 `[l, r)`의 1 개수는 `rankOne(r) - rankOne(l)`입니다.
 
@@ -227,11 +190,3 @@ struct WaveletMatrix {
 3. 1-bit 영역으로 이동할 때 `zeroCount` offset을 빼먹는다.
 4. 음수 값을 그대로 bit shift해 정렬 순서가 깨진다.
 5. 좌표 압축 후 kth 결과를 원래 값으로 복원하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 배열이 정적인가?
-- 질의가 range kth, rank, frequency, quantile 계열인가?
-- 값 범위가 non-negative int로 충분한가, 좌표 압축이 필요한가?
-- `k`의 index convention이 무엇인가?
-- 메모리 제한에서 prefix int 배열 방식이 가능한가?

@@ -8,12 +8,6 @@ Dual Graph Construction은 평면에 교차 없이 그린 그래프에서 face�
 2. primal edge마다 dual edge를 만든다.
 3. primal cut, cycle, path 조건이 dual에서 무엇이 되는지 바꿔 본다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Graph Tree Basics, Max Flow Min Cut, Geometry CCW
-- 함께 보면 좋은 레슨: Sweep Line Geometry, Matrix-Tree Theorem Applications, Global Min Cut
-- 다음에 볼 레슨: planar max-flow, separator theorem, arrangement duality
-
 ## 문제 신호
 
 | 문제 표현 | Duality 관점 |
@@ -146,12 +140,3 @@ minimum separating cut = shortest dual path
 4. directed graph에서 dual edge 방향을 무시한다.
 5. cut과 cycle 대응을 반대로 적용한다.
 6. face traversal 후 Euler formula 검증을 하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 실제로 planar이고 embedding이 주어졌는가?
-- face 번호가 주어지는가, 직접 찾아야 하는가?
-- outer face가 답에서 특별한 역할을 하는가?
-- edge weight는 cut cost인가 path cost인가?
-- primal의 구하려는 객체가 dual에서 path인지 cycle인지 cut인지 확인했는가?
-- bridge와 articulation이 dual 구성에 어떤 영향을 주는가?

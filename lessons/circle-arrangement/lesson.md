@@ -2,18 +2,6 @@
 
 Circle Arrangement는 여러 원의 교점으로 arc를 나누고, union area, union perimeter, depth 같은 값을 angular sweep으로 계산하는 기하 응용 레슨입니다. Circle Geometry가 두 원과 직선의 교점 공식을 다뤘다면, 이 레슨은 많은 원이 만드는 arrangement에서 어떤 arc가 외곽 또는 특정 depth에 속하는지 판정합니다.
 
-이 레슨은 Circle Geometry, Sweep Line Geometry, Shape Distance Modeling 이후에 보는 계산기하 심화입니다.
-
-1. 각 원 둘레를 다른 원과의 교점 각도로 분할한다.
-2. arc 중간점을 찍어 그 arc의 cover depth를 판정한다.
-3. 같은 원, 포함, 접함, EPS 처리를 먼저 정리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: circle-circle intersection, atan2, angular interval, EPS
-- 함께 보면 좋은 레슨: Circle Geometry, Sweep Line Geometry, Shape Distance Modeling
-- 다음에 볼 레슨: robust geometry predicates, Voronoi/Delaunay 응용
-
 ## 문제 신호
 
 | 문제 표현 | Circle Arrangement 관점 |
@@ -155,11 +143,3 @@ B도 대칭적으로 boundary arc를 낸다.
 3. `atan2` 결과가 음수인 것을 정규화하지 않는다.
 4. midpoint가 원 경계에 걸릴 때 EPS 없이 depth가 흔들린다.
 5. area contribution의 방향과 sector 보정을 섞는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 구하려는 값이 union area, perimeter, depth별 area 중 무엇인가?
-- 같은 원 또는 포함된 원을 어떻게 처리할 것인가?
-- tangent와 거의 tangent인 경우 EPS를 정했는가?
-- `O(N^3)` midpoint 검사로 충분한가?
-- 각도 wrap-around와 중복 angle을 제거했는가?

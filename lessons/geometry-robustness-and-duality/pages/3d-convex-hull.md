@@ -2,18 +2,6 @@
 
 3D Convex Hull은 3차원 점 집합을 모두 포함하는 가장 작은 convex polyhedron의 face를 구하는 계산기하 심화 주제입니다. 2D Convex Hull처럼 정렬 한 번으로 끝나지 않고, face orientation, visible face 제거, horizon edge 구성, coplanar degeneracy 처리가 핵심입니다.
 
-이 레슨은 기하 기본, Robust Geometry Predicates, Shape Distance Modeling 이후에 보는 3차원 기하 심화입니다.
-
-1. oriented face가 어느 쪽을 바깥으로 보는지 유지한다.
-2. 새 점에서 보이는 face를 제거하고 horizon edge로 새 face를 만든다.
-3. coplanar, collinear, duplicate point를 별도 정책으로 처리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 2D convex hull, cross product, signed volume, robust predicate
-- 함께 보면 좋은 레슨: Robust Geometry Predicates, Voronoi/Delaunay, Power Diagram
-- 다음에 볼 레슨: half-space intersection 3D, regular triangulation, polyhedron queries
-
 ## 문제 신호
 
 | 문제 표현 | 3D Convex Hull 관점 |
@@ -147,12 +135,3 @@ lower convex hull projection -> Delaunay triangulation
 4. coplanar hull point를 내부 점처럼 버려야 하는지 세야 하는지 확인하지 않는다.
 5. EPS를 너무 크게 잡아 얇은 tetrahedron을 평면으로 오판한다.
 6. face count가 `O(N)`이라고 가정해 최악 입력에서 메모리가 터진다.
-
-## 문제를 볼 때 체크할 조건
-
-- 입력이 일반 위치를 보장하는가?
-- coplanar와 duplicate point가 들어올 수 있는가?
-- 필요한 출력이 face 삼각형, hull vertex, 부피, 표면적 중 무엇인가?
-- 좌표가 정수인지 실수인지 확인했는가?
-- exact predicate가 필요한가?
-- output size가 제한 안에 들어오는가?

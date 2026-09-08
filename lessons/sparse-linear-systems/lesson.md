@@ -2,18 +2,6 @@
 
 Sparse Linear Systems는 대부분의 계수가 0인 큰 연립방정식 `A x = b`를 푸는 관점입니다. 모든 원소를 dense matrix로 펼치면 `O(N^3)` Gaussian elimination이 필요하지만, nonzero 구조와 matvec oracle을 이용하면 훨씬 큰 상태를 다룰 수 있습니다.
 
-이 레슨은 Black-Box Linear Algebra, Modular Arithmetic, Berlekamp-Massey 이후에 보는 수학 심화입니다.
-
-1. 정확한 해가 필요한지, 일관성만 필요한지 구분한다.
-2. field modulo에서 푸는지, 실수 근사인지 분리한다.
-3. sparse row 처리, iterative method, black-box 검증 중 맞는 수준을 고른다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Modular Arithmetic, Gaussian Elimination, Black-Box Linear Algebra
-- 함께 보면 좋은 레슨: Linear Algebra Applications, Berlekamp-Massey, Matrix Exponentiation
-- 다음에 볼 레슨: black-box rank, Wiedemann solver, graph Laplacian systems
-
 ## 문제 신호
 
 | 문제 표현 | Sparse Linear System 관점 |
@@ -132,11 +120,3 @@ minimal polynomial 또는 recurrence를 찾음
 3. sparse elimination 중 fill-in 때문에 메모리가 폭발한다.
 4. row/column 방향을 뒤집어 `A x` 대신 `A^T x`를 계산한다.
 5. randomized solver의 결과를 `A*x == b`로 검증하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- modulo가 prime인가?
-- 변수 수와 식 수가 각각 얼마인가?
-- row당 nonzero 개수의 상한이 있는가?
-- 해 하나, 해 개수, 일관성 중 무엇을 요구하는가?
-- dense baseline으로 작은 입력을 검증할 수 있는가?

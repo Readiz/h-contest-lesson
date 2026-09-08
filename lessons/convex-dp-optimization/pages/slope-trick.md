@@ -2,18 +2,6 @@
 
 Slope Trick은 `min |x-a|`, `max(x-a,0)` 같은 convex piecewise-linear cost를 heap 두 개로 유지하는 DP 최적화 기법입니다. 상태가 "현재 위치 x를 고를 때의 최소 비용 함수"로 표현되고, 그 함수가 볼록이면 전체 함수를 배열로 들고 있지 않고 기울기 변화점만 관리할 수 있습니다.
 
-이 레슨은 Alien Optimization, Convex Hull Trick, Monge/SMAWK 이후에 보는 DP 최적화 심화입니다.
-
-1. 비용 함수를 convex piecewise-linear function으로 본다.
-2. 왼쪽/오른쪽 heap이 minimizer 구간 주변의 break point를 관리한다.
-3. `|x-a|`, `max(x-a,0)`, shift 같은 연산으로 DP 전이를 표현한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: priority queue, convex function, DP state, greedy exchange
-- 함께 보면 좋은 레슨: Convex Hull Trick, Alien Optimization, Monge와 SMAWK
-- 다음에 볼 레슨: convex cost flow, min-plus convolution, DP with convex penalties
-
 ## 문제 신호
 
 | 문제 표현 | Slope Trick 관점 |
@@ -184,11 +172,3 @@ Heap에 들어간 break point 수는 추가한 hinge 수에 비례합니다.
 3. lazy shift를 heap에 들어간 raw value와 실제 value에 동시에 적용한다.
 4. 함수가 convex가 아닌데 slope trick으로 억지로 관리한다.
 5. minimizer 하나만 필요하다고 생각하고 구간 전체 정보를 잃는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 상태 축이 1차원인가?
-- 비용 함수가 끝까지 convex로 유지되는가?
-- 전이가 hinge 추가, 절댓값 추가, shift, prefix min 같은 연산으로 표현되는가?
-- 좌표가 정수인가 실수인가?
-- 최종적으로 필요한 것이 최소 비용인가, argmin 값도 필요한가?

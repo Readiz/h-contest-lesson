@@ -2,18 +2,6 @@
 
 Link-Cut Tree는 동적으로 변하는 forest에서 `link`, `cut`, path query를 처리하는 자료구조입니다. Heavy-Light Decomposition이 정적인 트리 경로를 배열 구간으로 나누는 방식이라면, Link-Cut Tree는 preferred path를 splay tree로 관리해 간선 변경까지 처리합니다.
 
-이 레슨은 트리 심화, AVL/Splay 참고, Segment Tree 이후에 보는 dynamic tree 자료구조입니다.
-
-1. 각 정점은 auxiliary splay tree의 노드다.
-2. `access(v)`로 root에서 `v`까지의 preferred path를 하나의 splay로 노출한다.
-3. `makeroot(v)`로 represented tree의 root 방향을 뒤집어 임의 path를 다룬다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: tree path, splay rotation, lazy reverse, aggregate pull
-- 함께 보면 좋은 레슨: 트리 심화, AVL/Splay 참고, Segment Tree, Treap
-- 다음에 볼 레슨: dynamic connectivity, Euler tour tree, dynamic forest with edge weights
-
 ## 문제 신호
 
 | 문제 표현 | Link-Cut Tree 관점 |
@@ -306,11 +294,3 @@ value(original vertex) = 0
 3. `makeRoot` 없이 `link`나 path query를 수행한다.
 4. `cut`에서 두 정점이 직접 연결됐는지 확인하지 않는다.
 5. edge weight를 정점 값과 섞어 path sum이 한 칸 어긋난다.
-
-## 문제를 볼 때 체크할 조건
-
-- forest가 유지되는가, cycle이 생길 수 있는가?
-- edge weight인지 vertex weight인지 명확한가?
-- path aggregate가 commutative하지 않다면 방향 처리가 필요한가?
-- `cut`이 edge id로 주어지는가, endpoint pair로 주어지는가?
-- offline으로 바꾸면 DSU rollback으로 더 쉽게 풀 수 있는가?

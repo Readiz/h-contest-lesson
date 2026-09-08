@@ -2,18 +2,6 @@
 
 Online Planning Evaluation은 simulator 기반 policy나 search agent를 제출하기 전에, rollout score를 통계적으로 비교하고 시간 예산 안에서 안정성을 검증하는 절차입니다. 좋은 policy를 만드는 것만큼, 우연히 좋아 보이는 policy를 걸러내는 일이 중요합니다.
 
-이 레슨은 Monte Carlo Tree Search, POMCP, Bayesian Bandits 이후에 보는 게임/탐색 평가 심화입니다.
-
-1. 같은 seed 묶음에서 baseline과 후보 policy를 비교한다.
-2. 평균뿐 아니라 분산, confidence interval, worst-case를 본다.
-3. tuning set과 holdout set을 분리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Monte Carlo Tree Search, POMCP, Bayesian Bandits
-- 함께 보면 좋은 레슨: Testing and Stress, Heuristic, Reinforcement Learning Basics
-- 다음에 볼 레슨: policy tuning, simulator benchmark, sequential decision evaluation
-
 ## 문제 신호
 
 | 문제 표현 | Online Planning Evaluation 관점 |
@@ -141,11 +129,3 @@ Random legal policy가 항상 유효한 trajectory를 만드는지 먼저 확인
 3. tuning에 사용한 seed로 최종 성능을 선언한다.
 4. invalid action을 낮은 점수로만 기록하고 원인을 잃어버린다.
 5. elapsed time을 local debug build에서만 측정한다.
-
-## 문제를 볼 때 체크할 조건
-
-- simulator가 deterministic seed를 지원하는가?
-- 같은 seed에서 baseline과 후보를 모두 실행할 수 있는가?
-- score가 클수록 좋은가, 작을수록 좋은가?
-- timeout과 invalid action을 어떻게 penalty 처리하는가?
-- 제출 환경의 시간 예산과 local benchmark 시간이 얼마나 다른가?

@@ -4,18 +4,6 @@ Weighted Matching은 matching의 크기뿐 아니라 선택한 간선의 가중�
 
 이 레슨은 General Matching 이후에 보는 "matching에 가중치가 붙을 때 무엇이 달라지는가"를 정리합니다.
 
-이 레슨은 weighted blossom을 직접 구현하는 레슨이 아닙니다. 문제를 보고 bitmask DP, Hungarian, Min-Cost Flow, weighted blossom 중 무엇을 골라야 하는지 판단하는 선택 가이드에 가깝습니다. 일반 그래프 weighted blossom은 구현량과 디버깅 비용이 크므로, 대회에서는 검증된 라이브러리 영역으로 보는 편이 안전합니다.
-
-1. cardinality matching과 weight matching을 구분한다.
-2. 이분 그래프 weighted matching은 dual slack 관점으로 이해한다.
-3. 일반 그래프 weighted matching은 blossom 수축에 dual variable이 추가된다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 이분 matching, General Matching, Min-Cost Flow
-- 함께 보면 좋은 레슨: Matching과 Cover Duality, General Matching, Min-Cost Flow
-- 다음에 볼 레슨: Hungarian Algorithm, weighted blossom, assignment problem, matroid intersection
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -177,11 +165,3 @@ Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수�
 3. perfect matching 요구에서 홀수 정점 수를 처리하지 않는다.
 4. 음수 가중치가 있는데 빈 matching 허용 여부를 확인하지 않는다.
 5. 큰 상수 tie-break에서 overflow를 낸다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 이분인가 일반 그래프인가?
-- matching 크기와 weight 중 무엇이 우선인가?
-- perfect matching이 필요한가, unmatched 정점이 허용되는가?
-- 정점 수가 bitmask DP 범위인가?
-- 음수 weight와 dummy edge가 필요한가?

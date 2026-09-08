@@ -2,18 +2,6 @@
 
 Persistent Union-Find는 Union-Find의 과거 version에 대한 연결성이나 component size를 묻는 기법입니다. 변경을 되돌리는 Rollback DSU와, 특정 시간의 상태를 조회하는 partially persistent DSU를 구분해서 선택해야 합니다.
 
-이 레슨은 Union-Find, Dynamic Connectivity, Euler Tour Tree 이후에 보는 자료구조/오프라인 심화입니다.
-
-1. rollback은 DFS나 divide and conquer에서 이전 snapshot으로 돌아갈 때 쓴다.
-2. partially persistent DSU는 union 시간이 증가만 할 때 과거 version을 조회한다.
-3. 완전 persistent split/merge는 DSU의 구조와 잘 맞지 않으므로 문제 조건을 먼저 좁힌다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Union-Find, union by size, binary search, rollback
-- 함께 보면 좋은 레슨: Dynamic Connectivity, Offline Queries, Euler Tour Tree
-- 다음에 볼 레슨: rollback techniques, persistent segment tree, retroactive data structure
-
 ## 문제 신호
 
 | 문제 표현 | Persistent Union-Find 관점 |
@@ -173,11 +161,3 @@ dfs(time interval):
 3. 같은 component union에서도 time 증가 여부를 문제의 version 정의와 다르게 처리한다.
 4. component size를 현재 root 기준으로만 저장해 과거 root query가 깨진다.
 5. 삭제가 있는 문제를 partially persistent DSU만으로 처리하려고 한다.
-
-## 문제를 볼 때 체크할 조건
-
-- union operation만 있는가?
-- query가 과거 time을 직접 지정하는가?
-- version이 선형 history인가, branching인가?
-- component size도 필요한가?
-- rollback traversal이 더 간단한 구조는 아닌가?

@@ -10,12 +10,6 @@
 | Z algorithm | 각 위치에서 시작하는 접두사 일치 길이를 한 번에 계산한다 | 접두사 기준 매칭, 문자열 분석 |
 | Rolling Hash | 부분 문자열을 숫자 해시로 비교한다 | 여러 구간 비교, 빠른 후보 판별 |
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 배열, 반복문, `string`, 복잡도 감각
-- 함께 보면 좋은 레슨: 대회용 C++ 기본기, 모듈러 연산과 빠른 거듭제곱
-- 다음에 볼 레슨: Trie와 Aho-Corasick, Suffix Array와 LCP
-
 ## 단순 비교가 느려지는 이유
 
 텍스트 `text`의 모든 시작 위치에서 패턴 `pattern`을 비교하면 아래처럼 됩니다.
@@ -35,28 +29,6 @@ for start in 0..N-M:
 KMP는 패턴 내부에서 **접두사이면서 접미사인 가장 긴 길이**를 미리 계산합니다. 보통 이 배열을 `pi` 또는 failure function이라고 부릅니다.
 
 예를 들어 `pattern = ababc`에서 앞부분 `abab`까지 봤다면, 접두사 `ab`와 접미사 `ab`가 일치합니다. 다음 문자가 틀렸을 때 패턴을 처음부터 다시 비교하지 않고, 이미 맞는 `ab` 길이만큼 상태를 유지할 수 있습니다.
-
-```cpp compile-check
-#include <string>
-#include <vector>
-using namespace std;
-
-vector<int> prefixFunction(const string& pattern) {
-    int n = (int)pattern.size();
-    vector<int> pi(n, 0);
-    for (int i = 1; i < n; ++i) {
-        int j = pi[i - 1];
-        while (j > 0 && pattern[i] != pattern[j]) {
-            j = pi[j - 1];
-        }
-        if (pattern[i] == pattern[j]) {
-            ++j;
-        }
-        pi[i] = j;
-    }
-    return pi;
-}
-```
 
 `j`는 현재까지 맞은 패턴 길이입니다. 문자가 틀리면 `pi[j - 1]`로 되돌아가는데, 이 값은 "이미 맞은 접미사를 패턴의 접두사로 다시 쓸 수 있는 최대 길이"입니다.
 
@@ -223,14 +195,3 @@ KMP와 Z는 정확한 선형 알고리즘입니다. Rolling Hash는 구현이 �
 | Rolling Hash 충돌을 무시 | 낮은 확률의 오답 | double hash 또는 후보 직접 비교 |
 | `substr`를 반복 생성 | 시간/메모리 증가 | 인덱스와 해시로 비교 |
 | 문자 signedness를 고려하지 않음 | 음수 문자가 해시에 섞임 | `(unsigned char)s[i]` 사용 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 패턴이 하나인가, 여러 개인가?
-2. 정확한 등장 위치가 필요한가, 부분 문자열이 같은지만 확인하면 되는가?
-3. 문자열 전체 길이 합이 얼마나 되는가?
-4. 겹치는 매칭을 모두 세야 하는가?
-5. 해시 충돌을 허용할 수 없는 판정 문제인가?
-6. 사전순 정렬이나 LCP처럼 suffix 구조가 필요한가?
-
-정리하면, 문자열 매칭 입문에서는 KMP와 Z를 정확한 선형 도구로 익히고, Rolling Hash는 많은 구간 비교를 빠르게 줄이는 후보 판별 도구로 이해하면 됩니다.

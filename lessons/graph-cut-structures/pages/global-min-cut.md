@@ -2,18 +2,6 @@
 
 Global Min Cut은 무향 가중 그래프에서 두 집합으로 정점을 나눌 때 끊기는 edge capacity 합의 최솟값을 찾는 문제입니다. 특정 두 정점 `s`, `t`를 분리하는 min cut이 아니라, 어떤 두 집합이든 허용하는 전체 graph connectivity의 최약 지점을 찾습니다.
 
-이 레슨은 Max Flow/Min Cut, Gomory-Hu Tree, Dynamic MST 이후에 보는 그래프 심화입니다.
-
-1. `s-t min cut`과 global min cut을 구분한다.
-2. 무향 그래프에서는 Stoer-Wagner 알고리즘으로 max-flow 없이 global min cut을 구할 수 있다.
-3. cut value, disconnected graph, parallel edge 처리 조건을 먼저 확인한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: undirected weighted graph, cut, min cut theorem, priority-style greedy
-- 함께 보면 좋은 레슨: Max Flow와 Min Cut, Gomory-Hu Tree, Dynamic MST
-- 다음에 볼 레슨: cut sparsification, cactus representation, randomized contraction
-
 ## 문제 신호
 
 | 문제 표현 | Global Min Cut 관점 |
@@ -160,11 +148,3 @@ self-loop는 cut을 가로지르지 않으므로 무시합니다. capacity가 0�
 3. parallel edge를 덮어쓰고 합치지 않는다.
 4. contract 후 matrix를 대칭으로 갱신하지 않는다.
 5. disconnected graph의 답 0을 예외로 잘못 처리한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 무향인가?
-- 필요한 값이 global min cut인지, 특정 pair min cut인지 확인했는가?
-- edge weight가 capacity처럼 더해지는 값인가?
-- `O(N^3)`과 `O(N^2)` 메모리가 가능한가?
-- cut을 이루는 실제 정점 집합도 필요한가?

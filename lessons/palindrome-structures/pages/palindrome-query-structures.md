@@ -2,18 +2,6 @@
 
 Palindrome Query Structures는 substring이 palindrome인지 빠르게 판정하거나, 구간 안의 palindrome 통계를 관리하기 위한 기법 묶음입니다. Manacher, rolling hash, Palindromic Tree는 각각 강한 지점이 다르기 때문에 문제의 질의 형태를 먼저 분류해야 합니다.
 
-이 레슨은 Palindromic Tree와 Suffix/Palindrome 응용 이후에 보는 문자열 심화입니다.
-
-1. 정적 문자열의 palindrome 판정은 radius 또는 hash로 빠르게 처리한다.
-2. palindrome substring을 열거하거나 occurrence를 누적해야 하면 Eertree를 고려한다.
-3. 구간 질의와 업데이트가 섞이면 hash segment tree, offline, 또는 더 제한된 모델을 먼저 검토한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: palindrome, Manacher, rolling hash, Palindromic Tree
-- 함께 보면 좋은 레슨: Palindromic Tree, Suffix와 Palindrome 응용, String Matching
-- 다음에 볼 레슨: palindrome range query, eertree applications, hash segment tree
-
 ## 문제 신호
 
 | 문제 표현 | 우선 볼 구조 |
@@ -165,11 +153,3 @@ alphabet과 hash collision 정책에 따라 상수와 안정성이 달라집니�
 3. hash 하나만 쓰고 collision 가능성을 전혀 고려하지 않는다.
 4. 판정 문제에 Eertree를 써서 구현량을 불필요하게 키운다.
 5. Eertree occurrence를 suffix link 역순으로 누적하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 문자열이 정적인가, update가 있는가?
-- 필요한 것은 palindrome 판정인가, 개수/종류 집계인가?
-- 질의 수가 많아 `O(1)` 판정이 필요한가?
-- hash collision이 허용되는 환경인가?
-- 구간 query가 substring 자체인지, palindrome node 통계인지 확인했는가?

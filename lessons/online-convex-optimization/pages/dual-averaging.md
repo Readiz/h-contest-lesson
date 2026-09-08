@@ -8,12 +8,6 @@ Dual Averaging은 online convex optimization에서 매 라운드 gradient를 바
 2. 누적 gradient에 regularizer를 더한 surrogate를 최소화한다.
 3. simplex, box, ball 같은 feasible set에 맞는 closed form update를 고른다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Online Convex Optimization, convex function, projection
-- 함께 보면 좋은 레슨: Bayesian Bandits, Stochastic Decision Process, Parametric Optimization
-- 다음에 볼 레슨: policy gradient basics, online learning, primal-dual methods
-
 ## 문제 신호
 
 | 문제 표현 | Dual Averaging 관점 |
@@ -158,12 +152,3 @@ relaxed oracle solve -> new primal decision
 4. feasible set이 simplex가 아닌데 softmax update를 그대로 쓴다.
 5. gradient를 누적해야 하는데 현재 gradient만 사용해 mirror descent와 섞는다.
 6. regularizer가 만드는 bias를 해석하지 않고 답안에 넣는다.
-
-## 문제를 볼 때 체크할 조건
-
-- full-information feedback인가, bandit feedback인가?
-- feasible set이 simplex, box, ball 중 무엇인가?
-- closed form update가 있는 regularizer를 선택했는가?
-- loss 또는 gradient norm bound를 알고 있는가?
-- horizon `T`가 주어지는가?
-- 출력이 최종 decision인지, 누적 regret인지, 평균 policy인지 확인했는가?

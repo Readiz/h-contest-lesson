@@ -2,18 +2,6 @@
 
 Game Theory Applications는 Grundy, minimax, MDP, imperfect information 모델을 문제 신호별로 고르는 레슨입니다. 개별 알고리즘을 외우는 것보다 게임의 정보 구조, 확률, 독립 합성 여부를 먼저 분류하는 것이 핵심입니다.
 
-이 레슨은 Game Theory와 Grundy Number, Minimax, Markov Decision Process 이후에 보는 응용 레슨입니다.
-
-1. 게임이 impartial인지, 두 플레이어 zero-sum인지, 확률적 의사결정인지 분류한다.
-2. 독립 subgame 합성이 있으면 Grundy/xor를 검토한다.
-3. hidden information이나 stochastic transition이 있으면 search/MDP 계열로 옮긴다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Game Theory와 Grundy Number, Minimax와 Alpha-Beta Pruning, Markov Decision Process
-- 함께 보면 좋은 레슨: Monte Carlo Tree Search, Imperfect Information Search, POMDP
-- 다음에 볼 레슨: Point-Based Value Iteration, reinforcement learning basics, stochastic games
-
 ## 분류표
 
 | 문제 신호 | 우선 모델 |
@@ -38,42 +26,9 @@ Grundy를 쓰려면 보통 아래 조건이 필요합니다.
 
 move set이 플레이어마다 다르거나 점수가 누적되는 게임이면 Grundy가 아닐 가능성이 큽니다.
 
-## Grundy Skeleton
+## 독립 부분 게임
 
-아래 코드는 DAG game에서 Grundy number를 계산합니다.
-
-```cpp compile-check
-#include <vector>
-using namespace std;
-
-int mexValue(const vector<int>& values) {
-    vector<int> seen(values.size() + 2, 0);
-    for (int value : values) {
-        if (0 <= value && value < (int)seen.size()) {
-            seen[value] = 1;
-        }
-    }
-    int result = 0;
-    while (seen[result]) {
-        ++result;
-    }
-    return result;
-}
-
-int grundyDfs(int node, const vector<vector<int>>& graph, vector<int>& memo) {
-    if (memo[node] != -1) {
-        return memo[node];
-    }
-    vector<int> childValues;
-    for (int next : graph[node]) {
-        childValues.push_back(grundyDfs(next, graph, memo));
-    }
-    memo[node] = mexValue(childValues);
-    return memo[node];
-}
-```
-
-순환 게임이면 이 skeleton은 바로 쓸 수 없습니다. 반복 상태는 draw, discount, horizon 중 무엇으로 처리하는지 문제 조건을 먼저 봐야 합니다.
+Grundy의 mex 계산과 독립 합성 구현은 [Game Theory와 Grundy 수](https://h.readiz.com/learn/game-theory-grundy)를 사용합니다. 이 페이지에서는 게임의 정보·확률·상대 선택 조건을 구분합니다.
 
 ## Minimax로 넘어가는 조건
 
@@ -161,11 +116,3 @@ Grundy xor는 subgame이 독립일 때만 됩니다.
 3. hidden state를 알고 있는 것처럼 minimax를 돌린다.
 4. 확률 node와 opponent choice node를 같은 `min`/`max`로 처리한다.
 5. score game인데 win/lose DP만 저장한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 두 플레이어의 move set이 같은가?
-- subgame이 독립인가?
-- 확률 전이가 있는가?
-- hidden information이 있는가?
-- 정확 최적값이 필요한가, 좋은 정책이면 되는가?

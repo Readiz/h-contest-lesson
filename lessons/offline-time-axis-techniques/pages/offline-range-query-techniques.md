@@ -2,18 +2,6 @@
 
 Offline Range Query Techniques는 정적 배열과 구간 질의가 섞인 문제에서 질의 순서를 바꾸거나 시간축을 나눠서 전체 비용을 줄이는 레슨입니다. 기본 Offline Queries 레슨이 Mo, rollback, parallel binary search의 큰 그림을 다뤘다면, 여기서는 배열 구간 질의에서 add/remove 상태를 어떻게 설계하고 어떤 변형을 고를지에 집중합니다.
 
-이 레슨은 Offline Queries, Sqrt Decomposition 이후에 보는 자료구조 심화입니다.
-
-1. add/remove가 가능한 구간 상태를 먼저 정의한다.
-2. 업데이트가 없으면 Mo ordering, 업데이트가 있으면 time dimension을 추가한다.
-3. 질의 답이 merge 가능하면 divide and conquer on queries나 offline Fenwick으로 바꾼다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Offline Queries, Sqrt Decomposition, Fenwick Tree, frequency table
-- 함께 보면 좋은 레슨: Offline Queries, Sqrt Decomposition, Rollback Techniques
-- 다음에 볼 레슨: persistent segment tree, retroactive data structures, range query lower bounds
-
 ## 문제 신호
 
 | 문제 표현 | 우선 후보 |
@@ -211,12 +199,3 @@ Mo는 상수가 큽니다. Fenwick이나 Segment Tree sweep으로 풀리는 문�
 4. 원래 출력 순서를 저장하지 않아 정렬된 순서로 답을 낸다.
 5. add/remove가 역연산인지 작은 예시로 검증하지 않는다.
 6. offline sorting으로 더 쉽게 풀 문제를 Mo로 구현해 시간 제한을 잃는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 모든 질의를 미리 알고 있는가?
-- 구간 포인터 이동이 원래 답을 보존하는가?
-- add/remove가 충분히 빠르고 정확한가?
-- update가 있다면 time을 되돌릴 수 있는가?
-- 질의 조건이 value나 time prefix라면 Fenwick sweep으로 더 단순하지 않은가?
-- 답을 원래 query index로 복원하는가?

@@ -2,18 +2,6 @@
 
 Succinct Bitvector는 bit열 위에서 `rank`와 `select`를 빠르게 처리하는 기본 자료구조입니다. Wavelet Matrix, compressed index, 문자열 index에서 거의 항상 바닥에 깔리는 구성 요소입니다.
 
-이 레슨은 Wavelet Matrix 이후에 보는 rank/select 기반 구조를 정리합니다.
-
-1. bit를 64-bit word로 압축해 저장한다.
-2. superblock과 block prefix로 rank를 빠르게 계산한다.
-3. select는 binary search 또는 block index로 구현한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: bit operation, prefix sum, Wavelet Matrix
-- 함께 보면 좋은 레슨: Wavelet Matrix, Sparse Table과 RMQ, 좌표 압축
-- 다음에 볼 레슨: compressed wavelet tree, FM-index, succinct tree
-
 ## 문제 신호
 
 | 질의 | 의미 |
@@ -224,11 +212,3 @@ select까지 `O(1)` 또는 `O(log word)`로 만들려면 추가 index가 필요�
 3. 마지막 word의 padding bit를 실제 bit로 센다.
 4. select의 k를 0-indexed/1-indexed로 섞는다.
 5. `unsigned short` block count가 superblock 크기보다 작다는 전제를 깨뜨린다.
-
-## 문제를 볼 때 체크할 조건
-
-- 필요한 연산이 rank만인지, select도 필요한지?
-- bitvector가 static인가?
-- 메모리 제한이 prefix int 배열을 허용하는가?
-- index convention이 `[0, pos)`인가 `[0, pos]`인가?
-- Wavelet Matrix나 compressed index의 내부 부품으로 쓰는가?

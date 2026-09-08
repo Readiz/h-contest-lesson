@@ -2,20 +2,6 @@
 
 Polynomial and Recurrence Algorithms는 convolution, formal power series, multipoint evaluation, interpolation, generating function, linear recurrence를 하나의 수학 알고리즘 트랙으로 묶는 허브입니다. 이 주제들은 모두 "계수열을 어떻게 빠르게 곱하고, 변환하고, n번째 항을 뽑을 것인가"라는 흐름으로 이어집니다.
 
-개별 알고리즘 이름보다 먼저 아래 질문을 결정해야 합니다.
-
-1. 이중 합이 convolution으로 정리되는가?
-2. 계수열을 FPS 연산으로 변환해야 하는가?
-3. polynomial을 여러 점에서 평가하거나 복원해야 하는가?
-4. generating function이 rational form인가?
-5. 선형 점화식이 주어졌는가, 아니면 앞 항에서 찾아야 하는가?
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Modular Arithmetic, Combinatorics, Matrix Exponentiation
-- 함께 보면 좋은 레슨: Linear Algebra Applications, Black-Box Linear Algebra, Convex DP Optimization
-- 다음에 볼 레슨: Black-Box Linear Algebra, Sparse Linear Systems, Randomized Determinant
-
 ## 학습 경로
 
 | 단계 | 먼저 볼 페이지 |
@@ -44,6 +30,10 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 | 처음 항만 많이 만들 수 있음 | Berlekamp-Massey + nth term |
 | 큰 행렬을 직접 저장하기 어렵고 matvec만 가능 | Black-Box Linear Algebra로 이동 |
 
-## 공개 상태
+## 계산 조건
 
-하위 페이지들은 기존 구현과 설명을 보존합니다. [Practice Set](pages/practice-set.md)은 Kitamasa 기반 K차 선형 점화식 nth-term 로컬 연습과 Fibonacci coefficient trace를 대표 구현 흐름으로 제공합니다.
+점화식 계수와 초기항이 주어지면 Kitamasa, `P/Q`가 주어지면 Bostan-Mori, 앞 항만 생성할 수 있으면 Berlekamp-Massey를 검토합니다. BM의 나눗셈은 field 위에서 정의되어야 하며, rational coefficient 추출은 `Q(0) != 0`이 필요합니다. FFT/NTT와 FPS의 modulus·상수항 조건은 해당 구현 페이지에서 확인합니다.
+
+## 연습
+
+[로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.

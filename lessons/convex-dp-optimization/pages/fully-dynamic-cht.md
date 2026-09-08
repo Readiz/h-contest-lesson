@@ -2,25 +2,13 @@
 
 Fully Dynamic CHT는 직선 삽입, 삭제, 임의 x 질의가 모두 섞일 때 Convex Hull Trick 계열을 어떻게 선택할지 정리하는 레슨입니다. 단순 CHT나 Li Chao Tree는 삽입만 있을 때 강하지만, 삭제가 들어오면 online 자료구조보다 offline 변환이 더 안전한 경우가 많습니다.
 
-이 레슨은 Convex Hull Trick Variants와 Kinetic Hull 이후에 보는 DP 최적화 심화입니다.
-
-1. 삭제가 진짜 online인지, 시간 구간으로 바꿀 수 있는지 확인한다.
-2. x 좌표 범위와 query 좌표를 미리 알 수 있는지 확인한다.
-3. online 구현이 필요한 경우에는 precision, equal slope, rollback 비용을 먼저 정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Convex Hull Trick Variants, Li Chao Tree, Rollback Techniques
-- 함께 보면 좋은 레슨: Kinetic Hull, Parametric DP, Convex DP Modeling
-- 다음에 볼 레슨: segment tree over time, dynamic Li Chao, online line container
-
 ## 문제 신호
 
 | 조건 | 추천 접근 |
 | --- | --- |
 | 직선의 활성 구간을 미리 알 수 있음 | segment tree over time + Li Chao |
 | 삭제가 최근 삽입만 되돌림 | rollback Li Chao |
-| online 삽입/삭제/질의가 강제됨 | multiset line container |
+| online 삽입/삭제/질의가 강제됨 | 임의 삭제를 지원하는 별도 동적 hull |
 | x query 좌표가 모두 알려짐 | compressed Li Chao over time |
 | 삭제 수가 작음 | rebuild 또는 small deleted buffer |
 
@@ -38,50 +26,9 @@ delete line A at query 8
 
 이 구간을 query index segment tree에 넣으면 각 node에는 그 시간 범위 전체에서 살아 있는 직선만 들어갑니다. DFS로 내려가며 node의 직선을 Li Chao에 넣고, leaf query를 처리한 뒤 rollback합니다.
 
-## Segment Tree over Time Skeleton
+## 시간축 구간 저장
 
-아래 코드는 활성 구간을 segment tree node에 분배하는 부분입니다.
-
-```cpp compile-check
-#include <vector>
-using namespace std;
-
-struct Line {
-    long long slope = 0;
-    long long intercept = 0;
-};
-
-struct TimeSegmentTree {
-    int size = 1;
-    vector<vector<Line>> bucket;
-
-    explicit TimeSegmentTree(int queryCount) {
-        while (size < queryCount) {
-            size <<= 1;
-        }
-        bucket.assign(size << 1, {});
-    }
-
-    void addInterval(int left, int right, Line line) {
-        addInterval(left, right, line, 1, 0, size);
-    }
-
-    void addInterval(int left, int right, Line line, int node, int nodeLeft, int nodeRight) {
-        if (right <= nodeLeft || nodeRight <= left) {
-            return;
-        }
-        if (left <= nodeLeft && nodeRight <= right) {
-            bucket[node].push_back(line);
-            return;
-        }
-        int mid = (nodeLeft + nodeRight) / 2;
-        addInterval(left, right, line, node * 2, nodeLeft, mid);
-        addInterval(left, right, line, node * 2 + 1, mid, nodeRight);
-    }
-};
-```
-
-Li Chao rollback은 구현량이 있으므로, 먼저 "구간 분배가 맞는지"를 독립적으로 테스트하는 편이 좋습니다.
+구간을 Segment Tree 노드에 나누는 구현은 [Dynamic Connectivity](https://h.readiz.com/learn/offline-time-axis-techniques/dynamic-connectivity)의 활성 간선 저장과 같습니다. 저장 대상을 edge에서 line으로 바꾸되, DFS가 쓰는 자료구조는 아래의 rollback Li Chao 계약을 만족해야 합니다.
 
 ## Rollback Li Chao 관점
 
@@ -97,17 +44,11 @@ enter node:
 
 동적 node Li Chao에서는 새 node 생성, 기존 line 교체, child pointer 변경을 모두 change log에 남겨야 합니다.
 
-## Online Line Container
+## 삽입 전용 hull에서 삭제할 수 없는 이유
 
-정말로 online 삭제가 필요하면 multiset 기반 lower hull을 유지하는 구현이 후보입니다. 각 직선이 최적인 x 구간의 시작점을 저장하고, 삽입/삭제 시 주변 교점을 갱신합니다.
+삽입 전용 hull은 새 직선에 항상 밀리는 기존 직선을 버릴 수 있습니다. 나중에 새 직선을 삭제하면 버렸던 직선이 다시 최적 후보가 될 수 있으므로, 단순 `erase`만으로 임의 삭제를 지원하지 못합니다. 예를 들어 최대 질의에서 `y=0`을 넣은 뒤 `y=1`을 넣으면 전자가 가려지지만, 후자를 삭제하면 전자가 다시 필요합니다.
 
-| 장점 | 단점 |
-| --- | --- |
-| online 삽입/삭제 가능 | 구현이 길고 tie 처리가 어렵다 |
-| x 범위가 없어도 됨 | 정수 나눗셈 floor/ceil 오류가 잦다 |
-| amortized `O(log N)` 기대 | 같은 slope, duplicate line 삭제가 까다롭다 |
-
-삭제가 문제의 핵심이 아니라면 offline으로 바꾸는 편이 더 안정적입니다.
+[KACTL LineContainer](https://github.com/kth-competitive-programming/kactl/blob/main/content/data-structures/LineContainer.h)도 삽입과 최대 질의를 위한 구현입니다. 임의 삭제를 요구하면 별도의 fully dynamic 구조가 필요합니다. 전체 연산을 미리 읽을 수 있을 때는 위 시간축 변환을 사용할 수 있습니다.
 
 ## 작은 예시
 
@@ -146,7 +87,7 @@ periodically rebuild
 | query x가 모두 알려져 있는가? | compressed Li Chao |
 | 삭제가 LIFO인가? | rollback stack |
 | 삭제가 거의 없는가? | rebuild |
-| 진짜 online인가? | line container 검토 |
+| 진짜 online인가? | 별도 동적 hull 검토 |
 
 이 표에서 위쪽일수록 구현이 단순하고 검증하기 쉽습니다.
 
@@ -158,11 +99,3 @@ periodically rebuild
 4. 같은 slope 직선을 여러 개 넣고 삭제할 때 identity를 잃는다.
 5. max/min convention을 offline과 online 구현에서 다르게 둔다.
 6. 모든 query를 읽을 수 있는데도 online container부터 구현한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 직선의 생존 구간을 query index로 만들 수 있는가?
-- x 좌표가 정수 범위인지, 압축 가능한지 확인했는가?
-- 삭제되는 대상의 identity가 명확한가?
-- 최솟값과 최댓값 convention을 통일했는가?
-- rollback해야 하는 mutation 목록을 빠짐없이 기록했는가?

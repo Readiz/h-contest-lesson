@@ -2,18 +2,6 @@
 
 Game Theory 문제 중 impartial game은 두 플레이어가 같은 선택지를 가지고, 마지막 수를 둔 사람이 이기는 형태가 많습니다. 이런 게임은 각 상태의 Grundy number를 계산해 여러 게임의 합까지 판정할 수 있습니다.
 
-이 레슨은 mex와 Sprague-Grundy theorem을 대회 문제 풀이 관점에서 정리합니다.
-
-1. 상태를 winning/losing으로 분류한다.
-2. 각 상태의 Grundy number를 mex로 계산한다.
-3. 독립 게임 여러 개의 xor로 전체 승패를 판정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 동적 계획법, DFS, DAG 상태 그래프, xor
-- 함께 보면 좋은 레슨: 동적 계획법, Proof와 Invariant, 확률과 기대값
-- 다음에 볼 레슨: minimax, alpha-beta pruning, partisan game
-
 ## Impartial Game
 
 Impartial game은 현재 가능한 움직임이 플레이어에 따라 달라지지 않는 게임입니다.
@@ -177,14 +165,3 @@ mex 계산은 outdegree 크기만큼의 seen 배열이면 충분합니다. 전�
 | Grundy 0과 losing의 관계를 반대로 봄 | 승패 반전 | `G=0`이면 losing |
 | misere play를 normal로 처리 | 마지막 수 조건 오답 | statement 문장 확인 |
 | 주기를 근거 없이 사용 | 숨은 케이스 오답 | 주기 증명 또는 충분한 조건 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 두 플레이어가 같은 move set을 갖는 impartial game인가?
-2. 움직일 수 없는 상태의 승패가 normal play인가?
-3. 상태 그래프가 DAG인가?
-4. 독립 subgame의 합으로 분해되는가?
-5. Grundy number가 필요한가, 단순 win/lose DP로 충분한가?
-6. 상태 수가 크다면 주기나 수식 패턴을 증명할 수 있는가?
-
-Game Theory 문제는 구현보다 상태 정의가 중요합니다. "상대에게 losing state를 넘기는가"로 시작하고, 여러 독립 게임이 보이면 Grundy xor로 확장합니다.

@@ -138,7 +138,6 @@ int main() {
 3. `H = 0`, absorbing state, reward가 모두 음수인 경우를 deterministic case로 둡니다.
 4. simulator sample 평균과 비교하지 않습니다. 이 문제는 전이표가 주어진 exact DP입니다.
 
-
 ## 완료 기준
 
 - exact solver인지 heuristic planning인지 먼저 표시합니다.

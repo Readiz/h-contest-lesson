@@ -2,18 +2,6 @@
 
 Polynomial Interpolation은 몇 개의 점을 지나는 다항식을 복원하거나, 복원하지 않고 특정 위치의 값을 계산하는 기법입니다. Multipoint Evaluation이 "하나의 다항식을 여러 점에서 평가"하는 방향이라면, Interpolation은 "여러 점에서 다항식을 되찾는" 반대 방향입니다.
 
-이 레슨은 조합론, FFT/NTT, Formal Power Series, Multipoint Evaluation 이후에 보는 polynomial 심화입니다.
-
-1. 차수 `< N`인 다항식은 서로 다른 `N`개의 점으로 결정된다.
-2. 연속된 x좌표 `0, 1, ..., N-1`에서는 Lagrange 보간을 `O(N)`에 한 점 평가할 수 있다.
-3. 임의 x좌표의 전체 계수 복원은 나이브 `O(N^2)`, product tree를 쓰면 더 빠르게 가능하다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 모듈러 역원, factorial, polynomial multiplication, prefix/suffix product
-- 함께 보면 좋은 레슨: 조합론, Multipoint Evaluation, Formal Power Series
-- 다음에 볼 레슨: linear basis, NTT 기반 interpolation, combinatorial polynomial trick
-
 ## 문제 신호
 
 | 문제 표현 | Interpolation 관점 |
@@ -162,11 +150,3 @@ f(x) = sum y_i L_i(x)
 3. mod가 prime이 아닌데 페르마 역원을 쓴다.
 4. `(-1)^(n-1-i)` 부호를 빠뜨린다.
 5. 값 몇 개가 맞는다는 이유만으로 다항식임을 증명하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 답이 어떤 변수에 대한 다항식이라는 근거가 있는가?
-- 차수 상한을 알고 있는가?
-- x좌표가 연속 정수인가, 임의 점인가?
-- 여러 query를 처리해야 하는가?
-- 전체 계수가 필요한가, 특정 값 하나만 필요한가?

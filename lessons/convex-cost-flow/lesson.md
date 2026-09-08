@@ -2,18 +2,6 @@
 
 Convex Cost Flow는 한 간선이나 선택 항목의 사용량이 늘수록 marginal cost가 증가하는 상황을 flow 모델로 표현하는 기법입니다. 일반 Min-Cost Flow는 edge cost가 단위 유량마다 일정하지만, convex cost는 단위별 비용을 여러 edge로 쪼개서 표현할 수 있습니다.
 
-이 레슨은 Min-Cost Flow, Slope Trick, Alien Optimization 이후에 보는 최적화 심화입니다.
-
-1. 사용량 `k`의 비용 `C(k)`를 marginal cost `C(k)-C(k-1)`로 나눈다.
-2. marginal cost가 nondecreasing이면 unit capacity edge들을 비용순으로 추가한다.
-3. min-cost flow가 싼 단위부터 선택하면서 convex cost를 재현한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Min-Cost Flow, convex function, marginal cost, DP optimization
-- 함께 보면 좋은 레슨: Min-Cost Flow, Slope Trick, Alien Optimization
-- 다음에 볼 레슨: min-plus convolution, convex DP, cost scaling flow
-
 ## 문제 신호
 
 | 문제 표현 | Convex Cost Flow 관점 |
@@ -199,11 +187,3 @@ convex cost를 무작정 unit edge로 쪼개면 edge 수가 폭발할 수 있습
 3. 같은 cost 구간을 합치지 않아 edge 수가 너무 커진다.
 4. 음수 marginal cost가 있을 때 potential 초기화나 negative edge 처리를 빼먹는다.
 5. demand를 정확히 보내야 하는지, 최대한 많이 보내야 하는지 목적식을 혼동한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 사용량별 비용이 convex인가?
-- 비용표를 marginal cost로 바꿨을 때 nondecreasing인가?
-- unit split이 시간/메모리에 가능한가, 구간 압축이 필요한가?
-- flow network에 다른 capacity/lower bound 제약이 함께 있는가?
-- 더 단순한 greedy, DP, Slope Trick으로 풀리는 구조는 아닌가?

@@ -2,18 +2,6 @@
 
 Bayesian Bandits는 여러 선택지의 보상 확률을 모르는 상태에서, 관측할수록 posterior를 갱신하며 다음 선택을 정하는 모델입니다. 단순한 multi-armed bandit이 "탐색과 활용의 균형"을 다룬다면, Bayesian 관점은 불확실성을 확률분포로 들고 다닙니다.
 
-이 레슨은 Probability/Expected Value, Markov Decision Process, Imperfect Information Search 이후에 보는 확률적 의사결정 심화입니다.
-
-1. 각 arm의 미지 보상을 prior distribution으로 둔다.
-2. 관측 결과로 posterior를 갱신한다.
-3. Thompson Sampling, Bayesian UCB, finite-horizon DP 중 문제에 맞는 정책을 고른다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Probability and Expected Value, MDP, POMDP
-- 함께 보면 좋은 레슨: Markov Decision Process, POMCP, Game Theory Applications
-- 다음에 볼 레슨: reinforcement learning basics, online convex optimization, regret analysis
-
 ## 문제 신호
 
 | 문제 표현 | Bayesian Bandit 관점 |
@@ -137,11 +125,3 @@ Bayesian 분석에서는 prior에 대한 기대 regret을 보거나, posterior�
 3. Beta prior의 `alpha`, `beta`를 성공/실패 횟수와 반대로 더한다.
 4. horizon이 1인 문제와 여러 번 남은 문제를 같은 정책으로 푼다.
 5. sampling이 필요한 문제에서 seed와 반복 횟수 검증을 하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 보상이 Bernoulli인지, categorical인지, continuous인지 확인한다.
-- 관측은 선택한 arm만 주어지는가?
-- 목표가 한 번의 최선 선택인가, 누적 기대 보상인가?
-- horizon과 arm 수가 belief DP를 허용하는가?
-- 정확한 답이 필요한가, randomized simulation이 허용되는가?

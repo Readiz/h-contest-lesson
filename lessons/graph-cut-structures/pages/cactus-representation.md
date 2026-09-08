@@ -2,18 +2,6 @@
 
 Cactus Representation은 여러 cut이나 biconnected 구조를 "각 edge가 하나의 cycle에만 속하는" 그래프로 압축해 보는 관점입니다. 특히 모든 global minimum cut을 compact하게 표현할 때 cactus가 등장하지만, 구현 난도 때문에 먼저 어떤 문제에서 cactus 모델이 필요한지 구분하는 것이 중요합니다.
 
-이 레슨은 Global Min Cut Applications와 Cut Sparsification 이후에 보는 그래프 모델링 심화입니다.
-
-1. cactus graph의 구조적 제약을 이해한다.
-2. min cut family와 biconnected component 압축에서 cactus가 왜 나오는지 본다.
-3. 직접 cactus를 만드는 문제와 cactus 위에서 질의하는 문제를 구분한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Global Min Cut, Gomory-Hu Tree, DFS lowlink, biconnected component
-- 함께 보면 좋은 레슨: Global Min Cut Applications, Cut Sparsification, SCC와 2-SAT
-- 다음에 볼 레슨: randomized min cut, bridge-block tree, cut family queries
-
 ## 문제 신호
 
 | 문제 표현 | Cactus 관점 |
@@ -172,10 +160,8 @@ edge 3-4는 bridge라서 모든 1쪽 정점과 5쪽 정점을 분리한다.
 4. cycle 내부 거리에서 두 방향 중 하나만 본다.
 5. bridge tree로 압축해 cycle 내부 정보를 잃는다.
 
-## 문제를 볼 때 체크할 조건
+## Cut family의 분리 선택
 
-- cactus가 입력으로 주어지는가, 아니면 직접 구성해야 하는가?
-- edge-disjoint cycle 조건인지 vertex-disjoint cycle 조건인지 문제 정의를 확인했는가?
-- 질의가 거리, path count, cut family 중 무엇인가?
-- cycle 내부에 prefix sum이나 order가 필요한가?
-- 일반 그래프라면 biconnected component 또는 min cut 이론이 필요한가?
+이미 min-cut cactus와 원래 정점의 mapping이 주어진 경우, cycle `A-B-C-D-A`에서 `(A,B)`와 `(C,D)`를 고르면 `{B,C}`와 `{D,A}`가 분리됩니다. Cycle에서는 edge 두 개를 선택한다는 점이 tree edge cut과 다릅니다.
+
+원래 정점 `u`, `v`에 대한 질의를 하려면 cactus의 어느 node에 속하는지 mapping을 보존합니다. 일반 그래프에서 이 cactus를 구성하는 절차는 위의 입력-cactus DFS에 포함되지 않습니다. 단순 tree DFS에 cycle을 직접 넣어 질의를 처리해서도 안 됩니다.

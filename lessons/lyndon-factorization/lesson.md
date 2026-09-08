@@ -2,18 +2,6 @@
 
 Lyndon Factorization은 문자열을 사전순으로 엄격히 작은 Lyndon word들의 비증가열로 분해하는 기법입니다. Duval algorithm을 쓰면 전체 문자열을 선형 시간에 분해할 수 있고, 최소 회전이나 문자열 주기 분석에도 연결됩니다.
 
-이 레슨은 Suffix와 Palindrome 응용 이후에 보는 문자열 분해 관점입니다.
-
-1. Lyndon word의 정의를 이해한다.
-2. Duval algorithm으로 문자열을 선형 시간에 분해한다.
-3. 최소 표현, 주기성, suffix 구조와의 차이를 구분한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 문자열 비교, Suffix Array/Suffix Automaton 감각
-- 함께 보면 좋은 레슨: Suffix와 Palindrome 응용, 문자열 매칭, Suffix Array와 LCP
-- 다음에 볼 레슨: Booth algorithm, suffix tree, runs theorem
-
 ## Lyndon Word
 
 문자열 `w`가 Lyndon word라는 것은, `w`의 모든 non-empty proper suffix보다 `w`가 사전순으로 작다는 뜻입니다.
@@ -154,11 +142,3 @@ Lyndon factorization은 suffix index라기보다 문자열 자체의 분해입�
 3. Lyndon factor들이 사전순 비증가라는 조건을 반대로 기억한다.
 4. minimum rotation에서 `s+s` 전체 factor를 끝까지 보며 시작점 `>= n`을 반환한다.
 5. empty string 처리를 빼먹는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 문자열 분해가 필요한가, suffix 정렬이 필요한가?
-- 최소 회전 또는 circular string 비교인가?
-- 같은 회전이 여러 개일 때 어떤 index를 요구하는가?
-- factor 자체가 필요한가, 개수나 길이만 필요한가?
-- alphabet 비교가 일반 문자 순서와 같은가?

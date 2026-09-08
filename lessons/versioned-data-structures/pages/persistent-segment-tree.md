@@ -2,18 +2,6 @@
 
 Persistent Segment Tree는 업데이트 뒤의 예전 버전을 버리지 않고, 각 버전의 root를 보존하는 Segment Tree입니다. 한 번의 점 업데이트에서 바뀌는 노드는 root에서 leaf까지 `O(log N)`개뿐이므로, 나머지 노드는 이전 버전과 공유할 수 있습니다.
 
-이 레슨은 "시간이 흐른 배열"을 여러 개 들고 있는 관점으로 Persistent Segment Tree를 봅니다.
-
-1. 업데이트 경로만 새 노드로 복사한다.
-2. 각 버전의 root를 저장해 과거 배열에 질의한다.
-3. prefix 버전 차이로 k번째 수 같은 order statistic 질의를 처리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Segment Tree, 좌표 압축, prefix sum 감각
-- 함께 보면 좋은 레슨: Segment Tree, 좌표 압축, 오프라인 쿼리
-- 다음에 볼 레슨: wavelet tree, persistent lazy tree, rollback data structure
-
 ## 언제 쓰는가
 
 Persistent Segment Tree는 같은 배열의 여러 시점을 비교해야 할 때 강합니다.
@@ -237,14 +225,3 @@ k번째 수 질의에서는 tree의 index가 실제 값이 아니라 압축된 �
 | null node 처리 누락 | k번째 질의에서 범위 밖 접근 | `tree[0]`을 0 node로 유지 |
 | k가 구간 원소 수보다 큼 | 잘못된 leaf 도달 | 질의 전 count 확인 |
 | 노드 수 메모리 계산 누락 | 메모리 초과 | `updates * logN * sizeof(Node)` 추정 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 같은 자료구조의 과거 상태를 다시 물어보는가?
-2. 업데이트가 점 업데이트인가, 구간 업데이트인가?
-3. 버전을 선형 prefix로 만들 수 있는가?
-4. 구간 `[l, r]` 질의를 prefix 차이로 바꿀 수 있는가?
-5. 값 범위가 커서 좌표 압축이 필요한가?
-6. 생성될 node 수가 메모리 제한 안에 들어오는가?
-
-Persistent Segment Tree는 "변경된 경로만 복사한다"는 한 문장으로 이해할 수 있습니다. root를 버전의 이름표로 보고, root 두 개의 차이가 구간 정보를 만든다는 감각을 잡으면 k번째 수 질의까지 자연스럽게 이어집니다.

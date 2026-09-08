@@ -2,18 +2,6 @@
 
 XOR Linear Basis는 여러 수의 xor 조합으로 만들 수 있는 값의 공간을 선형대수처럼 다루는 기법입니다. GF(2) 위의 벡터 기저로 생각하면 maximum xor, representability, rank, 부분집합 xor 개수 문제를 일관되게 처리할 수 있습니다.
 
-이 레슨은 Polynomial Interpolation과 수학 심화 이후에 보는 bitwise algebra 주제입니다.
-
-1. 각 정수를 bit vector로 본다.
-2. 가장 높은 bit가 같은 vector끼리 Gaussian elimination처럼 정리한다.
-3. basis의 rank가 만들 수 있는 xor 공간의 차원을 결정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: bit operation, Gaussian elimination, xor 성질
-- 함께 보면 좋은 레슨: 모듈러 연산, 조합론, Proof와 Invariants
-- 다음에 볼 레슨: matroid 관점, xor convolution, linear basis on tree
-
 ## 문제 신호
 
 | 문제 표현 | Linear Basis 관점 |
@@ -160,11 +148,3 @@ Tree path query에서는 Heavy-Light나 DSU on tree와 basis merge가 함께 나
 3. maximum xor와 minimum xor의 greedy 방향을 섞는다.
 4. distinct xor 개수 `2^rank`와 부분집합 개수 `2^n`을 혼동한다.
 5. K번째 xor를 구하면서 basis를 정규화하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 연산이 xor 조합으로 닫혀 있는가?
-- 최대값이 필요한가, 표현 가능 여부가 필요한가?
-- 중복 원소와 빈 부분집합을 어떻게 처리하는가?
-- bit 범위가 30인지 60인지 확인했는가?
-- 경로/구간 query라면 basis merge 순서가 시간 안에 들어오는가?

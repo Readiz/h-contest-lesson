@@ -134,7 +134,6 @@ int main() {
 3. half-edge traversal에서 face incidence를 직접 만든 경우에는 먼저 `V - E + F = 1 + C`를 통과해야 이 연습으로 내려옵니다.
 4. directed primal edge를 무향 dual edge로 바꾸면 안 되는 문제인지 별도로 확인합니다.
 
-
 ## 추가 로컬 연습 후보
 
 ### Square with a Diagonal

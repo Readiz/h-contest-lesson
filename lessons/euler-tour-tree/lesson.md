@@ -2,18 +2,6 @@
 
 Euler Tour Tree는 dynamic forest를 Euler tour sequence로 표현하고, balanced binary tree로 sequence를 split/merge해서 `link`, `cut`, connectivity query를 처리하는 자료구조입니다. Link-Cut Tree가 path 중심이라면 Euler Tour Tree는 tree 전체의 Euler sequence 중심입니다.
 
-이 레슨은 Link-Cut Tree와 Dynamic Connectivity 이후에 보는 자료구조/그래프 심화입니다.
-
-1. 각 tree를 Euler tour sequence 하나로 표현한다.
-2. sequence node가 속한 balanced tree root가 connectivity component를 뜻한다.
-3. edge 추가/삭제는 sequence split과 merge로 처리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Euler tour, randomized treap, split/merge, dynamic forest
-- 함께 보면 좋은 레슨: Link-Cut Tree, Dynamic Connectivity, Tree Advanced
-- 다음에 볼 레슨: fully dynamic connectivity, dynamic MST, top tree
-
 ## 문제 신호
 
 | 문제 표현 | Euler Tour Tree 관점 |
@@ -269,11 +257,3 @@ treap priority가 편향되면 성능이 무너질 수 있습니다. determinist
 3. reroot 후 parent pointer를 갱신하지 않아 root 비교가 틀린다.
 4. vertex occurrence가 여러 개인데 대표 occurrence 관리를 잃는다.
 5. treap split/merge에서 aggregate pull 순서를 빠뜨린다.
-
-## 문제를 볼 때 체크할 조건
-
-- 유지되는 그래프가 항상 forest인가?
-- edge 삭제가 온라인으로 들어오는가?
-- connectivity만 필요한가, component aggregate도 필요한가?
-- path aggregate가 핵심이라 Link-Cut Tree가 더 나은 문제는 아닌가?
-- edge id로 arc node를 안정적으로 찾을 수 있는가?

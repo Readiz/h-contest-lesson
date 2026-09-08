@@ -2,18 +2,6 @@
 
 Persistent Lazy Segment Tree는 구간 업데이트와 구간 질의를 처리하면서, 업데이트 이전 버전도 계속 보존하는 자료구조입니다. 일반 Persistent Segment Tree는 point update가 단순하지만, lazy propagation이 붙으면 clone 시점과 lazy 값 전달이 까다로워집니다.
 
-이 레슨은 Persistent Segment Tree와 Lazy Segment Tree를 결합할 때의 원칙을 정리합니다.
-
-1. 수정할 node만 clone한다.
-2. lazy 값을 자식에게 밀 때도 자식 clone이 필요하다.
-3. 각 version root를 저장해 과거 상태를 질의한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Segment Tree, Lazy Propagation, Persistent Segment Tree
-- 함께 보면 좋은 레슨: Segment Tree, Persistent Segment Tree, 오프라인 쿼리
-- 다음에 볼 레슨: dynamic segment tree, rollback data structure, link-cut tree
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -206,11 +194,3 @@ lazy propagation이 있어도 segment tree의 높이는 유지됩니다.
 3. query가 node를 바꾸는 구현인데 read-only라고 착각한다.
 4. node pool 크기를 point update 기준으로 너무 작게 잡는다.
 5. range boundary를 `[l, r]`와 `[l, r)`로 섞는다.
-
-## 문제를 볼 때 체크할 조건
-
-- version을 임의로 질의해야 하는가?
-- update가 range update인가 point update인가?
-- query가 read-only여야 하는가?
-- 값 범위가 커서 dynamic tree가 필요한가?
-- node 수 상한이 메모리 제한에 맞는가?

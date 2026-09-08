@@ -2,18 +2,6 @@
 
 Dynamic MST는 그래프의 간선 가중치나 활성 상태가 바뀔 때 minimum spanning tree를 유지하는 주제입니다. 완전한 online dynamic MST는 매우 어렵지만, 대회에서는 "작은 변경은 MST 성질로 갱신"하거나 "질의를 모아서 오프라인으로 처리"하는 형태가 더 자주 등장합니다.
 
-이 레슨은 MST, Dynamic Connectivity, Gomory-Hu Tree 이후에 보는 그래프 심화입니다.
-
-1. 간선 추가는 새 간선을 넣고 cycle에서 가장 무거운 간선을 제거한다.
-2. MST 간선 삭제는 replacement edge를 찾아야 하므로 훨씬 어렵다.
-3. 질의를 모두 알 수 있으면 구간 분할, rollback, rebuild를 먼저 검토한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Kruskal, cut/cycle property, Union-Find, dynamic connectivity
-- 함께 보면 좋은 레슨: Graph와 Tree 기본, Dynamic Connectivity, Euler Tour Tree
-- 다음에 볼 레슨: fully dynamic MST, top tree, replacement edge data structure
-
 ## 문제 신호
 
 | 문제 표현 | Dynamic MST 관점 |
@@ -182,11 +170,3 @@ Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지�
 3. 같은 weight edge가 있을 때 tie가 바뀌어도 MST cost만 유지하면 되는 문제인지 확인하지 않는다.
 4. disconnected 상태를 MST cost 0처럼 출력한다.
 5. 완전한 online dynamic MST가 필요한 문제를 단순 rollback DSU로 풀려고 한다.
-
-## 문제를 볼 때 체크할 조건
-
-- update가 추가만 있는가, 삭제도 있는가?
-- 모든 질의를 미리 읽을 수 있는가?
-- 필요한 답이 MST cost인가, 실제 edge set인가?
-- 그래프가 disconnected일 수 있는가?
-- 변경 간선 수가 작아서 rebuild가 가능한가?

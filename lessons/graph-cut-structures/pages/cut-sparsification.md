@@ -2,18 +2,6 @@
 
 Cut Sparsification은 그래프의 모든 cut 값을 정확히 또는 근사적으로 보존하면서 edge 수를 줄이는 관점입니다. 대회 문제에서는 이론적인 spectral sparsifier보다, MST/forest 기반 certificate, Nagamochi-Ibaraki 스타일의 edge connectivity 보존, cut 후보를 줄이는 모델링으로 자주 등장합니다.
 
-이 레슨은 Global Min Cut, Gomory-Hu Tree, Max Flow/Min Cut 이후에 보는 그래프 심화입니다.
-
-1. cut value를 보존해야 하는 범위가 global min cut인지, 모든 작은 cut인지 구분한다.
-2. sparse certificate는 "작은 cut을 망가뜨리지 않는 edge subset"으로 이해한다.
-3. min cut 응용에서 불필요한 큰 connectivity edge를 제거해 계산량을 줄이는 흐름을 익힌다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: undirected cut, global min cut, edge connectivity, spanning forest
-- 함께 보면 좋은 레슨: Global Min Cut, Gomory-Hu Tree, Max Flow와 Min Cut
-- 다음에 볼 레슨: Global Min Cut Applications, cactus representation, randomized contraction
-
 ## 문제 신호
 
 | 문제 표현 | Cut Sparsification 관점 |
@@ -166,11 +154,3 @@ k가 작을 때 edge 수가 `M`에서 `O(kN)`으로 줄어드는 것이 핵심 �
 3. threshold 이하 cut만 보존하는데 모든 cut 값이 보존된다고 착각한다.
 4. certificate를 만든 뒤 원래 그래프 기준 검증이 필요한 문제에서 검증을 생략한다.
 5. multi-edge를 하나로 합치며 cut capacity를 잃어버린다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 무향 unweighted인가?
-- 필요한 것은 cut 값인가, k-edge-connected 판정인가?
-- 작은 cut만 보존하면 충분한가?
-- `k`가 작아서 `O(kM)` 전처리가 의미 있는가?
-- certificate 위 답을 원래 그래프에서 다시 검증해야 하는가?

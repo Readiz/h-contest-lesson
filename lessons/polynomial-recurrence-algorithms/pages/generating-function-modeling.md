@@ -2,18 +2,6 @@
 
 Generating Function Modeling은 counting 문제나 DP 식을 계수열로 보고, 곱셈, 나눗셈, rational form으로 바꾸는 모델링 레슨입니다. Formal Power Series가 연산 도구를 다룬다면, 이 레슨은 문제 문장을 어떤 생성함수 식으로 번역할지에 집중합니다.
 
-이 레슨은 조합론, Formal Power Series, Linear Recurrence Applications 이후에 보는 수학 모델링 심화입니다.
-
-1. 선택, 합, 길이 조건을 계수의 의미로 고정한다.
-2. 독립 선택은 곱, 대안 선택은 합, 반복 선택은 geometric series로 바꾼다.
-3. 분모가 낮은 rational form이면 recurrence나 Bostan-Mori로 연결한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Combinatorics nCr, Formal Power Series, Linear Recurrence Applications
-- 함께 보면 좋은 레슨: Bostan-Mori, FPS Log/Exp, Recurrence Guessing
-- 다음에 볼 레슨: Black-Box Linear Algebra, polynomial DP, combinatorial species basics
-
 ## 문제 신호
 
 | 문제 표현 | 생성함수 관점 |
@@ -178,11 +166,3 @@ DP로 풀 수도 있고, `n`이 매우 크면 recurrence로 풀 수도 있습니
 3. `1/(1-x^w)`를 무한히 펼치려다가 필요한 차수 truncate를 잊는다.
 4. rational form이 나왔는데 분모 차수와 초기항 index를 맞추지 않는다.
 5. negative coefficient나 subtraction이 있는 식에서 모듈러 정규화를 빼먹는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 계수 `x^k`가 정확히 무엇을 의미하는가?
-- 선택이 독립인가, 순서가 있는 sequence인가?
-- 각 요소는 0/1, bounded, unbounded 중 무엇인가?
-- 필요한 계수 범위가 작은가, `n`이 큰가?
-- rational form이면 분모 차수와 초기항을 만들 수 있는가?

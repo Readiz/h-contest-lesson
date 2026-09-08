@@ -2,18 +2,6 @@
 
 Point-Based Value Iteration(PBVI)은 POMDP의 연속적인 belief space 전체를 다루지 않고, 대표 belief point 집합에서 value function을 근사하는 planning 기법입니다. 정확한 대회 정답용 알고리즘이라기보다, POMDP가 왜 어려운지와 belief 기반 근사가 어떻게 구성되는지 이해하는 레슨입니다.
 
-이 레슨은 Partially Observable MDP 이후에 보는 확률적 planning 심화입니다.
-
-1. belief 전체가 아니라 자주 도달하는 belief point를 모은다.
-2. alpha vector로 piecewise-linear value function을 근사한다.
-3. backup을 대표 belief들에 반복 적용해 정책을 개선한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Partially Observable MDP, Markov Decision Process, Probability Expected Value
-- 함께 보면 좋은 레슨: Imperfect Information Search, Monte Carlo Tree Search, Heuristic Search
-- 다음에 볼 레슨: POMCP, reinforcement learning basics, approximate dynamic programming
-
 ## 문제 신호
 
 | 문제 표현 | PBVI 관점 |
@@ -152,11 +140,3 @@ PBVI는 model을 알고 있고 반복 planning을 할 때 유리합니다. POMCP
 3. alpha vector가 state별 값이라는 점을 잊고 belief별 scalar만 저장한다.
 4. 근사 알고리즘인데 정확 judge 문제에 사용한다.
 5. discount `gamma`와 horizon 종료 조건을 섞는다.
-
-## 문제를 볼 때 체크할 조건
-
-- POMDP model table을 만들 수 있는가?
-- exact belief tree가 너무 큰가?
-- 근사 policy가 허용되는가?
-- reachable belief point를 어떻게 만들 것인가?
-- alpha vector와 action을 함께 저장해야 하는가?

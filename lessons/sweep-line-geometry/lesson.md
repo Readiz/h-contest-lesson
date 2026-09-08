@@ -2,18 +2,6 @@
 
 Sweep Line은 좌표 평면의 이벤트를 한 방향으로 정렬해 훑으면서, 현재 선을 가로지르는 active object만 관리하는 기법입니다. 모든 쌍을 직접 비교하면 `O(N^2)`이 되는 기하 문제를 정렬과 자료구조로 줄일 때 자주 씁니다.
 
-이 레슨은 기하 심화에서 이벤트 정렬과 active set을 연결합니다.
-
-1. 이벤트를 x좌표 또는 y좌표 순서로 정렬한다.
-2. sweep line이 지나간 상태를 자료구조에 유지한다.
-3. 직사각형 넓이, 교차 판정, 최근접 후보처럼 active set만 보면 되는 문제를 처리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 정렬, 좌표 압축, Segment Tree, CCW와 선분 교차
-- 함께 보면 좋은 레슨: 기하 기본, Rotating Calipers, Segment Tree
-- 다음에 볼 레슨: Bentley-Ottmann, closest pair, kinetic ordering
-
 ## 문제 신호
 
 Sweep line은 평면 객체를 한 축 기준으로 훑을 수 있을 때 나옵니다.
@@ -214,14 +202,3 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 | cover count가 있는데 child length만 사용 | 중복 직사각형 누락 | `cover[node] > 0`이면 전체 길이 |
 | 선분 active comparator가 현재 x를 반영하지 않음 | set 순서 깨짐 | comparator 설계 주의 |
 | 좌표 곱을 int로 계산 | overflow | `long long` |
-
-## 문제를 볼 때 체크할 조건
-
-1. 이벤트를 한 축 기준으로 정렬할 수 있는가?
-2. 이벤트 사이에서 답에 필요한 active 상태가 변하지 않는가?
-3. active 상태가 구간 cover, set, heap 중 무엇으로 표현되는가?
-4. 좌표 압축이 필요한가?
-5. 닫힌/반열린 구간과 같은 좌표 이벤트 순서가 명확한가?
-6. 모든 쌍 비교보다 sweep이 실제로 이득인가?
-
-Sweep Line은 "움직이는 선"보다 "상태가 바뀌는 시점만 본다"는 발상이 중요합니다. 이벤트 설계와 active 자료구조가 맞으면 기하 문제뿐 아니라 시간 구간 문제에도 같은 패턴을 적용할 수 있습니다.

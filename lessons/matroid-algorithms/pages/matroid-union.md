@@ -8,12 +8,6 @@ Matroid Union은 여러 개의 matroid 독립 집합을 합쳐 얼마나 많은 
 2. 각 원소를 어떤 layer에 배치할 수 있는지 확인한다.
 3. union rank와 covering 조건을 matroid 성질로 해석한다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Matroid Algorithms, Proof and Invariants
-- 함께 보면 좋은 레슨: General Matching, Linear Algebra Applications, Randomized Determinant
-- 다음에 볼 레슨: matroid covering, arboricity, algebraic matching
-
 ## 문제 신호
 
 | 문제 표현 | Matroid Union 관점 |
@@ -123,12 +117,3 @@ old edge b moves from layer 2 to layer 3
 3. 같은 원소를 여러 layer에 중복 배치해 버린다.
 4. graphic matroid union에서 cycle 교환을 고려하지 않는다.
 5. rank formula를 알고도 실제 입력 구조에 맞는 더 쉬운 풀이를 찾지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 원소가 여러 독립 집합 중 정확히 하나에 들어가는가?
-- 각 layer의 matroid가 같은가, 서로 다른가?
-- 독립성 oracle을 효율적으로 구현할 수 있는가?
-- greedy가 실패하는 교환 반례가 있는가?
-- rank만 필요한가, 실제 분해까지 출력해야 하는가?
-- 그래프 문제라면 forest decomposition이나 arboricity로 바뀌는가?

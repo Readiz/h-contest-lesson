@@ -2,18 +2,6 @@
 
 Wavelet Tree는 값의 범위와 index 범위를 동시에 나누어, 정적 배열에서 k번째 작은 값, 특정 값 이하 개수, 구간 frequency 같은 질의를 빠르게 처리하는 자료구조입니다. Persistent Segment Tree와 비슷한 질의를 다루지만, 배열 자체를 값 기준으로 재귀적으로 나눈다는 관점이 다릅니다.
 
-이 레슨은 정적 order statistic 질의의 또 다른 표준 도구로 Wavelet Tree를 봅니다.
-
-1. 값 범위를 가운데로 나누어 왼쪽/오른쪽 child로 원소를 보낸다.
-2. prefix count 배열로 구간 `[l, r]`이 child에서 어디로 가는지 계산한다.
-3. kth, LTE, frequency 질의를 재귀적으로 처리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 좌표 압축, Segment Tree, Persistent Segment Tree
-- 함께 보면 좋은 레슨: Persistent Segment Tree, 오프라인 쿼리, 좌표 압축
-- 다음에 볼 레슨: wavelet matrix, succinct data structure
-
 ## 문제 신호
 
 Wavelet Tree는 배열이 바뀌지 않는 정적 질의에서 강합니다.
@@ -188,14 +176,3 @@ freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 | 빈 child에서 재귀 호출 | null 접근 | child 존재 또는 count 확인 |
 | k 범위 검증 누락 | leaf까지 잘못 이동 | `1 <= k <= r-l+1` 확인 |
 | 좌표 압축 복원 누락 | 압축 값 출력 | 원래 값 배열로 복원 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 배열이 정적인가?
-2. 구간 kth, rank, frequency 질의가 많은가?
-3. 값 범위를 압축할 수 있는가?
-4. query index 기준을 1-index로 유지할 수 있는가?
-5. 업데이트가 필요한 문제는 아닌가?
-6. Persistent Segment Tree나 Merge Sort Tree보다 Wavelet Tree가 더 자연스러운가?
-
-Wavelet Tree는 값 기준 분할과 index 구간 변환을 동시에 이해해야 합니다. `prefixLeft`가 "이 구간이 child에서 어디로 이동하는가"를 알려 준다는 감각이 핵심입니다.

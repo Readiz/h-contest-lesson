@@ -2,18 +2,6 @@
 
 FFT와 NTT는 다항식 곱셈, 즉 convolution을 빠르게 계산하는 기법입니다. 두 배열 `a`, `b`에 대해 `c[k] = sum a[i] * b[k - i]`를 직접 계산하면 `O(NM)`이지만, FFT/NTT를 쓰면 대략 `O(N log N)`에 처리할 수 있습니다.
 
-이 레슨은 "계수 표현의 다항식을 값 표현으로 바꿔 곱한 뒤 되돌린다"는 관점으로 FFT와 NTT를 봅니다.
-
-1. convolution이 필요한 문제 신호를 찾는다.
-2. NTT friendly modulus에서 정수 convolution을 구현한다.
-3. FFT/NTT 선택 기준과 실수 포인트를 점검한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 모듈러 연산, 빠른 거듭제곱, 조합론, 복소수 또는 원시근 개념
-- 함께 보면 좋은 레슨: 모듈러 연산과 빠른 거듭제곱, 조합론, Matrix Exponentiation
-- 다음에 볼 레슨: polynomial inverse, formal power series, divide-and-conquer convolution DP
-
 ## Convolution 신호
 
 다음 형태가 보이면 convolution을 의심합니다.
@@ -192,14 +180,3 @@ NTT는 특정 모듈러에서만 바로 됩니다. 결과를 `1,000,000,007` 같
 | 음수 계수 정규화 누락 | 모듈러 값 깨짐 | 입력을 `[0, MOD)`로 변환 |
 | 결과 길이를 자르지 않음 | padding 값 출력 | `resize(need)` |
 | 작은 입력에 무조건 NTT 사용 | 구현 복잡도/상수 손해 | 단순 곱셈과 비교 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 식이 `sum a[i] * b[k - i]` 형태인가?
-2. index 합, 차이, pair count를 빈도 배열로 바꿀 수 있는가?
-3. 결과 mod가 NTT friendly인가?
-4. 입력 길이가 FFT/NTT를 쓸 만큼 큰가?
-5. 음수 값이나 offset 처리가 필요한가?
-6. 정확한 정수 결과가 필요한가, 반올림 오차가 허용되는가?
-
-FFT와 NTT는 "곱셈을 빠르게 한다"보다 "이중 합을 convolution으로 모델링한다"가 더 중요합니다. 모델링이 convolution으로 떨어지면, 구현은 mod와 오차 조건에 맞춰 FFT 또는 NTT를 선택하면 됩니다.

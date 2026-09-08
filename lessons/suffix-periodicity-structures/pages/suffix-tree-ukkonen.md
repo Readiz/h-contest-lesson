@@ -2,18 +2,6 @@
 
 Suffix Tree는 한 문자열의 모든 suffix를 압축 trie로 저장한 구조입니다. Suffix Array나 Suffix Automaton보다 구현 난도는 높지만, substring 위치, LCP, 반복 구간, 여러 문자열 공통 부분을 "간선 구간"으로 직접 다룰 수 있습니다.
 
-이 레슨은 Suffix Array, Suffix Automaton, Lyndon Factorization 이후에 보는 문자열 구조 심화입니다.
-
-1. 모든 suffix를 trie에 넣으면 `O(N^2)` 노드가 될 수 있다.
-2. 경로를 한 글자씩 저장하지 않고 원문 구간 `[l, r)`로 압축한다.
-3. Ukkonen 알고리즘은 active point와 suffix link로 suffix tree를 온라인 `O(N log alphabet)`에 만든다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Trie, suffix array, suffix automaton, 문자열 index 구간
-- 함께 보면 좋은 레슨: Suffix Array와 LCP, Suffix Automaton, Lyndon Factorization
-- 다음에 볼 레슨: runs/periodicity, generalized suffix tree, suffix tree 기반 LCP 응용
-
 ## 문제 신호
 
 | 문제 표현 | Suffix Tree 관점 |
@@ -247,11 +235,3 @@ Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 
 3. split 후 parent와 child map을 한쪽만 갱신한다.
 4. root에서 suffix link를 따라갈 때 첫 글자 skip 규칙을 빠뜨린다.
 5. 여러 문자열 sentinel을 같은 문자로 둔다.
-
-## 문제를 볼 때 체크할 조건
-
-- suffix tree가 꼭 필요한가, suffix array나 suffix automaton으로 충분한가?
-- alphabet 크기가 작아 fixed array를 쓸 수 있는가?
-- leaf마다 suffix 시작 위치를 복구해야 하는가?
-- 여러 문자열을 합칠 때 sentinel 충돌이 없는가?
-- path depth와 edge length를 분리해서 계산하고 있는가?

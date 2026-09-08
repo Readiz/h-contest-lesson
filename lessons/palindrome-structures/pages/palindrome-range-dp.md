@@ -2,18 +2,6 @@
 
 Palindrome Range DP는 "구간이 palindrome인가"라는 판정 구조를 DP 전이와 결합하는 문자열/DP 응용 레슨입니다. Palindrome Query Structures가 판정 도구를 고르는 레슨이라면, 이 레슨은 그 판정값을 어떻게 구간 DP, 분할 DP, 최소 편집 DP의 상태로 넣을지 다룹니다.
 
-이 레슨은 Palindrome Query Structures와 Dynamic Programming 이후에 보는 응용 주제입니다.
-
-1. 모든 구간 palindrome 여부를 먼저 안정적으로 만든다.
-2. DP 상태가 구간 자체인지, prefix 분할인지 구분한다.
-3. `isPal[l][r]`를 전이에 넣을 때 길이 순서와 off-by-one을 점검한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Dynamic Programming, Palindrome Query Structures, Rolling Hash
-- 함께 보면 좋은 레슨: Palindromic Tree, Suffix와 Palindrome 응용, Interval DP
-- 다음에 볼 레슨: string period query applications, palindrome automaton DP, interval optimization
-
 ## 문제 신호
 
 | 문제 표현 | 우선 모델 |
@@ -37,30 +25,7 @@ isPal[l][r] =
 
 길이가 작은 구간부터 채워야 내부 구간 값이 이미 계산되어 있습니다.
 
-```cpp compile-check
-#include <string>
-#include <vector>
-using namespace std;
-
-vector<vector<char>> buildPalindromeTable(const string& s) {
-    int n = (int)s.size();
-    vector<vector<char>> isPal(n, vector<char>(n, 0));
-
-    for (int len = 1; len <= n; ++len) {
-        for (int left = 0; left + len <= n; ++left) {
-            int right = left + len - 1;
-            if (s[left] != s[right]) {
-                continue;
-            }
-            if (len <= 2 || isPal[left + 1][right - 1]) {
-                isPal[left][right] = 1;
-            }
-        }
-    }
-
-    return isPal;
-}
-```
+구현은 아래의 결합 예제에 한 번만 싣습니다.
 
 `N`이 5000 정도면 `O(N^2)` table이 실용적입니다. `N`이 더 크면 Manacher radius로 판정하거나 문제 구조를 더 봐야 합니다.
 
@@ -196,11 +161,3 @@ prefix DP:
 3. 조각 수와 컷 수를 혼동한다.
 4. Manacher radius의 odd/even 중심을 한 칸 밀린다.
 5. interval DP를 prefix 순서로 채워 아직 계산되지 않은 값을 읽는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 출력이 partition count인지 edit count인지 확인했는가?
-- palindrome 판정을 table, Manacher, hash 중 무엇으로 할 것인가?
-- DP 상태가 prefix인가 interval인가?
-- `N^2` 메모리가 가능한가?
-- 답 복원이 필요하면 parent를 어떻게 저장할 것인가?

@@ -2,18 +2,6 @@
 
 Dominator Tree는 시작 정점에서 어떤 정점으로 가는 모든 경로가 반드시 지나야 하는 정점을 찾는 구조입니다. 컴파일러의 control-flow graph에서 유명하지만, 그래프 문제에서도 "이 정점을 제거하면 반드시 막히는가" 같은 질문으로 등장합니다.
 
-이 레슨은 SCC와 그래프 심화 이후에 보는 directed graph의 지배 관계를 정리합니다.
-
-1. 시작점 `s`에서 `v`로 가는 모든 경로가 `u`를 지나면 `u`가 `v`를 dominate한다.
-2. 각 정점의 가장 가까운 strict dominator가 immediate dominator이다.
-3. immediate dominator 간선을 모으면 dominator tree가 된다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: DFS order, directed graph, tree ancestor, DSU path compression
-- 함께 보면 좋은 레슨: SCC와 2-SAT, 위상 정렬과 DAG DP, 그래프와 트리 기본 성질
-- 다음에 볼 레슨: control-flow graph, bridge-like directed constraints, dynamic dominator
-
 ## 문제 신호
 
 | 문제 표현 | Dominator 관점 |
@@ -224,11 +212,3 @@ O((N + M) alpha(N))
 3. root의 `idom` convention을 문제 출력과 맞추지 않는다.
 4. 도달 불가능 정점을 dominator tree에 포함한다.
 5. tree ancestor 판정 전 Euler tour를 만들지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 시작 정점이 고정되어 있는가?
-- 방향 그래프인가?
-- 도달 불가능 정점 처리가 필요한가?
-- 필요한 것은 `idom` 자체인가, dominate 관계 질의인가?
-- 정점 제거 영향이 하나의 root 기준으로 정의되는가?

@@ -118,7 +118,6 @@ int main() {
 3. 한 expert가 모든 round에서 loss 0인 입력, 모든 expert loss가 같은 입력을 deterministic case로 둡니다.
 4. 선택한 expert의 loss만 주어지는 bandit 입력으로 바꾸면 이 구현을 쓰면 안 됩니다.
 
-
 ## 추가 로컬 연습 후보
 
 ### Projected Gradient on a Box

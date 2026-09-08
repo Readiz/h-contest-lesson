@@ -2,18 +2,6 @@
 
 Monge array는 행과 열의 최솟값 위치가 단조로 움직이는 특수한 행렬입니다. 이런 구조에서는 각 행의 최솟값을 모든 열에 대해 직접 보지 않고도 빠르게 찾을 수 있습니다. SMAWK는 totally monotone matrix에서 행 최솟값을 선형에 가깝게 구하는 알고리즘입니다.
 
-이 레슨은 Knuth Optimization 이후에 보는 더 일반적인 monotone optimization 관점을 정리합니다.
-
-1. Monge inequality와 totally monotone 조건을 구분한다.
-2. row minimum index가 단조로 움직이는 이유를 이해한다.
-3. SMAWK의 column reduction과 odd/even row recursion을 익힌다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: DP 최적화, 단조성 증명, Knuth Optimization
-- 함께 보면 좋은 레슨: Divide and Conquer DP Optimization, Knuth Optimization
-- 다음에 볼 레슨: Monge DP, min-plus convolution, SMAWK applications
-
 ## Monge Array
 
 행렬 `A`가 Monge라는 것은 모든 `i1 < i2`, `j1 < j2`에 대해 아래가 성립한다는 뜻입니다.
@@ -191,14 +179,3 @@ SMAWK의 이론적 성능은 좋지만 구현 실수 비용도 큽니다. value 
 | value 함수가 범위 밖을 허용 | 런타임 오류 | valid column set 제한 |
 | SMAWK reduced column stack index 혼동 | 열 누락 | rows size와 stack size 관계 확인 |
 | D&C 최적화와 SMAWK 조건 혼동 | 과한 구현 | 필요한 row minima 형태인지 확인 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 문제를 행별 최솟값 찾기로 바꿀 수 있는가?
-2. 행의 argmin이 단조로 움직이는가?
-3. Monge inequality나 totally monotone 조건을 보일 수 있는가?
-4. 행렬 값을 저장하지 않고 계산할 수 있는가?
-5. 일반 D&C optimization으로 충분하지 않은가?
-6. tie-breaking을 단조성에 맞춰 고정했는가?
-
-Monge와 SMAWK는 자주 쓰이는 편은 아니지만, 맞는 문제에서는 매우 강합니다. 적용 전 조건 확인이 거의 전부이며, 구현은 작은 테스트로 row minima 단조성을 먼저 검증하는 습관이 좋습니다.

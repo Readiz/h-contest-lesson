@@ -4,12 +4,6 @@ Dynamic Network Optimization은 간선 활성 시간, 용량 변화, MST 갱신,
 
 이 허브의 목표는 완전한 online dynamic 알고리즘을 외우는 것이 아니라, 문제 조건을 보고 어떤 제한된 모델로 낮출 수 있는지 판단하는 것입니다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Max Flow Min Cut, Min-Cost Flow, MST/Kruskal, Offline and Time-Axis Techniques
-- 함께 보면 좋은 레슨: Graph Cut Structures, Link-Cut Tree, Euler Tour Tree
-- 다음에 볼 레슨: fully dynamic graph structures, dynamic cut, time-expanded network modeling
-
 ## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |

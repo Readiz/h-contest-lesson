@@ -2,6 +2,14 @@
 
 이 문서는 이미 공개된 레슨의 이동 기록과 콘텐츠 보강 완료 내역을 보관합니다. 아직 공개하지 않은 후보와 practice link TODO는 [ROADMAP.md](ROADMAP.md)에서 관리합니다.
 
+## 2026-09-09 참고 본문의 중복 코드와 페이지 통합
+
+- 반복되는 선수/후속 학습 나열과 마지막 선택 질문을 정리했습니다. 본문의 정의·조건·반례·실수 설명과 실제 로컬 연습은 남겼습니다.
+- Palindrome, Polynomial, Decision AI, Offline, Convex DP, Graph Cut의 중복 선택 지도와 Matroid 구현 경계, OCO feedback 안내를 개요로 통합했습니다. Decision AI의 중간 개요·미완성 중복 연습, Convex DP Modeling, Cut Cactus Applications, Planar Min-Cut도 관련 본문으로 합쳐 참고 문서는 182개에서 169개가 됐습니다.
+- SCC/2-SAT, KMP, 회문 DP, 동적 연결성, Wavelet Matrix, CCW는 부분 코드와 결합 코드 중복을 없애고 독립 컴파일 가능한 결합 예제를 남겼습니다. Kitamasa·Grundy·Value Iteration의 응용 페이지는 원 구현으로 연결합니다.
+- Product tree를 계산에 쓰지 않는 Multipoint 골격, version을 이벤트에 저장하지 않는 Kinetic 큐, cactus cycle을 처리하지 않는 tree DFS, 독립 item 선택을 DP로 감싼 Alien 예제, 식만 함수로 감싼 power/lifting 예제를 제거했습니다. Multipoint는 나머지 전파의 손계산을 남겼습니다.
+- 삽입 전용 LineContainer를 임의 삭제 자료구조로 소개하던 설명과 lower-bound flow의 demand 부호 설명을 원 구현/문헌에 맞췄습니다. 삭제된 페이지의 manifest·개요·이동 안내·로드맵 링크와 생성 카탈로그를 함께 갱신했습니다.
+
 ## 2026-09-09 참고 노트 편집 정리
 
 - 참고 70개 강의와 하위 페이지를 대상으로 미완성 연습표를 ROADMAP으로 옮기고, 실제 문제 없이 설명을 반복하던 대표 문제 절 16개를 정리했습니다. 입력·출력과 검증 기준이 있는 로컬 연습, 실제 구현, 반례와 적용 조건은 보존했습니다.

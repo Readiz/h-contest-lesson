@@ -2,18 +2,6 @@
 
 이분 그래프에서는 maximum matching과 minimum vertex cover가 같은 크기를 가집니다. 이 성질을 Konig theorem이라고 부르며, "서로 겹치지 않는 선택을 최대화"하는 문제와 "모든 간선을 덮는 최소 정점 집합" 문제를 서로 바꿔 생각하게 해 줍니다.
 
-이 레슨은 Max Flow 이후에 보는 이분 매칭의 해석 확장입니다.
-
-1. 이분 매칭을 flow 없이 직접 구현한다.
-2. maximum matching에서 minimum vertex cover를 복원한다.
-3. vertex cover, minimum path cover, maximum independent set으로 모델링을 넓힌다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Max Flow, Bipartite Matching, BFS/DFS
-- 함께 보면 좋은 레슨: Max Flow, Min Cut, Bipartite Matching, SCC와 2-SAT
-- 다음에 볼 레슨: Dilworth theorem, min-cost matching, general graph matching
-
 ## 문제 신호
 
 Matching은 "한 정점이 최대 하나만 선택된다"는 제약이 양쪽에 있을 때 나옵니다.
@@ -208,14 +196,3 @@ N - maximum matching size
 | maximum independent set을 cover 자체로 출력 | 보수 집합 필요 | `V - cover` 확인 |
 | DAG path cover에 cycle 있는 그래프 사용 | 해석 오류 | DAG 여부 먼저 검사 |
 | 1-index/0-index 혼동 | 매칭 배열 범위 오류 | 좌/우 크기 분리 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 선택 대상이 좌/우 두 부류로 나뉘는가?
-2. 각 대상은 최대 하나의 짝만 가질 수 있는가?
-3. "모든 충돌을 덮기"가 vertex cover로 바뀌는가?
-4. "충돌 없이 최대 선택"이 independent set으로 바뀌는가?
-5. DAG path cover로 정점들을 경로에 이어 붙일 수 있는가?
-6. 입력 크기가 DFS 매칭으로 충분한가?
-
-Matching과 cover duality는 같은 구조를 최대화와 최소화 양쪽에서 보게 해 줍니다. 문제의 문장이 "최대 배정"인지 "최소 차단"인지 달라도, 이분 그래프 위에서는 같은 matching 결과에서 답이 나올 수 있습니다.

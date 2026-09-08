@@ -2,18 +2,6 @@
 
 Directed MST는 루트에서 모든 정점으로 도달하는 최소 비용 arborescence를 찾는 문제입니다. 무향 MST와 달리 각 정점은 루트에서 들어오는 경로가 있어야 하고, 루트를 제외한 모든 정점은 정확히 하나의 incoming edge를 선택합니다.
 
-이 레슨은 그래프 최단거리, SCC, matching/flow 심화 이후에 보는 방향 그래프 최적화입니다.
-
-1. 루트를 제외한 각 정점은 가장 싼 incoming edge를 하나씩 고른다.
-2. 선택된 간선들이 cycle을 만들면 cycle을 수축한다.
-3. cycle 안으로 들어오는 간선 비용은 이미 고른 incoming edge 비용을 빼서 보정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: directed graph, cycle contraction, greedy proof, DSU적 relabeling
-- 함께 보면 좋은 레슨: SCC와 2-SAT, Min-Cost Flow, Weighted Matching
-- 다음에 볼 레슨: dynamic connectivity, minimum arborescence variants, matroid intersection intuition
-
 ## 문제 신호
 
 | 문제 표현 | Directed MST 관점 |
@@ -170,11 +158,3 @@ optional<long long> directedMST(int n, int root, vector<DirectedEdge> edges) {
 3. 도달 불가능 정점을 cycle로 오해한다.
 4. self-loop를 제거하지 않아 cycle 판정이 꼬인다.
 5. answer에 `in[v]`를 cycle 수축마다 더하는 이유를 잊고 중복 보정한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 루트가 고정되어 있는가, 선택해야 하는가?
-- 모든 정점이 반드시 포함되는가?
-- 간선 비용에 음수가 있는가?
-- root로 들어오는 간선을 허용하면 안 되는가?
-- arborescence 복원이 필요한가, 비용만 필요한가?

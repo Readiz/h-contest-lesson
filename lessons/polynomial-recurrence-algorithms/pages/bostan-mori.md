@@ -2,18 +2,6 @@
 
 Bostan-Mori는 rational generating function `P(x) / Q(x)`의 `x^n` 계수를 빠르게 구하는 알고리즘입니다. 선형 점화식의 n번째 항을 characteristic polynomial이 아니라 생성함수 관점에서 계산할 수 있습니다.
 
-이 레슨은 Linear Recurrence와 Kitamasa, Formal Power Series 이후에 보는 polynomial 계수 추출 기법입니다.
-
-1. 짝수/홀수 계수만 남기는 변환을 반복한다.
-2. 분모 `Q(x)`와 `Q(-x)`를 곱해 짝수 차수만 남긴다.
-3. `n`의 parity에 따라 분자를 갱신하고 `n`을 절반으로 줄인다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 선형 점화식, 다항식 곱셈, 생성함수, modular inverse
-- 함께 보면 좋은 레슨: Linear Recurrence와 Kitamasa, Formal Power Series, Multipoint Evaluation
-- 다음에 볼 레슨: polynomial interpolation, linear recurrence guessing, NTT 최적화
-
 ## 문제 신호
 
 | 문제 표현 | Bostan-Mori 관점 |
@@ -165,11 +153,3 @@ NTT 곱셈과 trimming을 쓰면 더 빨라집니다. 하지만 구현 복잡도
 3. denominator는 항상 짝수 계수만 취해야 한다는 점을 빼먹는다.
 4. `Q(0)` inverse가 필요하다는 조건을 확인하지 않는다.
 5. 점화식에서 분자 `P`를 만들 때 초기항 보정을 빼먹는다.
-
-## 문제를 볼 때 체크할 조건
-
-- `P(x)/Q(x)`가 직접 주어졌는가?
-- 구할 것은 n번째 계수 하나인가, 여러 개인가?
-- modulus가 prime이라 inverse를 구할 수 있는가?
-- `Q(0)`이 0이 아닌가?
-- degree와 n 범위가 Kitamasa, matrix exponentiation 중 무엇에 맞는가?

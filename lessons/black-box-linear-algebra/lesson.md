@@ -2,18 +2,6 @@
 
 Black-Box Linear Algebra는 큰 행렬을 직접 저장하거나 `O(N^3)`으로 다루지 않고, sparse matrix-vector product만으로 rank, determinant, linear recurrence 정보를 얻는 관점입니다. 구현 대회에서 자주 쓰는 완성 템플릿은 아니지만, 큰 선형 시스템과 recurrence를 연결하는 중요한 모델입니다.
 
-이 레슨은 Linear Recurrence Applications, Berlekamp-Massey, Modular Arithmetic 이후에 보는 수학 심화입니다.
-
-1. 행렬을 원소 배열이 아니라 곱셈 oracle로 본다.
-2. Krylov sequence `u^T A^k v`를 만들어 선형 점화식을 찾는다.
-3. field 조건, randomized projection, 검증 단계를 분리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Linear Recurrence Applications, Berlekamp-Massey, modular inverse
-- 함께 보면 좋은 레슨: Matrix Exponentiation, Bostan-Mori, Recurrence Guessing
-- 다음에 볼 레슨: sparse linear system, randomized verification, determinant algorithms
-
 ## 문제 신호
 
 | 문제 표현 | Black-box 관점 |
@@ -172,11 +160,3 @@ Randomized algorithm은 한 번 맞아 보이는 것으로 충분하지 않습�
 3. 필요한 항 개수보다 짧은 수열로 recurrence를 확정한다.
 4. sparse entry의 row/col 방향을 뒤집어 `A` 대신 `A^T`를 곱한다.
 5. dense matrix를 만들 수 있는데도 과한 randomized 기법을 써서 구현 위험을 키운다.
-
-## 문제를 볼 때 체크할 조건
-
-- 행렬 전체가 필요한가, matvec만 있으면 되는가?
-- nonzero 수가 충분히 작은가?
-- modulo가 field인가?
-- 결과가 deterministic이어야 하는가, randomized 허용인가?
-- 작은 입력으로 dense baseline을 만들 수 있는가?

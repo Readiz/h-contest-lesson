@@ -2,18 +2,6 @@
 
 Shape Distance Modeling은 점, 선분, 원, 볼록 다각형 사이의 거리와 충돌 문제를 어떤 수학 모델로 바꿀지 정리하는 기하 심화 레슨입니다. Minkowski Sum이나 Rotating Calipers를 바로 구현하기 전에, 어떤 도형을 점으로 줄이고 어떤 도형을 확장할지 결정하는 단계입니다.
 
-이 레슨은 Minkowski Sum, Rotating Calipers Applications 이후에 보는 계산기하 심화입니다.
-
-1. 두 도형 사이 거리를 원점과 Minkowski difference의 거리로 바꾼다.
-2. 볼록 도형은 support function과 tangent 방향으로 본다.
-3. 일반 polygon은 segment distance baseline으로 검증한 뒤 최적화를 붙인다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: CCW, dot product, segment intersection, convex hull, Minkowski Sum
-- 함께 보면 좋은 레슨: Minkowski Sum, Rotating Calipers Applications, Sweep Line Geometry
-- 다음에 볼 레슨: circle geometry, configuration space, separating axis theorem
-
 ## 문제 신호
 
 | 문제 표현 | 모델링 후보 |
@@ -226,11 +214,3 @@ B를 -B로 반사해 A + (-B)를 만들면
 4. Minkowski difference에서 `A + B`를 만들고 `-B` 반사를 빼먹는다.
 5. 접하는 경우를 겹침으로 볼지 분리로 볼지 문제 조건을 확인하지 않는다.
 6. 실수 EPS를 너무 크게 잡아 작은 간격을 0으로 만든다.
-
-## 문제를 볼 때 체크할 조건
-
-- 도형이 convex인지 일반 polygon인지 명확한가?
-- 충돌 판정인지 실제 거리 출력인지 구분했는가?
-- 움직이는 도형을 반사해서 장애물을 확장할 수 있는가?
-- support function이나 separating axis가 필요한가?
-- 작은 입력 baseline으로 최적화 구현을 검증할 수 있는가?

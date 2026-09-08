@@ -90,11 +90,3 @@ D. 관측은 센서 값뿐이고 실제 위치는 확률적으로만 추정된�
 | B | bandit feedback | 선택하지 않은 arm reward를 알고 있다고 가정 |
 | C | simulator feedback | exact transition table이 있다고 가정 |
 | D | hidden-state observation | 실제 state 기준으로 policy를 학습 |
-
-## 문제를 볼 때 체크할 조건
-
-- 선택하지 않은 action의 결과가 공개되는가?
-- transition/reward table이 입력으로 주어지는가?
-- simulator call budget과 wall-clock deadline이 있는가?
-- state가 완전 관측인가, observation만 주어지는가?
-- 제출물이 exact value인지, policy/agent인지 구분했는가?

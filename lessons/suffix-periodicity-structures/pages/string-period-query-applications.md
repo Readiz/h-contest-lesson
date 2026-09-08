@@ -2,18 +2,6 @@
 
 String Period Query Applications는 border, period, runs 정보를 단일 문자열 판정에서 range/query 문제로 확장하는 문자열 응용 레슨입니다. Runs와 Periodicity를 배운 뒤, 여러 구간에 대해 "이 구간의 최소 주기는 무엇인가", "이 반복은 어디까지 확장되는가", "prefix와 suffix가 얼마나 겹치는가"를 빠르게 답하는 관점을 정리합니다.
 
-이 레슨은 Runs와 문자열 주기, Suffix Array Applications, Border Automaton 이후에 보는 문자열 심화입니다.
-
-1. 전체 문자열의 period와 substring period를 구분한다.
-2. query가 online인지 offline인지에 따라 prefix/Z, suffix/LCP, hash 중 도구를 고른다.
-3. 반복 판정은 후보 period를 만든 뒤 LCP/LCS로 확장 가능성을 확인한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: prefix function, Z algorithm, suffix array와 LCP, rolling hash, runs
-- 함께 보면 좋은 레슨: Runs와 문자열 주기, Suffix Array Applications, Border Automaton
-- 다음에 볼 레슨: suffix automaton applications, palindrome range DP, Lyndon factorization 응용
-
 ## 문제 신호
 
 | 문제 표현 | Period Query 관점 |
@@ -177,11 +165,3 @@ Rolling hash는 빠르지만 확률적입니다. 엄밀성이 필요한 환경�
 3. `p`가 period인지 확인하지 않고 약수라는 이유만으로 답으로 쓴다.
 4. hash 충돌 가능성을 무시해야 하는 문제에서 단일 hash만 사용한다.
 5. run의 maximality를 보지 않고 같은 반복을 여러 번 센다.
-
-## 문제를 볼 때 체크할 조건
-
-- query 대상이 전체 문자열인가, 임의 substring인가?
-- 완전 반복인지, period 조건만 필요한지 구분했는가?
-- 후보 period를 어디서 얻는가?
-- equality 검증에 hash를 써도 되는가?
-- 반복 구간의 좌우 확장 또는 maximality가 필요한가?

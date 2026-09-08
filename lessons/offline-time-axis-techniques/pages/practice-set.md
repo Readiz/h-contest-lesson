@@ -6,7 +6,7 @@ Offline and Time-Axis Techniques 계열은 같은 입력을 여러 모델로 바
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
-| 표준 | [Offline Dynamic Connectivity](#3-로컬-연습-offline-dynamic-connectivity) | edge active interval + rollback DSU | segment tree over time |
+| 표준 | [Offline Dynamic Connectivity](#로컬-연습-offline-dynamic-connectivity) | edge active interval + rollback DSU | segment tree over time |
 
 ## Trace: active interval 만들기
 

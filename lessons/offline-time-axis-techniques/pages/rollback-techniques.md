@@ -2,18 +2,6 @@
 
 Rollback Techniques는 오프라인 알고리즘에서 상태를 적용한 뒤 정확히 이전 snapshot으로 되돌리는 구현 패턴입니다. 대표 예시는 Rollback DSU지만, stack에 변경 전 값을 기록하는 방식은 Fenwick, segment tree, DP state, frequency table에도 적용할 수 있습니다.
 
-이 레슨은 Offline Queries, Persistent Union-Find, Dynamic Connectivity 이후에 보는 자료구조/오프라인 심화입니다.
-
-1. 변경을 할 때마다 "되돌리기 위한 최소 정보"를 stack에 쌓는다.
-2. 재귀나 divide and conquer 구간에 들어가기 전 snapshot 크기를 저장한다.
-3. 구간 처리가 끝나면 stack을 snapshot 크기까지 되돌린다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Union-Find, offline query, recursion over intervals
-- 함께 보면 좋은 레슨: Offline Queries, Dynamic Connectivity, Persistent Union-Find
-- 다음에 볼 레슨: segment tree over time, divide and conquer on queries, retroactive structures
-
 ## 문제 신호
 
 | 문제 표현 | Rollback 관점 |
@@ -176,11 +164,3 @@ Rollback은 "변경 전 값을 기록하고 원복"할 수 있으면 됩니다.
 3. same-component union의 marker 처리 방식을 섞는다.
 4. recursion child 사이에 snapshot을 복구하지 않는다.
 5. hash map에서 "기존에 없던 key"와 "값이 0인 key"를 구분하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- update/query를 offline으로 재배열할 수 있는가?
-- 상태 변경이 stack 순서로 되돌아오는가?
-- 변경 전 값을 모두 기록할 수 있는가?
-- path compression처럼 숨은 변경이 있지는 않은가?
-- persistence가 더 간단한 random access query는 아닌가?

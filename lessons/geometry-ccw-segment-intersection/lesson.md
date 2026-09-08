@@ -2,28 +2,9 @@
 
 기하 문제는 공식을 많이 외우는 것보다 **좌표를 벡터로 보고 방향과 경계를 정확히 처리하는 것**이 중요합니다. 특히 정수 좌표 문제에서는 부동소수점 계산을 피하고, 외적(cross product)의 부호로 판단할 수 있는 경우가 많습니다.
 
-이 레슨은 기하 입문의 세 축을 다룹니다.
-
-1. CCW로 세 점의 방향을 판단한다.
-2. CCW와 경계 비교로 두 선분이 교차하는지 판정한다.
-3. 정렬과 CCW를 이용해 Convex Hull을 만든다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 정렬, `long long`, 좌표와 벡터 감각
-- 함께 보면 좋은 레슨: 정렬 알고리즘, 대회용 C++ 기본기
-- 다음에 볼 레슨: Rotating Calipers, Sweep Line Geometry
-
 ## 점과 벡터
 
 2차원 점은 보통 `(x, y)`로 표현합니다. 두 점 `a`, `b`가 있으면 `a -> b` 벡터는 `(b.x - a.x, b.y - a.y)`입니다.
-
-```cpp compile-check
-struct Point {
-    long long x;
-    long long y;
-};
-```
 
 정수 좌표의 범위가 `10^9` 수준이면 좌표 차의 곱은 `10^18` 근처까지 갈 수 있습니다. 그래서 기하 기본 구현에서는 `int`보다 `long long`을 먼저 씁니다.
 
@@ -42,28 +23,6 @@ cross(a, b) = a.x * b.y - a.y * b.x
 | 양수 | `a -> b -> c`가 반시계 방향 |
 | 음수 | 시계 방향 |
 | 0 | 세 점이 일직선 |
-
-```cpp compile-check
-struct Point {
-    long long x;
-    long long y;
-};
-
-long long cross(Point a, Point b, Point c) {
-    long long x1 = b.x - a.x;
-    long long y1 = b.y - a.y;
-    long long x2 = c.x - a.x;
-    long long y2 = c.y - a.y;
-    return x1 * y2 - y1 * x2;
-}
-
-int ccw(Point a, Point b, Point c) {
-    long long value = cross(a, b, c);
-    if (value > 0) return 1;
-    if (value < 0) return -1;
-    return 0;
-}
-```
 
 CCW는 기하 문제의 조건문입니다. "왼쪽으로 도는가", "일직선인가", "볼록 껍질에서 오른쪽으로 꺾였는가"를 모두 이 부호로 봅니다.
 
@@ -250,14 +209,3 @@ Convex Hull의 병목은 정렬입니다. 정렬 이후 hull을 만드는 while 
 | Convex Hull에서 중복 점 제거 누락 | 같은 점 반복, hull 오염 | `sort + unique` |
 | collinear 점 처리 정책을 무심코 선택 | 경계 점 포함 여부 오답 | `<= 0`와 `< 0` 차이 확인 |
 | 실수 좌표를 정확 비교 | 오차 오답 | `eps` 또는 정수식 유지 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 좌표가 정수인가, 실수인가?
-2. 좌표 범위의 곱이 `long long` 안에 들어오는가?
-3. 끝점에서 만나는 것도 교차로 보는가?
-4. 일직선으로 겹치는 선분을 어떻게 처리해야 하는가?
-5. Convex Hull에서 경계 위의 모든 점이 필요한가?
-6. 거리 자체가 필요한가, 거리 비교만 필요한가?
-
-정리하면, 기하 기본은 외적 부호와 경계 처리입니다. CCW를 정확히 구현하고, 문제의 "포함/접촉/겹침" 정의를 먼저 확인하면 많은 기하 입문 문제를 안정적으로 풀 수 있습니다.

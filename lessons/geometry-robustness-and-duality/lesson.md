@@ -4,12 +4,6 @@ Geometry Robustness and Duality는 robust predicate, Voronoi/Delaunay, Power Dia
 
 기존 단발 문서들은 각각 의미가 있지만, 독자가 바로 구현 레슨으로 받아들이면 위험합니다. 특히 weighted Voronoi와 regular triangulation은 대회에서 전체 구조를 직접 구현하는 경우보다 cell 계산, predicate, lifting 해석만 필요한 경우가 많습니다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Geometry CCW와 Segment Intersection, Circle Geometry, Sweep Line Geometry, Half-Plane Intersection
-- 함께 보면 좋은 레슨: Shape Distance Modeling, Circle Arrangement, Inversion Geometry
-- 다음에 볼 레슨: robust Delaunay implementation, weighted Voronoi cell query, 3D lower hull
-
 ## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |

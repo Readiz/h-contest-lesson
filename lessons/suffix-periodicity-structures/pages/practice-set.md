@@ -4,7 +4,7 @@ Suffix and Periodicity Structures 계열은 같은 문제를 suffix array와 SAM
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
-| 입문 | [Distinct Substring Count](#2-로컬-연습-distinct-substring-count) | LCP sum 또는 SAM contribution | LCP, SAM |
+| 입문 | [Distinct Substring Count](#로컬-연습-distinct-substring-count) | LCP sum 또는 SAM contribution | LCP, SAM |
 
 ## Trace: `banana`의 suffix array와 LCP
 

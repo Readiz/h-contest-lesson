@@ -2,18 +2,6 @@
 
 Imperfect Information Search는 상대의 패, 숨겨진 상태, 랜덤 seed처럼 모든 정보를 볼 수 없는 게임/탐색 문제를 다룹니다. 완전 정보 Minimax나 기본 MCTS와 달리, 실제 상태 하나가 아니라 가능한 상태들의 집합과 믿음 분포를 함께 관리해야 합니다.
 
-이 레슨은 Minimax, Monte Carlo Tree Search, Markov Decision Process 이후에 보는 게임 탐색 심화입니다.
-
-1. 관측 가능한 정보와 숨겨진 정보를 분리한다.
-2. 가능한 실제 상태 집합 또는 belief distribution을 유지한다.
-3. 결정화(determinization), belief-state search, information set MCTS 중 문제에 맞는 근사를 고른다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: game tree, MCTS, probability distribution, state hashing
-- 함께 보면 좋은 레슨: Minimax와 Alpha-Beta, Monte Carlo Tree Search, Markov Decision Process
-- 다음에 볼 레슨: belief-state planning, opponent modeling, partially observable MDP
-
 ## 문제 신호
 
 | 문제 표현 | Imperfect Information 관점 |
@@ -167,11 +155,3 @@ belief --action--> observation distribution --updated belief
 3. 관측 후 불가능해진 hidden state를 제거하지 않는다.
 4. belief 확률 정규화를 빠뜨린다.
 5. 상대가 관측한 정보와 내가 관측한 정보를 같은 것으로 둔다.
-
-## 문제를 볼 때 체크할 조건
-
-- 어떤 정보가 공개이고 어떤 정보가 hidden인가?
-- 현재 관측과 일치하는 실제 상태 후보를 만들 수 있는가?
-- action 이후 어떤 observation이 들어오는가?
-- hidden state를 샘플링해도 정보 누출이 답에 치명적이지 않은가?
-- 정확 DP가 필요한지, heuristic search가 허용되는지 명확한가?

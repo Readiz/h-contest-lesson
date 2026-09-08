@@ -2,18 +2,6 @@
 
 Minkowski Sum은 두 점 집합 `A`, `B`의 모든 합 `a + b`로 새 집합을 만드는 연산입니다. 볼록 다각형끼리의 합은 다시 볼록 다각형이 되므로, 장애물 확장, 두 물체의 충돌 판정, 볼록 다각형 사이 거리 같은 문제를 기하 문제 하나로 정리할 수 있습니다.
 
-이 레슨은 Rotating Calipers, Half-Plane Intersection, Convex Hull 이후에 보는 계산기하 심화입니다.
-
-1. 두 convex polygon의 꼭짓점을 반시계 방향으로 준비한다.
-2. 가장 낮고 왼쪽인 꼭짓점에서 시작해 edge vector를 angle 순서로 merge한다.
-3. 같은 방향 edge는 합쳐서 중복 점과 collinear 점을 줄인다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: CCW, convex hull, vector angle order, polygon area
-- 함께 보면 좋은 레슨: Rotating Calipers, Half-Plane Intersection, Sweep Line Geometry
-- 다음에 볼 레슨: Rotating Calipers Applications, convex polygon distance, configuration space obstacle
-
 ## 문제 신호
 
 | 문제 표현 | Minkowski Sum 관점 |
@@ -223,11 +211,3 @@ support(A + B, dir) = support(A, dir) + support(B, dir)
 3. 같은 방향 edge를 따로 넣어 중복 collinear 점이 생긴다.
 4. `A + B`와 `A - B`를 혼동한다.
 5. 일반 polygon에도 convex polygon 알고리즘을 그대로 적용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 입력 도형이 convex인가, 아니면 hull부터 만들어야 하는가?
-- 필요한 연산이 sum인지 difference인지 명확한가?
-- 원점 포함 판정, 거리, 실제 polygon 출력 중 무엇을 요구하는가?
-- collinear boundary point를 보존해야 하는가?
-- 좌표 범위가 외적과 합 좌표에서 안전한가?

@@ -2,18 +2,6 @@
 
 Persistent Queue and Stack은 update 뒤에도 과거 version을 조회해야 하는 stack, queue, deque를 어떻게 저장할지 다루는 자료구조 레슨입니다. Persistent Segment Tree처럼 큰 범위 구조를 복제하기 전, 선형 container의 version 관리가 어떤 모델로 단순화되는지 보는 것이 목표입니다.
 
-이 레슨은 Persistent Union-Find, Retroactive Data Structures 이후에 보는 persistence 응용입니다.
-
-1. Stack은 parent pointer 하나로 version을 표현할 수 있다.
-2. Queue는 두 stack, binary lifting, persistent sequence 중 어떤 모델인지 구분한다.
-3. Persistence와 retroactivity의 차이를 명확히 둔다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: stack, queue, persistent data structure, binary lifting
-- 함께 보면 좋은 레슨: Persistent Segment Tree, Persistent Union-Find, Retroactive Data Structures
-- 다음에 볼 레슨: persistent sequence queries, purely functional deque, rollback techniques
-
 ## 문제 신호
 
 | 문제 표현 | 후보 구조 |
@@ -168,11 +156,3 @@ v2와 v4는 v1에서 갈라진 서로 다른 branch다.
 3. queue pop을 stack parent처럼 처리해 FIFO 순서를 깨뜨린다.
 4. rollback만 구현해 놓고 version branching query를 처리하려 한다.
 5. persistent segment tree의 index 범위를 operation 수보다 작게 잡는다.
-
-## 문제를 볼 때 체크할 조건
-
-- version이 tree처럼 branch되는가?
-- 필요한 연산이 top/front뿐인가, k번째 원소인가?
-- stack, queue, deque 중 FIFO/LIFO 조건이 무엇인가?
-- pop이 항상 valid한가?
-- operation 수 기준으로 index 범위를 잡았는가?

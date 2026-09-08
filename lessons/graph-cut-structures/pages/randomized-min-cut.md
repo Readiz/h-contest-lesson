@@ -2,18 +2,6 @@
 
 Randomized Min Cut은 Karger contraction처럼 무작위 edge 수축을 반복해 무향 그래프의 global min cut을 찾는 그래프 레슨입니다. Stoer-Wagner가 결정적 알고리즘이라면, Karger 계열은 구현이 짧고 확률 증폭으로 성공률을 높이는 randomized 접근입니다.
 
-이 레슨은 Global Min Cut, Cut Sparsification, Global Min Cut Applications 이후에 보는 그래프 심화입니다.
-
-1. 무작위 contraction이 min cut edge를 피하면 정답 cut이 보존된다.
-2. 한 번의 성공 확률은 낮지만 반복하면 실패 확률을 줄일 수 있다.
-3. randomized 알고리즘은 seed, 반복 횟수, 검증 가능한 fallback을 함께 설계한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: undirected cut, contraction, DSU, probability amplification
-- 함께 보면 좋은 레슨: Global Min Cut, Cut Sparsification, Cactus Representation
-- 다음에 볼 레슨: randomized graph algorithms, cut sparsification applications
-
 ## 문제 신호
 
 | 문제 표현 | Randomized Min Cut 관점 |
@@ -177,11 +165,3 @@ contraction은 graph를 단순화하지만 모든 cut을 보존하지는 않습�
 3. 한 번의 trial 결과만 믿고 제출한다.
 4. weighted edge를 단순 unweighted edge처럼 처리한다.
 5. 난수 seed가 고정되지 않아 디버깅 재현이 어렵다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 무향 multigraph인가?
-- randomized 풀이가 허용되는가?
-- weighted edge를 어떻게 처리할 것인가?
-- 반복 횟수와 시간 제한이 맞는가?
-- 작은 테스트에서 Stoer-Wagner와 비교했는가?

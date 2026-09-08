@@ -2,18 +2,6 @@
 
 Linear Recurrence는 앞의 몇 항으로 다음 항이 결정되는 수열입니다. Matrix Exponentiation으로도 풀 수 있지만, 차수 `K`가 크고 `N`이 매우 클 때는 characteristic polynomial을 이용하는 Kitamasa 방식이 더 직접적입니다.
 
-이 레슨은 Matrix Exponentiation 이후에 보는 선형 점화식 고속 계산을 정리합니다.
-
-1. 점화식을 characteristic polynomial로 표현한다.
-2. `x^n mod P(x)`의 계수를 구한다.
-3. 그 계수로 초기항의 선형 결합을 계산한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 모듈러 연산, 행렬 거듭제곱, polynomial 나머지
-- 함께 보면 좋은 레슨: Matrix Exponentiation, Formal Power Series, FFT와 NTT
-- 다음에 볼 레슨: Bostan-Mori, linear recurrence guessing, multipoint evaluation
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -198,11 +186,3 @@ O(K^2 log N)
 3. `n < K`일 때 초기항을 바로 반환하지 않는다.
 4. 음수 계수를 모듈러 정규화하지 않는다.
 5. characteristic relation의 degree reduction 방향을 잘못 잡는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 점화식 차수 `K`와 질의 `N`의 범위는?
-- 초기항 index가 0부터인가 1부터인가?
-- 계수와 답의 mod가 prime인가?
-- 점화식이 고정인가, query마다 바뀌는가?
-- 여러 항을 한꺼번에 구해야 하는가?

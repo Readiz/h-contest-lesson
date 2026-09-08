@@ -2,18 +2,6 @@
 
 Kinetic Hull은 점이나 직선이 시간에 따라 움직일 때, 현재 최적 점이나 볼록 껍질을 event 단위로 갱신하는 관점입니다. 정적인 Convex Hull이나 Convex Hull Trick은 한 번 만든 구조를 질의하지만, kinetic 문제는 시간이 흐르면서 최적 후보가 바뀌는 순간을 추적합니다.
 
-이 레슨은 Convex Hull Trick Variants와 Rotating Calipers Applications 이후에 보는 동적 최적화 심화입니다.
-
-1. 각 후보의 값이 시간 `t`의 함수인지 확인한다.
-2. 현재 최적인 후보가 언제 다른 후보에게 밀리는지 event를 만든다.
-3. event가 실제로 유효한지 다시 확인하면서 구조를 갱신한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Convex Hull Trick Variants, Rotating Calipers Applications, Robust Geometry Predicates
-- 함께 보면 좋은 레슨: Shape Distance Modeling, Fully Dynamic CHT, Sweep Line Geometry
-- 다음에 볼 레슨: fully dynamic CHT, kinetic data structures, event-driven optimization
-
 ## 문제 신호
 
 | 문제 표현 | Kinetic Hull 관점 |
@@ -58,46 +46,9 @@ A와 C 교차: 2t+1 = 4t-3 -> t = 2
 
 하지만 모든 교차가 envelope 변화가 아닙니다. `t=2`에서 C가 A를 이겨도, 그 시점의 최댓값은 아직 B일 수 있습니다. event를 만들 때는 "두 후보가 만난다"와 "답이 바뀐다"를 구분해야 합니다.
 
-## Event Queue Skeleton
+## 이벤트의 수명
 
-아래 코드는 후보 쌍의 교차 시간을 priority queue에 넣고, 꺼낼 때 여전히 이웃인지 확인하는 형태의 skeleton입니다.
-
-```cpp compile-check
-#include <queue>
-#include <vector>
-using namespace std;
-
-struct Event {
-    long double time = 0.0L;
-    int left = -1;
-    int right = -1;
-
-    bool operator<(const Event& other) const {
-        return time > other.time;
-    }
-};
-
-struct KineticQueue {
-    priority_queue<Event> events;
-    vector<int> version;
-
-    explicit KineticQueue(int n) : version(n, 0) {}
-
-    void pushEvent(long double time, int left, int right) {
-        if (left < 0 || right < 0) {
-            return;
-        }
-        events.push(Event{time, left, right});
-    }
-
-    bool isStillValid(const Event& event, const vector<int>& currentVersion) const {
-        return version[event.left] == currentVersion[event.left]
-            && version[event.right] == currentVersion[event.right];
-    }
-};
-```
-
-실전 구현에서는 후보의 linked-list 이웃, 현재 시간, 교차 계산, version bump가 함께 필요합니다. skeleton의 핵심은 오래된 event를 바로 삭제하지 않고, 꺼낼 때 무효화하는 방식입니다.
+교차 시각만 저장하면 후보가 바뀐 뒤 남아 있는 오래된 이벤트를 구별할 수 없습니다. 이벤트를 만들 때 양쪽 후보의 version을 함께 저장하고, 꺼낼 때 현재 version·이웃 관계·현재 시각과 비교합니다. 처리 뒤 바뀐 이웃의 이벤트를 다시 계산해야 합니다.
 
 ## Moving Point Hull
 
@@ -153,11 +104,3 @@ event(A,B) 처리 후 순서가 바뀌면 B와 C event의 version도 다시 확�
 4. 같은 속도 후보의 우열을 따로 처리하지 않는다.
 5. floating comparison으로 동시에 일어나는 event 순서가 흔들린다.
 6. kinetic이 필요한 문제를 offline query 정렬로 더 쉽게 풀 수 있는데도 어렵게 구현한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 후보 값이 시간에 대해 선형 또는 단순 함수인가?
-- 답이 바뀌는 event 수에 상한이 있는가?
-- query 시간이 online인가 offline인가?
-- 같은 시간에 여러 event가 생기면 순서를 어떻게 처리할 것인가?
-- exact rational comparison이 필요한가?

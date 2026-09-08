@@ -2,18 +2,6 @@
 
 Lagrangian Relaxation Patterns는 딱 맞춰야 하는 제약을 penalty로 목적식에 흡수해, DP, flow, greedy, shortest path 같은 더 단순한 oracle을 반복 호출하는 모델링 패턴입니다. Alien Optimization은 그중 "정확히 K개" 제약을 DP count와 함께 다루는 대표 사례이고, 이 레슨은 같은 생각을 더 넓은 최적화 문제에 적용하는 기준을 정리합니다.
 
-이 레슨은 Alien Optimization, Parametric DP, Fractional Programming DP 이후에 보는 전략과 최적화 심화입니다.
-
-1. 어려운 제약을 `lambda * violation` penalty로 목적식에 넣는다.
-2. 고정된 `lambda`에서 원래보다 쉬운 subproblem을 푼다.
-3. 선택 개수, 흐름량, 비용 같은 response가 목표 제약에 가까워지도록 `lambda`를 조정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Alien Optimization, Parametric DP, Fractional Programming DP
-- 함께 보면 좋은 레슨: Convex DP Modeling, Min-Cost Flow, Flow with Lower Bound
-- 다음에 볼 레슨: Dual Averaging, convex duality, decomposition methods
-
 ## 문제 신호
 
 | 문제 표현 | Lagrangian 관점 |
@@ -162,12 +150,3 @@ Lagrangian 이분 탐색은 response가 단조적일 때 안전합니다.
 4. 원래 제약이 equality인지 inequality인지 구분하지 않는다.
 5. penalty를 실수로 둬야 하는 문제를 정수 이분 탐색으로 자른다.
 6. relaxation 후 oracle이 여전히 어려운 문제인데 억지로 적용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 어떤 제약을 penalty로 옮길 것인가?
-- 고정된 `lambda`에서 풀리는 subproblem이 무엇인가?
-- response가 `lambda`에 대해 단조적인가?
-- equality 제약이면 목표 count를 정확히 맞출 수 있는가?
-- tie-break를 어느 방향으로 둘 것인가?
-- 최종 answer에서 penalty를 되돌리는 식이 맞는가?

@@ -10,12 +10,6 @@
 | DSU Rollback | Union-Find 변경을 되돌릴 수 있게 저장한다 | 시간 구간별 간선 추가/삭제, divide and conquer on time |
 | Parallel Binary Search | 여러 질의의 답을 동시에 이분 탐색한다 | 답의 단조성이 있고 업데이트 prefix를 반복 적용할 수 있음 |
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 정렬, Sqrt Decomposition, Union-Find, 이분 탐색
-- 함께 보면 좋은 레슨: Sqrt Decomposition, Fenwick Tree, Segment Tree
-- 다음에 볼 레슨: Persistent Segment Tree, Divide and Conquer Optimization
-
 ## 오프라인으로 바꾸는 이유
 
 질의가 `q`개 있고 각 질의를 독립적으로 처리하면 `O(qn)`이 되는 경우가 많습니다. 하지만 질의를 재정렬하면 이전 질의에서 계산한 상태를 다음 질의에 재사용할 수 있습니다.
@@ -198,14 +192,3 @@ Parallel Binary Search는 여러 질의의 답을 각각 이분 탐색하되, �
 | rollback DSU에서 경로 압축 사용 | rollback 불가능 | find는 압축 없이 구현 |
 | rollback checkpoint를 저장하지 않음 | 다른 분기 상태 오염 | DFS 진입 전 snapshot |
 | PBS의 단조성 조건을 착각 | 이분 탐색 방향 오류 | true/false 경계 정의 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 모든 질의를 미리 읽고 순서를 바꿀 수 있는가?
-2. 구간을 조금씩 움직이며 상태를 유지할 수 있는가?
-3. 업데이트의 시간 구간을 나눠서 처리할 수 있는가?
-4. 각 질의의 답이 단조 조건의 경계인가?
-5. 출력은 원래 질의 순서로 복원해야 하는가?
-6. 상태 초기화 비용이 전체 복잡도에 포함되어 있는가?
-
-정리하면, 오프라인 쿼리는 자료구조 하나가 아니라 처리 순서 설계입니다. Mo는 공간 이동을 줄이고, rollback은 시간 분기를 되돌리고, PBS는 여러 이분 탐색을 한꺼번에 진행합니다.

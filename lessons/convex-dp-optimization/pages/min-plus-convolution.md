@@ -2,18 +2,6 @@
 
 Min-Plus Convolution은 두 수열 `A`, `B`에서 `C[k] = min_i A[i] + B[k-i]`를 계산하는 연산입니다. 일반적으로는 느리지만, convex sequence, Monge 성질, DP 전이 구조가 있으면 argmin 단조성을 이용해 크게 줄일 수 있습니다.
 
-이 레슨은 Convex Cost Flow, Slope Trick, Monge와 SMAWK 이후에 보는 DP 최적화 심화입니다.
-
-1. DP 전이가 min-plus convolution 형태인지 확인한다.
-2. 제한이 없으면 naive `O(NM)`이 기본이다.
-3. convex/Monge 조건이 있으면 argmin monotonicity로 divide and conquer를 적용한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: DP transition, convex sequence, Monge inequality, divide and conquer optimization
-- 함께 보면 좋은 레슨: Monge와 SMAWK, Slope Trick, Convex Cost Flow
-- 다음에 볼 레슨: distance transform, convex DP modeling, tropical algebra
-
 ## 문제 신호
 
 | 문제 표현 | Min-Plus Convolution 관점 |
@@ -205,11 +193,3 @@ child가 많으면 merge 비용이 커집니다. 배열 길이 합, convex 여�
 3. 결과 index `k`에서 가능한 `i` 범위를 잘못 잡는다.
 4. `INF + value` overflow를 확인하지 않는다.
 5. max-plus와 min-plus를 부호 변환 없이 섞는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 전이가 정말 `min_i A[i] + B[k-i]` 형태인가?
-- 수열이 convex이거나 Monge 조건을 만족하는가?
-- argmin이 k에 따라 단조롭다는 증거가 있는가?
-- 배열 길이 합이 작아 naive merge가 충분하지는 않은가?
-- 여러 번 merge한다면 순서를 바꿔 총 비용을 줄일 수 있는가?

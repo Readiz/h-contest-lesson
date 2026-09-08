@@ -1,8 +1,8 @@
 # Bayesian Bandits
 
-Bayesian Bandits는 독립 레슨 카드가 아니라 [Probabilistic Decision AI](../probabilistic-decision-ai/lesson.md) 허브의 하위 페이지로 이동했습니다.
+Bayesian Bandits는 독립 레슨 카드가 아니라 [Probabilistic Decision AI](https://h.readiz.com/learn/probabilistic-decision-ai) 허브의 하위 페이지로 이동했습니다.
 
-- 새 위치: [Probabilistic Decision AI / Bayesian Bandits](../probabilistic-decision-ai/pages/bayesian-bandits.md)
-- 함께 읽을 페이지: [Decision AI Model Map](../probabilistic-decision-ai/pages/decision-ai-model-map.md), [Online Planning Evaluation](../probabilistic-decision-ai/pages/online-planning-evaluation.md)
+- 새 위치: [Probabilistic Decision AI / Bayesian Bandits](https://h.readiz.com/learn/probabilistic-decision-ai/bayesian-bandits)
+- 함께 읽을 페이지: [Decision AI Model Map](https://h.readiz.com/learn/probabilistic-decision-ai), [Online Planning Evaluation](https://h.readiz.com/learn/probabilistic-decision-ai/online-planning-evaluation)
 
 이 이동 문서는 기존 링크를 따라온 독자를 안내하기 위해 남깁니다. manifest의 공개 레슨 목록에서는 `probabilistic-decision-ai` 허브만 노출합니다.

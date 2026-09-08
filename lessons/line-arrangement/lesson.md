@@ -2,18 +2,6 @@
 
 Line Arrangement는 여러 직선이 평면을 어떻게 나누는지, 교점이 어떤 순서로 생기는지, 그리고 각 직선이 arrangement에 몇 개의 새 영역을 추가하는지 분석하는 주제입니다. Segment intersection sweep보다 한 단계 더 구조적인 기하 관점입니다.
 
-이 레슨은 Sweep Line Geometry와 Closest Pair Sweep 이후에 보는 직선/교점 기반 사고를 정리합니다.
-
-1. 직선을 정규화해 중복과 평행을 구분한다.
-2. 새 직선이 기존 직선들과 만드는 서로 다른 교점 수를 센다.
-3. sweep이 필요한 경우에는 이벤트와 active order를 별도로 관리한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: CCW, 선분 교차, 정렬, rational 비교
-- 함께 보면 좋은 레슨: Sweep Line Geometry, Closest Pair Sweep, Rotating Calipers
-- 다음에 볼 레슨: segment arrangement, half-plane intersection, Voronoi/Delaunay intuition
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -244,11 +232,3 @@ V - E + F = 1 + C
 3. 세 직선이 한 점에서 만날 때 교점 수를 중복으로 센다.
 4. rational 좌표를 double로 비교한다.
 5. 선분 문제를 무한 직선 공식으로 푼다.
-
-## 문제를 볼 때 체크할 조건
-
-- 입력 대상이 직선인가, 반직선인가, 선분인가?
-- 중복과 평행이 가능한가?
-- 교점 좌표를 출력해야 하는가, 개수만 필요한가?
-- 세 개 이상이 한 점에서 만나는 경우가 있는가?
-- 실수 오차가 허용되는가, exact rational이 필요한가?

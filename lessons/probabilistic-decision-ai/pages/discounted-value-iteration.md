@@ -2,18 +2,6 @@
 
 Markov Decision Process(MDP)는 상태, 행동, 확률 전이, 보상으로 이루어진 의사결정 모델입니다. 단순 확률 DP가 "정해진 전이의 기대값"을 계산한다면, MDP는 각 상태에서 어떤 행동을 고를지까지 함께 최적화합니다.
 
-이 레슨은 확률과 기대값, Minimax, Monte Carlo Tree Search 이후에 보는 확률적 전략 모델링 레슨입니다.
-
-1. 상태와 가능한 행동을 정의한다.
-2. 행동마다 다음 상태 확률과 보상을 둔다.
-3. value iteration이나 finite horizon DP로 최적 기대값을 계산한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 기대값 DP, 확률 전이, 그래프 상태, 반복 완화
-- 함께 보면 좋은 레슨: 확률과 기대값, Monte Carlo Tree Search, Minimax와 Alpha-Beta
-- 다음에 볼 레슨: imperfect information search, policy iteration, reinforcement learning basics
-
 ## 문제 신호
 
 | 문제 표현 | MDP 관점 |
@@ -153,11 +141,3 @@ transition list가 dense하면 상태 수의 제곱이 됩니다. sparse represe
 3. terminal state도 계속 갱신해 값이 흔들린다.
 4. `gamma = 1`인 순환 MDP에서 value iteration 수렴을 기대한다.
 5. 최적 행동을 출력해야 하는데 value만 저장한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 상태가 Markov property를 만족하는가?
-- 행동마다 가능한 next state와 확률을 모두 알고 있는가?
-- horizon이 유한한가, terminal이 있는가, discount가 있는가?
-- 최대 보상 문제인가, 최소 비용 문제인가?
-- 정확한 값이 필요한가, 제한 시간 안의 근사가 허용되는가?

@@ -2,18 +2,6 @@
 
 Palindromic Tree는 문자열의 모든 서로 다른 palindrome substring을 노드로 압축해 저장하는 자료구조입니다. Eertree라고도 부르며, 문자열을 왼쪽에서 오른쪽으로 읽으면서 새로 생기는 palindrome을 `O(1)` amortized에 가까운 방식으로 추가합니다.
 
-이 레슨은 Suffix Automaton 이후에 보는 "부분 문자열 구조 압축"의 palindrome 버전입니다.
-
-1. 두 개의 root로 홀수/짝수 palindrome을 동시에 관리한다.
-2. suffix link를 따라가며 새 문자를 양끝에 붙일 수 있는 palindrome을 찾는다.
-3. 각 palindrome의 개수, 길이, suffix 관계를 DP로 활용한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 문자열, palindrome, suffix link 감각, Suffix Automaton
-- 함께 보면 좋은 레슨: Suffix Automaton, 문자열 매칭, Trie와 Aho-Corasick
-- 다음에 볼 레슨: palindromic DP, Manacher, palindromic automaton 응용
-
 ## 문제 신호
 
 Palindromic Tree는 palindrome substring을 "모두" 다뤄야 할 때 강합니다.
@@ -188,14 +176,3 @@ construction 중 노드는 길이가 대체로 증가하는 순서로 만들어�
 | occurrence를 생성 횟수로만 사용 | 짧은 palindrome 등장 누락 | suffix link 역순 누적 |
 | alphabet 범위 가정 오류 | 범위 밖 접근 | 입력 문자 set 확인 |
 | Manacher로 충분한 문제에 과한 구현 | 시간 낭비 | 필요한 정보가 distinct인지 확인 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 서로 다른 palindrome substring을 모두 다뤄야 하는가?
-2. 각 palindrome의 등장 횟수나 길이별 통계가 필요한가?
-3. prefix를 읽으며 온라인으로 답을 내야 하는가?
-4. 가장 긴 palindrome만 필요해서 Manacher가 충분하지 않은가?
-5. alphabet 크기에 맞는 transition 구조를 골랐는가?
-6. occurrence 누적 순서가 suffix link 방향과 맞는가?
-
-Palindromic Tree는 palindrome substring을 노드로 만든다는 점에서 Suffix Automaton과 비슷한 감각을 줍니다. 다만 suffix link가 "가장 긴 proper palindromic suffix"로 이어진다는 차이를 정확히 잡아야 합니다.

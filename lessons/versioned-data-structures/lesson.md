@@ -4,12 +4,6 @@ Versioned Data Structures는 update 이후에도 과거 상태를 보존하거�
 
 이 허브는 persistence, rollback, retroactivity를 먼저 구분하고, 필요한 구조로 내려가게 합니다. 과거 상태를 임의로 조회하는 문제와 DFS 중 되돌리기만 필요한 문제는 구현이 다릅니다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Segment Tree, Union-Find, Coordinate Compression, Offline Queries
-- 함께 보면 좋은 레슨: Rollback Techniques, Retroactive Data Structures, Offline Range Query Techniques
-- 다음에 볼 레슨: Offline and Time-Axis Techniques, Wavelet Tree, Dynamic Connectivity
-
 ## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |

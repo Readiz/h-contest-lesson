@@ -2,18 +2,6 @@
 
 Closest Pair는 평면 위 점들 중 가장 가까운 두 점의 거리를 찾는 문제입니다. 모든 쌍을 비교하면 `O(N^2)`이지만, 점을 x좌표 순서로 훑으며 y좌표 active set을 유지하면 `O(N log N)`에 처리할 수 있습니다.
 
-이 레슨은 Sweep Line Geometry 이후에 보는 거리 기반 sweep 패턴입니다.
-
-1. 점을 x좌표 기준으로 정렬한다.
-2. 현재 최단거리보다 x 차이가 큰 점을 active set에서 제거한다.
-3. y좌표가 가까운 후보만 검사한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 정렬, set, 기하 거리, Sweep Line
-- 함께 보면 좋은 레슨: Sweep Line Geometry, 기하 기본, Rotating Calipers
-- 다음에 볼 레슨: divide-and-conquer closest pair, Delaunay/Voronoi intuition
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -158,14 +146,3 @@ Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 | 중복 점 처리 누락 | 답 0 늦게 발견 | 정렬 후 adjacent 검사 |
 | int로 거리 제곱 계산 | overflow | `long long` 또는 `__int128` |
 | 실제 거리와 제곱 거리 혼용 | 비교 오류 | 내부는 제곱 거리로 통일 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 모든 점 쌍 비교가 불가능한 크기인가?
-2. 거리 비교만 필요해서 제곱 거리로 충분한가?
-3. 좌표 범위가 overflow 없이 처리되는가?
-4. 같은 좌표 점이 있을 수 있는가?
-5. 가장 가까운 거리만 필요한가, 점 쌍도 출력해야 하는가?
-6. sweep과 divide-and-conquer 중 구현하기 쉬운 쪽이 무엇인가?
-
-Closest Pair Sweep은 "현재 최단거리보다 멀리 떨어진 점은 버린다"는 간단한 원리로 동작합니다. x와 y 두 축에서 후보를 동시에 줄이는 것이 핵심입니다.

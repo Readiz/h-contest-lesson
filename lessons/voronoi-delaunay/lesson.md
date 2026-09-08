@@ -2,18 +2,6 @@
 
 Voronoi Diagram과 Delaunay Triangulation은 평면의 점 집합에서 "가장 가까운 점" 구조를 다루는 쌍대 개념입니다. 구현 난도는 높지만, 문제에서 어떤 성질을 써야 하는지 알면 closest pair, nearest neighbor, Euclidean MST를 더 구조적으로 볼 수 있습니다.
 
-이 레슨은 Line Arrangement와 Closest Pair Sweep 이후에 보는 고급 계산기하 관점입니다.
-
-1. Voronoi cell은 한 점이 가장 가까운 영역이다.
-2. Delaunay edge는 두 Voronoi cell이 이웃할 때 생긴다.
-3. empty circumcircle 성질로 Delaunay triangle을 판정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: CCW, 거리, 원, Line Arrangement, Closest Pair
-- 함께 보면 좋은 레슨: 기하 기본, Closest Pair Sweep, Line Arrangement
-- 다음에 볼 레슨: half-plane intersection, randomized incremental geometry, planar graph duality
-
 ## 문제 신호
 
 | 문제 표현 | 관점 |
@@ -151,11 +139,3 @@ Voronoi/Delaunay 전체 구현은 degenerate case가 많습니다. 온라인 저
 3. Voronoi cell이 무한할 수 있다는 점을 잊는다.
 4. in-circle predicate에서 orientation 부호를 보정하지 않는다.
 5. Euclidean MST 후보를 Delaunay가 아니라 nearest neighbor 한 개로만 줄인다.
-
-## 문제를 볼 때 체크할 조건
-
-- 전체 diagram/triangulation이 필요한가, 성질만 필요한가?
-- 입력이 general position을 보장하는가?
-- 좌표가 정수인가 실수인가?
-- 무한 Voronoi cell 처리가 필요한가?
-- 목표가 nearest query, MST, area, adjacency 중 무엇인가?

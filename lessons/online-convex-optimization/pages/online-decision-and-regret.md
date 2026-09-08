@@ -8,12 +8,6 @@ Online Decision and Regret은 매 라운드 선택을 먼저 하고 그 뒤 손�
 2. 손실을 본 뒤 gradient나 subgradient로 다음 decision을 갱신한다.
 3. 최적 고정 decision과의 차이인 regret을 작게 만드는 것이 목표다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: convex function, gradient, projection, expected value
-- 함께 보면 좋은 레슨: Convex DP Modeling, Parametric DP, Bayesian Bandits
-- 다음에 볼 레슨: mirror descent, online learning, adaptive regret
-
 ## 문제 신호
 
 | 문제 표현 | OCO 관점 |
@@ -145,12 +139,3 @@ dimension이 크면 projection이 병목이 됩니다. feasible set이 단순한
 4. regret 비교 대상을 매 라운드 바뀌는 최적 선택으로 잡는다.
 5. bandit feedback 문제에서 full gradient를 안다고 가정한다.
 6. convex가 아닌 손실에 OGD 보장을 그대로 적용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 선택을 입력 전후 어느 시점에 해야 하는가?
-- 손실 함수 전체를 관측하는가, 선택한 결과만 관측하는가?
-- feasible set이 convex인가?
-- gradient나 subgradient를 계산할 수 있는가?
-- 필요한 것은 최적값인가, 낮은 regret의 policy인가?
-- randomization이 허용되는가?

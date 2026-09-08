@@ -2,18 +2,6 @@
 
 Dirichlet Convolution은 약수 관계 위에서 두 산술 함수 `f`, `g`를 합성하는 연산입니다. `h(n) = sum_{d|n} f(d)g(n/d)` 형태가 보이면 Mobius Inversion, multiplicative function, divisor transform을 하나의 언어로 정리할 수 있습니다.
 
-이 레슨은 Mobius Inversion, 정수론 심화, 조합론 이후에 보는 수학 심화입니다.
-
-1. 약수 합 관계를 Dirichlet convolution으로 쓴다.
-2. `1`, `mu`, `id`, `phi` 같은 기본 함수를 convolution 관계로 이해한다.
-3. divisor zeta/Mobius transform으로 여러 값을 한 번에 계산한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: gcd, divisor enumeration, Mobius function, sieve
-- 함께 보면 좋은 레슨: Mobius Inversion, Extended Euclid와 CRT, Combinatorics
-- 다음에 볼 레슨: multiplicative function DP, divisor transform, number theoretic summatory functions
-
 ## 문제 신호
 
 | 문제 표현 | Dirichlet Convolution 관점 |

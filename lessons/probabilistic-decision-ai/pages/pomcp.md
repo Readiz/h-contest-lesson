@@ -2,18 +2,6 @@
 
 POMCP(Partially Observable Monte Carlo Planning)는 POMDP를 belief table 전체로 풀지 않고, particle belief와 UCT 탐색을 결합해 online action을 고르는 방법입니다. PBVI가 대표 belief point에서 value function을 근사한다면, POMCP는 현재 belief에서 simulation tree를 키워 다음 행동을 고릅니다.
 
-이 레슨은 Partially Observable MDP, Point-Based Value Iteration, Monte Carlo Tree Search 이후에 보는 확률적 planning 심화입니다.
-
-1. belief를 명시적 확률 벡터 대신 particle 집합으로 표현한다.
-2. history node에서 UCT로 action을 고른다.
-3. simulator가 반환한 observation에 따라 tree를 확장한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Partially Observable MDP, Point-Based Value Iteration, Monte Carlo Tree Search
-- 함께 보면 좋은 레슨: Imperfect Information Search, Game Theory Applications, Markov Decision Process
-- 다음에 볼 레슨: Bayesian bandits, online planning, simulator-based reinforcement learning
-
 ## 문제 신호
 
 | 문제 표현 | POMCP 관점 |
@@ -140,11 +128,3 @@ new root: h+a+o
 4. exploration constant를 보상 scale과 맞추지 않는다.
 5. root update 후 particle을 보강하지 않아 belief collapse가 난다.
 6. 정확한 judge 문제에 sampling planner를 사용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- hidden state를 직접 알 수 없는가?
-- transition과 observation을 sampling하는 simulator가 있는가?
-- 제한 시간 안에 여러 simulation을 돌릴 수 있는가?
-- action 선택만 필요하고 exact value는 필요 없는가?
-- particle belief를 observation으로 갱신할 수 있는가?

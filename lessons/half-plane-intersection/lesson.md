@@ -2,18 +2,6 @@
 
 Half-Plane Intersection은 여러 반평면의 공통 영역을 구하는 계산기하 기법입니다. Convex polygon clipping의 일반화로 볼 수 있고, Voronoi cell, 선형 제약, convex feasibility 문제에서 자주 등장합니다.
 
-이 레슨은 CCW, 선분 교차, Line Arrangement, Voronoi/Delaunay 이후에 보는 기하 심화입니다.
-
-1. 각 반평면을 방향 있는 직선의 왼쪽 영역으로 표현한다.
-2. 직선을 각도순으로 정렬한다.
-3. deque에 후보 반평면을 유지하면서 뒤/앞의 불필요한 교점을 제거한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: cross product, line intersection, convex polygon, 각도 정렬
-- 함께 보면 좋은 레슨: 기하 기본, Line Arrangement, Voronoi와 Delaunay
-- 다음에 볼 레슨: Minkowski sum, convex optimization, Voronoi cell clipping
-
 ## 문제 신호
 
 | 문제 표현 | Half-Plane 관점 |
@@ -213,11 +201,3 @@ dist(x, p_i) <= dist(x, p_j)
 3. 무한 교집합인데 polygon으로 바로 반환하려 한다.
 4. EPS가 너무 커서 얇은 영역을 지운다.
 5. 같은 angle 정렬 tie-break를 반대로 둔다.
-
-## 문제를 볼 때 체크할 조건
-
-- 제약이 모두 선형 반평면인가?
-- 반환해야 하는 것이 존재 여부인가, 면적인가, 꼭짓점인가?
-- 영역이 무한할 수 있는가?
-- 좌표가 정수여도 교점은 실수가 되는가?
-- convex polygon clipping으로 충분한가?

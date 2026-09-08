@@ -2,18 +2,6 @@
 
 Berlekamp-Massey는 field 위 수열의 앞 항들에서 가장 짧은 선형 점화식을 찾는 알고리즘입니다. Recurrence Guessing이 "어떻게 후보를 믿을 것인가"를 다룬다면, Berlekamp-Massey는 그 후보 계수를 `O(T^2)`로 구하는 표준 도구입니다.
 
-이 레슨은 Recurrence Guessing, Linear Recurrence와 Kitamasa 이후에 보는 선형 점화식 추정 레슨입니다.
-
-1. discrepancy로 현재 recurrence가 깨지는 위치를 찾는다.
-2. 마지막으로 크게 고친 recurrence를 이용해 보정한다.
-3. 얻은 coeff를 Kitamasa나 Bostan-Mori로 연결한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: modular inverse, linear recurrence, recurrence guessing
-- 함께 보면 좋은 레슨: Linear Recurrence와 Kitamasa, Bostan-Mori, Linear Recurrence Applications
-- 다음에 볼 레슨: recurrence applications, black-box linear algebra, rational generating function
-
 ## 문제 신호
 
 | 문제 표현 | Berlekamp-Massey 관점 |
@@ -182,11 +170,3 @@ factor = d / old_d
 3. BM에 넣은 항이 부족한데 결과를 확정한다.
 4. noisy sequence나 floating point sequence에 BM을 적용한다.
 5. 초기항 index를 `a_0` 기준으로 맞추지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- mod가 prime인가?
-- 앞 항을 최소 차수의 두 배 이상 만들 수 있는가?
-- 수열이 homogeneous linear recurrence를 따른다는 근거가 있는가?
-- BM 결과를 holdout 항으로 검증했는가?
-- nth term 함수와 coeff convention이 일치하는가?

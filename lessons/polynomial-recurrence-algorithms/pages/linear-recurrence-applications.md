@@ -2,18 +2,6 @@
 
 Linear Recurrence Applications는 점화식이 주어진 상황을 넘어, 문제에서 recurrence를 찾아내고 Matrix Exponentiation, Kitamasa, Bostan-Mori, Berlekamp-Massey 중 무엇을 쓸지 고르는 레슨입니다. 핵심은 알고리즘 이름보다 "상태 전이가 선형인가"와 "계수가 고정인가"를 먼저 확인하는 것입니다.
 
-이 레슨은 Matrix Exponentiation, Linear Recurrence와 Kitamasa, Bostan-Mori 이후에 보는 수학 응용입니다.
-
-1. 수열, DP, graph walk에서 선형 전이를 찾는다.
-2. 차수와 질의 수에 따라 계산 방식을 고른다.
-3. 처음 몇 항만 있을 때는 recurrence 추정 가능성을 검토한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Matrix Exponentiation, Kitamasa, Bostan-Mori, modular arithmetic
-- 함께 보면 좋은 레슨: Formal Power Series, Polynomial Interpolation, Multipoint Evaluation
-- 다음에 볼 레슨: recurrence guessing, generating function modeling, polynomial power
-
 ## 문제 신호
 
 | 문제 표현 | Recurrence 관점 |
@@ -96,82 +84,9 @@ total[n] = total[n-1] + total[n-2]
 
 상태 DP로 보면 2x2 matrix이고, 수열로 보면 Fibonacci 형태의 2차 recurrence입니다. 필요한 질의와 N 범위에 따라 둘 중 하나를 고르면 됩니다.
 
-## 구현 Skeleton
+## 구현 연결
 
-아래 코드는 recurrence가 주어졌다고 가정하고, 작은 K는 행렬 대신 Kitamasa 함수로 보내는 wrapper 형태입니다.
-
-```cpp compile-check
-#include <vector>
-using namespace std;
-
-const long long MOD_LINEAR_APP = 998244353;
-
-long long modNormalizeLinearApp(long long value) {
-    value %= MOD_LINEAR_APP;
-    if (value < 0) {
-        value += MOD_LINEAR_APP;
-    }
-    return value;
-}
-
-vector<long long> combineLinearApp(
-    const vector<long long>& a,
-    const vector<long long>& b,
-    const vector<long long>& coeff
-) {
-    int k = (int)coeff.size();
-    vector<long long> temp(2 * k - 1, 0);
-    for (int i = 0; i < k; ++i) {
-        for (int j = 0; j < k; ++j) {
-            temp[i + j] = (temp[i + j] + a[i] * b[j]) % MOD_LINEAR_APP;
-        }
-    }
-    for (int degree = 2 * k - 2; degree >= k; --degree) {
-        long long value = temp[degree];
-        for (int j = 1; j <= k; ++j) {
-            temp[degree - j] = (temp[degree - j] + value * coeff[j - 1]) % MOD_LINEAR_APP;
-        }
-    }
-    temp.resize(k);
-    return temp;
-}
-
-long long nthByRecurrence(
-    const vector<long long>& initial,
-    const vector<long long>& coeff,
-    long long n
-) {
-    int k = (int)coeff.size();
-    if (n < (long long)initial.size()) {
-        return modNormalizeLinearApp(initial[(int)n]);
-    }
-
-    vector<long long> result(k, 0);
-    vector<long long> base(k, 0);
-    result[0] = 1;
-    if (k == 1) {
-        base[0] = coeff[0];
-    } else {
-        base[1] = 1;
-    }
-
-    while (n > 0) {
-        if (n & 1LL) {
-            result = combineLinearApp(result, base, coeff);
-        }
-        base = combineLinearApp(base, base, coeff);
-        n >>= 1LL;
-    }
-
-    long long answer = 0;
-    for (int i = 0; i < k; ++i) {
-        answer = (answer + result[i] * modNormalizeLinearApp(initial[i])) % MOD_LINEAR_APP;
-    }
-    return answer;
-}
-```
-
-실전에서는 coeff 순서와 초기항 index를 문제 statement 기준으로 먼저 고정해야 합니다.
+위 이진 문자열 예시는 `a[0]=1`, `a[1]=2`, 계수 `[1,1]`을 [Kitamasa 구현](linear-recurrence-kitamasa.md)에 넣습니다. 다른 문제에서도 먼저 초기항 인덱스와 계수 순서를 맞춥니다.
 
 ## 시간 복잡도
 
@@ -191,11 +106,3 @@ long long nthByRecurrence(
 3. 초기항이 `a_1`부터 주어졌는데 `a_0` 기반 함수에 그대로 넣는다.
 4. 여러 질의에서 매번 앞 항을 새로 생성한다.
 5. matrix 상태 순서와 recurrence coeff 순서를 섞는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 전이가 정말 선형인가?
-- 계수가 시간에 따라 바뀌는가?
-- mod가 prime인가?
-- K, N, query 수 중 병목은 무엇인가?
-- 점화식이 직접 주어졌는가, 앞 항에서 추정해야 하는가?

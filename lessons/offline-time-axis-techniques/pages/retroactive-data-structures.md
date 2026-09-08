@@ -2,18 +2,6 @@
 
 Retroactive Data Structures는 과거 시점에 update를 삽입하거나 삭제했을 때, 이후 시간의 자료구조 상태와 query 답이 어떻게 바뀌는지 다루는 관점입니다. 완전한 retroactivity는 구현 난도가 높지만, 대회에서는 시간축 segment tree, divide and conquer, rollback, persistent structure를 조합한 제한된 형태로 자주 나타납니다.
 
-이 레슨은 Rollback Techniques, Persistent Union-Find, Offline Queries 이후에 보는 자료구조/오프라인 심화입니다.
-
-1. partial persistence, rollback, retroactivity의 차이를 구분한다.
-2. "과거 operation 변경"을 시간축 update interval로 바꾸는 모델을 익힌다.
-3. offline이면 segment tree over time과 rollback으로 많은 retroactive 문제를 처리할 수 있다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: rollback, persistence, offline query, segment tree over time
-- 함께 보면 좋은 레슨: Rollback Techniques, Persistent Union-Find, Dynamic Connectivity
-- 다음에 볼 레슨: offline range query techniques, kinetic data structures, fully retroactive models
-
 ## 문제 신호
 
 | 문제 표현 | Retroactive 관점 |
@@ -161,11 +149,3 @@ online fully retroactive 문제는 구조마다 별도 복잡도가 필요하며
 3. rollback 구조에서 전역 answer 값을 기록하지 않는다.
 4. active interval의 오른쪽 끝을 inclusive/exclusive로 섞는다.
 5. online 요구 문제를 offline으로 재배열해도 되는지 확인하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 모든 query를 미리 볼 수 있는가?
-- 과거 operation의 적용 구간을 interval로 표현할 수 있는가?
-- 상태 변경을 rollback할 수 있는가?
-- query leaf에서 필요한 답이 현재 상태만으로 계산되는가?
-- fully retroactive online 구조가 필요한 문제는 아닌가?

@@ -2,18 +2,6 @@
 
 FPS Log와 Exp는 Formal Power Series의 고급 기본 연산입니다. polynomial inverse, derivative, integral을 조합해 `log F(x)`를 계산하고, Newton iteration으로 `exp F(x)`를 구합니다. 생성함수 문제에서 곱셈 이상의 변환이 필요할 때 등장합니다.
 
-이 레슨은 Formal Power Series의 다음 단계로 log, exp, power의 의미와 구현 흐름을 정리합니다.
-
-1. `log F = integral(F' / F)` 공식을 사용한다.
-2. `exp G`는 `log H = G`를 만족하는 `H`를 Newton iteration으로 찾는다.
-3. 생성함수 문제에서 log/exp가 어떤 조합 의미를 갖는지 이해한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Formal Power Series, NTT, polynomial inverse, derivative/integral
-- 함께 보면 좋은 레슨: Formal Power Series, FFT와 NTT, 조합론
-- 다음에 볼 레슨: polynomial power, exponential generating function, combinatorial species
-
 ## 언제 필요한가
 
 | 문제 신호 | FPS 연산 |
@@ -176,14 +164,3 @@ Connected structures = log(All structures)
 | OGF/EGF 구분 실패 | 계수 전체 오답 | factorial 포함 여부 확인 |
 | NTT mod/root 불일치 | 곱셈 오답 | `998244353`, root 3 세트 확인 |
 | 작은 테스트 없이 라이브러리 사용 | 디버깅 어려움 | 낮은 차수 직접 검산 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 다항식의 log/exp/power가 실제로 필요한가?
-2. 상수항 조건이 맞는가?
-3. 원하는 계수 개수 `N`으로 truncate할 수 있는가?
-4. convolution은 NTT가 필요한 크기인가?
-5. 생성함수가 OGF인지 EGF인지 구분했는가?
-6. 작은 차수에서 직접 곱해 검증할 수 있는가?
-
-FPS Log와 Exp는 공식 자체는 짧지만 구현은 복잡합니다. 조건을 맞춘 뒤 inverse, multiply, derivative, integral이 각각 검증되어 있어야 안정적으로 사용할 수 있습니다.

@@ -2,18 +2,6 @@
 
 Gomory-Hu Tree는 무향 그래프의 모든 정점 쌍 minimum cut 값을 `N-1`번의 min-cut 계산으로 압축하는 구조입니다. 완성된 tree에서는 두 정점 사이 경로의 최소 edge weight가 원래 그래프에서의 두 정점 min cut 값이 됩니다.
 
-이 레슨은 Max Flow와 Min Cut, Flow with Lower Bound 이후에 보는 그래프 심화입니다.
-
-1. 한 쌍 `(s, t)`의 min cut을 구하고 reachable side를 얻는다.
-2. 현재 cut tree의 parent 관계를 reachable side 기준으로 재배치한다.
-3. tree path minimum으로 모든 쌍 min cut 질의를 답한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: max-flow min-cut theorem, undirected capacity graph, residual graph
-- 함께 보면 좋은 레슨: Max Flow, Min Cut, Flow with Lower Bound, Min-Cost Flow
-- 다음에 볼 레슨: dynamic min cut, cut-equivalent tree, global min cut
-
 ## 문제 신호
 
 | 문제 표현 | Gomory-Hu Tree 관점 |
@@ -153,11 +141,3 @@ answer(u, v):
 3. 매 max-flow마다 capacity/residual graph를 초기화하지 않는다.
 4. tree path의 합을 답으로 착각한다. 답은 path minimum이다.
 5. parallel edge와 undirected capacity를 입력에서 합치지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 무향 capacity graph인가?
-- 모든 쌍 min cut 또는 많은 쌍 cut 질의가 필요한가?
-- `N-1`번 max-flow가 시간 안에 가능한가?
-- min-cut 후 source side를 얻을 수 있는 max-flow 구현인가?
-- 질의가 많아 LCA path minimum 전처리가 필요한가?

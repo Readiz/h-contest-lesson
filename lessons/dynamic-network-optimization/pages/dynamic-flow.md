@@ -2,18 +2,6 @@
 
 Dynamic Flow는 간선 용량, 비용, 활성 상태, 시간 단계가 바뀌는 상황에서 flow 값을 매번 처음부터 계산하지 않도록 모델링하는 주제입니다. 완전한 online dynamic max flow는 매우 어렵지만, 대회에서는 residual graph 재사용, 시간 확장 네트워크, batch rebuild, offline interval 처리처럼 제한된 형태로 자주 나타납니다.
 
-이 레슨은 Max Flow, Min-Cost Flow, Dynamic Connectivity 이후에 보는 그래프 최적화 심화입니다.
-
-1. 어떤 변화가 flow 보존 조건을 깨는지 먼저 구분한다.
-2. capacity 증가처럼 쉬운 변화는 residual graph에서 추가 augment만 한다.
-3. 시간축이 명시되면 dynamic update보다 time-expanded network로 바꾸는 편이 안전하다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Max Flow, Min-Cost Flow, residual graph, cut capacity
-- 함께 보면 좋은 레슨: Flow with Lower Bound, Dynamic Connectivity, Rollback Techniques
-- 다음에 볼 레슨: incremental flow, parametric cut, time-expanded network modeling
-
 ## 문제 신호
 
 | 문제 표현 | Dynamic Flow 관점 |
@@ -169,12 +157,3 @@ capacity decrease on used critical edge -> answer may decrease
 4. residual graph를 재사용하면서 reverse edge의 flow를 초기화해 버린다.
 5. dynamic connectivity처럼 rollback DSU만으로 flow 최적화까지 해결하려고 한다.
 6. source/sink가 바뀌는데 이전 max flow 값을 그대로 이어 쓴다.
-
-## 문제를 볼 때 체크할 조건
-
-- update가 증가만 있는가, 감소나 삭제도 있는가?
-- source와 sink가 고정인가?
-- 기존 flow가 다음 상태에서도 feasible한가?
-- 시간 단계 수가 정적 network로 펼칠 만큼 작은가?
-- 답이 정확한 flow 값인가, threshold feasibility인가?
-- 비용까지 있으면 residual shortest path를 재사용할 수 있는가?

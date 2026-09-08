@@ -2,18 +2,6 @@
 
 Quadrangle Inequality Proofs는 Knuth Optimization, Monge 최적화, divide-and-conquer DP 최적화를 적용하기 전에 필요한 부등식과 opt 단조성 증명 패턴을 정리하는 DP 최적화 레슨입니다. 알고리즘 구현보다 "왜 후보 범위를 줄여도 되는가"를 확인하는 것이 목표입니다.
 
-이 레슨은 Knuth Optimization, Monge와 SMAWK, Divide and Conquer DP Optimization 이후에 보는 전략 심화입니다.
-
-1. quadrangle inequality와 Monge inequality가 같은 모양의 조건임을 이해한다.
-2. opt monotonicity는 증명하거나 작은 반례 탐색으로 의심해야 한다.
-3. Knuth 조건은 단순히 `cost`가 볼록해 보인다는 감각만으로 적용하지 않는다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: interval DP, Monge array, Knuth optimization, argmin monotonicity
-- 함께 보면 좋은 레슨: Knuth Optimization, Monge와 SMAWK, Convex DP Modeling
-- 다음에 볼 레슨: min-plus convolution, convex DP modeling, parametric DP
-
 ## 문제 신호
 
 | 문제 표현 | 증명 관점 |
@@ -138,11 +126,3 @@ A[i][j] = previous[j] + cost(j, i)
 3. opt tie-breaking을 고정하지 않아 단조성이 깨진다.
 4. Knuth optimization을 divide-and-conquer DP 조건만으로 적용한다.
 5. 작은 반례에서 opt가 감소하는데도 cost가 볼록해 보인다는 이유로 진행한다.
-
-## 문제를 볼 때 체크할 조건
-
-- DP 전이가 어떤 행렬 또는 interval cost로 표현되는가?
-- 필요한 inequality를 정확히 쓸 수 있는가?
-- opt 단조성이 tie-breaking 후에도 유지되는가?
-- 작은 brute force에서 반례가 없는가?
-- 최적화 후 후보 범위가 빈 구간이 되지 않는가?

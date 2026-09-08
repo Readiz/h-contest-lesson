@@ -2,18 +2,6 @@
 
 Dynamic Connectivity는 간선이 추가되고 삭제되는 그래프에서 두 정점의 연결 여부를 묻는 주제입니다. 온라인으로 처리하면 Link-Cut Tree나 Euler Tour Tree 같은 고급 구조가 필요하지만, 질의를 모두 알고 있다면 시간축 Segment Tree와 Rollback DSU로 실용적으로 풀 수 있습니다.
 
-이 레슨은 Directed MST, Offline Queries, Link-Cut Tree 이후에 보는 그래프 심화입니다.
-
-1. 간선이 살아 있는 시간 구간을 모은다.
-2. 시간축 segment tree의 구간 노드에 간선을 넣는다.
-3. DFS로 내려가며 DSU union을 적용하고, 돌아올 때 rollback한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Union-Find, segment tree over intervals, DFS, offline processing
-- 함께 보면 좋은 레슨: Union-Find, Offline Queries, Link-Cut Tree
-- 다음에 볼 레슨: Euler Tour Tree, fully dynamic graph, dynamic MST
-
 ## 문제 신호
 
 | 문제 표현 | Dynamic Connectivity 관점 |
@@ -59,70 +47,7 @@ dfs(node):
 
 Path compression은 rollback과 잘 맞지 않습니다. 대신 union by size만 사용하고, 바뀐 parent/size를 stack에 기록합니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <utility>
-#include <vector>
-using namespace std;
-
-struct RollbackDSU {
-    vector<int> parent;
-    vector<int> size;
-    vector<pair<int, int>> history;
-    int components = 0;
-
-    explicit RollbackDSU(int n) : parent(n + 1), size(n + 1, 1), components(n) {
-        for (int i = 1; i <= n; ++i) {
-            parent[i] = i;
-        }
-    }
-
-    int find(int x) const {
-        while (parent[x] != x) {
-            x = parent[x];
-        }
-        return x;
-    }
-
-    bool unite(int a, int b) {
-        a = find(a);
-        b = find(b);
-        if (a == b) {
-            history.push_back({-1, -1});
-            return false;
-        }
-        if (size[a] < size[b]) {
-            swap(a, b);
-        }
-        parent[b] = a;
-        size[a] += size[b];
-        history.push_back({a, b});
-        --components;
-        return true;
-    }
-
-    int snapshot() const {
-        return (int)history.size();
-    }
-
-    void rollback(int snapshotSize) {
-        while ((int)history.size() > snapshotSize) {
-            auto [a, b] = history.back();
-            history.pop_back();
-            if (a == -1) {
-                continue;
-            }
-            size[a] -= size[b];
-            parent[b] = b;
-            ++components;
-        }
-    }
-
-    bool connected(int a, int b) const {
-        return find(a) == find(b);
-    }
-};
-```
+구현은 아래의 결합 예제에 한 번만 싣습니다.
 
 `unite`가 실패한 경우도 history에 dummy를 넣어 두면, 호출 횟수와 rollback 크기를 안정적으로 맞출 수 있습니다.
 
@@ -292,11 +217,3 @@ Path compression을 쓰지 않으므로 이론상 inverse Ackermann은 아니지
 3. 무향 간선 endpoint 정규화를 빠뜨린다.
 4. 같은 간선이 중복 추가되는 입력에서 add 시점을 하나만 저장한다.
 5. rollback snapshot을 node 진입 전이 아니라 union 후에 잡는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 질의를 모두 미리 읽을 수 있는가?
-- add/remove가 edge id 기준인가 endpoint pair 기준인가?
-- 삭제되지 않은 간선을 마지막까지 닫았는가?
-- 연결 여부만 묻는가, component size나 bipartite 여부도 묻는가?
-- multigraph와 self-loop 처리가 필요한가?

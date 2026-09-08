@@ -2,18 +2,6 @@
 
 Suffix Array는 문자열의 모든 suffix를 사전순으로 정렬한 배열입니다. KMP와 Z algorithm이 한 패턴의 등장 위치를 찾는 데 강하다면, Suffix Array는 suffix 전체의 순서를 만들어 반복 부분 문자열, 서로 다른 부분 문자열 개수, 패턴 검색, LCP 질의 같은 문제를 넓게 처리합니다.
 
-이 레슨은 suffix 정렬과 LCP(Longest Common Prefix)를 함께 봅니다.
-
-1. suffix를 사전순으로 정렬한다.
-2. 인접한 suffix 사이의 LCP를 선형 시간에 계산한다.
-3. 정렬된 suffix와 LCP를 문제 요구에 맞게 해석한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 문자열 매칭, 정렬, 좌표 압축, sparse table 감각
-- 함께 보면 좋은 레슨: 문자열 매칭: KMP, Z, Rolling Hash, Trie와 Aho-Corasick
-- 다음에 볼 레슨: Sparse Table/RMQ, Suffix Automaton
-
 ## Suffix Array가 필요한 상황
 
 문자열 하나에서 suffix들의 상대 순서가 필요하면 Suffix Array를 떠올립니다.
@@ -227,14 +215,3 @@ combined = A + '$' + B + '#'
 | LCP 인덱스 정의 혼동 | RMQ 구간 off-by-one | `lcp[i] = LCP(sa[i-1], sa[i])`로 고정 |
 | 구분자가 입력에 등장 | 문자열 경계 넘어 매칭 | 입력 alphabet 밖 문자 사용 |
 | `int`로 부분 문자열 개수 계산 | overflow | `long long` 사용 |
-
-## 문제를 볼 때 체크할 조건
-
-1. suffix의 사전순 순서가 필요한가?
-2. 반복 부분 문자열이나 서로 다른 부분 문자열 개수를 묻는가?
-3. 한 텍스트에 대해 패턴 질의가 여러 개인가?
-4. 두 suffix의 LCP 질의가 많은가?
-5. 문자열을 여러 개 붙일 때 구분자를 안전하게 고를 수 있는가?
-6. 입력 크기가 `O(N log^2 N)` 구현으로 충분한가?
-
-Suffix Array는 문자열을 정렬 문제로 바꾸는 도구입니다. 정렬된 suffix 위에서 인접 관계는 LCP로, 구간 질의는 RMQ로 확장된다고 이해하면 응용을 잡기 쉽습니다.

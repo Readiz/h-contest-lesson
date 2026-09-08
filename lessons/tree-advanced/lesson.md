@@ -55,12 +55,7 @@ void dfsEuler(int u, int parent, const vector<vector<int>>& tree) {
 
 이 성질 덕분에 subtree 합, subtree 색칠, subtree 최댓값 같은 문제를 배열 구간 질의로 바꿀 수 있습니다.
 
-```cpp
-// 정점 u의 subtree 전체 합
-long long subtreeSum(int u) {
-    return segmentTree.query(tin[u], tout[u] - 1);
-}
-```
+양 끝을 포함하는 구간 API에서는 `segmentTree.query(tin[u], tout[u] - 1)`로 합을 구합니다.
 
 주의할 점은 Euler Tour가 subtree에는 강하지만, 임의의 두 정점 사이 경로는 일반적으로 한 구간이 아니라는 것입니다. 경로 질의에는 Heavy-Light Decomposition이 더 자연스럽습니다.
 
@@ -348,11 +343,7 @@ void updatePath(int a, int b, long long delta) {
 
 HLD의 `pos` 배열은 heavy path를 우선해서 정점을 배치합니다. 그래도 DFS 순서이기 때문에 subtree가 연속 구간이 되도록 구현할 수 있습니다.
 
-```cpp
-long long querySubtree(int u) {
-    return segmentTree.query(pos[u], pos[u] + sub[u] - 1);
-}
-```
+HLD 순서에서 subtree 질의는 `segmentTree.query(pos[u], pos[u] + sub[u] - 1)`입니다.
 
 따라서 같은 세그먼트 트리로 아래 두 종류의 질의를 함께 처리할 수 있습니다.
 
@@ -433,11 +424,3 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
 - HLD에서 간선 값을 더 깊은 정점 위치에 저장한다는 규칙을 잊습니다.
 - Centroid Decomposition의 "이미 제거한 centroid" 표시를 빼먹어 같은 정점을 다시 처리합니다.
 - small-to-large에서 작은 컨테이너를 큰 컨테이너로 합치지 않아 `O(n^2)`가 됩니다.
-
-## 문제를 볼 때 체크할 조건
-
-1. subtree 전체를 배열 구간처럼 다룰 수 있는가?
-2. 두 정점의 LCA나 거리가 반복해서 필요한가?
-3. 경로 업데이트/질의가 많아 HLD가 필요한가?
-4. 특정 정점 집합까지의 거리 후보를 빠르게 관리해야 하는가?
-5. subtree마다 색/값 빈도를 모두 모아야 하는가?

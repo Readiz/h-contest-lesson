@@ -2,18 +2,6 @@
 
 Linear Algebra Applications는 rank, determinant, basis, recurrence, graph counting을 각각 따로 외우는 대신 "무엇을 vector space로 볼 수 있는가"를 기준으로 문제를 번역하는 decision map입니다.
 
-이 레슨은 Linear Basis Applications, Sparse Linear Systems, Black-Box Linear Algebra 이후에 보는 수학 모델링 심화입니다.
-
-1. 상태를 vector로 표현할 수 있는지 확인한다.
-2. 제약을 linear equation, span, rank, determinant 중 하나로 바꾼다.
-3. field, dimension, sparsity, 필요한 답의 종류에 따라 구현 기법을 고른다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Gaussian Elimination, Linear Basis, Matrix Exponentiation
-- 함께 보면 좋은 레슨: Sparse Linear Systems, Black-Box Linear Algebra, Generating Function Modeling
-- 다음에 볼 레슨: algebraic graph algorithms, randomized determinant, matroid models
-
 ## 문제 신호
 
 | 문제 표현 | 선형대수 모델 |
@@ -146,14 +134,6 @@ int rankOverGF2(vector<unsigned long long> basisInput) {
 3. randomized determinant 판정을 한 번만 실행한다.
 4. 선형이 아닌 transition에 matrix power를 억지로 적용한다.
 5. 자유 변수 수를 `N - equations`로 계산하고 rank를 빼지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 연산이 어떤 field 위에서 선형인가?
-- 변수와 식의 수, matrix density는 어느 정도인가?
-- 필요한 것이 해 하나, 해 개수, 독립성, determinant 중 무엇인가?
-- randomized algorithm이 허용되는가?
-- 작은 입력 brute force로 모델 번역을 확인할 수 있는가?
 
 ## 연습 문제
 

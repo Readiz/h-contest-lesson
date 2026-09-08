@@ -2,18 +2,6 @@
 
 Linear Basis Applications는 maximum xor를 넘어서 표현 가능성, k번째 xor, graph cycle xor, range query처럼 XOR Linear Basis를 여러 문제 형태에 적용하는 레슨입니다. 핵심은 "xor 조합으로 만들 수 있는 값의 공간"과 "basis를 어떤 형태로 정규화해야 하는가"를 분리해서 보는 것입니다.
 
-이 레슨은 XOR Linear Basis, Mobius Inversion, Proof와 Invariant 이후에 보는 수학 심화입니다.
-
-1. basis rank로 만들 수 있는 xor 값의 개수와 표현 가능 여부를 판정한다.
-2. normalized basis로 k번째 xor 값을 만든다.
-3. graph cycle, range query, matroid 관점으로 응용 범위를 넓힌다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: XOR Linear Basis, Gaussian elimination over GF(2), graph path xor
-- 함께 보면 좋은 레슨: XOR Linear Basis, Proof와 Invariants, Combinatorics
-- 다음에 볼 레슨: xor convolution, matroid basis, linear algebra over finite fields
-
 ## 문제 신호
 
 | 문제 표현 | Linear Basis 응용 관점 |
@@ -173,11 +161,3 @@ if insert(vector) succeeds:
 3. graph cycle basis를 simple path 문제에 적용한다.
 4. signed integer 비교로 maximum xor가 깨진다.
 5. range basis를 merge할 때 dependent vector 개수를 counting에 반영하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 목표가 maximum xor인가, 표현 가능성인가, ordering인가?
-- 중복 원소와 빈 부분집합을 어떻게 처리하는가?
-- graph에서는 walk와 simple path 중 무엇이 허용되는가?
-- query 구조가 static인지 update가 있는지 확인했는가?
-- `LOG` 범위가 입력 값의 bit 수를 덮는가?

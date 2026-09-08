@@ -2,18 +2,6 @@
 
 Suffix Automaton Applications는 Suffix Automaton을 만든 뒤 그 위에서 DP, occurrence 누적, 사전순 탐색, 여러 문자열 비교를 수행하는 응용 레슨입니다. 기본 construction을 안다면 다음 단계는 "상태가 대표하는 부분 문자열 집합"을 어떤 값으로 세고 정렬하고 제한할지 정하는 것입니다.
 
-이 레슨은 Suffix Automaton, Suffix Array 응용, Palindromic Tree 이후에 보는 문자열 심화입니다.
-
-1. suffix link tree와 transition DAG를 구분한다.
-2. 상태별 occurrence, path count, terminal 여부를 목적에 맞게 누적한다.
-3. k번째 substring, 반복 substring, 여러 문자열 공통 substring을 automaton DP로 바꾼다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Suffix Automaton construction, suffix link, topological order by length
-- 함께 보면 좋은 레슨: Suffix Automaton, Suffix Array 응용 패턴, Suffix와 Palindrome 응용
-- 다음에 볼 레슨: generalized suffix automaton, automaton DP, substring query structures
-
 ## 문제 신호
 
 | 문제 표현 | Suffix Automaton 응용 관점 |

@@ -2,18 +2,6 @@
 
 Border Automaton은 KMP의 prefix function을 상태 전이표로 바꿔, 문자열을 한 글자씩 읽으면서 현재 matched prefix 길이를 즉시 갱신하는 기법입니다. 패턴 하나를 여러 텍스트, 여러 DP 상태, 혹은 online stream에 반복 적용할 때 KMP fallback을 매번 따라가지 않고 automaton 전이로 처리합니다.
 
-이 레슨은 KMP/Z, Runs와 문자열 주기, Suffix Array 응용 이후에 보는 문자열 심화입니다.
-
-1. 상태를 "현재 suffix가 pattern의 prefix 몇 글자와 일치하는가"로 둔다.
-2. prefix function으로 실패했을 때 돌아갈 border 상태를 정한다.
-3. 각 상태와 문자에 대해 다음 matched length를 미리 채운다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: KMP prefix function, border, finite automaton
-- 함께 보면 좋은 레슨: KMP와 Z Algorithm, Runs와 문자열 주기, Suffix Array 응용 패턴
-- 다음에 볼 레슨: suffix automaton applications, Aho-Corasick automaton, automaton DP
-
 ## 문제 신호
 
 | 문제 표현 | Border Automaton 관점 |
@@ -164,11 +152,3 @@ fallback pi[pi[k - 1] - 1]
 3. alphabet에 없는 문자를 만났을 때 상태 초기화를 정의하지 않는다.
 4. 여러 forbidden pattern을 하나의 border automaton으로 억지로 합친다.
 5. DP에서 accepting state를 허용할지 금지할지 목적식을 혼동한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 패턴이 하나인가, 여러 개인가?
-- 같은 패턴 전이를 많이 재사용하는가?
-- 상태가 matched prefix length로 충분한가?
-- alphabet 크기 때문에 전이표가 커지지는 않는가?
-- 매칭 후 겹치는 occurrence까지 세야 하는가?

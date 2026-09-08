@@ -2,18 +2,6 @@
 
 Parametric DP는 답이나 제약을 직접 상태에 넣기 어렵거나 너무 큰 경우, parameter를 고정한 DP를 반복해서 최적의 값을 찾는 관점입니다. 대표적으로 penalty를 붙여 선택 개수를 조절하는 Alien Optimization, 평균을 이분 탐색하는 feasibility DP, 목적값을 parameter로 둔 decision DP가 있습니다.
 
-이 레슨은 Convex DP Modeling, Alien Optimization 이후에 보는 DP 최적화 심화입니다.
-
-1. 원래 최적화 문제를 parameter가 고정된 판정 또는 완화 문제로 바꾼다.
-2. parameter가 커질 때 답의 성질이 단조인지 확인한다.
-3. DP 값과 함께 선택 개수, tie-breaking 정보를 같이 들고 다닌다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: binary search, DP transition, monotonicity, Alien Optimization
-- 함께 보면 좋은 레슨: Alien Optimization, Convex DP Modeling, Divide and Conquer DP Optimization
-- 다음에 볼 레슨: Lagrangian relaxation, DP sensitivity analysis, ternary search pitfalls
-
 ## 문제 신호
 
 | 문제 표현 | Parametric DP 관점 |
@@ -160,11 +148,3 @@ parameter 탐색은 DP를 여러 번 돌립니다. 따라서 DP 1회가 충분�
 4. 실수 이분 탐색에서 반복 횟수가 부족하다.
 5. `K`개 선택 조건이 "최대 K"인지 "정확히 K"인지 섞는다.
 6. DP 내부 최적화 조건과 parameter 단조 조건을 같은 것으로 착각한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 어떤 값을 parameter로 고정할 수 있는가?
-- parameter가 커질 때 feasible 여부나 선택 개수가 단조인가?
-- DP 결과에 원래 objective와 보조 count를 함께 저장해야 하는가?
-- penalty를 제거해 원래 답으로 복원하는 식이 명확한가?
-- 실수 탐색이면 오차와 반복 횟수를 정했는가?

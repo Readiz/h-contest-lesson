@@ -2,18 +2,6 @@
 
 Rotating Calipers Applications는 기본 지름 계산을 넘어 width, tangent, 두 convex polygon 사이 거리, 최소 enclosing rectangle 같은 응용을 다룹니다. 공통 원리는 convex polygon 위의 support direction이 한 방향으로만 이동한다는 점입니다.
 
-이 레슨은 Rotating Calipers와 Minkowski Sum 이후에 보는 계산기하 응용 레슨입니다.
-
-1. 관심 방향을 edge normal 또는 tangent direction으로 둔다.
-2. support point가 더 좋아지는 동안 포인터를 전진한다.
-3. 각 포인터가 한 바퀴 이상 되돌아가지 않는 구조를 이용한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: convex hull, 외적, 점과 직선 거리, rotating calipers
-- 함께 보면 좋은 레슨: Rotating Calipers, Minkowski Sum, Closest Pair Sweep
-- 다음에 볼 레슨: convex polygon distance, minimum-area rectangle, tangent graph
-
 ## 문제 신호
 
 | 문제 표현 | Calipers 응용 관점 |
@@ -169,11 +157,3 @@ calipers가 성립하려면 후보 함수가 방향을 따라 unimodal이어야 
 3. 같은 방향 edge tie에서 포인터를 하나만 움직여 후보를 놓친다.
 4. 두 polygon 문제에서 교차 여부를 먼저 보지 않는다.
 5. 최소 면적 직사각형의 네 포인터를 같은 기준 방향으로 업데이트하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 구하는 값이 지름, 폭, 접선, 거리, enclosing rectangle 중 무엇인가?
-- 입력이 이미 convex polygon인가, 점 집합인가?
-- collinear boundary point를 제거해도 되는가?
-- 실수 오차를 허용하는 출력인가?
-- 두 polygon이 교차하는 경우를 별도로 처리했는가?

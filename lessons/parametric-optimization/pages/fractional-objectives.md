@@ -2,18 +2,6 @@
 
 Fractional Programming DP는 `benefit / cost`, 평균값, 밀도, 비율 목적식을 직접 최적화하기 어려울 때 `benefit - lambda * cost` 형태의 판정 문제로 바꾸는 기법입니다. DP나 graph feasibility가 비율 안쪽에 들어가면 parametric search, Dinkelbach iteration, binary search on answer를 함께 봅니다.
 
-이 레슨은 Parametric DP, Convex DP Modeling, Alien Optimization 이후에 보는 DP 최적화 심화입니다.
-
-1. 비율 목적식을 `value - x * weight` 판정으로 바꾼다.
-2. 고정된 `x`에서 DP가 최대 transformed score를 계산한다.
-3. score가 0 이상인지로 가능한 비율을 이분 탐색하거나 Dinkelbach로 갱신한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: DP feasibility, binary search on answer, parametric search
-- 함께 보면 좋은 레슨: Parametric DP, Alien Optimization, Convex DP Modeling
-- 다음에 볼 레슨: Dinkelbach method, ratio cut, Lagrangian relaxation
-
 ## 문제 신호
 
 | 문제 표현 | Fractional 관점 |
@@ -166,12 +154,3 @@ transformed:
 4. DP 초기값의 `-inf`가 transformed score와 섞여 overflow를 만든다.
 5. 실수 오차 때문에 `>= 0` 판정이 흔들리는 입력을 고려하지 않는다.
 6. binary search iteration 수가 부족해 출력 오차를 넘긴다.
-
-## 문제를 볼 때 체크할 조건
-
-- 목적식이 전체 합의 비율인가, 개별 ratio의 합인가?
-- denominator가 항상 양수인가?
-- fixed ratio에서 DP나 graph 판정이 쉬워지는가?
-- answer가 실수인지 exact rational인지 확인했는가?
-- 판정 함수가 단조성을 가지는가?
-- 필요한 precision에 맞게 자료형을 정했는가?

@@ -2,18 +2,6 @@
 
 Robust Delaunay는 Delaunay triangulation을 구현하거나 검증할 때 orientation, incircle, degeneracy 처리를 안정화하는 레슨입니다. Voronoi-Delaunay의 개념을 알아도 실제 좌표 문제에서는 거의 같은 점, 같은 원 위 점, collinear case가 답을 흔듭니다.
 
-이 레슨은 Voronoi-Delaunay와 Robust Geometry Predicates 이후에 보는 계산기하 심화입니다.
-
-1. predicate와 construction을 분리한다.
-2. Delaunay 조건은 incircle predicate로 검증한다.
-3. degeneracy가 있는 입력에서 tie policy를 먼저 정한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Voronoi-Delaunay, Robust Geometry Predicates, Circle Geometry
-- 함께 보면 좋은 레슨: Inversion Geometry, Circle Arrangement, Shape Distance Modeling
-- 다음에 볼 레슨: power diagram, Euclidean MST, randomized incremental triangulation
-
 ## 문제 신호
 
 | 문제 표현 | Robust Delaunay 관점 |
@@ -134,11 +122,3 @@ construction: circumcenter coordinate, edge length, angle
 4. EPS로 predicate와 construction을 동시에 처리한다.
 5. super triangle의 가짜 vertex가 최종 edge에 남는다.
 6. Delaunay graph가 MST의 superset이라는 성질만 필요할 때 전체 triangulation을 구현한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 입력이 general position을 보장하는가?
-- 좌표 범위상 exact integer predicate가 가능한가?
-- 필요한 것이 triangulation 전체인가, candidate edge 집합인가?
-- cocircular tie를 어떻게 고정할 것인가?
-- predicate와 construction을 분리했는가?

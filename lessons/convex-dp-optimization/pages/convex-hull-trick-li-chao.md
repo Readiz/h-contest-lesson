@@ -2,18 +2,6 @@
 
 Convex Hull Trick은 여러 직선 중 특정 x에서 최솟값이나 최댓값을 빠르게 찾는 기법입니다. DP 전이가 `dp[i] = min_j(a_j * x_i + b_j)` 꼴로 정리되면, 각 후보 `j`를 직선으로 보고 query를 빠르게 처리할 수 있습니다.
 
-이 레슨은 DP 최적화와 자료구조가 만나는 지점으로 Convex Hull Trick과 Li Chao Tree를 봅니다.
-
-1. DP 전이를 직선과 점 query로 바꾼다.
-2. slope가 정렬된 경우의 deque CHT를 이해한다.
-3. 일반 삽입/질의에는 Li Chao Tree를 사용한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 일차함수, 이분 탐색, Segment Tree, DP 전이
-- 함께 보면 좋은 레슨: 동적 계획법, Segment Tree, Matrix Exponentiation
-- 다음에 볼 레슨: divide-and-conquer DP optimization, dynamic Li Chao, kinetic hull
-
 ## 문제 신호
 
 아래처럼 후보 `j`와 현재 `i`가 곱으로 분리되면 CHT를 의심합니다.
@@ -189,14 +177,3 @@ line 추가 순서가 오답을 만드는 경우가 많습니다. `j < i`만 허
 | 같은 slope 처리 누락 | 불필요한 line 또는 overflow | 더 좋은 intercept만 남기기 |
 | `m*x+b` overflow | 음수 wrap | `long long` 범위 계산 |
 | 자기 자신 line을 먼저 추가 | 불가능한 전이 사용 | add/query 순서 점검 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 전이가 `m_j * x_i + b_j` 꼴로 분리되는가?
-2. 최솟값인지 최댓값인지 명확한가?
-3. line 추가와 query 순서가 온라인으로 가능한가?
-4. slope나 query x가 단조라 더 단순한 CHT를 쓸 수 있는가?
-5. x 범위와 값 범위가 자료형 안에 들어오는가?
-6. 후보가 없는 초기 상태의 INF 처리를 했는가?
-
-Convex Hull Trick은 이름과 달리 대회에서는 DP 전이 변형 도구로 더 자주 만납니다. 식을 직선으로 분리하는 순간, 남은 일은 문제 조건에 맞는 hull 구현을 고르는 것입니다.

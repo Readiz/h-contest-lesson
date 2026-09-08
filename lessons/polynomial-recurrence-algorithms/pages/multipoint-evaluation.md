@@ -2,18 +2,6 @@
 
 Multipoint Evaluation은 하나의 polynomial `P(x)`를 여러 점 `x_0, x_1, ..., x_{m-1}`에서 빠르게 평가하는 기법입니다. 각 점마다 Horner를 쓰면 `O(NM)`이지만, subproduct tree와 polynomial remainder를 쓰면 NTT 기반으로 훨씬 빠르게 만들 수 있습니다.
 
-이 레슨은 Formal Power Series와 FPS Log/Exp 이후에 보는 polynomial algorithm 응용입니다.
-
-1. 평가점들로 `(x - x_i)`의 product tree를 만든다.
-2. 위에서 아래로 `P mod nodePolynomial`을 내려보낸다.
-3. leaf에서 남은 상수항이 해당 점의 값이다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: polynomial 곱셈, NTT, Formal Power Series, modular inverse
-- 함께 보면 좋은 레슨: FFT와 NTT, Formal Power Series, FPS Log와 Exp
-- 다음에 볼 레슨: interpolation, subproduct tree, Bostan-Mori
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -53,160 +41,23 @@ if M(x_i) = 0:
 
 그래서 root에서 `P mod rootPolynomial`을 시작으로, 자식에게는 다시 자식 polynomial로 나눈 나머지를 내려보냅니다. leaf의 modulus는 `x - x_i`이므로 나머지는 상수 `P(x_i)`입니다.
 
-## 기본 Polynomial 도우미
+## 나머지를 따라가는 예시
 
-아래 코드는 개념 확인용으로 나이브 곱셈과 나이브 remainder를 사용합니다. 큰 입력에서는 NTT와 fast division으로 바꿔야 합니다.
+`P(x)=x^2+1`을 `0, 1, 2`에서 평가합니다. 계수는 낮은 차수부터 `[1, 0, 1]`로 저장합니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
+| 노드의 평가점 | modulus | 내려가는 나머지 |
+| --- | --- | --- |
+| `{0,1,2}` | `x(x-1)(x-2)` | `x^2+1` |
+| `{0,1}` | `x(x-1)` | `x+1` |
+| `{0}` | `x` | `1` |
+| `{1}` | `x-1` | `2` |
+| `{2}` | `x-2` | `5` |
 
-const long long MOD_MULTI = 998244353;
+`x^2+1 = x(x-1)+(x+1)`이므로 `{0,1}` 쪽에서는 원래 다항식 대신 `x+1`만 전달해도 됩니다. 각 leaf에 원래 다항식을 그대로 전달해 Horner로 계산하면 이 차수 감소를 활용하지 못합니다.
 
-long long normalizeMulti(long long value) {
-    value %= MOD_MULTI;
-    if (value < 0) {
-        value += MOD_MULTI;
-    }
-    return value;
-}
+## 구현에 필요한 연산
 
-long long modPowMulti(long long base, long long exp) {
-    long long result = 1;
-    while (exp > 0) {
-        if (exp & 1LL) {
-            result = result * base % MOD_MULTI;
-        }
-        base = base * base % MOD_MULTI;
-        exp >>= 1LL;
-    }
-    return result;
-}
-
-vector<long long> trimPoly(vector<long long> poly) {
-    while (poly.size() > 1 && poly.back() == 0) {
-        poly.pop_back();
-    }
-    return poly;
-}
-
-vector<long long> multiplyPoly(const vector<long long>& a, const vector<long long>& b) {
-    vector<long long> result(a.size() + b.size() - 1, 0);
-    for (int i = 0; i < (int)a.size(); ++i) {
-        for (int j = 0; j < (int)b.size(); ++j) {
-            result[i + j] = (result[i + j] + a[i] * b[j]) % MOD_MULTI;
-        }
-    }
-    return trimPoly(result);
-}
-
-vector<long long> remainderPoly(vector<long long> a, const vector<long long>& mod) {
-    a = trimPoly(a);
-    vector<long long> divisor = trimPoly(mod);
-    if (a.size() < divisor.size()) {
-        return a;
-    }
-
-    long long invLead = modPowMulti(divisor.back(), MOD_MULTI - 2);
-    while (a.size() >= divisor.size()) {
-        int shift = (int)a.size() - (int)divisor.size();
-        long long factor = a.back() * invLead % MOD_MULTI;
-        for (int i = 0; i < (int)divisor.size(); ++i) {
-            int idx = i + shift;
-            a[idx] = normalizeMulti(a[idx] - factor * divisor[i]);
-        }
-        a = trimPoly(a);
-    }
-    return a;
-}
-```
-
-`remainderPoly`는 나이브 구현이라 `O(N^2)`에 가깝습니다. 이 레슨에서는 알고리즘 구조를 보여 주기 위한 코드입니다.
-
-## Multipoint Evaluation 구현 골격
-
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-const long long MOD_EVAL = 998244353;
-
-long long normEval(long long value) {
-    value %= MOD_EVAL;
-    if (value < 0) {
-        value += MOD_EVAL;
-    }
-    return value;
-}
-
-vector<long long> mulEval(const vector<long long>& a, const vector<long long>& b) {
-    vector<long long> result(a.size() + b.size() - 1, 0);
-    for (int i = 0; i < (int)a.size(); ++i) {
-        for (int j = 0; j < (int)b.size(); ++j) {
-            result[i + j] = (result[i + j] + a[i] * b[j]) % MOD_EVAL;
-        }
-    }
-    while (result.size() > 1 && result.back() == 0) {
-        result.pop_back();
-    }
-    return result;
-}
-
-long long evalAtPoint(const vector<long long>& poly, long long x) {
-    long long result = 0;
-    for (int i = (int)poly.size() - 1; i >= 0; --i) {
-        result = (result * x + poly[i]) % MOD_EVAL;
-    }
-    return result;
-}
-
-struct MultipointEvaluationSkeleton {
-    int n = 0;
-    vector<long long> points;
-    vector<vector<long long>> tree;
-
-    explicit MultipointEvaluationSkeleton(vector<long long> points)
-        : n((int)points.size()), points(points), tree(4 * max(1, (int)points.size())) {
-        if (n > 0) {
-            build(1, 0, n);
-        }
-    }
-
-    void build(int node, int left, int right) {
-        if (right - left == 1) {
-            tree[node] = {normEval(-points[left]), 1};
-            return;
-        }
-        int mid = (left + right) / 2;
-        build(node * 2, left, mid);
-        build(node * 2 + 1, mid, right);
-        tree[node] = mulEval(tree[node * 2], tree[node * 2 + 1]);
-    }
-
-    void evaluateNaiveLeaf(const vector<long long>& poly, int node, int left, int right, vector<long long>& answer) const {
-        if (right - left == 1) {
-            answer[left] = evalAtPoint(poly, points[left]);
-            return;
-        }
-        int mid = (left + right) / 2;
-        evaluateNaiveLeaf(poly, node * 2, left, mid, answer);
-        evaluateNaiveLeaf(poly, node * 2 + 1, mid, right, answer);
-    }
-
-    vector<long long> evaluate(const vector<long long>& poly) const {
-        vector<long long> answer(n, 0);
-        if (n == 0) {
-            return answer;
-        }
-        evaluateNaiveLeaf(poly, 1, 0, n, answer);
-        return answer;
-    }
-};
-```
-
-위 skeleton은 product tree를 만들지만 leaf 평가는 Horner로 처리합니다. 실제 fast multipoint evaluation에서는 각 node에서 `poly mod tree[node]`를 내려보내는 부분을 fast polynomial division으로 교체합니다.
+Product tree에는 [다항식 곱셈](fft-ntt.md)이, remainder 전파에는 다항식 나눗셈이 필요합니다. 계수를 뒤집은 다항식의 역원을 이용한 division은 [Formal Power Series](formal-power-series.md)의 inverse와 연결됩니다. 이 페이지는 remainder 전파 원리를 다루며 고속 division까지 포함한 완성 구현은 제공하지 않습니다.
 
 ## Interpolation과의 관계
 
@@ -236,11 +87,3 @@ subproduct tree를 만들고 derivative of product polynomial을 평가해 Lagra
 3. 같은 평가점이 여러 번 나오는 경우 interpolation까지 그대로 적용한다.
 4. polynomial division에서 leading coefficient inverse를 빼먹는다.
 5. 작은 입력에도 복잡한 NTT 구현을 넣어 디버깅 비용을 키운다.
-
-## 문제를 볼 때 체크할 조건
-
-- 평가할 polynomial 개수와 평가점 개수는?
-- modulus가 NTT-friendly prime인가?
-- 점이 중복될 수 있는가?
-- evaluation만 필요한가, interpolation도 필요한가?
-- 점이 연속된 정수처럼 특수 구조인가?

@@ -2,18 +2,6 @@
 
 Generalized Suffix Automaton은 여러 문자열의 substring 집합을 하나의 automaton에 합치고, 문자열별 등장 여부나 occurrence를 상태 단위로 집계하는 문자열 심화 기법입니다. 단일 문자열 SAM이 "한 문자열의 모든 substring"을 압축한다면, generalized SAM은 여러 문자열에서 공통으로 등장하는 substring, 특정 그룹에만 등장하는 substring, dictionary 전체의 substring 통계를 다룹니다.
 
-이 레슨은 Suffix Automaton과 Suffix Automaton Applications 이후에 보는 문자열 심화입니다.
-
-1. 여러 문자열을 단순히 separator로 이어 붙이는 방식과 trie 기반 generalized construction을 구분한다.
-2. 상태별로 "어떤 문자열에서 얼마 길이까지 match되었는지"를 누적한다.
-3. longest common substring, group coverage, occurrence aggregation 문제를 automaton DP로 바꾼다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Suffix Automaton, suffix link, transition DAG, occurrence 누적
-- 함께 보면 좋은 레슨: Suffix Automaton Applications, Trie와 Aho-Corasick, Suffix Array 응용 패턴
-- 다음에 볼 레슨: multi-string substring query, dictionary substring analytics
-
 ## 문제 신호
 
 | 문제 표현 | Generalized SAM 관점 |
@@ -230,11 +218,3 @@ state `v`가 대표하는 길이 구간은 `(len[link[v]], len[v]]`입니다. �
 3. separator를 포함한 substring을 제거하지 않는다.
 4. clone state의 occurrence와 coverage를 construction 시점에 확정하려고 한다.
 5. 문자열별 occurrence와 전체 occurrence를 같은 값으로 취급한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 문자열이 몇 개인가?
-- 필요한 값이 longest common substring인지, 모든 substring count인지 확인했는가?
-- 각 문자열별 등장 여부만 필요한가, 등장 횟수까지 필요한가?
-- alphabet이 작아서 array transition을 쓸 수 있는가?
-- separator 방식으로 풀 때 가로지르는 substring을 확실히 배제할 수 있는가?

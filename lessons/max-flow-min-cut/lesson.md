@@ -2,18 +2,6 @@
 
 Max Flow는 방향 그래프에서 source에서 sink로 보낼 수 있는 최대 유량을 구하는 문제입니다. 각 간선에는 용량(capacity)이 있고, 한 간선으로 보낼 수 있는 유량은 그 용량을 넘을 수 없습니다.
 
-이 레슨은 Max Flow를 하나의 독립 알고리즘으로만 보지 않고, 아래 세 가지 관점으로 연결합니다.
-
-1. source에서 sink까지 최대한 많이 보낸다.
-2. 더 이상 보낼 수 없을 때 source 쪽과 sink 쪽을 가르는 최소 cut을 찾는다.
-3. 이분 매칭을 source-left-right-sink flow 모델로 바꾼다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: BFS, 그래프 표현, residual graph, SCC와 2-SAT 수준의 방향 그래프 감각
-- 함께 보면 좋은 레슨: 그래프와 트리 기본 성질, 우선순위 큐와 힙
-- 다음에 볼 레슨: Min-Cost Flow, Hopcroft-Karp, matching/cover duality
-
 ## Flow 모델
 
 Flow 문제의 입력은 보통 아래처럼 해석합니다.
@@ -244,14 +232,3 @@ Flow는 상수가 큰 편입니다. 입력 제한이 크고 문제 구조가 순
 | `int` capacity 사용 | 큰 유량 overflow | capacity와 flow는 `long long` 검토 |
 | min cut을 원래 그래프가 아니라 residual capacity로 계산 | cut 간선 누락 | reachable은 residual, cut 용량은 원래 capacity 기준 |
 | 매칭에서 capacity를 1로 두지 않음 | 한 정점이 여러 번 매칭 | source/left/right/sink capacity 확인 |
-
-## 문제를 볼 때 체크할 조건
-
-1. source와 sink가 자연스럽게 보이는가?
-2. 간선 또는 정점마다 최대 사용량이 있는가?
-3. 최대 개수/최대 양을 보내는 문제인가?
-4. source와 sink를 분리하는 최소 비용 문제인가?
-5. 이분 그래프의 최대 매칭으로 해석할 수 있는가?
-6. 비용 최적화가 함께 있으면 Min-Cost Flow가 필요한가?
-
-정리하면, Max Flow는 "용량이 있는 이동"을 모델링하는 도구입니다. Min Cut은 max flow가 끝난 뒤 residual graph에서 읽어 내는 dual 해석이고, Bipartite Matching은 capacity 1 flow의 대표 응용입니다.

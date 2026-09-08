@@ -2,18 +2,6 @@
 
 Multiplicative Functions는 `gcd(a, b)=1`일 때 `f(ab)=f(a)f(b)`를 만족하는 산술 함수입니다. Euler phi, Mobius function, divisor count, divisor sum처럼 정수론 문제에서 반복되는 함수들을 linear sieve로 한 번에 계산할 수 있습니다.
 
-이 레슨은 Mobius Inversion과 Dirichlet Convolution 이후에 보는 정수론 심화입니다.
-
-1. 함수가 prime power에서 어떻게 정의되는지 확인한다.
-2. 서로소 곱에서 값이 곱으로 분리되는지 본다.
-3. linear sieve에서 `p | i`와 `p not | i` 경우를 나누어 값을 갱신한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: prime factorization, sieve, gcd, Mobius inversion
-- 함께 보면 좋은 레슨: Dirichlet Convolution, Mobius Inversion, Extended Euclid와 CRT
-- 다음에 볼 레슨: summatory number theory, divisor transform, multiplicative prefix sum
-
 ## 문제 신호
 
 | 문제 표현 | Multiplicative Function 관점 |
@@ -161,11 +149,3 @@ sum_{i=1..N} floor(N / i) * f(i)
 3. `mu[p^2] = 0` 처리를 빠뜨린다.
 4. `tau`나 `sigma`에서 prime exponent 상태를 따로 관리하지 않는다.
 5. 함수 값이 커지는데 모듈러 또는 `long long` 범위를 확인하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 함수가 서로소 곱에서 분리되는가?
-- prime power 공식이 간단한가?
-- 모든 `n <= N`이 필요한가, query로 일부만 필요한가?
-- `N` 기준 배열 전처리가 가능한가?
-- Dirichlet convolution이나 Mobius inversion으로 더 쉬운 함수로 바꿀 수 있는가?

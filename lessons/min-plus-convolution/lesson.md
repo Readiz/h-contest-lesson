@@ -1,8 +1,8 @@
 # Min-Plus Convolution
 
-Min-Plus Convolution은 독립 레슨 카드가 아니라 [Convex DP Optimization](../convex-dp-optimization/lesson.md) 허브의 하위 페이지로 이동했습니다.
+Min-Plus Convolution은 독립 레슨 카드가 아니라 [Convex DP Optimization](https://h.readiz.com/learn/convex-dp-optimization) 허브의 하위 페이지로 이동했습니다.
 
-- 새 위치: [Convex DP Optimization / Min-Plus Convolution](../convex-dp-optimization/pages/min-plus-convolution.md)
-- 함께 읽을 페이지: [Technique Decision Tree](../convex-dp-optimization/pages/technique-decision-tree.md), [Slope Trick](../convex-dp-optimization/pages/slope-trick.md)
+- 새 위치: [Convex DP Optimization / Min-Plus Convolution](https://h.readiz.com/learn/convex-dp-optimization/min-plus-convolution)
+- 함께 읽을 페이지: [Technique Decision Tree](https://h.readiz.com/learn/convex-dp-optimization), [Slope Trick](https://h.readiz.com/learn/convex-dp-optimization/slope-trick)
 
 이 이동 문서는 기존 링크를 따라온 독자를 안내하기 위해 남깁니다. manifest의 공개 레슨 목록에서는 `convex-dp-optimization` 허브만 노출합니다.

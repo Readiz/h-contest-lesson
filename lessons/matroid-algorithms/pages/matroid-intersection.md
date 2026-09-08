@@ -8,12 +8,6 @@ Matroid Intersection은 두 개의 독립성 조건을 동시에 만족하는 �
 2. 두 독립성 조건이 모두 matroid 교환 성질을 가지는지 확인한다.
 3. exchange graph에서 augmenting path를 찾아 선택 집합을 뒤집는다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: General Matching, Weighted Matching, Greedy proof, Linear Basis
-- 함께 보면 좋은 레슨: Max Flow/Min Cut, Linear Basis Applications, Proof and Invariants
-- 다음에 볼 레슨: dynamic flow, randomized determinant, combinatorial optimization
-
 ## 문제 신호
 
 | 문제 표현 | Matroid Intersection 관점 |
@@ -92,11 +86,3 @@ e4: 3-4, blue
 3. 선택 집합을 뒤집을 때 path의 inside/outside 원소를 반대로 처리한다.
 4. graphic matroid에서 multi-edge와 self-loop를 빠뜨린다.
 5. weighted 문제를 unweighted augmenting path로 풀려고 한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 독립 집합의 부분집합도 항상 독립인가?
-- 작은 독립 집합을 큰 독립 집합의 원소로 확장할 수 있는가?
-- 두 조건 중 하나가 단순 cardinality 제한이 아니라 matroid인지 확인했는가?
-- 원소 수와 rank가 exchange graph를 직접 만들 수 있는 크기인가?
-- 가중치가 있으면 shortest path/potential이 필요한 확장인가?

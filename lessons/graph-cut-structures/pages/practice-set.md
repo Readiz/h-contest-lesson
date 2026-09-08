@@ -2,7 +2,6 @@
 
 Graph Cut Structures 허브의 연습은 cut 모델 선택을 먼저 하고, 그다음 deterministic, randomized, all-pairs, family representation으로 확장하는 순서가 좋습니다.
 
-
 ## Trace: Stoer-Wagner 한 phase
 
 아래 무향 weighted graph를 봅니다.

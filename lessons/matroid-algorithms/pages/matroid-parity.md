@@ -8,12 +8,6 @@ Matroid Parity는 원소가 짝으로 묶여 있을 때, 선택한 짝들의 원
 2. 선택한 pair들의 원소 전체가 어떤 독립성 조건을 만족해야 하는지 이름 붙인다.
 3. 일반 matroid oracle 문제가 아니라, contest에서 다룰 수 있는 특수 구조인지 확인한다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Matroid Algorithms, General Matching, Linear Basis Applications
-- 함께 보면 좋은 레슨: Weighted Matching, Proof and Invariants, Randomized Determinant
-- 다음에 볼 레슨: randomized determinant, algebraic matching test, combinatorial optimization
-
 ## 문제 신호
 
 | 문제 표현 | Matroid Parity 관점 |

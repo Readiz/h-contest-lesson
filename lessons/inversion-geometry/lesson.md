@@ -2,18 +2,6 @@
 
 Inversion Geometry는 한 점을 중심으로 `OP * OP' = r^2`가 되게 변환해 원과 직선 문제를 다른 형태로 단순화하는 계산기하 심화입니다. 접선, 원다발, 교점 조건이 복잡할 때 inversion을 쓰면 원이 직선으로 바뀌거나 거리 조건이 각도 조건으로 바뀝니다.
 
-이 레슨은 Circle Geometry와 Robust Geometry Predicates 이후에 보는 기하 심화입니다.
-
-1. inversion center와 radius를 문제의 대칭점에 맞춘다.
-2. 중심을 지나는 원/직선과 지나지 않는 원/직선을 구분한다.
-3. 변환 뒤 문제를 풀고 원래 좌표 해석으로 되돌린다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Circle Geometry, Robust Geometry Predicates, Shape Distance Modeling
-- 함께 보면 좋은 레슨: Circle Arrangement, Voronoi와 Delaunay, Half-Plane Intersection
-- 다음에 볼 레슨: robust Delaunay, advanced circle transformations, angle chasing
-
 ## 문제 신호
 
 | 문제 표현 | Inversion 관점 |
@@ -150,11 +138,3 @@ Inversion은 구현 트릭이 아니라 모델링 도구입니다. 변환 후 �
 3. 길이가 보존된다고 착각한다.
 4. EPS 때문에 중심을 지나는지 아닌지 불안정하게 분기한다.
 5. 변환 후 답의 개수는 맞지만 원래 문제의 내부/외부 조건을 복원하지 않는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 공통으로 지나는 점이나 자연스러운 중심이 있는가?
-- 원이 직선으로 바뀌면 문제가 쉬워지는가?
-- 필요한 답이 좌표인가, 개수/관계인가?
-- 변환 후 degeneracy를 처리할 수 있는가?
-- 일반 기하 공식보다 inversion이 실제로 구현을 줄이는가?

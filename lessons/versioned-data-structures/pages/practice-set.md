@@ -2,7 +2,6 @@
 
 Versioned Data Structures 허브의 연습은 path copying, partial persistence, container versioning, sequence query 순서로 진행합니다.
 
-
 ## Trace: prefix root 차이
 
 정적 배열이 아래와 같다고 하겠습니다.

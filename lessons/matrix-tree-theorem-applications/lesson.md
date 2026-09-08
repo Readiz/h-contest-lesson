@@ -2,18 +2,6 @@
 
 Matrix-Tree Theorem은 그래프의 spanning tree 개수를 Laplacian matrix의 cofactor determinant로 계산하는 정리입니다. 단순 count뿐 아니라 edge criticality, rooted arborescence, graph reliability 모델링으로 이어집니다.
 
-이 레슨은 Graph Tree Basics, Modular Arithmetic, Randomized Determinant 이후에 보는 그래프 수학 심화입니다.
-
-1. 그래프를 Laplacian으로 바꾼다.
-2. 한 행과 한 열을 지운 cofactor determinant를 계산한다.
-3. undirected tree count, directed arborescence, edge 포함 조건을 구분한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Graph Tree Basics, Modular Arithmetic, Randomized Determinant
-- 함께 보면 좋은 레슨: Linear Algebra Applications, Sparse Linear Systems, Proof and Invariants
-- 다음에 볼 레슨: graph reliability, determinant modeling, algebraic graph algorithms
-
 ## 문제 신호
 
 | 문제 표현 | Matrix-Tree 관점 |
@@ -148,11 +136,3 @@ count(exclude e) = treeCount(G - e)
 3. self-loop를 degree에 넣는다. self-loop는 spanning tree에 기여하지 않습니다.
 4. 방향 그래프에서 in/out convention을 뒤집는다.
 5. 합성수 modulo에서 modular inverse를 사용한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 무향인가, 방향인가?
-- root가 지정되어 있는가?
-- multi-edge와 self-loop가 가능한가?
-- modulo가 prime인가?
-- 모든 간선별 민감도를 묻는가, tree count 한 번이면 되는가?

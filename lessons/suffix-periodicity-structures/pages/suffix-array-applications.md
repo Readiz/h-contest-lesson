@@ -2,18 +2,6 @@
 
 Suffix Array 응용 패턴은 suffix를 정렬해 둔 뒤 LCP 배열, RMQ, 구간 질의로 문자열 문제를 푸는 레슨입니다. Suffix Array 자체를 만드는 것보다 더 자주 막히는 지점은 "정렬된 suffix에서 어떤 구간을 봐야 하는가"입니다.
 
-이 레슨은 Suffix Array와 LCP, Suffix와 Palindrome 응용 이후에 보는 문자열 심화 응용입니다.
-
-1. 패턴이 등장하는 suffix 구간을 이분 탐색으로 찾는다.
-2. LCP 배열 위의 RMQ로 suffix 사이 공통 prefix를 빠르게 구한다.
-3. LCP 구간의 최솟값, 최댓값, sliding window로 반복/공통 substring 조건을 모델링한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Suffix Array, LCP, binary search, RMQ
-- 함께 보면 좋은 레슨: Suffix Array와 LCP, Sparse Table RMQ, Runs와 문자열 주기
-- 다음에 볼 레슨: border automaton, multi-string suffix query, suffix tree intuition
-
 ## 문제 신호
 
 | 문제 표현 | Suffix Array 응용 관점 |
@@ -163,11 +151,3 @@ LCP 값이 크다는 것은 인접 suffix 두 개가 긴 prefix를 공유한다�
 3. k번째 substring에서 이미 이전 suffix와 겹친 `lcp[i]` 길이를 다시 센다.
 4. 반복 substring 길이만 보고 non-overlap 위치 조건을 확인하지 않는다.
 5. substring 수를 `int`에 담는다.
-
-## 문제를 볼 때 체크할 조건
-
-- suffix의 사전순 순서가 직접 필요한가?
-- 패턴이 prefix로 붙는 suffix 구간을 찾으면 되는가?
-- 두 suffix 사이 LCP 질의가 여러 번 나오는가?
-- 여러 문자열을 합칠 때 경계와 source id를 보존했는가?
-- 온라인 업데이트가 필요해서 suffix array가 맞지 않는 문제는 아닌가?

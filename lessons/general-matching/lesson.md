@@ -2,18 +2,6 @@
 
 General Matching은 이분 그래프가 아닌 일반 무향 그래프에서 최대 matching을 찾는 문제입니다. 이분 그래프 matching은 BFS/DFS augmenting path로 충분하지만, 일반 그래프에는 odd cycle이 있어서 단순 alternating path 탐색이 막힙니다.
 
-이 레슨은 Matching과 Cover Duality 이후에 보는 Edmonds blossom 알고리즘의 핵심 아이디어를 정리합니다.
-
-1. matching과 augmenting path의 의미는 그대로 유지한다.
-2. odd cycle을 blossom으로 접어 하나의 정점처럼 탐색한다.
-3. augmenting path를 찾으면 접힌 cycle을 다시 펴며 matching을 뒤집는다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 그래프 탐색, 이분 매칭, alternating path, BFS tree
-- 함께 보면 좋은 레슨: Max Flow, Matching과 Cover Duality, Flow with Lower Bound
-- 다음에 볼 레슨: weighted matching, matroid intersection, graph factor
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -245,11 +233,3 @@ Blossom 알고리즘도 결국 augmenting path를 찾아 이 뒤집기를 수행
 3. blossom 수축 후 `base`를 갱신했지만 queue에 필요한 정점을 다시 넣지 않는다.
 4. augmenting path를 뒤집을 때 이전 matching partner를 잃어버린다.
 5. maximum matching과 maximal matching을 혼동한다.
-
-## 문제를 볼 때 체크할 조건
-
-- 그래프가 정말 일반 그래프인가, 아니면 partition이 숨어 있는 이분 그래프인가?
-- 필요한 것은 maximum cardinality인가, maximum weight인가?
-- 정점 수가 blossom `O(N^3)`에 맞는가?
-- matching 크기만 필요한가, 실제 선택 간선 목록도 필요한가?
-- unmatched 정점이 허용되는가, perfect matching을 요구하는가?

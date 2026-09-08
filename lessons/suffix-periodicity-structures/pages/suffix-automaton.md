@@ -2,18 +2,6 @@
 
 Suffix Automaton은 한 문자열의 모든 부분 문자열을 압축해서 표현하는 automaton입니다. Suffix Array가 suffix를 정렬해 문제를 푼다면, Suffix Automaton은 부분 문자열들이 도달하는 상태를 만들고 transition 위에서 세거나 탐색합니다.
 
-이 레슨은 "모든 부분 문자열의 상태 압축"이라는 관점으로 Suffix Automaton을 봅니다.
-
-1. 문자를 하나씩 추가하며 automaton을 확장한다.
-2. 각 상태가 표현하는 부분 문자열 길이 구간을 이해한다.
-3. 서로 다른 부분 문자열 수, 등장 횟수, 최장 공통 부분 문자열로 연결한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 문자열 매칭, Trie, Suffix Array/LCP 감각
-- 함께 보면 좋은 레슨: 문자열 매칭: KMP, Z, Rolling Hash, Trie와 Aho-Corasick, Suffix Array와 LCP
-- 다음에 볼 레슨: suffix automaton DP, palindromic tree, suffix tree
-
 ## 왜 automaton인가
 
 문자열 `s`의 모든 부분 문자열은 suffix들의 prefix입니다. 이를 그대로 저장하면 부분 문자열 수가 `O(N^2)`입니다. Suffix Automaton은 같은 "앞으로 이어질 수 있는 문자열 집합"을 가진 부분 문자열들을 하나의 상태로 합쳐 `O(N)` 상태만 만듭니다.
@@ -227,14 +215,3 @@ int longestCommonSubstring(const vector<SamStateForLcs>& st, const string& other
 | alphabet 초기화 누락 | 임의 transition 사용 | `next.fill(-1)` 확인 |
 | `int`로 부분 문자열 개수 계산 | overflow | `long long` 사용 |
 | 상태가 부분 문자열 하나만 뜻한다고 오해 | 공식 적용 오류 | 상태는 길이 구간을 대표 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 한 문자열의 모든 부분 문자열을 대상으로 세거나 비교하는가?
-2. 여러 패턴이 이 문자열의 부분 문자열인지 확인해야 하는가?
-3. 서로 다른 부분 문자열 수나 사전순 순서가 필요한가?
-4. 등장 횟수가 필요하면 clone count를 분리했는가?
-5. alphabet 크기가 구현 방식과 맞는가?
-6. Suffix Array/LCP로 더 단순하게 풀 수 있는지 비교했는가?
-
-Suffix Automaton은 처음 구현이 낯설지만, construction 이후에는 상태 DAG 위 DP로 많은 문자열 문제를 처리합니다. "상태가 하나의 문자열이 아니라 길이 구간을 대표한다"는 점을 유지하면 공식과 occurrence 처리가 흔들리지 않습니다.

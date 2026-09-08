@@ -2,18 +2,6 @@
 
 Sparse Table은 배열이 바뀌지 않을 때 구간 최솟값, 최댓값, gcd 같은 질의를 매우 빠르게 처리하는 자료구조입니다. 전처리에 `O(N log N)`을 쓰고, 질의는 `O(1)` 또는 `O(log N)`에 답합니다.
 
-이 레슨은 정적 구간 질의의 대표 도구로 Sparse Table을 봅니다.
-
-1. 길이 `2^k` 구간의 답을 미리 저장한다.
-2. idempotent 연산은 두 구간을 겹쳐도 되므로 `O(1)`에 답한다.
-3. LCP 배열, LCA, 정적 최솟값 질의로 연결한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 배열, 로그, 구간 질의, Segment Tree 기본 감각
-- 함께 보면 좋은 레슨: Sqrt Decomposition, Segment Tree, Suffix Array와 LCP
-- 다음에 볼 레슨: LCA, Cartesian Tree, Persistent Segment Tree
-
 ## 언제 Sparse Table을 쓰는가
 
 Sparse Table은 업데이트가 없는 정적 배열에서 강합니다.
@@ -146,14 +134,3 @@ LCP(suffix a, suffix b) = min(lcp[rank[a] + 1 ... rank[b]])
 | `log2`를 실수 함수로 매번 계산 | 느리거나 오차 가능 | 정수 로그 배열 전처리 |
 | 빈 구간 질의 처리 누락 | 런타임 에러 | `left <= right` 보장 |
 | LCP RMQ 인덱스 off-by-one | 한 칸 밀린 LCP | `rank[a] + 1 ... rank[b]` 범위 확인 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 배열이 질의 중에 바뀌지 않는가?
-2. 질의 연산이 min/max/gcd처럼 idempotent인가?
-3. 질의 개수가 많아 `O(1)`이 이득인가?
-4. `O(N log N)` 메모리를 감당할 수 있는가?
-5. LCP, LCA처럼 다른 문제를 RMQ로 바꿀 수 있는가?
-6. 인덱스가 inclusive인지 half-open인지 구현과 맞는가?
-
-Sparse Table은 업데이트를 포기하는 대신 질의를 매우 빠르게 만드는 구조입니다. 문제에서 "정적 배열 + 많은 구간 최솟값"이 보이면 Segment Tree보다 먼저 떠올릴 만합니다.

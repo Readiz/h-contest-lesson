@@ -2,12 +2,6 @@
 
 Suffix and Periodicity Structures는 suffix array, suffix automaton, suffix tree, runs, border automaton, period query를 하나의 문자열 구조 트랙으로 묶는 허브입니다. 이 주제들은 모두 "문자열의 모든 suffix/substr/period 정보를 어떻게 압축해서 질의할 것인가"라는 같은 문제군에 속합니다.
 
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: KMP/Z/Rolling Hash, Trie/Aho-Corasick, Sorting, Sparse Table/RMQ
-- 함께 보면 좋은 레슨: Lyndon Factorization, Palindrome Structures, String Matching
-- 다음에 볼 레슨: Palindrome Structures, String Period Query Applications, Advanced String DP
-
 ## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |

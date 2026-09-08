@@ -2,18 +2,6 @@
 
 Global Min Cut Applications는 Stoer-Wagner로 값을 구하는 단계를 넘어, cut 후보를 모델링하고 여러 min cut 정보를 해석하는 응용 레슨입니다. 무향 그래프의 최약 연결부를 찾는 문제는 단순 계산뿐 아니라 cactus representation, Gomory-Hu Tree, edge criticality 같은 관점으로 확장됩니다.
 
-이 레슨은 Global Min Cut과 Cut Sparsification 이후에 보는 그래프 심화입니다.
-
-1. global min cut 값과 실제 cut partition이 각각 언제 필요한지 구분한다.
-2. 여러 minimum cut을 다루는 문제에서 cactus/cut tree 관점을 이해한다.
-3. edge 중요도, network vulnerability, repeated cut query를 적절한 구조로 모델링한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Global Min Cut, Stoer-Wagner, Gomory-Hu Tree, cut value
-- 함께 보면 좋은 레슨: Cut Sparsification, Max Flow와 Min Cut, Gomory-Hu Tree
-- 다음에 볼 레슨: cactus representation, cut sensitivity, randomized min cut
-
 ## 문제 신호
 
 | 문제 표현 | 응용 관점 |
@@ -111,11 +99,3 @@ source/sink가 숨어 있는지 먼저 찾아야 합니다.
 3. 방향 그래프 min cut과 무향 global min cut 구조를 섞는다.
 4. Gomory-Hu Tree의 path sum과 path minimum을 혼동한다.
 5. edge capacity가 음수일 수 있는 모델을 cut 알고리즘에 그대로 넣는다.
-
-## 문제를 볼 때 체크할 조건
-
-- 특정 source/sink가 있는가?
-- 답이 cut value인지, partition인지, 모든 cut family인지 확인했는가?
-- pair query가 많은가?
-- 그래프가 무향이고 capacity가 nonnegative인가?
-- dense graph에서 certificate로 줄일 여지가 있는가?

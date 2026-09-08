@@ -118,7 +118,6 @@ Partition matroid의 독립 집합은 "각 class에서 capacity 이하로 고른
 2. capacity가 0인 class, 같은 weight가 많은 입력, item이 한 class에 몰린 입력을 deterministic case로 둡니다.
 3. class별로 따로 상위 `cap_c`개를 고른 합과 greedy 결과가 같은지도 cross-check할 수 있습니다.
 
-
 ## 추가 로컬 연습 후보
 
 ### Graphic Matroid Greedy

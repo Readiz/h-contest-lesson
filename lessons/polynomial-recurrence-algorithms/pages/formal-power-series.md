@@ -2,18 +2,6 @@
 
 Formal Power Series는 다항식을 무한히 긴 계수열처럼 다루며, 미분, 적분, 역원, 로그, 지수 같은 연산을 계수 관점에서 정의하는 도구입니다. 대회에서는 NTT 기반 다항식 곱셈을 익힌 뒤, 조합론 생성함수와 polynomial DP를 빠르게 처리할 때 등장합니다.
 
-이 레슨은 FFT/NTT 다음 단계의 polynomial 기본 연산을 정리합니다.
-
-1. 계수 배열로 다항식을 표현한다.
-2. 미분과 적분을 계수 연산으로 처리한다.
-3. Newton iteration으로 다항식 역원을 구한다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: 모듈러 연산, NTT, 조합론, 다항식 곱셈
-- 함께 보면 좋은 레슨: FFT와 NTT, 조합론, 모듈러 연산
-- 다음에 볼 레슨: FPS log/exp, generating function, divide-and-conquer convolution DP
-
 ## Formal의 의미
 
 Formal Power Series에서는 `x`에 실제 값을 대입하기보다 계수들의 규칙을 다룹니다.
@@ -206,14 +194,3 @@ F(x) = sum ways[n] * x^n
 | mod가 NTT friendly가 아님 | NTT 오답 | mod/root 세트 확인 |
 | 작은 입력에 과한 FPS 구현 | 복잡도 손해 | 단순 DP와 비교 |
 | 계수 차수와 배열 index 혼동 | 한 칸 밀림 | `a[i]`는 `x^i` 계수 |
-
-## 문제를 볼 때 체크할 조건
-
-1. 경우의 수가 계수열로 표현되는가?
-2. 선택 결합이 convolution으로 바뀌는가?
-3. 앞 `N`개 계수만 필요해 truncate할 수 있는가?
-4. 역원, log, exp가 필요한 식인지 확인했는가?
-5. mod와 원시근이 NTT에 맞는가?
-6. 단순 `O(N^2)` 다항식으로 충분하지 않은가?
-
-Formal Power Series는 구현보다 수식 변환이 더 중요합니다. 식이 계수 연산으로 정리되면, NTT와 inverse 같은 기본 블록을 조합해 큰 경우의 수 문제를 빠르게 처리할 수 있습니다.

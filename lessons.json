@@ -2086,13 +2086,6 @@
       ],
       "pages": [
         {
-          "pageId": "palindrome-model-map",
-          "title": "Palindrome Model Map",
-          "description": "판정, 열거, 집계, range DP 문제를 먼저 구분합니다.",
-          "order": 10,
-          "file": "pages/palindrome-model-map.md"
-        },
-        {
           "pageId": "palindromic-tree",
           "title": "Palindromic Tree",
           "description": "모든 서로 다른 palindrome substring을 Eertree 노드로 압축합니다.",
@@ -2599,13 +2592,6 @@
       ],
       "pages": [
         {
-          "pageId": "polynomial-model-map",
-          "title": "Polynomial Model Map",
-          "description": "convolution, FPS, evaluation/interpolation, recurrence를 먼저 구분합니다.",
-          "order": 10,
-          "file": "pages/polynomial-model-map.md"
-        },
-        {
           "pageId": "fft-ntt",
           "title": "FFT and NTT",
           "description": "다항식 곱셈과 convolution을 빠르게 계산합니다.",
@@ -2629,7 +2615,7 @@
         {
           "pageId": "multipoint-evaluation",
           "title": "Multipoint Evaluation",
-          "description": "subproduct tree로 polynomial을 여러 점에서 평가합니다.",
+          "description": "Subproduct tree의 나머지 전파를 작은 다항식으로 추적하고 고속 평가에 필요한 연산을 구분합니다.",
           "order": 50,
           "file": "pages/multipoint-evaluation.md"
         },
@@ -2857,25 +2843,11 @@
       ],
       "pages": [
         {
-          "pageId": "decision-ai-model-map",
-          "title": "Decision AI Model Map",
-          "description": "정확 MDP, partial observation, simulation planning, bandit을 구분합니다.",
-          "order": 10,
-          "file": "pages/decision-ai-model-map.md"
-        },
-        {
           "pageId": "feedback-model-boundary",
           "title": "Feedback Model Boundary",
           "description": "full-information, bandit, simulator, hidden-state observation을 먼저 구분합니다.",
           "order": 15,
           "file": "pages/feedback-model-boundary.md"
-        },
-        {
-          "pageId": "stochastic-decision-process",
-          "title": "Stochastic Decision Process",
-          "description": "MDP, RL basics, SSP를 Bellman 모델로 묶은 하위 허브입니다.",
-          "order": 20,
-          "file": "pages/stochastic-decision-process.md"
         },
         {
           "pageId": "finite-horizon-mdp",
@@ -2962,13 +2934,6 @@
           "file": "pages/online-planning-evaluation.md"
         },
         {
-          "pageId": "stochastic-decision-practice-set",
-          "title": "Stochastic Decision Practice Set",
-          "description": "MDP/RL/SSP 하위 흐름의 연습 항목입니다.",
-          "order": 150,
-          "file": "pages/stochastic-decision-practice-set.md"
-        },
-        {
           "pageId": "practice-set",
           "title": "Practice Set",
           "description": "Probabilistic Decision AI 계열을 하나의 흐름으로 연습합니다.",
@@ -3026,13 +2991,6 @@
         "dynamic-network-optimization"
       ],
       "pages": [
-        {
-          "pageId": "time-axis-model-map",
-          "title": "Time-Axis Model Map",
-          "description": "offline reordering, answer search, rollback, retroactivity를 구분합니다.",
-          "order": 10,
-          "file": "pages/time-axis-model-map.md"
-        },
         {
           "pageId": "offline-queries",
           "title": "Offline Queries",
@@ -3476,20 +3434,6 @@
       ],
       "pages": [
         {
-          "pageId": "technique-decision-tree",
-          "title": "Technique Decision Tree",
-          "description": "전이식 모양으로 CHT, Monge, Slope Trick, Min-Plus를 고릅니다.",
-          "order": 10,
-          "file": "pages/technique-decision-tree.md"
-        },
-        {
-          "pageId": "convex-dp-modeling",
-          "title": "Convex DP Modeling",
-          "description": "최적화 전에 convex, Monge, argmin 단조성을 판정합니다.",
-          "order": 20,
-          "file": "pages/convex-dp-modeling.md"
-        },
-        {
           "pageId": "convex-hull-trick-li-chao",
           "title": "Convex Hull Trick and Li Chao Tree",
           "description": "직선 삽입과 x query로 DP 전이를 처리합니다.",
@@ -3593,13 +3537,6 @@
       ],
       "pages": [
         {
-          "pageId": "cut-model-map",
-          "title": "Cut Model Map",
-          "description": "s-t, global, all-pairs, threshold, cut family 모델을 먼저 구분합니다.",
-          "order": 10,
-          "file": "pages/cut-model-map.md"
-        },
-        {
           "pageId": "global-min-cut",
           "title": "Global Min Cut",
           "description": "무향 그래프의 전체 minimum cut과 Stoer-Wagner 알고리즘입니다.",
@@ -3647,13 +3584,6 @@
           "description": "cactus graph와 min cut family 표현을 구분합니다.",
           "order": 80,
           "file": "pages/cactus-representation.md"
-        },
-        {
-          "pageId": "cut-cactus-applications",
-          "title": "Cut Cactus Applications",
-          "description": "global min cut family를 cactus representation으로 압축하고 질의에 활용합니다.",
-          "order": 90,
-          "file": "pages/cut-cactus-applications.md"
         },
         {
           "pageId": "practice-set",
@@ -4526,13 +4456,6 @@
           "file": "pages/matroid-parity.md"
         },
         {
-          "pageId": "contest-boundaries",
-          "title": "Contest Boundaries",
-          "description": "일반 matroid 이론과 실제 대회 구현 가능성의 경계를 정리합니다.",
-          "order": 50,
-          "file": "pages/contest-boundaries.md"
-        },
-        {
           "pageId": "practice-set",
           "title": "Practice Set",
           "description": "Matroid 계열 모델 판독과 특수형 구현 가능성을 연습합니다.",
@@ -4698,13 +4621,6 @@
           "file": "pages/dual-averaging.md"
         },
         {
-          "pageId": "feedback-models",
-          "title": "Full-information and Bandit Feedback",
-          "description": "전체 loss를 보는 OCO와 선택 결과만 보는 bandit feedback을 구분합니다.",
-          "order": 40,
-          "file": "pages/feedback-models.md"
-        },
-        {
           "pageId": "practice-set",
           "title": "Practice Set",
           "description": "Online Convex Optimization 계열을 하나의 흐름으로 연습합니다.",
@@ -4852,16 +4768,9 @@
         {
           "pageId": "cut-cycle-duality",
           "title": "Cut-Cycle Duality",
-          "description": "primal cut/cycle과 dual path/cut 대응을 정리합니다.",
+          "description": "Primal cut-cycle 대응과 dual 최단 경로로 바꿀 수 있는 경계·방향 조건을 함께 확인합니다.",
           "order": 30,
           "file": "pages/cut-cycle-duality.md"
-        },
-        {
-          "pageId": "planar-min-cut",
-          "title": "Planar Min-Cut",
-          "description": "특정 planar min-cut을 dual shortest path로 바꾸는 조건과 절차입니다.",
-          "order": 40,
-          "file": "pages/planar-min-cut.md"
         },
         {
           "pageId": "practice-set",

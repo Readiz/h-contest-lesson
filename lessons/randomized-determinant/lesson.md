@@ -2,18 +2,6 @@
 
 Randomized Determinant는 determinant를 직접 수식 전개하지 않고, 무작위 값을 대입한 뒤 modular Gaussian elimination으로 nonzero 여부나 rank 성질을 확률적으로 판정하는 관점입니다. Polynomial Identity Testing과 Schwartz-Zippel lemma가 핵심 안전장치입니다.
 
-이 레슨은 Black-Box Linear Algebra, Matrix Exponentiation, Modular Arithmetic 이후에 보는 선형대수/확률 심화입니다.
-
-1. determinant가 어떤 성질을 나타내는 polynomial인지 확인한다.
-2. symbolic 변수를 큰 prime field의 random value로 바꾼다.
-3. false negative 가능성을 반복과 검증으로 낮춘다.
-
-## 선수 지식과 이어지는 레슨
-
-- 선수 지식: Modular Arithmetic, Black-Box Linear Algebra, Probability and Expected Value
-- 함께 보면 좋은 레슨: General Matching, Linear Algebra Applications, Testing and Stress
-- 다음에 볼 레슨: matrix-tree theorem applications, algebraic matching, randomized verification
-
 ## 문제 신호
 
 | 문제 표현 | Randomized Determinant 관점 |
