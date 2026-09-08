@@ -2,7 +2,7 @@
 
 Cut 문제는 모두 비슷해 보이지만, source와 sink가 고정됐는지, 전체 graph의 최약 지점인지, 모든 pair 질의인지에 따라 도구가 완전히 달라집니다. Graph Cut Structures 허브에서는 먼저 이 분류를 끝내고 알고리즘을 고릅니다.
 
-## 1. 모델 비교표
+## 모델 비교표
 
 | 질문 | 모델 | 대표 도구 |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ Cut 문제는 모두 비슷해 보이지만, source와 sink가 고정됐는지, 
 
 이 표에서 한 줄을 고르지 못하면 구현을 시작하지 않는 편이 낫습니다. 특히 global min cut과 s-t min cut을 혼동하면 맞는 알고리즘을 써도 틀립니다.
 
-## 2. 선후 관계
+## 선후 관계
 
 가장 기본은 max-flow/min-cut theorem입니다. 그러나 max-flow는 특정 pair를 분리하는 문제이고, global min cut은 pair가 고정되지 않습니다.
 
@@ -35,7 +35,7 @@ cut cactus
 
 Gomory-Hu Tree와 cut cactus는 둘 다 tree/cactus처럼 보이지만 압축 대상이 다릅니다. Gomory-Hu는 pair별 min cut value, cactus는 global minimum cut family입니다.
 
-## 3. 알고리즘 선택
+## 알고리즘 선택
 
 | 제한/요구 | 선택 |
 | --- | --- |
@@ -46,7 +46,7 @@ Gomory-Hu Tree와 cut cactus는 둘 다 tree/cactus처럼 보이지만 압축 �
 | 모든 global min cut family | cactus 관점, construction 난도 확인 |
 | planar embedding과 boundary cut | dual shortest path |
 
-## 4. 실수 방지 질문
+## 실수 방지 질문
 
 1. directed graph인가? 그렇다면 이 허브의 많은 구조가 바로 적용되지 않습니다.
 2. cut partition을 출력해야 하는가, 값만 출력하면 되는가?

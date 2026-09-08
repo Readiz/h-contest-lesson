@@ -8,13 +8,13 @@ Formal Power Series는 다항식을 무한히 긴 계수열처럼 다루며, 미
 2. 미분과 적분을 계수 연산으로 처리한다.
 3. Newton iteration으로 다항식 역원을 구한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 모듈러 연산, NTT, 조합론, 다항식 곱셈
 - 함께 보면 좋은 레슨: FFT와 NTT, 조합론, 모듈러 연산
 - 다음에 볼 레슨: FPS log/exp, generating function, divide-and-conquer convolution DP
 
-## 1. Formal의 의미
+## Formal의 의미
 
 Formal Power Series에서는 `x`에 실제 값을 대입하기보다 계수들의 규칙을 다룹니다.
 
@@ -32,7 +32,7 @@ A(x) = a0 + a1*x + a2*x^2 + ...
 | 적분 | `a[i] / (i+1)`이 `x^(i+1)` 계수 |
 | 역원 | `A(x) * B(x) = 1 mod x^n` |
 
-## 2. 기본 다항식 연산
+## 기본 다항식 연산
 
 아래 코드는 미분과 적분입니다. 모듈러는 소수라고 가정합니다.
 
@@ -76,7 +76,7 @@ vector<long long> integral(const vector<long long>& a) {
 
 실전에서는 inverse number를 미리 전처리해 적분을 `O(N)`으로 처리합니다. 위 구현은 개념을 보여 주기 위해 `modPow`를 직접 호출했습니다.
 
-## 3. 곱셈과 truncate
+## 곱셈과 truncate
 
 FPS 연산은 필요한 차수까지만 유지합니다.
 
@@ -88,7 +88,7 @@ A(x) * B(x) mod x^n
 
 작은 차수에서는 단순 `O(N^2)` 곱셈이 NTT보다 빠를 수 있습니다. 큰 입력에서만 NTT가 이득입니다.
 
-## 4. 다항식 역원
+## 다항식 역원
 
 `A(0) != 0`이면 `A(x)`의 곱셈 역원 `B(x)`가 존재합니다.
 
@@ -104,7 +104,7 @@ B_new = B * (2 - A * B) mod x^(2k)
 
 이 식은 수의 Newton iteration과 비슷하게 오차 차수를 두 배로 늘립니다.
 
-## 5. 단순 곱셈 기반 역원 예시
+## 단순 곱셈 기반 역원 예시
 
 아래 코드는 구조를 보여 주기 위해 단순 곱셈을 사용합니다. 큰 입력에서는 `multiplyTruncated`를 NTT 기반으로 바꿉니다.
 
@@ -164,7 +164,7 @@ vector<long long> inversePolynomial(const vector<long long>& a, int n) {
 
 `a[0]`이 0이면 역원이 없습니다. 이 조건을 빼먹으면 첫 상수항 inverse부터 실패합니다.
 
-## 6. Log와 Exp로 이어지는 흐름
+## Log와 Exp로 이어지는 흐름
 
 FPS log와 exp는 미분, 적분, 역원을 조합합니다.
 
@@ -175,7 +175,7 @@ exp B는 log의 역연산
 
 대회에서 generating function을 다루면 이 연산들이 등장합니다. 다만 구현량이 크므로, 먼저 inverse와 derivative/integral을 안정적으로 익히는 편이 좋습니다.
 
-## 7. 생성함수 관점
+## 생성함수 관점
 
 조합론에서 경우의 수를 계수로 담으면 다항식이 됩니다.
 
@@ -185,7 +185,7 @@ F(x) = sum ways[n] * x^n
 
 두 독립 선택을 합치는 것은 다항식 곱셈입니다. 여러 조건을 빠르게 합치려면 convolution과 FPS 연산이 자연스럽게 연결됩니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 단순 구현 | NTT 기반 |
 | --- | ---: | ---: |
@@ -196,7 +196,7 @@ F(x) = sum ways[n] * x^n
 
 실제 FPS 라이브러리는 상수와 메모리 사용량도 큽니다. 문제 제한이 작으면 단순 polynomial DP가 더 낫습니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -207,7 +207,7 @@ F(x) = sum ways[n] * x^n
 | 작은 입력에 과한 FPS 구현 | 복잡도 손해 | 단순 DP와 비교 |
 | 계수 차수와 배열 index 혼동 | 한 칸 밀림 | `a[i]`는 `x^i` 계수 |
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 경우의 수가 계수열로 표현되는가?
 2. 선택 결합이 convolution으로 바뀌는가?
@@ -217,12 +217,3 @@ F(x) = sum ways[n] * x^n
 6. 단순 `O(N^2)` 다항식으로 충분하지 않은가?
 
 Formal Power Series는 구현보다 수식 변환이 더 중요합니다. 식이 계수 연산으로 정리되면, NTT와 inverse 같은 기본 블록을 조합해 큰 경우의 수 문제를 빠르게 처리할 수 있습니다.
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: polynomial derivative/integral `/practice/...` 문제 필요 | 계수 index와 modular inverse 처리 | FPS basics |
-| 표준 | TODO: polynomial inverse `/practice/...` 문제 필요 | Newton iteration 구현 | inverse FPS |
-| 응용 | TODO: generating function convolution `/practice/...` 문제 필요 | 경우의 수 계수 결합 | generating function |
-| 함정 | TODO: truncate가 필요한 FPS `/practice/...` 문제 필요 | `mod x^n` 유지 | truncation |

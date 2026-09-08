@@ -1,18 +1,9 @@
 # Practice Set
 
-Graph Cut Structures 허브의 연습은 cut 모델 선택을 먼저 하고, 그다음 deterministic, randomized, all-pairs, family representation으로 확장하는 순서가 좋습니다. 실제 h-contest 문제가 아직 부족한 주제는 임의 ID를 만들지 않고 `TODO`로 남깁니다.
+Graph Cut Structures 허브의 연습은 cut 모델 선택을 먼저 하고, 그다음 deterministic, randomized, all-pairs, family representation으로 확장하는 순서가 좋습니다.
 
-## 1. 연습 순서
 
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | [Stoer-Wagner Global Min Cut](#3-로컬-연습-stoer-wagner-global-min-cut) | s-t cut과 global cut 구분 | Stoer-Wagner |
-| 표준 | TODO: all pair min-cut query `/practice/...` 문제 필요 | cut-equivalent tree 질의 | Gomory-Hu |
-| 응용 | TODO: sparse certificate min cut `/practice/...` 문제 필요 | 작은 cut 보존과 edge pruning | cut sparsification |
-| 심화 | TODO: min cut family cactus `/practice/...` 문제 필요 | global min cut family 압축 | cactus |
-| 함정 | TODO: randomized vs deterministic cut `/practice/...` 문제 필요 | Karger 실패 확률과 fallback | contraction |
-
-## 2. Trace: Stoer-Wagner 한 phase
+## Trace: Stoer-Wagner 한 phase
 
 아래 무향 weighted graph를 봅니다.
 
@@ -43,7 +34,7 @@ cut({3}) = capacity(3-0) + capacity(3-1) + capacity(3-2)
 
 그다음 Stoer-Wagner는 `s=2`와 `t=3`을 merge합니다. 전체 알고리즘은 이런 phase를 정점이 하나 남을 때까지 반복하고, 각 phase의 candidate cut 최솟값을 답으로 둡니다.
 
-## 3. 로컬 연습: Stoer-Wagner Global Min Cut
+## 로컬 연습: Stoer-Wagner Global Min Cut
 
 ### 입력
 
@@ -110,7 +101,7 @@ for seed in 1..1000:
 
 반드시 포함할 case는 disconnected graph, multi-edge, 한 정점만 약하게 연결된 graph입니다.
 
-## 4. 다른 로컬 완결형 연습 후보
+## 다른 로컬 완결형 연습 후보
 
 ### Gomory-Hu Query Check
 
@@ -120,7 +111,7 @@ for seed in 1..1000:
 
 cycle graph와 complete graph에서 Karger contraction을 여러 seed로 반복하고, trial 수가 늘어날 때 best cut 값이 어떻게 안정되는지 확인합니다.
 
-## 5. 제출 전 체크리스트
+## 제출 전 체크리스트
 
 - `s-t`, global, all-pairs, family, threshold 중 어떤 모델인지 명시했는가?
 - 무향/방향 조건을 확인했는가?

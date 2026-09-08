@@ -8,13 +8,13 @@ Online Planning Evaluation은 simulator 기반 policy나 search agent를 제출�
 2. 평균뿐 아니라 분산, confidence interval, worst-case를 본다.
 3. tuning set과 holdout set을 분리한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Monte Carlo Tree Search, POMCP, Bayesian Bandits
 - 함께 보면 좋은 레슨: Testing and Stress, Heuristic, Reinforcement Learning Basics
 - 다음에 볼 레슨: policy tuning, simulator benchmark, sequential decision evaluation
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Online Planning Evaluation 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Online Planning Evaluation은 simulator 기반 policy나 search agent를 제출�
 
 대회형 heuristic/game 문제에서는 "좋아 보이는 한 seed"보다 "같은 seed 묶음에서 일관되게 좋아지는지"가 더 중요합니다.
 
-## 2. Paired Seed 비교
+## Paired Seed 비교
 
 baseline policy `A`와 후보 policy `B`를 비교할 때, 서로 다른 seed로 평균을 내면 noise가 큽니다. 같은 seed에서 둘 다 실행하고 차이 `B - A`를 모읍니다.
 
@@ -39,7 +39,7 @@ seed 3: B - A = +8
 
 이 차이의 평균과 분산을 보면, 후보가 baseline보다 안정적으로 나은지 판단하기 쉽습니다.
 
-## 3. Confidence Interval
+## Confidence Interval
 
 rollout 점수 차이를 `d_i`라고 하면 평균 차이와 표준오차를 계산합니다.
 
@@ -51,7 +51,7 @@ rough 95% interval = mean +- 2 * stderr
 
 구간이 0을 충분히 벗어나면 개선이라고 볼 수 있습니다. 구간이 0을 크게 걸치면 seed를 늘리거나 후보를 더 명확히 바꿔야 합니다.
 
-## 4. 평가 코드 골격
+## 평가 코드 골격
 
 아래 코드는 이미 얻은 score 차이 목록에서 평균과 표준오차를 계산하는 최소 골격입니다.
 
@@ -92,7 +92,7 @@ Summary summarizeDifferences(const vector<double>& diff) {
 
 실전 benchmark runner는 seed, parameter, elapsed time, score, fail reason을 모두 로그로 남겨야 합니다.
 
-## 5. Tuning Set과 Holdout Set
+## Tuning Set과 Holdout Set
 
 parameter를 여러 번 바꾸며 같은 seed에서만 성능을 올리면 overfitting이 생깁니다.
 
@@ -105,7 +105,7 @@ parameter를 여러 번 바꾸며 같은 seed에서만 성능을 올리면 overf
 
 holdout 결과가 tuning 결과보다 훨씬 나쁘면 parameter가 특정 seed에 맞춰진 것입니다.
 
-## 6. Budget-Aware Evaluation
+## Budget-Aware Evaluation
 
 online planning은 시간 예산을 먹습니다. score가 조금 올라도 시간 초과나 variance가 커지면 실전에서는 손해입니다.
 
@@ -119,7 +119,7 @@ invalid action count
 
 MCTS나 POMCP는 simulation count만 비교하면 안 됩니다. state transition 비용, rollout policy 비용, memory allocation 때문에 같은 simulation 수라도 실제 시간이 달라질 수 있습니다.
 
-## 7. Baseline 설계
+## Baseline 설계
 
 좋은 baseline은 약하지만 안정적이어야 합니다.
 
@@ -132,7 +132,9 @@ MCTS나 POMCP는 simulation count만 비교하면 안 됩니다. state transitio
 
 후보 policy가 random보다만 좋다고 충분한 것은 아닙니다. 이전 안정 버전과 같은 seed로 비교해야 실제 개선을 볼 수 있습니다.
 
-## 8. 자주 하는 실수
+Random legal policy가 항상 유효한 trajectory를 만드는지 먼저 확인하면 simulator 오류와 policy 오류를 구분하는 데 도움이 됩니다. Simulation 수를 늘릴 때는 평균 점수뿐 아니라 deadline 부근의 timeout 빈도도 측정합니다.
+
+## 자주 하는 실수
 
 1. 평균 점수만 보고 timeout 수를 보지 않는다.
 2. seed를 고정하지 않아 policy 간 비교가 noise에 묻힌다.
@@ -140,40 +142,10 @@ MCTS나 POMCP는 simulation count만 비교하면 안 됩니다. state transitio
 4. invalid action을 낮은 점수로만 기록하고 원인을 잃어버린다.
 5. elapsed time을 local debug build에서만 측정한다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - simulator가 deterministic seed를 지원하는가?
 - 같은 seed에서 baseline과 후보를 모두 실행할 수 있는가?
 - score가 클수록 좋은가, 작을수록 좋은가?
 - timeout과 invalid action을 어떻게 penalty 처리하는가?
 - 제출 환경의 시간 예산과 local benchmark 시간이 얼마나 다른가?
-
-## 10. 대표 문제로 연결하기
-
-### 문제에서 보이는 신호
-
-- 입력 크기: exact optimal보다 policy/search가 필요한 크기
-- 필요한 복잡도: 제한 시간 안의 반복 simulation
-- 이 레슨의 핵심 개념: paired evaluation과 holdout 검증
-
-### 풀이 흐름
-
-1. seed 목록을 tuning/holdout/stress로 나눈다.
-2. baseline policy의 score와 elapsed time을 저장한다.
-3. 후보 policy를 같은 seed에서 실행해 score 차이를 계산한다.
-4. 평균, confidence interval, timeout count를 함께 본다.
-5. 최종 후보는 holdout seed에서 다시 검증한다.
-
-### 자주 틀리는 지점
-
-- MCTS simulation 수를 늘려 평균은 올라가도 deadline 근처에서 timeout variance가 커질 수 있습니다.
-- simulator bug와 policy bug를 분리하려면 random legal policy가 항상 valid trajectory를 만드는지 먼저 확인하는 편이 좋습니다.
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: online planning evaluation `/practice/...` 문제 필요 | paired seed score 비교 | baseline |
-| 표준 | TODO: rollout benchmark `/practice/...` 문제 필요 | confidence interval과 holdout 분리 | standard error |
-| 응용 | TODO: MCTS tuning `/practice/...` 문제 필요 | simulation budget과 score tradeoff | time budget |
-| 함정 | TODO: noisy policy regression `/practice/...` 문제 필요 | 평균 개선과 timeout 악화 구분 | variance |

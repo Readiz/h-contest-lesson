@@ -8,13 +8,13 @@ Min-Plus Convolution은 두 수열 `A`, `B`에서 `C[k] = min_i A[i] + B[k-i]`�
 2. 제한이 없으면 naive `O(NM)`이 기본이다.
 3. convex/Monge 조건이 있으면 argmin monotonicity로 divide and conquer를 적용한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: DP transition, convex sequence, Monge inequality, divide and conquer optimization
 - 함께 보면 좋은 레슨: Monge와 SMAWK, Slope Trick, Convex Cost Flow
 - 다음에 볼 레슨: distance transform, convex DP modeling, tropical algebra
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Min-Plus Convolution 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Min-Plus Convolution은 두 수열 `A`, `B`에서 `C[k] = min_i A[i] + B[k-i]`�
 
 일반 convolution은 곱하고 더하지만, min-plus convolution은 더하고 최솟값을 취합니다. FFT로 바로 빨라지는 형태가 아니라 구조적 성질이 필요합니다.
 
-## 2. 기본 형태
+## 기본 형태
 
 길이 `n`, `m`인 배열에서 결과 길이는 `n + m - 1`입니다.
 
@@ -39,7 +39,7 @@ C[k] = min over i:
 
 이 식은 "왼쪽에서 i개, 오른쪽에서 k-i개를 선택"하는 merge DP에서 자주 등장합니다.
 
-## 3. 손으로 계산하는 작은 예시
+## 손으로 계산하는 작은 예시
 
 아래 두 convex sequence를 min-plus convolution 해 보겠습니다.
 
@@ -72,7 +72,7 @@ B = [0, 100, 0]
 
 `k=1`에서는 `A1+B0=0`이 최적이라 opt가 1이지만, `k=2`에서는 `A0+B2=0`이 최적이라 opt가 0으로 되돌아갑니다. 이런 입력에 monotone D&C를 적용하면 탐색 후보를 잘못 버립니다.
 
-## 4. Naive와 Monotone 최적화
+## Naive와 Monotone 최적화
 
 아래 구현은 naive와 argmin monotone을 가정한 divide and conquer 버전을 함께 보여 줍니다. convex sequence 조합처럼 argmin이 k에 대해 감소하지 않는 경우에만 최적화 버전을 사용합니다.
 
@@ -136,7 +136,7 @@ struct MinPlusConvolution {
 
 `monotoneArgmin`은 조건이 없으면 틀릴 수 있습니다. 최적화 전에는 작은 입력에서 naive 결과와 비교하는 stress test를 먼저 둡니다.
 
-## 5. Convex Sequence 조건
+## Convex Sequence 조건
 
 수열 `A`의 차분이 증가하면 convex sequence입니다.
 
@@ -152,7 +152,7 @@ A[i+1] - A[i] <= A[i+2] - A[i+1]
 2. 비용 행렬 `M[k][i] = A[i] + B[k-i]`가 Monge 성질을 가진다.
 3. 작은 stress에서 보이는 현상을 넘어, opt가 감소하지 않는다는 증명을 문제 구조에서 끌어낼 수 있다.
 
-## 6. DP Merge 예시
+## DP Merge 예시
 
 Tree DP에서 각 child의 선택 개수별 비용을 parent DP에 합치는 상황을 보겠습니다.
 
@@ -162,7 +162,7 @@ newDp[k] = min_i parentDp[i] + childDp[k-i]
 
 child가 많으면 merge 비용이 커집니다. 배열 길이 합, convex 여부, small-to-large merge를 함께 봐야 합니다. 모든 child DP가 convex라면 min-plus 최적화가 강하게 작동할 수 있습니다.
 
-## 7. Slope Trick과 비교
+## Slope Trick과 비교
 
 | 기법 | 관점 |
 | --- | --- |
@@ -173,7 +173,7 @@ child가 많으면 merge 비용이 커집니다. 배열 길이 합, convex 여�
 
 같은 convex DP라도 함수 update가 단순하면 Slope Trick, 두 함수 merge가 핵심이면 Min-Plus Convolution이 더 직접적입니다.
 
-## 8. 시간 복잡도와 적용 조건
+## 시간 복잡도와 적용 조건
 
 ### 8.1 naive가 충분한 경우
 
@@ -198,7 +198,7 @@ child가 많으면 merge 비용이 커집니다. 배열 길이 합, convex 여�
 | 특수 convex linear algorithm | 조건에 따라 `O(N+M)` | discrete convex 조건과 전용 구현 필요 |
 | tree DP repeated merge | 총 상태 수와 merge 순서에 의존 | merge 순서와 상태 크기 관리 필요 |
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 일반 convolution처럼 FFT로 풀 수 있다고 착각한다.
 2. argmin 단조성이 없는데 divide and conquer를 적용한다.
@@ -206,19 +206,10 @@ child가 많으면 merge 비용이 커집니다. 배열 길이 합, convex 여�
 4. `INF + value` overflow를 확인하지 않는다.
 5. max-plus와 min-plus를 부호 변환 없이 섞는다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 전이가 정말 `min_i A[i] + B[k-i]` 형태인가?
 - 수열이 convex이거나 Monge 조건을 만족하는가?
 - argmin이 k에 따라 단조롭다는 증거가 있는가?
 - 배열 길이 합이 작아 naive merge가 충분하지는 않은가?
 - 여러 번 merge한다면 순서를 바꿔 총 비용을 줄일 수 있는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: min-plus convolution `/practice/...` 문제 필요 | naive merge 구현 | DP merge |
-| 표준 | TODO: convex sequence merge `/practice/...` 문제 필요 | argmin monotone 확인 | convex cost |
-| 응용 | TODO: tree DP convolution `/practice/...` 문제 필요 | small-to-large merge | group DP |
-| 함정 | TODO: non-convex counterexample `/practice/...` 문제 필요 | 최적화 조건 판정 | monotonicity |

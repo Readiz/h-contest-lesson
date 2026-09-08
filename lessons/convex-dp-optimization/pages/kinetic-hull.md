@@ -8,13 +8,13 @@ Kinetic Hull은 점이나 직선이 시간에 따라 움직일 때, 현재 최�
 2. 현재 최적인 후보가 언제 다른 후보에게 밀리는지 event를 만든다.
 3. event가 실제로 유효한지 다시 확인하면서 구조를 갱신한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Convex Hull Trick Variants, Rotating Calipers Applications, Robust Geometry Predicates
 - 함께 보면 좋은 레슨: Shape Distance Modeling, Fully Dynamic CHT, Sweep Line Geometry
 - 다음에 볼 레슨: fully dynamic CHT, kinetic data structures, event-driven optimization
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Kinetic Hull 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Kinetic Hull은 점이나 직선이 시간에 따라 움직일 때, 현재 최�
 
 정확한 대회 문제에서는 event 수가 제한되는 구조가 있어야 합니다. 아무 제약 없이 모든 교차를 추적하면 `O(N^2)` event가 생길 수 있습니다.
 
-## 2. 기본 모델
+## 기본 모델
 
 후보 `i`의 값이 시간에 대한 일차식이라고 합시다.
 
@@ -43,7 +43,7 @@ t = (b_j - b_i) / (a_i - a_j)
 
 이 식은 CHT의 교점과 비슷하지만, x query가 시간이 되고 후보 집합 자체가 event로 변할 수 있다는 점이 다릅니다.
 
-## 3. 작은 예시
+## 작은 예시
 
 ```text
 candidate A: 2t + 1
@@ -58,7 +58,7 @@ A와 C 교차: 2t+1 = 4t-3 -> t = 2
 
 하지만 모든 교차가 envelope 변화가 아닙니다. `t=2`에서 C가 A를 이겨도, 그 시점의 최댓값은 아직 B일 수 있습니다. event를 만들 때는 "두 후보가 만난다"와 "답이 바뀐다"를 구분해야 합니다.
 
-## 4. Event Queue Skeleton
+## Event Queue Skeleton
 
 아래 코드는 후보 쌍의 교차 시간을 priority queue에 넣고, 꺼낼 때 여전히 이웃인지 확인하는 형태의 skeleton입니다.
 
@@ -99,7 +99,7 @@ struct KineticQueue {
 
 실전 구현에서는 후보의 linked-list 이웃, 현재 시간, 교차 계산, version bump가 함께 필요합니다. skeleton의 핵심은 오래된 event를 바로 삭제하지 않고, 꺼낼 때 무효화하는 방식입니다.
 
-## 5. Moving Point Hull
+## Moving Point Hull
 
 점 `p_i(t) = p_i0 + v_i * t`가 움직이면, 특정 방향 `d`에서 support 값은 일차식이 됩니다.
 
@@ -110,7 +110,7 @@ dot(p_i(t), d)
 
 따라서 "방향이 고정된 support point"는 line envelope 문제로 바뀝니다. 하지만 전체 convex hull의 vertex 순서를 유지하려면 adjacent edge orientation이 바뀌는 event를 추적해야 하므로 훨씬 어렵습니다.
 
-## 6. Kinetic과 Offline의 경계
+## Kinetic과 Offline의 경계
 
 모든 query 시간이 미리 주어지면 kinetic structure를 만들지 않고 offline으로 정렬할 수 있습니다.
 
@@ -123,7 +123,7 @@ dot(p_i(t), d)
 
 대회에서는 kinetic이라는 이름보다 "time을 x로 보는 envelope"로 단순화되는 경우가 더 많습니다.
 
-## 7. 유효 Event 확인
+## 유효 Event 확인
 
 event queue에서 꺼낸 쌍이 지금도 구조상 이웃인지 확인해야 합니다.
 
@@ -135,7 +135,7 @@ event(A,B) 처리 후 순서가 바뀌면 B와 C event의 version도 다시 확�
 
 이 검사를 빼면 이미 사라진 후보가 다시 답을 바꾸는 것처럼 처리됩니다.
 
-## 8. 구현 전략
+## 구현 전략
 
 1. 후보 값을 시간에 대한 함수로 만든다.
 2. 두 후보의 교차 시간이 현재 시간 이후인지 계산한다.
@@ -145,7 +145,7 @@ event(A,B) 처리 후 순서가 바뀌면 B와 C event의 version도 다시 확�
 
 정수 좌표라도 교차 시간은 유리수가 될 수 있습니다. 비교는 곱셈으로 처리하거나 `long double` 오차를 받아들일 수 있는 문제인지 확인합니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 모든 후보 쌍 event를 넣어 `O(N^2 log N)`으로 터진다.
 2. 오래된 event를 무효화하지 않아 답이 되돌아간다.
@@ -154,19 +154,10 @@ event(A,B) 처리 후 순서가 바뀌면 B와 C event의 version도 다시 확�
 5. floating comparison으로 동시에 일어나는 event 순서가 흔들린다.
 6. kinetic이 필요한 문제를 offline query 정렬로 더 쉽게 풀 수 있는데도 어렵게 구현한다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 후보 값이 시간에 대해 선형 또는 단순 함수인가?
 - 답이 바뀌는 event 수에 상한이 있는가?
 - query 시간이 online인가 offline인가?
 - 같은 시간에 여러 event가 생기면 순서를 어떻게 처리할 것인가?
 - exact rational comparison이 필요한가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: kinetic line envelope `/practice/...` 문제 필요 | 시간축 교점으로 최댓값 변화 찾기 | line envelope |
-| 표준 | TODO: moving point support `/practice/...` 문제 필요 | 방향 고정 support point 추적 | dot product |
-| 응용 | TODO: event queue kinetic hull `/practice/...` 문제 필요 | stale event lazy deletion | versioning |
-| 함정 | TODO: simultaneous kinetic events `/practice/...` 문제 필요 | 동시 event와 tie 처리 | rational compare |

@@ -8,13 +8,13 @@ CHT DP Applications는 Convex Hull Trick을 실제 DP 식으로 바꾸는 과정
 2. slope 추가 순서와 query 순서를 확인한다.
 3. 구현 선택과 tie-breaking을 문제 조건에 맞춘다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: DP transition, CHT/Li Chao Tree, convex DP modeling
 - 함께 보면 좋은 레슨: Convex Hull Trick Variants, Convex DP Modeling, Divide and Conquer DP Optimization
 - 다음에 볼 레슨: parametric DP, slope trick, kinetic hull
 
-## 1. 문제 신호
+## 문제 신호
 
 | DP 전이 형태 | CHT 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ CHT DP Applications는 Convex Hull Trick을 실제 DP 식으로 바꾸는 과정
 
 식이 직선과 점 질의로 분리되지 않으면 CHT를 억지로 적용하면 안 됩니다.
 
-## 2. 식 분리 예시
+## 식 분리 예시
 
 아래 전이가 있다고 합시다.
 
@@ -45,7 +45,7 @@ dp[i] = prefix[i]^2 + C + min_j(
 
 따라서 `x = prefix[i]`, `m = -2*prefix[j]`, `b = dp[j] + prefix[j]^2`인 직선 최솟값 질의가 됩니다.
 
-## 3. 구현 골격
+## 구현 골격
 
 아래 코드는 `x`가 증가하고 slope도 증가하는 최솟값 문제를 처리하는 monotone CHT skeleton입니다.
 
@@ -111,7 +111,7 @@ vector<long long> optimizeQuadraticPartition(const vector<long long>& prefix, lo
 
 이 skeleton은 `prefix[i]`가 증가한다는 전제를 둡니다. 값이 감소할 수 있으면 `queryIncreasingX`가 틀립니다.
 
-## 4. 선택 순서 체크
+## 선택 순서 체크
 
 CHT DP에서는 아래 순서를 먼저 표로 씁니다.
 
@@ -125,7 +125,7 @@ CHT DP에서는 아래 순서를 먼저 표로 씁니다.
 
 이 다섯 가지가 정해지면 구현 선택은 대부분 결정됩니다.
 
-## 5. 작은 예시
+## 작은 예시
 
 ```text
 prefix = 0, 2, 5
@@ -144,7 +144,7 @@ dp[2] = 25 + 3 - 9 = 19
 
 손으로 한두 단계 따라가면 직선의 `m`, `b`가 DP 전이와 맞는지 빠르게 확인할 수 있습니다.
 
-## 6. Li Chao로 가야 하는 경우
+## Li Chao로 가야 하는 경우
 
 아래 조건 중 하나라도 깨지면 monotone deque 대신 Li Chao를 먼저 고려합니다.
 
@@ -155,7 +155,7 @@ dp[2] = 25 + 3 - 9 = 19
 
 삭제가 필요한 경우는 rollback/offline 또는 multiset line container까지 봐야 합니다.
 
-## 7. D&C DP와 구분
+## D&C DP와 구분
 
 `cost(j, i)`가 Monge이고 argmin이 단조라면 Divide and Conquer Optimization이 더 간단할 수 있습니다. CHT는 보통 곱셈 항을 직선 질의로 분리할 수 있을 때 유리합니다.
 
@@ -166,7 +166,7 @@ dp[2] = 25 + 3 - 9 = 19
 | convex function에 point update | Slope Trick |
 | 선택 개수 penalty | Parametric DP |
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. `prefix[i]^2`처럼 query에만 의존하는 항을 line intercept에 넣는다.
 2. slope가 감소하는데 증가용 hull 조건을 그대로 쓴다.
@@ -174,19 +174,10 @@ dp[2] = 25 + 3 - 9 = 19
 4. 같은 slope에서 더 나쁜 line을 제거하지 않는다.
 5. `m*x+b` overflow를 `long long`으로 방치한다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 전이식을 line과 query x로 분리했는가?
 - line 추가 시점이 `j < i` 제약과 맞는가?
 - slope/query 단조성이 입력에서 보장되는가?
 - min/max convention을 통일했는가?
 - naive DP와 작은 입력에서 비교했는가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: quadratic partition CHT `/practice/...` 문제 필요 | 식 전개와 line 분리 | prefix square |
-| 표준 | TODO: Li Chao DP `/practice/...` 문제 필요 | 임의 query 처리 | dynamic hull |
-| 응용 | TODO: online CHT DP `/practice/...` 문제 필요 | add/query 순서 설계 | transition ordering |
-| 함정 | TODO: non-monotone CHT `/practice/...` 문제 필요 | deque 전제 검증 | counterexample |

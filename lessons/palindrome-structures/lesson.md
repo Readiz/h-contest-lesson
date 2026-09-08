@@ -9,13 +9,13 @@ Palindrome Structures는 회문 substring을 판정, 열거, 집계, DP로 처�
 3. 구간 안의 회문 통계를 질의해야 하는가?
 4. suffix 구조와 palindrome 구조를 함께 써야 하는가?
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: String Matching, Suffix and Periodicity Structures, Dynamic Programming
 - 함께 보면 좋은 레슨: Suffix and Periodicity Structures, Rolling Hash, Palindromic Tree
 - 다음에 볼 레슨: Advanced String DP, String Period Queries
 
-## 1. 모델 선택 표
+## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
@@ -25,7 +25,7 @@ Palindrome Structures는 회문 substring을 판정, 열거, 집계, DP로 처�
 | suffix 구조와 palindrome 조건을 함께 써야 한다 | [Suffix and Palindrome Applications](pages/suffix-palindrome-applications.md) |
 | Manacher, hash, Eertree, DP 중 무엇을 고를지 헷갈린다 | [Palindrome Model Map](pages/palindrome-model-map.md) |
 
-## 2. 판정과 집계의 차이
+## 판정과 집계의 차이
 
 | 목표 | 보통 맞는 구조 |
 | --- | --- |
@@ -37,6 +37,6 @@ Palindrome Structures는 회문 substring을 판정, 열거, 집계, DP로 처�
 
 판정만 필요한 문제에 Eertree를 쓰면 과한 경우가 많습니다. 반대로 서로 다른 palindrome을 노드로 저장해야 하면 hash만으로는 집계가 복잡해집니다.
 
-## 3. 공개 상태
+## 공개 상태
 
 하위 페이지는 기존 구현과 설명을 보존합니다. [Practice Set](pages/practice-set.md)은 Eertree 기반 distinct palindrome count 로컬 연습과 trace를 대표 구현 흐름으로 제공합니다.

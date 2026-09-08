@@ -8,13 +8,13 @@ Link-Cut Tree는 동적으로 변하는 forest에서 `link`, `cut`, path query�
 2. `access(v)`로 root에서 `v`까지의 preferred path를 하나의 splay로 노출한다.
 3. `makeroot(v)`로 represented tree의 root 방향을 뒤집어 임의 path를 다룬다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: tree path, splay rotation, lazy reverse, aggregate pull
 - 함께 보면 좋은 레슨: 트리 심화, AVL/Splay 참고, Segment Tree, Treap
 - 다음에 볼 레슨: dynamic connectivity, Euler tour tree, dynamic forest with edge weights
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Link-Cut Tree 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Link-Cut Tree는 동적으로 변하는 forest에서 `link`, `cut`, path query�
 
 단순히 정적 트리 경로 질의라면 Heavy-Light Decomposition이 더 쉽습니다. Link-Cut Tree는 간선 변경이 실제로 필요한 경우에 사용합니다.
 
-## 2. 핵심 연산
+## 핵심 연산
 
 | 연산 | 의미 |
 | --- | --- |
@@ -39,7 +39,7 @@ Link-Cut Tree는 동적으로 변하는 forest에서 `link`, `cut`, path query�
 
 경로 질의 `u-v`는 `makeRoot(u); access(v); splay(v);` 후 `v`의 splay aggregate를 읽습니다.
 
-## 3. 상태 추적: `1-2-3` path query
+## 상태 추적: `1-2-3` path query
 
 정점 값이 아래처럼 들어 있다고 하겠습니다.
 
@@ -100,7 +100,7 @@ tree[u].child[1] == 0
 
 첫 번째 조건은 `u`가 `v`의 바로 왼쪽에 있다는 뜻이고, 두 번째 조건은 `u`와 `v` 사이에 다른 정점이 끼어 있지 않다는 뜻입니다. 이 확인 없이 `child[0]`만 끊으면 직접 edge가 아닌 긴 path를 잘못 자를 수 있습니다.
 
-## 4. 구현
+## 구현
 
 아래 구현은 정점 값의 path sum을 관리합니다. 간선 weight 문제는 각 간선을 별도 노드로 만들어 두 endpoint와 연결하는 방식으로 확장합니다.
 
@@ -267,7 +267,7 @@ struct LinkCutTree {
 };
 ```
 
-## 5. Edge Weight 모델링
+## Edge Weight 모델링
 
 Link-Cut Tree 노드가 정점이라면 path aggregate는 정점 값 합입니다. 간선 값 합을 구하려면 각 간선을 별도 노드로 만들고 아래처럼 연결합니다.
 
@@ -279,7 +279,7 @@ value(original vertex) = 0
 
 그러면 path sum이 간선 weight 합이 됩니다. 간선 삭제도 `cut(u, edgeNode)`와 `cut(edgeNode, v)`로 처리합니다.
 
-## 6. HLD와 비교
+## HLD와 비교
 
 | 조건 | HLD | Link-Cut Tree |
 | --- | --- | --- |
@@ -291,7 +291,7 @@ value(original vertex) = 0
 
 간선 변경이 없다면 HLD를 먼저 선택하는 편이 안전합니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 연산 | 복잡도 |
 | --- | --- |
@@ -299,7 +299,7 @@ value(original vertex) = 0
 | `link`, `cut` | amortized `O(log N)` |
 | path query/update | amortized `O(log N)` |
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. `splay` 전에 ancestor path의 lazy reverse를 push하지 않는다.
 2. `isSplayRoot`와 represented tree root를 혼동한다.
@@ -307,19 +307,10 @@ value(original vertex) = 0
 4. `cut`에서 두 정점이 직접 연결됐는지 확인하지 않는다.
 5. edge weight를 정점 값과 섞어 path sum이 한 칸 어긋난다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - forest가 유지되는가, cycle이 생길 수 있는가?
 - edge weight인지 vertex weight인지 명확한가?
 - path aggregate가 commutative하지 않다면 방향 처리가 필요한가?
 - `cut`이 edge id로 주어지는가, endpoint pair로 주어지는가?
 - offline으로 바꾸면 DSU rollback으로 더 쉽게 풀 수 있는가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: dynamic forest connectivity `/practice/...` 문제 필요 | link/cut/findRoot 구현 | link-cut tree |
-| 표준 | TODO: dynamic tree path sum `/practice/...` 문제 필요 | makeroot-access path query | splay aggregate |
-| 응용 | TODO: dynamic MST edge replacement `/practice/...` 문제 필요 | edge node 모델링 | dynamic forest |
-| 함정 | TODO: repeated cut invalid edge `/practice/...` 문제 필요 | 직접 간선 확인 | cut validation |

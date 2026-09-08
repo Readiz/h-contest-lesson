@@ -8,13 +8,13 @@ Linear Recurrence Applications는 점화식이 주어진 상황을 넘어, 문�
 2. 차수와 질의 수에 따라 계산 방식을 고른다.
 3. 처음 몇 항만 있을 때는 recurrence 추정 가능성을 검토한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Matrix Exponentiation, Kitamasa, Bostan-Mori, modular arithmetic
 - 함께 보면 좋은 레슨: Formal Power Series, Polynomial Interpolation, Multipoint Evaluation
 - 다음에 볼 레슨: recurrence guessing, generating function modeling, polynomial power
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Recurrence 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Linear Recurrence Applications는 점화식이 주어진 상황을 넘어, 문�
 
 점화식이 선형이려면 다음 항이 이전 항들의 상수 계수 합이어야 합니다. `min`, `max`, `xor`가 섞이면 다른 구조일 수 있습니다.
 
-## 2. 방법 선택표
+## 방법 선택표
 
 | 조건 | 우선 방법 |
 | --- | --- |
@@ -38,7 +38,7 @@ Linear Recurrence Applications는 점화식이 주어진 상황을 넘어, 문�
 
 구현 안정성까지 보면, K가 작으면 행렬이 가장 읽기 쉽습니다. K가 커지고 전이가 companion 형태면 Kitamasa가 유리합니다.
 
-## 3. 그래프 Walk를 Recurrence로 보기
+## 그래프 Walk를 Recurrence로 보기
 
 정점 수가 `S`인 graph에서 길이 `n` walk 수는 adjacency matrix `A^n`으로 계산합니다. Cayley-Hamilton 정리에 의해 각 entry도 차수 `S` 이하의 선형 recurrence를 가집니다.
 
@@ -48,7 +48,7 @@ walk_n = (A^n)[start][target]
 
 `S`가 작으면 matrix exponentiation이 충분합니다. `S`가 크지만 처음 항을 빠르게 만들 수 있으면 Berlekamp-Massey로 recurrence를 추정하는 전략도 후보가 됩니다.
 
-## 4. Berlekamp-Massey 연결
+## Berlekamp-Massey 연결
 
 모듈러 prime field에서 수열의 앞 항을 충분히 알고 있으면 최소 선형 점화식을 찾을 수 있습니다.
 
@@ -58,7 +58,7 @@ first terms -> Berlekamp-Massey -> coeff -> Kitamasa nth term
 
 주의할 점은 "충분한 앞 항"입니다. 차수 `K` recurrence라면 보통 `2K`개 이상이 필요합니다. 항 생성 자체가 비싸면 이 전략이 이득이 아닐 수 있습니다.
 
-## 5. Companion Matrix와 Kitamasa
+## Companion Matrix와 Kitamasa
 
 K차 recurrence는 companion matrix로도 볼 수 있습니다.
 
@@ -69,7 +69,7 @@ K차 recurrence는 companion matrix로도 볼 수 있습니다.
 
 Kitamasa는 이 companion matrix의 거듭제곱을 polynomial 나머지로 계산하는 관점입니다. 그래서 recurrence가 정확히 K개 이전 항의 선형 결합일 때 잘 맞습니다.
 
-## 6. Bostan-Mori가 좋은 경우
+## Bostan-Mori가 좋은 경우
 
 생성함수가 아래처럼 rational form이면 Bostan-Mori가 직접적입니다.
 
@@ -80,7 +80,7 @@ answer = [x^n] F(x)
 
 조합 문제에서 "길이 n 구조의 개수"가 polynomial equation이나 transfer로 나오면 생성함수 분모를 만들 수 있습니다. 이때 nth coefficient extraction이 recurrence 계산과 같은 역할을 합니다.
 
-## 7. 작은 예시
+## 작은 예시
 
 ```text
 문제: 길이 n 문자열에서 11이 나오지 않는 binary string 개수
@@ -96,7 +96,7 @@ total[n] = total[n-1] + total[n-2]
 
 상태 DP로 보면 2x2 matrix이고, 수열로 보면 Fibonacci 형태의 2차 recurrence입니다. 필요한 질의와 N 범위에 따라 둘 중 하나를 고르면 됩니다.
 
-## 8. 구현 Skeleton
+## 구현 Skeleton
 
 아래 코드는 recurrence가 주어졌다고 가정하고, 작은 K는 행렬 대신 Kitamasa 함수로 보내는 wrapper 형태입니다.
 
@@ -173,7 +173,7 @@ long long nthByRecurrence(
 
 실전에서는 coeff 순서와 초기항 index를 문제 statement 기준으로 먼저 고정해야 합니다.
 
-## 9. 시간 복잡도
+## 시간 복잡도
 
 | 방법 | 시간 |
 | --- | ---: |
@@ -184,7 +184,7 @@ long long nthByRecurrence(
 
 `S`는 상태 수, `K`는 recurrence 차수입니다. 둘이 같을 수도 있지만 항상 같지는 않습니다.
 
-## 10. 자주 하는 실수
+## 자주 하는 실수
 
 1. recurrence가 선형이 아닌데 BM으로 추정하려 한다.
 2. 합성수 mod에서 field inverse가 필요한 알고리즘을 그대로 쓴다.
@@ -192,19 +192,10 @@ long long nthByRecurrence(
 4. 여러 질의에서 매번 앞 항을 새로 생성한다.
 5. matrix 상태 순서와 recurrence coeff 순서를 섞는다.
 
-## 11. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 전이가 정말 선형인가?
 - 계수가 시간에 따라 바뀌는가?
 - mod가 prime인가?
 - K, N, query 수 중 병목은 무엇인가?
 - 점화식이 직접 주어졌는가, 앞 항에서 추정해야 하는가?
-
-## 12. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: recurrence modeling `/practice/...` 문제 필요 | DP에서 recurrence 추출 | state compression |
-| 표준 | TODO: many nth recurrence `/practice/...` 문제 필요 | Kitamasa 선택 | characteristic polynomial |
-| 응용 | TODO: Berlekamp-Massey application `/practice/...` 문제 필요 | 앞 항에서 점화식 추정 | minimal recurrence |
-| 함정 | TODO: non-linear sequence `/practice/...` 문제 필요 | 선형성 검증 | counterexample |

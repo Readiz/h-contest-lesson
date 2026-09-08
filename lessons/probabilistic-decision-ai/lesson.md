@@ -4,13 +4,13 @@ Probabilistic Decision AI는 확률 전이, 숨은 상태, simulation 기반 탐
 
 이 허브는 Stochastic Decision Process, MCTS, Imperfect Information Search, POMDP, PBVI, POMCP, Bayesian Bandits, Online Planning Evaluation을 하나의 흐름으로 연결합니다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Probability and Expected Value, Dynamic Programming, Minimax and Alpha-Beta, Heuristic
 - 함께 보면 좋은 레슨: Game Theory Applications, Online Convex Optimization, Testing and Stress
 - 다음에 볼 레슨: Online Planning Evaluation, Black-Box Linear Algebra, Game AI evaluation
 
-## 1. 모델 선택 표
+## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
@@ -26,7 +26,7 @@ Probabilistic Decision AI는 확률 전이, 숨은 상태, simulation 기반 탐
 | planning algorithm의 시간/점수 tradeoff를 평가한다 | [Online Planning Evaluation](pages/online-planning-evaluation.md) |
 | 전체 경계가 헷갈린다 | [Decision AI Model Map](pages/decision-ai-model-map.md), [Feedback Model Boundary](pages/feedback-model-boundary.md) |
 
-## 2. 정확 알고리즘과 reference/heuristic 경계
+## 정확 알고리즘과 reference/heuristic 경계
 
 | 성격 | 대표 페이지 | 공개 의미 |
 | --- | --- | --- |

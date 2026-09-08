@@ -2,7 +2,7 @@
 
 확률적 의사결정/게임 AI 문제는 정확한 Bellman DP, hidden-state belief update, simulation planning, bandit 학습이 한 문장에 섞여 보일 수 있습니다. 먼저 관측 가능성과 모델 제공 방식을 나눕니다.
 
-## 1. 네 축
+## 네 축
 
 | 축 | 질문 | 대표 모델 |
 | --- | --- | --- |
@@ -11,7 +11,7 @@
 | Simulator only | 전이표 대신 rollout만 가능한가? | MCTS, POMCP |
 | Unknown reward model | action reward 분포를 학습해야 하는가? | Bayesian Bandits |
 
-## 2. 선택 기준
+## 선택 기준
 
 | 상황 | 후보 |
 | --- | --- |
@@ -26,7 +26,7 @@
 
 관측 모델 자체가 헷갈리면 먼저 Feedback Model Boundary를 봅니다. full-information, bandit, simulator, hidden-state observation을 구분한 뒤에야 MDP, MCTS, POMDP, Bayesian Bandits 중 하나를 안전하게 고를 수 있습니다.
 
-## 3. 쓰지 말아야 할 경우
+## 쓰지 말아야 할 경우
 
 1. 정확한 정답을 요구하는 judge 문제에 MCTS 같은 근사를 답으로 제출한다.
 2. partial observation 문제를 현재 관측값만 state로 둔 MDP로 처리한다.

@@ -2,7 +2,7 @@
 
 Polynomial/recurrence 문제는 같은 계수열을 보더라도 관점이 다릅니다. 먼저 "곱셈", "변환", "평가/복원", "n번째 항" 중 무엇이 필요한지 나눕니다.
 
-## 1. 네 축
+## 네 축
 
 | 축 | 필요한 정보 | 대표 기법 |
 | --- | --- | --- |
@@ -11,7 +11,7 @@ Polynomial/recurrence 문제는 같은 계수열을 보더라도 관점이 다�
 | Evaluation/interpolation | 많은 점의 값 또는 계수 복원 | Multipoint Evaluation, Interpolation |
 | Recurrence coefficient | 큰 n번째 항 | Kitamasa, Bostan-Mori, Berlekamp-Massey |
 
-## 2. Kitamasa, Bostan-Mori, BM 구분
+## Kitamasa, Bostan-Mori, BM 구분
 
 | 상황 | 후보 |
 | --- | --- |
@@ -22,7 +22,7 @@ Polynomial/recurrence 문제는 같은 계수열을 보더라도 관점이 다�
 
 BM은 field 위 알고리즘입니다. modulo가 prime이 아니거나 나눗셈이 안전하지 않으면 그대로 쓰면 안 됩니다.
 
-## 3. 구현 전에 확인할 것
+## 구현 전에 확인할 것
 
 - 결과 mod가 NTT-friendly인가?
 - convolution 길이가 단순 `O(N^2)`보다 FFT/NTT가 이득일 만큼 큰가?

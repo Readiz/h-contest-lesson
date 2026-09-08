@@ -8,13 +8,13 @@ POMCP(Partially Observable Monte Carlo Planning)는 POMDP를 belief table 전체
 2. history node에서 UCT로 action을 고른다.
 3. simulator가 반환한 observation에 따라 tree를 확장한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Partially Observable MDP, Point-Based Value Iteration, Monte Carlo Tree Search
 - 함께 보면 좋은 레슨: Imperfect Information Search, Game Theory Applications, Markov Decision Process
 - 다음에 볼 레슨: Bayesian bandits, online planning, simulator-based reinforcement learning
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | POMCP 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ POMCP(Partially Observable Monte Carlo Planning)는 POMDP를 belief table 전체
 
 POMCP는 보통 interactive AI나 simulator planning에 맞습니다. 정답이 하나로 고정된 알고리즘 judge 문제에는 잘 맞지 않습니다.
 
-## 2. History Tree
+## History Tree
 
 POMCP의 node는 실제 state가 아니라 action-observation history입니다.
 
@@ -36,7 +36,7 @@ h = o0, a0, o1, a1, o2, ...
 
 같은 history에 도달한 particle state들을 node에 모으고, 그 node에서 UCT로 action을 선택합니다. state를 완전히 알 수 없기 때문에 history가 search tree의 key가 됩니다.
 
-## 3. Particle Belief
+## Particle Belief
 
 belief를 확률 배열로 전부 갱신하지 않고, 가능한 state sample들을 유지합니다.
 
@@ -47,7 +47,7 @@ belief particles:
 
 같은 state가 여러 번 나오면 그만큼 확률 질량이 큰 것으로 봅니다. 실제 observation을 받은 뒤에는 그 observation과 일치하는 particle을 resampling합니다.
 
-## 4. UCT 선택 Skeleton
+## UCT 선택 Skeleton
 
 아래 코드는 history node에서 action을 고르는 UCT 부분만 분리한 skeleton입니다.
 
@@ -83,7 +83,7 @@ int selectUctAction(const vector<ActionStats>& actions, int parentVisits, double
 
 POMCP 전체 구현에서는 action 이후 simulator가 next state, observation, reward를 반환하고, observation별 child history로 내려갑니다.
 
-## 5. Simulation 흐름
+## Simulation 흐름
 
 ```text
 simulate(state s, history h, depth d):
@@ -96,7 +96,7 @@ simulate(state s, history h, depth d):
 
 tree policy는 방문한 history에서만 쓰고, 처음 보는 history는 rollout policy로 값을 추정합니다.
 
-## 6. 작은 예시
+## 작은 예시
 
 ```text
 hidden state: treasure is left/right
@@ -108,7 +108,7 @@ POMCP는 현재 particle belief에서 state 하나를 뽑고, `check-left` 같�
 
 명시적으로 `P(state | history)` 전체를 계산하지 않아도, particle과 simulator로 action value를 근사합니다.
 
-## 7. PBVI와 비교
+## PBVI와 비교
 
 | 기준 | PBVI | POMCP |
 | --- | --- | --- |
@@ -120,7 +120,7 @@ POMCP는 현재 particle belief에서 state 하나를 뽑고, `check-left` 같�
 
 현재 한 번의 action을 잘 고르는 것이 목표라면 POMCP가 자연스럽고, policy를 미리 계산해야 하면 PBVI가 더 맞을 수 있습니다.
 
-## 8. Root Belief Update
+## Root Belief Update
 
 실제 action을 실행하고 observation을 받으면 root history를 한 단계 내립니다.
 
@@ -132,7 +132,7 @@ new root: h+a+o
 
 새 root의 particle이 부족하면 rejection sampling이나 particle reinvigoration으로 채웁니다. 이 단계가 약하면 belief가 빈약해져 탐색이 한쪽으로 쏠립니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. node를 hidden state로 만들어 partial observability를 잃는다.
 2. observation probability와 particle resampling을 무시한다.
@@ -141,19 +141,10 @@ new root: h+a+o
 5. root update 후 particle을 보강하지 않아 belief collapse가 난다.
 6. 정확한 judge 문제에 sampling planner를 사용한다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - hidden state를 직접 알 수 없는가?
 - transition과 observation을 sampling하는 simulator가 있는가?
 - 제한 시간 안에 여러 simulation을 돌릴 수 있는가?
 - action 선택만 필요하고 exact value는 필요 없는가?
 - particle belief를 observation으로 갱신할 수 있는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: POMCP toy simulator `/practice/...` 문제 필요 | history node와 UCT 구현 | particle belief |
-| 표준 | TODO: observation resampling `/practice/...` 문제 필요 | root belief update | reinvigoration |
-| 응용 | TODO: online hidden-state planning `/practice/...` 문제 필요 | rollout policy 설계 | simulator |
-| 함정 | TODO: POMCP vs PBVI `/practice/...` 문제 필요 | offline policy와 online planning 구분 | POMDP |

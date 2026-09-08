@@ -8,13 +8,13 @@ General Matching은 이분 그래프가 아닌 일반 무향 그래프에서 최
 2. odd cycle을 blossom으로 접어 하나의 정점처럼 탐색한다.
 3. augmenting path를 찾으면 접힌 cycle을 다시 펴며 matching을 뒤집는다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 그래프 탐색, 이분 매칭, alternating path, BFS tree
 - 함께 보면 좋은 레슨: Max Flow, Matching과 Cover Duality, Flow with Lower Bound
 - 다음에 볼 레슨: weighted matching, matroid intersection, graph factor
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 접근 |
 | --- | --- |
@@ -26,7 +26,7 @@ General Matching은 이분 그래프가 아닌 일반 무향 그래프에서 최
 
 문제가 이분 그래프임이 보장되면 이 레슨의 알고리즘은 과합니다. 왼쪽/오른쪽 partition이 자연스럽게 잡히면 이분 matching으로 먼저 모델링합니다.
 
-## 2. 왜 이분 Matching으로 안 되는가
+## 왜 이분 Matching으로 안 되는가
 
 이분 그래프에서는 alternating forest를 만들 때 같은 level의 두 정점이 연결되는 일이 없습니다. 일반 그래프에서는 같은 parity level 사이 간선이 생기고, 이 간선이 odd cycle을 만듭니다.
 
@@ -38,7 +38,7 @@ u -- v
 
 `u`와 `v`가 같은 짝수 level이면 두 경로와 `u-v` 간선이 합쳐져 odd cycle이 됩니다. 이 cycle 안에서는 어느 간선을 matching으로 선택하느냐에 따라 입구와 출구가 바뀔 수 있으므로, cycle 전체를 하나의 blossom으로 접어 탐색합니다.
 
-## 3. Blossom 수축
+## Blossom 수축
 
 Blossom 수축의 관점은 단순합니다.
 
@@ -48,7 +48,7 @@ Blossom 수축의 관점은 단순합니다.
 
 수축 후에도 augmenting path가 존재하면 원래 그래프에서도 존재합니다. path가 blossom을 통과하면 cycle 내부의 alternating 구조를 따라 펴면 됩니다.
 
-## 4. 구현 골격
+## 구현 골격
 
 아래 코드는 최대 cardinality matching을 구하는 표준 Edmonds blossom 구현 골격입니다. 정점은 `0..n-1`입니다.
 
@@ -195,7 +195,7 @@ struct GeneralMatching {
 
 이 구현은 cardinality matching용입니다. 가중치가 붙으면 dual variable과 slack을 관리하는 weighted blossom이 필요하므로 별도 알고리즘으로 봐야 합니다.
 
-## 5. Augmenting Path 뒤집기
+## Augmenting Path 뒤집기
 
 augmenting path는 matching에 속하지 않은 간선과 matching 간선이 번갈아 나오며, 양 끝이 unmatched 정점인 경로입니다.
 
@@ -212,7 +212,7 @@ unmatched - free edge - matched edge - free edge - unmatched
 
 Blossom 알고리즘도 결국 augmenting path를 찾아 이 뒤집기를 수행합니다. 어려운 부분은 odd cycle 때문에 path 탐색 중 cycle을 임시로 접는 과정입니다.
 
-## 6. Base와 Parent의 의미
+## Base와 Parent의 의미
 
 구현에서 자주 헷갈리는 배열은 아래와 같습니다.
 
@@ -226,7 +226,7 @@ Blossom 알고리즘도 결국 augmenting path를 찾아 이 뒤집기를 수행
 
 `base`는 DSU처럼 영구적으로 합치는 구조가 아닙니다. 한 번의 BFS 탐색 안에서 blossom을 접기 위한 임시 대표입니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 위 구현은 보통 `O(N^3)`으로 봅니다.
 
@@ -238,7 +238,7 @@ Blossom 알고리즘도 결국 augmenting path를 찾아 이 뒤집기를 수행
 
 그래프가 조밀하고 `N`이 수백 단위라면 C++로 충분한 경우가 많습니다. `N`이 수천 이상이면 문제 제약과 그래프 특성을 다시 봐야 합니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. 일반 그래프인데 이분 matching을 적용한다.
 2. self-loop를 matching 후보로 넣는다.
@@ -246,19 +246,10 @@ Blossom 알고리즘도 결국 augmenting path를 찾아 이 뒤집기를 수행
 4. augmenting path를 뒤집을 때 이전 matching partner를 잃어버린다.
 5. maximum matching과 maximal matching을 혼동한다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 그래프가 정말 일반 그래프인가, 아니면 partition이 숨어 있는 이분 그래프인가?
 - 필요한 것은 maximum cardinality인가, maximum weight인가?
 - 정점 수가 blossom `O(N^3)`에 맞는가?
 - matching 크기만 필요한가, 실제 선택 간선 목록도 필요한가?
 - unmatched 정점이 허용되는가, perfect matching을 요구하는가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 일반 그래프 matching 판정 `/practice/...` 문제 필요 | augmenting path와 blossom 수축 흐름 추적 | Edmonds blossom |
-| 표준 | TODO: maximum cardinality matching `/practice/...` 문제 필요 | 구현으로 최대 matching 크기 계산 | general matching |
-| 응용 | TODO: perfect matching 존재 `/practice/...` 문제 필요 | matching 크기와 정점 수 비교 | perfect matching |
-| 함정 | TODO: 이분 그래프가 아닌 반례 `/practice/...` 문제 필요 | odd cycle 때문에 bipartite matching이 깨지는 사례 확인 | odd cycle |

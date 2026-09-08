@@ -8,13 +8,13 @@ Dominator Tree는 시작 정점에서 어떤 정점으로 가는 모든 경로�
 2. 각 정점의 가장 가까운 strict dominator가 immediate dominator이다.
 3. immediate dominator 간선을 모으면 dominator tree가 된다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: DFS order, directed graph, tree ancestor, DSU path compression
 - 함께 보면 좋은 레슨: SCC와 2-SAT, 위상 정렬과 DAG DP, 그래프와 트리 기본 성질
 - 다음에 볼 레슨: control-flow graph, bridge-like directed constraints, dynamic dominator
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Dominator 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Dominator Tree는 시작 정점에서 어떤 정점으로 가는 모든 경로�
 
 무향 그래프의 articulation point와 비슷해 보이지만, dominator는 시작점이 있는 방향 그래프에서 정의됩니다.
 
-## 2. 정의
+## 정의
 
 정점 `u`가 정점 `v`를 dominate한다는 것은 시작점 `s`에서 `v`로 가는 모든 경로가 `u`를 지난다는 뜻입니다.
 
@@ -38,7 +38,7 @@ u dominates v  <=>  every path s -> v contains u
 
 Immediate dominator `idom[v]`는 `v`의 strict dominator 중 가장 가까운 정점입니다. 이 간선을 모으면 tree가 됩니다.
 
-## 3. Lengauer-Tarjan 흐름
+## Lengauer-Tarjan 흐름
 
 Lengauer-Tarjan 알고리즘의 핵심은 DFS order에서 semi-dominator를 계산하는 것입니다.
 
@@ -50,7 +50,7 @@ Lengauer-Tarjan 알고리즘의 핵심은 DFS order에서 semi-dominator를 계�
 
 구현은 어렵지만, 배열의 의미를 분리하면 따라갈 수 있습니다.
 
-## 4. 구현
+## 구현
 
 아래 구현은 시작점 `root`에서 도달 가능한 정점의 immediate dominator를 반환합니다. 도달 불가능한 정점의 `idom`은 `-1`입니다.
 
@@ -173,7 +173,7 @@ struct DominatorTree {
 
 `idom[root]`을 `root`로 둘지 `-1`로 둘지는 문제에 맞게 선택합니다. 위 구현은 tree root 확인을 쉽게 하려고 자기 자신으로 둡니다.
 
-## 5. Dominator Tree 사용
+## Dominator Tree 사용
 
 `idom[v]`를 구하면 아래처럼 tree를 만들 수 있습니다.
 
@@ -184,7 +184,7 @@ for each v != root:
 
 Dominator tree에서 `u`가 `v`의 ancestor라면 `u`는 원래 graph에서 `v`를 dominate합니다. 따라서 subtree size를 이용해 특정 정점이 지배하는 정점 수를 셀 수 있습니다.
 
-## 6. 도달 불가능 정점
+## 도달 불가능 정점
 
 Dominator는 시작점에서 도달 가능한 정점에 대해서만 의미가 있습니다.
 
@@ -196,7 +196,7 @@ Dominator는 시작점에서 도달 가능한 정점에 대해서만 의미가 �
 
 도달 불가능 정점을 그대로 tree에 넣으면 ancestor 판정이 깨집니다.
 
-## 7. Articulation과 차이
+## Articulation과 차이
 
 | 항목 | Articulation Point | Dominator |
 | --- | --- | --- |
@@ -207,7 +207,7 @@ Dominator는 시작점에서 도달 가능한 정점에 대해서만 의미가 �
 
 방향 그래프의 "필수 관문" 문제에서는 articulation보다 dominator를 먼저 떠올립니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 Lengauer-Tarjan 구현은 거의 선형 시간으로 동작합니다.
 
@@ -217,7 +217,7 @@ O((N + M) alpha(N))
 
 구현 상수는 작은 편이 아니므로, 작은 DAG에서는 모든 predecessor idom을 LCA처럼 처리하는 단순 DP가 더 편할 수 있습니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. reverse edge를 DFS reachable 기준으로 필터링하지 않는다.
 2. DFS order index와 원래 vertex id를 섞는다.
@@ -225,19 +225,10 @@ O((N + M) alpha(N))
 4. 도달 불가능 정점을 dominator tree에 포함한다.
 5. tree ancestor 판정 전 Euler tour를 만들지 않는다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 시작 정점이 고정되어 있는가?
 - 방향 그래프인가?
 - 도달 불가능 정점 처리가 필요한가?
 - 필요한 것은 `idom` 자체인가, dominate 관계 질의인가?
 - 정점 제거 영향이 하나의 root 기준으로 정의되는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 필수 관문 판정 `/practice/...` 문제 필요 | dominate 정의와 tree ancestor 연결 | dominator |
-| 표준 | TODO: immediate dominator tree `/practice/...` 문제 필요 | Lengauer-Tarjan 구현 | idom |
-| 응용 | TODO: 지배하는 정점 수 `/practice/...` 문제 필요 | dominator tree subtree size | dominance subtree |
-| 함정 | TODO: 도달 불가능 정점 포함 `/practice/...` 문제 필요 | reachable filtering | flow graph |

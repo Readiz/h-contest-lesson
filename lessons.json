@@ -1000,7 +1000,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "concept-only",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1040,7 +1040,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1076,7 +1076,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1116,7 +1116,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1227,7 +1227,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -1299,7 +1299,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1341,7 +1341,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1382,7 +1382,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1477,13 +1477,6 @@
         "wavelet-matrix"
       ],
       "pages": [
-        {
-          "pageId": "versioning-model-map",
-          "title": "Versioning Model Map",
-          "description": "persistence, rollback, partial persistence, retroactivity를 먼저 구분합니다.",
-          "order": 10,
-          "file": "pages/versioning-model-map.md"
-        },
         {
           "pageId": "persistent-segment-tree",
           "title": "Persistent Segment Tree",
@@ -1610,7 +1603,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1649,7 +1642,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1687,7 +1680,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1805,7 +1798,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1927,7 +1920,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -1969,13 +1962,6 @@
         "string-matching-kmp-z"
       ],
       "pages": [
-        {
-          "pageId": "suffix-model-map",
-          "title": "Suffix Model Map",
-          "description": "suffix ordering, substring automaton, periodicity를 먼저 구분합니다.",
-          "order": 10,
-          "file": "pages/suffix-model-map.md"
-        },
         {
           "pageId": "suffix-array-lcp",
           "title": "Suffix Array and LCP",
@@ -2183,7 +2169,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -2259,7 +2245,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -2297,7 +2283,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -2334,7 +2320,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -2373,7 +2359,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -2412,7 +2398,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -2452,7 +2438,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -2529,7 +2515,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -2568,7 +2554,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -2748,7 +2734,7 @@
       ],
       "pages": [],
       "lessonType": "core",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "concept-only",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -2787,7 +2773,7 @@
       ],
       "pages": [],
       "lessonType": "core",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "concept-only",
       "audience": "contest-core",
       "difficultyAxes": [
@@ -3208,7 +3194,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3246,7 +3232,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3285,7 +3271,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3446,7 +3432,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3720,7 +3706,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3758,7 +3744,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3798,7 +3784,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3907,7 +3893,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3947,7 +3933,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -3989,7 +3975,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4029,7 +4015,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4069,7 +4055,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "full",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4107,7 +4093,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4148,7 +4134,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4190,7 +4176,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4226,7 +4212,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "concept-only",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4263,7 +4249,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4391,7 +4377,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4429,7 +4415,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4468,7 +4454,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4598,7 +4584,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4771,7 +4757,7 @@
       ],
       "pages": [],
       "lessonType": "implementation",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [
@@ -4810,7 +4796,7 @@
       ],
       "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
+      "practiceStatus": "todo",
       "implementationStatus": "partial",
       "audience": "advanced-contest",
       "difficultyAxes": [

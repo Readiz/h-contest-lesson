@@ -8,13 +8,13 @@ Rotating Calipers Applications는 기본 지름 계산을 넘어 width, tangent,
 2. support point가 더 좋아지는 동안 포인터를 전진한다.
 3. 각 포인터가 한 바퀴 이상 되돌아가지 않는 구조를 이용한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: convex hull, 외적, 점과 직선 거리, rotating calipers
 - 함께 보면 좋은 레슨: Rotating Calipers, Minkowski Sum, Closest Pair Sweep
 - 다음에 볼 레슨: convex polygon distance, minimum-area rectangle, tangent graph
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Calipers 응용 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Rotating Calipers Applications는 기본 지름 계산을 넘어 width, tangent,
 
 핵심은 방향이 회전할 때 최적 support point도 polygon 순서대로만 이동한다는 사실입니다.
 
-## 2. Width 계산
+## Width 계산
 
 볼록 다각형의 width는 어떤 방향으로 두 평행 support line 사이의 거리입니다. 한 변을 기준선으로 잡으면 반대편에서 가장 먼 점까지의 높이가 그 방향의 폭입니다.
 
@@ -36,7 +36,7 @@ height = abs(cross(edge, point - vertex)) / |edge|
 
 모든 edge 방향을 보면 최소 width를 찾을 수 있습니다.
 
-## 3. 최소 폭 구현
+## 최소 폭 구현
 
 아래 코드는 convex polygon의 최소 폭을 구합니다. 입력 hull은 반시계 방향이고 첫 점을 끝에 다시 붙이지 않습니다.
 
@@ -104,7 +104,7 @@ double minimumWidth(const vector<PointCalipersApp>& hull) {
 
 폭은 실수 값이므로 출력 오차 조건을 확인합니다. 비교만 필요하면 제곱 형태로 변형할 수 있지만 구현이 더 복잡해집니다.
 
-## 4. 두 Polygon 사이 거리
+## 두 Polygon 사이 거리
 
 두 convex polygon의 거리는 다음 두 방식으로 볼 수 있습니다.
 
@@ -115,7 +115,7 @@ double minimumWidth(const vector<PointCalipersApp>& hull) {
 
 교차 여부부터 확인해야 합니다. 교차하면 거리는 `0`입니다. 교차하지 않을 때는 두 polygon의 edge direction이 만드는 후보를 훑습니다.
 
-## 5. Tangent와 Support Line
+## Tangent와 Support Line
 
 한 점 `p`에서 convex polygon에 그을 수 있는 tangent는 support line이 바뀌는 꼭짓점입니다. 두 convex polygon의 common tangent도 두 support point가 동시에 움직이는 문제입니다.
 
@@ -126,7 +126,7 @@ while next point makes a better support line:
 
 이 패턴은 convex hull trick의 "기울기 순서로 포인터 전진"과도 닮았습니다.
 
-## 6. 최소 면적 직사각형
+## 최소 면적 직사각형
 
 최소 면적 enclosing rectangle은 한 변이 hull의 어떤 edge와 평행하다는 성질을 씁니다. 그래서 edge direction을 돌리며 네 support point를 관리합니다.
 
@@ -139,7 +139,7 @@ while next point makes a better support line:
 
 구현은 지름보다 훨씬 실수와 degeneracy가 많습니다. 문제에서 꼭 필요하지 않으면 width, diameter처럼 더 단순한 값부터 분리해 구현하는 편이 안전합니다.
 
-## 7. Monotone Pointer 조건
+## Monotone Pointer 조건
 
 calipers가 성립하려면 후보 함수가 방향을 따라 unimodal이어야 합니다.
 
@@ -150,7 +150,7 @@ calipers가 성립하려면 후보 함수가 방향을 따라 unimodal이어야 
 
 이 조건이 깨지면 포인터가 되돌아가야 하므로 `O(n)` sweep이 틀립니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -162,7 +162,7 @@ calipers가 성립하려면 후보 함수가 방향을 따라 unimodal이어야 
 
 `h`는 hull 위 꼭짓점 수입니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. polygon 내부 점까지 포함해 calipers를 돌린다.
 2. width에서 height를 edge length로 나누지 않는다.
@@ -170,19 +170,10 @@ calipers가 성립하려면 후보 함수가 방향을 따라 unimodal이어야 
 4. 두 polygon 문제에서 교차 여부를 먼저 보지 않는다.
 5. 최소 면적 직사각형의 네 포인터를 같은 기준 방향으로 업데이트하지 않는다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 구하는 값이 지름, 폭, 접선, 거리, enclosing rectangle 중 무엇인가?
 - 입력이 이미 convex polygon인가, 점 집합인가?
 - collinear boundary point를 제거해도 되는가?
 - 실수 오차를 허용하는 출력인가?
 - 두 polygon이 교차하는 경우를 별도로 처리했는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: rotating calipers width `/practice/...` 문제 필요 | edge-point 높이 sweep | minimum width |
-| 표준 | TODO: convex polygon tangent `/practice/...` 문제 필요 | support point 포인터 전진 | tangent |
-| 응용 | TODO: minimum rectangle `/practice/...` 문제 필요 | 네 caliper 동시 회전 | bounding rectangle |
-| 함정 | TODO: polygon distance edge case `/practice/...` 문제 필요 | 교차와 collinear tie 처리 | convex distance |

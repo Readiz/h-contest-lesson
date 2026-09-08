@@ -4,7 +4,7 @@ Parametric Optimization은 제약이나 답을 직접 상태에 넣기 어려울
 
 이 허브는 문제를 보고 어떤 변환을 골라야 하는지 먼저 정리한 뒤, 필요한 세부 페이지로 내려갑니다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 이분 탐색, 동적 계획법, Divide and Conquer DP Optimization, Monge와 SMAWK
 - 함께 보면 좋은 레슨: Convex DP Optimization, Convex Hull Trick, Min-Plus Convolution, Flow with Lower Bound
@@ -12,7 +12,7 @@ Parametric Optimization은 제약이나 답을 직접 상태에 넣기 어려울
 
 Convex DP Optimization은 선수 지식이 아니라 보완 관계입니다. Parametric Optimization은 `lambda`, `penalty`, `ratio`, `answer`를 고정해 oracle을 만드는 흐름이고, Convex DP Optimization은 전이식의 모양으로 CHT, Li Chao, Monge, Slope Trick을 고르는 흐름입니다. 서로를 먼저 끝내야 하는 관계로 두면 학습 순서가 순환하므로, 필요한 페이지를 옆에서 참조하는 방식이 더 안전합니다.
 
-## 1. 문제 신호와 선택 기준
+## 문제 신호와 선택 기준
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
@@ -30,7 +30,7 @@ parameter를 고정했을 때 원래보다 쉬운 DP, greedy, shortest path, flo
 
 답이 아니면 parametric trick을 붙여도 풀이가 쉬워지지 않습니다.
 
-## 2. 공통 변환 흐름
+## 공통 변환 흐름
 
 1. 원래 objective와 어려운 제약을 분리합니다.
 2. 제약 또는 답 후보를 `lambda`, `x`, `penalty` 같은 parameter로 둡니다.
@@ -39,7 +39,7 @@ parameter를 고정했을 때 원래보다 쉬운 DP, greedy, shortest path, flo
 5. 이분 탐색, breakpoint 탐색, 또는 dual update로 parameter를 조정합니다.
 6. relaxed score에서 penalty를 되돌려 원래 objective를 복원합니다.
 
-## 3. 쓰지 말아야 할 경우
+## 쓰지 말아야 할 경우
 
 - parameter를 고정해도 상태 수나 제약 수가 줄지 않습니다.
 - response가 단조가 아니고, breakpoint를 직접 다룰 방법도 없습니다.
@@ -47,7 +47,7 @@ parameter를 고정했을 때 원래보다 쉬운 DP, greedy, shortest path, flo
 - 실수 이분 탐색 오차가 정답 판정 기준보다 커질 위험이 있습니다.
 - 문제는 단순 feasibility인데 불필요하게 Lagrangian dual을 도입하고 있습니다.
 
-## 4. 학습 순서
+## 학습 순서
 
 1. [Feasibility and Answer Search](pages/feasibility-and-answer-search.md)에서 answer binary search와 penalty DP의 공통 구조를 봅니다.
 2. [Exact-K Alien Optimization](pages/exact-k-alien-optimization.md)에서 `count`를 함께 들고 다니는 이유를 확인합니다.
@@ -55,7 +55,7 @@ parameter를 고정했을 때 원래보다 쉬운 DP, greedy, shortest path, flo
 4. [Tie-breaking and Breakpoints](pages/tie-breaking-and-breakpoints.md)에서 같은 relaxed score가 여러 count를 만들 때의 처리 기준을 봅니다.
 5. [General Lagrangian Relaxation](pages/general-lagrangian-relaxation.md)은 여러 제약이나 flow/greedy oracle로 확장할 때 읽습니다.
 
-## 5. 구현 전 체크리스트
+## 구현 전 체크리스트
 
 - 고정 parameter에서 어떤 차원이 사라지는가?
 - response는 증가, 감소, 유지 중 어느 방향으로 움직이는가?
@@ -63,6 +63,6 @@ parameter를 고정했을 때 원래보다 쉬운 DP, greedy, shortest path, flo
 - 최종 답에서 `lambda * K` 또는 `x * weight` 보정을 반대로 하지 않았는가?
 - 정수 parameter인지 실수 parameter인지, 필요한 반복 횟수와 오차가 무엇인지 정했는가?
 
-## 6. 연습 문제
+## 연습 문제
 
 이 허브의 실제 연습 흐름은 [Practice Set](pages/practice-set.md)에 모읍니다. Practice Set은 maximum average subarray의 `value - x * weight` 판정 trace와 로컬 구현을 대표 흐름으로 제공합니다.

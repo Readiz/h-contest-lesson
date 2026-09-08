@@ -9,13 +9,13 @@ Offline and Time-Axis Techniques는 질의를 입력 순서 그대로 처리하�
 3. 상태를 snapshot으로 되돌릴 수 있는가?
 4. 과거 version 조회인지, 과거 operation 변경인지 구분했는가?
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Sqrt Decomposition, Union-Find, Segment Tree, Binary Search
 - 함께 보면 좋은 레슨: Versioned Data Structures, Fenwick Tree, Segment Tree, Dynamic Network Optimization, Link-Cut Tree
 - 다음에 볼 레슨: Dynamic Network Optimization, Euler Tour Tree, Retroactive/Kinetic Structures
 
-## 1. 모델 선택 표
+## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
@@ -27,7 +27,7 @@ Offline and Time-Axis Techniques는 질의를 입력 순서 그대로 처리하�
 | 과거 operation 삽입/삭제를 offline으로 정리할 수 있다 | [Retroactive Data Structures](pages/retroactive-data-structures.md) |
 | rollback, persistence, retroactivity가 헷갈린다 | [Time-Axis Model Map](pages/time-axis-model-map.md) |
 
-## 2. 시간축 문제를 읽는 순서
+## 시간축 문제를 읽는 순서
 
 | 질문 | 맞으면 | 아니면 |
 | --- | --- | --- |
@@ -39,6 +39,6 @@ Offline and Time-Axis Techniques는 질의를 입력 순서 그대로 처리하�
 
 같은 "과거"라는 단어가 나와도 구현은 크게 달라집니다. 과거 version을 읽는 문제는 persistent structure가 맞고, DFS 중 잠시 적용했다가 되돌리는 문제는 rollback이 맞습니다. 과거 operation 자체를 끼워 넣거나 삭제하면 retroactive 모델입니다.
 
-## 3. 공개 상태
+## 공개 상태
 
-이 허브의 하위 페이지들은 대부분 구현 골격과 판단 기준을 제공하지만, 아직 실제 `/practice/...` 링크가 충분하지 않습니다. 따라서 허브는 `overview`로 공개하고, 하위 페이지의 TODO 문제는 [Practice Set](pages/practice-set.md)에 모아 추적합니다.
+이 허브의 하위 페이지들은 대부분 구현 골격과 판단 기준을 제공하지만, 아직 실제 `/practice/...` 링크가 충분하지 않습니다.

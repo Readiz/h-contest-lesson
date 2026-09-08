@@ -8,13 +8,13 @@ Closest Pair는 평면 위 점들 중 가장 가까운 두 점의 거리를 찾�
 2. 현재 최단거리보다 x 차이가 큰 점을 active set에서 제거한다.
 3. y좌표가 가까운 후보만 검사한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 정렬, set, 기하 거리, Sweep Line
 - 함께 보면 좋은 레슨: Sweep Line Geometry, 기하 기본, Rotating Calipers
 - 다음에 볼 레슨: divide-and-conquer closest pair, Delaunay/Voronoi intuition
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 접근 |
 | --- | --- |
@@ -25,7 +25,7 @@ Closest Pair는 평면 위 점들 중 가장 가까운 두 점의 거리를 찾�
 
 거리 비교는 제곱 거리로 해도 됩니다. 제곱근을 매번 계산할 필요가 없습니다.
 
-## 2. Sweep 아이디어
+## Sweep 아이디어
 
 점을 x좌표 오름차순으로 처리합니다. 현재까지의 최단 제곱거리 `best`가 있을 때, 현재 점과 x 차이의 제곱이 `best` 이상인 오래된 점은 더 이상 후보가 될 수 없습니다.
 
@@ -38,7 +38,7 @@ Closest Pair는 평면 위 점들 중 가장 가까운 두 점의 거리를 찾�
 
 이 조건 덕분에 active set 전체가 아니라 현재 점 주변의 좁은 y 범위만 검사합니다.
 
-## 3. 구현
+## 구현
 
 아래 구현은 가장 가까운 두 점의 제곱거리를 반환합니다.
 
@@ -104,7 +104,7 @@ long long closestPairSquared(vector<Point> points) {
 
 `limit` 계산은 단순화를 위해 2의 거듭제곱 상한을 잡았습니다. 정확한 integer sqrt를 써도 되고, `dy * dy < best`를 loop 안에서 직접 검사해도 됩니다.
 
-## 4. 중복 점
+## 중복 점
 
 같은 좌표의 점이 두 개 이상 있으면 답은 0입니다. 정렬 후 인접한 같은 점을 먼저 검사하면 빠르게 처리할 수 있습니다.
 
@@ -115,7 +115,7 @@ if points[i].x == points[i-1].x and points[i].y == points[i-1].y:
 
 답이 0이면 더 줄어들 수 없으므로 즉시 종료할 수 있습니다.
 
-## 5. Divide-and-Conquer와 비교
+## Divide-and-Conquer와 비교
 
 Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 
@@ -126,7 +126,7 @@ Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 
 둘 다 `O(N log N)`입니다. 대회에서는 구현에 익숙한 쪽을 선택하면 됩니다.
 
-## 6. 거리와 overflow
+## 거리와 overflow
 
 좌표가 `10^9`이면 차이는 `2*10^9`, 제곱은 `4*10^18`까지 갈 수 있습니다. `long long` 한계에 가까우므로 더 큰 범위에서는 `__int128`이 필요합니다.
 
@@ -138,7 +138,7 @@ Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 
 문제가 실제 거리 출력이면 마지막에만 `sqrt`를 적용합니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -148,7 +148,7 @@ Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 
 랜덤 데이터에서는 빠르지만, 구현이 y 후보를 지나치게 넓게 보면 최악에 가까워질 수 있습니다. `dy` 범위를 반드시 제한해야 합니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -159,7 +159,7 @@ Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 | int로 거리 제곱 계산 | overflow | `long long` 또는 `__int128` |
 | 실제 거리와 제곱 거리 혼용 | 비교 오류 | 내부는 제곱 거리로 통일 |
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 모든 점 쌍 비교가 불가능한 크기인가?
 2. 거리 비교만 필요해서 제곱 거리로 충분한가?
@@ -169,12 +169,3 @@ Closest Pair의 표준 풀이에는 divide-and-conquer도 있습니다.
 6. sweep과 divide-and-conquer 중 구현하기 쉬운 쪽이 무엇인가?
 
 Closest Pair Sweep은 "현재 최단거리보다 멀리 떨어진 점은 버린다"는 간단한 원리로 동작합니다. x와 y 두 축에서 후보를 동시에 줄이는 것이 핵심입니다.
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: closest pair 기본 `/practice/...` 문제 필요 | 정렬과 active set 유지 | closest pair |
-| 표준 | TODO: 중복 점 포함 closest pair `/practice/...` 문제 필요 | 답 0 처리와 index key | duplicate points |
-| 응용 | TODO: 가장 가까운 점 쌍 복원 `/practice/...` 문제 필요 | best pair 저장 | pair restore |
-| 함정 | TODO: 큰 좌표 closest pair `/practice/...` 문제 필요 | 거리 제곱 overflow 점검 | squared distance |

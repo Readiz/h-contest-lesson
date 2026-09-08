@@ -8,13 +8,13 @@ Suffix Tree는 한 문자열의 모든 suffix를 압축 trie로 저장한 구조
 2. 경로를 한 글자씩 저장하지 않고 원문 구간 `[l, r)`로 압축한다.
 3. Ukkonen 알고리즘은 active point와 suffix link로 suffix tree를 온라인 `O(N log alphabet)`에 만든다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Trie, suffix array, suffix automaton, 문자열 index 구간
 - 함께 보면 좋은 레슨: Suffix Array와 LCP, Suffix Automaton, Lyndon Factorization
 - 다음에 볼 레슨: runs/periodicity, generalized suffix tree, suffix tree 기반 LCP 응용
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Suffix Tree 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Suffix Tree는 한 문자열의 모든 suffix를 압축 trie로 저장한 구조
 
 Suffix Tree는 매우 강하지만, 대회에서는 구현 비용이 큽니다. 대부분의 substring counting은 Suffix Array나 Suffix Automaton이 더 짧습니다. Tree가 필요한지는 "substring 집합"뿐 아니라 "경로와 subtree를 직접 질의하는가"로 판단합니다.
 
-## 2. 압축 간선
+## 압축 간선
 
 Suffix trie에서는 한 간선이 글자 하나를 나타냅니다. Suffix Tree에서는 같은 방향으로만 이어지는 chain을 한 간선으로 압축합니다.
 
@@ -37,7 +37,7 @@ node stores outgoing edges by first character
 
 따라서 간선을 복사해서 문자열로 저장하지 않고, 원문 index 구간만 저장합니다. 이 방식은 memory와 substring 비교 모두에서 중요합니다.
 
-## 3. Sentinel이 먼저 필요한 이유
+## Sentinel이 먼저 필요한 이유
 
 Suffix Tree 구현에서는 문자열 끝에 입력 alphabet에 없는 sentinel을 붙이는 것이 사실상 전제입니다. 예를 들어 `abab`만 넣으면 suffix `ab`가 suffix `abab`의 prefix라서 별도 leaf로 명시되지 않고 implicit 상태로 남을 수 있습니다.
 
@@ -64,7 +64,7 @@ $
 
 여러 문자열을 합칠 때도 같은 sentinel을 재사용하면 안 됩니다. `A#B#`처럼 같은 끝 문자를 쓰면 서로 다른 문자열의 suffix가 잘못 이어질 수 있으므로 `A#B$C%`처럼 문자열마다 고유 sentinel을 둡니다.
 
-## 4. Ukkonen의 상태
+## Ukkonen의 상태
 
 Ukkonen 알고리즘은 현재까지 만든 implicit suffix tree 위에서 active point를 유지합니다.
 
@@ -80,7 +80,7 @@ Ukkonen 알고리즘은 현재까지 만든 implicit suffix tree 위에서 activ
 
 작은 문자열에서 active point와 split이 어떻게 움직이는지는 [abab$ phase trace](suffix-tree-phase-trace.md)에서 먼저 확인할 수 있습니다. 코드를 읽기 전에 phase trace를 보면 `go`, `split`, `getLink`, `extend`가 왜 서로 맞물리는지 훨씬 덜 추상적으로 보입니다.
 
-## 5. 구현 골격
+## 구현 골격
 
 ```cpp compile-check
 #include <map>
@@ -211,7 +211,7 @@ struct SuffixTree {
 
 실전 구현에서는 생성자에 들어가기 전에 문자열 끝에 sentinel을 붙여 둡니다. Sentinel이 없으면 마지막 suffix들이 implicit 상태로 남을 수 있고, leaf 기반 질의가 한 칸씩 비게 됩니다.
 
-## 6. Suffix Array와 비교
+## Suffix Array와 비교
 
 | 구조 | 강점 | 약점 |
 | --- | --- | --- |
@@ -221,7 +221,7 @@ struct SuffixTree {
 
 문제에서 "모든 suffix를 사전순으로 정렬"하면 suffix array를 먼저 생각하고, "substring 상태 수"가 나오면 suffix automaton을 먼저 생각합니다. Suffix Tree는 path와 subtree가 모두 필요한 경우에 꺼냅니다.
 
-## 7. Generalized Suffix Tree
+## Generalized Suffix Tree
 
 여러 문자열을 하나의 suffix tree에 넣을 때는 각 문자열마다 서로 다른 sentinel을 붙입니다.
 
@@ -231,7 +231,7 @@ A + # + B + $ + C + %
 
 Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 모으면 longest common substring이나 k개 문자열 공통 substring을 처리할 수 있습니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | --- |
@@ -240,7 +240,7 @@ Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 
 | pattern 탐색 | `O(|pattern| log alphabet)` |
 | subtree leaf 순회 | 출력 크기에 비례 |
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. Sentinel을 붙이지 않아 leaf가 명시적으로 끝나지 않는다.
 2. 간선 구간을 inclusive/exclusive로 섞어 off-by-one을 만든다.
@@ -248,19 +248,10 @@ Internal node의 subtree leaf가 어떤 문자열들에서 왔는지 bitmask로 
 4. root에서 suffix link를 따라갈 때 첫 글자 skip 규칙을 빠뜨린다.
 5. 여러 문자열 sentinel을 같은 문자로 둔다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - suffix tree가 꼭 필요한가, suffix array나 suffix automaton으로 충분한가?
 - alphabet 크기가 작아 fixed array를 쓸 수 있는가?
 - leaf마다 suffix 시작 위치를 복구해야 하는가?
 - 여러 문자열을 합칠 때 sentinel 충돌이 없는가?
 - path depth와 edge length를 분리해서 계산하고 있는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: suffix tree construction `/practice/...` 문제 필요 | 압축 간선과 sentinel 이해 | suffix tree |
-| 표준 | TODO: pattern occurrence subtree `/practice/...` 문제 필요 | pattern 경로 아래 leaf 수 세기 | subtree leaves |
-| 응용 | TODO: generalized suffix tree LCS `/practice/...` 문제 필요 | 여러 문자열 공통 substring | unique sentinel |
-| 함정 | TODO: repeated string implicit tree `/practice/...` 문제 필요 | sentinel 없는 경우 비교 | implicit suffix tree |

@@ -8,13 +8,13 @@ Robust Geometry Predicates는 orientation, incircle, 교차 판정처럼 기하 
 2. 실수 좌표는 EPS 정책과 출력 오차를 분리한다.
 3. predicate와 construction을 같은 기준으로 섞지 않는다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: dot product, cross product, segment intersection, circle geometry
 - 함께 보면 좋은 레슨: Geometry CCW와 Segment Intersection, Circle Geometry, Sweep Line Geometry
 - 다음에 볼 레슨: Voronoi와 Delaunay, circle arrangement, half-plane intersection
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Robust Predicate 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Robust Geometry Predicates는 orientation, incircle, 교차 판정처럼 기하 
 
 좌표를 double로 바꿔서 cross product를 계산하면 큰 정수 입력에서 잘못된 부호가 나올 수 있습니다. 정수 좌표면 `__int128`부터 고려합니다.
 
-## 2. Orientation Predicate
+## Orientation Predicate
 
 세 점 `a, b, c`의 방향은 `(b-a) x (c-a)`의 부호입니다.
 
@@ -38,7 +38,7 @@ zero: collinear
 
 정수 좌표 범위가 `1e9`라면 곱은 `1e18` 근처까지 갑니다. 차이까지 생각하면 `long long` 경계에 닿을 수 있으므로 `__int128`이 안전합니다.
 
-## 3. 정수 좌표 선분 교차
+## 정수 좌표 선분 교차
 
 ```cpp compile-check
 #include <algorithm>
@@ -104,7 +104,7 @@ bool segmentsIntersect(RobustPoint a, RobustPoint b, RobustPoint c, RobustPoint 
 
 이 코드는 정수 좌표 predicate입니다. 교점 좌표를 출력해야 하면 별도 rational 또는 floating construction이 필요합니다.
 
-## 4. EPS 정책
+## EPS 정책
 
 실수 좌표에서는 exact zero가 거의 나오지 않습니다. 대신 문제의 오차 조건에 맞춰 EPS를 정합니다.
 
@@ -117,7 +117,7 @@ bool segmentsIntersect(RobustPoint a, RobustPoint b, RobustPoint c, RobustPoint 
 
 EPS를 크게 잡으면 가까운 두 점이 같은 점이 되어 버리고, 너무 작게 잡으면 접하는 경우를 놓칩니다.
 
-## 5. Incircle Predicate
+## Incircle Predicate
 
 Delaunay나 circle arrangement에서는 점이 세 점의 외접원 안에 있는지 판정합니다. 정수 좌표에서는 determinant 부호로 처리할 수 있습니다.
 
@@ -132,7 +132,7 @@ det([
 
 이 determinant는 값이 매우 커질 수 있습니다. 좌표 범위가 크면 `__int128`도 부족할 수 있어 arbitrary precision이나 adaptive predicate가 필요합니다.
 
-## 6. Construction과 Predicate 분리
+## Construction과 Predicate 분리
 
 Predicate는 분기 조건이고 construction은 좌표 계산입니다.
 
@@ -143,7 +143,7 @@ construction: 교점 좌표는 어디인가?
 
 교차 여부는 정수 exact로 판단하고, 교점 좌표만 double로 계산할 수 있습니다. 반대로 double 교점 좌표를 만든 뒤 그 값으로 다시 정렬/판정하면 오차가 퍼질 수 있습니다.
 
-## 7. 작은 예시
+## 작은 예시
 
 ```text
 a = (0, 0), b = (1e9, 1e9)
@@ -152,7 +152,7 @@ c = (1e9, 1e9 - 1), d = (0, 1)
 
 두 선분은 거의 평행해 보이지만 cross product의 작은 차이가 교차 여부를 결정합니다. double로 계산하면 입력 범위와 정렬 순서에 따라 부호가 흔들릴 수 있습니다.
 
-## 8. Sweep Line Comparator
+## Sweep Line Comparator
 
 Sweep line에서 active segment를 정렬할 때 `currentX`에서의 y좌표를 비교합니다. EPS를 comparator에 직접 넣으면 `a < b`, `b < c`, `c < a` 같은 비일관성이 생길 수 있습니다.
 
@@ -162,7 +162,7 @@ Sweep line에서 active segment를 정렬할 때 `currentX`에서의 y좌표를 
 2. exact orientation으로 두 segment의 상대 순서를 비교한다.
 3. tie-breaking을 segment id로 고정한다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 정수 좌표 판정을 double cross product로 처리한다.
 2. `long long` 곱셈 overflow를 놓친다.
@@ -170,19 +170,10 @@ Sweep line에서 active segment를 정렬할 때 `currentX`에서의 y좌표를 
 4. 접하는 경우를 교차하지 않는 것으로 처리한다.
 5. predicate 결과와 좌표 construction 결과를 서로 다른 기준으로 섞는다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 입력 좌표가 정수인가 실수인가?
 - 필요한 것은 판정인가, 좌표 출력인가?
 - 좌표 범위에서 cross/determinant가 overflow하지 않는가?
 - collinear, tangent, duplicate point를 어떻게 처리할 것인가?
 - comparator에 tie-breaking이 있는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: robust orientation `/practice/...` 문제 필요 | `__int128` cross sign | ccw |
-| 표준 | TODO: segment intersection edge cases `/practice/...` 문제 필요 | 접함/겹침 처리 | bounding box |
-| 응용 | TODO: robust incircle `/practice/...` 문제 필요 | determinant sign | Delaunay |
-| 함정 | TODO: sweep comparator `/practice/...` 문제 필요 | strict ordering 유지 | EPS policy |

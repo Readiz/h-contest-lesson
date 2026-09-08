@@ -1,8 +1,8 @@
 # Practice Set
 
-Matroid Algorithms 허브의 연습은 일반 범용 알고리즘보다 모델 판독과 특수형 구현 가능성 확인에 초점을 둡니다. 실제 h-contest 문제가 아직 부족한 주제는 임의 ID를 만들지 않고 `TODO`로 남기며, 먼저 단일 matroid greedy가 닫히는 로컬 연습을 둡니다.
+Matroid Algorithms 허브의 연습은 일반 범용 알고리즘보다 모델 판독과 특수형 구현 가능성 확인에 초점을 둡니다.
 
-## 1. 로컬 완결형 연습: Weighted Partition Matroid
+## 로컬 완결형 연습: Weighted Partition Matroid
 
 각 물건은 class와 weight를 가지고, class별로 선택할 수 있는 개수가 제한됩니다. 선택한 물건의 weight 합을 최대화하세요.
 
@@ -118,16 +118,8 @@ Partition matroid의 독립 집합은 "각 class에서 capacity 이하로 고른
 2. capacity가 0인 class, 같은 weight가 많은 입력, item이 한 class에 몰린 입력을 deterministic case로 둡니다.
 3. class별로 따로 상위 `cap_c`개를 고른 합과 greedy 결과가 같은지도 cross-check할 수 있습니다.
 
-## 2. 연습 순서
 
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | 로컬: weighted partition matroid | class별 capacity와 greedy 증명 | exchange |
-| 표준 | TODO: graphic + partition matroid `/practice/...` 문제 필요 | forest 조건과 색상 제한 결합 | matroid intersection |
-| 응용 | TODO: forest decomposition `/practice/...` 문제 필요 | 여러 forest layer로 간선 분해 | matroid union |
-| 함정 | TODO: pair-choice counterexample `/practice/...` 문제 필요 | parity와 partition constraint 구분 | matroid parity |
-
-## 3. 추가 로컬 연습 후보
+## 추가 로컬 연습 후보
 
 ### Graphic Matroid Greedy
 
@@ -137,7 +129,7 @@ Partition matroid의 독립 집합은 "각 class에서 capacity 이하로 고른
 
 간선을 두 forest로 색칠하는 작은 그래프를 만들고, 입력 순서 greedy가 실패하지만 교환하면 성공하는 예시를 손으로 추적합니다. 이 연습은 Matroid Union이 독립 구현 레슨으로 올라가려면 필요한 trace의 최소 형태입니다.
 
-## 4. 제출 전 체크리스트
+## 제출 전 체크리스트
 
 - 제약이 정말 matroid 공리를 만족하는가?
 - 단일 matroid greedy인지, intersection/union/parity인지 구분했는가?

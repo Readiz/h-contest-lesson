@@ -8,13 +8,13 @@ Dynamic MST는 그래프의 간선 가중치나 활성 상태가 바뀔 때 mini
 2. MST 간선 삭제는 replacement edge를 찾아야 하므로 훨씬 어렵다.
 3. 질의를 모두 알 수 있으면 구간 분할, rollback, rebuild를 먼저 검토한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Kruskal, cut/cycle property, Union-Find, dynamic connectivity
 - 함께 보면 좋은 레슨: Graph와 Tree 기본, Dynamic Connectivity, Euler Tour Tree
 - 다음에 볼 레슨: fully dynamic MST, top tree, replacement edge data structure
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Dynamic MST 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Dynamic MST는 그래프의 간선 가중치나 활성 상태가 바뀔 때 mini
 
 MST는 cut property와 cycle property가 강력합니다. 하지만 삭제된 간선이 MST에 들어 있었는지, 들어 있었다면 어떤 non-tree edge가 대체할 수 있는지를 빠르게 찾는 것이 핵심 난점입니다.
 
-## 2. 간선 추가
+## 간선 추가
 
 현재 MST가 있고 새 간선 `(u, v, w)`가 추가되면, MST 경로 `u..v`에 새 간선을 더해 cycle이 생깁니다.
 
@@ -37,7 +37,7 @@ cycle에서 가장 무거운 간선이 새 간선보다 무거우면 교체
 
 따라서 online 추가만 있다면 MST 위 path maximum query가 필요합니다. Link-Cut Tree, Heavy-Light Decomposition, binary lifting rebuild 중 제약에 맞는 것을 고릅니다.
 
-## 3. 간선 삭제
+## 간선 삭제
 
 삭제된 간선이 MST 밖이면 MST는 변하지 않습니다. 삭제된 간선이 MST 안이면 MST가 두 component로 갈라지고, 두 component를 잇는 non-tree edge 중 가장 싼 edge를 찾아야 합니다.
 
@@ -49,7 +49,7 @@ min weight non-tree edge crossing (A, B)를 replacement로 선택
 
 이 replacement edge query가 동적 MST의 어려운 부분입니다. 문제 조건이 약하면 삭제마다 전체 Kruskal을 다시 돌리는 rebuild가 더 안전합니다.
 
-## 4. Rebuild Baseline
+## Rebuild Baseline
 
 아래 코드는 활성 간선 집합에서 MST 비용을 다시 계산하는 기준 구현입니다. 복잡도는 무겁지만, 작은 입력이나 sqrt decomposition rebuild의 내부 루틴으로 유용합니다.
 
@@ -141,7 +141,7 @@ struct DynamicMstBaseline {
 
 이 baseline은 update마다 `O(M log M)`입니다. 하지만 정답 확인용, stress test용, block rebuild용으로는 여전히 가치가 큽니다.
 
-## 5. 오프라인 접근
+## 오프라인 접근
 
 질의를 모두 읽을 수 있으면 간선의 활성 구간을 만들고 시간 구간별로 안정적인 간선을 분류합니다.
 
@@ -154,7 +154,7 @@ divide query time interval
 
 Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지만, MST는 가중치 최적화가 끼기 때문에 단순 rollback DSU만으로 끝나지 않습니다. 그래도 "각 구간에서 필요한 edge 후보를 줄인 뒤 재귀"하는 방향은 자주 쓰입니다.
 
-## 6. 작은 변경 처리
+## 작은 변경 처리
 
 변경 수가 작으면 block 단위 전략이 실용적입니다.
 
@@ -164,7 +164,7 @@ Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지�
 
 이 방식은 구현 난도가 낮고, `Q sqrt Q` 계열 제한에서 잘 맞습니다.
 
-## 7. 시간 복잡도 감각
+## 시간 복잡도 감각
 
 | 접근 | 대략적인 비용 | 특징 |
 | --- | ---: | --- |
@@ -175,7 +175,7 @@ Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지�
 
 문제 제한이 아주 크지 않다면 먼저 baseline으로 correctness를 잡고, 병목이 확인되면 block/offline으로 줄입니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. MST 밖 간선 삭제도 MST를 바꾼다고 처리한다.
 2. 새 간선 추가 때 cycle의 최대 간선이 아니라 전체 MST의 최대 간선을 본다.
@@ -183,19 +183,10 @@ Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지�
 4. disconnected 상태를 MST cost 0처럼 출력한다.
 5. 완전한 online dynamic MST가 필요한 문제를 단순 rollback DSU로 풀려고 한다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - update가 추가만 있는가, 삭제도 있는가?
 - 모든 질의를 미리 읽을 수 있는가?
 - 필요한 답이 MST cost인가, 실제 edge set인가?
 - 그래프가 disconnected일 수 있는가?
 - 변경 간선 수가 작아서 rebuild가 가능한가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: dynamic MST rebuild `/practice/...` 문제 필요 | Kruskal baseline 유지 | active edges |
-| 표준 | TODO: edge insertion MST `/practice/...` 문제 필요 | cycle maximum 교체 | path max |
-| 응용 | TODO: block rebuild MST `/practice/...` 문제 필요 | 변경 후보 축소 | sqrt decomposition |
-| 함정 | TODO: deleted tree edge replacement `/practice/...` 문제 필요 | crossing edge 탐색 | replacement edge |

@@ -10,13 +10,13 @@ Weighted Matching은 matching의 크기뿐 아니라 선택한 간선의 가중�
 2. 이분 그래프 weighted matching은 dual slack 관점으로 이해한다.
 3. 일반 그래프 weighted matching은 blossom 수축에 dual variable이 추가된다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 이분 matching, General Matching, Min-Cost Flow
 - 함께 보면 좋은 레슨: Matching과 Cover Duality, General Matching, Min-Cost Flow
 - 다음에 볼 레슨: Hungarian Algorithm, weighted blossom, assignment problem, matroid intersection
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 접근 |
 | --- | --- |
@@ -28,7 +28,7 @@ Weighted Matching은 matching의 크기뿐 아니라 선택한 간선의 가중�
 
 가중치가 있어도 그래프가 이분이면 일반 weighted blossom을 꺼낼 필요가 없습니다. 모델이 이분인지 먼저 확인합니다.
 
-## 2. Cardinality와 Weight의 차이
+## Cardinality와 Weight의 차이
 
 Maximum cardinality matching은 간선 개수를 최대화합니다. Maximum weight matching은 간선 수보다 weight 합을 우선합니다.
 
@@ -39,7 +39,7 @@ weighted:    maximize sum of selected edge weights
 
 문제에 따라 "가중치 합 최대, 그중 간선 수 최대" 같은 tie-break가 있을 수 있습니다. 목적식 우선순위를 먼저 고정해야 합니다.
 
-## 3. Small-N Bitmask DP
+## Small-N Bitmask DP
 
 정점 수가 작다면 일반 그래프 weighted perfect matching을 bitmask DP로 풀 수 있습니다. 아래 코드는 모든 정점을 짝지어야 하는 maximum weight perfect matching입니다.
 
@@ -86,7 +86,7 @@ long long maxWeightPerfectMatchingSmall(const vector<vector<long long>>& weight)
 
 이 방식은 `O(2^N * N^2)`라서 `N`이 20대만 되어도 부담됩니다. 하지만 weighted blossom이 과한 small constraint 문제에서는 매우 실용적입니다.
 
-## 4. 이분 Weighted Matching
+## 이분 Weighted Matching
 
 이분 그래프라면 assignment problem으로 볼 수 있습니다.
 
@@ -98,7 +98,7 @@ long long maxWeightPerfectMatchingSmall(const vector<vector<long long>>& weight)
 
 Hungarian은 potential 또는 dual variable을 관리하며 reduced cost가 0인 tight edge를 늘려 갑니다. Min-Cost Flow는 같은 문제를 shortest augmenting path로 표현합니다. Hungarian의 potential/tight edge 구현은 별도 Hungarian Algorithm 레슨에서 따로 다룹니다.
 
-## 5. 일반 그래프 Weighted Blossom 개요
+## 일반 그래프 Weighted Blossom 개요
 
 일반 그래프 weighted matching은 cardinality blossom에 가중치 dual 조건이 추가됩니다.
 
@@ -135,7 +135,7 @@ Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수�
 | 일반 그래프이지만 `N <= 24` 정도 | bitmask DP |
 | 일반 그래프이고 큰 weighted matching | 검증된 weighted blossom |
 
-## 6. 목적식 모델링
+## 목적식 모델링
 
 | 요구 | 모델링 |
 | --- | --- |
@@ -147,7 +147,7 @@ Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수�
 
 큰 상수 trick을 쓸 때는 overflow와 weight 범위를 반드시 확인합니다.
 
-## 7. 음수 가중치
+## 음수 가중치
 
 음수 가중치가 있으면 "선택하지 않는 것"이 더 나을 수 있습니다. perfect matching이면 어쩔 수 없이 선택해야 하지만, 일반 matching이면 빈 matching도 후보입니다.
 
@@ -159,7 +159,7 @@ Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수�
 
 문제에서 반드시 몇 개를 선택해야 하는지 확인합니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 알고리즘 | 대상 | 시간 |
 | --- | --- | ---: |
@@ -170,7 +170,7 @@ Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수�
 
 일반 weighted blossom은 검증된 라이브러리를 쓰는 편이 안전합니다. 이분 그래프라면 weighted blossom부터 생각하지 말고 Hungarian이나 Min-Cost Flow로 모델을 낮추는 것이 좋습니다. 직접 구현해야 한다면 cardinality blossom을 완전히 이해한 뒤 dual/slack을 추가합니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 이분 그래프인지 확인하지 않고 weighted blossom을 고민한다.
 2. maximum cardinality와 maximum weight의 우선순위를 섞는다.
@@ -178,19 +178,10 @@ Weighted blossom은 여기에 weight까지 붙습니다. 단순히 cycle을 수�
 4. 음수 가중치가 있는데 빈 matching 허용 여부를 확인하지 않는다.
 5. 큰 상수 tie-break에서 overflow를 낸다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 그래프가 이분인가 일반 그래프인가?
 - matching 크기와 weight 중 무엇이 우선인가?
 - perfect matching이 필요한가, unmatched 정점이 허용되는가?
 - 정점 수가 bitmask DP 범위인가?
 - 음수 weight와 dummy edge가 필요한가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: small weighted perfect matching `/practice/...` 문제 필요 | bitmask DP로 일반 그래프 처리 | weighted matching |
-| 표준 | TODO: assignment problem `/practice/...` 문제 필요 | Hungarian 또는 Min-Cost Flow 모델링 | bipartite matching |
-| 응용 | TODO: maximum cardinality 후 weight `/practice/...` 문제 필요 | 큰 상수 tie-break | lexicographic objective |
-| 함정 | TODO: 음수 weight matching `/practice/...` 문제 필요 | unmatched 허용 여부 확인 | negative weight |

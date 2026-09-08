@@ -2,7 +2,7 @@
 
 이 페이지는 Linear Algebra Applications의 선택표를 실제 풀이 결정으로 이어 가는 로컬 완결형 연습입니다. 아직 맞는 h-contest practice 문제가 없는 항목은 임의 ID를 만들지 않고, 여기서 작은 입력과 trace로 먼저 검증합니다.
 
-## 1. 먼저 분류하기
+## 먼저 분류하기
 
 아래 네 문장을 보고 바로 구현을 고르지 말고, 필요한 답의 종류를 먼저 표시합니다.
 
@@ -15,7 +15,7 @@
 
 분류가 끝나면 `N`, matrix density, modulo가 prime인지, randomized 허용 여부를 체크합니다. 이 네 조건이 구현 난이도를 거의 결정합니다.
 
-## 2. Trace: Parity Constraints
+## Trace: Parity Constraints
 
 아래 조건을 봅니다.
 
@@ -53,7 +53,7 @@ x0 xor x2 = 0
 
 row 2를 pivot row와 xor하면 `0 1 1 | 1`이 되고, row 1과 다시 xor하면 `0 0 0 | 1`이 나옵니다. 이 행은 모순이므로 해가 없습니다.
 
-## 3. 로컬 연습 A: XOR Constraint Counter
+## 로컬 연습 A: XOR Constraint Counter
 
 ### 입력
 
@@ -101,7 +101,7 @@ uM vM bM
 
 이 문제는 parity DSU로도 풀 수 있습니다. 하지만 이 연습의 목표는 "xor 제약을 linear system으로 번역하고 rank로 해 개수를 세는 과정"입니다.
 
-## 4. 로컬 연습 B: Tiny Matrix-Tree
+## 로컬 연습 B: Tiny Matrix-Tree
 
 ### 입력
 
@@ -144,7 +144,7 @@ aM bM
 
 이 연습은 determinant가 "행렬 값"이 아니라 graph counting을 압축한 값이라는 감각을 확인합니다.
 
-## 5. 선택 실패를 잡는 체크리스트
+## 선택 실패를 잡는 체크리스트
 
 - xor가 보이면 carry 없는 GF(2) 연산인지 먼저 확인했는가?
 - modulo가 prime이 아니라면 Gaussian elimination의 나눗셈이 안전한가?

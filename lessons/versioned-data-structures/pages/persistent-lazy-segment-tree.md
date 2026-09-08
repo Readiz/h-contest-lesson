@@ -8,13 +8,13 @@ Persistent Lazy Segment Tree는 구간 업데이트와 구간 질의를 처리�
 2. lazy 값을 자식에게 밀 때도 자식 clone이 필요하다.
 3. 각 version root를 저장해 과거 상태를 질의한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Segment Tree, Lazy Propagation, Persistent Segment Tree
 - 함께 보면 좋은 레슨: Segment Tree, Persistent Segment Tree, 오프라인 쿼리
 - 다음에 볼 레슨: dynamic segment tree, rollback data structure, link-cut tree
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 접근 |
 | --- | --- |
@@ -26,7 +26,7 @@ Persistent Lazy Segment Tree는 구간 업데이트와 구간 질의를 처리�
 
 과거 버전으로 되돌아가기만 하고 branching이 없으면 rollback lazy segment tree가 더 간단할 수 있습니다. 여러 version을 자유롭게 질의하면 persistence가 맞습니다.
 
-## 2. Clone 원칙
+## Clone 원칙
 
 Persistence에서는 기존 node를 직접 바꾸면 안 됩니다. 값을 바꿀 node는 먼저 clone합니다.
 
@@ -38,7 +38,7 @@ return newNode
 
 lazy propagation에서도 마찬가지입니다. `push`가 자식의 lazy 값을 바꾸는 순간 자식도 clone해야 합니다.
 
-## 3. Range Add, Range Sum 구현
+## Range Add, Range Sum 구현
 
 아래 구현은 구간 add와 구간 sum을 처리합니다. 각 업데이트는 새 root index를 반환합니다.
 
@@ -150,7 +150,7 @@ struct PersistentLazySegmentTree {
 
 주의할 점은 `rangeSum`에서 `push`가 node를 바꾸는 구현이라는 점입니다. 완전한 read-only query가 필요하면 query 중 lazy carry를 인자로 넘기는 방식으로 바꾸는 편이 더 엄격합니다.
 
-## 4. Read-only Query 변형
+## Read-only Query 변형
 
 과거 version을 질의하는 작업이 tree를 바꾸면 디버깅이 어려울 수 있습니다. 이때는 query에서 lazy를 내려보내지 않고 누적 lazy를 들고 갑니다.
 
@@ -166,7 +166,7 @@ return node.sum + carryLazy * (r-l)
 
 부분 겹침에서는 `carryLazy + node.lazy`를 자식으로 넘깁니다. 이 방식은 query가 node를 clone하지 않으므로 순수합니다.
 
-## 5. 메모리 계산
+## 메모리 계산
 
 구간 업데이트 하나는 방문한 경로와 필요한 lazy child clone을 만듭니다.
 
@@ -178,7 +178,7 @@ return node.sum + carryLazy * (r-l)
 
 실제 상수는 일반 persistent tree보다 큽니다. `Q log N * 2~4` 정도의 node 수를 넉넉히 잡습니다.
 
-## 6. Rollback과 비교
+## Rollback과 비교
 
 | 방식 | 장점 | 제한 |
 | --- | --- | --- |
@@ -188,7 +188,7 @@ return node.sum + carryLazy * (r-l)
 
 문제에서 version graph가 tree처럼 branching하면 persistence가 자연스럽습니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 연산 | 시간 |
 | --- | ---: |
@@ -199,7 +199,7 @@ return node.sum + carryLazy * (r-l)
 
 lazy propagation이 있어도 segment tree의 높이는 유지됩니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. 기존 node에 lazy를 직접 더해 과거 version을 깨뜨린다.
 2. `push`에서 자식을 clone하지 않는다.
@@ -207,19 +207,10 @@ lazy propagation이 있어도 segment tree의 높이는 유지됩니다.
 4. node pool 크기를 point update 기준으로 너무 작게 잡는다.
 5. range boundary를 `[l, r]`와 `[l, r)`로 섞는다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - version을 임의로 질의해야 하는가?
 - update가 range update인가 point update인가?
 - query가 read-only여야 하는가?
 - 값 범위가 커서 dynamic tree가 필요한가?
 - node 수 상한이 메모리 제한에 맞는가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: versioned range add sum `/practice/...` 문제 필요 | clone 후 lazy 적용 | persistent lazy segment tree |
-| 표준 | TODO: 과거 버전 range query `/practice/...` 문제 필요 | root 배열 관리 | version root |
-| 응용 | TODO: branching update history `/practice/...` 문제 필요 | 임의 version에서 새 version 생성 | full persistence |
-| 함정 | TODO: read-only query 검증 `/practice/...` 문제 필요 | lazy carry 방식 | pure query |

@@ -8,13 +8,13 @@ Gomory-Hu Tree는 무향 그래프의 모든 정점 쌍 minimum cut 값을 `N-1`
 2. 현재 cut tree의 parent 관계를 reachable side 기준으로 재배치한다.
 3. tree path minimum으로 모든 쌍 min cut 질의를 답한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: max-flow min-cut theorem, undirected capacity graph, residual graph
 - 함께 보면 좋은 레슨: Max Flow, Min Cut, Flow with Lower Bound, Min-Cost Flow
 - 다음에 볼 레슨: dynamic min cut, cut-equivalent tree, global min cut
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Gomory-Hu Tree 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Gomory-Hu Tree는 무향 그래프의 모든 정점 쌍 minimum cut 값을 `N-1`
 
 Gomory-Hu Tree는 무향 그래프용입니다. 방향 그래프의 모든 쌍 min cut은 같은 방식으로 tree 하나에 압축되지 않습니다.
 
-## 2. Tree가 담는 의미
+## Tree가 담는 의미
 
 Gomory-Hu Tree `T`는 원래 그래프와 같은 정점 집합을 갖고 edge가 `N-1`개입니다. 임의의 두 정점 `u`, `v`에 대해:
 
@@ -36,7 +36,7 @@ minCut_G(u, v) = minimum edge weight on path_T(u, v)
 
 즉 모든 쌍에 대해 max-flow를 다시 돌리지 않고 tree에서 LCA/RMQ 또는 단순 path traversal로 답할 수 있습니다.
 
-## 3. Construction 개요
+## Construction 개요
 
 처음에는 모든 정점의 parent를 0으로 둡니다. 정점 `s`를 1부터 `N-1`까지 보면서 `s`와 `parent[s]` 사이 min cut을 계산합니다.
 
@@ -53,7 +53,7 @@ for s in 1..N-1:
 
 작은 그래프에서 parent가 실제로 어떻게 움직이는지는 [4정점 construction trace](gomory-hu-tree-construct-trace.md)에서 단계별로 따로 봅니다. 구현을 외우기 전에 `reachable side`가 어떤 자식을 `s` 아래로 옮기는지 먼저 손으로 따라가야 합니다.
 
-## 4. 구현 골격
+## 구현 골격
 
 아래 코드는 max-flow 구현을 주입받아 Gomory-Hu parent tree를 만드는 골격입니다. `minCut(s, t)`는 min cut 값과 residual reachable side를 반환해야 합니다.
 
@@ -111,7 +111,7 @@ struct GomoryHuTree {
 
 실전에서는 매 min-cut마다 원본 capacity graph를 복사하거나 capacity를 초기화해야 합니다. 이전 flow의 residual graph를 그대로 쓰면 다음 cut이 깨집니다.
 
-## 5. 질의 처리
+## 질의 처리
 
 완성된 Gomory-Hu Tree에서 `u-v` 경로의 edge weight 최솟값이 답입니다.
 
@@ -123,7 +123,7 @@ answer(u, v):
 
 질의가 많으면 tree에 LCA binary lifting을 올리고, 각 jump마다 최소 edge weight를 함께 저장합니다. 정점 수가 작으면 DFS로 경로를 찾아도 됩니다.
 
-## 6. 왜 `N-1`번이면 충분한가
+## 왜 `N-1`번이면 충분한가
 
 각 단계에서 구한 cut은 현재 tree의 한 edge에 해당하는 분할을 확정합니다. reachable side에 따라 parent를 재배치하면 이전에 확정된 cut과 충돌하지 않는 형태로 cut-equivalent tree가 유지됩니다.
 
@@ -135,7 +135,7 @@ answer(u, v):
 2. reachable side에 속한 같은 parent 자식들을 `s` 아래로 옮긴다.
 3. 완성된 tree 질의는 path sum이 아니라 path minimum으로 답한다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 항목 | 복잡도 |
 | --- | ---: |
@@ -146,7 +146,7 @@ answer(u, v):
 
 전체 병목은 max-flow입니다. `N`이 크고 edge도 많은 경우에는 global min cut만 필요한지, 모든 쌍 질의가 정말 필요한지 먼저 확인합니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. 방향 그래프에 Gomory-Hu Tree를 그대로 적용한다.
 2. min-cut 값만 받고 reachable side를 저장하지 않는다.
@@ -154,19 +154,10 @@ answer(u, v):
 4. tree path의 합을 답으로 착각한다. 답은 path minimum이다.
 5. parallel edge와 undirected capacity를 입력에서 합치지 않는다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 그래프가 무향 capacity graph인가?
 - 모든 쌍 min cut 또는 많은 쌍 cut 질의가 필요한가?
 - `N-1`번 max-flow가 시간 안에 가능한가?
 - min-cut 후 source side를 얻을 수 있는 max-flow 구현인가?
 - 질의가 많아 LCA path minimum 전처리가 필요한가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: pair min-cut query `/practice/...` 문제 필요 | cut tree path minimum 이해 | Gomory-Hu |
-| 표준 | TODO: edge connectivity all pairs `/practice/...` 문제 필요 | `N-1` max-flow construction | cut-equivalent tree |
-| 응용 | TODO: many min-cut queries `/practice/...` 문제 필요 | LCA minimum edge query | tree path RMQ |
-| 함정 | TODO: directed graph counterexample `/practice/...` 문제 필요 | 적용 조건 판정 | undirected cut |

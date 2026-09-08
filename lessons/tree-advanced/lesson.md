@@ -12,7 +12,7 @@ Heavy-Light Decomposition: 경로를 몇 개의 배열 구간으로 쪼갠다.
 Small-to-large: subtree 정보를 큰 쪽에 작은 쪽을 합치며 관리한다.
 ```
 
-## 1. 언제 심화 기법이 필요한가
+## 언제 심화 기법이 필요한가
 
 트리에서 질의가 한 번만 나오면 DFS나 BFS로 충분한 경우가 많습니다. 하지만 아래 조건이 붙으면 전처리와 자료구조가 필요합니다.
 
@@ -26,7 +26,7 @@ Small-to-large: subtree 정보를 큰 쪽에 작은 쪽을 합치며 관리한�
 
 핵심은 트리를 그대로 보지 않는 것입니다. subtree는 배열의 연속 구간으로, 경로는 여러 heavy path 구간으로, 거리 질의는 센트로이드 조상들의 후보 비교로 바꿉니다.
 
-## 2. Euler Tour
+## Euler Tour
 
 DFS로 정점을 처음 방문한 시간을 `tin[u]`, subtree를 빠져나온 직후를 `tout[u]`라고 합시다.
 
@@ -64,7 +64,7 @@ long long subtreeSum(int u) {
 
 주의할 점은 Euler Tour가 subtree에는 강하지만, 임의의 두 정점 사이 경로는 일반적으로 한 구간이 아니라는 것입니다. 경로 질의에는 Heavy-Light Decomposition이 더 자연스럽습니다.
 
-## 3. LCA
+## LCA
 
 LCA(Lowest Common Ancestor)는 두 정점의 가장 가까운 공통 조상입니다. 두 정점 사이 거리도 LCA로 계산할 수 있습니다.
 
@@ -125,7 +125,7 @@ depth[0] = 0;
 dfsLca(0, 0, tree);
 ```
 
-## 4. 센트로이드 분할
+## 센트로이드 분할
 
 센트로이드는 제거했을 때 남는 모든 컴포넌트 크기가 전체의 절반 이하인 정점입니다. 센트로이드 분할은 이 정점을 루트처럼 잡아 트리를 균형 있게 쪼개고, 각 조각에서 다시 센트로이드를 찾는 방법입니다.
 
@@ -178,7 +178,7 @@ void buildCentroidTree(int entry, int parent, const vector<vector<int>>& tree) {
 
 각 단계에서 조각 크기가 절반 이하로 줄어들기 때문에 센트로이드 트리의 높이는 `O(log n)`입니다.
 
-## 5. 센트로이드 분할로 거리 질의 처리하기
+## 센트로이드 분할로 거리 질의 처리하기
 
 대표 문제는 동적으로 색칠되는 정점 중 `u`에서 가장 가까운 정점까지의 거리를 묻는 형태입니다.
 
@@ -220,7 +220,7 @@ int nearestRed(int u) {
 
 센트로이드 분할은 "거리 후보를 모든 정점에서 찾는 대신, 균형 분할의 조상 센트로이드들만 본다"는 관점으로 이해하면 됩니다.
 
-## 6. Heavy-Light Decomposition
+## Heavy-Light Decomposition
 
 Heavy-Light Decomposition, 줄여서 HLD는 트리의 경로를 배열 구간 몇 개로 나누는 기법입니다.
 
@@ -292,7 +292,7 @@ void buildHld(const vector<vector<int>>& tree, int root = 0) {
 
 `pos[u]`는 정점 `u`가 세그먼트 트리 배열에서 차지하는 위치입니다. 같은 chain에 있는 정점들은 `pos`가 연속으로 배치됩니다.
 
-## 7. HLD로 경로 질의 처리하기
+## HLD로 경로 질의 처리하기
 
 두 정점 `a`, `b` 사이 경로를 처리할 때는 두 정점이 같은 chain에 올 때까지 chain head가 더 깊은 쪽을 위로 올립니다.
 
@@ -344,7 +344,7 @@ void updatePath(int a, int b, long long delta) {
 간선 값 경로: [pos[lca] + 1, pos[child]]
 ```
 
-## 8. HLD와 Euler Tour의 관계
+## HLD와 Euler Tour의 관계
 
 HLD의 `pos` 배열은 heavy path를 우선해서 정점을 배치합니다. 그래도 DFS 순서이기 때문에 subtree가 연속 구간이 되도록 구현할 수 있습니다.
 
@@ -363,7 +363,7 @@ long long querySubtree(int u) {
 
 다만 모든 HLD 구현이 subtree 연속성을 보장하는 것은 아닙니다. 위 코드처럼 정점을 처음 방문할 때 `pos`를 부여하고 모든 자식을 이어서 방문해야 subtree 구간이 연속이 됩니다.
 
-## 9. small-to-large
+## small-to-large
 
 subtree마다 색 종류 수, 값 빈도, 문자열 집합 같은 것을 모아야 할 때 모든 subtree를 매번 새로 만들면 `O(n^2)`가 됩니다. small-to-large는 작은 컨테이너를 큰 컨테이너에 합쳐 전체 이동 횟수를 줄이는 기법입니다.
 
@@ -401,7 +401,7 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
 
 실전에서는 메모리 관리가 번거로우면 포인터 대신 `vector<map<int, int>>`와 swap을 쓰기도 합니다.
 
-## 10. 어떤 기법을 고를까
+## 어떤 기법을 고를까
 
 | 필요한 작업 | 우선 후보 |
 | --- | --- |
@@ -416,7 +416,7 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
 
 정리하면, subtree는 Euler Tour, 경로는 HLD, 거리 후보는 센트로이드 분할로 먼저 분류하면 됩니다. 그 뒤 필요한 연산이 합인지 최댓값인지, 업데이트가 있는지에 따라 Fenwick Tree나 Segment Tree를 붙이면 됩니다.
 
-## 11. 시간 복잡도
+## 시간 복잡도
 
 | 기법 | 전처리 | 질의/업데이트 |
 | --- | --- | --- |
@@ -426,7 +426,7 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
 | Heavy-Light Decomposition | `O(n)` | 경로당 `O(log^2 n)` 또는 구현에 따라 `O(log n)` |
 | small-to-large | 전체 `O(n log n)` 수준 | subtree 집계 문제에 따라 다름 |
 
-## 12. 자주 하는 실수
+## 자주 하는 실수
 
 - Euler Tour에서 subtree 구간의 오른쪽 끝을 `tin[u] + sub[u] - 1`로 잡지 않습니다.
 - LCA 전처리 루프에서 없는 조상을 참조합니다.
@@ -434,19 +434,10 @@ void dfsSmallToLarge(int u, int parent, const vector<vector<int>>& tree, const v
 - Centroid Decomposition의 "이미 제거한 centroid" 표시를 빼먹어 같은 정점을 다시 처리합니다.
 - small-to-large에서 작은 컨테이너를 큰 컨테이너로 합치지 않아 `O(n^2)`가 됩니다.
 
-## 13. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. subtree 전체를 배열 구간처럼 다룰 수 있는가?
 2. 두 정점의 LCA나 거리가 반복해서 필요한가?
 3. 경로 업데이트/질의가 많아 HLD가 필요한가?
 4. 특정 정점 집합까지의 거리 후보를 빠르게 관리해야 하는가?
 5. subtree마다 색/값 빈도를 모두 모아야 하는가?
-
-## 14. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: subtree 합 질의 문제 추가 | Euler Tour로 subtree를 연속 구간으로 변환 | `tin`, `subtree` |
-| 표준 | TODO: LCA와 거리 질의 문제 추가 | binary lifting 전처리와 깊이 맞추기 | LCA, depth |
-| 응용 | TODO: 경로 질의 문제 추가 | HLD로 경로를 여러 구간으로 분해 | chain, segment tree |
-| 함정 | TODO: 센트로이드 분할 거리 후보 문제 추가 | 제거된 centroid 표시와 거리 캐시 관리 | centroid decomposition |

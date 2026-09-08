@@ -1,6 +1,6 @@
 # Dynamic Network Optimization Practice Set
 
-이 페이지는 Dynamic Flow와 Dynamic MST를 완전한 online 자료구조부터 시작하지 않고, 제한된 update 모델로 낮추는 연습을 모읍니다. 아직 적절한 h-contest 문제가 없는 칸은 임의 ID를 넣지 않고 `TODO`로 둡니다.
+이 페이지는 Dynamic Flow와 Dynamic MST를 완전한 online 자료구조부터 시작하지 않고, 제한된 update 모델로 낮추는 연습을 모읍니다.
 
 ## 로컬 완결형 연습
 
@@ -113,13 +113,3 @@ capacity decrease query를 일부러 섞으면 이 assert가 깨질 수 있어�
 ### MST Replacement Counterexample
 
 네 정점 cycle에 diagonal 하나를 추가한 그래프를 만듭니다. MST에 들어간 edge를 삭제하면 어떤 non-tree edge가 replacement가 되는지 직접 찾고, MST 밖 edge를 삭제하면 답이 변하지 않는다는 것도 같이 확인합니다.
-
-## h-contest 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: incremental flow `/practice/...` 문제 필요 | capacity 증가만 있는 residual 재사용 | feasible old flow |
-| 표준 | TODO: time-expanded flow `/practice/...` 문제 필요 | 시간별 edge를 정적 network로 펼치기 | wait edge |
-| 표준 | TODO: dynamic MST rebuild `/practice/...` 문제 필요 | 활성 간선 Kruskal baseline | active set |
-| 응용 | TODO: MST block rebuild `/practice/...` 문제 필요 | 변경 edge 후보만 합치기 | sqrt decomposition |
-| 함정 | TODO: flow decrease counterexample `/practice/...` 문제 필요 | 용량 감소에서 repair 필요성 확인 | infeasible flow |

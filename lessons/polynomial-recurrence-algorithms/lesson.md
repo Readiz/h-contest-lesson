@@ -10,13 +10,13 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 4. generating function이 rational form인가?
 5. 선형 점화식이 주어졌는가, 아니면 앞 항에서 찾아야 하는가?
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Modular Arithmetic, Combinatorics, Matrix Exponentiation
 - 함께 보면 좋은 레슨: Linear Algebra Applications, Black-Box Linear Algebra, Convex DP Optimization
 - 다음에 볼 레슨: Black-Box Linear Algebra, Sparse Linear Systems, Randomized Determinant
 
-## 1. 학습 경로
+## 학습 경로
 
 | 단계 | 먼저 볼 페이지 |
 | --- | --- |
@@ -31,7 +31,7 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 | 문제에서 점화식을 찾아 방법 선택 | [Linear Recurrence Applications](pages/linear-recurrence-applications.md) |
 | 앞 항에서 점화식 후보를 추정 | [Recurrence Guessing](pages/recurrence-guessing.md), [Berlekamp-Massey](pages/berlekamp-massey.md) |
 
-## 2. 모델 선택 표
+## 모델 선택 표
 
 | 문제 신호 | 우선 후보 |
 | --- | --- |
@@ -44,6 +44,6 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 | 처음 항만 많이 만들 수 있음 | Berlekamp-Massey + nth term |
 | 큰 행렬을 직접 저장하기 어렵고 matvec만 가능 | Black-Box Linear Algebra로 이동 |
 
-## 3. 공개 상태
+## 공개 상태
 
 하위 페이지들은 기존 구현과 설명을 보존합니다. [Practice Set](pages/practice-set.md)은 Kitamasa 기반 K차 선형 점화식 nth-term 로컬 연습과 Fibonacci coefficient trace를 대표 구현 흐름으로 제공합니다.

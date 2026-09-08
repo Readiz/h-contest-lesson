@@ -8,13 +8,13 @@ Rotating Calipers는 Convex Hull 위에서 서로 마주 보는 점이나 변을
 2. 한 변을 기준으로 반대편에서 면적이 커지는 동안 포인터를 움직인다.
 3. 포인터가 되돌아가지 않는 성질로 전체를 선형 시간에 처리한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: CCW, 외적, Convex Hull
 - 함께 보면 좋은 레슨: 기하 기본: CCW, 선분 교차, Convex Hull
 - 다음에 볼 레슨: Sweep Line Geometry
 
-## 1. 언제 필요한가
+## 언제 필요한가
 
 Convex Hull까지 만든 뒤 아래 질문이 나오면 Rotating Calipers를 의심합니다.
 
@@ -27,7 +27,7 @@ Convex Hull까지 만든 뒤 아래 질문이 나오면 Rotating Calipers를 의
 
 핵심은 모든 점이 아니라 Convex Hull 위의 점만 보면 된다는 점입니다. 가장 먼 두 점은 항상 hull 위에 있고, 내부 점은 지름 후보가 될 수 없습니다.
 
-## 2. Antipodal pair
+## Antipodal pair
 
 볼록 다각형의 한 변 `i -> i+1`을 기준으로, 반대편 점 `j`를 움직이며 삼각형 면적이 더 커지는 동안 전진합니다.
 
@@ -38,7 +38,7 @@ area(edge i, point j+1) > area(edge i, point j)
 
 다각형이 반시계 방향이고 중복 없는 hull이라면 `i`가 한 바퀴 도는 동안 `j`도 한 방향으로만 움직입니다. 그래서 전체 while 반복 횟수는 `O(n)`입니다.
 
-## 3. 지름 구하기
+## 지름 구하기
 
 아래 구현은 hull이 반시계 방향이며, 첫 점을 끝에 다시 붙이지 않은 상태라고 가정합니다. 반환값은 최대 거리의 제곱입니다.
 
@@ -106,7 +106,7 @@ long long convexDiameter2(const vector<Point>& hull) {
 
 거리 자체를 출력해야 하면 마지막에 `sqrt(best)`를 합니다. 정수 비교만 필요하면 제곱 거리로 끝까지 비교하는 것이 안전합니다.
 
-## 4. 왜 선형인가
+## 왜 선형인가
 
 겉보기에는 각 변마다 while을 돌기 때문에 `O(n^2)`처럼 보입니다. 하지만 `j`는 줄어들지 않고 한 방향으로만 움직입니다. `i`가 한 바퀴 도는 동안 `j`도 최대 한 바퀴 정도만 돕니다.
 
@@ -122,7 +122,7 @@ while area(i, j+1) > area(i, j):
 
 면적 비교는 외적의 절댓값으로 합니다. 실제 높이가 필요하면 변 길이로 나눠야 하지만, 같은 변에 대해 비교할 때는 나누지 않아도 순서가 같습니다.
 
-## 5. 폭과 지름의 차이
+## 폭과 지름의 차이
 
 지름은 점과 점 사이의 최대 거리입니다. 폭(width)은 어떤 방향으로 두 평행 지지선 사이의 최소 거리입니다. 둘 다 calipers로 다루지만 목적이 다릅니다.
 
@@ -134,7 +134,7 @@ while area(i, j+1) > area(i, j):
 
 폭은 `area(edge, point) / edge_length`로 높이를 구합니다. 정수 비교만으로 끝나지 않고 실수 값이 필요할 수 있으므로 오차 처리까지 확인해야 합니다.
 
-## 6. Hull 준비 조건
+## Hull 준비 조건
 
 Rotating Calipers 전에 hull의 형식을 통일해야 합니다.
 
@@ -146,7 +146,7 @@ Rotating Calipers 전에 hull의 형식을 통일해야 합니다.
 
 Convex Hull 구현에서 collinear 경계 점을 모두 남기면 calipers가 같은 직선 위 점들을 더 많이 보게 됩니다. 대부분의 지름 문제에서는 중간 collinear 점을 제거해도 답이 유지되지만, 모든 antipodal pair를 출력해야 하는 문제라면 정책을 더 조심해야 합니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 시간 |
 | --- | ---: |
@@ -157,7 +157,7 @@ Convex Hull 구현에서 collinear 경계 점을 모두 남기면 calipers가 �
 
 `h`는 hull 위 점 개수입니다. 전체 점에서 바로 calipers를 쓰는 것이 아니라, 먼저 hull을 만들고 그 위에서만 실행합니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -168,7 +168,7 @@ Convex Hull 구현에서 collinear 경계 점을 모두 남기면 calipers가 �
 | hull 크기 1, 2 처리 누락 | 런타임 에러 | 작은 hull 별도 반환 |
 | collinear 정책을 확인하지 않음 | 후보 점 누락/중복 | hull 생성 조건 확인 |
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 전체 점이 아니라 Convex Hull 위에서 보면 되는 문제인가?
 2. 최댓거리, 최소폭, bounding rectangle 중 무엇을 묻는가?
@@ -178,12 +178,3 @@ Convex Hull 구현에서 collinear 경계 점을 모두 남기면 calipers가 �
 6. `long long` 외적으로 좌표 곱을 감당할 수 있는가?
 
 Rotating Calipers는 볼록 다각형 위 포인터가 뒤로 가지 않는다는 사실을 쓰는 기법입니다. 먼저 hull을 정확히 만들고, 한 변에 대한 반대편 후보가 언제 전진하는지만 고정하면 지름 문제는 안정적으로 풀 수 있습니다.
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: Convex Hull 지름 `/practice/...` 문제 필요 | antipodal pair와 제곱 거리 계산 | diameter |
-| 표준 | TODO: 가장 먼 두 점 `/practice/...` 문제 필요 | hull 생성 후 calipers 적용 | farthest pair |
-| 응용 | TODO: 볼록 다각형 폭 `/practice/...` 문제 필요 | 변-점 높이와 외적 비교 | width |
-| 함정 | TODO: collinear 경계 점 처리 `/practice/...` 문제 필요 | hull 정책과 작은 입력 처리 | collinear, edge case |

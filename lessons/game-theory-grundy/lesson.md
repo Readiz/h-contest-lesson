@@ -8,13 +8,13 @@ Game Theory 문제 중 impartial game은 두 플레이어가 같은 선택지를
 2. 각 상태의 Grundy number를 mex로 계산한다.
 3. 독립 게임 여러 개의 xor로 전체 승패를 판정한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 동적 계획법, DFS, DAG 상태 그래프, xor
 - 함께 보면 좋은 레슨: 동적 계획법, Proof와 Invariant, 확률과 기대값
 - 다음에 볼 레슨: minimax, alpha-beta pruning, partisan game
 
-## 1. Impartial Game
+## Impartial Game
 
 Impartial game은 현재 가능한 움직임이 플레이어에 따라 달라지지 않는 게임입니다.
 
@@ -27,7 +27,7 @@ Impartial game은 현재 가능한 움직임이 플레이어에 따라 달라지
 
 Nim, 돌 더미 게임, DAG 위 token 이동이 대표 예시입니다.
 
-## 2. Winning과 Losing
+## Winning과 Losing
 
 가장 기본 분류는 아래입니다.
 
@@ -61,7 +61,7 @@ vector<int> computeWinLose(const vector<vector<int>>& graph) {
 
 위 코드는 간선이 항상 더 큰 번호로 간다는 DAG 순서를 가정합니다. 일반 DAG라면 위상 정렬이나 DFS memoization이 필요합니다.
 
-## 3. Grundy Number와 mex
+## Grundy Number와 mex
 
 Grundy number는 상태를 Nim pile 크기처럼 바꿔 주는 값입니다.
 
@@ -78,7 +78,7 @@ mex({1, 2}) = 0
 
 Grundy number가 0이면 losing state입니다. 0이 아니면 winning state입니다.
 
-## 4. Grundy 계산
+## Grundy 계산
 
 ```cpp compile-check
 #include <vector>
@@ -115,7 +115,7 @@ int grundyDfs(int state, const vector<vector<int>>& graph, vector<int>& memo) {
 
 상태 그래프에 cycle이 있으면 이 DFS는 끝나지 않습니다. Sprague-Grundy 기본형은 보통 finite DAG game에서 사용합니다.
 
-## 5. 게임의 합
+## 게임의 합
 
 독립적인 게임 여러 개를 동시에 하고, 한 턴에 그중 하나에서만 움직인다고 합시다. 전체 Grundy number는 각 게임 Grundy의 xor입니다.
 
@@ -140,7 +140,7 @@ bool firstPlayerWins(const vector<int>& grundyValues) {
 
 이 성질이 Nim의 핵심이고, 여러 독립 subgame으로 분해되는 문제에서 강력합니다.
 
-## 6. 패턴 찾기
+## 패턴 찾기
 
 상태 수가 매우 크면 직접 DP가 어렵습니다. 작은 값의 Grundy number를 계산해 주기를 찾는 경우가 있습니다.
 
@@ -150,13 +150,13 @@ bool firstPlayerWins(const vector<int>& grundyValues) {
 
 하지만 주기 추정은 위험합니다. 문제에서 주기를 증명할 수 있거나, 제한이 주기 탐색을 의도한 형태일 때만 사용합니다.
 
-## 7. Misere 조건
+## Misere 조건
 
 마지막 수를 둔 사람이 지는 misere play는 일반 Grundy 규칙과 달라질 수 있습니다. 특히 Nim에서는 모든 pile 크기가 1 이하일 때 별도 처리가 필요합니다.
 
 문제 statement에서 "더 이상 움직일 수 없는 사람이 패배"인지 "승리"인지 반드시 확인합니다. 대부분은 normal play지만, 함정으로 바뀌는 경우가 있습니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -167,7 +167,7 @@ bool firstPlayerWins(const vector<int>& grundyValues) {
 
 mex 계산은 outdegree 크기만큼의 seen 배열이면 충분합니다. 전역 큰 배열을 매번 초기화하면 느릴 수 있으니 timestamp trick을 쓰기도 합니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -178,7 +178,7 @@ mex 계산은 outdegree 크기만큼의 seen 배열이면 충분합니다. 전�
 | misere play를 normal로 처리 | 마지막 수 조건 오답 | statement 문장 확인 |
 | 주기를 근거 없이 사용 | 숨은 케이스 오답 | 주기 증명 또는 충분한 조건 |
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 두 플레이어가 같은 move set을 갖는 impartial game인가?
 2. 움직일 수 없는 상태의 승패가 normal play인가?
@@ -188,12 +188,3 @@ mex 계산은 outdegree 크기만큼의 seen 배열이면 충분합니다. 전�
 6. 상태 수가 크다면 주기나 수식 패턴을 증명할 수 있는가?
 
 Game Theory 문제는 구현보다 상태 정의가 중요합니다. "상대에게 losing state를 넘기는가"로 시작하고, 여러 독립 게임이 보이면 Grundy xor로 확장합니다.
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 돌 가져가기 게임 `/practice/...` 문제 필요 | terminal losing과 win/lose DP | impartial game |
-| 표준 | TODO: Grundy number 계산 `/practice/...` 문제 필요 | mex와 DFS memoization | Sprague-Grundy |
-| 응용 | TODO: 여러 pile 게임 `/practice/...` 문제 필요 | Grundy xor 합성 | nim xor |
-| 함정 | TODO: misere play `/practice/...` 문제 필요 | 마지막 수 조건 별도 처리 | misere |

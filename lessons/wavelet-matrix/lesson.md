@@ -8,13 +8,13 @@ Wavelet Matrix는 Wavelet Tree의 포인터 구조를 level별 bitvector로 평�
 2. 각 level에서 0-bit 원소를 앞, 1-bit 원소를 뒤로 안정적으로 재배치한다.
 3. bitvector rank로 원래 구간이 다음 level에서 어디로 이동하는지 계산한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 좌표 압축, Wavelet Tree, prefix count, bit operation
 - 함께 보면 좋은 레슨: Wavelet Tree, Persistent Segment Tree, 오프라인 쿼리
 - 다음에 볼 레슨: succinct bitvector, compressed wavelet matrix, range quantile
 
-## 1. 문제 신호
+## 문제 신호
 
 | 질의 | Wavelet Matrix 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Wavelet Matrix는 Wavelet Tree의 포인터 구조를 level별 bitvector로 평�
 
 배열 업데이트가 있으면 일반 Wavelet Matrix만으로는 부족합니다. 이 레슨은 static query를 전제로 합니다.
 
-## 2. Wavelet Tree와 차이
+## Wavelet Tree와 차이
 
 Wavelet Tree는 node마다 값 범위를 나누고 child pointer를 둡니다. Wavelet Matrix는 모든 node를 level별 배열 하나로 합칩니다.
 
@@ -37,7 +37,7 @@ Wavelet Tree는 node마다 값 범위를 나누고 child pointer를 둡니다. W
 
 핵심 질의 원리는 같습니다. 각 level에서 구간 `[l, r)`이 다음 level의 0 영역 또는 1 영역 어디로 이동하는지 rank로 계산합니다.
 
-## 3. BitVector Rank
+## BitVector Rank
 
 가장 먼저 필요한 것은 bitvector의 prefix rank입니다.
 
@@ -68,7 +68,7 @@ struct BitVectorRank {
 
 `rankOne(pos)`은 `[0, pos)` 안의 1 개수입니다. 구간 `[l, r)`의 1 개수는 `rankOne(r) - rankOne(l)`입니다.
 
-## 4. 기본 구현
+## 기본 구현
 
 아래 구현은 non-negative `int` 값을 대상으로 합니다. 값 범위가 음수를 포함하면 좌표 압축하거나 unsigned 표현으로 바꿉니다.
 
@@ -187,7 +187,7 @@ struct WaveletMatrix {
 
 `kth(l, r, k)`의 `k`는 0-indexed입니다. 구간 길이보다 크거나 같은 `k`는 호출 전에 막아야 합니다.
 
-## 5. 구간 이동 공식
+## 구간 이동 공식
 
 각 level에서 bit가 0인 원소는 앞쪽, bit가 1인 원소는 `zeroCount[level]` 뒤쪽으로 이동합니다.
 
@@ -198,7 +198,7 @@ struct WaveletMatrix {
 
 이 공식 하나로 kth, countLess, frequency가 모두 나옵니다.
 
-## 6. 좌표 압축을 쓸 때
+## 좌표 압축을 쓸 때
 
 값이 음수거나 매우 큰 64-bit 정수이면 좌표 압축을 적용합니다.
 
@@ -209,7 +209,7 @@ struct WaveletMatrix {
 
 빈도 질의처럼 값 범위가 필요하면 `[low, high)`도 좌표 index 범위로 바꿉니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 연산 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -220,7 +220,7 @@ struct WaveletMatrix {
 
 실제 succinct bitvector를 쓰면 메모리는 더 줄일 수 있습니다. 위 구현은 이해를 위해 prefix int 배열을 사용합니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. `[l, r]`과 `[l, r)` 구간 convention을 섞는다.
 2. `k`를 1-indexed로 넣고 kth 결과가 한 칸 밀린다.
@@ -228,19 +228,10 @@ struct WaveletMatrix {
 4. 음수 값을 그대로 bit shift해 정렬 순서가 깨진다.
 5. 좌표 압축 후 kth 결과를 원래 값으로 복원하지 않는다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 배열이 정적인가?
 - 질의가 range kth, rank, frequency, quantile 계열인가?
 - 값 범위가 non-negative int로 충분한가, 좌표 압축이 필요한가?
 - `k`의 index convention이 무엇인가?
 - 메모리 제한에서 prefix int 배열 방식이 가능한가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: range kth query `/practice/...` 문제 필요 | kth 이동 공식 구현 | wavelet matrix kth |
-| 표준 | TODO: 구간 값 빈도 `/practice/...` 문제 필요 | `countLess(high) - countLess(low)` 사용 | range frequency |
-| 응용 | TODO: 구간 median `/practice/...` 문제 필요 | median을 kth로 변환 | range quantile |
-| 함정 | TODO: 음수 좌표 wavelet matrix `/practice/...` 문제 필요 | 좌표 압축과 값 복원 | coordinate compression |

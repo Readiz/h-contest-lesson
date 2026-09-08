@@ -1,8 +1,8 @@
 # Practice Set
 
-Planar Graph Duality 허브의 연습은 face traversal, dual graph 구성, cut-cycle 변환을 순서대로 확인하는 흐름이 좋습니다. 실제 h-contest 문제가 아직 부족한 주제는 임의 ID를 만들지 않고 `TODO`로 남기며, face incidence가 주어진 경우의 dual shortest path를 로컬 완결형으로 먼저 둡니다.
+Planar Graph Duality 허브의 연습은 face traversal, dual graph 구성, cut-cycle 변환을 순서대로 확인하는 흐름이 좋습니다.
 
-## 1. 로컬 완결형 연습: Face Incidence Dual Shortest Path
+## 로컬 완결형 연습: Face Incidence Dual Shortest Path
 
 평면 그래프의 각 primal edge가 양쪽 face 번호와 비용을 알고 있다고 합시다. 각 face를 dual graph의 정점으로 만들고, primal edge 하나를 양쪽 face 사이의 dual edge로 바꾼 뒤 `startFace`에서 `targetFace`까지의 최단거리를 구합니다.
 
@@ -134,16 +134,8 @@ int main() {
 3. half-edge traversal에서 face incidence를 직접 만든 경우에는 먼저 `V - E + F = 1 + C`를 통과해야 이 연습으로 내려옵니다.
 4. directed primal edge를 무향 dual edge로 바꾸면 안 되는 문제인지 별도로 확인합니다.
 
-## 2. 연습 순서
 
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | 로컬: face incidence dual shortest path | face adjacency로 dual 만들기 | outer face |
-| 표준 | TODO: half-edge face traversal `/practice/...` 문제 필요 | 좌표에서 face 번호 찾기 | angle sort |
-| 응용 | TODO: planar cut shortest path `/practice/...` 문제 필요 | cut을 dual path로 변환 | cut-cycle duality |
-| 함정 | TODO: bridge in dual graph `/practice/...` 문제 필요 | self-loop와 bridge 처리 | Euler formula |
-
-## 3. 추가 로컬 연습 후보
+## 추가 로컬 연습 후보
 
 ### Square with a Diagonal
 
@@ -157,7 +149,7 @@ int main() {
 
 작은 격자 그래프에서 위쪽 boundary와 아래쪽 boundary를 분리하는 최소 edge cut을 만들고, dual graph에서 좌우 또는 boundary arc 사이 shortest path와 비용이 같은지 비교합니다.
 
-## 4. 제출 전 체크리스트
+## 제출 전 체크리스트
 
 - `V - E + F = 1 + C`를 출력해 확인했는가?
 - outer face 번호를 signed area로 찾았는가?

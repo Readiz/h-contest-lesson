@@ -2,7 +2,7 @@
 
 오프라인/시간축 문제는 "질의를 뒤섞는다"와 "시간을 자료구조로 만든다"가 섞여 보입니다. 먼저 모델을 나누면 구현 선택이 훨씬 선명해집니다.
 
-## 1. 네 가지 모델
+## 네 가지 모델
 
 | 모델 | 할 수 있는 일 | 대표 기법 | 주의점 |
 | --- | --- | --- | --- |
@@ -11,7 +11,7 @@
 | Rollback over time | 시간 구간에 update를 올리고 DFS 중 적용/복구 | segment tree over time, rollback DSU | path compression처럼 복구 어려운 최적화 금지 |
 | Offline retroactivity | 과거 operation 편집을 active interval로 정리 | time tree + rollback | online fully retroactive와 다름 |
 
-## 2. Persistence와의 차이
+## Persistence와의 차이
 
 | 표현 | 더 가까운 구조 |
 | --- | --- |
@@ -22,7 +22,7 @@
 
 Persistent Segment Tree를 만들면 rollback이 자동으로 해결되는 것은 아닙니다. 반대로 Rollback DSU는 임의 version id를 빠르게 조회하기 위한 구조가 아닙니다.
 
-## 3. 구현 전에 적을 문장
+## 구현 전에 적을 문장
 
 풀이를 쓰기 전에 아래 네 문장을 채우면 잘못된 기법 선택을 많이 줄일 수 있습니다.
 
@@ -35,7 +35,7 @@ leaf 답변 조건: 현재 상태만 필요 / 과거 history 추가 필요
 
 이 네 줄 중 하나라도 애매하면 바로 구현하지 말고 모델을 다시 정해야 합니다.
 
-## 4. 자주 하는 오독
+## 자주 하는 오독
 
 1. online 문제를 offline으로 재정렬해도 된다고 가정한다.
 2. rollback DSU에 path compression을 넣는다.

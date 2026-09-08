@@ -8,13 +8,13 @@ Flow with Lower Bound는 각 간선에 `lower <= flow <= upper` 제약이 있는
 2. 정점별 demand imbalance를 계산한다.
 3. super source/sink를 추가해 feasible circulation을 검사한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Max Flow, residual graph, circulation 감각
 - 함께 보면 좋은 레슨: Max Flow, Min Cut, Bipartite Matching, Min-Cost Flow
 - 다음에 볼 레슨: min-cost circulation, flow with demands, feasible schedule modeling
 
-## 1. 문제 신호
+## 문제 신호
 
 아래 표현이 있으면 lower bound flow를 의심합니다.
 
@@ -28,7 +28,7 @@ Flow with Lower Bound는 각 간선에 `lower <= flow <= upper` 제약이 있는
 
 lower bound가 있는 문제는 "최대 유량을 얼마 보낼 수 있나"보다 "제약을 모두 만족하는 유량이 존재하나"가 먼저입니다.
 
-## 2. Lower bound 제거
+## Lower bound 제거
 
 간선 `u -> v`에 `lower`와 `upper`가 있다고 합시다.
 
@@ -47,7 +47,7 @@ v는 lower만큼 받았으므로 demand[v] += lower
 
 `demand[x] > 0`이면 x는 그만큼 더 받아야 합니다. `demand[x] < 0`이면 x는 그만큼 더 내보내야 합니다.
 
-## 3. Super source/sink 변환
+## Super source/sink 변환
 
 모든 lower bound를 제거한 뒤, super source `SS`와 super sink `TT`를 추가합니다.
 
@@ -58,7 +58,7 @@ v는 lower만큼 받았으므로 demand[v] += lower
 
 `SS`에서 나가는 모든 간선을 포화시킬 수 있으면 feasible circulation이 존재합니다.
 
-## 4. Dinic 기반 feasibility 구현
+## Dinic 기반 feasibility 구현
 
 아래 코드는 lower/upper 간선을 추가하고 feasibility를 검사합니다.
 
@@ -176,7 +176,7 @@ struct LowerBoundFlow {
 
 이 구현은 feasibility 판정용입니다. 실제 간선별 flow 값을 복원해야 한다면, 원래 간선의 residual cap을 추적하고 `lower + used`를 계산해야 합니다.
 
-## 5. s-t Flow로 바꾸기
+## s-t Flow로 바꾸기
 
 source `s`에서 sink `t`로 lower bound flow를 보내고 싶다면, circulation으로 만들기 위해 `t -> s` 간선을 무한 capacity로 추가합니다.
 
@@ -186,7 +186,7 @@ t -> s, lower = 0, upper = INF
 
 이렇게 하면 전체가 순환 구조가 되고, super source/sink 변환으로 feasible 여부를 확인할 수 있습니다. feasible flow를 만든 뒤 추가 최대 유량을 구하려면 super 간선을 제거하고 residual graph에서 `s -> t` max flow를 더 구하는 식으로 확장합니다.
 
-## 6. 모델링 예시
+## 모델링 예시
 
 작업 `i`가 최소 `L_i`, 최대 `R_i`개의 사람에게 배정되어야 한다면 `job_i -> sink` 간선에 lower/upper를 둡니다.
 
@@ -199,7 +199,7 @@ sink -> source         [0, INF] for circulation
 
 각 job의 최소 수요가 feasibility로 강제됩니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -210,7 +210,7 @@ sink -> source         [0, INF] for circulation
 
 전체 병목은 결국 max flow입니다. lower bound 변환 자체는 선형입니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -221,7 +221,7 @@ sink -> source         [0, INF] for circulation
 | lower > upper 입력 처리 누락 | 음수 capacity | 입력 검증 |
 | 실제 flow 복원에서 lower 누락 | 출력이 최소량만큼 작음 | `flow = lower + used` |
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 간선이나 선택에 최소량 제약이 있는가?
 2. 각 정점의 유입/유출 balance가 보존되어야 하는가?
@@ -231,12 +231,3 @@ sink -> source         [0, INF] for circulation
 6. lower/upper 범위가 `long long`이 필요한가?
 
 Lower bound flow는 "최소량을 먼저 흘려 보낸다"는 생각으로 시작하면 변환이 단순해집니다. demand 배열의 부호만 흔들리지 않게 고정하면 대부분의 모델을 같은 방식으로 처리할 수 있습니다.
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: lower bound feasibility `/practice/...` 문제 필요 | demand 배열과 super source/sink 구성 | feasible circulation |
-| 표준 | TODO: 수요가 있는 배정 `/practice/...` 문제 필요 | job lower/upper 모델링 | bounded assignment |
-| 응용 | TODO: s-t lower bound max flow `/practice/...` 문제 필요 | `t -> s` 간선과 추가 max flow | bounded st flow |
-| 함정 | TODO: 실제 flow 복원 `/practice/...` 문제 필요 | lower + residual 사용량 계산 | flow reconstruction |

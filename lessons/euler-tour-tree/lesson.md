@@ -8,13 +8,13 @@ Euler Tour Tree는 dynamic forest를 Euler tour sequence로 표현하고, balanc
 2. sequence node가 속한 balanced tree root가 connectivity component를 뜻한다.
 3. edge 추가/삭제는 sequence split과 merge로 처리한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Euler tour, randomized treap, split/merge, dynamic forest
 - 함께 보면 좋은 레슨: Link-Cut Tree, Dynamic Connectivity, Tree Advanced
 - 다음에 볼 레슨: fully dynamic connectivity, dynamic MST, top tree
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Euler Tour Tree 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Euler Tour Tree는 dynamic forest를 Euler tour sequence로 표현하고, balanc
 
 Euler Tour Tree 단독으로는 forest를 관리합니다. 일반 그래프의 fully dynamic connectivity는 spanning forest level과 replacement edge 탐색이 추가로 필요합니다.
 
-## 2. Euler Tour 표현
+## Euler Tour 표현
 
 무향 tree의 각 edge를 양방향 arc 두 개로 보고 Euler tour sequence를 만듭니다.
 
@@ -38,7 +38,7 @@ vertex occurrence
 
 sequence 전체가 하나의 connected component입니다. 어떤 정점 occurrence가 들어 있는 treap root를 비교하면 같은 tree인지 알 수 있습니다.
 
-## 3. Treap Split/Merge
+## Treap Split/Merge
 
 실전 구현은 treap, splay, rope 등으로 sequence를 표현할 수 있습니다. 핵심 연산은 아래와 같습니다.
 
@@ -154,7 +154,7 @@ ETTNode* treapRoot(ETTNode* node) {
 
 이 골격에 aggregate 값, lazy flag, vertex occurrence 관리가 붙으면 component sum 같은 질의도 처리할 수 있습니다.
 
-## 4. `reroot` 관점
+## `reroot` 관점
 
 `link(u, v)`를 편하게 하려면 두 tree의 sequence를 각각 `u`, `v`가 앞에 오도록 회전합니다.
 
@@ -166,7 +166,7 @@ reroot(u):
 
 그 뒤 새 edge arc `(u, v)`, `(v, u)`를 사이에 끼우며 두 sequence를 merge합니다.
 
-## 5. Sequence trace
+## Sequence trace
 
 아래 tree를 Euler Tour Tree sequence로 펼쳐 보겠습니다.
 
@@ -230,7 +230,7 @@ component B: 2, (2,1), 1, 1, (1,2), 2
 
 위 표기는 개념 trace라서 vertex occurrence가 연속으로 보일 수 있습니다. 실제 구현에서는 chosen occurrence와 arc 제거 위치를 기준으로 treap을 잘라, 각 component가 유효한 Euler tour cycle이 되도록 회전합니다. 중요한 점은 `cut`이 edge endpoint 값만으로는 부족하고, `(u,v)`, `(v,u)` arc node pointer가 있어야 정확한 두 split 지점을 잡을 수 있다는 것입니다.
 
-## 6. `cut` 관점
+## `cut` 관점
 
 edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 위치를 찾아 그 사이를 잘라 두 component sequence로 나눕니다.
 
@@ -240,7 +240,7 @@ edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 
 
 두 arc의 순서에 따라 split 구간이 달라집니다. 그래서 edge id로 양방향 arc node pointer를 모두 저장해 두는 것이 중요합니다.
 
-## 7. Link-Cut Tree와 비교
+## Link-Cut Tree와 비교
 
 | 구조 | 강점 |
 | --- | --- |
@@ -250,7 +250,7 @@ edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 
 
 경로 max/min이 핵심이면 Link-Cut Tree가 자연스럽고, component 전체 합이나 dynamic forest connectivity가 핵심이면 Euler Tour Tree가 더 직접적입니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -262,7 +262,7 @@ edge `(u, v)`를 삭제하려면 Euler sequence 안의 arc `(u, v)`와 `(v, u)` 
 
 treap priority가 편향되면 성능이 무너질 수 있습니다. deterministic judge에서는 난수 seed와 priority 충돌 처리도 신경 씁니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 일반 그래프 connectivity를 ETT 하나만으로 처리하려고 한다.
 2. edge의 양방향 arc pointer를 저장하지 않아 cut 위치를 못 찾는다.
@@ -270,19 +270,10 @@ treap priority가 편향되면 성능이 무너질 수 있습니다. determinist
 4. vertex occurrence가 여러 개인데 대표 occurrence 관리를 잃는다.
 5. treap split/merge에서 aggregate pull 순서를 빠뜨린다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 유지되는 그래프가 항상 forest인가?
 - edge 삭제가 온라인으로 들어오는가?
 - connectivity만 필요한가, component aggregate도 필요한가?
 - path aggregate가 핵심이라 Link-Cut Tree가 더 나은 문제는 아닌가?
 - edge id로 arc node를 안정적으로 찾을 수 있는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: dynamic forest connectivity `/practice/...` 문제 필요 | root 비교로 연결성 확인 | Euler tour sequence |
-| 표준 | TODO: online link cut `/practice/...` 문제 필요 | reroot, split, merge 구현 | implicit treap |
-| 응용 | TODO: component sum `/practice/...` 문제 필요 | treap aggregate 유지 | component aggregate |
-| 함정 | TODO: non-forest dynamic graph `/practice/...` 문제 필요 | ETT 단독 적용 한계 판정 | replacement edge |

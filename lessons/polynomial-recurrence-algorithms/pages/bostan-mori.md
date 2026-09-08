@@ -8,13 +8,13 @@ Bostan-Mori는 rational generating function `P(x) / Q(x)`의 `x^n` 계수를 빠
 2. 분모 `Q(x)`와 `Q(-x)`를 곱해 짝수 차수만 남긴다.
 3. `n`의 parity에 따라 분자를 갱신하고 `n`을 절반으로 줄인다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 선형 점화식, 다항식 곱셈, 생성함수, modular inverse
 - 함께 보면 좋은 레슨: Linear Recurrence와 Kitamasa, Formal Power Series, Multipoint Evaluation
 - 다음에 볼 레슨: polynomial interpolation, linear recurrence guessing, NTT 최적화
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Bostan-Mori 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Bostan-Mori는 rational generating function `P(x) / Q(x)`의 `x^n` 계수를 빠
 
 Kitamasa는 `x^n mod characteristic`을 구하는 관점이고, Bostan-Mori는 generating function에서 계수를 뽑는 관점입니다. 둘 다 선형 점화식에 사용할 수 있습니다.
 
-## 2. 핵심 공식
+## 핵심 공식
 
 구하고 싶은 값이:
 
@@ -42,7 +42,7 @@ P(x) / Q(x) = P(x)Q(-x) / (Q(x)Q(-x))
 
 분모가 `x^2`의 polynomial이 되므로, n의 parity에 따라 분자의 짝수 또는 홀수 계수만 남기고 n을 절반으로 줄일 수 있습니다.
 
-## 3. Polynomial 도우미
+## Polynomial 도우미
 
 아래 코드는 나이브 곱셈을 사용한 Bostan-Mori 구현입니다. 큰 입력에서는 `multiply`를 NTT로 바꾸면 됩니다.
 
@@ -117,7 +117,7 @@ long long bostanMori(vector<long long> p, vector<long long> q, long long n) {
 
 입력 `q[0]`은 0이 아니어야 합니다. 보통 생성함수 분모는 `Q(0)=1`로 정규화합니다.
 
-## 4. 선형 점화식과 연결
+## 선형 점화식과 연결
 
 점화식:
 
@@ -138,7 +138,7 @@ A(x) = P(x) / Q(x)
 P = first k terms of A(x)Q(x)
 ```
 
-## 5. Kitamasa와 비교
+## Kitamasa와 비교
 
 | 방식 | 관점 | 장점 |
 | --- | --- | --- |
@@ -148,7 +148,7 @@ P = first k terms of A(x)Q(x)
 
 문제가 generating function을 직접 주거나 조합론적으로 분모가 먼저 보이면 Bostan-Mori가 읽기 쉽습니다.
 
-## 6. 시간 복잡도
+## 시간 복잡도
 
 나이브 곱셈이면 한 단계가 `O(K^2)`이고, `log N`번 반복합니다.
 
@@ -158,7 +158,7 @@ O(K^2 log N)
 
 NTT 곱셈과 trimming을 쓰면 더 빨라집니다. 하지만 구현 복잡도가 커지므로 제약이 작으면 나이브 버전으로도 충분합니다.
 
-## 7. 자주 하는 실수
+## 자주 하는 실수
 
 1. `Q(-x)`를 만들 때 홀수 차수만 부호를 바꿔야 하는데 전체를 바꾼다.
 2. n이 홀수일 때 분자의 홀수 계수를 골라야 하는데 짝수를 고른다.
@@ -166,19 +166,10 @@ NTT 곱셈과 trimming을 쓰면 더 빨라집니다. 하지만 구현 복잡도
 4. `Q(0)` inverse가 필요하다는 조건을 확인하지 않는다.
 5. 점화식에서 분자 `P`를 만들 때 초기항 보정을 빼먹는다.
 
-## 8. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - `P(x)/Q(x)`가 직접 주어졌는가?
 - 구할 것은 n번째 계수 하나인가, 여러 개인가?
 - modulus가 prime이라 inverse를 구할 수 있는가?
 - `Q(0)`이 0이 아닌가?
 - degree와 n 범위가 Kitamasa, matrix exponentiation 중 무엇에 맞는가?
-
-## 9. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: rational generating function 계수 `/practice/...` 문제 필요 | `P/Q`에서 n번째 계수 추출 | Bostan-Mori |
-| 표준 | TODO: 선형 점화식 n번째 항 `/practice/...` 문제 필요 | `Q(x)=1-cx...` 구성 | linear recurrence |
-| 응용 | TODO: 조합 생성함수 계수 `/practice/...` 문제 필요 | 분모/분자 모델링 | generating function |
-| 함정 | TODO: `Q(0) != 1` 보정 `/practice/...` 문제 필요 | constant inverse 처리 | normalization |

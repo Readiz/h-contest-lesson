@@ -1,18 +1,14 @@
 # Practice Set
 
-Offline and Time-Axis Techniques 계열은 같은 입력을 여러 모델로 바꿔 보는 연습이 중요합니다. 아직 적절한 h-contest 문제 링크가 없는 항목은 임의 ID를 만들지 않고 `TODO`로 둡니다.
+Offline and Time-Axis Techniques 계열은 같은 입력을 여러 모델로 바꿔 보는 연습이 중요합니다.
 
-## 1. 권장 순서
+## 권장 순서
 
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
-| 입문 | TODO: static range query `/practice/...` 문제 필요 | Mo ordering과 answer index 복구 | sqrt block, add/remove |
-| 표준 | TODO: value threshold range query `/practice/...` 문제 필요 | offline sorting + Fenwick | sweep by value |
 | 표준 | [Offline Dynamic Connectivity](#3-로컬-연습-offline-dynamic-connectivity) | edge active interval + rollback DSU | segment tree over time |
-| 심화 | TODO: parallel binary search `/practice/...` 문제 필요 | 여러 질의의 답 후보 동시 축소 | monotone predicate |
-| 심화 | TODO: retroactive operation `/practice/...` 문제 필요 | operation interval 모델링 | offline retroactivity |
 
-## 2. Trace: active interval 만들기
+## Trace: active interval 만들기
 
 아래 operation을 모두 미리 읽을 수 있다고 하겠습니다.
 
@@ -46,7 +42,7 @@ NO
 
 `2`번 시점에는 `0-1-2`가 연결되어 있습니다. `4`번 시점에는 `(0,1)`이 빠져 `0`과 `2`가 끊어집니다. `6`번 시점에는 `1-2-3`만 연결되어 있고 `0`은 여전히 떨어져 있습니다.
 
-## 3. 로컬 연습: Offline Dynamic Connectivity
+## 로컬 연습: Offline Dynamic Connectivity
 
 ### 입력
 
@@ -125,7 +121,7 @@ for seed in 1..1000:
 
 중복 add를 허용하는 문제라면 edge별 reference count가 필요합니다. 이 로컬 연습은 "동시에 한 번만 활성"이라는 조건에서 active interval 변환과 rollback 구현을 먼저 고정하는 목적입니다.
 
-## 4. 다른 로컬 연습 아이디어
+## 다른 로컬 연습 아이디어
 
 | 연습 | 제한 | 확인할 것 |
 | --- | --- | --- |
@@ -133,7 +129,7 @@ for seed in 1..1000:
 | kth active update | `Q <= 200000` | PBS에서 Fenwick 초기화/복구 비용 |
 | 과거 operation 삭제 | `Q <= 100000` | operation id별 active interval |
 
-## 5. 완료 기준
+## 완료 기준
 
 - query를 원래 순서로 출력하는지 확인합니다.
 - active interval을 `[l, r)`로 통일합니다.

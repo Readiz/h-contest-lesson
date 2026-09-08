@@ -8,13 +8,13 @@ Persistent Union-Find는 Union-Find의 과거 version에 대한 연결성이나 
 2. partially persistent DSU는 union 시간이 증가만 할 때 과거 version을 조회한다.
 3. 완전 persistent split/merge는 DSU의 구조와 잘 맞지 않으므로 문제 조건을 먼저 좁힌다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Union-Find, union by size, binary search, rollback
 - 함께 보면 좋은 레슨: Dynamic Connectivity, Offline Queries, Euler Tour Tree
 - 다음에 볼 레슨: rollback techniques, persistent segment tree, retroactive data structure
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Persistent Union-Find 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Persistent Union-Find는 Union-Find의 과거 version에 대한 연결성이나 
 
 Path compression은 parent를 많이 바꾸기 때문에 rollback이나 persistence와 충돌합니다. 보통 union by size/rank만 쓰고 parent 변경 이력을 명시적으로 관리합니다.
 
-## 2. Rollback과 Persistence 차이
+## Rollback과 Persistence 차이
 
 | 방식 | 잘 맞는 상황 | 핵심 저장값 |
 | --- | --- | --- |
@@ -36,7 +36,7 @@ Path compression은 parent를 많이 바꾸기 때문에 rollback이나 persiste
 
 Rollback은 "최근 변경부터 되돌리는" 스택 모델입니다. Partially persistent DSU는 "시간 t에서 parent가 아직 바뀌지 않았으면 root"라는 시간 조건으로 find를 합니다.
 
-## 3. Partially Persistent DSU
+## Partially Persistent DSU
 
 간선 추가만 있고, 과거 version에 대해 연결성이나 component size를 묻는 경우를 보겠습니다.
 
@@ -49,7 +49,7 @@ find(x, t):
 
 component size는 root마다 `(time, size)` history를 저장하고, query time 이하의 마지막 값을 이분 탐색합니다.
 
-## 4. 구현
+## 구현
 
 아래 구현은 union operation이 한 번 호출될 때마다 시간이 1씩 증가하는 모델입니다.
 
@@ -125,7 +125,7 @@ struct PersistentUnionFind {
 
 이 구조에서는 `find`가 parent chain을 따라가므로 path compression을 하지 않습니다. union by size 덕분에 depth는 `O(log N)` 안에 머무릅니다.
 
-## 5. Version Query 예시
+## Version Query 예시
 
 ```text
 time 1: unite(1, 2)
@@ -140,7 +140,7 @@ componentSize(1, 3) = 4
 
 과거 time을 명시적으로 묻는 문제에서는 rollback보다 이 방식이 query 순서를 바꾸지 않아도 되어 편합니다.
 
-## 6. Rollback DSU가 더 나은 경우
+## Rollback DSU가 더 나은 경우
 
 간선 삭제가 있고 offline segment tree over time을 돌린다면 persistent DSU보다 rollback DSU가 자연스럽습니다.
 
@@ -154,7 +154,7 @@ dfs(time interval):
 
 이 경우 query는 DFS leaf에서 현재 상태만 보면 됩니다. 특정 과거 time에 랜덤 access하는 것이 아니라 재귀 traversal 상태를 되돌리는 문제이기 때문입니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | Partially Persistent DSU |
 | --- | ---: |
@@ -166,7 +166,7 @@ dfs(time interval):
 
 상수는 작지만 재귀 `find`가 깊어질 수 있으므로 union by size/rank는 필수입니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. path compression을 켜서 과거 parent 구조를 망가뜨린다.
 2. `parentTime[x] > t`와 `>= t` 경계를 헷갈린다.
@@ -174,19 +174,10 @@ dfs(time interval):
 4. component size를 현재 root 기준으로만 저장해 과거 root query가 깨진다.
 5. 삭제가 있는 문제를 partially persistent DSU만으로 처리하려고 한다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - union operation만 있는가?
 - query가 과거 time을 직접 지정하는가?
 - version이 선형 history인가, branching인가?
 - component size도 필요한가?
 - rollback traversal이 더 간단한 구조는 아닌가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: persistent union-find `/practice/...` 문제 필요 | 과거 연결성 조회 | union time |
-| 표준 | TODO: versioned component size `/practice/...` 문제 필요 | size history 이분 탐색 | component size |
-| 응용 | TODO: offline connectivity versions `/practice/...` 문제 필요 | rollback과 persistence 선택 | query time |
-| 함정 | TODO: path compression counterexample `/practice/...` 문제 필요 | parent 변경 이력 보존 | no compression |

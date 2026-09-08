@@ -2,7 +2,7 @@
 
 Matroid 계열은 문제를 읽는 언어로는 강력하지만, 일반 알고리즘을 그대로 구현하는 주제로는 부담이 큽니다. 대회에서 실제로 풀 수 있는 형태인지 판단하는 기준을 먼저 세워야 합니다.
 
-## 1. 구현 가능성 표
+## 구현 가능성 표
 
 | 구조 | 대회 구현 가능성 | 이유 |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ Matroid 계열은 문제를 읽는 언어로는 강력하지만, 일반 알고�
 
 현재 허브의 Intersection, Union, Parity 페이지는 reference입니다. 완성 구현 강의가 아니라 "이 문제를 어떤 조합 최적화 모델로 볼 수 있는가"를 알려 주는 역할입니다.
 
-## 2. 실제 풀이로 내려가는 신호
+## 실제 풀이로 내려가는 신호
 
 아래 중 하나가 있으면 구현 레슨으로 다룰 여지가 있습니다.
 
@@ -27,7 +27,7 @@ Matroid 계열은 문제를 읽는 언어로는 강력하지만, 일반 알고�
 
 반대로 "임의 matroid oracle"이나 "weighted general variant"가 보이면, contest problem이라기보다 이론 참고로 읽는 편이 맞습니다.
 
-## 3. 독립 카드로 빼지 말아야 하는 상태
+## 독립 카드로 빼지 말아야 하는 상태
 
 다음 상태라면 독립 `implementation` 레슨으로 공개하지 않습니다.
 
@@ -39,7 +39,7 @@ Matroid 계열은 문제를 읽는 언어로는 강력하지만, 일반 알고�
 
 이 조건에 해당하는 문서는 허브 하위 reference로 두는 것이 사용자 기대와 맞습니다.
 
-## 4. 다른 레슨과의 경계
+## 다른 레슨과의 경계
 
 - Matching 문제는 우선 General Matching, Weighted Matching을 본다.
 - Rank와 determinant가 핵심이면 Linear Algebra Applications, Randomized Determinant를 본다.

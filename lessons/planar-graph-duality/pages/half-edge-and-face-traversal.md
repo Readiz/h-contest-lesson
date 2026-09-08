@@ -2,7 +2,7 @@
 
 좌표와 간선만 주어진 planar graph에서 dual graph를 만들려면 먼저 face를 찾아야 합니다. 가장 안정적인 방법은 무향 간선을 양방향 half-edge로 쪼개고, 각 정점의 outgoing half-edge를 polar angle 순서로 정렬한 뒤, 아직 방문하지 않은 half-edge를 따라 face를 순회하는 것입니다.
 
-## 1. Half-edge 구조
+## Half-edge 구조
 
 무향 edge `(u, v)` 하나는 두 directed half-edge `u -> v`, `v -> u`가 됩니다. 각 half-edge는 반대 방향 half-edge와 같은 primal edge id를 공유합니다.
 
@@ -14,7 +14,7 @@ left face: h를 따라갈 때 왼쪽에 있는 face
 
 face traversal은 각 half-edge의 left face를 한 번씩 채우는 과정입니다.
 
-## 2. 다음 half-edge 고르기
+## 다음 half-edge 고르기
 
 각 정점의 outgoing half-edge를 angle 오름차순으로 정렬합니다. 현재 half-edge가 `u -> v`라면, `v`에 도착한 뒤 `v -> u`의 정렬 위치를 찾고 그 바로 이전 half-edge를 다음으로 택합니다. 이 규칙은 현재 방향의 왼쪽 face를 따라가게 합니다.
 
@@ -24,7 +24,7 @@ next(u -> v) = outgoing[v][position(v -> u) - 1]
 
 인덱스는 cyclic하게 돌립니다.
 
-## 3. 구현
+## 구현
 
 아래 코드는 straight-line planar embedding을 가정합니다. 간선 교차가 없고, 같은 두 정점을 잇는 여러 edge가 같은 선분 위에 완전히 겹치지 않는다는 조건이 필요합니다. 겹치는 multi-edge나 곡선 embedding이 필요한 입력은 좌표만으로 rotation order를 복원할 수 없으므로, 문제에서 half-edge 순서나 face 정보를 따로 줘야 합니다.
 
@@ -157,7 +157,7 @@ FaceEmbedding buildFaceEmbedding(
 }
 ```
 
-## 4. Outer Face 식별
+## Outer Face 식별
 
 위 순회 규칙에서는 내부 face가 보통 양의 signed area를 가지고, outer face는 음의 signed area를 갖습니다. 따라서 signed area가 가장 작은 face를 outer face로 잡을 수 있습니다.
 
@@ -167,7 +167,7 @@ outerFace = argmin signedDoubleArea[face]
 
 bridge만 있는 tree처럼 면적이 모두 0에 가까운 입력은 dual shortest path 문제로 바로 쓰기 어렵습니다. 이 경우 face가 사실상 outer 하나이고, bridge edge 양쪽 face가 같아지는 self-loop 상황을 별도로 처리해야 합니다.
 
-## 5. Euler 검증
+## Euler 검증
 
 연결 성분 수가 `C`인 planar embedding에서는 아래가 성립합니다.
 
@@ -183,7 +183,7 @@ V - E + F = 1 + C
 - next half-edge를 이전이 아니라 다음으로 잡아 좌우 face가 뒤집혔다.
 - 입력이 겹치는 multi-edge를 포함해 좌표만으로 rotation order를 알 수 없다.
 
-## 6. Bridge와 Multi-edge 정책
+## Bridge와 Multi-edge 정책
 
 Bridge는 양쪽 half-edge가 같은 face를 가리킬 수 있습니다. dual graph에서는 self-loop가 되며, shortest path나 cut 변환에서는 보통 유용하지 않아 무시할 수 있지만, 문제 조건에 따라 비용 있는 loop를 보존해야 할 수도 있습니다.
 

@@ -132,12 +132,3 @@ lambda 탐색 후 원래 비용을 복원합니다.
 ```
 
 이 연습은 실제 문제마다 cost oracle이 다르므로, 먼저 작은 `O(n^2)` oracle로 count와 tie-break를 검증한 뒤 최적화 기법을 붙이는 순서가 안전합니다.
-
-## h-contest 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | 로컬: maximum average subarray | `value - x * weight` 판정 구현 | binary search |
-| 표준 | TODO: exact K DP `/practice/...` 문제 필요 | penalty와 count tie-break | Alien trick |
-| 응용 | TODO: fractional graph path `/practice/...` 문제 필요 | 비율 목적식과 shortest path 결합 | transformed weight |
-| 함정 | TODO: breakpoint counterexample `/practice/...` 문제 필요 | 동점 처리와 답 복원 검증 | breakpoint |

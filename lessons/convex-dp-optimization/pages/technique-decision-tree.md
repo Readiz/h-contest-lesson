@@ -2,7 +2,7 @@
 
 Convex DP 계열은 전이식의 외형이 비슷해도 필요한 기법이 달라집니다. 아래 순서로 식을 좁히면 잘못된 최적화를 줄일 수 있습니다.
 
-## 1. 전이식 분해
+## 전이식 분해
 
 먼저 DP를 아래 꼴로 써 봅니다.
 
@@ -21,7 +21,7 @@ dp[i] = min over j < i:
 | `min_t A[t] + B[k-t]` | Min-Plus Convolution |
 | constraint count가 penalty에 대해 단조 | Parametric / Alien Optimization |
 
-## 2. CHT로 가기 전 확인
+## CHT로 가기 전 확인
 
 CHT는 "직선 여러 개 중 x에서 최솟값" 문제입니다. 아래 둘 중 하나라도 안 되면 CHT가 아닐 수 있습니다.
 
@@ -30,7 +30,7 @@ CHT는 "직선 여러 개 중 x에서 최솟값" 문제입니다. 아래 둘 중
 
 `j`와 `i`가 비선형으로 섞이면 Li Chao Tree를 가져와도 해결되지 않습니다. 먼저 식 변형이 필요합니다.
 
-## 3. 단조 최적화로 가기 전 확인
+## 단조 최적화로 가기 전 확인
 
 D&C DP나 Knuth optimization은 구현보다 조건 증명이 핵심입니다.
 
@@ -40,13 +40,13 @@ opt[i] <= opt[i + 1]
 
 이 단조성이 없으면 빠른 코드가 조용히 틀립니다. 작은 입력에서 naive DP와 비교해 `opt` 이동을 찍어 보는 stress test를 먼저 만들면 좋습니다.
 
-## 4. Slope Trick과 Min-Plus
+## Slope Trick과 Min-Plus
 
 Slope Trick은 함수 자체를 유지하는 관점입니다. query마다 직선을 넣는 CHT와 다르게, convex function의 breakpoints를 priority queue로 관리합니다.
 
 Min-Plus Convolution은 두 비용 배열을 합치는 관점입니다. 일반 min-plus는 무겁고, convex/Monge 같은 특수 조건이 있어야 빠른 방법을 기대할 수 있습니다.
 
-## 5. 구현 선택 요약
+## 구현 선택 요약
 
 | 조건 | 구현 |
 | --- | --- |

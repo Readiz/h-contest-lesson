@@ -8,13 +8,13 @@ Berlekamp-Massey는 field 위 수열의 앞 항들에서 가장 짧은 선형 �
 2. 마지막으로 크게 고친 recurrence를 이용해 보정한다.
 3. 얻은 coeff를 Kitamasa나 Bostan-Mori로 연결한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: modular inverse, linear recurrence, recurrence guessing
 - 함께 보면 좋은 레슨: Linear Recurrence와 Kitamasa, Bostan-Mori, Linear Recurrence Applications
 - 다음에 볼 레슨: recurrence applications, black-box linear algebra, rational generating function
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Berlekamp-Massey 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Berlekamp-Massey는 field 위 수열의 앞 항들에서 가장 짧은 선형 �
 
 BM은 field 위 알고리즘입니다. `mod`가 소수가 아니면 역원이 항상 존재하지 않으므로 그대로 쓰면 안 됩니다.
 
-## 2. Discrepancy
+## Discrepancy
 
 현재 recurrence가 아래라고 합시다.
 
@@ -42,7 +42,7 @@ d = s[n] - predicted
 
 BM은 이전에 잘 작동하던 recurrence를 적절히 shift해서 이 discrepancy를 지우는 방식으로 계수를 갱신합니다.
 
-## 3. 구현
+## 구현
 
 아래 구현은 `coeff[i]`가 `s[n-i-1]`에 곱해지는 형태로 반환합니다.
 
@@ -122,7 +122,7 @@ vector<long long> berlekampMassey(const vector<long long>& sequence) {
 
 `current`는 characteristic polynomial 쪽 표현이라 부호가 반대입니다. 반환 직전에 `-current[i]`로 바꾸는 convention을 고정합니다.
 
-## 4. 작은 예시
+## 작은 예시
 
 Fibonacci 수열을 넣으면 BM은 차수 2 recurrence를 찾습니다.
 
@@ -134,7 +134,7 @@ F[n] = 1*F[n-1] + 1*F[n-2]
 
 초기항은 `sequence[0..L-1]`입니다. `n < L`이면 초기항을 그대로 반환하고, 그 이후는 Kitamasa로 계산합니다.
 
-## 5. 왜 `2L`개 항이 필요한가
+## 왜 `2L`개 항이 필요한가
 
 차수 `L` recurrence는 `L`개 계수를 가집니다. 하지만 최소 차수 자체를 모르기 때문에 BM은 항을 보며 차수를 늘립니다.
 
@@ -144,7 +144,7 @@ F[n] = 1*F[n-1] + 1*F[n-2]
 
 항이 부족하면 더 짧은 가짜 recurrence가 나올 수 있습니다. BM 결과도 holdout 항으로 다시 검증하는 편이 안전합니다.
 
-## 6. Kitamasa와 연결
+## Kitamasa와 연결
 
 BM이 반환한 coeff는 바로 nth term 계산에 넣을 수 있습니다.
 
@@ -155,7 +155,7 @@ answer = nthByRecurrence(terms[0..L-1], coeff, n)
 
 이때 BM에 넣은 수열과 nth 함수의 index 기준이 같아야 합니다. `a_1`부터 생성한 수열이면 `n`도 1-based로 맞추거나 앞에 dummy `a_0`을 넣습니다.
 
-## 7. Mod 조건
+## Mod 조건
 
 BM은 discrepancy를 이전 discrepancy로 나누어 보정합니다.
 
@@ -165,7 +165,7 @@ factor = d / old_d
 
 따라서 모든 nonzero 원소가 역원을 가져야 합니다. prime modulo에서는 Fermat inverse를 쓸 수 있지만, 합성수 modulo에서는 다른 처리가 필요합니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -175,7 +175,7 @@ factor = d / old_d
 
 `T`는 보통 찾으려는 차수의 두 배 이상으로 잡습니다. 차수가 너무 크면 항 생성과 BM 둘 다 병목이 됩니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 합성수 mod에서 Fermat inverse를 쓴다.
 2. 반환 coeff 부호 convention을 nth 함수와 반대로 쓴다.
@@ -183,19 +183,10 @@ factor = d / old_d
 4. noisy sequence나 floating point sequence에 BM을 적용한다.
 5. 초기항 index를 `a_0` 기준으로 맞추지 않는다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - mod가 prime인가?
 - 앞 항을 최소 차수의 두 배 이상 만들 수 있는가?
 - 수열이 homogeneous linear recurrence를 따른다는 근거가 있는가?
 - BM 결과를 holdout 항으로 검증했는가?
 - nth term 함수와 coeff convention이 일치하는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: Berlekamp-Massey basics `/practice/...` 문제 필요 | 최소 recurrence 찾기 | discrepancy |
-| 표준 | TODO: BM + Kitamasa `/practice/...` 문제 필요 | 큰 n번째 항 계산 | nth term |
-| 응용 | TODO: graph walk BM `/practice/...` 문제 필요 | sparse 항 생성 | Cayley-Hamilton |
-| 함정 | TODO: composite mod recurrence `/practice/...` 문제 필요 | field 조건 확인 | modular inverse |

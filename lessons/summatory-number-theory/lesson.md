@@ -8,13 +8,13 @@ Summatory Number Theory는 `sum_{i=1}^n f(i)` 형태의 누적 정수론 값을 
 2. divisor sum 식을 prefix sum 형태로 바꾼다.
 3. sieve 가능한 범위와 큰 `n` query를 분리한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: multiplicative function, Mobius inversion, linear sieve, prefix sum
 - 함께 보면 좋은 레슨: Multiplicative Functions, Dirichlet Convolution, Mobius Inversion
 - 다음에 볼 레슨: Min_25 sieve, Du Jiao sieve, floor-sum applications
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Summatory 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Summatory Number Theory는 `sum_{i=1}^n f(i)` 형태의 누적 정수론 값을 
 
 먼저 식에서 `floor(n / i)`가 몇 번 등장하는지 봅니다. 이 값은 서로 다른 값이 `O(sqrt n)`개뿐이라 많은 합을 구간 단위로 줄일 수 있습니다.
 
-## 2. Floor Division Grouping
+## Floor Division Grouping
 
 `q = n / i`가 같은 `i`의 범위는 아래처럼 구합니다.
 
@@ -66,7 +66,7 @@ vector<FloorBlock> floorDivisionBlocks(long long n) {
 
 `n = 20`이면 quotient는 `20, 10, 6, 5, 4, 3, 2, 1`처럼 몇 개만 나옵니다. 뒤쪽 큰 구간에서는 같은 quotient가 길게 반복됩니다.
 
-## 3. 작은 예시
+## 작은 예시
 
 ```text
 n = 10
@@ -83,7 +83,7 @@ blocks:
 
 예를 들어 `sum floor(n / i)`는 각 block의 길이에 quotient를 곱해 더하면 됩니다.
 
-## 4. Divisor Sum을 Prefix로 바꾸기
+## Divisor Sum을 Prefix로 바꾸기
 
 많은 합은 divisor 기준으로 순서를 바꾸면 쉬워집니다.
 
@@ -102,7 +102,7 @@ sum_{i=1}^n sum_{d|i} f(d)
 
 Mobius inversion과 결합하면 gcd 조건을 divisor block으로 바꿀 수 있습니다.
 
-## 5. Summatory Phi의 재귀 직관
+## Summatory Phi의 재귀 직관
 
 Euler phi는 아래 항등식을 가집니다.
 
@@ -118,7 +118,7 @@ sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
 
 실전에서는 Du Jiao sieve 같은 이름으로 등장합니다. 구현 전에 필요한 항등식과 base prefix를 정확히 적는 것이 먼저입니다.
 
-## 6. Sieve 범위와 Memoization
+## Sieve 범위와 Memoization
 
 큰 `n` query가 있을 때는 모든 값을 sieve하지 않습니다.
 
@@ -129,7 +129,7 @@ sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
 
 `n`이 커도 재귀에서 만나는 서로 다른 quotient는 제한적입니다. 하지만 여러 함수가 섞이면 memo key에 함수 종류도 들어가야 합니다.
 
-## 7. 구현 체크리스트
+## 구현 체크리스트
 
 | 항목 | 확인 |
 | --- | --- |
@@ -141,7 +141,7 @@ sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
 
 정수론 summatory 문제의 오답은 대부분 수식보다 index와 overflow에서 나옵니다.
 
-## 8. 시간 복잡도 감각
+## 시간 복잡도 감각
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -152,7 +152,7 @@ sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
 
 여러 query가 있으면 큰 값의 quotient 결과가 재사용되는지에 따라 성능이 크게 갈립니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. `right = n / quotient` 대신 `right = n / (quotient + 1)` 같은 식으로 off-by-one을 만든다.
 2. `i = 0`이 포함되지 않는 식에 0을 넣는다.
@@ -161,19 +161,10 @@ sum_{i=1}^n i = sum_{d=1}^n phi(d) * floor(n / d)^2 형태로 볼 수 있음
 5. multiplicative function의 point value와 summatory value를 같은 cache에 넣는다.
 6. convolution 항등식을 확인하지 않고 Du Jiao 형태를 외워서 적용한다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 식에 `floor(n / i)`가 반복되는가?
 - divisor 기준으로 합의 순서를 바꿀 수 있는가?
 - 필요한 `f(i)`가 sieve로 prefix 가능인가?
 - 큰 `n`에서 만나는 quotient를 memoization할 수 있는가?
 - modulo와 overflow 처리를 식마다 분리했는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: floor division grouping `/practice/...` 문제 필요 | quotient block 만들기 | `n / i` 구간 |
-| 표준 | TODO: divisor summatory `/practice/...` 문제 필요 | 합 순서 바꾸기 | divisor transform |
-| 응용 | TODO: summatory phi/mu `/practice/...` 문제 필요 | prefix + memoization | Du Jiao 관점 |
-| 함정 | TODO: large modulo gcd pair `/practice/...` 문제 필요 | overflow와 음수 정규화 | Mobius, `__int128` |

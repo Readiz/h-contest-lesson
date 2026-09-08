@@ -8,13 +8,13 @@ Fractional Programming DP는 `benefit / cost`, 평균값, 밀도, 비율 목적�
 2. 고정된 `x`에서 DP가 최대 transformed score를 계산한다.
 3. score가 0 이상인지로 가능한 비율을 이분 탐색하거나 Dinkelbach로 갱신한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: DP feasibility, binary search on answer, parametric search
 - 함께 보면 좋은 레슨: Parametric DP, Alien Optimization, Convex DP Modeling
 - 다음에 볼 레슨: Dinkelbach method, ratio cut, Lagrangian relaxation
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Fractional 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Fractional Programming DP는 `benefit / cost`, 평균값, 밀도, 비율 목적�
 
 비율을 직접 DP 상태에 넣으면 비교가 불안정해집니다. 대신 후보 비율 `x`를 고정하고 "이 비율 이상을 만들 수 있는가"를 묻습니다.
 
-## 2. 변환 원리
+## 변환 원리
 
 최대화하려는 값이 아래라고 합시다.
 
@@ -43,7 +43,7 @@ sum (value_i - x * weight_i) >= 0
 
 이제 fixed `x`에서는 각 item이나 edge의 점수가 `value - x * weight`인 일반 최댓값 문제가 됩니다.
 
-## 3. 평균 Subarray 예시
+## 평균 Subarray 예시
 
 길이 `k` 이상인 subarray의 최대 평균을 구하려면 각 원소에서 `x`를 뺀 뒤, 길이 `k` 이상 subarray sum이 0 이상인지 확인합니다.
 
@@ -94,7 +94,7 @@ double maximumAverageSubarray(const vector<double>& values, int minLength) {
 
 `target`을 고정하면 문제는 prefix minimum을 이용하는 일반 판정으로 바뀝니다.
 
-## 4. DP에 붙이는 방식
+## DP에 붙이는 방식
 
 선택 구조가 복잡해도 원리는 같습니다.
 
@@ -106,7 +106,7 @@ feasible if best terminal dp >= 0
 
 예를 들어 path 평균 weight, tree 선택 밀도, 제한 조건이 있는 knapsack ratio는 fixed `x`에서 일반 DP나 shortest path 판정으로 바뀔 수 있습니다.
 
-## 5. Dinkelbach 직관
+## Dinkelbach 직관
 
 이분 탐색 대신 현재 해의 비율로 `lambda`를 갱신하는 Dinkelbach 방식도 있습니다.
 
@@ -119,7 +119,7 @@ stop when transformed score is close to 0
 
 연속 최적화나 일부 discrete fractional problem에서 빠르게 수렴합니다. 다만 구현 검증은 binary search가 더 단순한 경우가 많습니다.
 
-## 6. 작은 예시
+## 작은 예시
 
 ```text
 items:
@@ -136,7 +136,7 @@ transformed:
 
 `x = 3` 이상인 조합을 찾으려면 transformed sum이 0 이상인 feasible set이 있는지 보면 됩니다. 단일 item이면 B만 가능하고, 여러 item 조합이면 제약에 따라 DP가 선택합니다.
 
-## 7. Precision 정책
+## Precision 정책
 
 | 출력 요구 | 권장 방식 |
 | --- | --- |
@@ -147,7 +147,7 @@ transformed:
 
 실수 이분 탐색에서는 iteration 횟수를 고정하는 편이 안전합니다. 판정이 noisy하면 `eps`로 종료하지 말고 충분한 횟수 반복 후 출력합니다.
 
-## 8. 시간 복잡도 감각
+## 시간 복잡도 감각
 
 | 방식 | 시간 |
 | --- | ---: |
@@ -158,7 +158,7 @@ transformed:
 
 비율 최적화는 판정 함수를 수십 번 부릅니다. 판정 DP가 충분히 빠른지 먼저 계산합니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. `sum value / sum weight`를 item별 ratio 평균으로 바꿔 버린다.
 2. weight가 0일 수 있는 경우를 처리하지 않는다.
@@ -167,7 +167,7 @@ transformed:
 5. 실수 오차 때문에 `>= 0` 판정이 흔들리는 입력을 고려하지 않는다.
 6. binary search iteration 수가 부족해 출력 오차를 넘긴다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 목적식이 전체 합의 비율인가, 개별 ratio의 합인가?
 - denominator가 항상 양수인가?
@@ -175,12 +175,3 @@ transformed:
 - answer가 실수인지 exact rational인지 확인했는가?
 - 판정 함수가 단조성을 가지는가?
 - 필요한 precision에 맞게 자료형을 정했는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: maximum average subarray `/practice/...` 문제 필요 | `a_i - x` 판정 | prefix minimum |
-| 표준 | TODO: ratio knapsack DP `/practice/...` 문제 필요 | transformed score DP | binary search |
-| 응용 | TODO: average path feasibility `/practice/...` 문제 필요 | graph weight 변환 | parametric search |
-| 함정 | TODO: zero denominator ratio `/practice/...` 문제 필요 | 예외와 precision 처리 | denominator |

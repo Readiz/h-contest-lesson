@@ -179,10 +179,6 @@ int main() {
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
 | 입문 | 로컬: distinct palindrome count | Eertree node 개수 | palindromic tree |
-| 입문 | TODO: palindrome query `/practice/...` 문제 필요 | Manacher 또는 hash 판정 | radius |
-| 표준 | TODO: online palindrome statistics `/practice/...` 문제 필요 | suffix link 누적 | Eertree count |
-| 표준 | TODO: palindrome partition `/practice/...` 문제 필요 | range DP | palindrome table |
-| 응용 | TODO: suffix palindrome application `/practice/...` 문제 필요 | suffix 구조와 회문 보조 정보 결합 | suffix + palindrome |
 
 ## 완료 기준
 

@@ -8,13 +8,13 @@ Suffix Automaton Applications는 Suffix Automaton을 만든 뒤 그 위에서 DP
 2. 상태별 occurrence, path count, terminal 여부를 목적에 맞게 누적한다.
 3. k번째 substring, 반복 substring, 여러 문자열 공통 substring을 automaton DP로 바꾼다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Suffix Automaton construction, suffix link, topological order by length
 - 함께 보면 좋은 레슨: Suffix Automaton, Suffix Array 응용 패턴, Suffix와 Palindrome 응용
 - 다음에 볼 레슨: generalized suffix automaton, automaton DP, substring query structures
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Suffix Automaton 응용 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Suffix Automaton Applications는 Suffix Automaton을 만든 뒤 그 위에서 DP
 
 Suffix Automaton 기본 레슨의 공식만으로 끝나는 문제는 많지 않습니다. 실전에서는 "상태 하나가 길이 구간을 대표한다"는 점 때문에 집계 범위를 조심해야 합니다.
 
-## 2. 두 그래프를 분리해서 보기
+## 두 그래프를 분리해서 보기
 
 Suffix Automaton에는 두 종류의 간선이 있습니다.
 
@@ -37,7 +37,7 @@ Suffix Automaton에는 두 종류의 간선이 있습니다.
 
 서로 다른 substring 수나 k번째 substring은 transition DAG 위 path 문제입니다. 등장 횟수는 terminal count를 길이가 긴 상태부터 suffix link로 올려야 합니다.
 
-## 3. Occurrence 누적
+## Occurrence 누적
 
 construction에서 새 prefix가 끝나는 상태는 한 번 등장한 end position을 가집니다. clone 상태는 직접 새 prefix가 끝난 상태가 아니므로 초기 occurrence를 0으로 둡니다.
 
@@ -48,7 +48,7 @@ for state in decreasing len:
 
 이 과정을 마치면 state가 대표하는 가장 긴 문자열의 등장 횟수를 얻습니다. 같은 state 안의 길이 구간 문자열들은 endpos 집합이 같기 때문에 같은 occurrence를 공유합니다.
 
-## 4. k번째 Substring
+## k번째 Substring
 
 사전순 k번째 서로 다른 substring은 transition을 문자 순서로 보면서, 각 transition 아래에 있는 path 수를 건너뛰는 방식으로 찾습니다.
 
@@ -192,7 +192,7 @@ struct SuffixAutomatonApplications {
 
 위 함수는 k를 1-indexed로 받습니다. 같은 substring을 여러 번 세지 않으려면 transition DAG의 path만 세고 occurrence는 섞지 않습니다.
 
-## 5. 가장 긴 반복 Substring
+## 가장 긴 반복 Substring
 
 반복 substring은 occurrence가 2 이상인 문자열입니다. state `v`가 occurrence 2 이상이면 그 state가 대표하는 길이 구간 중 최댓값 `len[v]`가 후보가 됩니다.
 
@@ -202,13 +202,13 @@ answer = max(len[v]) over occ[v] >= 2
 
 문자열 자체를 복원하려면 각 state의 대표 end position을 함께 저장해 두고 `end - len[v] + 1` 구간을 잘라냅니다.
 
-## 6. 여러 문자열 공통 Substring
+## 여러 문자열 공통 Substring
 
 문자열 `S`로 automaton을 만들고 다른 문자열 `T`를 훑으면 각 위치에서 현재 matched length를 알 수 있습니다. 이 값을 state별로 최대로 기록한 뒤 suffix link 역순으로 `min(len[link child], matched)` 형태로 올립니다.
 
 여러 문자열의 최장 공통 substring은 각 문자열마다 얻은 state별 최대 match의 최솟값을 유지한 뒤 최댓값을 구합니다.
 
-## 7. Suffix Array와 비교
+## Suffix Array와 비교
 
 | 문제 | Suffix Automaton | Suffix Array/LCP |
 | --- | --- | --- |
@@ -220,7 +220,7 @@ answer = max(len[v]) over occ[v] >= 2
 
 둘은 대체재라기보다 문제 신호가 다릅니다. "확장 가능한 상태"가 보이면 automaton, "정렬된 suffix 순서"가 보이면 suffix array가 자연스럽습니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -232,19 +232,10 @@ answer = max(len[v]) over occ[v] >= 2
 
 상태 수는 최대 `2N-1`입니다. alphabet이 크면 transition을 `array` 대신 map이나 압축 vector로 바꿉니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. suffix link tree와 transition DAG를 같은 방향 그래프로 취급한다.
 2. clone state의 occurrence를 1로 둔다.
 3. state 하나가 정확히 한 substring만 뜻한다고 생각한다.
 4. k번째 substring에서 빈 문자열을 포함할지 제외할지 정하지 않는다.
 5. 여러 문자열 공통 substring에서 state별 match를 suffix link로 전파하지 않는다.
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: suffix automaton applications `/practice/...` 문제 필요 | occurrence 누적 | suffix link order |
-| 표준 | TODO: kth substring `/practice/...` 문제 필요 | transition DAG DP | lexicographic path |
-| 응용 | TODO: repeated substring query `/practice/...` 문제 필요 | occurrence threshold | endpos |
-| 함정 | TODO: multiple strings LCS `/practice/...` 문제 필요 | state별 match 전파 | generalized scan |

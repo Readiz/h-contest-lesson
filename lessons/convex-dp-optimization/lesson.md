@@ -10,7 +10,7 @@ Convex DP Optimization은 DP 전이식의 모양을 보고 어떤 최적화 기�
 4. 두 cost 배열을 min-plus로 합치는 문제인가?
 5. 직선 집합이 시간에 따라 움직이거나 삭제되는가?
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Dynamic Programming, Segment Tree, Divide and Conquer DP Optimization
 - 함께 보면 좋은 레슨: Monge and SMAWK, Parametric Optimization, Convex Cost Flow, Versioned Data Structures
@@ -18,7 +18,7 @@ Convex DP Optimization은 DP 전이식의 모양을 보고 어떤 최적화 기�
 
 Parametric Optimization은 이 허브의 prerequisite이 아니라 related track입니다. `lambda`나 penalty를 고정해 DP oracle을 만드는 문제는 Parametric Optimization 쪽으로, 이미 주어진 DP 전이식의 최적화 구조를 판정하는 문제는 이 허브로 들어옵니다.
 
-## 1. 결정 트리
+## 결정 트리
 
 | 전이식/문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
@@ -31,7 +31,7 @@ Parametric Optimization은 이 허브의 prerequisite이 아니라 related track
 | 직선 삽입과 삭제가 모두 필요하다 | [Fully Dynamic CHT](pages/fully-dynamic-cht.md) |
 | 조건을 먼저 판정해야 한다 | [Technique Decision Tree](pages/technique-decision-tree.md), [Convex DP Modeling](pages/convex-dp-modeling.md) |
 
-## 2. 먼저 증명할 조건
+## 먼저 증명할 조건
 
 | 기법 | 필요한 조건 |
 | --- | --- |
@@ -42,6 +42,6 @@ Parametric Optimization은 이 허브의 prerequisite이 아니라 related track
 | Slope Trick | 유지하는 함수가 convex piecewise-linear |
 | Min-Plus Convolution | sequence 구조가 일반인지, convex/Monge 특수형인지 구분 |
 
-## 3. 공개 상태
+## 공개 상태
 
 하위 페이지들은 구현과 판단 기준을 담고 있습니다. [Practice Set](pages/practice-set.md)은 line-query DP를 Li Chao Tree로 계산하는 로컬 구현, trace, stress 기준을 대표 흐름으로 제공합니다.

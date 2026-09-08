@@ -203,12 +203,6 @@ Berlekamp-Massey와 연결할 때는 BM이 찾은 coeff로 이 연습의 `nthTer
 | 단계 | 문제 | 목표 | 힌트 키워드 |
 | --- | --- | --- | --- |
 | 표준 | 로컬: K차 선형 점화식의 N번째 항 | Kitamasa `O(K^2 log N)` 구현 | linear recurrence |
-| 입문 | TODO: polynomial multiplication `/practice/...` 문제 필요 | NTT 입출력과 결과 길이 처리 | convolution |
-| 입문 | TODO: polynomial inverse `/practice/...` 문제 필요 | FPS inverse와 truncate | Newton iteration |
-| 표준 | TODO: multipoint evaluation `/practice/...` 문제 필요 | subproduct tree | polynomial remainder |
-| 표준 | TODO: interpolation `/practice/...` 문제 필요 | Lagrange basis | interpolation |
-| 응용 | TODO: generating function coefficient `/practice/...` 문제 필요 | rational form 계수 추출 | Bostan-Mori |
-| 심화 | TODO: Berlekamp-Massey `/practice/...` 문제 필요 | 앞 항에서 최소 점화식 찾기 | discrepancy |
 
 ## 완료 기준
 

@@ -8,13 +8,13 @@ Randomized Determinant는 determinant를 직접 수식 전개하지 않고, 무�
 2. symbolic 변수를 큰 prime field의 random value로 바꾼다.
 3. false negative 가능성을 반복과 검증으로 낮춘다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Modular Arithmetic, Black-Box Linear Algebra, Probability and Expected Value
 - 함께 보면 좋은 레슨: General Matching, Linear Algebra Applications, Testing and Stress
 - 다음에 볼 레슨: matrix-tree theorem applications, algebraic matching, randomized verification
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Randomized Determinant 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Randomized Determinant는 determinant를 직접 수식 전개하지 않고, 무�
 
 대표 예시는 Tutte matrix입니다. 일반 그래프의 perfect matching 존재 여부를 determinant polynomial의 nonzero 여부로 바꾸고, random value를 대입해 빠르게 판정합니다.
 
-## 2. Schwartz-Zippel 직관
+## Schwartz-Zippel 직관
 
 0이 아닌 다항식 `P`가 있고 각 변수에 field `F`의 값을 독립적으로 무작위 대입한다고 하겠습니다. 그러면 `P`가 우연히 0이 될 확률은 대략 `degree(P) / |F|` 이하입니다.
 
@@ -38,7 +38,7 @@ Pr[P(random values) = 0] <= degree(P) / fieldSize
 
 따라서 큰 prime modulo를 쓰고 여러 번 반복하면, 존재하는 구조를 못 찾는 확률을 작게 만들 수 있습니다. 반대로 determinant가 nonzero로 나오면 구조가 있다는 증거가 됩니다.
 
-## 3. Modular Determinant 구현
+## Modular Determinant 구현
 
 아래는 prime modulo에서 determinant를 계산하는 기본 골격입니다.
 
@@ -92,7 +92,7 @@ long long determinantMod(vector<vector<long long>> matrix, long long mod) {
 
 `mod`는 prime이어야 합니다. 합성수 modulo에서 `mod - 2` inverse를 쓰면 조용히 틀립니다.
 
-## 4. 작은 예시
+## 작은 예시
 
 다항식 determinant가 아래처럼 생겼다고 하겠습니다.
 
@@ -110,7 +110,7 @@ x = 2, y = 5 -> P = 9
 
 nonzero 값이 한 번이라도 나오면 `P`가 0 다항식이 아니라는 것을 알 수 있습니다.
 
-## 5. Matching 존재성 예시
+## Matching 존재성 예시
 
 무향 그래프의 Tutte matrix는 정점 `i < j` 사이 간선이 있으면 `A[i][j] = x_ij`, `A[j][i] = -x_ij`로 둡니다. 이 determinant polynomial이 0이 아니면 perfect matching이 존재합니다.
 
@@ -124,7 +124,7 @@ A[j][i] = -r
 
 이 방식은 matching 자체를 복원하는 알고리즘과는 다릅니다. "존재성 판정"과 "구성 복원"을 분리해서 생각해야 합니다.
 
-## 6. Rank 판정과 Random Weight
+## Rank 판정과 Random Weight
 
 rank를 안정적으로 드러내기 위해 행이나 열에 random diagonal scaling을 곱하는 기법도 있습니다. 특정 구조 때문에 pivot이 우연히 상쇄되는 일을 줄이려는 목적입니다.
 
@@ -137,7 +137,7 @@ rank를 안정적으로 드러내기 위해 행이나 열에 random diagonal sca
 
 결과가 확률적이라는 점은 숨기면 안 됩니다. 문제에서 deterministic answer가 요구되면, 작은 입력 검증이나 여러 반복으로 실패 확률을 충분히 낮춰야 합니다.
 
-## 7. 반복 전략
+## 반복 전략
 
 ```text
 for trial in 1..K:
@@ -150,7 +150,7 @@ return "probably zero"
 
 `probably zero`는 증명이 아니라 확률적 결론입니다. `K`, prime 크기, polynomial degree에 따라 신뢰도를 설명할 수 있어야 합니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 단계 | 시간 |
 | --- | ---: |
@@ -161,40 +161,12 @@ return "probably zero"
 
 `N`이 수천 이상이면 dense determinant는 어렵습니다. 그때는 sparse elimination, black-box linear algebra, 또는 문제 특화 reduction을 봐야 합니다.
 
-## 9. 자주 하는 실수
+Nonzero determinant는 존재성을 판정하지만 객체 자체를 복원하지는 않습니다. 실제 matching 등이 출력에 필요하면 복원 절차를 별도로 준비합니다.
+
+## 자주 하는 실수
 
 1. modulo가 prime인지 확인하지 않고 inverse를 계산한다.
 2. random 값에 0을 너무 자주 넣어 구조를 스스로 지운다.
 3. determinant가 0이면 "항상 불가능"이라고 단정한다.
 4. existence 판정 알고리즘으로 실제 해를 복원하려고 한다.
 5. signed matrix에서 `A[j][i] = -A[i][j]` 처리를 빼먹는다.
-
-## 10. 대표 문제로 연결하기
-
-### 문제에서 보이는 신호
-
-- 입력 크기: dense determinant가 가능한 수백 이하이거나 sparse 변형이 있음
-- 필요한 복잡도: 조합 탐색 대신 algebraic existence test
-- 이 레슨의 핵심 개념: nonzero polynomial을 random evaluation으로 판정
-
-### 풀이 흐름
-
-1. 문제의 존재 조건을 determinant 또는 rank 조건으로 번역한다.
-2. 변수가 들어가는 위치와 부호를 정확히 정한다.
-3. 큰 prime modulo에서 random value를 채운다.
-4. determinant를 계산하고 여러 번 반복한다.
-5. 작은 입력은 brute force와 비교해 false modeling을 잡는다.
-
-### 자주 틀리는 지점
-
-- 확률적 실패와 구현 버그를 구분하려면 seed를 고정한 stress test가 필요합니다.
-- determinant가 nonzero라는 사실은 보통 존재성만 줍니다. 실제 객체가 필요하면 별도 복원 절차가 있어야 합니다.
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: randomized determinant `/practice/...` 문제 필요 | modular determinant와 prime field 점검 | Gaussian elimination |
-| 표준 | TODO: polynomial identity `/practice/...` 문제 필요 | random substitution으로 nonzero 판정 | Schwartz-Zippel |
-| 응용 | TODO: Tutte matrix `/practice/...` 문제 필요 | matching 존재성을 determinant로 바꾸기 | skew-symmetric matrix |
-| 함정 | TODO: determinant false zero `/practice/...` 문제 필요 | 반복과 seed 검증 | Monte Carlo |

@@ -1,18 +1,9 @@
 # Practice Set
 
-Versioned Data Structures 허브의 연습은 path copying, partial persistence, container versioning, sequence query 순서로 진행합니다. 실제 h-contest 문제가 아직 부족한 주제는 임의 ID를 만들지 않고 `TODO`로 남깁니다.
+Versioned Data Structures 허브의 연습은 path copying, partial persistence, container versioning, sequence query 순서로 진행합니다.
 
-## 1. 연습 순서
 
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 버전별 구간 합 `/practice/...` 문제 필요 | path copying과 root 저장 | persistent segment tree |
-| 표준 | [Range Kth with Prefix Roots](#3-로컬-연습-range-kth-with-prefix-roots) | prefix root 차이와 좌표 압축 | order statistic |
-| 응용 | TODO: persistent union-find `/practice/...` 문제 필요 | 과거 연결성 조회 | union time |
-| 심화 | TODO: persistent sequence `/practice/...` 문제 필요 | split/merge 또는 version root 관리 | implicit treap |
-| 함정 | TODO: rollback vs persistence `/practice/...` 문제 필요 | version branch와 undo log 구분 | rollback |
-
-## 2. Trace: prefix root 차이
+## Trace: prefix root 차이
 
 정적 배열이 아래와 같다고 하겠습니다.
 
@@ -40,7 +31,7 @@ root[4] - root[1] = [1, 1, 1]
 
 이 방식은 node를 직접 빼는 것이 아니라, 같은 구간을 가리키는 두 root의 count 차이를 내려가며 보는 것입니다. 그래서 old root를 수정하면 모든 query가 깨집니다.
 
-## 3. 로컬 연습: Range Kth with Prefix Roots
+## 로컬 연습: Range Kth with Prefix Roots
 
 ### 입력
 
@@ -124,7 +115,7 @@ for seed in 1..1000:
 
 중복 값이 있는 배열을 반드시 포함합니다. 좌표 압축을 값의 등장 횟수가 아니라 distinct value 기준으로 해야 한다는 점을 확인하기 좋습니다.
 
-## 4. 다른 로컬 완결형 연습 후보
+## 다른 로컬 완결형 연습 후보
 
 ### Versioned Array Sum
 
@@ -134,7 +125,7 @@ for seed in 1..1000:
 
 간선 추가만 있는 그래프에서 time `t`의 연결성과 component size를 묻습니다. path compression 없이 union by size와 parent change time을 사용합니다.
 
-## 5. 제출 전 체크리스트
+## 제출 전 체크리스트
 
 - version root를 덮어쓰지 않았는가?
 - old node를 직접 수정하지 않았는가?

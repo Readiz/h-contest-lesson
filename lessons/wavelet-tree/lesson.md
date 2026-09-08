@@ -8,13 +8,13 @@ Wavelet Tree는 값의 범위와 index 범위를 동시에 나누어, 정적 배
 2. prefix count 배열로 구간 `[l, r]`이 child에서 어디로 가는지 계산한다.
 3. kth, LTE, frequency 질의를 재귀적으로 처리한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 좌표 압축, Segment Tree, Persistent Segment Tree
 - 함께 보면 좋은 레슨: Persistent Segment Tree, 오프라인 쿼리, 좌표 압축
 - 다음에 볼 레슨: wavelet matrix, succinct data structure
 
-## 1. 문제 신호
+## 문제 신호
 
 Wavelet Tree는 배열이 바뀌지 않는 정적 질의에서 강합니다.
 
@@ -28,7 +28,7 @@ Wavelet Tree는 배열이 바뀌지 않는 정적 질의에서 강합니다.
 
 업데이트가 필요하면 다른 구조가 필요합니다. 정적 배열이면 Persistent Segment Tree보다 구현과 메모리 특성이 더 나을 수 있습니다.
 
-## 2. 핵심 구조
+## 핵심 구조
 
 각 node는 값 범위 `[low, high]`를 담당합니다. 원소를 `mid = (low + high) / 2` 기준으로 나눕니다.
 
@@ -46,7 +46,7 @@ leftR = prefixLeft[r]
 
 오른쪽 child는 왼쪽으로 가지 않은 개수를 이용합니다.
 
-## 3. 기본 구현
+## 기본 구현
 
 아래 구현은 1-indexed query를 사용합니다.
 
@@ -135,7 +135,7 @@ struct WaveletTree {
 
 생성자에서 배열을 재배치하므로 원본 배열을 보존해야 한다면 복사본으로 tree를 만듭니다.
 
-## 4. k번째 값 질의
+## k번째 값 질의
 
 구간 `[l, r]`에서 k번째 작은 값을 찾을 때는 왼쪽 child로 간 원소 수를 먼저 봅니다.
 
@@ -147,7 +147,7 @@ leftCount = prefixLeft[r] - prefixLeft[l - 1]
 
 이 과정은 값 범위가 leaf가 될 때까지 반복됩니다.
 
-## 5. 값 빈도와 rank
+## 값 빈도와 rank
 
 값 `x`의 구간 빈도는 `<= x` 개수에서 `< x` 개수를 빼면 됩니다.
 
@@ -157,7 +157,7 @@ freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 
 좌표 압축을 쓴다면 `x - 1`이 아니라 압축 순서에서 이전 값까지를 묻는 방식으로 바꿉니다.
 
-## 6. Persistent Segment Tree와 비교
+## Persistent Segment Tree와 비교
 
 | 구조 | 장점 | 주의점 |
 | --- | --- | --- |
@@ -167,7 +167,7 @@ freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 
 둘 다 정적 구간 order statistic을 풀 수 있습니다. 이미 prefix version 모델이 자연스러운 문제는 Persistent Segment Tree가, 다양한 rank/frequency 질의가 섞이면 Wavelet Tree가 편할 수 있습니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -178,7 +178,7 @@ freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 
 여기서 `V`는 값 범위 또는 압축된 값 개수입니다. 큰 값 범위에서는 좌표 압축으로 `log V`를 줄이는 편이 좋습니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -189,7 +189,7 @@ freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 | k 범위 검증 누락 | leaf까지 잘못 이동 | `1 <= k <= r-l+1` 확인 |
 | 좌표 압축 복원 누락 | 압축 값 출력 | 원래 값 배열로 복원 |
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 배열이 정적인가?
 2. 구간 kth, rank, frequency 질의가 많은가?
@@ -199,12 +199,3 @@ freq(l, r, x) = countLessOrEqual(l, r, x) - countLessOrEqual(l, r, x - 1)
 6. Persistent Segment Tree나 Merge Sort Tree보다 Wavelet Tree가 더 자연스러운가?
 
 Wavelet Tree는 값 기준 분할과 index 구간 변환을 동시에 이해해야 합니다. `prefixLeft`가 "이 구간이 child에서 어디로 이동하는가"를 알려 준다는 감각이 핵심입니다.
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 구간 kth `/practice/...` 문제 필요 | `prefixLeft`로 child index 변환 | kth order statistic |
-| 표준 | TODO: 구간 `<= x` 개수 `/practice/...` 문제 필요 | 값 범위 재귀와 rank query | range rank |
-| 응용 | TODO: 구간 frequency `/practice/...` 문제 필요 | `<= x`와 `< x` 차이 | frequency |
-| 함정 | TODO: 좌표 압축 wavelet `/practice/...` 문제 필요 | 압축 값 복원과 큰 값 범위 | compression |

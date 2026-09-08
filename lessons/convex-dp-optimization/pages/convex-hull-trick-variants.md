@@ -8,13 +8,13 @@ Convex Hull Trick Variants는 직선 최솟값 또는 최댓값 질의를 처리
 2. min/max 문제를 하나의 convention으로 통일한다.
 3. 같은 slope, overflow, tie-breaking을 구현 전에 결정한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Convex Hull Trick, Li Chao Tree, DP transition modeling
 - 함께 보면 좋은 레슨: Convex Hull Trick과 Li Chao Tree, Convex DP Modeling, Divide and Conquer DP Optimization
 - 다음에 볼 레슨: parametric DP, kinetic hull, fully dynamic CHT
 
-## 1. 구현 선택표
+## 구현 선택표
 
 | 조건 | 추천 구현 |
 | --- | --- |
@@ -26,7 +26,7 @@ Convex Hull Trick Variants는 직선 최솟값 또는 최댓값 질의를 처리
 
 가장 빠른 구현보다 조건에 맞는 구현이 중요합니다. 단조 조건을 착각하면 deque CHT는 조용히 틀립니다.
 
-## 2. Min/Max Convention
+## Min/Max Convention
 
 한 구현 안에서는 최솟값 또는 최댓값 중 하나로 고정합니다. 최댓값 문제를 최솟값 구현으로 풀고 싶으면 직선과 답의 부호를 뒤집습니다.
 
@@ -37,7 +37,7 @@ max(m*x + b)
 
 같은 slope에서는 min 문제라면 intercept가 작은 직선만 남기고, max 문제라면 intercept가 큰 직선만 남깁니다. 이 처리를 빼면 불필요한 직선이 쌓이거나 교점 계산에서 나눗셈이 깨집니다.
 
-## 3. Monotone Deque CHT
+## Monotone Deque CHT
 
 아래 구현은 slope가 증가하는 순서로 들어오고 query x도 증가하는 최솟값 문제를 처리합니다.
 
@@ -92,7 +92,7 @@ struct MonotoneMinCht {
 
 이 구현은 x query가 되돌아가지 않는다는 전제가 있습니다. query x가 임의 순서라면 front pop을 하면 안 되고, breakpoints를 저장해 binary search해야 합니다.
 
-## 4. Breakpoint Binary Search
+## Breakpoint Binary Search
 
 slope는 단조로 추가되지만 query x가 임의이면, 각 직선이 최적이 되는 시작 x를 저장합니다.
 
@@ -105,7 +105,7 @@ query x: 마지막 p <= x인 line 선택
 
 정수 문제에서는 교점을 floor/ceil로 처리해야 합니다. min 문제와 max 문제, slope 증가와 감소에 따라 부등호가 바뀌므로 별도 함수로 테스트하는 편이 안전합니다.
 
-## 5. Dynamic Line Container
+## Dynamic Line Container
 
 직선 삽입 순서가 완전히 임의이고 x query도 임의이면 Li Chao Tree가 가장 안정적입니다. 하지만 x 범위가 너무 크거나 실수 좌표이면 multiset 기반 line container를 쓰기도 합니다.
 
@@ -117,7 +117,7 @@ query x: 마지막 p <= x인 line 선택
 
 대회에서는 삭제가 없다면 Li Chao가 더 실수하기 어렵습니다.
 
-## 6. 작은 예시
+## 작은 예시
 
 ```text
 lines:
@@ -132,7 +132,7 @@ x = 5: 1x+9 = 14, 2x+5 = 15, 3x = 15라서 1x+9가 최소
 
 손으로 교점 순서를 확인하면 "어떤 직선이 중간에서 완전히 필요 없는지"를 볼 수 있습니다.
 
-## 7. DP 적용 체크
+## DP 적용 체크
 
 CHT는 자료구조보다 식 변형이 먼저입니다.
 
@@ -144,7 +144,7 @@ query x = X[i]
 
 여기서 `A[j]`가 정렬되어 있는지, `X[i]`가 단조인지, `j < i` 조건 때문에 add/query 순서가 어떻게 되는지를 확인합니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 구현 | 추가 | 질의 |
 | --- | ---: | ---: |
@@ -155,7 +155,7 @@ query x = X[i]
 
 상수까지 보면 monotone deque가 가장 빠릅니다. 하지만 조건 하나라도 부족하면 안정성을 위해 Li Chao로 가는 편이 낫습니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. slope가 증가인지 감소인지 반대로 넣는다.
 2. query x가 단조가 아닌데 front pop을 쓴다.
@@ -164,7 +164,7 @@ query x = X[i]
 5. 교점 계산에서 음수 나눗셈의 floor/ceil을 틀린다.
 6. `m*x+b` overflow를 확인하지 않는다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 전이가 정말 직선과 점 질의로 분리되는가?
 - slope 추가 순서를 보장하거나 정렬할 수 있는가?
@@ -172,12 +172,3 @@ query x = X[i]
 - 최솟값/최댓값 convention을 통일했는가?
 - 같은 slope와 overflow 처리를 넣었는가?
 - 삭제가 필요한 문제라면 offline으로 바꿀 수 있는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: monotone CHT `/practice/...` 문제 필요 | slope/query 단조 조건 사용 | deque CHT |
-| 표준 | TODO: arbitrary query CHT `/practice/...` 문제 필요 | breakpoint binary search | lower hull |
-| 응용 | TODO: Li Chao variant `/practice/...` 문제 필요 | x 압축과 min/max 변환 | compressed Li Chao |
-| 함정 | TODO: same slope overflow `/practice/...` 문제 필요 | convention과 자료형 점검 | same slope, `__int128` |

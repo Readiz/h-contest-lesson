@@ -8,13 +8,13 @@ Linear Recurrence는 앞의 몇 항으로 다음 항이 결정되는 수열입�
 2. `x^n mod P(x)`의 계수를 구한다.
 3. 그 계수로 초기항의 선형 결합을 계산한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 모듈러 연산, 행렬 거듭제곱, polynomial 나머지
 - 함께 보면 좋은 레슨: Matrix Exponentiation, Formal Power Series, FFT와 NTT
 - 다음에 볼 레슨: Bostan-Mori, linear recurrence guessing, multipoint evaluation
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 접근 |
 | --- | --- |
@@ -26,7 +26,7 @@ Linear Recurrence는 앞의 몇 항으로 다음 항이 결정되는 수열입�
 
 `K`가 작으면 matrix exponentiation도 충분합니다. `K`가 커질수록 `K x K` 행렬 곱보다 polynomial reduction 관점이 유리해집니다.
 
-## 2. Characteristic Polynomial
+## Characteristic Polynomial
 
 점화식이 아래와 같다고 합시다.
 
@@ -52,7 +52,7 @@ x^n mod P(x) = p0 + p1*x + ... + p_{K-1}*x^{K-1}
 a_n = p0*a_0 + p1*a_1 + ... + p_{K-1}*a_{K-1}
 ```
 
-## 3. Kitamasa 구현
+## Kitamasa 구현
 
 아래 구현은 `coeff[i]`가 `a_n`에서 `a_{n-i-1}`에 곱해지는 계수라는 convention을 사용합니다.
 
@@ -142,7 +142,7 @@ long long nthLinearRecurrence(
 
 `coeff`와 `initial`의 길이는 같아야 합니다. 초기항은 `a_0..a_{K-1}` 순서입니다.
 
-## 4. 작은 예시
+## 작은 예시
 
 Fibonacci는 아래 점화식입니다.
 
@@ -160,7 +160,7 @@ coeff = [1, 1]
 
 `x^n mod (x^2 - x - 1)`의 계수를 구한 뒤 `F_0`, `F_1`에 곱하면 `F_n`이 됩니다.
 
-## 5. Matrix Exponentiation과 비교
+## Matrix Exponentiation과 비교
 
 | 방식 | 시간 | 특징 |
 | --- | ---: | --- |
@@ -171,7 +171,7 @@ coeff = [1, 1]
 
 문제가 단순 선형 점화식이면 Kitamasa가 깔끔합니다. 상태 전이가 sparse하거나 다른 구조가 있으면 행렬 방식이 더 읽기 쉬울 수 있습니다.
 
-## 6. Berlekamp-Massey와의 연결
+## Berlekamp-Massey와의 연결
 
 처음 몇 항만 주어지고 점화식을 모르면 Berlekamp-Massey로 최소 선형 점화식을 추정할 수 있습니다.
 
@@ -181,7 +181,7 @@ sequence prefix -> Berlekamp-Massey -> coeff -> Kitamasa nth term
 
 다만 이 조합은 모듈러 field 위에서 동작합니다. 합성수 mod나 실수 근사 수열에는 그대로 적용하면 안 됩니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 기본 구현은 polynomial 곱셈과 reduction에 `O(K^2)`가 들고, 거듭제곱에 `O(log N)`번 사용합니다.
 
@@ -191,7 +191,7 @@ O(K^2 log N)
 
 `K`가 5000 이상이면 이 구현도 부담될 수 있습니다. 그때는 NTT 기반 polynomial reduction이나 Bostan-Mori를 고려합니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. `coeff` 순서를 거꾸로 넣는다.
 2. `a_0` 기반인지 `a_1` 기반인지 섞는다.
@@ -199,19 +199,10 @@ O(K^2 log N)
 4. 음수 계수를 모듈러 정규화하지 않는다.
 5. characteristic relation의 degree reduction 방향을 잘못 잡는다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 점화식 차수 `K`와 질의 `N`의 범위는?
 - 초기항 index가 0부터인가 1부터인가?
 - 계수와 답의 mod가 prime인가?
 - 점화식이 고정인가, query마다 바뀌는가?
 - 여러 항을 한꺼번에 구해야 하는가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: Fibonacci 큰 n `/practice/...` 문제 필요 | `x^n mod P(x)` 계수 계산 | Kitamasa |
-| 표준 | TODO: K차 선형 점화식 `/practice/...` 문제 필요 | `O(K^2 log N)` 구현 | linear recurrence |
-| 응용 | TODO: 점화식 추정 후 nth `/practice/...` 문제 필요 | Berlekamp-Massey와 연결 | recurrence guessing |
-| 함정 | TODO: 음수 계수 점화식 `/practice/...` 문제 필요 | 모듈러 정규화 | characteristic polynomial |

@@ -8,13 +8,13 @@ Circle Geometry는 점, 직선, 원 사이의 거리와 교점을 계산하고 t
 2. 교점 좌표는 projection과 수직 방향 벡터로 만든다.
 3. tangent와 intersection은 EPS 정책을 명확히 한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: dot product, cross product, point-line distance, Shape Distance Modeling
 - 함께 보면 좋은 레슨: Geometry CCW와 Segment Intersection, Closest Pair Sweep, Voronoi와 Delaunay
 - 다음에 볼 레슨: circle arrangement, inversion geometry, robust predicates
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Circle Geometry 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Circle Geometry는 점, 직선, 원 사이의 거리와 교점을 계산하고 t
 
 좌표를 바로 구하기보다 먼저 교점 개수, 접함, 포함, 분리 상태를 판정합니다.
 
-## 2. 기본 Point 연산
+## 기본 Point 연산
 
 ```cpp compile-check
 #include <algorithm>
@@ -80,7 +80,7 @@ CirclePoint rotate90(CirclePoint a) {
 
 정수 좌표 입력이어도 교점은 실수가 됩니다. 출력 오차 기준을 확인하고 `double` 또는 `long double`을 고릅니다.
 
-## 3. 원과 직선의 교점
+## 원과 직선의 교점
 
 직선 `a + t(b-a)`에 원 중심 `c`, 반지름 `r`이 있을 때, 먼저 중심을 직선에 projection합니다.
 
@@ -135,7 +135,7 @@ vector<CircleLinePoint> circleLineIntersection(
 
 선분과 원의 교점이면 나온 점이 선분 bounding box 또는 parameter `t in [0,1]` 안에 있는지 추가로 봅니다.
 
-## 4. 두 원의 교점
+## 두 원의 교점
 
 두 원 중심을 `c1`, `c2`, 거리 `d`라고 합시다. 중심선 위에서 첫 번째 중심으로부터 거리 `x`만큼 간 base point를 잡습니다.
 
@@ -146,7 +146,7 @@ h^2 = r1^2 - x^2
 
 `h^2 < 0`이면 교점이 없습니다. `h = 0`이면 접하고, 양수면 두 점입니다.
 
-## 5. Tangent Construction
+## Tangent Construction
 
 외부 점 `p`에서 원 `(c, r)`에 접선을 그을 때, `pc`를 빗변으로 하는 직각삼각형을 봅니다.
 
@@ -158,7 +158,7 @@ h^2 = r1^2 - x^2
 
 두 원의 공통 접선은 반지름 차이 또는 합을 이용해 "점에서 축소된 원에 접선" 문제로 바꿀 수 있습니다. 외접선은 `r1 - r2`, 내접선은 `r1 + r2`가 핵심입니다.
 
-## 6. Angular Interval Sweep
+## Angular Interval Sweep
 
 원 위에서 다른 원이 덮는 arc를 계산하는 문제는 각도 구간으로 바꿉니다.
 
@@ -170,7 +170,7 @@ covered interval = [base - delta, base + delta]
 
 각도는 `[-pi, pi)` 경계에서 끊기므로 구간을 정규화하거나 `+2pi` 복사본을 같이 둡니다.
 
-## 7. 작은 예시
+## 작은 예시
 
 ```text
 circle center = (0, 0), r = 5
@@ -184,7 +184,7 @@ intersection = (-4, 3), (4, 3)
 
 이 예시는 projection이 교점의 중점이 된다는 사실을 보여 줍니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -196,7 +196,7 @@ intersection = (-4, 3), (4, 3)
 
 기하 문제는 공식보다 case 수가 병목입니다. 접함, 포함, 같은 중심, 반지름 0 같은 조건을 먼저 정리합니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 두 원 중심이 같은데 `d`로 나누어 NaN을 만든다.
 2. 접하는 경우를 교점 2개로 중복 출력한다.
@@ -204,19 +204,10 @@ intersection = (-4, 3), (4, 3)
 4. 선분-원 교점에서 무한 직선 교점을 그대로 사용한다.
 5. 각도 구간이 `pi` 경계를 넘는 경우를 놓친다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 교점 개수를 출력해야 하는가, 좌표를 출력해야 하는가?
 - 직선인지 선분인지 구분했는가?
 - 같은 중심 원과 포함 관계를 처리했는가?
 - EPS와 출력 오차 조건을 정했는가?
 - 각도 sweep이면 구간 wrap-around를 처리했는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: circle line intersection `/practice/...` 문제 필요 | projection과 offset 계산 | point-line distance |
-| 표준 | TODO: circle circle intersection `/practice/...` 문제 필요 | 교점 개수 case 분기 | center distance |
-| 응용 | TODO: common tangents `/practice/...` 문제 필요 | 외접선/내접선 변환 | tangent construction |
-| 함정 | TODO: angular interval sweep `/practice/...` 문제 필요 | 각도 wrap 처리 | atan2, acos |

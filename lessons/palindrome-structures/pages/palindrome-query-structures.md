@@ -8,13 +8,13 @@ Palindrome Query Structures는 substring이 palindrome인지 빠르게 판정하
 2. palindrome substring을 열거하거나 occurrence를 누적해야 하면 Eertree를 고려한다.
 3. 구간 질의와 업데이트가 섞이면 hash segment tree, offline, 또는 더 제한된 모델을 먼저 검토한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: palindrome, Manacher, rolling hash, Palindromic Tree
 - 함께 보면 좋은 레슨: Palindromic Tree, Suffix와 Palindrome 응용, String Matching
 - 다음에 볼 레슨: palindrome range query, eertree applications, hash segment tree
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 우선 볼 구조 |
 | --- | --- |
@@ -26,7 +26,7 @@ Palindrome Query Structures는 substring이 palindrome인지 빠르게 판정하
 
 중요한 차이는 "판정"과 "열거/집계"입니다. 판정만 있으면 hash나 radius가 훨씬 단순합니다.
 
-## 2. Manacher Radius로 판정하기
+## Manacher Radius로 판정하기
 
 Manacher는 각 중심에서 확장 가능한 palindrome radius를 선형 시간에 계산합니다.
 
@@ -51,7 +51,7 @@ else:
 
 정적 문자열에 많은 판정 질의가 있을 때 가장 직접적입니다.
 
-## 3. Rolling Hash로 판정하기
+## Rolling Hash로 판정하기
 
 Forward hash와 reversed string hash를 준비하면 substring과 그 reverse를 비교할 수 있습니다.
 
@@ -102,7 +102,7 @@ struct PalindromeHash {
 
 Hash는 충돌 가능성이 있습니다. 중요한 판정이면 double hash를 쓰거나 Manacher처럼 deterministic한 방법을 선택합니다.
 
-## 4. Eertree가 필요한 경우
+## Eertree가 필요한 경우
 
 Palindromic Tree는 prefix를 한 글자씩 추가하면서 새로 생기는 서로 다른 palindrome을 node로 만듭니다.
 
@@ -115,7 +115,7 @@ Palindromic Tree는 prefix를 한 글자씩 추가하면서 새로 생기는 서
 
 구간 `[l, r]`이 palindrome인지 묻는 단순 판정에는 Eertree가 과합니다. 하지만 "어떤 palindrome들이 있는지"가 필요하면 가장 강합니다.
 
-## 5. 구간 업데이트가 있는 경우
+## 구간 업데이트가 있는 경우
 
 문자가 바뀌는 update가 있고 palindrome 판정 질의가 있으면 forward hash와 reverse hash를 segment tree로 관리할 수 있습니다.
 
@@ -132,7 +132,7 @@ query [l, r]:
 
 이 모델은 판정에는 강하지만 palindrome 개수 집계에는 약합니다. update 뒤 "구간 안 palindrome substring 수"를 묻는 문제는 훨씬 어렵고, 제한이 작은지 또는 offline 성질이 있는지 먼저 봐야 합니다.
 
-## 6. 구조 선택표
+## 구조 선택표
 
 | 질의 형태 | 추천 |
 | --- | --- |
@@ -145,7 +145,7 @@ query [l, r]:
 
 복잡한 구조를 고르기 전에, 문제에서 정말 palindrome을 "세는지" 아니면 "판정하는지"를 분리합니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | ---: |
@@ -158,7 +158,7 @@ query [l, r]:
 
 alphabet과 hash collision 정책에 따라 상수와 안정성이 달라집니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. odd/even radius의 중심 index를 한 칸 밀린다.
 2. substring hash의 reverse 좌표를 `n-1-r`, `n-1-l`로 뒤집지 않는다.
@@ -166,19 +166,10 @@ alphabet과 hash collision 정책에 따라 상수와 안정성이 달라집니�
 4. 판정 문제에 Eertree를 써서 구현량을 불필요하게 키운다.
 5. Eertree occurrence를 suffix link 역순으로 누적하지 않는다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 문자열이 정적인가, update가 있는가?
 - 필요한 것은 palindrome 판정인가, 개수/종류 집계인가?
 - 질의 수가 많아 `O(1)` 판정이 필요한가?
 - hash collision이 허용되는 환경인가?
 - 구간 query가 substring 자체인지, palindrome node 통계인지 확인했는가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: palindrome query `/practice/...` 문제 필요 | Manacher radius 판정 | odd/even center |
-| 표준 | TODO: dynamic palindrome hash `/practice/...` 문제 필요 | update와 구간 판정 | forward/reverse hash |
-| 응용 | TODO: palindrome occurrence `/practice/...` 문제 필요 | Eertree occurrence | suffix link aggregation |
-| 함정 | TODO: even palindrome off-by-one `/practice/...` 문제 필요 | 중심 좌표 검증 | radius indexing |

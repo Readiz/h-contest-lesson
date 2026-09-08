@@ -26,7 +26,7 @@ LESSON_REFERENCE_FIELDS = ("prerequisites", "nextLessons", "relatedLessons")
 HCONTEST_PROBLEM_ROUTE_RE = re.compile(
     r"^/practice/[A-Z0-9]{8,16}(?:/(?:editorial|submissions/[0-9]+))?$",
 )
-PRACTICE_HEADING_RE = re.compile(r"^#{2,3}\s+.*연습 문제\s*$")
+PRACTICE_HEADING_RE = re.compile(r"^#{2,3}\s+.*(?:연습 문제|로컬(?: 완결형)? 연습)(?:\s.*|:.*)?$")
 TODO_RE = re.compile(r"\bTODO\b")
 
 
@@ -179,10 +179,7 @@ def practice_sections(markdown: str) -> list[str]:
 
 
 def validate_practice_content(markdown: str, lesson: dict) -> None:
-    # Endings and exercise tables are optional. The reference collection still
-    # has legacy TODO tables; its editorial migration is a separate task.
-    if lesson["folderId"] != "heuristic-notes":
-        return
+    # Both collections keep unfinished exercises in ROADMAP, not public lessons.
 
     lesson_id = lesson["lessonId"]
     if TODO_RE.search(markdown):

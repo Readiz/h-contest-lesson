@@ -8,13 +8,13 @@ Offline Range Query Techniques는 정적 배열과 구간 질의가 섞인 문�
 2. 업데이트가 없으면 Mo ordering, 업데이트가 있으면 time dimension을 추가한다.
 3. 질의 답이 merge 가능하면 divide and conquer on queries나 offline Fenwick으로 바꾼다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Offline Queries, Sqrt Decomposition, Fenwick Tree, frequency table
 - 함께 보면 좋은 레슨: Offline Queries, Sqrt Decomposition, Rollback Techniques
 - 다음에 볼 레슨: persistent segment tree, retroactive data structures, range query lower bounds
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 우선 후보 |
 | --- | --- |
@@ -26,7 +26,7 @@ Offline Range Query Techniques는 정적 배열과 구간 질의가 섞인 문�
 
 핵심은 "구간 답을 다시 계산하지 않고 다음 질의로 이동할 수 있는가"입니다. add/remove가 `O(1)` 또는 `O(log V)`로 가능하면 Mo 계열이 강합니다.
 
-## 2. Add/Remove 상태 설계
+## Add/Remove 상태 설계
 
 Mo를 적용하기 전에는 현재 구간의 상태가 어떤 변수로 유지되는지 적어야 합니다.
 
@@ -48,7 +48,7 @@ answer(): 현재 상태에서 질의 답 반환
 
 add와 remove가 정확히 역연산이어야 합니다. 한쪽에서만 보조 변수를 갱신하면 다음 질의부터 상태가 누적되어 틀립니다.
 
-## 3. 기본 Mo 구현
+## 기본 Mo 구현
 
 아래 코드는 구간의 distinct count를 답하는 기본 Mo skeleton입니다.
 
@@ -128,7 +128,7 @@ vector<int> distinctCountMo(const vector<int>& compressed, vector<RangeQuery> qu
 
 값이 크면 좌표 압축을 먼저 합니다. 빈도 배열 대신 hash map을 쓰면 상수가 커지므로 가능한 한 압축하는 편이 좋습니다.
 
-## 4. Mo With Modifications
+## Mo With Modifications
 
 point update가 섞이면 질의에 세 번째 좌표인 time이 생깁니다.
 
@@ -148,7 +148,7 @@ t = 이 질의보다 앞에 적용된 update 개수
 
 update 대상 위치가 현재 구간 안에 있으면 remove old, add new를 같이 해야 합니다. 구간 밖이면 배열 값만 바꾸면 됩니다.
 
-## 5. Offline Sorting + Fenwick
+## Offline Sorting + Fenwick
 
 모든 range query가 Mo에 맞는 것은 아닙니다. 예를 들어 "`[l, r]` 안에서 값이 `x` 이하인 원소 개수"는 질의를 `x` 오름차순으로 정렬하고 Fenwick Tree에 원소를 하나씩 넣으면 됩니다.
 
@@ -161,7 +161,7 @@ answer = sum(r) - sum(l-1)
 
 이 방식은 add/remove보다 단조 sweep이 더 자연스러운 경우입니다. 질의 조건이 prefix 형태이면 Mo보다 간단하고 빠릅니다.
 
-## 6. Divide and Conquer on Queries
+## Divide and Conquer on Queries
 
 질의 답이 "최소 mid"이고 조건 판정이 update prefix에 대해 단조라면 parallel binary search나 divide and conquer on answer를 씁니다.
 
@@ -174,7 +174,7 @@ solve(query set, answer range)
 
 이때 업데이트를 되돌릴 수 있는지, 아니면 매 단계마다 새로 sweep할지에 따라 구현이 달라집니다. rollback 가능한 상태라면 재귀가 편하고, Fenwick처럼 초기화가 싼 구조라면 라운드별 재구성이 더 단순합니다.
 
-## 7. 작은 예시
+## 작은 예시
 
 ```text
 array: 1 2 1 3 2
@@ -192,7 +192,7 @@ Mo order가 Q0 -> Q2 -> Q1이면
 
 각 이동에서 distinct가 어떻게 변하는지 손으로 따라가면 add/remove가 서로 맞는지 바로 보입니다.
 
-## 8. 시간 복잡도 감각
+## 시간 복잡도 감각
 
 | 기법 | 대표 복잡도 |
 | --- | ---: |
@@ -203,7 +203,7 @@ Mo order가 Q0 -> Q2 -> Q1이면
 
 Mo는 상수가 큽니다. Fenwick이나 Segment Tree sweep으로 풀리는 문제를 굳이 Mo로 바꾸지 않습니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. 구간을 `[l, r]`로 둘지 `[l, r)`로 둘지 섞는다.
 2. 좌표 압축 전 값을 frequency index로 바로 쓴다.
@@ -212,7 +212,7 @@ Mo는 상수가 큽니다. Fenwick이나 Segment Tree sweep으로 풀리는 문�
 5. add/remove가 역연산인지 작은 예시로 검증하지 않는다.
 6. offline sorting으로 더 쉽게 풀 문제를 Mo로 구현해 시간 제한을 잃는다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 모든 질의를 미리 알고 있는가?
 - 구간 포인터 이동이 원래 답을 보존하는가?
@@ -220,12 +220,3 @@ Mo는 상수가 큽니다. Fenwick이나 Segment Tree sweep으로 풀리는 문�
 - update가 있다면 time을 되돌릴 수 있는가?
 - 질의 조건이 value나 time prefix라면 Fenwick sweep으로 더 단순하지 않은가?
 - 답을 원래 query index로 복원하는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: offline range distinct `/practice/...` 문제 필요 | add/remove 상태 설계 | Mo, frequency |
-| 표준 | TODO: value threshold range query `/practice/...` 문제 필요 | offline sorting + Fenwick | prefix sweep |
-| 응용 | TODO: range query with updates `/practice/...` 문제 필요 | time dimension 처리 | Mo with modifications |
-| 함정 | TODO: online-dependent query `/practice/...` 문제 필요 | 오프라인 불가 판정 | query dependency |

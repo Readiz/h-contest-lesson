@@ -8,13 +8,13 @@ Randomized Min Cut은 Karger contraction처럼 무작위 edge 수축을 반복�
 2. 한 번의 성공 확률은 낮지만 반복하면 실패 확률을 줄일 수 있다.
 3. randomized 알고리즘은 seed, 반복 횟수, 검증 가능한 fallback을 함께 설계한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: undirected cut, contraction, DSU, probability amplification
 - 함께 보면 좋은 레슨: Global Min Cut, Cut Sparsification, Cactus Representation
 - 다음에 볼 레슨: randomized graph algorithms, cut sparsification applications
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Randomized Min Cut 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Randomized Min Cut은 Karger contraction처럼 무작위 edge 수축을 반복�
 
 대회 문제는 보통 결정적 정답을 요구합니다. randomized 풀이를 쓸 때는 성공 확률을 충분히 키우거나 결정적 알고리즘이 더 적절한지 먼저 비교합니다.
 
-## 2. Karger Contraction
+## Karger Contraction
 
 Karger의 기본 알고리즘은 정점이 2개 남을 때까지 임의 edge를 고르고 양 끝을 contract합니다. 마지막 두 supernode 사이 edge 수가 cut value입니다.
 
@@ -41,7 +41,7 @@ answer = edges crossing the two remaining components
 
 min cut의 edge를 한 번도 contract하지 않으면 마지막 cut이 원래 min cut과 같습니다.
 
-## 3. 왜 성공하는가
+## 왜 성공하는가
 
 global min cut value를 `lambda`라고 합시다. 현재 정점 수가 `k`일 때 모든 정점의 degree는 적어도 `lambda`입니다. 따라서 edge 수는 적어도 `k * lambda / 2`입니다.
 
@@ -53,7 +53,7 @@ lambda / (k * lambda / 2) = 2 / k
 
 따라서 그 phase에서 min cut edge를 피할 확률은 적어도 `1 - 2/k`입니다. 이를 `k = n, n-1, ..., 3`에 대해 곱하면 한 trial 성공 확률은 대략 `2 / (n(n-1))`입니다.
 
-## 4. 기본 구현
+## 기본 구현
 
 아래 코드는 edge list와 DSU로 한 trial의 cut value를 계산합니다. 같은 seed로 재현 가능한 테스트를 만들기 위해 난수 엔진을 인자로 받습니다.
 
@@ -124,7 +124,7 @@ int kargerTrial(int n, const vector<KargerEdge>& edges, mt19937& rng) {
 
 이 구현은 unweighted multigraph 기준입니다. weighted graph는 edge를 weight만큼 복제하면 너무 커질 수 있으므로 별도 sampling 또는 결정적 알고리즘을 고려합니다.
 
-## 5. 반복 횟수와 확률 증폭
+## 반복 횟수와 확률 증폭
 
 한 trial 성공 확률이 `p`일 때 `t`번 반복해서 모두 실패할 확률은 `(1-p)^t`입니다.
 
@@ -135,7 +135,7 @@ t = O(n^2 log n) 이면 실패 확률을 다항식 수준으로 낮출 수 있�
 
 실전에서는 제한 시간 안에서 가능한 반복 횟수를 잡고, 작은 그래프에서는 Stoer-Wagner 결과와 비교해 테스트합니다.
 
-## 6. Karger-Stein 관점
+## Karger-Stein 관점
 
 Karger-Stein은 정점이 `n / sqrt(2)` 정도 남을 때까지만 contraction하고 두 recursive branch를 돌립니다. 기본 Karger보다 성공 확률을 끌어올립니다.
 
@@ -146,7 +146,7 @@ answer = min(recurse(copy1), recurse(copy2))
 
 구현은 기본 Karger보다 복잡합니다. 문제 제한이 빡빡하고 randomized 풀이가 의도된 경우에만 고려합니다.
 
-## 7. 작은 예시
+## 작은 예시
 
 ```text
 cycle 4개 정점: 0-1-2-3-0
@@ -159,7 +159,7 @@ min cut edge를 수축하면 그 cut 후보는 사라진다.
 
 contraction은 graph를 단순화하지만 모든 cut을 보존하지는 않습니다. 정답 cut을 건드리지 않는 순서가 성공 조건입니다.
 
-## 8. 결정적 알고리즘과 비교
+## 결정적 알고리즘과 비교
 
 | 접근 | 장점 | 주의 |
 | --- | --- | --- |
@@ -170,7 +170,7 @@ contraction은 graph를 단순화하지만 모든 cut을 보존하지는 않습�
 
 정답 보장이 필요한 문제에서는 Stoer-Wagner를 먼저 검토합니다. Karger는 randomized가 허용되거나 그래프가 작아 반복이 충분할 때 유효합니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. directed graph에 contraction min cut을 적용한다.
 2. self-loop를 cut edge로 세어 답을 크게 만든다.
@@ -178,20 +178,10 @@ contraction은 graph를 단순화하지만 모든 cut을 보존하지는 않습�
 4. weighted edge를 단순 unweighted edge처럼 처리한다.
 5. 난수 seed가 고정되지 않아 디버깅 재현이 어렵다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 그래프가 무향 multigraph인가?
 - randomized 풀이가 허용되는가?
 - weighted edge를 어떻게 처리할 것인가?
 - 반복 횟수와 시간 제한이 맞는가?
 - 작은 테스트에서 Stoer-Wagner와 비교했는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: randomized min cut `/practice/...` 문제 필요 | Karger contraction 구현 | DSU |
-| 표준 | TODO: repeated contraction `/practice/...` 문제 필요 | 반복으로 성공 확률 증폭 | Monte Carlo |
-| 응용 | TODO: min cut comparison `/practice/...` 문제 필요 | Stoer-Wagner와 결과 비교 | deterministic fallback |
-| 함정 | TODO: weighted randomized cut `/practice/...` 문제 필요 | weighted edge 처리 판단 | multigraph |
-

@@ -4,13 +4,13 @@ Dynamic Network Optimization은 간선 활성 시간, 용량 변화, MST 갱신,
 
 이 허브의 목표는 완전한 online dynamic 알고리즘을 외우는 것이 아니라, 문제 조건을 보고 어떤 제한된 모델로 낮출 수 있는지 판단하는 것입니다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Max Flow Min Cut, Min-Cost Flow, MST/Kruskal, Offline and Time-Axis Techniques
 - 함께 보면 좋은 레슨: Graph Cut Structures, Link-Cut Tree, Euler Tour Tree
 - 다음에 볼 레슨: fully dynamic graph structures, dynamic cut, time-expanded network modeling
 
-## 1. 모델 선택 표
+## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
@@ -22,7 +22,7 @@ Dynamic Network Optimization은 간선 활성 시간, 용량 변화, MST 갱신,
 
 같은 "dynamic graph"라도 답이 connectivity인지, MST cost인지, max flow value인지, cut certificate인지에 따라 필요한 상태가 완전히 달라집니다. connectivity만 필요하면 rollback DSU로 끝날 수 있지만, flow와 MST는 최적화 값이 붙어서 상태 복원이 더 어렵습니다.
 
-## 2. 먼저 낮출 수 있는가
+## 먼저 낮출 수 있는가
 
 | 낮추는 방향 | 쓸 수 있는 조건 | 피해야 할 경우 |
 | --- | --- | --- |
@@ -34,7 +34,7 @@ Dynamic Network Optimization은 간선 활성 시간, 용량 변화, MST 갱신,
 
 완전 동적 자료구조는 마지막 선택입니다. 먼저 offline으로 바꿀 수 있는지, block으로 묶을 수 있는지, 정적 그래프를 반복해서 푸는 baseline이 제한 안에 들어오는지 확인합니다.
 
-## 3. 관계 정리
+## 관계 정리
 
 Dynamic Flow는 flow 구현 레슨이라기보다 모델링 reference에 가깝습니다. capacity 증가만 있으면 residual graph를 이어 쓰고, 시간 단계가 명시되면 time-expanded network로 바꿉니다. 삭제나 용량 감소가 섞이면 feasibility repair가 필요하므로 rebuild 기준을 먼저 잡습니다.
 
@@ -42,7 +42,7 @@ Dynamic MST는 cut/cycle property를 쓰지만 Graph Cut Structures의 prerequis
 
 Offline and Time-Axis Techniques는 이 허브의 공통 바닥입니다. update 구간을 만들 수 있으면 rollback, segment tree over time, divide and conquer over time이 먼저 후보가 됩니다. 다만 flow나 MST는 leaf에서 단순 DSU 상태만으로 답하지 못할 수 있으므로 추가 최적화 구조가 필요합니다.
 
-## 4. 로컬 완결형 연습
+## 로컬 완결형 연습
 
 ### Incremental Max Flow
 
@@ -71,12 +71,3 @@ N, M, Q <= 200000
 ```
 
 정답 검증은 작은 입력에서 매 query Kruskal과 비교합니다. 이 연습을 통과하면 완전 동적 구조를 쓰지 않아도 되는 문제와 써야 하는 문제를 구분하기 쉬워집니다.
-
-## 5. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: incremental max flow `/practice/...` 문제 필요 | old flow feasibility와 추가 augment 확인 | residual graph |
-| 표준 | TODO: dynamic MST block rebuild `/practice/...` 문제 필요 | 변경 후보만 작은 Kruskal로 합치기 | block rebuild |
-| 응용 | TODO: time-expanded evacuation `/practice/...` 문제 필요 | 시간 node와 wait edge 모델링 | time expansion |
-| 함정 | TODO: capacity decrease repair `/practice/...` 문제 필요 | old flow가 infeasible해지는 반례 처리 | feasibility repair |

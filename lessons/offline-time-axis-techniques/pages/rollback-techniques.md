@@ -8,13 +8,13 @@ Rollback Techniques는 오프라인 알고리즘에서 상태를 적용한 뒤 �
 2. 재귀나 divide and conquer 구간에 들어가기 전 snapshot 크기를 저장한다.
 3. 구간 처리가 끝나면 stack을 snapshot 크기까지 되돌린다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Union-Find, offline query, recursion over intervals
 - 함께 보면 좋은 레슨: Offline Queries, Dynamic Connectivity, Persistent Union-Find
 - 다음에 볼 레슨: segment tree over time, divide and conquer on queries, retroactive structures
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Rollback 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ Rollback Techniques는 오프라인 알고리즘에서 상태를 적용한 뒤 �
 
 rollback은 online으로 과거 version에 random access하는 persistence와 다릅니다. 현재 재귀 경로의 상태만 유지하고, 빠져나오면 이전 상태로 되돌립니다.
 
-## 2. 변경 기록 원칙
+## 변경 기록 원칙
 
 rollback을 하려면 update가 바꾼 값을 모두 기록해야 합니다.
 
@@ -40,7 +40,7 @@ rollback을 하려면 update가 바꾼 값을 모두 기록해야 합니다.
 
 가장 안전한 방식은 "snapshot = stack size"를 저장하고, 되돌릴 때 stack이 그 크기가 될 때까지 pop하는 것입니다.
 
-## 3. Rollback DSU 구현
+## Rollback DSU 구현
 
 아래 구현은 path compression을 쓰지 않고 union by size만 사용합니다. 각 union은 parent와 size 변경 전 값을 기록합니다.
 
@@ -113,7 +113,7 @@ struct RollbackDsu {
 
 같은 component를 union한 경우에도 history marker를 남기면 "union 호출 수만큼 rollback"하는 코드가 단순해집니다. snapshot 방식만 쓴다면 marker 없이도 처리할 수 있습니다.
 
-## 4. Segment Tree over Time
+## Segment Tree over Time
 
 간선이 시간 구간 `[l, r]` 동안 활성이라면 segment tree의 해당 구간을 덮는 노드들에 간선을 넣습니다.
 
@@ -128,7 +128,7 @@ dfs(node):
 
 각 간선은 `O(log Q)`개 노드에 들어갑니다. leaf에서는 그 시점에 활성인 모든 간선이 현재 DSU에 적용되어 있습니다.
 
-## 5. Divide and Conquer with Rollback
+## Divide and Conquer with Rollback
 
 정답 후보 범위를 나눠 가며 update를 적용하는 divide and conquer에서도 rollback을 씁니다. 핵심은 재귀 호출 사이에 상태가 섞이지 않게 하는 것입니다.
 
@@ -145,7 +145,7 @@ solve(l, r, candidates):
 
 적용 순서가 복잡해질수록 snapshot을 촘촘히 잡는 편이 안전합니다.
 
-## 6. Rollback 가능한 구조 만들기
+## Rollback 가능한 구조 만들기
 
 Rollback은 "변경 전 값을 기록하고 원복"할 수 있으면 됩니다.
 
@@ -159,7 +159,7 @@ Rollback은 "변경 전 값을 기록하고 원복"할 수 있으면 됩니다.
 
 변경 범위가 너무 넓으면 기록 비용이 update 비용보다 커질 수 있습니다. 이때는 persistent structure가 더 나을 수 있습니다.
 
-## 7. Persistence와 비교
+## Persistence와 비교
 
 | 방식 | 장점 | 한계 |
 | --- | --- | --- |
@@ -169,7 +169,7 @@ Rollback은 "변경 전 값을 기록하고 원복"할 수 있으면 됩니다.
 
 오프라인 DFS처럼 상태가 stack discipline을 따르면 rollback이 가장 실용적입니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. DSU rollback에서 path compression을 사용한다.
 2. answer 변수나 component count 같은 전역 상태를 기록하지 않는다.
@@ -177,19 +177,10 @@ Rollback은 "변경 전 값을 기록하고 원복"할 수 있으면 됩니다.
 4. recursion child 사이에 snapshot을 복구하지 않는다.
 5. hash map에서 "기존에 없던 key"와 "값이 0인 key"를 구분하지 않는다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - update/query를 offline으로 재배열할 수 있는가?
 - 상태 변경이 stack 순서로 되돌아오는가?
 - 변경 전 값을 모두 기록할 수 있는가?
 - path compression처럼 숨은 변경이 있지는 않은가?
 - persistence가 더 간단한 random access query는 아닌가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: rollback techniques `/practice/...` 문제 필요 | snapshot과 원복 구현 | rollback stack |
-| 표준 | TODO: offline dynamic connectivity `/practice/...` 문제 필요 | segment tree over time | rollback DSU |
-| 응용 | TODO: rollback frequency queries `/practice/...` 문제 필요 | 배열 변경 기록 | old value |
-| 함정 | TODO: path compression rollback `/practice/...` 문제 필요 | 숨은 parent 변경 제거 | no compression |

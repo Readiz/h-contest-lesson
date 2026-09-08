@@ -8,13 +8,13 @@ XOR Linear Basis는 여러 수의 xor 조합으로 만들 수 있는 값의 공�
 2. 가장 높은 bit가 같은 vector끼리 Gaussian elimination처럼 정리한다.
 3. basis의 rank가 만들 수 있는 xor 공간의 차원을 결정한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: bit operation, Gaussian elimination, xor 성질
 - 함께 보면 좋은 레슨: 모듈러 연산, 조합론, Proof와 Invariants
 - 다음에 볼 레슨: matroid 관점, xor convolution, linear basis on tree
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | Linear Basis 관점 |
 | --- | --- |
@@ -26,7 +26,7 @@ XOR Linear Basis는 여러 수의 xor 조합으로 만들 수 있는 값의 공�
 
 XOR는 carry가 없기 때문에 각 bit가 GF(2) 선형 공간의 좌표처럼 동작합니다. 덧셈/최댓값 문제와 섞이면 이 성질이 깨질 수 있으므로 xor 조합인지 먼저 확인합니다.
 
-## 2. Basis 불변식
+## Basis 불변식
 
 `basis[b]`는 최고 set bit가 `b`인 대표 vector입니다.
 
@@ -39,7 +39,7 @@ if x remains nonzero, it becomes a new basis vector
 
 이 불변식만 지키면 삽입 순서와 관계없이 같은 rank를 얻습니다.
 
-## 3. 구현
+## 구현
 
 아래 구현은 unsigned 64-bit 값을 기준으로 합니다. signed integer를 그대로 shift하면 헷갈리므로 bit 문제에서는 unsigned 타입이 안전합니다.
 
@@ -105,7 +105,7 @@ struct XorLinearBasis {
 
 `maximize(seed)`는 이미 가진 xor 값에 basis vector를 추가로 xor해서 만들 수 있는 최댓값을 구합니다. 부분집합 xor 최댓값은 `seed = 0`입니다.
 
-## 4. Rank와 경우의 수
+## Rank와 경우의 수
 
 서로 독립인 basis vector가 `r`개면 만들 수 있는 xor 값은 `2^r`개입니다.
 
@@ -116,7 +116,7 @@ struct XorLinearBasis {
 
 원소 수가 `n`이고 rank가 `r`이면 같은 xor 값을 만드는 부분집합 수는 보통 `2^(n-r)`배로 묶입니다. 단, 빈 부분집합 포함 여부와 modulo 조건을 문제마다 확인해야 합니다.
 
-## 5. K번째 Xor 값
+## K번째 Xor 값
 
 K번째 작은 xor 값을 구하려면 basis를 reduced row echelon form처럼 정규화해야 합니다. 단순 `basis[bit]` 배열은 maximize에는 충분하지만 정렬된 순서 enumeration에는 부족합니다.
 
@@ -131,7 +131,7 @@ for high bit i:
 
 그 뒤 낮은 bit basis부터 K의 bit에 맞춰 xor하면 순서 있는 생성이 가능합니다.
 
-## 6. 그래프와 Tree 응용
+## 그래프와 Tree 응용
 
 무방향 그래프에서 DFS tree를 잡고 back edge가 만드는 cycle xor를 basis에 넣으면, 두 정점 사이 path xor를 basis로 최적화할 수 있습니다.
 
@@ -142,7 +142,7 @@ cycle basis를 더해 가능한 경로 xor 최댓값 계산
 
 Tree path query에서는 Heavy-Light나 DSU on tree와 basis merge가 함께 나오기도 합니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 복잡도 |
 | --- | --- |
@@ -153,7 +153,7 @@ Tree path query에서는 Heavy-Light나 DSU on tree와 basis merge가 함께 나
 
 `LOG`는 보통 60 정도라 상수에 가깝습니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 1. signed `long long`의 최상위 bit를 다루다 비교가 꼬인다.
 2. dependent vector를 rank에 포함한다.
@@ -161,19 +161,10 @@ Tree path query에서는 Heavy-Light나 DSU on tree와 basis merge가 함께 나
 4. distinct xor 개수 `2^rank`와 부분집합 개수 `2^n`을 혼동한다.
 5. K번째 xor를 구하면서 basis를 정규화하지 않는다.
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 연산이 xor 조합으로 닫혀 있는가?
 - 최대값이 필요한가, 표현 가능 여부가 필요한가?
 - 중복 원소와 빈 부분집합을 어떻게 처리하는가?
 - bit 범위가 30인지 60인지 확인했는가?
 - 경로/구간 query라면 basis merge 순서가 시간 안에 들어오는가?
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 부분집합 maximum xor `/practice/...` 문제 필요 | basis insert와 greedy maximize | xor basis |
-| 표준 | TODO: xor 값 표현 가능성 `/practice/...` 문제 필요 | value reduction과 rank | linear independence |
-| 응용 | TODO: 그래프 경로 xor 최댓값 `/practice/...` 문제 필요 | cycle basis와 prefix xor | graph xor |
-| 함정 | TODO: K번째 xor 값 `/practice/...` 문제 필요 | basis 정규화와 순서 생성 | reduced basis |

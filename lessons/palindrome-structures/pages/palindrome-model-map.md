@@ -2,7 +2,7 @@
 
 Palindrome 문제는 "회문인가"를 묻는 판정 문제와 "회문들을 어떻게 세고 조합하는가"를 묻는 집계 문제가 다릅니다.
 
-## 1. 선택 기준
+## 선택 기준
 
 | 질문 | 후보 |
 | --- | --- |
@@ -13,7 +13,7 @@ Palindrome 문제는 "회문인가"를 묻는 판정 문제와 "회문들을 어
 | 구간 `[l, r]` 자체가 DP 상태인가? | Palindrome Range DP |
 | suffix와 palindrome 조건이 동시에 필요한가? | suffix structure + palindrome helper |
 
-## 2. 구현 전 체크
+## 구현 전 체크
 
 - palindrome 판정만 필요한지, occurrence/count가 필요한지 구분합니다.
 - hash를 쓰면 collision 정책을 명시합니다.
@@ -21,7 +21,7 @@ Palindrome 문제는 "회문인가"를 묻는 판정 문제와 "회문들을 어
 - Eertree count는 suffix link 역순 누적 뒤에 사용합니다.
 - range DP는 `O(N^2)` 메모리와 시간 제한을 먼저 확인합니다.
 
-## 3. 자주 하는 실수
+## 자주 하는 실수
 
 1. Manacher `even[i]` 중심을 `i`와 `i+1` 사이로 잘못 해석한다.
 2. Eertree의 새 노드 수를 occurrence count로 착각한다.

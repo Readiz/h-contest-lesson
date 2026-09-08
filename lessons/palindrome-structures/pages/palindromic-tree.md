@@ -8,13 +8,13 @@ Palindromic Tree는 문자열의 모든 서로 다른 palindrome substring을 �
 2. suffix link를 따라가며 새 문자를 양끝에 붙일 수 있는 palindrome을 찾는다.
 3. 각 palindrome의 개수, 길이, suffix 관계를 DP로 활용한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 문자열, palindrome, suffix link 감각, Suffix Automaton
 - 함께 보면 좋은 레슨: Suffix Automaton, 문자열 매칭, Trie와 Aho-Corasick
 - 다음에 볼 레슨: palindromic DP, Manacher, palindromic automaton 응용
 
-## 1. 문제 신호
+## 문제 신호
 
 Palindromic Tree는 palindrome substring을 "모두" 다뤄야 할 때 강합니다.
 
@@ -28,7 +28,7 @@ Palindromic Tree는 palindrome substring을 "모두" 다뤄야 할 때 강합니
 
 단순히 가장 긴 palindrome만 필요하면 Manacher가 더 간단합니다. 서로 다른 palindrome들을 노드로 보존해야 할 때 Palindromic Tree가 빛납니다.
 
-## 2. 두 root
+## 두 root
 
 Palindromic Tree에는 특수 root가 두 개 있습니다.
 
@@ -39,7 +39,7 @@ Palindromic Tree에는 특수 root가 두 개 있습니다.
 
 길이 `-1` root는 경계 처리를 쉽게 해 줍니다. 새 문자를 붙일 때 "현재 palindrome 양끝 바깥 문자가 같은가"를 검사하는데, 길이 `-1` root는 항상 다음 확장 후보가 되도록 작동합니다.
 
-## 3. Construction
+## Construction
 
 문자열의 새 위치 `pos`에 문자 `s[pos]`를 추가한다고 합시다. 현재 longest palindromic suffix를 가리키는 `last`에서 suffix link를 따라가며, 양끝에 새 문자를 붙여도 palindrome이 되는 가장 긴 노드를 찾습니다.
 
@@ -125,7 +125,7 @@ struct PalindromicTree {
 
 위 구현은 소문자 알파벳을 가정합니다. 문자 종류가 넓다면 `array<int, 26>` 대신 map 또는 압축된 transition 구조를 사용합니다.
 
-## 4. 서로 다른 palindrome 개수
+## 서로 다른 palindrome 개수
 
 두 root를 제외한 노드 하나가 서로 다른 palindrome substring 하나입니다.
 
@@ -135,7 +135,7 @@ distinct palindrome count = number of nodes - 2
 
 문자를 추가할 때 새 노드가 생기면 그 prefix에서 처음 등장한 palindrome이 하나 늘어난 것입니다. 그래서 prefix별 distinct count도 온라인으로 계산할 수 있습니다.
 
-## 5. 등장 횟수 누적
+## 등장 횟수 누적
 
 `count[v]`를 노드 `v`가 longest palindromic suffix로 선택된 횟수로 두면, suffix link 역순으로 더해 각 palindrome의 총 등장 횟수를 얻습니다.
 
@@ -157,7 +157,7 @@ void accumulatePalindromeCounts(vector<PalNodeCount>& nodes) {
 
 construction 중 노드는 길이가 대체로 증가하는 순서로 만들어지므로, 뒤에서 앞으로 처리하면 자식 palindrome의 등장 횟수가 suffix link 부모로 모입니다.
 
-## 6. Manacher와 비교
+## Manacher와 비교
 
 | 도구 | 강점 | 한계 |
 | --- | --- | --- |
@@ -167,7 +167,7 @@ construction 중 노드는 길이가 대체로 증가하는 순서로 만들어�
 
 가장 긴 palindrome substring만 묻는다면 Manacher가 더 좋습니다. 각 palindrome을 세거나, palindrome suffix를 타고 DP를 해야 하면 Palindromic Tree를 고려합니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -178,7 +178,7 @@ construction 중 노드는 길이가 대체로 증가하는 순서로 만들어�
 
 각 위치에서 새 palindrome은 최대 하나만 생깁니다. 그래서 전체 노드 수도 `N + 2`를 넘지 않습니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -189,7 +189,7 @@ construction 중 노드는 길이가 대체로 증가하는 순서로 만들어�
 | alphabet 범위 가정 오류 | 범위 밖 접근 | 입력 문자 set 확인 |
 | Manacher로 충분한 문제에 과한 구현 | 시간 낭비 | 필요한 정보가 distinct인지 확인 |
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 서로 다른 palindrome substring을 모두 다뤄야 하는가?
 2. 각 palindrome의 등장 횟수나 길이별 통계가 필요한가?
@@ -199,12 +199,3 @@ construction 중 노드는 길이가 대체로 증가하는 순서로 만들어�
 6. occurrence 누적 순서가 suffix link 방향과 맞는가?
 
 Palindromic Tree는 palindrome substring을 노드로 만든다는 점에서 Suffix Automaton과 비슷한 감각을 줍니다. 다만 suffix link가 "가장 긴 proper palindromic suffix"로 이어진다는 차이를 정확히 잡아야 합니다.
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 서로 다른 palindrome 개수 `/practice/...` 문제 필요 | 새 노드 개수 세기 | eertree |
-| 표준 | TODO: palindrome 등장 횟수 `/practice/...` 문제 필요 | suffix link 역순 count 누적 | occurrence |
-| 응용 | TODO: prefix별 palindrome 통계 `/practice/...` 문제 필요 | 온라인 추가와 last 관리 | palindromic suffix |
-| 함정 | TODO: 큰 alphabet palindrome `/practice/...` 문제 필요 | transition 구조 변경 | alphabet mapping |

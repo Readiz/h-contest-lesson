@@ -8,13 +8,13 @@ Game Theory Applications는 Grundy, minimax, MDP, imperfect information 모델�
 2. 독립 subgame 합성이 있으면 Grundy/xor를 검토한다.
 3. hidden information이나 stochastic transition이 있으면 search/MDP 계열로 옮긴다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Game Theory와 Grundy Number, Minimax와 Alpha-Beta Pruning, Markov Decision Process
 - 함께 보면 좋은 레슨: Monte Carlo Tree Search, Imperfect Information Search, POMDP
 - 다음에 볼 레슨: Point-Based Value Iteration, reinforcement learning basics, stochastic games
 
-## 1. 분류표
+## 분류표
 
 | 문제 신호 | 우선 모델 |
 | --- | --- |
@@ -27,7 +27,7 @@ Game Theory Applications는 Grundy, minimax, MDP, imperfect information 모델�
 
 처음부터 구현을 고르면 위험합니다. state, turn, information, randomness 네 가지를 먼저 분리합니다.
 
-## 2. Impartial Game인지 확인
+## Impartial Game인지 확인
 
 Grundy를 쓰려면 보통 아래 조건이 필요합니다.
 
@@ -38,7 +38,7 @@ Grundy를 쓰려면 보통 아래 조건이 필요합니다.
 
 move set이 플레이어마다 다르거나 점수가 누적되는 게임이면 Grundy가 아닐 가능성이 큽니다.
 
-## 3. Grundy Skeleton
+## Grundy Skeleton
 
 아래 코드는 DAG game에서 Grundy number를 계산합니다.
 
@@ -75,7 +75,7 @@ int grundyDfs(int node, const vector<vector<int>>& graph, vector<int>& memo) {
 
 순환 게임이면 이 skeleton은 바로 쓸 수 없습니다. 반복 상태는 draw, discount, horizon 중 무엇으로 처리하는지 문제 조건을 먼저 봐야 합니다.
 
-## 4. Minimax로 넘어가는 조건
+## Minimax로 넘어가는 조건
 
 아래 중 하나라도 있으면 Grundy 대신 minimax를 봅니다.
 
@@ -88,7 +88,7 @@ int grundyDfs(int node, const vector<vector<int>>& graph, vector<int>& memo) {
 
 minimax는 state 수가 작거나 depth가 제한될 때 정확합니다. branching이 크면 pruning, memoization, heuristic evaluation이 필수입니다.
 
-## 5. 확률이 있으면 MDP
+## 확률이 있으면 MDP
 
 상대가 아니라 확률 전이가 결과를 바꾸고, action을 골라 기대 보상을 최대화하면 MDP입니다.
 
@@ -98,7 +98,7 @@ V(s) = max_a reward(s,a) + sum_t P(t|s,a) V(t)
 
 상대와 확률이 모두 있으면 stochastic game이지만, 대회 문제에서는 한쪽을 고정 정책이나 chance node로 단순화하는 경우가 많습니다.
 
-## 6. 숨은 정보가 있으면 정보 구조 확인
+## 숨은 정보가 있으면 정보 구조 확인
 
 카드, 안개, 비공개 상태가 있으면 실제 state를 기준으로 행동하면 정보 누출입니다.
 
@@ -111,7 +111,7 @@ V(s) = max_a reward(s,a) + sum_t P(t|s,a) V(t)
 
 숨은 정보를 무작위로 하나 뽑아 perfect-information game처럼 푸는 determinization은 baseline일 뿐입니다. 서로 다른 숨은 상태에서 같은 행동을 해야 한다는 제약을 깨기 쉽습니다.
 
-## 7. 작은 예시
+## 작은 예시
 
 ```text
 문제 A: 돌더미에서 1,2,3개를 가져가고 마지막에 가져간 사람이 승리
@@ -129,7 +129,7 @@ V(s) = max_a reward(s,a) + sum_t P(t|s,a) V(t)
 
 같은 "게임" 단어가 있어도 네 문제는 완전히 다른 도구를 요구합니다.
 
-## 8. 독립 합성의 함정
+## 독립 합성의 함정
 
 Grundy xor는 subgame이 독립일 때만 됩니다.
 
@@ -141,7 +141,7 @@ Grundy xor는 subgame이 독립일 때만 됩니다.
 
 구간 게임에서 한 수가 구간을 둘로 쪼개면 독립 subgame이 생길 수 있습니다. 반대로 남은 횟수 제한처럼 전체 공유 제약이 있으면 독립이 깨집니다.
 
-## 9. 구현 선택 기준
+## 구현 선택 기준
 
 | state 수/구조 | 추천 |
 | --- | --- |
@@ -154,7 +154,7 @@ Grundy xor는 subgame이 독립일 때만 됩니다.
 
 정확한 정답을 요구하는 문제에서 MCTS 같은 근사를 쓰면 보통 틀립니다. 근사가 허용되는 문제인지부터 확인합니다.
 
-## 10. 자주 하는 실수
+## 자주 하는 실수
 
 1. partisan game에 Grundy xor를 적용한다.
 2. 반복 상태를 무조건 losing으로 처리한다.
@@ -162,19 +162,10 @@ Grundy xor는 subgame이 독립일 때만 됩니다.
 4. 확률 node와 opponent choice node를 같은 `min`/`max`로 처리한다.
 5. score game인데 win/lose DP만 저장한다.
 
-## 11. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 두 플레이어의 move set이 같은가?
 - subgame이 독립인가?
 - 확률 전이가 있는가?
 - hidden information이 있는가?
 - 정확 최적값이 필요한가, 좋은 정책이면 되는가?
-
-## 12. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: game theory applications `/practice/...` 문제 필요 | Grundy와 minimax 분류 | impartial |
-| 표준 | TODO: split game xor `/practice/...` 문제 필요 | 독립 subgame 판정 | Sprague-Grundy |
-| 응용 | TODO: stochastic game modeling `/practice/...` 문제 필요 | chance node와 max node 분리 | MDP |
-| 함정 | TODO: hidden information game `/practice/...` 문제 필요 | 정보 누출 방지 | belief state |

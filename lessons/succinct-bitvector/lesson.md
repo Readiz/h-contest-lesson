@@ -8,13 +8,13 @@ Succinct Bitvector는 bit열 위에서 `rank`와 `select`를 빠르게 처리하
 2. superblock과 block prefix로 rank를 빠르게 계산한다.
 3. select는 binary search 또는 block index로 구현한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: bit operation, prefix sum, Wavelet Matrix
 - 함께 보면 좋은 레슨: Wavelet Matrix, Sparse Table과 RMQ, 좌표 압축
 - 다음에 볼 레슨: compressed wavelet tree, FM-index, succinct tree
 
-## 1. 문제 신호
+## 문제 신호
 
 | 질의 | 의미 |
 | --- | --- |
@@ -26,7 +26,7 @@ Succinct Bitvector는 bit열 위에서 `rank`와 `select`를 빠르게 처리하
 
 Wavelet Matrix의 각 level bitvector도 결국 rank 질의를 빠르게 하기 위해 이런 구조를 사용합니다.
 
-## 2. Rank 구조
+## Rank 구조
 
 단순 prefix array를 `int`로 저장하면 rank는 쉽지만 메모리가 큽니다. Succinct 관점에서는 bit 자체는 word에 넣고, 일정 간격마다 prefix count를 둡니다.
 
@@ -42,7 +42,7 @@ rank는 아래 세 값을 더합니다.
 2. 현재 superblock 안에서 현재 word 이전의 1 개수
 3. 현재 word의 남은 prefix popcount
 
-## 3. Rank 구현
+## Rank 구현
 
 아래 구현은 이해를 위해 64-bit word 단위 block과 512-bit superblock을 사용합니다.
 
@@ -122,7 +122,7 @@ struct SuccinctBitvector {
 
 `rankOne(pos)`은 `[0, pos)` 구간을 뜻합니다. `pos` 자체의 bit는 포함하지 않습니다.
 
-## 4. Select 구현
+## Select 구현
 
 가장 단순한 select는 rank를 이용한 binary search입니다.
 
@@ -167,7 +167,7 @@ struct SimpleRankForSelect {
 
 실전 succinct 구현에서는 select도 block index를 따로 두어 더 빠르게 만들 수 있습니다. 하지만 많은 대회 문제에서는 rank가 핵심이고 select는 binary search로 충분한 경우가 많습니다.
 
-## 5. Wavelet Matrix와 연결
+## Wavelet Matrix와 연결
 
 Wavelet Matrix의 level bitvector에서 필요한 연산은 대부분 rank입니다.
 
@@ -180,7 +180,7 @@ Wavelet Matrix의 level bitvector에서 필요한 연산은 대부분 rank입니
 
 따라서 Wavelet Matrix 구현을 메모리 효율적으로 만들려면 bitvector를 먼저 탄탄하게 만드는 편이 좋습니다.
 
-## 6. 메모리 계산
+## 메모리 계산
 
 길이 `N` bitvector가 있다고 합시다.
 
@@ -192,7 +192,7 @@ Wavelet Matrix의 level bitvector에서 필요한 연산은 대부분 rank입니
 
 대회 구현에서는 완전한 이론적 succinct보다 "raw bit + rank table"의 균형점이 더 실용적입니다.
 
-## 7. Index Convention
+## Index Convention
 
 rank/select는 index convention이 중요합니다.
 
@@ -206,7 +206,7 @@ rank/select는 index convention이 중요합니다.
 
 문제나 라이브러리마다 select를 1-indexed로 정의할 수 있으니 wrapper를 분리합니다.
 
-## 8. 시간 복잡도
+## 시간 복잡도
 
 | 연산 | 단순 prefix | succinct rank |
 | --- | ---: | ---: |
@@ -217,7 +217,7 @@ rank/select는 index convention이 중요합니다.
 
 select까지 `O(1)` 또는 `O(log word)`로 만들려면 추가 index가 필요합니다.
 
-## 9. 자주 하는 실수
+## 자주 하는 실수
 
 1. `rank(pos)`에 pos 위치 bit를 포함할지 헷갈린다.
 2. `1ULL << 64` 같은 undefined shift를 만든다.
@@ -225,19 +225,10 @@ select까지 `O(1)` 또는 `O(log word)`로 만들려면 추가 index가 필요�
 4. select의 k를 0-indexed/1-indexed로 섞는다.
 5. `unsigned short` block count가 superblock 크기보다 작다는 전제를 깨뜨린다.
 
-## 10. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 필요한 연산이 rank만인지, select도 필요한지?
 - bitvector가 static인가?
 - 메모리 제한이 prefix int 배열을 허용하는가?
 - index convention이 `[0, pos)`인가 `[0, pos]`인가?
 - Wavelet Matrix나 compressed index의 내부 부품으로 쓰는가?
-
-## 11. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: bitvector rank `/practice/...` 문제 필요 | raw bit와 prefix rank 구현 | rank |
-| 표준 | TODO: select query `/practice/...` 문제 필요 | binary search select | select |
-| 응용 | TODO: wavelet matrix memory 개선 `/practice/...` 문제 필요 | level bitvector 압축 | succinct |
-| 함정 | TODO: padding bit 처리 `/practice/...` 문제 필요 | 마지막 word mask | bit operation |

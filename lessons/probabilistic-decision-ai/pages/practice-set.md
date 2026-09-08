@@ -138,18 +138,6 @@ int main() {
 3. `H = 0`, absorbing state, reward가 모두 음수인 경우를 deterministic case로 둡니다.
 4. simulator sample 평균과 비교하지 않습니다. 이 문제는 전이표가 주어진 exact DP입니다.
 
-## h-contest 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: feedback boundary `/practice/...` 문제 필요 | 관측 모델 분류 | full-information vs bandit |
-| 입문 | 로컬: finite-horizon MDP value DP | horizon DP와 Bellman 식 | MDP |
-| 입문 | TODO: stochastic shortest path `/practice/...` 문제 필요 | absorbing goal과 proper policy | SSP |
-| 표준 | TODO: MCTS toy game `/practice/...` 문제 필요 | selection/rollout/backprop | UCT |
-| 표준 | TODO: hidden-state search `/practice/...` 문제 필요 | belief filtering | imperfect information |
-| 응용 | TODO: POMDP belief update `/practice/...` 문제 필요 | Bayes update | observation model |
-| 응용 | TODO: bandit simulation `/practice/...` 문제 필요 | posterior update와 regret | Thompson sampling |
-| 심화 | TODO: online planning evaluation `/practice/...` 문제 필요 | paired seed benchmark | time budget |
 
 ## 완료 기준
 

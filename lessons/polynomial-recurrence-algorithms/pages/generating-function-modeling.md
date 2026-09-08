@@ -8,13 +8,13 @@ Generating Function Modeling은 counting 문제나 DP 식을 계수열로 보고
 2. 독립 선택은 곱, 대안 선택은 합, 반복 선택은 geometric series로 바꾼다.
 3. 분모가 낮은 rational form이면 recurrence나 Bostan-Mori로 연결한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: Combinatorics nCr, Formal Power Series, Linear Recurrence Applications
 - 함께 보면 좋은 레슨: Bostan-Mori, FPS Log/Exp, Recurrence Guessing
 - 다음에 볼 레슨: Black-Box Linear Algebra, polynomial DP, combinatorial species basics
 
-## 1. 문제 신호
+## 문제 신호
 
 | 문제 표현 | 생성함수 관점 |
 | --- | --- |
@@ -27,7 +27,7 @@ Generating Function Modeling은 counting 문제나 DP 식을 계수열로 보고
 
 가장 먼저 정할 것은 변수의 의미입니다. `x`가 "무게"인지, "길이"인지, "비용"인지 섞이면 식은 맞아 보여도 계수가 다른 값을 뜻합니다.
 
-## 2. 기본 번역 규칙
+## 기본 번역 규칙
 
 | 구조 | 식 |
 | --- | --- |
@@ -40,7 +40,7 @@ Generating Function Modeling은 counting 문제나 DP 식을 계수열로 보고
 
 대회 구현에서는 무한급수를 실제로 무한히 만들지 않습니다. 필요한 차수까지만 유지합니다.
 
-## 3. 작은 예시: Coin Change
+## 작은 예시: Coin Change
 
 동전 가치가 `2, 3`이고 순서를 무시해 합 `S`를 만드는 방법 수를 세어 봅시다.
 
@@ -54,7 +54,7 @@ answer(S) = [x^S] F(x)
 
 `S=6`이면 가능한 조합은 `2+2+2`, `3+3` 두 가지입니다. 실제로 `x^6` 계수는 2입니다.
 
-## 4. 순서가 있는 경우
+## 순서가 있는 경우
 
 같은 동전이라도 순서가 중요하면 식이 달라집니다.
 
@@ -66,7 +66,7 @@ sequence of choices = 1 + A + A^2 + A^3 + ...
 
 이제 `S=6`은 `2+2+2`, `3+3`뿐 아니라 순서가 다른 `2+?` 조합까지 세는 방식이 됩니다. "조합"과 "수열"을 구분하지 않으면 가장 쉽게 틀립니다.
 
-## 5. DP와 생성함수의 연결
+## DP와 생성함수의 연결
 
 아래 DP는 coefficient update와 같습니다.
 
@@ -82,7 +82,7 @@ dp[s] += dp[s - w]
 | sum 바깥, item 안쪽 | 순서 있는 sequence |
 | item 바깥, sum 감소 | 0/1 선택 |
 
-## 6. Truncated Polynomial 구현
+## Truncated Polynomial 구현
 
 아래 코드는 필요한 차수까지만 다항식을 곱합니다.
 
@@ -122,7 +122,7 @@ vector<long long> unboundedChoicePolynomial(int weight, int maxDegree) {
 
 `maxDegree`가 크고 다항식이 조밀하면 NTT가 필요합니다. 하지만 모델링 단계에서는 먼저 작은 truncate 구현으로 식이 맞는지 확인하는 편이 안전합니다.
 
-## 7. Rational Form으로 가는 신호
+## Rational Form으로 가는 신호
 
 생성함수가 아래 꼴이면 `n`이 아주 클 때도 coefficient extraction을 할 수 있습니다.
 
@@ -141,7 +141,7 @@ answer = [x^n] F(x)
 
 생성함수 모델링은 이 세 도구의 입력을 만들어 주는 역할을 합니다.
 
-## 8. 손으로 따라가는 예시
+## 손으로 따라가는 예시
 
 문제: `1`과 `2`를 사용해 합 `n`을 만드는 순서 있는 방법 수.
 
@@ -159,7 +159,7 @@ a_n = a_{n-1} + a_{n-2}
 
 DP로 풀 수도 있고, `n`이 매우 크면 recurrence로 풀 수도 있습니다. 생성함수는 왜 같은 문제가 Fibonacci로 연결되는지 설명합니다.
 
-## 9. 시간 복잡도 선택
+## 시간 복잡도 선택
 
 | 범위 | 접근 |
 | --- | --- |
@@ -171,7 +171,7 @@ DP로 풀 수도 있고, `n`이 매우 크면 recurrence로 풀 수도 있습니
 
 변수가 두 개 이상이면 식은 예뻐져도 구현이 급격히 어려워집니다. 대회에서는 한 변수를 계수로 두고 나머지는 DP state로 남기는 혼합 모델이 자주 더 실용적입니다.
 
-## 10. 자주 하는 실수
+## 자주 하는 실수
 
 1. 순서 있는 경우와 순서 없는 경우의 생성함수를 섞는다.
 2. `x`가 나타내는 값을 중간에 바꾼다.
@@ -179,19 +179,10 @@ DP로 풀 수도 있고, `n`이 매우 크면 recurrence로 풀 수도 있습니
 4. rational form이 나왔는데 분모 차수와 초기항 index를 맞추지 않는다.
 5. negative coefficient나 subtraction이 있는 식에서 모듈러 정규화를 빼먹는다.
 
-## 11. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 - 계수 `x^k`가 정확히 무엇을 의미하는가?
 - 선택이 독립인가, 순서가 있는 sequence인가?
 - 각 요소는 0/1, bounded, unbounded 중 무엇인가?
 - 필요한 계수 범위가 작은가, `n`이 큰가?
 - rational form이면 분모 차수와 초기항을 만들 수 있는가?
-
-## 12. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: generating function modeling `/practice/...` 문제 필요 | 선택 구조를 다항식으로 번역 | coefficient |
-| 표준 | TODO: bounded coin generating function `/practice/...` 문제 필요 | truncate와 DP loop 연결 | polynomial product |
-| 응용 | TODO: rational generating function `/practice/...` 문제 필요 | Bostan-Mori 입력 구성 | coefficient extraction |
-| 함정 | TODO: ordered vs unordered counting `/practice/...` 문제 필요 | sequence와 product 구분 | combinatorial model |

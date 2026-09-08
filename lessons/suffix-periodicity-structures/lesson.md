@@ -2,21 +2,13 @@
 
 Suffix and Periodicity Structures는 suffix array, suffix automaton, suffix tree, runs, border automaton, period query를 하나의 문자열 구조 트랙으로 묶는 허브입니다. 이 주제들은 모두 "문자열의 모든 suffix/substr/period 정보를 어떻게 압축해서 질의할 것인가"라는 같은 문제군에 속합니다.
 
-개별 자료구조 이름보다 먼저 아래 질문을 결정해야 합니다.
-
-1. suffix를 사전순으로 정렬해야 하는가?
-2. 모든 substring을 상태 DAG로 세거나 탐색해야 하는가?
-3. 여러 문자열을 동시에 처리해야 하는가?
-4. 반복 주기, border, run을 질의해야 하는가?
-5. suffix tree 수준의 explicit edge 구조가 필요한가?
-
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: KMP/Z/Rolling Hash, Trie/Aho-Corasick, Sorting, Sparse Table/RMQ
 - 함께 보면 좋은 레슨: Lyndon Factorization, Palindrome Structures, String Matching
 - 다음에 볼 레슨: Palindrome Structures, String Period Query Applications, Advanced String DP
 
-## 1. 모델 선택 표
+## 모델 선택 표
 
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
@@ -29,9 +21,8 @@ Suffix and Periodicity Structures는 suffix array, suffix automaton, suffix tree
 | 주기, run, 반복 구조가 문제의 핵심이다 | [Runs and Periodicity](pages/runs-periodicity.md) |
 | prefix-function 기반 상태 전이가 필요하다 | [Border Automaton](pages/border-automaton.md) |
 | period query를 여러 번 처리해야 한다 | [String Period Query Applications](pages/string-period-query-applications.md) |
-| 구조 선택이 헷갈린다 | [Suffix Model Map](pages/suffix-model-map.md) |
 
-## 2. 자료구조별 강점
+## 자료구조별 강점
 
 | 구조 | 강점 | 약점 |
 | --- | --- | --- |
@@ -42,6 +33,12 @@ Suffix and Periodicity Structures는 suffix array, suffix automaton, suffix tree
 | Runs/Periodicity | 반복 구조와 최소 주기 | 기본 matching과 관점이 다름 |
 | Border Automaton | prefix-function 상태 전이 | suffix 전체 정렬 문제에는 맞지 않음 |
 
-## 3. 공개 상태
+## 공개 상태
 
-하위 페이지들은 기존 구현과 설명을 보존합니다. 아직 실제 practice link가 부족한 항목은 [Practice Set](pages/practice-set.md)에 TODO로 모아 둡니다.
+문자열 구조를 비교하는 로컬 연습은 [Practice Set](pages/practice-set.md)에서 진행합니다.
+
+## 표현과 인덱스
+
+Alphabet 크기에 따라 transition을 배열로 둘지 정합니다. 여러 문자열을 붙이면 원문에 없는 separator를 쓰고, occurrence의 개수만 필요한지 위치까지 필요한지 구분합니다.
+
+LCP 배열은 `LCP(sa[i], sa[i+1])`와 `LCP(sa[i-1], sa[i])` 중 어느 정의를 쓰는지 구현 전체에서 맞춥니다. SAM의 clone은 생성 시 실제 occurrence를 새로 만든 것이 아니므로 일반 상태와 같은 초기 count를 주지 않습니다. Border가 있다는 것과 문자열 전체가 그 길이로 반복된다는 조건도 구분해야 합니다.

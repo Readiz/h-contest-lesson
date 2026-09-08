@@ -8,13 +8,13 @@ Sweep Line은 좌표 평면의 이벤트를 한 방향으로 정렬해 훑으면
 2. sweep line이 지나간 상태를 자료구조에 유지한다.
 3. 직사각형 넓이, 교차 판정, 최근접 후보처럼 active set만 보면 되는 문제를 처리한다.
 
-## 0. 선수 지식과 이어지는 레슨
+## 선수 지식과 이어지는 레슨
 
 - 선수 지식: 정렬, 좌표 압축, Segment Tree, CCW와 선분 교차
 - 함께 보면 좋은 레슨: 기하 기본, Rotating Calipers, Segment Tree
 - 다음에 볼 레슨: Bentley-Ottmann, closest pair, kinetic ordering
 
-## 1. 문제 신호
+## 문제 신호
 
 Sweep line은 평면 객체를 한 축 기준으로 훑을 수 있을 때 나옵니다.
 
@@ -28,7 +28,7 @@ Sweep line은 평면 객체를 한 축 기준으로 훑을 수 있을 때 나옵
 
 핵심은 이벤트 사이 구간에서는 active 상태가 변하지 않는다는 점입니다.
 
-## 2. 이벤트 설계
+## 이벤트 설계
 
 직사각형 합집합 넓이를 예로 보면, 각 직사각형 `[x1, x2) x [y1, y2)`는 두 이벤트로 바뀝니다.
 
@@ -43,7 +43,7 @@ x = x2: y 구간 [y1, y2)를 active에서 제거
 area += coveredYLength * (nextX - currentX)
 ```
 
-## 3. 좌표 압축과 구간 의미
+## 좌표 압축과 구간 의미
 
 y좌표를 압축할 때 node가 나타내는 것은 점이 아니라 인접 좌표 사이의 구간입니다.
 
@@ -55,7 +55,7 @@ index 1 구간은 [4, 10)
 
 따라서 `[y1, y2)`를 덮으려면 압축 index `l`부터 `r - 1`까지 갱신합니다. 이 off-by-one이 직사각형 union area에서 가장 자주 틀리는 부분입니다.
 
-## 4. 직사각형 합집합 넓이 구현
+## 직사각형 합집합 넓이 구현
 
 아래 코드는 정수 좌표 직사각형들의 합집합 넓이를 계산합니다. y축 구간 cover count와 실제 덮인 길이를 Segment Tree로 관리합니다.
 
@@ -169,7 +169,7 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 
 좌표와 넓이 곱은 커질 수 있으므로 `long long`을 씁니다. 문제에서 모듈러 넓이를 요구하지 않는 한 중간 계산도 실제 정수 범위를 확인해야 합니다.
 
-## 5. 선분 교차 sweep
+## 선분 교차 sweep
 
 선분 교차 판정은 이벤트와 active set을 쓰지만 직사각형 넓이보다 구현 난도가 높습니다.
 
@@ -180,7 +180,7 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 
 단, 같은 x좌표 이벤트, 수직 선분, 겹치는 collinear 선분까지 포함하면 comparator와 이벤트 순서가 까다롭습니다. 입문 단계에서는 직사각형 union area처럼 구간 cover가 명확한 sweep부터 익히는 것이 좋습니다.
 
-## 6. 이벤트 순서
+## 이벤트 순서
 
 같은 좌표의 이벤트 처리 순서는 문제 의미에 맞춰 고정해야 합니다.
 
@@ -193,7 +193,7 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 
 같은 x좌표를 한 번에 묶어 처리하면 이벤트 사이 폭이 0인 구간에서 잘못된 면적을 더하는 일을 줄일 수 있습니다.
 
-## 7. 시간 복잡도
+## 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -204,7 +204,7 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 
 여기서 `N`은 보통 이벤트 수입니다. 직사각형 `R`개면 이벤트는 `2R`개입니다.
 
-## 8. 자주 하는 실수
+## 자주 하는 실수
 
 | 실수 | 결과 | 확인 방법 |
 | --- | --- | --- |
@@ -215,7 +215,7 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 | 선분 active comparator가 현재 x를 반영하지 않음 | set 순서 깨짐 | comparator 설계 주의 |
 | 좌표 곱을 int로 계산 | overflow | `long long` |
 
-## 9. 문제를 볼 때 체크할 조건
+## 문제를 볼 때 체크할 조건
 
 1. 이벤트를 한 축 기준으로 정렬할 수 있는가?
 2. 이벤트 사이에서 답에 필요한 active 상태가 변하지 않는가?
@@ -225,12 +225,3 @@ long long unionArea(const vector<Rectangle>& rectangles) {
 6. 모든 쌍 비교보다 sweep이 실제로 이득인가?
 
 Sweep Line은 "움직이는 선"보다 "상태가 바뀌는 시점만 본다"는 발상이 중요합니다. 이벤트 설계와 active 자료구조가 맞으면 기하 문제뿐 아니라 시간 구간 문제에도 같은 패턴을 적용할 수 있습니다.
-
-## 10. 연습 문제
-
-| 단계 | 문제 | 목표 | 힌트 키워드 |
-| --- | --- | --- | --- |
-| 입문 | TODO: 직사각형 합집합 넓이 `/practice/...` 문제 필요 | x 이벤트와 y cover length 관리 | rectangle union |
-| 표준 | TODO: 점과 구간 포함 질의 `/practice/...` 문제 필요 | 이벤트 순서와 active count | offline sweep |
-| 응용 | TODO: 선분 교차 존재 판정 `/practice/...` 문제 필요 | active set의 이웃만 검사 | segment intersection |
-| 함정 | TODO: 같은 좌표 이벤트가 많은 sweep `/practice/...` 문제 필요 | tie-breaking과 grouped events | event order |
