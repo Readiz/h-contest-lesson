@@ -37,7 +37,7 @@ prefix[4] - prefix[1] = 9 - 3 = 6
 
 ## 구현
 
-값 하나는 `int` 범위여도 `n`개를 더하면 넘칠 수 있어 누적합을 `long long`으로 저장합니다.
+`prefix[i]`에는 앞의 `i`개 원소 합을 저장합니다. `prefix[0] = 0`을 두면 `l = 0`인 구간도 같은 식으로 계산할 수 있습니다.
 
 ```cpp
 #include <tuple>
@@ -59,61 +59,9 @@ long long rangeSum(const vector<long long>& prefix, int l, int r) {
 }
 ```
 
-구간이 비어 있을 수 있는 문제라면 호출 전에 약속을 정합니다. 예를 들어 `l > r`이면 0을 반환하게 만들 수 있습니다.
+구간은 0부터 시작하는 양 끝 포함 `[l, r]`입니다. 입력이 1부터 시작하면 두 끝에서 1을 뺍니다. 빈 구간을 허용하는 호출부에서는 `l > r`일 때 0을 반환하도록 처리합니다.
 
-```cpp
-long long safeRangeSum(const vector<long long>& prefix, int l, int r) {
-    if (l > r) return 0;
-    return prefix[r + 1] - prefix[l];
-}
-```
-
-## 왜 n + 1칸을 쓰는가
-
-`prefix[i] = a[0] + ... + a[i]`처럼 `n`칸으로 만들 수도 있습니다. 하지만 그러면 `l == 0`인 구간을 따로 처리해야 합니다.
-
-```cpp
-long long sum;
-if (l == 0) sum = prefix[r];
-else sum = prefix[r] - prefix[l - 1];
-```
-
-`prefix[0] = 0`인 `n + 1`칸 방식은 모든 구간을 같은 식으로 처리합니다.
-
-```cpp
-long long sum = prefix[r + 1] - prefix[l];
-```
-
-실전에서는 이 방식이 off-by-one 실수를 줄입니다.
-
-## 여러 구간을 빠르게 합산하기
-
-누적합은 질의가 많은 문제에서 효과가 큽니다.
-
-```text
-n = 100000
-q = 100000
-각 질의마다 [l, r] 합을 출력
-```
-
-매 질의마다 직접 더하면 최악의 경우 `O(nq)`입니다. 누적합을 만들면 전처리 `O(n)`, 각 질의 `O(1)`입니다.
-
-```cpp
-vector<long long> prefix = buildPrefix(a);
-
-for (int qi = 0; qi < q; ++qi) {
-    int l, r;
-    cin >> l >> r;
-    cout << rangeSum(prefix, l, r) << '\n';
-}
-```
-
-입력이 1-indexed로 들어오면 내부에서 0-indexed로 바꾸거나, 아예 배열도 1-indexed로 잡습니다.
-
-```cpp
-// 입력 l, r이 1-indexed이고 양 끝 포함이라면
-cout << prefix[r] - prefix[l - 1] << '\n';
-```
+누적합을 한 번 만드는 데 `O(n)`, 이후 구간 하나는 `O(1)`이므로 질의 `q`개의 총비용은 `O(n + q)`입니다.
 
 ## 차분 배열
 
@@ -149,46 +97,9 @@ diff[r + 1] -= x
 
 `l`부터 값이 x만큼 올라가고, `r + 1`부터 다시 x만큼 내려가도록 표시하는 것입니다.
 
-## 차분 배열 구현
+## 구간 업데이트를 모아서 적용하기
 
-구간 업데이트를 모두 모은 뒤 마지막 배열만 필요하면 차분 배열을 씁니다.
-
-```cpp
-#include <vector>
-using namespace std;
-
-vector<long long> applyRangeAdds(int n, const vector<tuple<int, int, long long>>& queries) {
-    vector<long long> diff(n + 1, 0);
-
-    for (auto [l, r, value] : queries) {
-        diff[l] += value;
-        if (r + 1 < n) {
-            diff[r + 1] -= value;
-        }
-    }
-
-    vector<long long> result(n, 0);
-    long long current = 0;
-    for (int i = 0; i < n; ++i) {
-        current += diff[i];
-        result[i] = current;
-    }
-    return result;
-}
-```
-
-`diff`를 `n + 1`칸으로 만들면 `r + 1 == n`일 때도 안전하게 뺄 수 있습니다.
-
-```cpp
-diff[l] += value;
-diff[r + 1] -= value;
-```
-
-그 대신 복원할 때는 `0`부터 `n - 1`까지만 봅니다.
-
-## 기존 배열에 구간 업데이트를 더하기
-
-처음 배열 `a`가 이미 있고, 그 위에 여러 구간 업데이트를 더해야 한다면 `diff`에 업데이트만 모은 뒤 마지막에 더하면 됩니다.
+`diff`에 업데이트만 모은 뒤 누적해서 원래 배열에 더합니다. 처음부터 0인 배열도 같은 코드에 넣을 수 있습니다.
 
 ```cpp
 vector<long long> addRangesToArray(
@@ -213,38 +124,9 @@ vector<long long> addRangesToArray(
 }
 ```
 
-최종 배열의 최댓값만 필요하다면 `result` 배열도 만들 필요가 없습니다.
+업데이트 `q`개를 기록하고 최종 배열을 복원하는 데 `O(q + n)`이 듭니다. 중간 상태의 구간 합을 묻는 질의가 섞이면 이 방식만으로는 처리할 수 없습니다.
 
-```cpp
-long long best = -(1LL << 60);
-long long extra = 0;
-for (int i = 0; i < n; ++i) {
-    extra += diff[i];
-    best = max(best, a[i] + extra);
-}
-```
-
-## 누적합과 차분 배열의 관계
-
-누적합과 차분 배열은 서로 반대 방향의 도구입니다.
-
-| 하고 싶은 일 | 쓰는 도구 |
-| --- | --- |
-| 값은 고정, 구간 합 질의가 많다 | 누적합 |
-| 구간 업데이트가 많고 마지막 배열만 필요하다 | 차분 배열 |
-| 구간 업데이트와 구간 합 질의가 섞인다 | Fenwick Tree 또는 Segment Tree |
-
-차분 배열에 누적합을 취하면 실제 배열이 됩니다. 실제 배열에 다시 누적합을 취하면 구간 합을 빠르게 구할 수 있습니다.
-
-그래서 다음처럼 두 단계를 이어 쓰는 문제도 있습니다.
-
-```text
-1. 여러 구간에 값을 더한다.
-2. 최종 배열을 만든다.
-3. 최종 배열의 구간 합 질의를 처리한다.
-```
-
-이 경우 차분 배열로 2번을 만들고, 그 결과에 누적합을 한 번 더 만들면 됩니다.
+시간 구간을 `[start, end)`로 표현한다면 종료 표시는 `end + 1`이 아니라 `end`에 둡니다. 모든 업데이트가 끝난 뒤 합 질의만 남는다면 복원한 배열의 누적합을 만들면 됩니다.
 
 ## 2차원 누적합
 
@@ -302,18 +184,7 @@ answer = 전체 - 위쪽 - 왼쪽 + 왼쪽 위 중복 영역
 
 ## 2차원 차분 배열
 
-격자의 여러 직사각형에 값을 더한 뒤 최종 격자만 필요하다면 2차원 차분 배열을 씁니다.
-
-직사각형 `(y1, x1)`부터 `(y2, x2)`까지 `value`를 더하려면 네 꼭짓점에 표시합니다.
-
-```cpp
-diff[y1][x1] += value;
-diff[y2 + 1][x1] -= value;
-diff[y1][x2 + 1] -= value;
-diff[y2 + 1][x2 + 1] += value;
-```
-
-이후 행 방향과 열 방향으로 누적합을 취하면 각 칸의 최종 증가량이 됩니다.
+여러 직사각형에 값을 더한 뒤 최종 격자만 필요할 때 씁니다. `(y1, x1)`에서 증가를 시작하고, 아래쪽과 오른쪽 경계 다음 칸에서 각각 취소합니다. 두 번 취소된 오른쪽 아래 영역은 한 번 더해 복구합니다.
 
 ```cpp
 #include <tuple>
@@ -348,28 +219,4 @@ vector<vector<long long>> applyRectAdds(
 }
 ```
 
-`diff`를 `(h + 1) x (w + 1)`로 만들면 `y2 + 1 == h`나 `x2 + 1 == w`인 표시도 안전합니다. 최종 결과는 `h x w`만 사용합니다.
-
-## Imos 방식
-
-차분 배열을 이용해 구간 업데이트를 모으는 방식을 일본식으로 Imos method라고 부르기도 합니다. 이름은 달라도 핵심은 같습니다.
-
-```text
-시작점에서 +1
-끝난 다음 위치에서 -1
-마지막에 누적합
-```
-
-가장 대표적인 예시는 시간표 겹침입니다.
-
-```text
-회의가 [start, end) 시간 동안 열린다.
-각 시간에 동시에 열리는 회의 수의 최댓값을 구한다.
-```
-
-반열린 구간 `[start, end)`라면 아래처럼 표시합니다.
-
-```cpp
-diff[start] += 1;
-diff[end] -= 1;
-```
+`diff`를 `(h + 1) × (w + 1)`로 만들면 `y2 + 1 == h`나 `x2 + 1 == w`인 표시도 안전합니다. 최종 결과는 `h × w`만 사용합니다.

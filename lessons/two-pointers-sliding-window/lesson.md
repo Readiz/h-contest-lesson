@@ -89,33 +89,3 @@ int longestAtMostKDistinct(const vector<int>& a, int k) {
 ```
 
 `while` 조건에는 "현재 창이 유효하지 않은 동안"을 넣습니다. 유효해진 뒤에 답을 갱신하면 창이 항상 문제 조건을 만족합니다.
-
-## 슬라이딩 윈도우와 빈도 관리
-
-슬라이딩 윈도우는 보통 연속 구간을 유지합니다. 오른쪽으로 하나 들어오면 빈도를 늘리고, 왼쪽에서 하나 빠지면 빈도를 줄입니다.
-
-```cpp
-vector<int> countOnesInEveryWindow(const vector<int>& a, int k) {
-    vector<int> result;
-    int ones = 0;
-    for (int i = 0; i < (int)a.size(); i++) {
-        if (a[i] == 1) ones++;
-        if (i >= k && a[i - k] == 1) ones--;
-        if (i + 1 >= k) result.push_back(ones);
-    }
-    return result;
-}
-```
-
-고정 길이 창은 왼쪽과 오른쪽이 동시에 움직입니다. 가변 길이 창은 오른쪽을 먼저 늘린 뒤 조건이 깨지는 동안 왼쪽을 움직입니다.
-
-## 누적합/이분 탐색과 비교
-
-투 포인터가 항상 정답은 아닙니다.
-
-| 상황 | 더 자연스러운 도구 |
-| --- | --- |
-| 구간 합 질의만 많고 배열은 고정 | 누적합 |
-| 답 후보가 단조성을 가진다 | 이분 탐색 |
-| 온라인 업데이트와 질의가 섞인다 | Fenwick Tree, Segment Tree |
-| 구간 조건이 포인터 이동으로 회복된다 | 투 포인터, 슬라이딩 윈도우 |

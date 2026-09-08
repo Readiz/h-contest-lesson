@@ -27,6 +27,8 @@
 
 위 순서는 앞으로 작성할 단위입니다. 공통 코드 기초 레슨의 첫 개편은 CHANGELOG에 기록했습니다. 다음 착수 단위는 **1번 ORDERING 중심의 첫 휴리스틱 실습**입니다.
 
+이번 예시 정리에서 ORDERING을 휴리스틱의 첫 페이지로 옮기고 테스트 강의에 2-opt 차분·복구 대조 절차를 연결했습니다. 위 단계의 제출별 성능 기록과 실전 확장까지 완료한 것은 아닙니다. Digit DP, 구간 DP, Implicit Treap은 미완성 골격을 본문에 두지 않고, 실제 문제와 끝까지 동작하는 풀이가 준비될 때 다시 다룹니다.
+
 ### 목차와 연결도 함께 정리할 항목
 
 - 기본 트랙의 표시 순서와 선수 관계를 맞춥니다. 현재 meldable-heap → union-find, heuristic → dynamic-programming, tsp-hamiltonian → graph-tree-basics, minimax-alpha-beta → testing-and-stress 등의 역순 의존을 확인하고, 실제 필수 지식과 선택 참고를 분리합니다.

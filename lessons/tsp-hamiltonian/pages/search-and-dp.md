@@ -1,26 +1,8 @@
 # TSP와 해밀턴 경로: 완전탐색과 비트마스크 DP
 
-## 그래프 표현부터 정한다
+## 간선과 비용의 의미
 
-해밀턴 경로는 보통 간선이 있는지 없는지만 중요합니다.
-
-```cpp
-vector<vector<int>> graph(n);
-vector<vector<bool>> connected(n, vector<bool>(n, false));
-```
-
-TSP는 정점 사이 이동 비용이 필요합니다. 완전 그래프가 아니라면 갈 수 없는 간선을 `INF`로 두고 처리할 수 있습니다.
-
-```cpp
-const long long INF = 4e18;
-vector<vector<long long>> cost(n, vector<long long>(n, INF));
-
-for (int i = 0; i < n; ++i) {
-    cost[i][i] = 0;
-}
-```
-
-문제에서 "어느 도시에서든 어느 도시로든 이동할 수 있다"고 하면 완전 그래프입니다. 그렇지 않다면 마지막에 시작점으로 돌아오는 간선이 있는지도 반드시 확인해야 합니다.
+해밀턴 경로에서는 `connected[u][v]`로 간선 유무를, TSP에서는 `cost[u][v]`로 이동 비용을 나타냅니다. 아래 코드의 `INF`는 갈 수 없는 간선입니다. `n >= 2`를 가정하며, 비용 합이 `INF`와 정수 범위를 넘지 않아야 합니다.
 
 ## 완전탐색: 모든 방문 순서 시험
 
@@ -58,30 +40,7 @@ do {
 
 시작점을 `0`으로 고정해도 되는 이유는 순회 사이클에서는 어디서 출발해도 같은 원형 순서를 표현하기 때문입니다. 그래도 경우의 수는 `(n - 1)!`이므로 금방 커집니다.
 
-해밀턴 경로 존재 여부도 순열로 확인할 수 있습니다.
-
-```cpp
-vector<int> order(n);
-iota(order.begin(), order.end(), 0);
-
-bool exists = false;
-
-do {
-    bool ok = true;
-    for (int i = 0; i + 1 < n; ++i) {
-        if (!connected[order[i]][order[i + 1]]) {
-            ok = false;
-            break;
-        }
-    }
-    if (ok) {
-        exists = true;
-        break;
-    }
-} while (next_permutation(order.begin(), order.end()));
-```
-
-이 완전탐색을 작은 입력의 기준 답으로 남겨 두고 DP 결과와 비교할 수 있습니다.
+작은 입력에서는 이 결과를 DP의 기준 답으로 사용할 수 있습니다.
 
 ## 중복을 보는 관점
 
@@ -146,33 +105,9 @@ for (int last = 0; last < n; ++last) {
 }
 ```
 
-해밀턴 사이클은 마지막 정점에서 시작점으로 돌아오는 간선을 추가로 확인해야 합니다. 시작점을 `0`으로 고정하면 상태 수가 줄고, 사이클 확인도 명확해집니다.
+해밀턴 사이클은 `dp[1][0]`만 시작 상태로 두고, 마지막 정점에서 0으로 돌아오는 간선까지 확인합니다. 시작점을 고정하지 않는 경로와 초기값을 혼동하면 안 됩니다.
 
-```cpp
-vector<vector<char>> dp(full, vector<char>(n, false));
-dp[1][0] = true;
-
-for (int mask = 0; mask < full; ++mask) {
-    for (int last = 0; last < n; ++last) {
-        if (!dp[mask][last]) continue;
-
-        for (int next = 0; next < n; ++next) {
-            if (mask & (1 << next)) continue;
-            if (!connected[last][next]) continue;
-            dp[mask | (1 << next)][next] = true;
-        }
-    }
-}
-
-bool hasHamiltonianCycle = false;
-for (int last = 1; last < n; ++last) {
-    if (dp[full - 1][last] && connected[last][0]) {
-        hasHamiltonianCycle = true;
-    }
-}
-```
-
-시간 복잡도는 `O(2^n * n^2)`, 메모리는 `O(2^n * n)`입니다.
+시간은 `O(2^n × n²)`, 메모리는 `O(2^n × n)`입니다.
 
 ## TSP DP: Held-Karp 알고리즘
 
@@ -215,3 +150,29 @@ for (int last = 1; last < n; ++last) {
 ```
 
 이 알고리즘을 Held-Karp DP라고 부릅니다. 완전탐색의 `(n - 1)!`보다 훨씬 낫지만, 여전히 지수 시간입니다. `n = 20`이면 상태가 약 `2^20 * 20`, 즉 2천만 개 수준입니다. `long long` 테이블이면 메모리도 커지므로 제한을 먼저 계산해야 합니다.
+
+시작점으로 돌아오지 않는 경로가 목표라면 마지막 `cost[last][0]`을 더하지 않고 `dp[full - 1][last]`의 최솟값만 고릅니다.
+
+## 경로 복원과 메모리
+
+방문 순서가 필요하면 `parent[mask][last]`를 -1로 초기화합니다. 더 작은 비용으로 `dp[nextMask][next]`를 갱신하는 순간 `parent[nextMask][next] = last`도 기록합니다. 최종 비용을 결정한 정점을 `bestLast`에 저장한 뒤 거꾸로 따라갑니다.
+
+```cpp
+int mask = full - 1;
+int last = bestLast;
+vector<int> route;
+
+while (last != -1) {
+    route.push_back(last);
+    int previous = parent[mask][last];
+    mask ^= (1 << last);
+    last = previous;
+}
+
+reverse(route.begin(), route.end());
+route.push_back(0); // TSP cycle이면 시작점으로 복귀
+```
+
+현재 `last`의 부모를 읽고 그 비트를 지운 뒤 부모로 이동합니다. 순서를 바꾸면 다른 상태의 부모를 읽게 됩니다.
+
+`n = 20`에서 `long long dp[1 << n][n]`은 160MiB이고 `int` 부모 테이블은 80MiB를 더 씁니다. 시작점을 포함하지 않는 마스크를 **건너뛰기만 해서는 할당한 메모리가 줄지 않습니다**. 메모리가 부족하다면 시작점 비트를 제외한 별도 인덱스로 테이블을 만들거나, 비용 범위가 허용할 때 자료형을 줄여야 합니다.

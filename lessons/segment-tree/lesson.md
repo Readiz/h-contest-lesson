@@ -1,19 +1,6 @@
 # Segment Tree
 
-Segment Tree는 배열을 여러 구간으로 나누어 저장하고, 구간 합/최솟값/최댓값 같은 질의를 빠르게 처리하는 자료구조입니다. 한국어로는 보통 **세그먼트 트리**라고 부릅니다.
+배열 값이 바뀌는 동안 구간 합·최솟값·최댓값을 묻는다면, 구간을 반으로 나눈 트리에 결과를 저장할 수 있습니다. 바뀐 위치를 포함하는 구간만 고쳐 점 갱신과 구간 질의를 `O(log n)`에 처리합니다.
 
-대표적인 문제는 다음과 같습니다.
-
-```text
-배열 값이 바뀔 수 있다.
-중간중간 구간 [l, r]의 합, 최솟값, 최댓값을 빠르게 물어본다.
-```
-
-배열을 매번 전부 훑으면 질의 하나가 `O(n)`입니다. Segment Tree를 쓰면 점 업데이트와 구간 질의를 모두 `O(log n)`에 처리할 수 있습니다.
-
-## 문서 구성
-
-- [기본 구간 질의](pages/basic-range-query.md): Top-down 재귀 Segment Tree로 구간 합 질의와 점 업데이트를 구현합니다.
-- [Bottom-up 구현](pages/bottom-up-implementation.md): 반복문 기반 Segment Tree의 배열 배치와 질의 방식을 정리합니다.
-- [Lazy Propagation](pages/lazy-propagation.md): 구간 업데이트와 구간 질의를 lazy 값으로 처리하는 구현을 다룹니다.
-- [Monoid와 Lazy 합성](pages/monoid-and-lazy-composition.md): 합 이외의 질의와 덧셈·대입이 섞인 업데이트를 다룹니다.
+- [기본 구간 질의](pages/basic-range-query.md): 합 질의와 점 대입을 구현하고, 다른 연산에 필요한 항등원을 정합니다.
+- [Lazy Propagation](pages/lazy-propagation.md): 구간 전체를 갱신할 때 자식으로 전달할 값을 남깁니다. 덧셈과 대입의 적용 순서도 비교합니다.

@@ -44,12 +44,3 @@ c++ -std=c++17 -O2 main.cpp user.cpp -o ordering-baseline
 | 평가 | TC별 원래 비용, 총 비용, 실행 시간을 기록 |
 
 첫 개선은 [ORDERING 경로 개선 사례](https://h.readiz.com/learn/heuristic/ordering-route-improvement)의 nearest neighbor입니다. 번호 순서 → 가까운 곳부터 선택 → 2-opt 순서로 한 번에 한 요소만 바꾸고 같은 TC에서 비교합니다. 난수 셔플이나 SA는 이 비교가 가능해진 다음에 추가합니다.
-
-## 실전 문제로 옮길 때
-
-| 문제 | 공통 코드가 맡는 부분 | 별도로 설계할 부분 |
-| --- | --- | --- |
-| [SCHEDULX](/practice/SCHEDULX) | 작업 ID 정렬, 부하 배열 | 기계별 비용, 최대 부하 목적 함수 |
-| [MINEEXPLORE](/practice/MINEEXPLORE) | 관측 상태 배열, 탐색 후보 관리 | 공개 API로 얻는 정보, 탐색과 실제 행동의 구분 |
-| [COUPANG2](/practice/COUPANG2) | 주문 ID·정렬·인덱스 목록 | 재고 배정, 배송 경로, 적재 제약 |
-| [AIRCONTECH](/practice/AIRCONTECH) | 후보 버퍼·복사·우선순위 | 미래 평가, 빔 너비, 실행할 행동 수 |

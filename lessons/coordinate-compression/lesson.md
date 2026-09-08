@@ -37,56 +37,17 @@ int compress(const vector<int>& values, int x) {
 
 모든 `x`가 `values`에 들어 있다는 전제가 있어야 합니다. `lower_bound`는 없는 값에도 삽입 위치를 반환하므로, 끝에 도달했는지와 실제 값이 `x`인지 구분합니다. 온라인으로 새로운 값이 중간에 들어오는 문제라면, 먼저 모든 쿼리를 읽어 등장 가능한 값을 모으는 오프라인 처리가 필요할 수 있습니다.
 
-## 원래 값 복원하기
+## 원래 거리로 계산해야 할 때
 
-압축 인덱스에서 원래 값으로 돌아가야 할 때는 `values[idx]`를 읽으면 됩니다.
+압축 인덱스 `i`의 원래 값은 `values[i]`입니다. 압축은 대소 관계만 보존합니다. 원래 값이 `100, 200, 1000000000`이면 압축 후에는 모두 이웃하지만, 두 구간의 실제 길이는 다릅니다.
 
-```cpp
-int originalValue = values[compressedIndex];
-```
+## 압축한 값을 빈도 인덱스로 쓰기
 
-압축은 값의 순서만 보존합니다. 값 사이의 실제 거리까지 보존하지는 않습니다. `100`과 `200`의 차이도 1칸이고, `100`과 `1,000,000,000`의 차이도 압축 후에는 이웃일 수 있습니다.
+역전쌍은 `i < j`인데 `a[i] > a[j]`인 쌍입니다. 왼쪽부터 읽으면서 [Fenwick Tree](https://h.readiz.com/learn/fenwick-tree)에 값별 등장 횟수를 저장하면 셀 수 있습니다.
 
-## Fenwick Tree와 함께 쓰기
+현재 값의 압축 인덱스가 `r`이고 앞에서 `i`개를 읽었다면, 새 역전쌍은 `i - prefixSum(r)`개입니다. `prefixSum(r)`는 현재 값 **이하**의 개수이므로 같은 값끼리는 세지 않습니다. 답에 더한 뒤 `r`의 빈도를 1 올립니다.
 
-좌표 압축은 "값 기준으로 prefix를 관리"할 때 특히 자주 씁니다. 예를 들어 지금까지 본 원소 중 `x` 이하가 몇 개인지 세고 싶다면, 값 `x`를 압축 인덱스로 바꾼 뒤 Fenwick Tree prefix sum을 질의합니다.
-
-```cpp
-struct Fenwick {
-    int n;
-    vector<int> tree;
-
-    Fenwick(int n) : n(n), tree(n + 1, 0) {}
-
-    void add(int idx, int delta) {
-        for (idx++; idx <= n; idx += idx & -idx) tree[idx] += delta;
-    }
-
-    int sumPrefix(int idx) const {
-        int result = 0;
-        for (idx++; idx > 0; idx -= idx & -idx) result += tree[idx];
-        return result;
-    }
-};
-
-long long countInversions(const vector<int>& a) {
-    vector<int> values = a;
-    sort(values.begin(), values.end());
-    values.erase(unique(values.begin(), values.end()), values.end());
-
-    Fenwick bit((int)values.size());
-    long long inversions = 0;
-    for (int i = 0; i < (int)a.size(); i++) {
-        int idx = lower_bound(values.begin(), values.end(), a[i]) - values.begin();
-        int notGreater = bit.sumPrefix(idx);
-        inversions += i - notGreater;
-        bit.add(idx, 1);
-    }
-    return inversions;
-}
-```
-
-위 Fenwick Tree는 1-index를 사용하므로, 0부터 시작하는 압축 인덱스에 1을 더해 전달합니다.
+`[3, 1, 3, 2]`를 읽으면 새로 생기는 쌍은 차례로 `0, 1, 0, 2`개, 총 3개입니다. 압축 인덱스가 0부터 시작하고 Fenwick API가 1부터 시작한다면 호출할 때 1을 더합니다.
 
 ## 구간 좌표 압축에서 주의할 점
 

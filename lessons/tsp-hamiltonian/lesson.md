@@ -25,5 +25,4 @@
 ## 문서 구성
 
 - [완전탐색과 비트마스크 DP](pages/search-and-dp.md) - 그래프 표현, 완전탐색, 해밀턴 경로 DP, Held-Karp DP를 정리합니다.
-- [경로 복원과 메모리](pages/restore-and-memory.md) - 경로/사이클 차이, 경로 복원, 메모리 최적화 판단 기준을 다룹니다.
 - [휴리스틱 개선과 근사](pages/heuristic-and-choices.md) - nearest neighbor, 2-opt와 Metric TSP의 근사 보장을 다룹니다.

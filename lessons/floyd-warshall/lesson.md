@@ -60,19 +60,6 @@ vector<vector<long long>> floydWarshall(vector<vector<long long>> dist) {
 
 초기화는 `dist[i][i] = 0`, 간선 `u -> v`에 대해 `dist[u][v] = min(dist[u][v], w)`입니다. 무방향 그래프면 반대 방향도 같이 넣습니다. 다중 간선은 가장 작은 비용만 남기고, 경로가 없는 `INF` 값은 덧셈에서 제외합니다.
 
-## 반복문 순서
-
-Floyd-Warshall은 `k`가 가장 바깥에 있어야 합니다.
-
-```text
-for k:
-  for i:
-    for j:
-      relax i -> k -> j
-```
-
-`i, j, k` 순서로 바꾸면 "허용된 중간 정점 집합"이라는 DP 단계가 깨질 수 있습니다. 일부 입력에서는 우연히 맞아도 일반적으로 보장되지 않습니다.
-
 ## 경로 복원
 
 최단거리뿐 아니라 실제 경로가 필요하면 `next[i][j]`를 저장합니다. `next[i][j]`는 `i`에서 `j`로 가는 최단 경로의 첫 다음 정점입니다.
@@ -109,32 +96,11 @@ void relaxPath(
 }
 ```
 
-초기에는 간선이 있는 `i -> j`에 대해 `next[i][j] = j`로 둡니다. 경로가 없으면 `-1`입니다.
+초기에는 간선이 있는 `i -> j`에 대해 `next[i][j] = j`로 둡니다. 경로가 없으면 `-1`입니다. `relaxPath`는 기본 구현의 두 `INF` 검사 뒤에서만 호출합니다. 음수 사이클의 영향을 받는 쌍에는 최단 경로가 없으므로 복원하지 않습니다.
 
-## 도달 가능성: Transitive Closure
+## 도달 가능성만 필요할 때
 
-가중치가 아니라 도달 가능 여부만 필요하면 boolean matrix로 같은 구조를 씁니다.
-
-```cpp compile-check
-#include <vector>
-using namespace std;
-
-void transitiveClosure(vector<vector<int>>& reachable) {
-    int n = (int)reachable.size();
-    for (int k = 0; k < n; ++k) {
-        for (int i = 0; i < n; ++i) {
-            if (!reachable[i][k]) {
-                continue;
-            }
-            for (int j = 0; j < n; ++j) {
-                reachable[i][j] = reachable[i][j] || reachable[k][j];
-            }
-        }
-    }
-}
-```
-
-이 방식은 "A가 B보다 먼저 와야 한다" 같은 관계를 모두 전파할 때 자주 나옵니다. bitset을 쓰면 상수 시간을 크게 줄일 수 있습니다.
+거리 대신 도달 여부를 저장해도 같은 순서로 계산합니다. `reachable[i][j]`를 갱신할 식은 `reachable[i][j] || (reachable[i][k] && reachable[k][j])`입니다. 기존 경로가 있거나, `k`까지 갈 수 있고 `k`에서 목적지로 갈 수 있으면 연결된 것입니다.
 
 ## 음수 사이클
 

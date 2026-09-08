@@ -1,320 +1,34 @@
 # 휴리스틱 알고리즘: 초기해와 지역 탐색
 
-## 초기해 만들기
+## 초기해와 개선 연산
 
-아래 코드는 작업 순서를 한 번 섞은 뒤, 현재 load가 가장 작은 기계에 작업을 넣습니다.
+[ORDERING](ordering-route-improvement.md)에서는 번호 순서로 나열해도 유효한 답입니다. 가까운 배송지를 차례로 고르면 매 단계의 이동은 짧아도, 이미 선택한 경로를 뒤집어야 전체 비용이 더 줄어드는 경우가 있습니다. 이것이 초기해 구성과 지역 탐색을 나누는 이유입니다.
 
-```cpp
-void makeInitialState(const Problem& p, State& s, int randomized) {
-    int order[MAX_TASKS];
-    clearState(p, s);
+2-opt는 현재 경로의 한 구간을 뒤집습니다. 비용이 줄면 채택하고, 나빠지면 원래 순열로 되돌립니다. 가능한 모든 2-opt 이동을 보아도 줄어드는 이동이 없으면 **그 연산에 대한 지역 최적**입니다. 전역 최적이라는 뜻은 아닙니다. 한 원소를 다른 위치로 옮기는 insertion이나 여러 원소를 제거해 다시 넣는 repair에는 개선 여지가 남을 수 있습니다.
 
-    for (int i = 0; i < p.taskCount; ++i) {
-        order[i] = i;
-    }
-    if (randomized) {
-        shuffleArray(order, p.taskCount);
-    }
+## 나쁜 이동을 받아들이는 확률
 
-    for (int k = 0; k < p.taskCount; ++k) {
-        int task = order[k];
-        int bestMachine = 0;
-
-        for (int m = 1; m < p.machineCount; ++m) {
-            if (s.load[m] < s.load[bestMachine]) {
-                bestMachine = m;
-            }
-        }
-
-        s.machineOf[task] = bestMachine;
-        s.load[bestMachine] += p.cost[task];
-    }
-}
-```
-
-초기해를 여러 번 만들 수 있다면 `randomized = 1`로 seed마다 다른 출발점을 얻을 수 있습니다. 반대로 디버깅 중에는 `randomized = 0`으로 고정해 같은 결과를 재현하는 편이 좋습니다.
-
-## 지역 탐색
-
-지역 탐색은 현재 답을 조금 바꾼 이웃 답을 만들어 보고, 더 좋으면 그 답으로 이동하는 방식입니다.
-
-대표적인 변경은 아래처럼 작습니다.
+Simulated Annealing(SA)은 더 나쁜 이웃도 확률적으로 받아들입니다. 최소화 문제에서 `loss = 새 비용 - 현재 비용`이라고 두면, 비용이 줄어드는 이동은 채택하고 `loss > 0`인 이동은 다음 확률로 채택합니다.
 
 ```text
-1. 원소 하나를 다른 위치로 옮긴다.
-2. 원소 두 개를 서로 바꾼다.
-3. 구간 하나를 뒤집는다.
-4. 일부 선택을 지우고 다시 채운다.
+P(accept) = exp(-loss / T), T > 0
 ```
 
-작업 배정 예시에서는 작업 하나를 다른 기계로 옮기는 연산을 먼저 만들 수 있습니다.
+| 손해 크기 | 채택 확률 |
+| --- | ---: |
+| `0.5T` | 약 61% |
+| `T` | 약 37% |
+| `2T` | 약 14% |
+| `3T` | 약 5% |
 
-```cpp
-struct Move {
-    int task;
-    int fromMachine;
-    int toMachine;
-};
+온도 `T`를 내리면 같은 손해를 덜 받아들입니다. `T`는 전체 점수보다 **이동 한 번의 비용 차이**에 맞춥니다. 예를 들어 보통 손해가 3000이라면 `T = 3000`에서 그 크기의 이동을 약 37% 받아들입니다. 초기해 주변의 이동을 샘플링해 손해를 측정하되, 측정 후 상태를 되돌립니다.
 
-Move makeRandomMove(const Problem& p, const State& s) {
-    Move mv;
-    mv.task = randomInt(p.taskCount);
-    mv.fromMachine = s.machineOf[mv.task];
-    mv.toMachine = mv.fromMachine;
+움직이는 상태 `current`와 지금까지 가장 좋은 상태 `best`는 따로 둡니다. 나쁜 이동을 채택해도 `best`는 유지하며, 제출할 답은 실제 비용이 가장 작은 `best`입니다. `T = 0`에서는 나쁜 이동을 거절해 0으로 나누지 않도록 처리합니다.
 
-    if (p.machineCount >= 2) {
-        while (mv.toMachine == mv.fromMachine) {
-            mv.toMachine = randomInt(p.machineCount);
-        }
-    }
+## 재시도와 탐색 예산
 
-    return mv;
-}
+같은 초기해에서 오래 탐색하는 방법과 다른 초기해에서 여러 번 다시 시작하는 방법은 총 예산을 맞춰 비교합니다. 한 번당 반복 수를 그대로 둔 채 재시도 횟수만 늘리면 탐색 전략과 실행 시간의 효과를 구분할 수 없습니다.
 
-void applyMove(const Problem& p, State& s, const Move& mv) {
-    if (mv.fromMachine == mv.toMachine) return;
+제출 환경에 시간 조회 API가 없다면 로컬에서 반복 횟수를 정합니다. 후보 생성·평가뿐 아니라 초기화와 최종 답 구성 시간도 포함해 재고, 입력 상한에서 제한 시간에 여유가 있는 횟수를 사용합니다.
 
-    int taskCost = p.cost[mv.task];
-    s.machineOf[mv.task] = mv.toMachine;
-    s.load[mv.fromMachine] -= taskCost;
-    s.load[mv.toMachine] += taskCost;
-}
-
-void rollbackMove(const Problem& p, State& s, const Move& mv) {
-    Move undo;
-    undo.task = mv.task;
-    undo.fromMachine = mv.toMachine;
-    undo.toMachine = mv.fromMachine;
-    applyMove(p, s, undo);
-}
-```
-
-이제 현재 답을 직접 바꿔 본 뒤, 나빠졌으면 되돌릴 수 있습니다.
-
-```cpp
-void improveByHillClimb(const Problem& p, State& current, State& best, long long& bestScore) {
-    long long currentScore = scoreState(p, current);
-    copyState(p, best, current);
-    bestScore = currentScore;
-
-    for (int iter = 0; iter < ITERATION_LIMIT; ++iter) {
-        Move mv = makeRandomMove(p, current);
-        applyMove(p, current, mv);
-
-        long long nextScore = scoreState(p, current);
-
-        if (nextScore >= currentScore) {
-            currentScore = nextScore;
-
-            if (currentScore > bestScore) {
-                copyState(p, best, current);
-                bestScore = currentScore;
-            }
-        } else {
-            rollbackMove(p, current, mv);
-        }
-    }
-}
-```
-
-이 방식은 이해하기 쉽지만, 한 번 주변에서 더 좋은 답이 없어지면 멈추기 쉽습니다. 이것을 지역 최적이라고 부릅니다.
-
-## 나쁜 이동도 가끔 받아들이기
-
-지역 최적을 벗어나려면 가끔은 점수가 조금 나빠지는 이동도 받아들여야 합니다. 대표적인 방법이 simulated annealing, 즉 담금질 기법입니다.
-
-아이디어는 간단합니다.
-
-- 초반에는 나쁜 이동도 어느 정도 받아들여 넓게 탐색합니다.
-- 시간이 지날수록 점점 보수적으로 바뀝니다.
-- 후반에는 거의 좋은 이동만 받아들여 답을 다듬습니다.
-
-보통 담금질 설명에서는 나빠진 정도를 `loss = currentScore - nextScore`라고 두고 아래 확률로 이동을 받아들입니다.
-
-```text
-accept_probability = exp(-loss / temperature)
-```
-
-헤더를 쓸 수 있는 일반 C++ 환경이라면 이 식을 그대로 구현하는 것이 정석입니다.
-
-```cpp
-#include <cmath>
-
-const int PROBABILITY_SCALE = 1 << 16;
-
-int acceptMoveStandard(long long diff, double temperature) {
-    if (diff >= 0) return 1;
-    if (temperature <= 0.0) return 0;
-
-    double probability = std::exp((double)diff / temperature);
-    return randomInt(PROBABILITY_SCALE) < (int)(probability * PROBABILITY_SCALE);
-}
-```
-
-여기서 `diff = nextScore - currentScore`이므로 나쁜 이동에서는 `diff`가 음수입니다. 따라서 `std::exp(diff / temperature)`는 `exp(-loss / temperature)`와 같습니다.
-
-이 식에서 중요한 것은 그래프의 모양입니다. `loss / temperature`가 커질수록 채택 확률이 빠르게 작아져야 합니다. 다만 이 글의 나머지 예시는 일부 대회 환경처럼 `cmath`를 쓸 수 없다고 가정하므로, 실전 구현에서는 사람이 외우고 조정하기 쉬운 대체 규칙을 씁니다.
-
-```text
-accept_probability = 2^(-loss / temperature)
-```
-
-이 규칙에서는 손해가 온도만큼 커질 때마다 채택률이 절반이 됩니다. 원본 `exp(-x)`와 정확히 같은 숫자는 아니지만, 차이는 온도에 상수배를 곱해 어느 정도 흡수할 수 있습니다. 중요한 것은 상수를 맞추는 것이 아니라, 온도가 현재 move의 점수 손해 스케일과 맞아야 한다는 점입니다.
-
-| `loss / temperature` | 원본 `exp(-x)` | 선형 보정 근사 | 보정 없음 |
-| --- | --- | --- | --- |
-| 0 | 100% | 100% | 100% |
-| 0.5 | 61% | 75% | 100% |
-| 1 | 37% | 50% | 50% |
-| 1.5 | 22% | 37% | 50% |
-| 2 | 14% | 25% | 25% |
-| 3 | 5% | 12% | 12% |
-| 5 | 1% 이하 | 3% | 3% |
-
-![어닐링 채택 확률 비교](../lesson-assets/annealing-acceptance.svg)
-
-헤더 없는 근사는 같은 온도에서는 더 넓게 움직입니다. 보정이 없으면 `0.5T`처럼 중간 손해도 이전 단계와 같은 확률로 받아들입니다. 선형 보정은 이 중간 구간을 완만하게 내려 주는 역할을 합니다. 전체적인 차이는 온도 스케일로 조정하면 됩니다. 같은 실제 채택률을 원하면 온도를 더 작게 잡으면 됩니다.
-
-### 실전 구현: 헤더 없이 쓰는 근사
-
-확률 눈금은 `PROBABILITY_SCALE = 1 << 16`으로 둡니다. `threshold`는 이 눈금 안에서 채택 기준을 나타내고, 마지막에는 `randomInt(PROBABILITY_SCALE)`와 비교합니다.
-
-구현은 두 단계입니다. 먼저 `loss`가 `temperature`를 한 번 넘을 때마다 확률을 절반으로 줄입니다. 마지막에 남은 `loss`는 현재 확률과 다음 절반 확률 사이를 선형으로 보정합니다.
-
-```cpp
-const int PROBABILITY_SCALE = 1 << 16;
-
-int acceptMove(long long diff, long long temperature) {
-    if (diff >= 0) return 1;
-    if (temperature <= 0) return 0;
-
-    long long loss = -diff;
-    long long whole = loss / temperature;
-    long long remain = loss % temperature;
-
-    int highChance = PROBABILITY_SCALE;
-    while (whole > 0 && highChance > 0) {
-        highChance >>= 1;
-        --whole;
-    }
-
-    if (highChance == 0) return 0;
-
-    int lowChance = highChance >> 1;
-    long long highWeight = temperature - remain;
-    long long lowWeight = remain;
-
-    // 더 정밀하게 쓰기 위해 highChance와 lowChance 사이를 선형으로 보정한다.
-    int threshold = (int)(((long long)highChance * highWeight
-        + (long long)lowChance * lowWeight) / temperature);
-
-    return randomInt(PROBABILITY_SCALE) < threshold;
-}
-```
-
-`remain == 0`이면 `highChance`를 그대로 쓰고, `remain`이 `temperature`에 가까워질수록 `lowChance`에 가까워집니다. 보정식을 빼면 더 단순하지만, `loss < temperature`인 모든 이동이 같은 확률로 처리됩니다. 이 한 줄을 넣으면 작은 손해와 큰 손해를 조금 더 자연스럽게 구분할 수 있습니다.
-
-### 온도는 어떻게 잡는가
-
-점수 함수의 절댓값보다 더 중요한 값은 **나쁜 move 하나가 보통 얼마나 손해를 내는지**입니다. 초기 점수가 `-100000000`인지 `-5000`인지는 점수 설계에 따라 달라집니다. 반면 `작업 하나를 옮겼을 때 보통 3000점 정도 나빠진다`는 값은 온도를 정하는 데 직접 쓸 수 있습니다.
-
-수렴 속도를 잘 모르는 상태에서는 먼저 현재 해 주변의 나쁜 move를 몇 번 샘플링합니다. 실제 상태는 되돌리면서 손해만 잽니다.
-
-```cpp
-long long estimateTypicalLoss(const Problem& p, State& state) {
-    const int SAMPLE_COUNT = 512;
-    long long baseScore = scoreState(p, state);
-    long long lossSum = 0;
-    int lossCount = 0;
-
-    for (int i = 0; i < SAMPLE_COUNT; ++i) {
-        Move mv = makeRandomMove(p, state);
-        applyMove(p, state, mv);
-
-        long long nextScore = scoreState(p, state);
-        if (nextScore < baseScore) {
-            lossSum += baseScore - nextScore;
-            ++lossCount;
-        }
-
-        rollbackMove(p, state, mv);
-    }
-
-    if (lossCount == 0) return 1;
-
-    long long typicalLoss = lossSum / lossCount;
-    if (typicalLoss < 1) typicalLoss = 1;
-    return typicalLoss;
-}
-```
-
-그다음 시작 온도와 끝 온도를 이 손해 기준으로 잡습니다.
-
-```cpp
-long long startTemperatureFromLoss(long long typicalLoss) {
-    return typicalLoss * 3;
-}
-
-long long endTemperatureFromLoss(long long typicalLoss) {
-    long long value = typicalLoss / 5;
-    return value > 0 ? value : 1;
-}
-
-long long temperatureAt(int iter, long long startTemp, long long endTemp) {
-    long long left = ITERATION_LIMIT - iter;
-    if (left < 0) left = 0;
-
-    return endTemp + (startTemp - endTemp) * left / ITERATION_LIMIT;
-}
-```
-
-이 값들은 정답이 아니라 출발점입니다.
-
-| 값 | 처음 잡는 기준 | 의미 |
-| --- | --- | --- |
-| `typicalLoss` | 나쁜 move 손해의 평균 | 점수 변화의 기본 단위 |
-| `START_TEMP` | `typicalLoss * 2`에서 `typicalLoss * 5` | 초반에 보통 손해를 자주 받아들임 |
-| `END_TEMP` | `typicalLoss / 5`에서 `typicalLoss / 20` | 후반에 보통 손해를 거의 거절 |
-| 반복 횟수 | 로컬 최악 입력에서 시간 여유를 두고 측정 | 환경 차이를 감안해 제한보다 짧게 |
-| move 크기 | 후반에도 의미 있는 작은 변경 | 너무 큰 move만 있으면 수렴이 거칠어짐 |
-
-초기 점수를 기준으로 온도를 잡을 수도 있지만, 그 경우에는 점수 함수가 안정적인 스케일을 가져야 합니다. 예를 들어 점수가 항상 `0`에서 `1,000,000` 사이이고 move 하나가 전체 점수의 작은 비율만 바꾸는 문제라면 `START_TEMP = initialScore / 1000` 같은 거친 출발점도 가능합니다. 하지만 일반적으로는 초기 점수보다 move 손해 샘플이 더 믿을 만합니다.
-
-튜닝할 때는 채택률을 봅니다.
-
-- 초반에도 나쁜 move를 거의 안 받으면 `START_TEMP`가 너무 낮습니다.
-- 후반에도 답이 계속 크게 흔들리면 `END_TEMP`가 너무 높거나 move가 너무 큽니다.
-- 초반 점수는 잘 흔들리는데 최고 점수가 안 오르면 move 종류가 부족할 수 있습니다.
-- seed마다 편차가 크면 한 번 깊게 도는 것보다 여러 restart가 나을 수 있습니다.
-
-```cpp
-void improveByAnnealing(const Problem& p, State& current, State& best, long long& bestScore) {
-    long long typicalLoss = estimateTypicalLoss(p, current);
-    long long startTemp = startTemperatureFromLoss(typicalLoss);
-    long long endTemp = endTemperatureFromLoss(typicalLoss);
-    long long currentScore = scoreState(p, current);
-
-    copyState(p, best, current);
-    bestScore = currentScore;
-
-    for (int iter = 0; iter < ITERATION_LIMIT; ++iter) {
-        Move mv = makeRandomMove(p, current);
-        applyMove(p, current, mv);
-
-        long long nextScore = scoreState(p, current);
-        long long diff = nextScore - currentScore;
-        long long temp = temperatureAt(iter, startTemp, endTemp);
-
-        if (acceptMove(diff, temp)) {
-            currentScore = nextScore;
-
-            if (currentScore > bestScore) {
-                copyState(p, best, current);
-                bestScore = currentScore;
-            }
-        } else {
-            rollbackMove(p, current, mv);
-        }
-    }
-}
-```
+실험 로그에는 입력 ID, solver seed, 탐색 횟수, 파라미터, 최종 비용과 실행 시간을 남깁니다. 같은 입력 묶음에서 평균과 최악 비용을 비교하며, 튜닝에 쓰지 않은 입력에서도 확인합니다. 차분·복구 오류를 찾는 방법은 [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)에 있습니다.

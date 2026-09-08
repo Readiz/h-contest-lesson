@@ -23,21 +23,6 @@
 
 재귀로 노드를 방문할 때 먼저 `push`를 호출해 현재 노드에 밀려 있는 값을 처리합니다.
 
-```cpp
-void push(int node, int start, int end) {
-    if (lazy[node] == 0) return;
-
-    tree[node] += (end - start + 1) * lazy[node];
-
-    if (start != end) {
-        lazy[node * 2] += lazy[node];
-        lazy[node * 2 + 1] += lazy[node];
-    }
-
-    lazy[node] = 0;
-}
-```
-
 이 함수는 세 가지 일을 합니다.
 
 1. 현재 노드의 합에 밀린 증가량을 반영합니다.
@@ -48,48 +33,11 @@ void push(int node, int start, int end) {
 
 업데이트 구간이 현재 노드를 완전히 덮으면, 그 노드의 lazy만 기록하고 바로 처리합니다. 일부만 겹치면 자식으로 내려갑니다.
 
-```cpp
-void rangeAdd(int node, int start, int end, int left, int right, long long value) {
-    push(node, start, end);
-
-    if (right < start || end < left) {
-        return;
-    }
-    if (left <= start && end <= right) {
-        lazy[node] += value;
-        push(node, start, end);
-        return;
-    }
-
-    int mid = (start + end) / 2;
-    rangeAdd(node * 2, start, mid, left, right, value);
-    rangeAdd(node * 2 + 1, mid + 1, end, left, right, value);
-    tree[node] = tree[node * 2] + tree[node * 2 + 1];
-}
-```
-
 완전히 포함되는 노드는 자식까지 내려가지 않습니다. 그래서 구간 업데이트도 `O(log n)`에 가까운 비용으로 처리됩니다.
 
 ## lazy 구간 질의
 
 질의도 마찬가지로 방문한 노드에서 `push`를 먼저 호출합니다.
-
-```cpp
-long long query(int node, int start, int end, int left, int right) {
-    push(node, start, end);
-
-    if (right < start || end < left) {
-        return 0;
-    }
-    if (left <= start && end <= right) {
-        return tree[node];
-    }
-
-    int mid = (start + end) / 2;
-    return query(node * 2, start, mid, left, right)
-        + query(node * 2 + 1, mid + 1, end, left, right);
-}
-```
 
 `push`를 빼먹으면 부모에는 업데이트가 반영되어 있는데 자식 값은 오래된 상태로 남을 수 있습니다.
 
@@ -172,4 +120,21 @@ struct LazySegmentTree {
 };
 ```
 
-구간 덧셈 + 구간 최솟값이라면 `tree[node]`는 합 대신 최솟값을 저장하고, 전체 구간에 값을 더할 때 `tree[node] += value`만 하면 됩니다. 반면 구간 대입처럼 기존 lazy와 새 lazy가 덮어쓰기 관계를 갖는 문제는 lazy 값을 합치는 규칙을 따로 설계해야 합니다.
+## 업데이트 순서가 달라지면
+
+lazy propagation에서는 lazy 값끼리 어떻게 합쳐지는지도 따로 정해야 합니다.
+
+| 업데이트 | 노드 값 변화 | lazy 합성 |
+| --- | --- | --- |
+| 구간 덧셈 + 구간 합 | `tree += value * length` | 기존 lazy에 더함 |
+| 구간 덧셈 + 구간 최솟값 | `tree += value` | 기존 lazy에 더함 |
+| 구간 대입 + 구간 합 | `tree = value * length` | 이전 lazy를 새 대입 값으로 덮음 |
+| 구간 대입 + 구간 최솟값 | `tree = value` | 이전 lazy를 새 대입 값으로 덮음 |
+
+구간 덧셈과 구간 대입이 동시에 있으면 "대입 뒤 덧셈"과 "덧셈 뒤 대입"의 순서가 결과를 바꿉니다. 이 경우 lazy 상태를 단일 숫자로 두기보다 `hasAssign`, `assignValue`, `addValue`처럼 의미를 분리해 합성 규칙을 명시하는 편이 안전합니다.
+
+빌드는 `O(n)`, 구간 덧셈과 합 질의는 `O(log n)`, 메모리는 `O(n)`입니다. 위 구현은 생성자에 전달한 비어 있지 않은 배열에서 시작합니다.
+
+## 구간 갱신 실습
+
+[창고 구역 장부](/practice/SHELFLOG)에 구간 덧셈·구간 합 구현을 적용할 수 있습니다. 전체 구간을 갱신한 직후 일부 구간을 조회하면 lazy 전달이 맞는지 확인하기 좋습니다.

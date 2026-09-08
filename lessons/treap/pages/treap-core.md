@@ -1,4 +1,4 @@
-# Treap과 BST 기본: Treap 핵심 연산
+# Treap과 BST 기본: 핵심 연산과 순위
 
 ## Treap
 
@@ -115,7 +115,7 @@ Node* insert(Node* root, Node* node) {
 }
 ```
 
-중복을 허용하지 않는 set이라면 먼저 `contains(key)`를 확인합니다.
+이 삽입 함수는 같은 key가 아직 없다는 전제로 호출합니다. 중복이 가능한 입력이면 key를 비교하며 트리를 탐색해 존재 여부를 먼저 확인하거나 `(value, id)`처럼 유일한 키를 사용합니다. `priority`는 입력 key와 독립적으로 뽑습니다. 난수 생성기는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics/arrays-and-random)를 사용할 수 있습니다.
 
 삭제는 찾은 노드를 제거하고, 그 노드의 왼쪽 subtree와 오른쪽 subtree를 merge합니다.
 
@@ -141,3 +141,36 @@ Node* erase(Node* root, int key) {
 ```
 
 왼쪽 subtree의 모든 key는 삭제된 key보다 작고, 오른쪽 subtree의 모든 key는 더 큽니다. 그래서 `merge(left, right)`의 전제가 맞습니다.
+
+## 순위와 k번째 원소
+
+`orderOfKey(x)`는 `x`보다 작은 원소 개수를 반환합니다.
+
+```cpp
+int orderOfKey(Node* root, int key) {
+    if (!root) return 0;
+
+    if (key <= root->key) {
+        return orderOfKey(root->left, key);
+    }
+    return getSize(root->left) + 1 + orderOfKey(root->right, key);
+}
+```
+
+`kth(root, k)`는 0-indexed로 k번째 작은 원소를 반환합니다. 호출부에서 `0 <= k < getSize(root)`인지 확인해야 합니다.
+
+```cpp
+int kth(Node* root, int k) {
+    int leftSize = getSize(root->left);
+
+    if (k < leftSize) {
+        return kth(root->left, k);
+    }
+    if (k == leftSize) {
+        return root->key;
+    }
+    return kth(root->right, k - leftSize - 1);
+}
+```
+
+둘 다 subtree 크기만 보고 한쪽으로 내려가므로 기대 `O(log n)`입니다.

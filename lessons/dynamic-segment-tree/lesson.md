@@ -151,16 +151,6 @@ struct DynamicSegmentTree {
 
 좌표 압축에서는 구간 길이를 잃기 쉽습니다. 구간 합집합 길이처럼 실제 좌표 간격이 중요하면 compression interval을 별도로 관리해야 합니다.
 
-## Persistent와 결합
-
-Dynamic Segment Tree는 node를 새로 만드는 구조라 persistent와도 잘 맞습니다. update 경로의 node만 clone하면 sparse persistent segment tree가 됩니다.
-
-```text
-newRoot = update(oldRoot, range)
-```
-
-다만 lazy propagation과 persistence를 함께 쓰면 query에서 node를 변경하지 않도록 push 방식을 조심해야 합니다.
-
 ## 메모리 계산
 
 구간 update 하나가 깊이 `log C`만큼 node를 만들고, segment tree interval decomposition 때문에 여러 경로에 닿을 수 있습니다.
@@ -169,7 +159,7 @@ newRoot = update(oldRoot, range)
 node count = O(number_of_operations * log coordinate_range)
 ```
 
-좌표 범위가 `2^60`이어도 깊이는 60입니다. 아래 구현은 질의에서도 `push`가 자식을 만들 수 있으므로, 메모리를 계산할 때 업데이트와 질의 수를 모두 포함합니다.
+좌표 범위가 `2^60`이어도 깊이는 60입니다. 위 구현은 질의에서도 `push`가 자식을 만들 수 있으므로, 메모리를 계산할 때 업데이트와 질의 수를 모두 포함합니다.
 
 ## 시간 복잡도
 

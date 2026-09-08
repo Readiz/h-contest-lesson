@@ -1,130 +1,39 @@
 # Minimax와 Alpha-Beta Pruning
 
-Minimax는 두 플레이어가 번갈아 최선의 수를 둔다고 가정하고 게임 트리의 값을 계산하는 알고리즘입니다. Alpha-Beta Pruning은 이미 더 좋은 선택이 보장된 가지를 잘라 탐색량을 줄입니다.
+두 사람이 번갈아 수를 두고, 한쪽의 이득이 다른 쪽의 손해인 게임을 생각합니다. 점수는 항상 첫 번째 플레이어 관점으로 표시합니다. 그 플레이어의 차례에는 자식 값의 최댓값을, 상대 차례에는 최솟값을 고릅니다.
 
-## 언제 Minimax인가
+## 상대의 선택까지 계산하기
 
-| 문제 신호 | 접근 |
-| --- | --- |
-| 두 플레이어가 번갈아 수를 둔다 | game tree |
-| 한쪽은 점수를 최대화, 다른 쪽은 최소화 | minimax |
-| 완전 탐색 가능한 깊이가 작다 | exact minimax |
-| 깊이가 크지만 평가 함수가 있다 | depth-limited search |
-| 같은 상태가 여러 경로로 나온다 | memoization/transposition |
-
-Nim처럼 impartial game의 합으로 분해되면 Grundy가 더 낫습니다. 체스류 게임처럼 상태 평가와 탐색이 필요하면 minimax 계열을 봅니다.
-
-## Minimax 정의
-
-현재 플레이어가 최대화한다고 보면:
+아래 트리에서 위쪽 플레이어는 점수를 최대화하고, 다음 수를 두는 상대는 최소화합니다.
 
 ```text
-value(state) = max value(next)  if current is maximizing
-value(state) = min value(next)  if current is minimizing
+                  MAX
+                /     \
+              MIN     MIN
+             /   \   /   \
+            3     5 2     9
 ```
 
-terminal state에서는 승패나 점수를 바로 반환합니다.
+왼쪽으로 가면 상대는 3을, 오른쪽으로 가면 2를 고릅니다. 따라서 루트에서는 왼쪽을 골라 3을 얻습니다. 잎의 최대 점수 9만 보고 오른쪽을 고르면 상대가 그 수를 골라 주리라고 가정한 셈입니다.
 
-```text
-win = +1
-draw = 0
-lose = -1
-```
+## 마지막 9를 읽지 않아도 되는 이유
 
-점수는 항상 최대화하는 플레이어 관점으로 계산합니다. 턴이 바뀌어도 승패 점수의 기준은 뒤집지 않습니다.
+왼쪽 가지를 먼저 계산하면 MAX는 이미 3을 확보할 수 있습니다. 이 하한이 `alpha = 3`입니다.
 
-## Alpha-Beta Pruning
+오른쪽 MIN에서 첫 잎 2를 읽는 순간 그 가지의 값은 **최대 2**라는 것을 압니다. 남은 잎이 9든 100이든 MIN은 2를 고를 수 있고, 더 작으면 그 값을 고릅니다. 루트의 MAX가 이 가지로 바꿀 이유가 없으므로 나머지 잎은 보지 않아도 됩니다.
 
-`alpha`는 maximizing player가 현재까지 보장한 최선 값입니다. `beta`는 minimizing player가 현재까지 보장한 최선 값입니다.
+`beta`는 MIN이 확보한 상한입니다. 탐색 중 `alpha >= beta`가 되면 이와 같은 이유로 남은 자식을 생략합니다. 오른쪽 가지를 먼저 보면 아직 확보한 3이 없어 마지막 잎까지 읽어야 합니다. 그래서 이전 탐색에서 좋았던 수를 먼저 보는 순서가 탐색량에 영향을 줍니다.
 
-탐색 중 `alpha >= beta`가 되면 더 봐도 부모가 선택하지 않을 가지이므로 잘라낼 수 있습니다.
+가지치기는 같은 깊이의 Minimax 결과를 유지합니다. 분기 수 `b`, 깊이 `d`에서 최악의 탐색량은 여전히 `O(b^d)`입니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <vector>
-using namespace std;
+## 게임을 끝까지 볼 수 없을 때
 
-struct GameState {
-    int value = 0;
-    bool terminal = false;
-    vector<GameState> nextStates;
-};
+깊이 제한에 도달한 미종료 상태는 평가 함수로 점수를 추정합니다. 종료 상태라면 추정값 대신 실제 승패나 점수를 반환합니다. 턴이 바뀌어도 점수의 관점은 바꾸지 않습니다.
 
-int evaluateTerminal(const GameState& state) {
-    return state.value;
-}
+이때 탐색 결과는 제한 깊이와 평가 함수에 대한 결과입니다. Alpha-Beta가 정확하게 계산해도 평가 함수의 오차까지 없애 주지는 않습니다. 상태를 직접 바꾸어 자식을 탐색했다면 다음 형제로 넘어가기 전에 수를 되돌려야 합니다.
 
-int alphaBeta(const GameState& state, int depth, int alpha, int beta, bool maximizing) {
-    if (depth == 0 || state.terminal) {
-        return evaluateTerminal(state);
-    }
+## 잘린 가지를 캐시에 넣을 때
 
-    if (maximizing) {
-        int best = -1000000000;
-        for (const GameState& next : state.nextStates) {
-            best = max(best, alphaBeta(next, depth - 1, alpha, beta, false));
-            alpha = max(alpha, best);
-            if (alpha >= beta) {
-                break;
-            }
-        }
-        return best;
-    }
+위 오른쪽 가지를 2에서 잘랐다면 정확한 값은 아직 모릅니다. 나머지 잎이 1일 수도 있으므로 저장할 정보는 “값이 2 이하”라는 **상한**입니다. 이를 정확한 점수 2로 재사용하면 다른 탐색 구간에서 잘못된 선택을 할 수 있습니다.
 
-    int best = 1000000000;
-    for (const GameState& next : state.nextStates) {
-        best = min(best, alphaBeta(next, depth - 1, alpha, beta, true));
-        beta = min(beta, best);
-        if (alpha >= beta) {
-            break;
-        }
-    }
-    return best;
-}
-```
-
-위 코드는 미리 만든 트리의 `value`를 읽는 형태입니다. 상태를 직접 변경하며 탐색한다면 자식 탐색 직후 move를 되돌려야 다음 형제도 같은 부모 상태에서 시작합니다.
-
-## Move ordering
-
-Alpha-beta는 좋은 수를 먼저 보면 가지치기가 강해집니다.
-
-| ordering 기준 | 이유 |
-| --- | --- |
-| 즉시 이기는 수 먼저 | 빠른 beta cutoff |
-| capture/큰 점수 변화 먼저 | 평가가 크게 갈림 |
-| 이전 iteration의 best move 먼저 | iterative deepening과 궁합 |
-| heuristic score 정렬 | pruning 효율 증가 |
-
-순서가 나쁘면 alpha-beta도 거의 minimax와 비슷하게 많은 노드를 봅니다.
-
-## Depth-limited Search
-
-전체 게임 트리가 너무 크면 깊이를 제한하고 evaluation function을 사용합니다.
-
-```text
-if depth == 0:
-    return heuristicScore(state)
-```
-
-종료된 게임은 깊이 제한에 도달했더라도 실제 승패를 반환합니다. 아직 끝나지 않은 상태에만 평가 함수를 적용하며, 이 함수도 최대화하는 플레이어 관점을 사용합니다. 이 값이 부정확하면 더 깊게 봐도 잘못된 결론을 낼 수 있습니다.
-
-## Memoization과 Transposition
-
-같은 상태가 여러 move order로 다시 나타날 수 있습니다. 이때 state hash를 key로 memoization하면 탐색량을 줄일 수 있습니다.
-
-```text
-memo[(stateHash, depth, maximizing)] = value
-```
-
-alpha-beta와 transposition table을 함께 쓸 때는 bound type(exact/lower/upper)을 구분해야 정확합니다. cutoff로 얻은 하한·상한을 정확한 점수로 재사용하면 잘못된 가지치기가 생깁니다.
-
-## 시간 복잡도
-
-| 방식 | 시간 |
-| --- | ---: |
-| minimax | `O(b^d)` |
-| alpha-beta 최선 ordering | 대략 `O(b^(d/2))` |
-| alpha-beta 최악 ordering | `O(b^d)` |
-
-`b`는 branching factor, `d`는 depth입니다. alpha-beta는 정답을 바꾸지 않고 탐색량만 줄입니다.
+같은 상태를 재사용하는 transposition table에는 상태와 남은 깊이뿐 아니라 값이 정확한 결과인지, 하한인지, 상한인지도 저장합니다.

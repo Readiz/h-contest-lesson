@@ -93,14 +93,6 @@ vector<int> topologicalSort(int n, const vector<vector<int>>& graph) {
 
 방향 그래프에 사이클이 있으면 모든 정점을 처리할 수 없습니다. 큐가 비었는데 아직 indegree가 남은 정점들이 생깁니다.
 
-```cpp
-vector<int> order = topologicalSort(n, graph);
-
-if ((int)order.size() != n) {
-    // 사이클이 있다.
-}
-```
-
 예를 들어 아래 그래프는 순서를 만들 수 없습니다.
 
 ```text
@@ -113,191 +105,13 @@ if ((int)order.size() != n) {
 
 위상 정렬 문제에서 `order.size() != n` 검사는 거의 필수입니다. 입력이 DAG라고 보장되지 않으면 반드시 확인합니다.
 
-## 여러 답 중 하나 고르기
+## 순서가 여러 개일 때
 
-Kahn 알고리즘에서 큐 대신 우선순위 큐를 쓰면 가능한 정점 중 가장 번호가 작은 정점을 먼저 고를 수 있습니다.
-
-```cpp
-#include <functional>
-#include <queue>
-#include <vector>
-using namespace std;
-
-vector<int> lexicographicallySmallestTopo(int n, const vector<vector<int>>& graph) {
-    vector<int> indegree(n, 0);
-    for (int u = 0; u < n; ++u) {
-        for (int v : graph[u]) indegree[v]++;
-    }
-
-    priority_queue<int, vector<int>, greater<int>> pq;
-    for (int i = 0; i < n; ++i) {
-        if (indegree[i] == 0) pq.push(i);
-    }
-
-    vector<int> order;
-    while (!pq.empty()) {
-        int u = pq.top();
-        pq.pop();
-        order.push_back(u);
-
-        for (int v : graph[u]) {
-            indegree[v]--;
-            if (indegree[v] == 0) pq.push(v);
-        }
-    }
-    return order;
-}
-```
-
-가능한 순서 중 사전순으로 가장 작은 결과를 요구하면 이 방식이 필요할 수 있습니다.
-
-## DFS 위상 정렬
-
-DFS로도 위상 정렬을 만들 수 있습니다. 모든 다음 정점을 먼저 방문한 뒤 현재 정점을 결과에 넣고, 마지막에 뒤집습니다.
-
-```cpp
-void dfsTopo(
-    int u,
-    const vector<vector<int>>& graph,
-    vector<int>& visited,
-    vector<int>& order
-) {
-    visited[u] = 1;
-
-    for (int v : graph[u]) {
-        if (visited[v]) continue;
-        dfsTopo(v, graph, visited, order);
-    }
-
-    order.push_back(u);
-}
-
-vector<int> topoByDfs(int n, const vector<vector<int>>& graph) {
-    vector<int> visited(n, 0);
-    vector<int> order;
-
-    for (int i = 0; i < n; ++i) {
-        if (!visited[i]) dfsTopo(i, graph, visited, order);
-    }
-
-    reverse(order.begin(), order.end());
-    return order;
-}
-```
-
-이 구현은 입력이 DAG라고 보장될 때 간단합니다. 사이클까지 판정하려면 방문 상태를 `0, 1, 2`로 나누어야 합니다.
-
-```text
-0: 아직 방문 안 함
-1: 현재 DFS 경로 안에 있음
-2: 처리 완료
-```
-
-DFS 중 `state[v] == 1`인 정점을 다시 만나면 사이클입니다.
-
-## DFS로 사이클 찾기
-
-```cpp
-bool hasCycleDfs(int u, const vector<vector<int>>& graph, vector<int>& state) {
-    state[u] = 1;
-
-    for (int v : graph[u]) {
-        if (state[v] == 1) return true;
-        if (state[v] == 0 && hasCycleDfs(v, graph, state)) {
-            return true;
-        }
-    }
-
-    state[u] = 2;
-    return false;
-}
-
-bool hasCycle(int n, const vector<vector<int>>& graph) {
-    vector<int> state(n, 0);
-    for (int i = 0; i < n; ++i) {
-        if (state[i] == 0 && hasCycleDfs(i, graph, state)) {
-            return true;
-        }
-    }
-    return false;
-}
-```
-
-Kahn 알고리즘은 `order.size() != n`으로 사이클을 확인하고, DFS 방식은 현재 recursion stack으로 돌아오는 간선을 확인합니다.
-
-## DAG DP
-
-DAG에서는 위상 순서대로 정점을 처리하면 DP를 안전하게 계산할 수 있습니다. 모든 선행 정점이 먼저 계산되기 때문입니다.
-
-예를 들어 각 간선 `u -> v`를 따라 이동할 수 있을 때, 시작점에서 각 정점까지 가는 최대 점수를 구한다고 하겠습니다.
-
-```cpp
-vector<long long> longestPathDag(
-    int n,
-    const vector<vector<pair<int, int>>>& graph,
-    int start
-) {
-    vector<vector<int>> plain(n);
-    for (int u = 0; u < n; ++u) {
-        for (auto [v, cost] : graph[u]) {
-            plain[u].push_back(v);
-        }
-    }
-
-    vector<int> order = topologicalSort(n, plain);
-    const long long NEG = -(1LL << 60);
-    vector<long long> dp(n, NEG);
-    dp[start] = 0;
-
-    for (int u : order) {
-        if (dp[u] == NEG) continue;
-
-        for (auto [v, cost] : graph[u]) {
-            dp[v] = max(dp[v], dp[u] + cost);
-        }
-    }
-    return dp;
-}
-```
-
-일반 그래프에서 최장 경로는 어렵지만, DAG에서는 위상 순서 덕분에 한 번씩만 relax하면 됩니다.
-
-위 최대 점수 DP는 도달하지 못한 상태를 `-INF`로 두고 전이에서 제외합니다. 0으로 초기화하면 갈 수 없는 정점도 점수 0의 경로를 가진 것처럼 처리됩니다.
-
-## 경로 개수 세기
-
-DAG에서 시작점에서 각 정점으로 가는 경로 수를 셀 수도 있습니다.
-
-```cpp
-vector<long long> countPathsDag(
-    int n,
-    const vector<vector<int>>& graph,
-    int start
-) {
-    vector<int> order = topologicalSort(n, graph);
-    vector<long long> ways(n, 0);
-    ways[start] = 1;
-
-    for (int u : order) {
-        for (int v : graph[u]) {
-            ways[v] += ways[u];
-        }
-    }
-    return ways;
-}
-```
-
-경로 수가 커질 수 있으면 문제에서 주어진 mod로 나눕니다.
-
-```cpp
-ways[v] = (ways[v] + ways[u]) % MOD;
-```
-
-DAG DP는 "의존 관계가 있는 상태 DP"와도 잘 맞습니다. 어떤 상태를 계산하려면 이전 상태들이 먼저 계산되어야 하는데, 그 의존 그래프가 DAG라면 위상 순서대로 처리할 수 있습니다.
+사전순으로 가장 작은 순서를 요구하면 큐를 최소 힙으로 바꾸어, 현재 진입 차수가 0인 정점 중 번호가 가장 작은 것을 꺼냅니다. 초기 정점만 정렬해서 큐에 넣는 것으로는 부족합니다. 탐색 중 새로 들어온 더 작은 번호도 다음 선택에 반영해야 하기 때문입니다.
 
 ## 작업 완료 시간
 
-각 작업에 걸리는 시간이 있고, 선행 작업을 모두 끝내야 다음 작업을 시작할 수 있다고 하겠습니다. 각 작업의 가장 빠른 완료 시간을 구할 수 있습니다.
+각 작업에 걸리는 시간이 있고, 모든 선행 작업이 끝나야 시작할 수 있습니다. 동시에 실행할 수 있는 작업 수에는 제한이 없다고 가정합니다. 위상 순서로 처리하면 선행 작업의 완료 시간이 모두 계산된 뒤 현재 작업을 계산할 수 있습니다. 아래 코드는 입력이 DAG임을 확인한 뒤 사용합니다.
 
 ```cpp
 vector<long long> earliestFinish(
@@ -321,47 +135,10 @@ vector<long long> earliestFinish(
 
 `finish[v]`는 `v`가 시작하기 전까지 끝나야 하는 선행 작업들의 완료 시간 최댓값을 먼저 모읍니다. 위상 순서대로 처리하므로 선행 작업 정보가 모두 반영된 뒤 `v`가 처리됩니다.
 
-## DAG 최단거리
+앞의 `0→2`, `1→2`, `2→3`에서 작업 시간이 각각 `2, 5, 3, 4`라면 완료 시간은 `2, 5, 8, 12`입니다. 작업 2는 두 선행 작업의 시간 **합** 7이 아니라 마지막으로 끝나는 시각 5부터 시작합니다.
 
-DAG에서는 음수 간선이 있어도 위상 순서대로 최단거리를 구할 수 있습니다. 사이클이 없기 때문에 음수 사이클 문제가 없습니다.
-
-```cpp
-vector<long long> shortestPathDag(
-    int n,
-    const vector<vector<pair<int, int>>>& graph,
-    int start
-) {
-    vector<vector<int>> plain(n);
-    for (int u = 0; u < n; ++u) {
-        for (auto [v, cost] : graph[u]) plain[u].push_back(v);
-    }
-
-    vector<int> order = topologicalSort(n, plain);
-    const long long INF = 1LL << 60;
-    vector<long long> dist(n, INF);
-    dist[start] = 0;
-
-    for (int u : order) {
-        if (dist[u] == INF) continue;
-
-        for (auto [v, cost] : graph[u]) {
-            dist[v] = min(dist[v], dist[u] + cost);
-        }
-    }
-    return dist;
-}
-```
-
-일반 그래프에서 음수 간선이 있으면 Dijkstra를 쓸 수 없지만, DAG라면 위상 순서가 해결해 줍니다.
+위상 순서를 쓰는 이유는 다른 DAG DP도 같습니다. 경로 수라면 선행 경로 수를 더하고, 최단거리라면 `dist[u] + cost`의 최솟값을 전달합니다. 최단거리에서 도달 불가 상태는 `INF`로 두고 전이하지 않습니다. 사이클이 없어 음수 간선도 처리할 수 있습니다.
 
 ## 시간 복잡도
 
-| 작업 | 시간 |
-| --- | --- |
-| indegree 계산 | `O(V + E)` |
-| Kahn 위상 정렬 | `O(V + E)` |
-| DFS 위상 정렬 | `O(V + E)` |
-| DAG DP | `O(V + E)` |
-| 메모리 | `O(V + E)` |
-
-우선순위 큐로 사전순 가장 작은 위상 순서를 만들면 각 정점 push/pop에 `O(log V)`가 붙어 `O((V + E) log V)` 정도로 보면 됩니다.
+진입 차수 계산, 큐를 쓴 위상 정렬, 위의 작업 시간 DP는 각각 `O(V + E)`입니다. 최소 힙을 쓰면 정점별 삽입·삭제 비용이 붙어 `O(E + V log V)`입니다. 인접 목록과 보조 배열의 메모리는 `O(V + E)`입니다.

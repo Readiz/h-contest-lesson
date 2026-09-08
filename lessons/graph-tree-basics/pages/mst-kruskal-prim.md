@@ -19,34 +19,9 @@ MST를 생각할 때 조건을 분리하면 실수가 줄어듭니다.
 | Kruskal | 간선을 비용 오름차순으로 보며, 사이클을 만들지 않으면 선택 | 간선 리스트 + Union-Find |
 | Prim | 현재 연결된 정점 집합에서 바깥으로 나가는 가장 싼 간선을 선택 | 인접 리스트 + 우선순위 큐 |
 
-Kruskal은 Union-Find를 거의 그대로 사용합니다.
+아래 코드는 [Union-Find 강의](https://h.readiz.com/learn/union-find)의 `DSU`를 사용합니다. `unite`가 성공한 간선만 비용에 더합니다.
 
 ```cpp
-struct DSU {
-    vector<int> parent;
-    vector<int> size;
-
-    DSU(int n) : parent(n), size(n, 1) {
-        for (int i = 0; i < n; ++i) parent[i] = i;
-    }
-
-    int find(int x) {
-        if (parent[x] == x) return x;
-        return parent[x] = find(parent[x]);
-    }
-
-    bool unite(int a, int b) {
-        int rootA = find(a);
-        int rootB = find(b);
-        if (rootA == rootB) return false;
-
-        if (size[rootA] < size[rootB]) swap(rootA, rootB);
-        parent[rootB] = rootA;
-        size[rootA] += size[rootB];
-        return true;
-    }
-};
-
 struct Edge {
     int u;
     int v;

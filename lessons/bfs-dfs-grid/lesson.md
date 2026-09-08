@@ -7,7 +7,7 @@ DFS: 한 방향으로 깊게 들어갔다가 돌아온다.
 BFS: 시작점에서 가까운 곳부터 차례로 본다.
 ```
 
-연결 여부, 연결 요소 개수, 섬의 넓이, 격자 최단거리, 로봇 이동 문제의 기본 뼈대가 모두 여기에서 나옵니다.
+아래 예시는 미방문 정점 표시와 최단거리 계산의 차이를 다룹니다. 인접 목록 표현은 [그래프와 트리](https://h.readiz.com/learn/graph-tree-basics)에 있습니다.
 
 ## 그래프로 생각하기
 
@@ -28,31 +28,13 @@ BFS: 시작점에서 가까운 곳부터 차례로 본다.
 
 `.` 칸은 지나갈 수 있고, `#` 칸은 벽이라면 각 `.` 칸이 정점입니다. 상하좌우로 붙어 있는 `.` 칸 사이에 간선이 있습니다.
 
-## 방문 배열
+## 발견한 시점에 방문 표시하기
 
-탐색에서 가장 중요한 것은 이미 본 정점을 다시 보지 않는 것입니다. 그렇지 않으면 사이클이 있는 그래프에서 무한히 돌 수 있습니다.
-
-```cpp
-vector<int> visited(n, 0);
-```
-
-정점 `u`를 처음 방문할 때 표시합니다.
-
-```cpp
-visited[u] = 1;
-```
-
-인접한 정점 `v`를 볼 때 이미 방문했다면 건너뜁니다.
-
-```cpp
-if (visited[v]) continue;
-```
-
-BFS든 DFS든 이 원칙은 같습니다.
+이미 발견한 정점을 다시 넣지 않도록 표시합니다. BFS나 반복 DFS에서는 큐·스택에서 꺼낼 때까지 기다리지 않고 **넣는 순간** 표시해야 여러 이웃이 같은 정점을 중복으로 넣지 않습니다.
 
 ## DFS
 
-DFS는 깊게 들어가는 탐색입니다. 재귀로 구현하면 코드가 짧습니다.
+한 경로를 따라 깊이 들어갔다가 되돌아옵니다. 아래 함수는 `u`와 연결된 모든 정점을 표시합니다.
 
 ```cpp
 void dfs(int u, const vector<vector<int>>& graph, vector<int>& visited) {
@@ -65,22 +47,7 @@ void dfs(int u, const vector<vector<int>>& graph, vector<int>& visited) {
 }
 ```
 
-DFS는 연결 요소를 세거나, 한 컴포넌트의 크기를 구하거나, 트리에서 부모와 subtree를 계산할 때 자주 씁니다.
-
-```cpp
-int dfsSize(int u, const vector<vector<int>>& graph, vector<int>& visited) {
-    visited[u] = 1;
-    int size = 1;
-
-    for (int v : graph[u]) {
-        if (visited[v]) continue;
-        size += dfsSize(v, graph, visited);
-    }
-    return size;
-}
-```
-
-재귀 DFS는 정점 수가 크고 경로가 길면 스택 오버플로가 날 수 있습니다. 그런 환경에서는 반복문 스택으로 바꿉니다.
+길게 이어진 그래프에서는 재귀 깊이도 정점 수만큼 늘어납니다. 실행 환경의 스택 제한을 넘는다면 명시적인 스택으로 바꿉니다. 다음 구현은 방문한 정점 수도 반환합니다.
 
 ```cpp
 int dfsSizeIterative(int start, const vector<vector<int>>& graph, vector<int>& visited) {
@@ -105,37 +72,9 @@ int dfsSizeIterative(int start, const vector<vector<int>>& graph, vector<int>& v
 }
 ```
 
-반복 DFS에서는 스택에 넣을 때 방문 표시를 하는 편이 중복 push를 막기 쉽습니다.
+## BFS로 최단거리 구하기
 
-## BFS
-
-BFS는 가까운 정점부터 보는 탐색입니다. 큐에 넣을 때 방문 표시를 해야 같은 정점이 중복으로 들어가지 않습니다.
-
-```cpp
-#include <queue>
-#include <vector>
-using namespace std;
-
-void bfs(int start, const vector<vector<int>>& graph, vector<int>& visited) {
-    queue<int> q;
-
-    visited[start] = 1;
-    q.push(start);
-
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-
-        for (int v : graph[u]) {
-            if (visited[v]) continue;
-            visited[v] = 1;
-            q.push(v);
-        }
-    }
-}
-```
-
-간선 비용이 모두 1이라면 BFS로 최단거리도 구할 수 있습니다.
+모든 간선 비용이 1이면 거리 0, 1, 2인 정점 순서로 큐에서 나옵니다. `dist[v] == -1`을 미방문 표시로 함께 사용합니다.
 
 ```cpp
 vector<int> shortestDistance(int start, const vector<vector<int>>& graph) {
@@ -160,7 +99,7 @@ vector<int> shortestDistance(int start, const vector<vector<int>>& graph) {
 }
 ```
 
-`dist[v] == -1`을 방문하지 않았다는 뜻으로 같이 쓰면 별도 `visited` 배열이 없어도 됩니다.
+새 정점은 현재 거리보다 정확히 1 멀리 있으므로 처음 넣을 때 거리가 확정됩니다. 다른 비용의 간선이 섞이면 이 성질이 깨집니다. 큐의 배열 구현은 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics/sorting-queue-heap)를 참고합니다.
 
 ## 연결 요소 세기
 
@@ -181,54 +120,9 @@ int countComponents(const vector<vector<int>>& graph) {
 }
 ```
 
-각 컴포넌트의 크기가 필요하면 `dfsSize` 또는 BFS로 방문한 개수를 반환하면 됩니다.
+## 격자를 탐색할 때의 경계
 
-```text
-팀 묶기, 섬 개수, 연결된 방 개수, 같은 색 영역 크기
-```
-
-이런 표현이 나오면 연결 요소 탐색을 먼저 떠올릴 수 있습니다.
-
-## 격자 방향 배열
-
-격자 탐색에서는 상하좌우 이동을 배열로 둡니다.
-
-```cpp
-int dy[4] = {-1, 1, 0, 0};
-int dx[4] = {0, 0, -1, 1};
-```
-
-현재 칸 `(y, x)`에서 다음 칸은 아래처럼 만듭니다.
-
-```cpp
-for (int dir = 0; dir < 4; ++dir) {
-    int ny = y + dy[dir];
-    int nx = x + dx[dir];
-}
-```
-
-경계 확인은 항상 먼저 합니다.
-
-```cpp
-if (ny < 0 || ny >= h || nx < 0 || nx >= w) continue;
-```
-
-그다음 벽인지, 이미 방문했는지 확인합니다.
-
-```cpp
-if (grid[ny][nx] == '#') continue;
-if (visited[ny][nx]) continue;
-```
-
-이 순서가 중요합니다. 경계 밖의 `grid[ny][nx]`를 먼저 읽으면 런타임 에러가 납니다.
-
-다음 조건문도 경계 검사를 왼쪽에 둡니다. `&&`가 왼쪽부터 평가되기 때문입니다.
-
-```cpp
-// 잘못된 순서
-if (grid[ny][nx] == '#') continue;
-if (ny < 0 || ny >= h || nx < 0 || nx >= w) continue;
-```
+격자 칸을 정점으로 보고 상하좌우 이웃을 생성합니다. 다음 좌표를 만든 뒤에는 **배열을 읽기 전에 범위를 확인**해야 합니다. 범위 안이면 벽인지, 이미 방문했는지 검사합니다. 이 순서를 아래 `gridDistance`의 내부 반복문에서 확인할 수 있습니다.
 
 ## 격자 BFS 최단거리
 
@@ -271,99 +165,11 @@ vector<vector<int>> gridDistance(
 }
 ```
 
-목표 칸에 도착하자마자 답을 반환해도 됩니다. 단, 큐에 넣을 때 거리 값을 확정한다는 점은 유지해야 합니다.
+## 여러 곳에서 동시에 퍼질 때
 
-```cpp
-if (ny == targetY && nx == targetX) {
-    return dist[ny][nx];
-}
-```
+위 구현에서 시작점 하나를 넣는 부분만 바꿉니다. 모든 유효한 시작점의 거리를 0으로 두고 큐에 넣은 뒤 같은 반복문을 실행합니다. 같은 좌표가 여러 번 주어지면 처음 한 번만 넣습니다.
 
-## Flood Fill
-
-Flood fill은 같은 성질을 가진 인접 칸을 한 덩어리로 칠하거나 세는 탐색입니다. 그림판의 채우기 기능과 비슷합니다.
-
-아래 코드는 시작 칸과 같은 문자를 가진 영역의 크기를 구합니다.
-
-```cpp
-int floodFillSize(vector<string>& grid, int sy, int sx) {
-    int h = (int)grid.size();
-    int w = (int)grid[0].size();
-    char target = grid[sy][sx];
-    queue<pair<int, int>> q;
-
-    int dy[4] = {-1, 1, 0, 0};
-    int dx[4] = {0, 0, -1, 1};
-
-    grid[sy][sx] = '.';
-    q.push({sy, sx});
-
-    int size = 0;
-    while (!q.empty()) {
-        auto [y, x] = q.front();
-        q.pop();
-        size++;
-
-        for (int dir = 0; dir < 4; ++dir) {
-            int ny = y + dy[dir];
-            int nx = x + dx[dir];
-
-            if (ny < 0 || ny >= h || nx < 0 || nx >= w) continue;
-            if (grid[ny][nx] != target) continue;
-
-            grid[ny][nx] = '.';
-            q.push({ny, nx});
-        }
-    }
-    return size;
-}
-```
-
-방문 배열 대신 `grid` 자체를 바꾸는 방식입니다. 원본 격자가 나중에 필요하다면 별도 `visited` 배열을 써야 합니다.
-
-## 다중 시작점 BFS
-
-시작점이 여러 개일 때도 BFS는 그대로 쓸 수 있습니다. 모든 시작점을 거리 0으로 큐에 넣고 시작합니다.
-
-```cpp
-vector<vector<int>> multiSourceBfs(
-    const vector<string>& grid,
-    const vector<pair<int, int>>& starts
-) {
-    int h = (int)grid.size();
-    int w = (int)grid[0].size();
-    vector<vector<int>> dist(h, vector<int>(w, -1));
-    queue<pair<int, int>> q;
-
-    for (auto [y, x] : starts) {
-        dist[y][x] = 0;
-        q.push({y, x});
-    }
-
-    int dy[4] = {-1, 1, 0, 0};
-    int dx[4] = {0, 0, -1, 1};
-
-    while (!q.empty()) {
-        auto [y, x] = q.front();
-        q.pop();
-
-        for (int dir = 0; dir < 4; ++dir) {
-            int ny = y + dy[dir];
-            int nx = x + dx[dir];
-
-            if (ny < 0 || ny >= h || nx < 0 || nx >= w) continue;
-            if (grid[ny][nx] == '#') continue;
-            if (dist[ny][nx] != -1) continue;
-
-            dist[ny][nx] = dist[y][x] + 1;
-            q.push({ny, nx});
-        }
-    }
-    return dist;
-}
-```
-
-가장 가까운 출발점까지의 거리, 여러 불씨가 퍼지는 시간, 여러 병원이나 충전소 중 가장 가까운 곳 같은 문제에 쓸 수 있습니다.
+얻는 거리는 시작점 각각까지의 거리가 아니라 **가장 가까운 시작점까지의 거리**입니다. 불이 여러 곳에서 동시에 번진다면 각 칸에 최초로 도착하는 시간을 한 번의 탐색으로 구할 수 있습니다.
 
 ## 상태 그래프
 
@@ -376,13 +182,6 @@ vector<vector<int>> multiSourceBfs(
 ```
 
 이때 정점은 `(y, x, dir)` 또는 `(y, x, used)` 같은 상태가 됩니다. 방문 배열도 그 차원만큼 늘어납니다.
-
-```cpp
-vector<vector<vector<int>>> dist(
-    h,
-    vector<vector<int>>(w, vector<int>(4, -1))
-);
-```
 
 상태를 넓히면 정점 수가 크게 늘어납니다. `h * w * stateCount`가 시간과 메모리 안에 들어오는지 먼저 계산해야 합니다.
 

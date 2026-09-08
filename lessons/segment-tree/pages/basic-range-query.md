@@ -28,20 +28,6 @@ node [l, r] = a[l] + a[l + 1] + ... + a[r]
 
 가장 설명하기 쉬운 구현은 재귀로 구간을 내려가는 top-down 방식입니다. `tree[node]`가 `[start, end]` 구간의 값을 저장한다고 합시다.
 
-```cpp
-void build(int node, int start, int end) {
-    if (start == end) {
-        tree[node] = a[start];
-        return;
-    }
-
-    int mid = (start + end) / 2;
-    build(node * 2, start, mid);
-    build(node * 2 + 1, mid + 1, end);
-    tree[node] = tree[node * 2] + tree[node * 2 + 1];
-}
-```
-
 `node * 2`는 왼쪽 자식, `node * 2 + 1`은 오른쪽 자식입니다. 구현을 단순하게 하기 위해 `tree` 배열 크기는 보통 `4 * n`으로 잡습니다.
 
 ## 구간 질의
@@ -54,53 +40,17 @@ void build(int node, int start, int end) {
 | 완전히 포함된다 | `tree[node]`를 반환 |
 | 일부만 겹친다 | 두 자식으로 내려가서 합친다 |
 
-```cpp
-long long query(int node, int start, int end, int left, int right) {
-    if (right < start || end < left) {
-        return 0;
-    }
-    if (left <= start && end <= right) {
-        return tree[node];
-    }
-
-    int mid = (start + end) / 2;
-    long long leftSum = query(node * 2, start, mid, left, right);
-    long long rightSum = query(node * 2 + 1, mid + 1, end, left, right);
-    return leftSum + rightSum;
-}
-```
-
 한 질의에서 내려가는 노드는 트리 높이마다 많아야 몇 개씩입니다. 그래서 시간 복잡도는 `O(log n)`입니다.
 
 ## 점 업데이트
 
 한 위치 `idx`의 값을 `newValue`로 바꿀 때는 leaf까지 내려간 뒤, 돌아오면서 지나온 노드 값을 다시 계산합니다.
 
-```cpp
-void update(int node, int start, int end, int idx, long long newValue) {
-    if (start == end) {
-        tree[node] = newValue;
-        return;
-    }
-
-    int mid = (start + end) / 2;
-    if (idx <= mid) {
-        update(node * 2, start, mid, idx, newValue);
-    } else {
-        update(node * 2 + 1, mid + 1, end, idx, newValue);
-    }
-
-    tree[node] = tree[node * 2] + tree[node * 2 + 1];
-}
-```
-
 변한 위치를 포함하는 노드만 고치면 되므로 점 업데이트도 `O(log n)`입니다.
 
 ## Top-down 전체 구현
 
-아래 구현은 0-indexed 배열에서 구간 합과 점 업데이트를 처리합니다.
-
-아래 구현은 `values`가 비어 있지 않다고 가정합니다. 대회 문제에서는 보통 `n >= 1`이 입력 제한으로 주어지지만, 라이브러리처럼 재사용하려면 생성자뿐 아니라 `query`, `update`에서도 빈 배열 처리를 따로 넣어야 합니다.
+아래 구현은 비어 있지 않은 0-indexed 배열에서 구간 합과 점 업데이트를 처리합니다. 질의는 `0 <= l <= r < n`, 갱신 위치는 `0..n-1` 범위입니다.
 
 ```cpp
 #include <vector>
@@ -162,3 +112,20 @@ struct SegmentTree {
 ```
 
 입력 구간이 1-indexed라면 `query(l - 1, r - 1)`처럼 바꿔 호출합니다.
+
+## 합 말고 다른 연산일 때
+
+Segment Tree에서 바뀌는 것은 세 가지입니다.
+
+1. 두 자식 값을 합치는 `merge`
+2. 구간 밖을 만났을 때 돌려줄 항등원
+3. 업데이트 뒤 노드 값을 다시 계산하는 방법
+
+| 질의 | merge | 항등원 |
+| --- | --- | --- |
+| 구간 합 | `a + b` | `0` |
+| 구간 최솟값 | `min(a, b)` | 충분히 큰 `INF` |
+| 구간 최댓값 | `max(a, b)` | 충분히 작은 `-INF` |
+| 구간 gcd | `gcd(a, b)` | `0` |
+
+이처럼 결합 법칙이 성립하고 항등원이 있는 연산을 monoid로 볼 수 있습니다. Segment Tree는 사실상 "구간을 나눠 monoid 값을 합치는 자료구조"입니다.

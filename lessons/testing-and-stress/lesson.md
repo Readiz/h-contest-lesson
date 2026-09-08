@@ -1,139 +1,32 @@
 # Testing과 Stress Test
 
-빠른 풀이와 작은 입력용 완전탐색에 같은 입력을 넣고 답을 비교하면, 예제에 없는 반례를 자동으로 찾을 수 있습니다. Stress test는 이 비교를 여러 입력에서 반복하는 방법입니다.
+빠른 풀이가 맞는지 확인하려면 다른 방법으로 계산한 기준 답이 필요합니다. 작은 입력에서는 완전탐색을 돌릴 수 있습니다. 같은 함수를 이름만 바꾸어 두 번 호출하면 비교 결과가 같아도 아무것도 검증하지 못합니다.
 
-## 테스트의 층위
+## 최적 비용과 비교할 수 있는 경우
 
-| 테스트 | 목적 |
-| --- | --- |
-| 예제 테스트 | 입출력 형식과 기본 동작 확인 |
-| 직접 만든 edge case | 경계 조건 확인 |
-| brute force 비교 | 작은 입력에서 정답성 확인 |
-| random stress | 생각하지 못한 반례 탐색 |
-| 최대 입력 성능 테스트 | 시간/메모리 확인 |
+[TSP 완전탐색과 DP](https://h.readiz.com/learn/tsp-hamiltonian/search-and-dp)는 작은 입력에서 같은 최적 비용을 내야 합니다. 정점 수를 작게 잡고 두 구현에 같은 비용 행렬을 넣습니다. 경로 자체는 최적해가 여러 개일 수 있으므로 비용과 방문 조건을 비교합니다.
 
-## Edge Case 목록 만들기
+[ORDERING](/practice/ORDERING)은 창고 0이 고정된 열린 경로입니다. `n = 4`면 나머지 세 배송지의 순서 6개만 확인하면 됩니다. 휴리스틱이 그 최적 비용과 다르다고 곧바로 버그인 것은 아닙니다. 유효한 답인지와 최적해에서 얼마나 떨어졌는지를 구분해서 기록합니다.
 
-입력에서 허용되는 조건을 골라 테스트를 만듭니다. 예를 들어 `n >= 1`인 문제에 빈 배열을 넣으면 풀이의 반례가 아닙니다.
+## ORDERING의 차분 계산을 검증하기
 
-| 조건 | 예시 |
-| --- | --- |
-| 최소 크기 | `n = 0`, `n = 1`, 빈 문자열, 간선 없음 |
-| 최대 값 | 좌표 `10^9`, 비용 합 `10^18`, 배열 길이 최대 |
-| 중복 | 같은 값 여러 개, 같은 간선 여러 개, 같은 점 |
-| 경계 접촉 | 구간 끝점, 선분 끝점, inclusive/exclusive |
-| 불가능 상태 | 도달 불가, 답 없음, 음수 사이클, 모순 |
-| tie-break | 같은 점수, 같은 거리, 같은 정렬 기준 |
+[열린 경로 2-opt](https://h.readiz.com/learn/heuristic/ordering-route-improvement)는 뒤집는 구간의 경계 간선만 비교합니다. 이 계산에는 전체 경로를 더하는 `get_path_dist`라는 별도의 기준이 있습니다.
 
-## Brute Force 만들기
+1. 유효한 `order[]`를 복사해 두고 전체 비용 `before`를 구합니다.
+2. 모든 `1 <= left < right < n`에서 경계 간선의 비용 변화 `delta`를 계산합니다.
+3. 해당 구간을 실제로 뒤집고 전체 비용 `after`를 다시 구합니다. `after - before == delta`여야 합니다.
+4. 같은 구간을 다시 뒤집어 배열과 비용이 원래대로 돌아오는지 확인합니다.
 
-Brute force는 느리지만 작은 입력에서 확실한 답을 주는 코드입니다. 빠른 풀이를 검증하기 위한 기준으로 씁니다.
+인접한 두 위치, 마지막 배송지를 포함한 구간, 거리 0인 서로 다른 점을 포함합니다. 특히 `right == n - 1`일 때는 복귀 간선이 없습니다. 순열의 중복·누락과 `order[0] == 0`도 함께 확인하면 비용 계산과 상태 변경을 나누어 추적할 수 있습니다.
 
-예를 들어 구간의 서로 다른 값 개수를 빠르게 구하는 풀이를 작성한다면, 작은 입력에서는 직접 세면 됩니다.
+## 무작위 입력에서 실패를 재현하기
 
-```cpp compile-check
-#include <set>
-#include <vector>
-using namespace std;
+작은 입력을 여러 개 생성해 같은 비교를 반복합니다. [공통 난수 코드](https://h.readiz.com/learn/cpp-contest-basics/arrays-and-random)의 seed를 고정하면 실패한 실행을 다시 만들 수 있습니다. 입력 생성용 seed와 풀이 내부의 탐색 seed는 따로 기록합니다.
 
-int bruteDistinctCount(const vector<int>& a, int left, int right) {
-    set<int> values;
-    for (int i = left; i <= right; ++i) {
-        values.insert(a[i]);
-    }
-    return (int)values.size();
-}
-```
+불일치를 찾으면 seed만 남기지 말고 실제 입력, 이동 구간, 예상값과 실제값도 저장합니다. 원소를 줄여도 실패가 남는지 확인하면 경계 하나가 빠진 경우인지, 차분식 자체가 틀린지 찾기 쉽습니다. 줄이는 동안에도 원래 문제의 입력 조건은 유지해야 합니다.
 
-Brute force는 짧고 명확해야 합니다. 빠른 풀이와 같은 아이디어를 공유하면 같은 버그를 가질 수 있습니다.
+## 점수와 시간 비교
 
-## Random Generator와 비교 루프
+차분과 유효성 검사를 통과한 뒤 동일한 TC·탐색 예산에서 초기해, 2-opt, 새 연산을 비교합니다. 평균뿐 아니라 어떤 TC가 나빠졌는지도 봅니다. 튜닝에 쓰지 않은 입력을 따로 남겨 특정 seed에만 맞춘 변경을 구분합니다.
 
-Stress test는 작은 입력을 무작위로 많이 만들고, 빠른 풀이와 brute force의 답을 비교합니다.
-
-```cpp compile-check
-#include <cassert>
-#include <random>
-#include <set>
-#include <vector>
-using namespace std;
-
-int bruteDistinctCount(const vector<int>& a, int left, int right) {
-    set<int> values;
-    for (int i = left; i <= right; ++i) {
-        values.insert(a[i]);
-    }
-    return (int)values.size();
-}
-
-int fastDistinctCountForDemo(const vector<int>& a, int left, int right) {
-    return bruteDistinctCount(a, left, right);
-}
-
-void stressDistinctCount() {
-    mt19937 rng(1);
-    for (int test = 0; test < 1000; ++test) {
-        int n = 1 + (int)(rng() % 8);
-        vector<int> a(n);
-        for (int i = 0; i < n; ++i) {
-            a[i] = (int)(rng() % 5);
-        }
-        int left = (int)(rng() % n);
-        int right = (int)(rng() % n);
-        if (left > right) {
-            swap(left, right);
-        }
-
-        int expected = bruteDistinctCount(a, left, right);
-        int actual = fastDistinctCountForDemo(a, left, right);
-        assert(expected == actual);
-    }
-}
-```
-
-위 `fastDistinctCountForDemo`는 연결 위치를 보여 주려고 기준 함수를 그대로 호출합니다. 검증할 빠른 풀이로 교체해야 비교가 의미를 갖습니다.
-
-실제 제출 코드에 stress loop를 넣으면 안 됩니다. 로컬에서 반례를 찾는 별도 모드로 두고, 제출 전에는 제거하거나 `#ifdef LOCAL`로 감쌉니다.
-
-## 반례를 찾았을 때
-
-Stress test가 실패하면 입력을 출력해야 합니다. 그래야 재현하고 디버깅할 수 있습니다.
-
-반례를 찾은 뒤에는 바로 코드를 고치기보다 아래 순서로 봅니다.
-
-1. brute force가 정말 맞는가?
-2. 빠른 풀이의 전제 조건이 깨졌는가?
-3. indexing이나 inclusive/exclusive가 틀렸는가?
-4. tie-break 또는 중복 처리가 빠졌는가?
-5. overflow가 있는가?
-
-실패 입력을 저장하고, 원소나 간선을 줄여도 같은 불일치가 남는지 봅니다. 작아진 반례는 수정 후에도 재현 테스트로 남깁니다.
-
-## 성능 테스트
-
-정답성이 맞아도 시간 안에 들어와야 합니다. 최대 입력을 직접 생성해 로컬에서 실행 시간을 봅니다.
-
-성능 테스트에서는 답이 맞는지보다 아래를 봅니다.
-
-- 입력 생성과 파싱이 병목인지
-- `O(n log n)`이라고 생각한 코드 안에 `substr`, `erase`, `map` 중첩이 숨어 있는지
-- 메모리가 제한을 넘는지
-- 재귀 깊이가 큰지
-
-성능 테스트는 로컬 환경과 채점 환경이 다르므로 절대 기준은 아닙니다. 그래도 명백한 `O(n^2)` 실수나 큰 메모리 사용은 잡을 수 있습니다.
-
-## assert와 local debug
-
-`assert`는 "내 풀이의 불변식이 깨지지 않는다"를 확인하는 데 좋습니다.
-
-```cpp compile-check
-#include <cassert>
-#include <vector>
-using namespace std;
-
-void checkIndex(int index, const vector<int>& a) {
-    assert(0 <= index && index < (int)a.size());
-}
-```
-
-제출 환경에서 assert 실패는 런타임 에러가 됩니다. 디버깅용 assert는 의도적으로 남길 수도 있지만, 입력으로 발생 가능한 상황은 assert가 아니라 일반 조건문으로 처리해야 합니다.
+최대 입력의 시간 측정에는 초기화, 입력 처리, 점수 재계산, 최종 답 생성도 포함합니다. 스트레스 반복문과 검증용 출력은 로컬 하네스에 두고 제출 함수에는 넣지 않습니다.

@@ -24,8 +24,6 @@ left subtree의 모든 key < root key < right subtree의 모든 key
 
 균형 BST는 이 문제를 해결하려는 자료구조입니다. Treap은 각 노드에 무작위 `priority`를 붙여 트리 모양을 입력 순서에 덜 민감하게 만들고, 기대 `O(log n)`에 삽입, 삭제, 탐색, 순위 질의를 처리합니다.
 
-## 문서 구성
+BST를 왼쪽 자식, 현재 노드, 오른쪽 자식 순으로 방문하면 key가 오름차순으로 나옵니다. Treap은 이 순서를 유지한 채 priority로 부모를 정합니다.
 
-- [BST 기본기와 균형이 필요한 이유](pages/bst-and-rotation.md) - BST 기본 연산, inorder 순회, 회전, 균형 필요성을 정리합니다.
-- [Treap 핵심 연산](pages/treap-core.md) - Treap 노드 구조, merge, split, 삽입과 삭제를 정리합니다.
-- [순위, 전체 구현, Implicit Treap](pages/order-statistics-and-implicit.md) - subtree 크기로 순위를 찾고, 위치 기준의 split으로 구간을 자르고 붙입니다.
+[핵심 연산과 순위](pages/treap-core.md)에서 노드 크기 갱신, split·merge, 삽입·삭제, k번째 원소 찾기를 이어서 구현합니다.

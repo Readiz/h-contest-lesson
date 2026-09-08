@@ -47,80 +47,11 @@ b를 a의 한쪽 subtree와 다시 merge
 
 여기까지는 간단하지만, 한쪽으로만 계속 붙이면 트리가 한 줄로 길어질 수 있습니다. Skew Heap은 merge 뒤에 자식을 매번 바꾸는 짧은 규칙으로 이 쏠림을 amortized 관점에서 줄입니다.
 
-## Skew Heap: 인덱스 기반 구현
+## 컴포넌트별 Skew Heap
 
-아래 코드는 min-heap 전체 구현입니다. 포인터 대신 `pool`의 인덱스를 저장하고, `-1`을 null처럼 씁니다. `pop`한 노드는 따로 지우지 않고 pool에 남겨 둡니다. 대회 코드에서는 전체 `push` 횟수만큼 메모리를 쓰고, 테스트 케이스가 끝나면 pool을 통째로 비우는 방식이 단순합니다.
+각 컴포넌트의 후보를 최소 힙에 넣고, 컴포넌트가 합쳐질 때 두 힙도 합칩니다. 모든 힙이 같은 `pool`을 공유하며 `-1`을 빈 자식으로 씁니다.
 
-```cpp
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-struct SkewHeap {
-    struct Node {
-        int key;
-        int left;
-        int right;
-
-        Node(int key) : key(key), left(-1), right(-1) {}
-    };
-
-    vector<Node> pool;
-    int root = -1;
-
-    int newNode(int key) {
-        pool.push_back(Node(key));
-        return (int)pool.size() - 1;
-    }
-
-    int merge(int a, int b) {
-        if (a == -1) return b;
-        if (b == -1) return a;
-        if (pool[a].key > pool[b].key) swap(a, b);
-
-        pool[a].right = merge(pool[a].right, b);
-        swap(pool[a].left, pool[a].right);
-        return a;
-    }
-
-    bool empty() const {
-        return root == -1;
-    }
-
-    int top() const {
-        return pool[root].key;
-    }
-
-    void push(int key) {
-        root = merge(root, newNode(key));
-    }
-
-    void pop() {
-        root = merge(pool[root].left, pool[root].right);
-    }
-
-};
-```
-
-핵심은 `merge` 하나입니다. `push`는 원소 하나짜리 heap과 합치고, `pop`은 root의 두 자식을 합칩니다. 여러 heap root를 합치려면 그 root들이 같은 `pool`을 공유해야 합니다. 아래 DSU 예시가 그 형태입니다.
-
-Skew Heap 규칙은 단순합니다. root key가 작은 쪽을 위로 두고, 오른쪽 subtree와 merge한 뒤 왼쪽과 오른쪽 자식을 무조건 바꿉니다.
-
-```cpp
-int merge(int a, int b) {
-    if (a == -1) return b;
-    if (b == -1) return a;
-    if (pool[a].key > pool[b].key) swap(a, b);
-
-    pool[a].right = merge(pool[a].right, b);
-    swap(pool[a].left, pool[a].right);
-    return a;
-}
-```
-
-Skew Heap은 별도 `dist`나 `size`를 저장하지 않으면서도, 매번 swap하는 규칙 때문에 한쪽으로만 계속 내려가는 패턴을 amortized 관점에서 막습니다.
-
-Union-Find와 합치면 아래처럼 각 컴포넌트 대표가 heap root를 하나씩 가집니다. 컴포넌트를 합칠 때 DSU 대표를 합치고, heap root도 같이 merge합니다.
+`merge`는 더 작은 루트를 위에 두고 오른쪽 자식과 나머지 힙을 합친 뒤 두 자식을 바꿉니다. `push`는 원소 하나짜리 힙과의 병합, `pop`은 루트의 두 자식 사이의 병합입니다.
 
 ```cpp
 #include <algorithm>
@@ -198,104 +129,19 @@ struct ComponentHeapDSU {
 };
 ```
 
-실제 제출 코드에서는 `top`, `pop` 전에 해당 컴포넌트 heap이 비어 있지 않은지 확인합니다. `pop`한 노드는 pool에 남지만 다시 root에서 도달하지 않으므로 결과에는 영향을 주지 않습니다.
+예를 들어 그룹 0에 7과 2, 그룹 1에 5를 넣고 합치면 어느 그룹 번호로 조회해도 최솟값은 2입니다. 한 번 꺼내면 다음 값은 5입니다. 이미 같은 컴포넌트를 합칠 때는 힙도 다시 합치지 않아야 합니다.
 
-위 코드는 min-heap입니다. max-heap으로 바꿀 때는 root 비교 방향을 뒤집습니다.
+`top`, `pop` 전에는 `empty`를 확인합니다. 꺼낸 노드는 pool에 남으므로 메모리는 현재 원소 수가 아니라 **총 삽입 횟수**에 비례합니다. 합칠 두 힙은 같은 pool을 사용하되 노드를 공유하면 안 됩니다. 최대 힙이 필요하면 루트의 대소 비교를 뒤집습니다.
 
-```cpp
-if (pool[a].key < pool[b].key) {
-    swap(a, b);
-}
-```
+## 한 번의 병합 시간도 제한해야 한다면
 
-합칠 두 heap은 같은 pool을 사용하되 노드를 공유하면 안 됩니다. 같은 heap을 자기 자신과 합치거나, 이미 소속된 노드를 다시 넣으면 구조가 깨집니다.
+Skew Heap의 로그 시간은 여러 연산에 나눈 상각 비용입니다. 개별 병합은 깊이 `O(n)`까지 내려갈 수 있습니다.
 
-## 참고: Leftist Heap
+Leftist Heap은 각 노드에서 빈 자식까지의 최단 거리 `dist`를 저장하고 `dist(left) >= dist(right)`를 유지합니다. 병합이 내려가는 오른쪽 경로가 `O(log n)`으로 제한되어 한 번의 병합에도 로그 시간을 보장합니다. 재귀 스택과 개별 연산 지연이 중요한 환경에서 이 차이를 고려합니다.
 
-여기부터는 worst-case `O(log n)` 보장을 더 직관적으로 보고 싶을 때 보는 참고 구현입니다. 앞의 Skew Heap DSU 통합 예시를 먼저 이해한 뒤, 쏠림을 줄이는 정보를 하나 더 저장한다고 보면 됩니다.
+## 병합이 드문 경우
 
-### Leftist Heap
-
-Leftist Heap은 오른쪽 경로가 짧게 유지되도록 만드는 Meldable Heap입니다.
-
-각 노드에 `dist`를 저장합니다. `dist`는 그 노드에서 null 자식까지 가는 가장 짧은 거리라고 생각하면 됩니다. 보통 null의 dist를 0, 실제 노드의 dist를 `right->dist + 1` 형태로 둡니다.
-
-Leftist Heap은 항상 아래 조건을 유지합니다.
-
-```text
-dist(left) >= dist(right)
-```
-
-즉 오른쪽 subtree가 왼쪽 subtree보다 길어지면 두 자식을 바꿉니다. merge는 오른쪽으로만 내려가기 때문에 오른쪽 경로가 짧으면 merge가 빠릅니다.
-
-### Leftist Heap 핵심 merge
-
-```cpp
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-struct LeftistHeapCore {
-    struct Node {
-        int key;
-        int dist;
-        int left;
-        int right;
-
-        Node(int key) : key(key), dist(1), left(-1), right(-1) {}
-    };
-
-    vector<Node> pool;
-
-    int getDist(int node) const {
-        return node == -1 ? 0 : pool[node].dist;
-    }
-
-    int merge(int a, int b) {
-        if (a == -1) return b;
-        if (b == -1) return a;
-        if (pool[a].key > pool[b].key) swap(a, b);
-
-        pool[a].right = merge(pool[a].right, b);
-        if (getDist(pool[a].left) < getDist(pool[a].right)) {
-            swap(pool[a].left, pool[a].right);
-        }
-        pool[a].dist = getDist(pool[a].right) + 1;
-        return a;
-    }
-};
-```
-
-흐름은 Skew Heap과 거의 같습니다. 다만 매번 무조건 swap하지 않고, `dist(left) >= dist(right)`가 되도록 필요할 때만 swap한 뒤 `dist`를 갱신합니다.
-
-### Leftist Heap과 Skew Heap 비교
-
-| 구조 | 추가 정보 | merge 성능 | 장점 |
-| --- | --- | --- | --- |
-| Leftist Heap | `dist` 저장 | `O(log n)` | 성능 보장이 직관적 |
-| Skew Heap | 없음 | amortized `O(log n)` | 본문 구현처럼 짧음 |
-| Binary Heap | 배열 | 빠른 meld 없음 | cache-friendly, 표준 라이브러리 |
-
-대부분의 문제에서는 C++ `priority_queue`가 가장 간단합니다. 두 heap을 합치는 연산이 문제의 중심일 때만 Meldable Heap을 고려합니다.
-
-## priority_queue로 대체할 수 있는 경우
-
-두 heap을 합칠 일이 적거나, 한쪽 heap의 원소 수가 항상 작다면 `priority_queue`와 small-to-large로 충분할 수 있습니다.
-
-```cpp
-if (pq[a].size() < pq[b].size()) {
-    swap(pq[a], pq[b]);
-}
-
-while (!pq[b].empty()) {
-    pq[a].push(pq[b].top());
-    pq[b].pop();
-}
-```
-
-각 원소가 작은 heap에서 큰 heap으로 옮겨질 때마다 자신이 들어 있는 heap 크기가 적어도 두 배가 되므로, 전체 이동 횟수를 줄일 수 있습니다.
-
-하지만 문제에서 merge가 매우 많고, heap 자체를 합치는 연산이 핵심이면 Meldable Heap이 더 깔끔합니다.
+두 힙을 거의 합치지 않는다면 작은 힙에서 큰 힙으로 원소를 하나씩 옮기는 방법도 가능합니다. 삽입·삭제 없이 병합만 반복하는 상황에서는 원소가 이동할 때마다 소속 힙 크기가 두 배 이상이 되어 원소당 이동이 `O(log n)`번으로 제한됩니다. 중간에 원소를 제거한다면 이 크기 증가 논리를 그대로 적용할 수는 없습니다.
 
 ## 시간 복잡도
 
