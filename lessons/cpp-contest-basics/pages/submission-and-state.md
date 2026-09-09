@@ -45,6 +45,12 @@ bool resetCase(int n) {
 
 `resetCase`는 문제에서 보장한 **TC 시작 지점**에 호출합니다. 매 행동 콜백마다 부르면 누적 관측을 잃습니다. 반대로 시작 시 호출하지 않으면 이전 TC의 방문 기록이 섞입니다. 활성 구간 밖의 `used[n..MAX_ITEM-1]`는 읽지 않는 것이 이 예제의 계약입니다.
 
+![TC 크기4에서2로 줄면 뒤 두 칸은 남지만 읽지 않습니다. 다음 크기4 TC 시작에 네 칸을 모두 초기화합니다.](../lesson-assets/case-reset.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/cpp-contest-basics/lesson-assets/case-reset.svg)
+
+TC 크기를 `4 → 2 → 4`로 바꿔 검사합니다. 가운데 TC에서 남은 두 값은 오류가 아니지만, 마지막 TC가 시작될 때는 다시 활성 구간에 들어오므로 반드시 지워야 합니다.
+
 배열 크기는 문제를 보며 계산합니다. 예를 들어 SCHEDULX의 비용은 작업별 한 숫자가 아니라 `cost[job][machine]`입니다. `cost[job]`를 쓰는 추상 예제를 그대로 옮길 수 없습니다. 원소가 4바이트인 `int`라면 `4000 × M` 배열은 약 `16000M`바이트이고, 같은 크기 복사본을 만들 때마다 그만큼 더 필요합니다.
 
 ## 정수 범위와 실행 비용

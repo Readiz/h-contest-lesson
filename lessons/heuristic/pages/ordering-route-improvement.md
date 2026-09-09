@@ -124,6 +124,12 @@ after  += dist(b, d)
 
 이때 내부 간선 `B-C`, `C-D`는 방향만 바뀌므로 총비용이 같습니다. 실제 변화는 `A-B`가 `A-D`로 바뀐 것뿐입니다. 열린 경로의 끝을 뒤집을 때 경계 하나만 비교하는 이유가 여기서 보입니다.
 
+![경로0 A B C D의 꼬리 B C D를 뒤집으면0 A D C B가 됩니다. 비용16에서9로 감소하며 A B만 A D로 바뀝니다.](../lesson-assets/open-tail.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/open-tail.svg)
+
+화살표는 방문 순서이며 점 사이의 화면 간격은 실제 거리가 아닙니다. 내부 비용 `1 + 6`은 그대로이고 왼쪽 경계 비용만 `8 → 1`로 바뀝니다.
+
 작은 입력에서 모든 `left, right` 조합을 뒤집어 보고, 차분식의 결과가 `get_path_dist`로 다시 구한 비용 변화와 같은지 대조합니다. 인접한 두 점과 경로 끝을 포함하는 구간도 넣습니다.
 
 ## 제출 가능한 기본 구현

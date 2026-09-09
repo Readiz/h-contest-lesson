@@ -162,6 +162,12 @@ long long get(int idx) {
 
 여기서 `a[i]`는 개별로 직접 바꾼 값이고, `lazy[block]`은 블록 전체에 밀려 있는 증가량입니다. 실제 값은 둘을 더해야 합니다.
 
+![구간2부터7에3을 더하면 a의2와3만3이 됩니다. 블록1의 lazy가3이므로4부터7의 실제 값도3입니다.](lesson-assets/lazy-values.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/sqrt-decomposition/lesson-assets/lazy-values.svg)
+
+`n=8`, `B=4`, 모든 값이 0인 상태에서 닫힌 구간 `[2,7]`에 3을 더했습니다. 블록 전체 갱신에서는 `a`와 `lazy`를 동시에 증가시키지 않습니다. 둘 다 더하면 조회 때 증가량이 두 번 반영됩니다.
+
 ## 구간 갱신 실습
 
 [창고 구역 장부](/practice/SHELFLOG)에서 구간 덧셈과 구간 합을 구현해 봅니다. 블록 전체를 갱신할 때는 합에 `증가량 × 블록 길이`를 반영하고, 양 끝의 일부 구간은 직접 처리합니다.
