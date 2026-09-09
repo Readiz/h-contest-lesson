@@ -1,5 +1,250 @@
 # 학습 노트 전체 본문 검토 기록
 
+## 2026-09-09 전수 재검토와 기본자료 시각화
+
+기준 커밋 `92ead1f`. 당시 등록된 97개 강의의 본문·하위 페이지 **190개 모두**를 코드 블록까지 읽고 개별 판단을 기록했습니다. 앞선 부분 검토나 최초 216개 기록으로 이번 검토를 대신하지 않았습니다. 아래 판단은 읽을 당시 발견한 사항이며, 편집 결과는 통합 경로와 이번 변경에 반영했습니다. 알고리즘의 모든 입력에 대한 형식적 증명을 의미하지는 않습니다.
+
+- 직접 이어지는 정의·구현·실습 등 21개 경계 통합: **190 → 169개 본문**, **97개 강의(기본 30, 참고 67) 유지**.
+- SAM의 중복 construction을 한 구현으로 통합하고, MDP의 유한 지평·할인·정책 반복은 각 전제를 유지한 한 페이지로 정리했습니다. 일반 Lagrangian과 Exact-K도 최소화/최대화 부호 및 복원 조건을 함께 비교합니다.
+- Manacher 전처리와 구간 판정을 보충하고 길이 10 이하 모든 이진 문자열의 모든 비어 있지 않은 구간을 직접 회문 판정과 비교했습니다.
+- 누적합·투 포인터·이분 탐색·배낭 DP·Fenwick·Segment Tree·Dijkstra·Alpha-Beta에 SVG 8개와 확대 링크를 추가했습니다.
+- 전체 validator: 97개 강의, 공통 코드 7개 및 조합·경계·차분 검증 41개, ASan/UBSan 통과.
+- 실제 production frontend dist와 격리된 로컬 backend에서 169개 강의 경로를 열었습니다. 새 그림 8개는 1280px·390px에서 각각 전체 화면과 그림 영역을 촬영하고 직접 확인했습니다. 운영 로그인 상태에서의 보호 본문 확인과는 구분합니다.
+
+### 문서별 읽기 기록
+
+| 번호 | 검토한 원문 | 통합 후 위치 | 읽기 판단 |
+| --- | --- | --- | --- |
+| 1 | `lessons/complexity-input-size/lesson.md` | [본문](lessons/complexity-input-size/lesson.md) | 유지: 연산량·전체 TC·메모리 계산을 한 흐름으로 설명. 복잡도 비교 시각화 후보 P2. |
+| 2 | `lessons/cpp-contest-basics/lesson.md` | [본문](lessons/cpp-contest-basics/lesson.md) | 유지: 제출 계약·자료구조·실제 채점은 서로 다른 사용 목적. 독립 스니펫 탐색 허브. |
+| 3 | `lessons/cpp-contest-basics/pages/submission-and-state.md` | [본문](lessons/cpp-contest-basics/pages/submission-and-state.md) | 유지: TC 초기화·공개 API 계약과 예제 일치. 초기화 시점 도식 후보 P2. |
+| 4 | `lessons/cpp-contest-basics/pages/arrays-and-random.md` | [본문](lessons/cpp-contest-basics/pages/arrays-and-random.md) | 유지: seed·부분 셔플·배열 계약과 구현 일치. seed 반복 예시가 충분함. |
+| 5 | `lessons/cpp-contest-basics/pages/sorting-queue-heap.md` | [본문](lessons/cpp-contest-basics/pages/sorting-queue-heap.md) | 유지: 정렬·큐·힙 독립 복사 코드와 용량 의미 명시. 큐/힙 시각화는 해당 기본 강의 우선. |
+| 6 | `lessons/cpp-contest-basics/pages/practice.md` | [본문](lessons/cpp-contest-basics/pages/practice.md) | 유지: 공통 코드 검사와 실제 채점 결과의 증거 범위를 구분. 별도 실습 역할 있음. |
+| 7 | `lessons/sorting/lesson.md` | [본문](lessons/sorting/lesson.md) | 유지: 정렬 기준·안정성·counting·radix 연결. 기존 radix 그림 있음. |
+| 8 | `lessons/prefix-sum-difference/lesson.md` | [본문](lessons/prefix-sum-difference/lesson.md) | 유지: 1D/2D 누적합과 차분은 같은 역연산 흐름. 포함배제·네 모서리 시각화 P1. |
+| 9 | `lessons/greedy/lesson.md` | [본문](lessons/greedy/lesson.md) | 유지: 증명 패턴과 실제 문제 사례가 연결됨. 기존 시각화 6개로 추가 우선순위 낮음. |
+| 10 | `lessons/two-pointers-sliding-window/lesson.md` | [본문](lessons/two-pointers-sliding-window/lesson.md) | 유지: 양끝 포인터와 창 축소의 단조성 명시. 양수 창의 확장/축소 시각화 P1. |
+| 11 | `lessons/binary-search/lesson.md` | [본문](lessons/binary-search/lesson.md) | 유지: lower/upper bound와 최소/최대 판정의 경계 방향 구분. F/T 경계·올림 mid 시각화 P1. |
+| 12 | `lessons/coordinate-compression/lesson.md` | [본문](lessons/coordinate-compression/lesson.md) | 유지: 순서 보존과 실제 거리 비보존 구분. 압축 전후 간격 그림 P2. |
+| 13 | `lessons/priority-queue-heap/lesson.md` | [본문](lessons/priority-queue-heap/lesson.md) | 유지: 힙 불변식과 공통 코드 링크. 배열/트리 대응 및 pop 이동 시각화 P1. |
+| 14 | `lessons/meldable-heap/lesson.md` | [본문](lessons/meldable-heap/lesson.md) | 유지: meld가 별도 목적이며 binary heap과 통합하지 않음. 상각/최악 구분과 pool 계약 확인. |
+| 15 | `lessons/heuristic/lesson.md` | [본문](lessons/heuristic/lesson.md) | 유지: 경로·배치·일정이라는 별도 문제 모델을 안내하는 허브. |
+| 16 | `lessons/heuristic/pages/ordering-route-improvement.md` | [본문](lessons/heuristic/pages/ordering-route-improvement.md) | 유지: 열린 경로·창고 고정·꼬리 2-opt 계약과 구현 일치. 끝점 간선 한 개 변경 시각화 P1. |
+| 17 | `lessons/heuristic/pages/search-strategies.md` | [본문](lessons/heuristic/pages/search-strategies.md) | 문제 공통 탐색 전략으로 독립 유지. SA 확률과 현재해/최선해 구분 타당. 국소 최적 그림은 후순위. |
+| 18 | `lessons/heuristic/pages/placement-and-repair.md` | [본문](lessons/heuristic/pages/placement-and-repair.md) | 배치 모델과 공개 API 되돌림 불가 경계를 명시해 독립 유지. 비트마스크 전제와 repair 연결 타당. |
+| 19 | `lessons/heuristic/pages/aircontech-beam-search.md` | [본문](lessons/heuristic/pages/aircontech-beam-search.md) | 일정 Beam 예제는 배치/경로와 상태가 달라 독립 유지. 기존 Beam 그림 활용. |
+| 20 | `lessons/modular-arithmetic/lesson.md` | [본문](lessons/modular-arithmetic/lesson.md) | mod>0, 지수 비음수, mod=1 처리와 곱셈 범위 타당. |
+| 21 | `lessons/dynamic-programming/lesson.md` | [본문](lessons/dynamic-programming/lesson.md) | 통합 뒤 상태 소개 중복 및 아래 세 문제라는 낡은 개수 표현 수정 필요. 0/1 배낭 역순 갱신 시각화 우선. |
+| 22 | `lessons/tsp-hamiltonian/lesson.md` | [본문](lessons/tsp-hamiltonian/lesson.md) | 완전탐색에서 상태 병합, 복원, 휴리스틱과 근사 보장까지 연결됨. 기존 그림 3개로 설명 충분. 대칭 거리/복귀 조건 분명. |
+| 23 | `lessons/union-find/lesson.md` | [본문](lessons/union-find/lesson.md) | 경로압축과 size 대표 조건, 실패한 unite 예시 타당. 기존 그림 3개가 핵심 과정을 포함하므로 신규 추가 후순위. |
+| 24 | `lessons/bfs-dfs-grid/lesson.md` | [본문](lessons/bfs-dfs-grid/lesson.md) | 방문 표시와 거리 확정 조건, 다중 시작점/상태 확장을 한 흐름으로 유지. BFS 층별 진행 시각화 우선. |
+| 25 | `lessons/graph-tree-basics/lesson.md` | [본문](lessons/graph-tree-basics/lesson.md) | 표현과 루트/부분트리 기본 설명 타당. 지름 페이지는 기본 성질의 직접 연장이므로 본문 통합 후보. MST는 별도 최적화 질문으로 유지. |
+| 26 | `lessons/graph-tree-basics/pages/tree-diameter-centroid.md` | [본문](lessons/graph-tree-basics/lesson.md) | 지름과 중심/센트로이드 비교, 부모 방향 크기 계산 타당. 기본 트리 본문과 통합해 구조 설명에서 이어 읽도록 개선 후보. |
+| 27 | `lessons/graph-tree-basics/pages/mst-kruskal-prim.md` | [본문](lessons/graph-tree-basics/pages/mst-kruskal-prim.md) | Kruskal의 DSU 의존과 연결 실패, 최단경로와의 차이를 설명. 독립 학습 질문으로 유지. |
+| 28 | `lessons/zero-one-bfs/lesson.md` | [본문](lessons/zero-one-bfs/lesson.md) | 0-1 가중치의 deque 규칙과 재완화 설명 적합. 독립 알고리즘 유지. |
+| 29 | `lessons/topological-sort-dag/lesson.md` | [본문](lessons/topological-sort-dag/lesson.md) | Kahn과 작업 DP 연결 자연스러움. 사이클 전제와 동시 실행 가정 명시. |
+| 30 | `lessons/dijkstra/lesson.md` | [본문](lessons/dijkstra/lesson.md) | 완화와 낡은 힙 항목 예시, 조기 종료 위치, 다중 간선 복잡도 명시 타당. 시각화는 기존 표에 없는 힙 변화 우선. |
+| 31 | `lessons/bellman-ford-negative-cycle/lesson.md` | [본문](lessons/bellman-ford-negative-cycle/lesson.md) | 음수 사이클 도달성과 목표 영향 범위를 구분하고 조기 종료와 INF 전제를 제시. 유지. |
+| 32 | `lessons/scc-2sat/lesson.md` | [본문](lessons/scc-2sat/lesson.md) | SCC에서 2-SAT으로 연결된 결합 예제 적합. SCC 번호 방향과 참값 복원 설명 일치. |
+| 33 | `lessons/max-flow-min-cut/lesson.md` | [본문](lessons/max-flow-min-cut/lesson.md) | 잔여 간선/최소 절단/매칭 연결 일관. self-loop 역인덱스와 source!=sink 전제 포함. 기본자료 잔여 용량 재배치 그림 우선 후보. |
+| 34 | `lessons/matching-cover-duality/lesson.md` | [본문](lessons/matching-cover-duality/lesson.md) | 최대매칭 뒤 cover 복원 전제, 교대 경로 방향과 DAG 경로 덮개 변환 타당. 별도 쌍대성 질문 유지. |
+| 35 | `lessons/min-cost-flow/lesson.md` | [본문](lessons/min-cost-flow/lesson.md) | 역비용, requiredFlow 미달, 초기 음수사이클 배제 및 수치 범위 명시. 독립 비용 최적화 흐름 유지. |
+| 36 | `lessons/flow-with-lower-bound/lesson.md` | [본문](lessons/flow-with-lower-bound/lesson.md) | demand 부호와 super 간선 방향 일치. 일회성 feasible 사용, 보조 간선 양방향 제거 명시. 유지. |
+| 37 | `lessons/general-matching/lesson.md` | [본문](lessons/general-matching/lesson.md) | cardinality와 weighted/maximal 구별 및 base 임시성 설명 유효. 일반 매칭 고유 질문 유지. |
+| 38 | `lessons/floyd-warshall/lesson.md` | [본문](lessons/floyd-warshall/lesson.md) | 경유 정점 DP와 복원/음수 사이클 범위 연결 타당. 초기화 순서는 대각 0 뒤 간선 min으로 음수 self-loop 보존. |
+| 39 | `lessons/sqrt-decomposition/lesson.md` | [본문](lessons/sqrt-decomposition/lesson.md) | 블록 합과 lazy 변형을 구별하고 기존 블록/질의 그림 충분. 유지. |
+| 40 | `lessons/sparse-table-rmq/lesson.md` | [본문](lessons/sparse-table-rmq/lesson.md) | 겹침 허용 연산과 LCP/Euler 규약 명시. min query 범위와 빈 입력 질의 제한 타당. |
+| 41 | `lessons/fenwick-tree/lesson.md` | [본문](lessons/fenwick-tree/lesson.md) | lowbit 구간과 query/add 반대 진행, 비음수 lowerBound 전제 타당. 13→12→8 구간 그림 우선. |
+| 42 | `lessons/dominator-tree/lesson.md` | [본문](lessons/dominator-tree/lesson.md) | DFS번호/원정점과 idom root 규약 구별, 재build 초기화 타당. 전문 독립 주제 유지. |
+| 43 | `lessons/weighted-matching/lesson.md` | [본문](lessons/weighted-matching/lesson.md) | perfect small-N DP와 큰 일반 weighted blossom 제공 범위 정직. 목적식과 음수 가중치 구분 적합. |
+| 44 | `lessons/directed-mst/lesson.md` | [본문](lessons/directed-mst/lesson.md) | 수축 비용과 불가능 판정 코드 타당. 최단거리 트리를 루트에서 나가는 간선만 본다고 한 도입 문장은 부정확하므로 수정 필요. |
+| 45 | `lessons/segment-tree/lesson.md` | [본문](lessons/segment-tree/lesson.md) | 기본과 lazy 코드 통합 흐름 적합. lazy가 현재 합에 아직 미반영인 규약을 그림에 그대로 반영 필요. |
+| 46 | `lessons/versioned-data-structures/lesson.md` | [본문](lessons/versioned-data-structures/lesson.md) | 버전 모델 구분 허브 유지. Practice Set 별도 필요성은 실습 본문 확인 뒤 판단. |
+| 47 | `lessons/versioned-data-structures/pages/persistent-segment-tree.md` | [본문](lessons/versioned-data-structures/pages/persistent-segment-tree.md) | 합 버전과 prefix kth가 경로 복사로 연결됨. null node와 압축/질의 전제 타당. |
+| 48 | `lessons/versioned-data-structures/pages/persistent-lazy-segment-tree.md` | [본문](lessons/versioned-data-structures/pages/persistent-lazy-segment-tree.md) | 과거 노드 보존과 query carry 구현 일치. 점 버전과 다른 핵심 불변식이라 하위 페이지 유지. |
+| 49 | `lessons/versioned-data-structures/pages/persistent-union-find.md` | [본문](lessons/versioned-data-structures/pages/persistent-union-find.md) | union-only 시간과 분기 제한 명시. 실패 union도 시간 증가 규약 코드 일치. 유지. |
+| 50 | `lessons/versioned-data-structures/pages/persistent-queue-stack.md` | [본문](lessons/versioned-data-structures/pages/persistent-queue-stack.md) | 큐 모델 뒤 작은 예시가 실제로 스택 top/pop 예시라 혼동. 예시를 스택 설명 바로 뒤로 옮기고 제목에 스택 명시 필요. |
+| 51 | `lessons/versioned-data-structures/pages/practice-set.md` | [본문](lessons/versioned-data-structures/pages/persistent-segment-tree.md) | 허브 전반 실습을 표방하지만 실제 내용은 prefix kth뿐. Persistent Segment Tree 본문에 통합하고 기존 짧은 중복 예시 대체. |
+| 52 | `lessons/hungarian-algorithm/lesson.md` | [본문](lessons/hungarian-algorithm/lesson.md) | 손풀이, potential 구현과 실제 배정 사례 연결 완결. 기존 그림 충분. 행렬목표/실제 운행비 분리 명시. |
+| 53 | `lessons/wavelet-tree/lesson.md` | [본문](lessons/wavelet-tree/lesson.md) | 값/위치 재배치와 rank 변환, 원본변경 및 복사금지 명시. static order질의 독립 유지. |
+| 54 | `lessons/wavelet-matrix/lesson.md` | [본문](lessons/wavelet-matrix/lesson.md) | 31층 실제 저장량과 경계 countLess longlong 처리 적합. Tree와 레이아웃 차이 있어 독립 유지. |
+| 55 | `lessons/succinct-bitvector/lesson.md` | [본문](lessons/succinct-bitvector/lesson.md) | selectOne이 이미 본체에 있는데 다음 멤버를 추가하라는 잔재 문장과 중복 설명 수정. 코드 selectOne 들여쓰기도 정리 필요. |
+| 56 | `lessons/tree-advanced/lesson.md` | [본문](lessons/tree-advanced/lesson.md) | Euler/LCA/HLD/centroid 집계가 트리 분할 관점으로 연결. LOG 설명의 20보다18이면 표현 다듬기. HLD 경로→배열 그림 우선 후보. |
+| 57 | `lessons/avl-splay-tree/lesson.md` | [본문](lessons/avl-splay-tree/lesson.md) | 회전 코드와 보장 비교 완결. Splay 접근 실패 시에는 찾은 x가 없으므로 find(x)후 root 문장 성공 탐색으로 한정 필요. |
+| 58 | `lessons/link-cut-tree/lesson.md` | [본문](lessons/link-cut-tree/lesson.md) | LCT 경로노출과 직접 간선 cut 조건, null0 및 연결 전제 타당. 추적 하위제목 3.1~3.3은 상위 번호 없는 잔재라 제거. |
+| 59 | `lessons/treap/lesson.md` | [본문](lessons/treap/lesson.md) | BST 설명과 split/merge/순위 구현 연결 자연스러움. unique key, 소유권, 난수 독립 조건 명시. |
+| 60 | `lessons/string-matching-kmp-z/lesson.md` | [본문](lessons/string-matching-kmp-z/lesson.md) | KMP 실패/겹침, Z 구분자, hash 충돌 구분 적합. 실패 시 이미 일치한 접미사 재사용 그림 우선 후보. |
+| 61 | `lessons/trie-aho-corasick/lesson.md` | [본문](lessons/trie-aho-corasick/lesson.md) | Trie에서 실패링크로 이어지는 자연스러운 구성. build 일회/빈패턴 금지와 출력 집계 경계 타당. |
+| 62 | `lessons/suffix-periodicity-structures/lesson.md` | [본문](lessons/suffix-periodicity-structures/lesson.md) | SAM 응용과 주기질의/실습 분리 여부를 하위 본문에서 재판단. 선택 허브 자체는 유지. |
+| 63 | `lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md` | [본문](lessons/suffix-periodicity-structures/pages/suffix-array-lcp.md) | 정렬에서 검색/개수/반복 응용까지 합쳐져 완결. LCP 인덱스와 겹침 없는 반복 그룹 조건 적합. |
+| 64 | `lessons/suffix-periodicity-structures/pages/suffix-automaton.md` | [본문](lessons/suffix-periodicity-structures/pages/suffix-automaton.md) | 구축과 상태 공식/등장횟수/LCS 연결. 응용 페이지와 중복 정도 확인 필요. clone 초기 count 설명 적합. |
+| 65 | `lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md` | [본문](lessons/suffix-periodicity-structures/pages/suffix-automaton.md) | 기본 SAM의 구축/occurrence를 크게 반복. 기본 SAM에 합쳐 구축 예제 하나와 집계/kth 확장으로 정리 필요. 상태 최대2N-1은 N>=2 조건 누락 보완. |
+| 66 | `lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md` | [본문](lessons/suffix-periodicity-structures/pages/generalized-suffix-automaton.md) | 제목은 generalized 구축이나 실제 코드는 다문자열 LCS. 독립 질문은 유효하므로 제목을 여러 문자열의 SAM 질의로 맞추고 일반화 모델과 구현 범위 분명히. |
+| 67 | `lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md` | [본문](lessons/suffix-periodicity-structures/pages/suffix-tree-ukkonen.md) | 구축 추적과 실제 코드 연결 완결. offline 최종문자열 전제 명시. 기존 통합 유지. |
+| 68 | `lessons/suffix-periodicity-structures/pages/runs-periodicity.md` | [본문](lessons/suffix-periodicity-structures/pages/runs-periodicity.md) | 일반 주기/완전 반복 구분 타당. 구간 질의 페이지가 같은 period검증 연장이므로 합칠 후보. |
+| 69 | `lessons/suffix-periodicity-structures/pages/border-automaton.md` | [본문](lessons/suffix-periodicity-structures/pages/border-automaton.md) | 상태m에서 pi로 돌아간다는 설명과 go[m]이 처리하는 코드 차이를 연결 문장으로 명시 필요. |
+| 70 | `lessons/suffix-periodicity-structures/pages/string-period-query-applications.md` | [본문](lessons/suffix-periodicity-structures/pages/runs-periodicity.md) | 구간 주기 식과 비단조성 예시 타당. Runs/Periodicity에 통합해 전체→구간 흐름으로 구성. |
+| 71 | `lessons/suffix-periodicity-structures/pages/practice-set.md` | [본문](lessons/suffix-periodicity-structures/lesson.md) | SA/SAM 두 표현 대조가 독립 연습 질문이지만 본 허브에 실습으로 합쳐도 자연스러움. 한 줄 단계표는 불필요해 제거; 허브 통합 후보. |
+| 72 | `lessons/palindrome-structures/lesson.md` | [본문](lessons/palindrome-structures/lesson.md) | Suffix and Palindrome Applications 링크가 SAM응용이며 회문 응용 없음. 오해 유발 항목 제거. |
+| 73 | `lessons/palindrome-structures/pages/palindromic-tree.md` | [본문](lessons/palindrome-structures/pages/palindromic-tree.md) | 상단은 생성순 길이 비단조라고 바로잡았으나 하단은 길이 대체로 증가를 근거로 누적 설명. suffix link가 먼저 생긴 노드로 향한다는 근거로 통일. |
+| 74 | `lessons/palindrome-structures/pages/palindrome-query-structures.md` | [본문](lessons/palindrome-structures/pages/palindrome-query-structures.md) | 판정 질문 독립 유지. Manacher 계산 구현 없이 radius만 등장하므로 기존 구현 위치 검색 후 연결/보충 필요. |
+| 75 | `lessons/palindrome-structures/pages/palindrome-range-dp.md` | [본문](lessons/palindrome-structures/pages/palindrome-range-dp.md) | 판정과 분할 DP 차이, 메모리만 감소 설명 타당. 독립 DP 주제 유지. |
+| 76 | `lessons/palindrome-structures/pages/practice-set.md` | [본문](lessons/palindrome-structures/pages/palindromic-tree.md) | Eertree 추적만 다뤄 해당 본문 통합. 없는 distinctCount() 호출을 tree.tree.size()-2로 수정 필요. |
+| 77 | `lessons/lyndon-factorization/lesson.md` | [본문](lessons/lyndon-factorization/lesson.md) | Duval분해와 최소회전 코드 및 빈문자열 규약 타당. 독립 표현 질문 유지. |
+| 78 | `lessons/geometry-ccw-segment-intersection/lesson.md` | [본문](lessons/geometry-ccw-segment-intersection/lesson.md) | CCW/교차/hull 공통정의 일관. 범위10^9에서 곱차/거리8e18 이내. 외적 방향/collinear 그림 우선 후보. |
+| 79 | `lessons/rotating-calipers/lesson.md` | [본문](lessons/rotating-calipers/lesson.md) | 기존 지름과 폭 통합 완결. CCW hull과 동률 정책, 거리제곱 및 최소폭 정의 타당. |
+| 80 | `lessons/sweep-line-geometry/lesson.md` | [본문](lessons/sweep-line-geometry/lesson.md) | union면적 이벤트와 실제좌표 길이, 같은x 일괄처리 타당. 독립 sweep 유지. |
+| 81 | `lessons/closest-pair-sweep/lesson.md` | [본문](lessons/closest-pair-sweep/lesson.md) | limit은 sqrtl+1인데 설명은2의거듭제곱 상한이라고 함. 실제 구현과 일치하게 수정 필요. |
+| 82 | `lessons/line-arrangement/lesson.md` | [본문](lessons/line-arrangement/lesson.md) | 중복직선 제거와 유리수 교점별 k+1 영역 계산 타당. 정확한 수치 범위 전제 명시. |
+| 83 | `lessons/voronoi-delaunay/lesson.md` | [본문](lessons/voronoi-delaunay/lesson.md) | incircle은 방향 보정해 양방향 모두 내부 양수인데 반시계만 설명. 일반위치에서 Voronoi dual 삼각형 관계임을 명시 필요. |
+| 84 | `lessons/half-plane-intersection/lesson.md` | [본문](lessons/half-plane-intersection/lesson.md) | 유한영역 clipping 제공범위 정직. NlogN HPI와 구별하고 퇴화 검산 제시. 유지. |
+| 85 | `lessons/gcd-extended-euclid-crt/lesson.md` | [본문](lessons/gcd-extended-euclid-crt/lesson.md) | CRT 양수mod/LCM범위, 역원 및 SPF 범위 명시. 연결 흐름 타당. |
+| 86 | `lessons/combinatorics-ncr/lesson.md` | [본문](lessons/combinatorics-ncr/lesson.md) | 소수/maxN<p/Lucas 준비 범위 명시. 순열/조합/포함배제 연결 유지. |
+| 87 | `lessons/matrix-exponentiation/lesson.md` | [본문](lessons/matrix-exponentiation/lesson.md) | 행렬 차원과mod1 처리, walk와경로 구분 적합. 마지막 min-plus 최적화는 일반행렬의 대안으로 오해 가능하므로 목적에 맞는별도연산으로 문장 수정 후보. |
+| 88 | `lessons/polynomial-recurrence-algorithms/lesson.md` | [본문](lessons/polynomial-recurrence-algorithms/lesson.md) | 계수열 트랙별 입력모델 구분 적합. 실습 페이지 실제 범위 확인 뒤 통합 판단. |
+| 89 | `lessons/polynomial-recurrence-algorithms/pages/fft-ntt.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/fft-ntt.md) | NTT padding/계수/CRT복원 상한 타당. 독립 합성곱 질문 유지. |
+| 90 | `lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/formal-power-series.md) | 통합 코드가 미분/적분뿐이라는 소개와 아래코드 역원 예시라는 잔재 수정. 중복 include/using 제거. Newton/log/exp 흐름 유지. |
+| 91 | `lessons/polynomial-recurrence-algorithms/pages/multipoint-evaluation.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/multipoint-evaluation.md) | remainder tree 추적과 제공범위 분명. 평가라는 독립 질문 유지. |
+| 92 | `lessons/polynomial-recurrence-algorithms/pages/polynomial-interpolation.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/polynomial-interpolation.md) | 보간 차수 전제, 모듈러 좌표 정규화,복원복잡도 적합. 유지. |
+| 93 | `lessons/polynomial-recurrence-algorithms/pages/generating-function-modeling.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/generating-function-modeling.md) | Truncated Polynomial 구현 소개는 곱셈이라지만 실제로 무한 선택 계수 생성. 제목/소개를 코드 역할에 맞춤. 함수 n이 아니라 limit이라는 인자명도 수정. |
+| 94 | `lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md) | Kitamasa reduction방향과K1 조건, BM field 경계 적합. 독립 nth질문 유지. |
+| 95 | `lessons/polynomial-recurrence-algorithms/pages/bostan-mori.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/bostan-mori.md) | 짝홀 추출과 q0전제 일치. naive복잡도와NTT분리 적합. |
+| 96 | `lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/berlekamp-massey.md) | BM→Kitamasa 예시의 nthByRecurrence는 실제 함수명이 아님. nthLinearRecurrence로 수정. 차수상한 증명/holdout 역할 표현 중복 정리. |
+| 97 | `lessons/polynomial-recurrence-algorithms/pages/practice-set.md` | [본문](lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md) | Kitamasa만 다루는 실습은 해당 본문으로 통합. 허브 전체 실습인듯 분리한 경계 불필요. |
+| 98 | `lessons/probability-expected-value/lesson.md` | [본문](lessons/probability-expected-value/lesson.md) | 확률/기대값 단위와 유한성 조건, 선형성 설명 타당. 유지. |
+| 99 | `lessons/game-theory-grundy/lesson.md` | [본문](lessons/game-theory-grundy/lesson.md) | DAG normalplay 전제, mex공간과 xor 독립조건 적합. 유지. |
+| 100 | `lessons/minimax-alpha-beta/lesson.md` | [본문](lessons/minimax-alpha-beta/lesson.md) | 작은 트리로 pruning과 상한캐시 설명 완결. 기존 text트리를 시각화 후보로 판단. |
+| 101 | `lessons/probabilistic-decision-ai/lesson.md` | [본문](lessons/probabilistic-decision-ai/lesson.md) | 자기 허브로 연결된 Exact Model vs Sampling 항목은 실제 본문 앵커로 변경 필요. MDP 분리 4개는 내용 확인 후 통합 판단. |
+| 102 | `lessons/probabilistic-decision-ai/pages/feedback-model-boundary.md` | [본문](lessons/probabilistic-decision-ai/lesson.md) | 모델 축과 관측 누출 반례 유용하지만 허브 선택 안내와 겹침. 허브 본문에 통합 후보. |
+| 103 | `lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md` | [본문](lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md) | 턴 DP는 종료/정책 모델 독립성이 있으나 할인/정책평가 짧은페이지와 공통 Bellman 비교 본문으로 통합 후보. |
+| 104 | `lessons/probabilistic-decision-ai/pages/discounted-value-iteration.md` | [본문](lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md) | finite와discount를 비교하며 같은 설명 반복. MDP 본문에 finite/discount/policy를 연결하고 모델 조건은 절별 유지. -1e100 sentinel은 유한보상만으로 안전하지 않아 -infinity로 교체. |
+| 105 | `lessons/probabilistic-decision-ai/pages/policy-evaluation-and-improvement.md` | [본문](lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md) | 정책 평가/개선은 할인MDP 바로 다음 단계이며독립 내용짧음. MDP 통합. 실수Gaussian을 정확하게 푼다는 문구는 수치 해법으로 수정. |
+| 106 | `lessons/probabilistic-decision-ai/pages/stochastic-shortest-path.md` | [본문](lessons/probabilistic-decision-ai/pages/stochastic-shortest-path.md) | proper조건 반례와 SSP 경계 적절해 독립 유지. best1e100은 비용상한 없으므로 infinity로 교체. |
+| 107 | `lessons/probabilistic-decision-ai/pages/monte-carlo-tree-search.md` | [본문](lessons/probabilistic-decision-ai/pages/monte-carlo-tree-search.md) | 노드 관점/보상반전 전제와근사성 명확. 독립 탐색 유지. |
+| 108 | `lessons/probabilistic-decision-ai/pages/imperfect-information-search.md` | [본문](lessons/probabilistic-decision-ai/pages/imperfect-information-search.md) | 삭제된 예제의 isConsistentWithObservation 언급 잔재 제거. 정보집합 질문은독립 유지. |
+| 109 | `lessons/probabilistic-decision-ai/pages/pomdp.md` | [본문](lessons/probabilistic-decision-ai/pages/pomdp.md) | Bayes와영확률 posterior 처리 타당. belief근사와exact구분. 별도 유지. |
+| 110 | `lessons/probabilistic-decision-ai/pages/point-based-value-iteration.md` | [본문](lessons/probabilistic-decision-ai/pages/point-based-value-iteration.md) | Alpha 선택 구현이라고 했으나 코드없음. 선택 원리라는 제목/소개로 수정. 대표 belief backup 주제 유지. |
+| 111 | `lessons/probabilistic-decision-ai/pages/pomcp.md` | [본문](lessons/probabilistic-decision-ai/pages/pomcp.md) | UCT skeleton 코드가 없으므로 골격 소개 잔재 수정. history 통계와 root샘플링 경계 유효. |
+| 112 | `lessons/probabilistic-decision-ai/pages/bayesian-bandits.md` | [본문](lessons/probabilistic-decision-ai/pages/bayesian-bandits.md) | Beta posterior/quantile과근사식 차이 명시. 독립 partial feedback 모델 유지. |
+| 113 | `lessons/probabilistic-decision-ai/pages/online-planning-evaluation.md` | [본문](lessons/probabilistic-decision-ai/pages/online-planning-evaluation.md) | pairedseed와 외생사건 차이,holdout/시간검증 구분 적합. 학습용독립평가 질문 유지. |
+| 114 | `lessons/probabilistic-decision-ai/pages/practice-set.md` | [본문](lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md) | finite MDP 하나의 추적/실습이므로 MDP본문으로 통합. 근사평가 전체라는 도입 제거. |
+| 115 | `lessons/offline-time-axis-techniques/lesson.md` | [본문](lessons/offline-time-axis-techniques/lesson.md) | 기법 선택 허브 유지. 중복 Mo 선택표 행 두 개 합칠 수 있음. |
+| 116 | `lessons/offline-time-axis-techniques/pages/offline-queries.md` | [본문](lessons/offline-time-axis-techniques/pages/offline-queries.md) | PBS의 sweep공유와sentinel 조건 타당. 독립 판정 재사용 질문 유지. |
+| 117 | `lessons/offline-time-axis-techniques/pages/offline-range-query-techniques.md` | [본문](lessons/offline-time-axis-techniques/pages/offline-range-query-techniques.md) | Mo 상태 역연산과sweep 비교 적합. 시간표의 수정Mo는 동일규모 조건 본문과 맞춰 명시. |
+| 118 | `lessons/offline-time-axis-techniques/pages/rollback-techniques.md` | [본문](lessons/offline-time-axis-techniques/pages/rollback-techniques.md) | snapshot및dummy marker 규약 타당. 일반rollback패턴은 연결성 외에도쓰여 독립 유지. |
+| 119 | `lessons/offline-time-axis-techniques/pages/dynamic-connectivity.md` | [본문](lessons/offline-time-axis-techniques/pages/dynamic-connectivity.md) | DSU 구현이 아래있다는 잔재를 앞서링크한 공유정의로 수정. 동적forest만으로 일반연결성 해결하지못한다는 도입도 본문과통일. |
+| 120 | `lessons/offline-time-axis-techniques/pages/retroactive-data-structures.md` | [본문](lessons/offline-time-axis-techniques/pages/retroactive-data-structures.md) | 두 시간축/deleteMin 반례 독립 모델 구분유효. 유지. |
+| 121 | `lessons/offline-time-axis-techniques/pages/practice-set.md` | [본문](lessons/offline-time-axis-techniques/pages/dynamic-connectivity.md) | 동적연결성 실습뿐이므로 해당 본문으로 통합. 한줄권장순서표 제거. |
+| 122 | `lessons/testing-and-stress/lesson.md` | [본문](lessons/testing-and-stress/lesson.md) | 독립 기준구현/차분/상태복원과점수평가 구별. 실전검증 흐름 완결. |
+| 123 | `lessons/proof-and-invariants/lesson.md` | [본문](lessons/proof-and-invariants/lesson.md) | 이분불변식/그리디교환/DP중복배제 독립 설명 충분. 유지. |
+| 124 | `lessons/divide-and-conquer-dp-optimization/lesson.md` | [본문](lessons/divide-and-conquer-dp-optimization/lesson.md) | 상단 g층computeLayer(g,N,g-1,..)인데 본문 호출은1부터인 잔재 수정. cost[j][i]소개를 cost[j+1][i]로 통일. |
+| 125 | `lessons/knuth-optimization/lesson.md` | [본문](lessons/knuth-optimization/lesson.md) | 비음수파일비용 조건/동률/증명 일관. 유지. |
+| 126 | `lessons/monge-smawk/lesson.md` | [본문](lessons/monge-smawk/lesson.md) | row minima가 오른쪽으로 갈수록이라는 표현을 아래 행으로갈수록으로 수정. 위strict부등식 지시어도 아래로. 코드 조건/동률은 일치. |
+| 127 | `lessons/parametric-optimization/lesson.md` | [본문](lessons/parametric-optimization/lesson.md) | 실습 최대평균 한개는fractional로 연결. parameter유형 선택 허브유지. |
+| 128 | `lessons/parametric-optimization/pages/exact-k-alien-optimization.md` | [본문](lessons/parametric-optimization/pages/general-lagrangian-relaxation.md) | count단조성만으로 exact복원 불가 반례와tie조건 타당. 일반Lagrangian과공통 설명많아 같은 본문에 일반→exactK로 통합 후보. |
+| 129 | `lessons/parametric-optimization/pages/fractional-objectives.md` | [본문](lessons/parametric-optimization/pages/fractional-objectives.md) | 양수분모와길이제약 판정 타당. 실습을 이어붙여 완결. |
+| 130 | `lessons/parametric-optimization/pages/general-lagrangian-relaxation.md` | [본문](lessons/parametric-optimization/pages/general-lagrangian-relaxation.md) | 정확K와dual상계/불평등 완화가 같은 흐름. ExactK 본문과통합해복원조건 반복 제거. |
+| 131 | `lessons/parametric-optimization/pages/practice-set.md` | [본문](lessons/parametric-optimization/pages/fractional-objectives.md) | 최대평균 실습은fractional본문으로 통합. 허브전체 목록이라는 도입 제거. |
+| 132 | `lessons/dynamic-segment-tree/lesson.md` | [본문](lessons/dynamic-segment-tree/lesson.md) | query도노드생성해메모리 포함설명 타당. 독립 sparse범위문제 유지. |
+| 133 | `lessons/linear-basis-xor/lesson.md` | [본문](lessons/linear-basis-xor/lesson.md) | 정규화kth/rank64 및walk조건 구분 타당. 기존통합 유지. |
+| 134 | `lessons/convex-dp-optimization/lesson.md` | [본문](lessons/convex-dp-optimization/lesson.md) | 식과단조성선택 허브 적합. 실습이CHT뿐이면 해당본문 통합. |
+| 135 | `lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md` | [본문](lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md) | 기존CHT통합 코드와기울기조건 정확. 실제실습 아래따로있으면 결합. |
+| 136 | `lessons/convex-dp-optimization/pages/slope-trick.md` | [본문](lessons/convex-dp-optimization/pages/slope-trick.md) | hinge/shift코드와적용범위 명시. 일반볼록함수와구분 유지. |
+| 137 | `lessons/convex-dp-optimization/pages/min-plus-convolution.md` | [본문](lessons/convex-dp-optimization/pages/min-plus-convolution.md) | naive/단조반례/볼록차분merge 연결 완결. 유지. |
+| 138 | `lessons/convex-dp-optimization/pages/kinetic-hull.md` | [본문](lessons/convex-dp-optimization/pages/kinetic-hull.md) | 정적envelope와kinetic범위/certificate불완전성 구별. 독립 유지. |
+| 139 | `lessons/convex-dp-optimization/pages/fully-dynamic-cht.md` | [본문](lessons/convex-dp-optimization/pages/fully-dynamic-cht.md) | 삭제로 버린선부활 반례/rollback 계약과block재구축 타당. 독립 모델 유지. |
+| 140 | `lessons/convex-dp-optimization/pages/practice-set.md` | [본문](lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md) | CHT본문에 LiChao실습으로 통합. DP 숫자trace335정확. |
+| 141 | `lessons/graph-cut-structures/lesson.md` | [본문](lessons/graph-cut-structures/lesson.md) | cut값/partition/family와가중조건 구분 적합. 실습범위 확인후배치. |
+| 142 | `lessons/graph-cut-structures/pages/global-min-cut.md` | [본문](lessons/graph-cut-structures/pages/global-min-cut.md) | global/고정root N-1계산/partition복원 구분 타당. 독립 유지. |
+| 143 | `lessons/graph-cut-structures/pages/randomized-min-cut.md` | [본문](lessons/graph-cut-structures/pages/randomized-min-cut.md) | 균등간선instance 수축과비연결처리, 반복실패확률 적합. 독립 확률알고리즘 유지. |
+| 144 | `lessons/graph-cut-structures/pages/gomory-hu-tree.md` | [본문](lessons/graph-cut-structures/pages/gomory-hu-tree.md) | parent추적과 oracle source-side/초기화 계약 완결. 기존통합 유지. |
+| 145 | `lessons/graph-cut-structures/pages/cut-sparsification.md` | [본문](lessons/graph-cut-structures/pages/cut-sparsification.md) | certificate조건 타당. forest비용표에서 DSU초기화 O(N) 누락: O(k(N+M alpha(N)))로 수정. |
+| 146 | `lessons/graph-cut-structures/pages/cactus-representation.md` | [본문](lessons/graph-cut-structures/pages/cactus-representation.md) | 입력cactus와cutfamily구축 구분타당. 양의globalcut전제 반복과mapping명시 유지. |
+| 147 | `lessons/graph-cut-structures/pages/practice-set.md` | [본문](lessons/graph-cut-structures/pages/global-min-cut.md) | StoerWagner추적실습은globalmincut본문에통합; 두추가실험은허브간단연습으로 이동. |
+| 148 | `lessons/euler-tour-tree/lesson.md` | [본문](lessons/euler-tour-tree/lesson.md) | marker중복방지/cut arc핸들 설명 완결. 독립component자료구조 유지. |
+| 149 | `lessons/mobius-inversion/lesson.md` | [본문](lessons/mobius-inversion/lesson.md) | 마지막 좌표압축 권장이 약수보존불가 전제와충돌. 실제약수 key를관리하는희소사전/약수열거로 구체화. |
+| 150 | `lessons/convex-cost-flow/lesson.md` | [본문](lessons/convex-cost-flow/lesson.md) | convex조건검사/비볼록반례 완결. concave를음수cycle만검토하면되는듯한 문장 수정. |
+| 151 | `lessons/dynamic-network-optimization/lesson.md` | [본문](lessons/dynamic-network-optimization/lesson.md) | 허브 모델경계 유효. 실습은flow로이동하고block MST설명중복정리. |
+| 152 | `lessons/dynamic-network-optimization/pages/dynamic-flow.md` | [본문](lessons/dynamic-network-optimization/pages/dynamic-flow.md) | capacity증가feasibility와시간확장모델 구분적합. 실습통합. |
+| 153 | `lessons/dynamic-network-optimization/pages/dynamic-mst.md` | [본문](lessons/dynamic-network-optimization/pages/dynamic-mst.md) | block고정간선은미래변경전체제외라는 상단조건을 하단단계에도반영. baseline복잡도DSU초기화N 포함. |
+| 154 | `lessons/dynamic-network-optimization/pages/practice-set.md` | [본문](lessons/dynamic-network-optimization/pages/dynamic-flow.md) | flow만의실습을dynamic-flow로통합. capacity감소검증은허용범위밖반례임을유지. |
+| 155 | `lessons/dirichlet-convolution/lesson.md` | [본문](lessons/dirichlet-convolution/lesson.md) | 약수 합성 및 역변환, 곱셈적 함수 연결과 코드 경계 확인. 별도 학습 모델로 유지. |
+| 156 | `lessons/minkowski-sum/lesson.md` | [본문](lessons/minkowski-sum/lesson.md) | 엄격한 CCW 다각형과 좌표 제한 아래 변 각도 병합, 정규화 및 퇴화 조건 확인. 유지. |
+| 157 | `lessons/multiplicative-functions/lesson.md` | [본문](lessons/multiplicative-functions/lesson.md) | 소수 거듭제곱 선형 체와 tau 갱신 확인. int 배열 6개이므로 N=1e7 메모리 280MB를 240MB와 primes로 수정 필요. |
+| 158 | `lessons/summatory-number-theory/lesson.md` | [본문](lessons/summatory-number-theory/lesson.md) | 몫 구간 분할과 마지막 구간 오버플로 방지, summatory phi 재귀 조건 확인. 유지. |
+| 159 | `lessons/shape-distance-modeling/lesson.md` | [본문](lessons/shape-distance-modeling/lesson.md) | 거리 baseline 및 Minkowski 변환 확인. SAT overlap을 포함 투영의 끝점 이동량으로 수정. |
+| 160 | `lessons/circle-geometry/lesson.md` | [본문](lessons/circle-geometry/lesson.md) | 원-직선 projection과 퇴화 조건 확인. 유지. |
+| 161 | `lessons/circle-arrangement/lesson.md` | [본문](lessons/circle-arrangement/lesson.md) | 원 합집합 arc, Green 기여식 및 multiplicity 확인. 유지. |
+| 162 | `lessons/geometry-robustness-and-duality/lesson.md` | [본문](lessons/geometry-robustness-and-duality/lesson.md) | 기하 선택 허브 유지. 실습을 각 알고리즘에 통합. |
+| 163 | `lessons/geometry-robustness-and-duality/pages/robust-geometry-predicates.md` | [본문](lessons/geometry-robustness-and-duality/pages/robust-geometry-predicates.md) | 정수 predicate 범위 확인. EPS 근사 동치 비추이성으로 예시 수정. |
+| 164 | `lessons/geometry-robustness-and-duality/pages/power-diagram.md` | [본문](lessons/geometry-robustness-and-duality/pages/power-diagram.md) | Power 부등식 검산. 무한 cell 표현 보완. |
+| 165 | `lessons/geometry-robustness-and-duality/pages/robust-delaunay.md` | [본문](lessons/geometry-robustness-and-duality/pages/robust-delaunay.md) | Delaunay flip 전제와 예제 확인. 유지. |
+| 166 | `lessons/geometry-robustness-and-duality/pages/3d-convex-hull.md` | [본문](lessons/geometry-robustness-and-duality/pages/3d-convex-hull.md) | 3D hull horizon, orientation과 복잡도 확인. 유지. |
+| 167 | `lessons/geometry-robustness-and-duality/pages/regular-triangulation.md` | [본문](lessons/geometry-robustness-and-duality/pages/regular-triangulation.md) | weighted lifting 검산. 대응표 일반 위치 조건 보완. |
+| 168 | `lessons/geometry-robustness-and-duality/pages/practice-set.md` | [본문](lessons/geometry-robustness-and-duality/pages/robust-geometry-predicates.md) | 교차 실습은 predicate로, power 실습은 power 본문으로 통합. |
+| 169 | `lessons/black-box-linear-algebra/lesson.md` | [본문](lessons/black-box-linear-algebra/lesson.md) | Krylov matvec와 투영 최소 다항식 조건 확인. 유지. |
+| 170 | `lessons/game-theory-applications/lesson.md` | [본문](lessons/game-theory-applications/lesson.md) | 게임 모델 분류 유지. MDP 식에 horizon 조건 명시. |
+| 171 | `lessons/inversion-geometry/lesson.md` | [본문](lessons/inversion-geometry/lesson.md) | 반전 코드와 원-직선 변환 확인. 방향 보존 conformal 대신 무방향 교차각 보존으로 표현. |
+| 172 | `lessons/matroid-algorithms/lesson.md` | [본문](lessons/matroid-algorithms/lesson.md) | Matroid 모델 허브 유지. 실습은 basics로 통합. |
+| 173 | `lessons/matroid-algorithms/pages/matroid-basics-and-exchange.md` | [본문](lessons/matroid-algorithms/pages/matroid-basics-and-exchange.md) | 교환 공리 반례와 음수 greedy 조건 확인. 유지. |
+| 174 | `lessons/matroid-algorithms/pages/matroid-intersection.md` | [본문](lessons/matroid-algorithms/pages/matroid-intersection.md) | 교환 그래프 방향 확인. 예제는 증가 경로가 없다는 점을 해당 문단에도 명시. |
+| 175 | `lessons/matroid-algorithms/pages/matroid-union.md` | [본문](lessons/matroid-algorithms/pages/matroid-union.md) | Union rank 및 partition 용량 곱 코드 확인. 유지. |
+| 176 | `lessons/matroid-algorithms/pages/matroid-parity.md` | [본문](lessons/matroid-algorithms/pages/matroid-parity.md) | Parity 모델 확인. 없는 코드를 지칭하는 표현 수정. |
+| 177 | `lessons/matroid-algorithms/pages/practice-set.md` | [본문](lessons/matroid-algorithms/pages/matroid-basics-and-exchange.md) | Partition greedy 실습을 basics에 통합. |
+| 178 | `lessons/sparse-linear-systems/lesson.md` | [본문](lessons/sparse-linear-systems/lesson.md) | Sparse 모델 유지. 링크한 matvec 복잡도를 초기화 포함 O(N+nnz)로 수정. |
+| 179 | `lessons/linear-algebra-applications/lesson.md` | [본문](lessons/linear-algebra-applications/lesson.md) | 선형대수 모델 선택과 두 실제 연습 확인. 유지. |
+| 180 | `lessons/online-convex-optimization/lesson.md` | [본문](lessons/online-convex-optimization/lesson.md) | OCO 허브 유지. 실습을 multiplicative weights에 통합. |
+| 181 | `lessons/online-convex-optimization/pages/online-decision-and-regret.md` | [본문](lessons/online-convex-optimization/pages/online-decision-and-regret.md) | OGD 구현과 마지막 점 의미 확인. 유지. |
+| 182 | `lessons/online-convex-optimization/pages/mirror-descent-and-multiplicative-weights.md` | [본문](lessons/online-convex-optimization/pages/mirror-descent-and-multiplicative-weights.md) | Mirror descent 조건 및 고정 eta 대응 확인. 실습 연결. |
+| 183 | `lessons/online-convex-optimization/pages/dual-averaging.md` | [본문](lessons/online-convex-optimization/pages/dual-averaging.md) | Dual averaging 안정화 확인. eta*누적손실도 유한해야 한다는 전제 보완. |
+| 184 | `lessons/online-convex-optimization/pages/practice-set.md` | [본문](lessons/online-convex-optimization/pages/mirror-descent-and-multiplicative-weights.md) | Expert loss 실습을 mirror descent 본문에 통합. |
+| 185 | `lessons/randomized-determinant/lesson.md` | [본문](lessons/randomized-determinant/lesson.md) | modular determinant 코드와 독립 trial 조건 확인. 유지. |
+| 186 | `lessons/matrix-tree-theorem-applications/lesson.md` | [본문](lessons/matrix-tree-theorem-applications/lesson.md) | Matrix-tree 방향 및 contraction 검산. cofactor mod 상한 명시 필요. |
+| 187 | `lessons/planar-graph-duality/lesson.md` | [본문](lessons/planar-graph-duality/lesson.md) | Planar 허브 유지. 실습은 face 구성 본문으로 통합. |
+| 188 | `lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md` | [본문](lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md) | Half-edge 순회와 dual 구성 확인. 정수 면적 0 표현 명확화. |
+| 189 | `lessons/planar-graph-duality/pages/cut-cycle-duality.md` | [본문](lessons/planar-graph-duality/pages/cut-cycle-duality.md) | Cut-cycle 및 공통 face 조건 확인. 유지. |
+| 190 | `lessons/planar-graph-duality/pages/practice-set.md` | [본문](lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md) | Face incidence 실습과 두 검산 예시를 face 본문으로 통합. |
+
+### 기본자료 30개 시각화 우선순위
+
+P1은 이번에 보강한 상태 변화·경계·불변식입니다. P2는 도식의 추가 효용이 있지만 본문의 코드·예시로 따라갈 수 있어 다음 보강 대상으로 둡니다. 유지 항목은 이미 있는 도식이 질문을 충분히 설명하거나, 이번 목적에 그림보다 계약·검증 절차가 더 중요한 경우입니다.
+
+| 강의 | 판단 | 근거 |
+| --- | --- | --- |
+| [복잡도와 입력 크기 감각](lessons/complexity-input-size/lesson.md) | P2 | 표의 수치 비교가 직접적. 입력 규모별 증가 곡선은 후속 후보. |
+| [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md) | 유지 | TC 초기화와 제출 계약은 코드·호출 순서가 핵심. |
+| [정렬 알고리즘](lessons/sorting/lesson.md) | 유지 | 기존 Radix 도식 유지. |
+| [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md) | P1 완료 | 2차원 누적합: 겹친 부분을 한 번 복구 |
+| [그리디 알고리즘](lessons/greedy/lesson.md) | 유지 | 기존 여섯 예시 그림 유지. |
+| [투 포인터와 슬라이딩 윈도우](lessons/two-pointers-sliding-window/lesson.md) | P1 완료 | 투 포인터: 확장과 축소의 역할 |
+| [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md) | P1 완료 | 이분 탐색: 첫 번째 참의 경계 |
+| [좌표 압축](lessons/coordinate-compression/lesson.md) | P2 | 순위와 실제 거리 차이는 후속 좌표축 그림 후보. |
+| [우선순위 큐와 힙](lessons/priority-queue-heap/lesson.md) | P2 | 배열과 완전이진트리 대응을 후속 보강. |
+| [Meldable Heap](lessons/meldable-heap/lesson.md) | P2 | meld 재귀의 교환은 후속 단계 그림 후보. |
+| [휴리스틱 알고리즘](lessons/heuristic/lesson.md) | 유지 | 기존 실전 하위 자료와 AIRCONTECH 전이 그림 유지. |
+| [동적 계획법](lessons/dynamic-programming/lesson.md) | P1 완료 | 0/1 배낭: 큰 용량부터 갱신 |
+| [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md) | 유지 | 기존 방문 상태·경로 그림 세 개 유지. |
+| [Union-Find 알고리즘](lessons/union-find/lesson.md) | 유지 | 기존 합치기와 경로 압축 그림 세 개 유지. |
+| [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md) | P2 | 거리별 frontier와 큐 순서는 후속 보강. |
+| [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md) | 유지 | 지름과 centroid의 차이는 통합된 설명 다음 보강 후보. |
+| [0-1 BFS](lessons/zero-one-bfs/lesson.md) | P2 | deque 앞뒤 삽입은 후속 상태 그림 후보. |
+| [위상 정렬과 DAG DP](lessons/topological-sort-dag/lesson.md) | P2 | 진입 차수 감소와 해제 순서를 후속 보강. |
+| [Dijkstra 최단거리](lessons/dijkstra/lesson.md) | P1 완료 | Dijkstra: 큐에 남은 낡은 후보 |
+| [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md) | P2 | V번째 완화의 영향 전파를 후속 보강. |
+| [Floyd-Warshall](lessons/floyd-warshall/lesson.md) | P2 | 허용 중간 정점 집합의 변화를 후속 보강. |
+| [Sqrt Decomposition](lessons/sqrt-decomposition/lesson.md) | 유지 | 기존 블록 분해·lazy 그림 두 개 유지. |
+| [Fenwick Tree](lessons/fenwick-tree/lesson.md) | P1 완료 | Fenwick: prefix를 구간으로 분해 |
+| [Segment Tree](lessons/segment-tree/lesson.md) | P1 완료 | Lazy: 합과 대기 중인 증가량 |
+| [Hungarian Algorithm](lessons/hungarian-algorithm/lesson.md) | 유지 | 기존 potential과 tight edge 그림 두 개 유지. |
+| [Treap과 BST 기본](lessons/treap/lesson.md) | P2 | split/merge의 재귀 경계는 후속 보강. |
+| [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md) | P1 완료 | Alpha-Beta: 이미 확보한 선택과 비교 |
+| [Testing과 Stress Test](lessons/testing-and-stress/lesson.md) | 유지 | 재현 가능한 입력과 실제 비교 코드가 핵심. |
+| [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) | 유지 | 증명 질문과 반례를 먼저 읽도록 현재 예시 유지. |
+| [Dynamic Segment Tree](lessons/dynamic-segment-tree/lesson.md) | P2 | 노드 생성 시점과 희소 구간은 후속 보강. |
+
+---
+
 2026-09-09 화면 기반 후속 검토: CHT의 정의·변형·적용 3개 페이지를 한 본문으로 통합하고 기울기 방향 설명을 바로잡았습니다. 현재 공개 97개 강의, 190개 본문입니다. 운영 게시본을 격리 로컬 UI에서 읽었으며 운영 로그인 본문 확인은 아닙니다.
 
 

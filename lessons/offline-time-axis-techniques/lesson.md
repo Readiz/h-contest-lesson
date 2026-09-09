@@ -19,4 +19,4 @@ Offline and Time-Axis Techniques는 질의를 입력 순서 그대로 처리하�
 
 ## 연습
 
-[로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.
+[로컬 연습](pages/dynamic-connectivity.md)에서 입력과 검증 기준을 확인합니다.

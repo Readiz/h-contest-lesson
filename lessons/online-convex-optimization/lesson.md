@@ -33,4 +33,4 @@ Online Convex Optimization은 입력이 순차적으로 공개되는 상황에�
 
 ## 연습
 
-[로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.
+[로컬 연습](pages/mirror-descent-and-multiplicative-weights.md)에서 입력과 검증 기준을 확인합니다.

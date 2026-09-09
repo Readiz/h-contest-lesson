@@ -3,7 +3,7 @@
 Generating Function Modeling은 counting 문제나 DP 식을 계수열로 보고, 곱셈, 나눗셈, rational form으로 바꾸는 모델링 레슨입니다. Formal Power Series가 연산 도구를 다룬다면, 이 레슨은 문제 문장을 어떤 생성함수 식으로 번역할지에 집중합니다.
 
 
-무한 반복의 weight는 양수여야 합니다. `maxDegree>=0`이며 1/(1-A)의 형식적 급수는 A(0)=0일 때 정의됩니다. 다항식 곱셈은 [Formal Power Series](https://h.readiz.com/learn/polynomial-recurrence-algorithms/formal-power-series)의 multiplyTruncated를 사용하되 그 함수의 n은 최대 차수가 아닌 계수 개수이므로 maxDegree+1을 전달합니다.
+무한 반복의 weight는 양수여야 합니다. `maxDegree>=0`이며 1/(1-A)의 형식적 급수는 A(0)=0일 때 정의됩니다. 다항식 곱셈은 [Formal Power Series](https://h.readiz.com/learn/polynomial-recurrence-algorithms/formal-power-series)의 multiplyTruncated를 사용하되 그 함수의 limit은 최대 차수가 아닌 계수 개수이므로 maxDegree+1을 전달합니다.
 
 ## 문제 신호
 
@@ -73,9 +73,9 @@ dp[s] += dp[s - w]
 | sum 바깥, item 안쪽 | 순서 있는 sequence |
 | item 바깥, sum 감소 | 0/1 선택 |
 
-## Truncated Polynomial 구현
+## 무제한 선택의 계수 생성
 
-아래 코드는 필요한 차수까지만 다항식을 곱합니다.
+아래 코드는 무제한 선택의 계수를 필요한 차수까지만 생성합니다.
 
 ```cpp compile-check
 #include <vector>

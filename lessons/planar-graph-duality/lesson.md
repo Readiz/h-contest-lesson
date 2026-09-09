@@ -13,4 +13,4 @@ Planar Graph Duality는 평면에 교차 없이 그린 그래프에서 face를 �
 
 ## 연습
 
-[로컬 연습](pages/practice-set.md)은 face incidence가 주어진 dual graph 구성과 최단 경로를 다룹니다.
+[로컬 연습](pages/half-edge-and-face-traversal.md)은 face incidence가 주어진 dual graph 구성과 최단 경로를 다룹니다.

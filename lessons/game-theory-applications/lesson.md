@@ -48,8 +48,11 @@ minimax는 terminal까지 탐색하고 정확한 보상을 쓸 때 정확합니�
 상대가 아니라 확률 전이가 결과를 바꾸고, action을 골라 기대 보상을 최대화하면 MDP입니다.
 
 ```text
-V(s) = max_a reward(s,a) + sum_t P(t|s,a) V(t)
+V_h(s) = max_a [reward(s,a) + sum_t P(t|s,a) V_{h-1}(t)]
+V_0(s) = terminal reward
 ```
+
+위 식은 유한 지평의 기대값 DP입니다. 무한 지평이면 할인이나 적절한 종료 조건을 별도로 둡니다.
 
 상대와 확률이 모두 있으면 stochastic game이지만, 대회 문제에서는 한쪽을 고정 정책이나 chance node로 단순화하는 경우가 많습니다.
 

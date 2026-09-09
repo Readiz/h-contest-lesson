@@ -30,4 +30,4 @@ Versioned Data Structures는 과거 상태 조회, 분기 버전 생성, rollbac
 
 ## 연습 문제
 
-이 허브의 연습 흐름은 [Practice Set](pages/practice-set.md)에 모읍니다.
+이 허브의 연습 흐름은 [Practice Set](pages/persistent-segment-tree.md)에 모읍니다.

@@ -41,16 +41,21 @@ len[v] - len[link[v]]
 이미 같은 문자 transition이 있고 길이 조건이 맞지 않으면 clone 상태를 만들어 transition과 link를 나눕니다. clone은 기존 상태의 transition을 복사하지만, 길이만 필요한 값으로 줄인 상태입니다.
 
 ```cpp compile-check
+#include <algorithm>
 #include <array>
 #include <string>
 #include <vector>
 using namespace std;
 
 struct SuffixAutomaton {
+    inline static constexpr long long LIMIT = (1LL << 60);
+
     struct State {
         int link = -1;
         int len = 0;
         array<int, 26> next{};
+        long long occ = 0;
+        long long paths = -1;
 
         State() {
             next.fill(-1);
@@ -69,6 +74,7 @@ struct SuffixAutomaton {
         int cur = (int)st.size();
         st.push_back(State{});
         st[cur].len = st[last].len + 1;
+        st[cur].occ = 1;
 
         int p = last;
         while (p != -1 && st[p].next[c] == -1) {
@@ -86,6 +92,7 @@ struct SuffixAutomaton {
                 int clone = (int)st.size();
                 st.push_back(st[q]);
                 st[clone].len = st[p].len + 1;
+                st[clone].occ = 0;
                 while (p != -1 && st[p].next[c] == q) {
                     st[p].next[c] = clone;
                     p = st[p].link;
@@ -104,6 +111,90 @@ struct SuffixAutomaton {
         for (char ch : s) {
             extend(ch);
         }
+    }
+
+    vector<long long> occurrenceByState() const {
+        int maxLen = 0;
+        for (const State& state : st) {
+            if (state.len > maxLen) {
+                maxLen = state.len;
+            }
+        }
+
+        vector<int> bucket(maxLen + 1, 0);
+        for (const State& state : st) {
+            ++bucket[state.len];
+        }
+        for (int i = 1; i <= maxLen; ++i) {
+            bucket[i] += bucket[i - 1];
+        }
+
+        vector<int> order(st.size());
+        for (int i = (int)st.size() - 1; i >= 0; --i) {
+            order[--bucket[st[i].len]] = i;
+        }
+
+        vector<long long> occ(st.size());
+        for (int i = 0; i < (int)st.size(); ++i) {
+            occ[i] = st[i].occ;
+        }
+        for (int i = (int)order.size() - 1; i > 0; --i) {
+            int v = order[i];
+            if (st[v].link != -1) {
+                occ[st[v].link] += occ[v];
+            }
+        }
+        return occ;
+    }
+
+    long long countPaths(int v) {
+        if (st[v].paths != -1) {
+            return st[v].paths;
+        }
+        long long total = 0;
+        for (int to : st[v].next) {
+            if (to == -1) {
+                continue;
+            }
+            total = min(LIMIT, total + 1 + countPaths(to));
+        }
+        st[v].paths = total;
+        return total;
+    }
+
+    string kthSubstring(long long k) {
+        countPaths(0);
+        if (k <= 0 || k > st[0].paths) {
+            return "";
+        }
+
+        string result;
+        int v = 0;
+        while (k > 0) {
+            bool moved = false;
+            for (int c = 0; c < 26; ++c) {
+                int to = st[v].next[c];
+                if (to == -1) {
+                    continue;
+                }
+                if (k == 1) {
+                    result.push_back(char('a' + c));
+                    return result;
+                }
+                --k;
+                if (k <= st[to].paths) {
+                    result.push_back(char('a' + c));
+                    v = to;
+                    moved = true;
+                    break;
+                }
+                k -= st[to].paths;
+            }
+            if (!moved) {
+                return "";
+            }
+        }
+        return result;
     }
 };
 ```
@@ -182,7 +273,7 @@ int longestCommonSubstring(const vector<State>& st, const string& other) {
 
 두 함수는 위 `sam.st`를 직접 인자로 받습니다. 이 함수도 `next`가 `-1`로 초기화되어 있다는 전제가 있습니다. 상태 구조를 따로 쓸 때는 constructor에서 초기화하는 습관이 중요합니다.
 
-## 시간 복잡도
+## 기본 연산의 시간 복잡도
 
 | 작업 | 시간 | 메모리 |
 | --- | ---: | ---: |
@@ -193,3 +284,63 @@ int longestCommonSubstring(const vector<State>& st, const string& other) {
 | 두 문자열 LCS | `O(|B|)` | automaton 사용 |
 
 고정 소문자 alphabet이면 transition cost가 `O(1)`입니다. 큰 alphabet에서 map을 쓰면 로그 또는 해시 비용이 붙습니다.
+
+## 두 그래프를 분리해서 보기
+
+Suffix Automaton에는 두 종류의 간선이 있습니다.
+
+| 구조 | 쓰는 곳 |
+| --- | --- |
+| transition DAG | substring을 한 글자씩 확장, 사전순 DP, pattern scan |
+| suffix link tree | occurrence 누적, endpos 포함 관계, terminal propagation |
+
+서로 다른 substring 수나 k번째 substring은 transition DAG 위 path 문제입니다. 등장 횟수는 terminal count를 길이가 긴 상태부터 suffix link로 올려야 합니다.
+
+## k번째 Substring
+
+사전순 k번째 서로 다른 substring은 transition을 문자 순서로 보면서, 각 transition 아래에 있는 path 수를 건너뛰는 방식으로 찾습니다.
+
+위 `SuffixAutomaton`의 `countPaths`가 transition DAG의 경로 수를 메모하고, `kthSubstring`이 문자 순서대로 그 수를 건너뜁니다.
+
+모든 문자 추가 후 occurrenceByState()로 등장 수 벡터를 얻습니다. 원본 occ를 바꾸지 않으므로 반복 호출해도 같습니다. path DP나 occurrence 집계 뒤에는 extend하지 말고 새 문자열로 build합니다. path DP 재귀 깊이는 문자열 길이까지 늘어납니다. 위 함수는 k를 1-indexed로 받습니다. 같은 substring을 여러 번 세지 않으려면 transition DAG의 path만 세고 occurrence는 섞지 않습니다.
+
+## 가장 긴 반복 Substring
+
+반복 substring은 occurrence가 2 이상인 문자열입니다. state `v`가 occurrence 2 이상이면 그 state가 대표하는 길이 구간 중 최댓값 `len[v]`가 후보가 됩니다.
+
+```text
+occ = sam.occurrenceByState()
+answer = max(len[v]) over occ[v] >= 2
+```
+
+문자열 자체를 복원하려면 각 state의 대표 end position을 함께 저장해 두고 `end - len[v] + 1` 구간을 잘라냅니다.
+
+## 여러 문자열 공통 Substring
+
+문자열 `S`로 automaton을 만들고 다른 문자열 `T`를 훑으면 각 위치에서 현재 matched length를 알 수 있습니다. 이 값을 state별로 최대로 기록한 뒤 suffix link 역순으로 `min(len[link child], matched)` 형태로 올립니다.
+
+여러 문자열의 최장 공통 substring은 각 문자열마다 얻은 state별 최대 match의 최솟값을 유지한 뒤 최댓값을 구합니다.
+
+## Suffix Array와 비교
+
+| 문제 | Suffix Automaton | Suffix Array/LCP |
+| --- | --- | --- |
+| online append | 강함 | 다시 구성 필요 |
+| k번째 substring | DAG DP로 직접 처리 | LCP로 중복 개수 보정 |
+| 많은 pattern 포함 질의 | transition scan | binary search |
+| 정렬된 suffix 구간 | 약함 | 강함 |
+| 여러 문자열 LCS | scan과 state DP | generalized suffix array |
+
+둘은 대체재라기보다 문제 신호가 다릅니다. "확장 가능한 상태"가 보이면 automaton, "정렬된 suffix 순서"가 보이면 suffix array가 자연스럽습니다.
+
+## 시간 복잡도
+
+| 작업 | 복잡도 |
+| --- | ---: |
+| construction | `O(N * transition cost)` |
+| occurrence 누적 | counting sort 포함 `O(states + N)` |
+| path count DP | `O(edges)` |
+| k번째 substring | `O(answer length * alphabet)` |
+| 한 문자열 scan | `O(length)` |
+
+상태 수는 `N >= 2`에서 최대 `2N-1`입니다. 빈 문자열은 초기 상태 하나, 길이 1은 두 상태입니다. alphabet이 크면 transition을 `array` 대신 map이나 압축 vector로 바꿉니다.

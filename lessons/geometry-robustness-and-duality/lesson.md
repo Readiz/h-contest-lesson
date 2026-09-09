@@ -37,4 +37,4 @@ robust predicate 없이 duality만 쓰면 구현이 불안정해지고, duality 
 
 ## 연습
 
-[Geometry Robustness and Duality Practice Set](https://h.readiz.com/learn/geometry-robustness-and-duality/practice-set)에서 정수 선분 교차와 weighted power 경계를 검증합니다.
+[정수 선분 교차 실습](pages/robust-geometry-predicates.md)과 [Power Cell 경계 실습](pages/power-diagram.md)을 각 설명 뒤에서 검증합니다.

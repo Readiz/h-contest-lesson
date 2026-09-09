@@ -51,6 +51,10 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 ## prefixSum
 
+![prefixSum(13)은 13, 9부터12, 1부터8의 서로 겹치지 않는 구간을 더합니다.](lesson-assets/concept-trace.svg)
+
+[그림 크게 보기](lesson-assets/concept-trace.svg)
+
 `prefixSum(idx)`는 `a[1] + ... + a[idx]`를 구합니다. 현재 위치의 구간을 더한 뒤, 그 구간 바로 앞 위치로 이동합니다.
 
 예를 들어 `prefixSum(13)`은 다음 칸들을 더합니다.

@@ -143,7 +143,7 @@ void accumulatePalindromeCounts(vector<Node>& nodes) {
 }
 ```
 
-construction 중 노드는 길이가 대체로 증가하는 순서로 만들어지므로, 뒤에서 앞으로 처리하면 자식 palindrome의 등장 횟수가 suffix link 부모로 모입니다.
+suffix link는 항상 먼저 만들어진 노드를 가리키므로, 뒤에서 앞으로 처리하면 자식 palindrome의 등장 횟수가 suffix link 부모로 모입니다.
 
 ## Manacher와 비교
 
@@ -165,3 +165,107 @@ construction 중 노드는 길이가 대체로 증가하는 순서로 만들어�
 | occurrence 누적 | `O(number of nodes)` | count 배열 |
 
 각 위치에서 새 palindrome은 최대 하나만 생깁니다. 그래서 전체 노드 수도 `N + 2`를 넘지 않습니다.
+
+## 대표 로컬 연습: 서로 다른 Palindrome Substring 개수
+
+문자열 `S`가 주어졌을 때, `S`에 등장하는 서로 다른 non-empty palindrome substring의 개수를 출력합니다.
+
+### 입력
+
+```text
+S
+```
+
+- `1 <= |S| <= 200000`
+- `S`는 영어 소문자로만 이루어져 있습니다.
+
+### 출력
+
+```text
+서로 다른 palindrome substring 개수
+```
+
+### 예시
+
+```text
+ababa
+```
+
+```text
+5
+```
+
+`ababa`의 서로 다른 palindrome substring은 `a`, `b`, `aba`, `bab`, `ababa`입니다.
+
+## 손으로 따라가는 Trace
+
+Eertree는 두 root를 먼저 둡니다.
+
+| node | 길이 | 의미 | suffix link |
+| ---: | ---: | --- | --- |
+| 0 | `-1` | odd root | 0 |
+| 1 | `0` | even root | 0 |
+
+`S = ababa`를 왼쪽부터 추가하면 새로 생기는 node는 아래처럼 하나씩만 늘어납니다.
+
+| 위치 | 문자 | 추가 뒤 longest palindromic suffix | 새 node | distinct 개수 |
+| ---: | --- | --- | --- | ---: |
+| 0 | `a` | `a` | `a` | 1 |
+| 1 | `b` | `b` | `b` | 2 |
+| 2 | `a` | `aba` | `aba` | 3 |
+| 3 | `b` | `bab` | `bab` | 4 |
+| 4 | `a` | `ababa` | `ababa` | 5 |
+
+이때 suffix link는 "가장 긴 proper palindromic suffix"로 이어집니다.
+
+| palindrome | suffix link 대상 |
+| --- | --- |
+| `a` | even root |
+| `b` | even root |
+| `aba` | `a` |
+| `bab` | `b` |
+| `ababa` | `aba` |
+
+답은 항상 `node count - 2`입니다. 두 root는 실제 substring이 아니므로 빼야 합니다.
+
+## 구현 기준
+
+```cpp
+// https://h.readiz.com/learn/palindrome-structures/palindromic-tree의 PalindromicTree를 앞에 둔다.
+#include <iostream>
+using namespace std;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    string s;
+    cin >> s;
+
+    PalindromicTree tree;
+    for (char ch : s) {
+        tree.addChar(ch);
+    }
+    cout << (tree.tree.size() - 2) << '\n';
+}
+```
+
+## 검증용 Case
+
+| 입력 | 정답 | 확인 포인트 |
+| --- | ---: | --- |
+| `a` | 1 | 길이 1 node의 suffix link는 even root |
+| `aa` | 2 | `a`, `aa`가 서로 다른 palindrome |
+| `aaaa` | 4 | 매 prefix에서 새 palindrome 하나가 생김 |
+| `abcd` | 4 | 길이 1 palindrome만 존재 |
+| `ababa` | 5 | suffix link가 `ababa -> aba -> a`로 이어짐 |
+| `abacaba` | 7 | `a`, `b`, `c`, `aba`, `aca`, `bacab`, `abacaba` |
+
+## Stress 기준
+
+짧은 문자열에서는 brute force set과 비교합니다.
+
+1. 길이 `1..10`, alphabet `{a,b,c}`에서 모든 substring을 잘라 palindrome인지 직접 검사합니다.
+2. palindrome인 substring만 `set<string>`에 넣고 크기를 구합니다.
+3. Eertree의 `tree.tree.size() - 2`와 brute force set size가 항상 같은지 비교합니다.
+
+이 stress를 통과하면 root 개수 제외, suffix link 후보 탐색, 새 node 생성 조건의 흔한 실수를 대부분 잡을 수 있습니다.

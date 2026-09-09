@@ -176,7 +176,7 @@ for each edge normal axis:
   intervals disjoint이면 충돌하지 않음
 ```
 
-최소 이동 거리나 penetration depth가 필요한 문제에서는 가장 작은 overlap 축을 기록합니다. 정수 좌표라면 projection 비교를 dot product로 하고, 실제 거리에는 axis length 정규화가 필요합니다.
+최소 이동 거리나 penetration depth가 필요한 문제에서는 각 축에서 두 투영 구간을 분리하는 최소 이동량을 비교합니다. 포함 관계에서도 `min(maxA-minB, maxB-minA)`를 사용하고, 단순 교집합 길이로 대체하지 않습니다. 정수 좌표라면 projection 비교를 dot product로 하고, 실제 거리에는 axis length 정규화가 필요합니다.
 
 ## 어떤 모델을 고를까
 

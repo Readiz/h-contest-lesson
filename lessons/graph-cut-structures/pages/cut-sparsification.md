@@ -144,8 +144,8 @@ dense graph
 
 | 작업 | 복잡도 |
 | --- | ---: |
-| forest layer 1회 | `O(M alpha(N))` |
-| k-layer certificate | `O(k M alpha(N))` |
+| forest layer 1회 | `O(N + M alpha(N))` |
+| k-layer certificate | `O(k(N + M alpha(N)))` |
 | certificate edge 수 | 최대 `k(N-1)` |
 | 이후 min cut | certificate 크기에 따라 감소 |
 

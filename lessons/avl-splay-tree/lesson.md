@@ -144,7 +144,7 @@ Splay는 노드 `x`를 root로 올릴 때 부모 `p`, 조부모 `g`의 위치에
 Splay Tree는 접근한 노드가 root가 됩니다.
 
 ```text
-find(x) 후 x가 root
+find(x)가 성공하면 찾은 x를 root로 이동
 insert(x) 후 x가 root
 split할 때 기준 노드를 root로 올린 뒤 왼쪽/오른쪽을 자름
 ```

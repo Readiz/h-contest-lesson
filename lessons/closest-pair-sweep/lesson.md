@@ -94,7 +94,7 @@ long long closestPairSquared(vector<Point> points) {
 }
 ```
 
-`limit` 계산은 단순화를 위해 2의 거듭제곱 상한을 잡았습니다. 정확한 integer sqrt를 써도 되고, `dy * dy < best`를 loop 안에서 직접 검사해도 됩니다.
+`limit`은 `sqrtl(best) + 1`을 정수로 변환해 y축 후보 범위를 넉넉하게 잡습니다. 정확한 integer sqrt를 써도 되고, `dy * dy < best`를 loop 안에서 직접 검사해도 됩니다.
 
 ## 중복 점
 

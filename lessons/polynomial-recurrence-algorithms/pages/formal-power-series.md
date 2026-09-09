@@ -25,9 +25,10 @@ A(x) = a0 + a1*x + a2*x^2 + ...
 
 ## 기본 다항식 연산
 
-아래 코드는 미분과 적분입니다. 모듈러는 소수라고 가정합니다.
+아래 코드는 미분·적분·절단 곱셈과 역원을 구현합니다. 모듈러는 소수라고 가정합니다.
 
 ```cpp compile-check
+#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -63,12 +64,6 @@ vector<long long> integral(const vector<long long>& a) {
     }
     return result;
 }
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-
-
 
 vector<long long> multiplyTruncated(
     const vector<long long>& a,
@@ -140,7 +135,7 @@ B_new = B * (2 - A * B) mod x^(2k)
 
 ## 단순 곱셈 기반 역원 예시
 
-아래 코드는 구조를 보여 주기 위해 단순 곱셈을 사용합니다. 큰 입력에서는 `multiplyTruncated`를 NTT 기반으로 바꿉니다.
+위 역원 코드는 구조를 보여 주기 위해 단순 곱셈을 사용합니다. 큰 입력에서는 `multiplyTruncated`를 NTT 기반으로 바꿉니다.
 
 위 `inversePolynomial`은 Newton 갱신에 단순 곱셈을 사용하는 검산용 구현입니다.
 

@@ -145,10 +145,84 @@ c = (0, 0), d = (999999999, 999999998)
 
 ## Sweep Line Comparator
 
-Sweep line에서 active segment를 정렬할 때 `currentX`에서의 y좌표를 비교합니다. EPS를 comparator에 직접 넣으면 `a < b`, `b < c`, `c < a` 같은 비일관성이 생길 수 있습니다.
+Sweep line에서 active segment를 정렬할 때 `currentX`에서의 y좌표를 비교합니다. EPS를 comparator에 직접 넣으면 가까운 값 사이의 근사 동치가 추이적이지 않아 strict weak ordering을 깨뜨릴 수 있습니다.
 
 대안은 다음과 같습니다.
 
 1. event x 사이에서 순서가 변하는 지점을 명시적으로 처리한다.
 2. exact orientation으로 두 segment의 상대 순서를 비교한다.
 3. tie-breaking을 segment id로 고정한다.
+
+## 로컬 연습: Exact Segment Intersection
+
+정수 좌표 선분 두 개가 교차하는지 판정합니다. 교점 좌표를 만들지 말고, orientation sign과 bounding box만으로 답합니다.
+
+#### 입력
+
+```text
+Q
+ax ay bx by cx cy dx dy
+...
+```
+
+- `1 <= Q <= 200000`
+- 각 좌표의 절댓값은 `10^18` 이하입니다.
+- 각 줄은 선분 `AB`와 `CD`를 의미합니다.
+
+#### 출력
+
+각 query마다 교차하면 `YES`, 아니면 `NO`를 출력합니다. 끝점에서 접하거나 collinear overlap인 경우도 교차입니다.
+
+#### 예시
+
+```text
+3
+0 0 4 4 0 4 4 0
+0 0 1 0 2 0 3 0
+0 0 4 0 2 0 6 0
+```
+
+```text
+YES
+NO
+YES
+```
+
+#### 손으로 따라가는 Trace
+
+첫 번째 query는 `A=(0,0)`, `B=(4,4)`, `C=(0,4)`, `D=(4,0)`입니다.
+
+| predicate | cross sign | 의미 |
+| --- | ---: | --- |
+| `orient(A,B,C)` | `+16` | `C`는 `AB`의 왼쪽 |
+| `orient(A,B,D)` | `-16` | `D`는 `AB`의 오른쪽 |
+| `orient(C,D,A)` | `-16` | `A`는 `CD`의 오른쪽 |
+| `orient(C,D,B)` | `+16` | `B`는 `CD`의 왼쪽 |
+
+두 선분이 서로의 양쪽에 끝점을 하나씩 가지므로 교차합니다. 세 번째 query처럼 모든 점이 collinear이면 orientation만으로 끝내지 말고 bounding box overlap을 확인해야 합니다.
+
+#### 구현 기준
+
+```cpp
+#include <iostream>
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int queries;
+    cin >> queries;
+    while (queries-- > 0) {
+        RobustPoint a, b, c, d;
+        cin >> a.x >> a.y >> b.x >> b.y >> c.x >> c.y >> d.x >> d.y;
+        cout << (segmentsIntersect(a, b, c, d) ? "YES" : "NO") << '\n';
+    }
+}
+```
+
+#### Stress 기준
+
+1. 좌표가 작은 격자 `[-5,5]`에서는 모든 선분 쌍을 열거해 endpoint permutation에 대해 결과가 같은지 확인합니다.
+2. `AB`와 `BA`, `CD`와 `DC`를 바꿔도 결과가 같아야 합니다.
+3. collinear disjoint, collinear overlap, endpoint touch, duplicate point segment를 deterministic case로 둡니다.
+4. 좌표 범위를 키울 때는 cross product가 `__int128` 범위 안인지 계산합니다.

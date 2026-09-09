@@ -24,4 +24,4 @@ Matroid Algorithms는 greedy가 맞는 독립성 구조와, greedy가 막힐 때
 
 ## 연습
 
-[로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.
+[로컬 연습](pages/matroid-basics-and-exchange.md)에서 입력과 검증 기준을 확인합니다.

@@ -3,7 +3,7 @@
 Matrix-Tree Theorem은 그래프의 spanning tree 개수를 Laplacian matrix의 cofactor determinant로 계산하는 정리입니다. 단순 count뿐 아니라 edge criticality, rooted arborescence, graph reliability 모델링으로 이어집니다.
 
 
-cofactor 입력은 n>=1, 유효한 정점·removed, 양수 mod를 받습니다. n=1이면 0x0 determinant를 1로 정의하여 단일 정점 tree 하나를 셉니다. 간선 포함 contraction 공식은 self-loop가 아닌 특정 간선에 적용합니다.
+cofactor 입력은 n>=1, 유효한 정점·removed, `1 <= mod <= 10^9+7`을 받습니다. 연결할 determinant 구현은 소수 mod를 요구합니다. n=1이면 0x0 determinant를 1로 정의하여 단일 정점 tree 하나를 셉니다. 간선 포함 contraction 공식은 self-loop가 아닌 특정 간선에 적용합니다.
 
 ## 문제 신호
 

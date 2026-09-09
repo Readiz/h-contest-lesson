@@ -76,7 +76,7 @@ underlying matroid를 "선택된 vector들이 선형 독립"인 linear matroid�
 
 [XOR Linear Basis](https://h.readiz.com/learn/linear-basis-xor)의 basis를 새로 만들고 선택한 각 pair의 두 vector를 차례로 insert합니다. 어느 하나라도 종속이면 해당 선택 집합은 불가능합니다. 이것은 GF(2)의 독립성 oracle이며 최대 pair 선택 알고리즘 자체는 아닙니다.
 
-이 코드는 GF(2) linear matroid에만 맞습니다. 일반 field vector라면 Gaussian elimination, sparse vector라면 basis representation을 따로 잡아야 합니다.
+이 판정은 GF(2) linear matroid에만 맞습니다. 일반 field vector라면 Gaussian elimination, sparse vector라면 basis representation을 따로 잡아야 합니다.
 
 ## 모델링 체크
 

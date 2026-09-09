@@ -9,7 +9,7 @@ Parametric Optimization은 제약이나 답을 직접 상태에 넣기 어려울
 | 문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
 | 답 `x`를 고정하면 가능 여부가 단조적이다 | 아래 답 이분 탐색 설명 |
-| 정확히 `K`개를 골라야 하는데 `K` 차원이 너무 크다 | [Exact-K Alien Optimization](pages/exact-k-alien-optimization.md) |
+| 정확히 `K`개를 골라야 하는데 `K` 차원이 너무 크다 | [Exact-K Alien Optimization](pages/general-lagrangian-relaxation.md) |
 | 평균, 밀도, 비용 대비 효율 같은 비율 목적식이다 | [Fractional Objectives](pages/fractional-objectives.md) |
 | 여러 제약을 penalty와 dual variable로 분리해야 한다 | [General Lagrangian Relaxation](pages/general-lagrangian-relaxation.md) |
 
@@ -23,7 +23,7 @@ parameter를 고정했을 때 원래보다 쉬운 DP, greedy, shortest path, flo
 
 ## 연습 문제
 
-이 허브의 실제 연습 흐름은 [Practice Set](pages/practice-set.md)에 모읍니다. Practice Set은 maximum average subarray의 `value - x * weight` 판정 trace와 로컬 구현을 대표 흐름으로 제공합니다.
+[최대 평균 부분 배열](pages/fractional-objectives.md)의 설명 뒤에서 변환 판정과 완결형 입출력 실습을 확인합니다.
 
 ## 답 자체를 이분 탐색할 때
 

@@ -12,7 +12,7 @@ Directed MST는 루트에서 모든 정점으로 도달하는 최소 비용 arbo
 | 무향 MST를 쓸 수 없다 | edge direction matters |
 | 모든 정점이 루트에서 도달 가능해야 한다 | unreachable check |
 
-루트에서 나가는 간선만 보는 최단거리 트리와 다릅니다. Shortest path tree는 각 정점까지의 거리 합을 독립적으로 최소화하지만, directed MST는 선택한 간선들의 총합을 최소화합니다.
+Shortest path tree는 루트에서 각 정점까지의 경로 길이를 최소화하지만, directed MST는 선택한 간선들의 총합을 최소화합니다.
 
 ## 핵심 Greedy
 

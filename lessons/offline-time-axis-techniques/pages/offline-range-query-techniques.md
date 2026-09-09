@@ -188,7 +188,7 @@ Mo order가 Q0 -> Q2 -> Q1이면
 | 기법 | 대표 복잡도 |
 | --- | ---: |
 | 기본 Mo | `O((N + Q) sqrt N * add/remove)` |
-| Mo with modifications | 보통 `O((N + Q)^(2/3) Q)` 계열의 튜닝 필요 |
+| Mo with modifications | 배열·질의·수정 수가 모두 같은 규모이면 `O(N^(5/3))` |
 | offline sorting + Fenwick | `O((N + Q) log N)` |
 | parallel binary search | `O((update cost + query cost) log answer)` |
 

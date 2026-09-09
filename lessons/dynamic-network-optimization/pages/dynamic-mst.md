@@ -130,7 +130,7 @@ struct DynamicMstBaseline {
 };
 ```
 
-이 baseline은 update마다 `O(M log M)`입니다. 하지만 정답 확인용, stress test용, block rebuild용으로는 여전히 가치가 큽니다.
+이 baseline은 update마다 `O(N + M log(M+1))`입니다. 하지만 정답 확인용, stress test용, block rebuild용으로는 여전히 가치가 큽니다.
 
 ## 오프라인 접근
 
@@ -149,9 +149,9 @@ Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지�
 
 변경 수가 작으면 block 단위 전략이 실용적입니다.
 
-1. block 시작 시점에 고정 간선으로 MST를 rebuild한다.
-2. block 안에서 바뀐 간선만 별도 후보로 모은다.
-3. query마다 고정 MST edge와 변경 후보를 합쳐 작은 Kruskal을 돌린다.
+1. block 안에서 변경될 모든 간선을 질의를 미리 읽어 표시한다.
+2. 표시한 간선을 전부 제외한 고정 활성 간선의 MSF를 만든다.
+3. query마다 고정 MSF와 현재 활성인 변경 간선을 합쳐 Kruskal을 돌린다.
 
 block마다 고정 MSF 구성 비용과 질의마다 O((N+B)log(N+B)) 비용을 함께 계산합니다.
 
@@ -159,7 +159,7 @@ block마다 고정 MSF 구성 비용과 질의마다 O((N+B)log(N+B)) 비용을 
 
 | 접근 | 대략적인 비용 | 특징 |
 | --- | ---: | --- |
-| 매 query rebuild | `O(M log M)` | 단순하고 안전 |
+| 매 query rebuild | `O(N + M log(M+1))` | 단순하고 안전 |
 | 추가만 처리 | LCT 사용 시 상각 `O(log N)` 갱신 | 서로 다른 component면 link, 같으면 path max 교체 |
 | block rebuild | `O((M log M) * blocks + small Kruskal)` | 변경 수가 작을 때 |
 | full online dynamic MST | 고급 자료구조 필요 | 구현 위험 큼 |

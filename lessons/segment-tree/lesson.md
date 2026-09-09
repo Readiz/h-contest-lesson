@@ -154,6 +154,10 @@ Segment Tree에서 바뀌는 것은 세 가지입니다.
 
 ## lazy 내려보내기
 
+![루트 push 뒤 합은22가 되고 자식 합은3과7인 채 lazy3이 대기합니다. 자식 방문 시 합9와13으로 갱신합니다.](lesson-assets/concept-trace.svg)
+
+[그림 크게 보기](lesson-assets/concept-trace.svg)
+
 재귀로 노드를 방문할 때 먼저 `push`를 호출해 현재 노드에 밀려 있는 값을 처리합니다.
 
 이 함수는 세 가지 일을 합니다.

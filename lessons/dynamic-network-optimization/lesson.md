@@ -38,4 +38,4 @@ Offline and Time-Axis Techniques는 이 허브의 공통 바닥입니다. update
 
 ## 연습
 
-[Dynamic Network Optimization Practice Set](https://h.readiz.com/learn/dynamic-network-optimization/practice-set)에서 용량 증가만 있는 max-flow를 residual reuse와 매번 재계산으로 비교합니다. Block MST는 block 안에서 변하는 간선을 모두 제외한 고정 간선의 MSF를 만들고, 그 MSF와 현재 변경 간선을 합쳐 재계산합니다. 후보가 O(N+B)이므로 N이 크면 추가 축소 없이는 빠르지 않습니다.
+[Dynamic Network Optimization Practice Set](https://h.readiz.com/learn/dynamic-network-optimization/dynamic-flow)에서 용량 증가만 있는 max-flow를 residual reuse와 매번 재계산으로 비교합니다. Block MST는 block 안에서 변하는 간선을 모두 제외한 고정 간선의 MSF를 만들고, 그 MSF와 현재 변경 간선을 합쳐 재계산합니다. 후보가 O(N+B)이므로 N이 크면 추가 축소 없이는 빠르지 않습니다.

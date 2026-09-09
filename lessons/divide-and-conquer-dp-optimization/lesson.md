@@ -34,7 +34,7 @@ i1 < i2 이면 opt[i1] <= opt[i2]
 
 ## 기본 구현
 
-아래 함수는 한 layer를 계산합니다. `cost[j][i]`는 후보 `j`에서 끝점 `i`로 가는 비용이라고 가정합니다.
+아래 함수는 한 layer를 계산합니다. `cost[j+1][i]`는 마지막 구간 `[j+1,i]`의 비용이라고 가정합니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -85,7 +85,7 @@ void computeLayer(
 ```text
 previous = dp[g - 1]
 current[i] = INF
-computeLayer(1, N, 0, N - 1, previous, current, cost)
+computeLayer(g, N, g - 1, N - 1, previous, current, cost)
 ```
 
 `j < i` 조건이 있으면 후보 상한을 `mid - 1`로 제한해야 합니다. 빈 구간을 허용하는 문제라면 `j <= mid`가 될 수도 있습니다. 이 경계는 문제마다 다릅니다.

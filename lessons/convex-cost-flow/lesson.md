@@ -85,7 +85,7 @@ struct ConvexCostEdgeBuilder {
 };
 ```
 
-실전에서는 `isNondecreasing`이 false인 입력을 그대로 넣지 않습니다. concave cost라면 다른 모델링이나 min-cost max-flow의 음수 cycle 안정성까지 다시 봐야 합니다.
+실전에서는 `isNondecreasing`이 false인 입력을 그대로 넣지 않습니다. concave cost라면 prefix 선택 의존성을 표현하는 다른 모델이 필요합니다. 음수 cycle 처리만으로 이 의존성이 복구되지는 않습니다.
 
 ## Piecewise Linear Cost
 

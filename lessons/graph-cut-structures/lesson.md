@@ -21,4 +21,16 @@ Weighted capacity와 무가중치 multigraph를 구분합니다. Karger의 기�
 
 ## 연습
 
-[로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.
+[로컬 연습](pages/global-min-cut.md)에서 입력과 검증 기준을 확인합니다.
+
+## 두 cut 모델의 검산
+
+
+
+### Gomory-Hu Query Check
+
+정점 4개 그래프에서 Gomory-Hu Tree를 만든 뒤, 모든 pair에 대해 원래 graph의 max-flow 값과 tree path minimum이 같은지 비교합니다.
+
+### Karger Repetition Experiment
+
+cycle graph와 complete graph에서 Karger contraction을 여러 seed로 반복하고, trial 수가 늘어날 때 best cut 값이 어떻게 안정되는지 확인합니다.

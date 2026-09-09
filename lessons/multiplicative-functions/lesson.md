@@ -3,7 +3,7 @@
 Multiplicative Functions는 `gcd(a, b)=1`일 때 `f(ab)=f(a)f(b)`를 만족하는 산술 함수입니다. Euler phi, Mobius function, divisor count, divisor sum처럼 정수론 문제에서 반복되는 함수들을 linear sieve로 한 번에 계산할 수 있습니다.
 
 
-multiplicative 함수는 f(1)=1입니다. 아래 여러 int 배열을 함께 만들면 N=10^7에서 약 280MB와 primes 공간이 필요하므로 필요한 함수만 남깁니다.
+multiplicative 함수는 f(1)=1입니다. 아래 여러 int 배열을 함께 만들면 N=10^7에서 약 240MB(32비트 int 배열 6개)와 primes 공간이 필요하므로 필요한 함수만 남깁니다.
 
 ## 문제 신호
 

@@ -41,6 +41,10 @@ bool hasPairWithSum(vector<int> a, int target) {
 
 ## 조건을 만족하는 가장 짧은 구간
 
+![양수 배열2,1,3,2에서 합5 이상 구간을 찾습니다. 합이 부족하면 오른쪽을 늘리고 충분하면 왼쪽을 줄입니다.](lesson-assets/concept-trace.svg)
+
+[그림 크게 보기](lesson-assets/concept-trace.svg)
+
 모든 값이 양수라면 오른쪽 끝을 늘릴수록 구간 합은 커지고, 왼쪽 끝을 줄일수록 구간 합은 작아집니다. 이 단조성 덕분에 합이 `target` 이상인 가장 짧은 연속 구간을 `O(n)`에 찾을 수 있습니다.
 
 ```cpp

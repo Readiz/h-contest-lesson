@@ -92,7 +92,7 @@ minimal polynomial 또는 recurrence를 찾음
 | 방법 | 시간 감각 | 적합한 경우 |
 | --- | ---: | --- |
 | dense Gaussian elimination | `O(N^3)` | `N`이 작고 구현 안전성이 중요 |
-| sparse matvec | `O(nnz)` | iterative/black-box의 기본 연산 |
+| sparse matvec | `O(N + nnz)` | iterative/black-box의 기본 연산 |
 | sparse elimination | fill-in에 따라 달라짐 | 구조적으로 sparse가 유지됨 |
 | Wiedemann 계열 | 대략 여러 번의 matvec + BM | 큰 sparse matrix, randomized 허용 |
 

@@ -14,6 +14,23 @@ Persistent Queue and Stack은 update 뒤에도 과거 version을 조회해야 �
 
 새 operation이 항상 기존 version에서 새 version을 만드는 형태면 persistence입니다. 과거 timeline 중간에 operation을 끼워 넣으면 retroactivity입니다.
 
+## 스택 버전 분기 예시
+
+```text
+v0 = empty
+v1 = push(v0, 10)
+v2 = push(v1, 20)
+v3 = pop(v2)
+v4 = push(v1, 30)
+
+v2 top = 20
+v3 top = 10
+v4 top = 30
+v2와 v4는 v1에서 갈라진 서로 다른 branch다.
+```
+
+기존 stack을 복사하지 않고 root pointer만 다르게 잡으면 모든 version을 보존할 수 있습니다.
+
 ## Persistent Stack
 
 Stack push는 새 node를 만들고 이전 top을 parent로 둡니다. Pop은 parent를 top으로 하는 새 version을 만들면 됩니다.
@@ -107,23 +124,6 @@ pop():
 ```
 
 이 모델은 중간 삽입이 없을 때 강합니다. Deque처럼 양쪽 push/pop이 있으면 implicit treap 같은 persistent sequence가 더 자연스럽습니다.
-
-## 작은 예시
-
-```text
-v0 = empty
-v1 = push(v0, 10)
-v2 = push(v1, 20)
-v3 = pop(v2)
-v4 = push(v1, 30)
-
-v2 top = 20
-v3 top = 10
-v4 top = 30
-v2와 v4는 v1에서 갈라진 서로 다른 branch다.
-```
-
-기존 stack을 복사하지 않고 root pointer만 다르게 잡으면 모든 version을 보존할 수 있습니다.
 
 ## 시간 복잡도
 

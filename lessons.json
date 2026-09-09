@@ -699,13 +699,6 @@
       ],
       "pages": [
         {
-          "pageId": "tree-diameter-centroid",
-          "title": "트리 지름과 센트로이드",
-          "description": "트리에서 거리 기준 지름과 크기 기준 센트로이드를 분리해 이해합니다.",
-          "order": 10,
-          "file": "pages/tree-diameter-centroid.md"
-        },
-        {
           "pageId": "mst-kruskal-prim",
           "title": "최소 신장 트리",
           "description": "절단 성질로 간선 선택을 설명하고 Union-Find를 이용한 Kruskal을 구현합니다.",
@@ -1459,13 +1452,6 @@
           "description": "version별 stack, queue, deque 모델과 binary lifting 활용을 정리합니다.",
           "order": 50,
           "file": "pages/persistent-queue-stack.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Versioned Data Structures 계열을 하나의 흐름으로 연습합니다.",
-          "order": 70,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -1917,16 +1903,9 @@
           "file": "pages/suffix-automaton.md"
         },
         {
-          "pageId": "suffix-automaton-applications",
-          "title": "Suffix Automaton Applications",
-          "description": "SAM 위 DP, k번째 substring, occurrence count 응용입니다.",
-          "order": 50,
-          "file": "pages/suffix-automaton-applications.md"
-        },
-        {
           "pageId": "generalized-suffix-automaton",
-          "title": "Generalized Suffix Automaton",
-          "description": "첫 문자열의 SAM으로 여러 문자열의 공통 substring 길이를 구하고 generalized 구성과 구분합니다.",
+          "title": "여러 문자열의 Suffix Automaton 질의",
+          "description": "첫 문자열의 SAM을 스캔해 여러 문자열의 공통 부분 문자열을 구하고 일반화 구축과의 차이를 살핍니다.",
           "order": 60,
           "file": "pages/generalized-suffix-automaton.md"
         },
@@ -1950,20 +1929,6 @@
           "description": "prefix-function 기반 automaton과 border 전이를 다룹니다.",
           "order": 90,
           "file": "pages/border-automaton.md"
-        },
-        {
-          "pageId": "string-period-query-applications",
-          "title": "String Period Query Applications",
-          "description": "구간 period query와 주기 응용 패턴입니다.",
-          "order": 100,
-          "file": "pages/string-period-query-applications.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Suffix and Periodicity 계열을 하나의 흐름으로 연습합니다.",
-          "order": 110,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -2031,13 +1996,6 @@
           "description": "구간 palindrome table과 range DP 응용입니다.",
           "order": 40,
           "file": "pages/palindrome-range-dp.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Palindrome Structures 계열을 하나의 흐름으로 연습합니다.",
-          "order": 60,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -2564,13 +2522,6 @@
           "description": "항 생성과 차수 상한, BM 구현, 별도 항 검증, Kitamasa 연결을 함께 다룹니다.",
           "order": 120,
           "file": "pages/berlekamp-massey.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Polynomial and Recurrence 계열을 하나의 흐름으로 연습합니다.",
-          "order": 130,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -2740,32 +2691,11 @@
       ],
       "pages": [
         {
-          "pageId": "feedback-model-boundary",
-          "title": "Feedback Model Boundary",
-          "description": "full-information, bandit, simulator, hidden-state observation을 먼저 구분합니다.",
-          "order": 15,
-          "file": "pages/feedback-model-boundary.md"
-        },
-        {
           "pageId": "finite-horizon-mdp",
-          "title": "Finite Horizon MDP",
-          "description": "남은 턴 수가 정해진 MDP를 정확한 layer DP로 풉니다.",
+          "title": "MDP: 유한 지평, 할인과 정책 반복",
+          "description": "유한 지평 DP부터 할인 가치 반복과 고정 정책 평가·개선까지 종료 조건을 구분해 구현합니다.",
           "order": 30,
           "file": "pages/finite-horizon-mdp.md"
-        },
-        {
-          "pageId": "discounted-value-iteration",
-          "title": "Discounted Value Iteration",
-          "description": "discounted infinite horizon MDP의 value iteration과 오차 기준입니다.",
-          "order": 40,
-          "file": "pages/discounted-value-iteration.md"
-        },
-        {
-          "pageId": "policy-evaluation-and-improvement",
-          "title": "Policy Evaluation and Improvement",
-          "description": "fixed policy evaluation과 policy improvement를 분리합니다.",
-          "order": 50,
-          "file": "pages/policy-evaluation-and-improvement.md"
         },
         {
           "pageId": "stochastic-shortest-path",
@@ -2822,13 +2752,6 @@
           "description": "planning 성능을 seed, budget, variance, deadline 기준으로 평가합니다.",
           "order": 140,
           "file": "pages/online-planning-evaluation.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Probabilistic Decision AI 계열을 하나의 흐름으로 연습합니다.",
-          "order": 160,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -2915,13 +2838,6 @@
           "description": "과거 operation 변경을 active interval로 바꾸는 제한적 retroactivity입니다.",
           "order": 60,
           "file": "pages/retroactive-data-structures.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Offline and Time-Axis 계열을 하나의 흐름으로 연습합니다.",
-          "order": 70,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -3161,13 +3077,6 @@
       ],
       "pages": [
         {
-          "pageId": "exact-k-alien-optimization",
-          "title": "Exact-K Alien Optimization",
-          "description": "정확히 K개 선택 제약을 count와 penalty로 다루는 Alien Optimization입니다.",
-          "order": 20,
-          "file": "pages/exact-k-alien-optimization.md"
-        },
-        {
           "pageId": "fractional-objectives",
           "title": "Fractional Objectives",
           "description": "평균과 비율 목적식을 value - lambda * weight 판정으로 바꿉니다.",
@@ -3180,13 +3089,6 @@
           "description": "여러 제약과 relaxed oracle을 dual variable 관점에서 다룹니다.",
           "order": 40,
           "file": "pages/general-lagrangian-relaxation.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Parametric Optimization 계열을 하나의 흐름으로 연습합니다.",
-          "order": 60,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -3341,13 +3243,6 @@
           "description": "line 삽입과 삭제가 모두 필요한 경우의 선택지입니다.",
           "order": 90,
           "file": "pages/fully-dynamic-cht.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Convex DP Optimization 계열을 하나의 흐름으로 연습합니다.",
-          "order": 100,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -3430,13 +3325,6 @@
           "description": "cactus graph와 min cut family 표현을 구분합니다.",
           "order": 80,
           "file": "pages/cactus-representation.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Graph Cut Structures 계열을 하나의 흐름으로 연습합니다.",
-          "order": 100,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -3616,13 +3504,6 @@
           "description": "edge insertion/deletion, replacement edge, rebuild baseline, block strategy를 구분합니다.",
           "order": 20,
           "file": "pages/dynamic-mst.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Dynamic Network Optimization 계열을 하나의 흐름으로 연습합니다.",
-          "order": 30,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -3983,13 +3864,6 @@
           "description": "weighted point lifting과 lower hull로 Power Diagram의 dual을 해석합니다.",
           "order": 50,
           "file": "pages/regular-triangulation.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Geometry Robustness and Duality 계열을 하나의 흐름으로 연습합니다.",
-          "order": 60,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -4182,13 +4056,6 @@
           "description": "pair 단위 선택과 matroid 독립성을 결합하는 reference입니다.",
           "order": 40,
           "file": "pages/matroid-parity.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Matroid 계열 모델 판독과 특수형 구현 가능성을 연습합니다.",
-          "order": 60,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -4339,13 +4206,6 @@
           "description": "누적 gradient와 regularizer로 다음 decision을 고르는 dual averaging 패턴입니다.",
           "order": 30,
           "file": "pages/dual-averaging.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "Online Convex Optimization 계열을 하나의 흐름으로 연습합니다.",
-          "order": 50,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",
@@ -4484,13 +4344,6 @@
           "description": "Primal cut-cycle 대응과 dual 최단 경로로 바꿀 수 있는 경계·방향 조건을 함께 확인합니다.",
           "order": 30,
           "file": "pages/cut-cycle-duality.md"
-        },
-        {
-          "pageId": "practice-set",
-          "title": "Practice Set",
-          "description": "face traversal과 dual 변환을 하나의 흐름으로 연습합니다.",
-          "order": 50,
-          "file": "pages/practice-set.md"
         }
       ],
       "status": "published",

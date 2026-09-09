@@ -106,24 +106,22 @@ struct SuccinctBitvector {
         return (words[pos / WORD_BITS] >> (pos % WORD_BITS)) & 1ULL;
     }
 
-int selectOne(int kth) const {
-    if (kth < 0 || kth >= rankOne(n)) return -1;
-    int low = 0, high = n - 1;
-    while (low < high) {
-        int mid = low + (high - low) / 2;
-        if (rankOne(mid + 1) > kth) high = mid;
-        else low = mid + 1;
+    int selectOne(int kth) const {
+        if (kth < 0 || kth >= rankOne(n)) return -1;
+        int low = 0, high = n - 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (rankOne(mid + 1) > kth) high = mid;
+            else low = mid + 1;
+        }
+        return low;
     }
-    return low;
-}
 };
 ```
 
 `rankOne(pos)`은 `[0, pos)` 구간을 뜻합니다. `pos` 자체의 bit는 포함하지 않습니다.
 
 ## Select 구현
-
-다음 멤버를 위 `SuccinctBitvector`에 추가합니다. 0-indexed k번째 1의 위치를 찾고, 없으면 -1을 반환합니다.
 
 selectOne은 위 구조에 포함되어 있으며 0번째부터 셉니다. 없는 순번은 -1을 반환합니다.
 

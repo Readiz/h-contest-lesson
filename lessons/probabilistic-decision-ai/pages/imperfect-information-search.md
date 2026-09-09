@@ -32,7 +32,7 @@ information set = 관측과 일치하는 모든 실제 상태
 
 임의 상태 ID의 나머지 연산으로 관측 모델을 대신하지 않습니다. 실제 전이 확률과 관측 likelihood를 사용하는 [POMDP belief 갱신](https://h.readiz.com/learn/probabilistic-decision-ai/pomdp)을 재사용합니다. 정적인 숨은 상태의 결정적 관측인 경우에만 후보 제거 후 정규화로 줄어듭니다.
 
-예시의 `isConsistentWithObservation`은 문제별 규칙으로 바꿔야 합니다. 핵심은 불가능한 상태를 제거하고 남은 확률을 다시 합 1로 만드는 것입니다.
+관측과 숨은 상태가 일치하는지는 문제별 규칙으로 판정합니다. 핵심은 불가능한 상태를 제거하고 남은 확률을 다시 합 1로 만드는 것입니다.
 
 ## Determinization
 

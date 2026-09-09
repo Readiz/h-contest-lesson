@@ -22,7 +22,7 @@ incircle 부호 보정 함수는 triangle 방향을 내부에서 반영합니다
 Voronoi Diagram은 점마다 가장 가까운 영역을 나눕니다. Delaunay Triangulation은 Voronoi cell이 변을 공유하는 점들을 간선으로 연결합니다.
 
 ```text
-Voronoi vertex  <->  Delaunay triangle
+Voronoi vertex  <->  Delaunay triangle (일반 위치)
 Voronoi edge    <->  Delaunay edge
 Voronoi cell    <->  input point
 ```
@@ -37,7 +37,7 @@ Voronoi cell    <->  input point
 no point p lies strictly inside circumcircle(a, b, c)
 ```
 
-이 조건은 determinant로 판정할 수 있습니다. 아래 코드는 `a,b,c`가 반시계 방향일 때 `p`가 외접원 내부에 있으면 양수를 반환합니다.
+이 조건은 determinant로 판정할 수 있습니다. 아래 코드는 `a,b,c`의 방향을 보정하여, 비공선 삼각형의 외접원 내부이면 양수를 반환합니다.
 
 ```cpp compile-check
 #include <cmath>

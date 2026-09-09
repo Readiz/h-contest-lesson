@@ -210,7 +210,7 @@ BM이 반환한 coeff는 바로 nth term 계산에 넣을 수 있습니다.
 
 ```text
 terms -> BM -> coeff
-answer = nthByRecurrence(terms[0..L-1], coeff, n)
+answer = nthLinearRecurrence(terms[0..L-1], coeff, n)
 ```
 
 a_1부터 생성했다면 b_i=a_{i+1}로 정의하고 원래 a_N은 b의 N-1번째를 구합니다. 임의 dummy a_0을 넣으면 점화식이 깨질 수 있습니다. BM 결과가 빈 계수(L=0)이면 관측 수열은 전부 0입니다. 점화식 상한이 보장되는 경우 결과를 0으로 처리하고, K>=1을 요구하는 Kitamasa에 빈 벡터를 넘기지 않습니다.

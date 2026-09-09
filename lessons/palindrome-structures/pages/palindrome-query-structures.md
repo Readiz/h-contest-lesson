@@ -39,6 +39,43 @@ else:
 
 정적 문자열에 많은 판정 질의가 있을 때 가장 직접적입니다.
 
+## Manacher 구현
+
+정적 문자열의 닫힌 구간 `0 <= l <= r < N`을 판정합니다. 홀수 반지름은 중심을 포함하고 짝수 반지름은 중심 오른쪽 칸을 기준으로 셉니다. 빈 문자열도 전처리할 수 있지만 그 안에는 유효한 비어 있지 않은 질의가 없습니다.
+
+```cpp compile-check
+#include <algorithm>
+#include <string>
+#include <vector>
+using namespace std;
+
+struct Manacher {
+    vector<int> odd, even;
+    explicit Manacher(const string& s) : odd(s.size()), even(s.size()) {
+        int n = (int)s.size();
+        for (int i = 0, l = 0, r = -1; i < n; ++i) {
+            int k = i > r ? 1 : min(odd[l + r - i], r - i + 1);
+            while (i - k >= 0 && i + k < n && s[i-k] == s[i+k]) ++k;
+            odd[i] = k;
+            if (i + k - 1 > r) { l = i - k + 1; r = i + k - 1; }
+        }
+        for (int i = 0, l = 0, r = -1; i < n; ++i) {
+            int k = i > r ? 0 : min(even[l + r - i + 1], r - i + 1);
+            while (i - k - 1 >= 0 && i + k < n && s[i-k-1] == s[i+k]) ++k;
+            even[i] = k;
+            if (i + k - 1 > r) { l = i - k; r = i + k - 1; }
+        }
+    }
+    bool isPalindrome(int l, int r) const {
+        int len = r - l + 1;
+        return len % 2 ? odd[l + len/2] >= len/2 + 1
+                       : even[l + len/2] >= len/2;
+    }
+};
+```
+
+이미 확인한 가장 오른쪽 회문의 대칭 위치에서 반지름을 가져오되, 그 회문의 오른쪽 경계를 넘는 부분만 직접 비교합니다. 성공한 추가 확장은 오른쪽 경계를 전진시키므로 총 `O(N)`입니다.
+
 ## Rolling Hash로 판정하기
 
 Forward hash와 reversed string hash를 준비하면 substring과 그 reverse를 비교할 수 있습니다.

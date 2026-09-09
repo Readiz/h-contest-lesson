@@ -215,7 +215,114 @@ k번째 수 질의에서는 tree의 index가 실제 값이 아니라 압축된 �
 
 메모리는 node 개수로 계산합니다. `N = 200000`, 업데이트 `M = 200000`이면 대략 `M * log2(N)` 수준의 노드가 생깁니다. 각 node가 `int left, int right, long long sum`이면 수십 MB 이상이 될 수 있으므로 제한을 먼저 계산해야 합니다.
 
+## Trace: prefix root 차이
 
-## Prefix kth 예시와 sequence 경계
+정적 배열이 아래와 같다고 하겠습니다.
 
-배열 [5,1,4,2]의 [2,4]에서 두 번째 값은 root[4]-root[1]의 빈도 {1,2,4}를 내려가 얻는 2입니다. 압축 index를 원래 값으로 되돌립니다. 중간 삽입·삭제로 위치가 바뀌는 sequence는 고정 index tree 대신 persistent implicit treap의 split/merge가 필요합니다.
+```text
+A = [4, 1, 4, 2]
+```
+
+값을 압축하면 `1 -> 1`, `2 -> 2`, `4 -> 3`입니다. `root[i]`는 prefix `A[1..i]`의 빈도 persistent segment tree입니다.
+
+| root | 담긴 값 | compressed frequency |
+| --- | --- | --- |
+| `root[0]` | empty | `[0, 0, 0]` |
+| `root[1]` | `4` | `[0, 0, 1]` |
+| `root[2]` | `4, 1` | `[1, 0, 1]` |
+| `root[3]` | `4, 1, 4` | `[1, 0, 2]` |
+| `root[4]` | `4, 1, 4, 2` | `[1, 1, 2]` |
+
+query `[2, 4]`의 2번째 작은 값은 `root[4] - root[1]`로 봅니다.
+
+```text
+root[4] - root[1] = [1, 1, 1]
+```
+
+왼쪽 절반 `1, 2`에 2개가 있으므로 그쪽으로 내려갑니다. 그 안에서 `1`의 count는 1이고 `k=2`이므로 `2`로 이동합니다. 답은 원래 값 `2`입니다.
+
+이 방식은 node를 직접 빼는 것이 아니라, 같은 구간을 가리키는 두 root의 count 차이를 내려가며 보는 것입니다. 그래서 old root를 수정하면 모든 query가 깨집니다.
+
+## 로컬 연습: Range Kth with Prefix Roots
+
+### 입력
+
+정적 배열 `A`와 `Q`개의 구간 kth query가 주어집니다.
+
+```text
+N Q
+A1 A2 ... AN
+l1 r1 k1
+...
+lQ rQ kQ
+```
+
+`l`, `r`은 1-based inclusive입니다. 각 query는 `A[l..r]`에서 `k`번째로 작은 값을 출력합니다.
+
+### 출력
+
+각 query마다 답을 한 줄에 출력합니다.
+
+### 제한
+
+- `1 <= N, Q <= 200000`
+- `-10^9 <= Ai <= 10^9`
+- `1 <= l <= r <= N`
+- `1 <= k <= r - l + 1`
+
+### 예시
+
+```text
+5 3
+5 1 4 2 3
+2 5 2
+1 3 3
+3 5 1
+```
+
+```text
+2
+5
+2
+```
+
+첫 query의 구간은 `[1, 4, 2, 3]`이고 정렬하면 `[1, 2, 3, 4]`라서 2번째 값은 `2`입니다.
+
+### 풀이 기준
+
+1. 모든 `Ai`를 좌표 압축한다.
+2. `root[0]`은 빈 segment tree다.
+3. `root[i] = update(root[i-1], compressed(Ai), +1)`로 prefix root를 만든다.
+4. query `(l, r, k)`는 `kth(root[l-1], root[r], 1, valueCount, k)`로 답한다.
+5. compressed index를 원래 값으로 복원한다.
+
+`update`는 지나가는 node만 clone합니다. 범위 밖 child pointer는 old node를 그대로 공유합니다. 전체 node 수는 대략 `N * (log uniqueValues + 1)`이므로, `N=200000`이면 메모리 예산을 먼저 계산해야 합니다.
+
+### kth 내려가기
+
+각 node에서 왼쪽 count 차이를 봅니다.
+
+```text
+leftCount = count(leftChild(rootR)) - count(leftChild(rootLMinusOne))
+if k <= leftCount:
+    go left
+else:
+    k -= leftCount
+    go right
+```
+
+leaf에 도착하면 그 leaf의 compressed index가 답입니다.
+
+### Stress 검증
+
+작은 입력에서는 query마다 slice를 복사해 정렬하는 baseline과 비교합니다.
+
+```text
+for seed in 1..1000:
+    random array and valid kth queries
+    answer_persistent = prefix root kth
+    answer_naive = sorted(A[l..r])[k-1]
+    assert answer_persistent == answer_naive
+```
+
+중복 값이 있는 배열을 반드시 포함합니다. 좌표 압축을 값의 등장 횟수가 아니라 distinct value 기준으로 해야 한다는 점을 확인하기 좋습니다.

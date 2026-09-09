@@ -21,4 +21,4 @@ Polynomial and Recurrence Algorithms는 convolution, formal power series, multip
 
 ## 연습
 
-[로컬 연습](pages/practice-set.md)에서 입력과 검증 기준을 확인합니다.
+[로컬 연습](pages/linear-recurrence-kitamasa.md)에서 입력과 검증 기준을 확인합니다.

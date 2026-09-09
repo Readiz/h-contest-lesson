@@ -37,7 +37,7 @@ power_i(x) = |x - p_i|^2 - w_i
 2(b - a) dot x = |b|^2 - |a|^2 + w_a - w_b
 ```
 
-따라서 Power Diagram의 cell은 여러 half-plane의 교집합입니다. 일반 Voronoi와 마찬가지로 convex polygon이 됩니다. 다만 어떤 site는 weight 차이 때문에 cell이 아예 사라질 수 있습니다.
+따라서 Power Diagram의 cell은 여러 half-plane의 교집합입니다. 일반 Voronoi와 마찬가지로 볼록한 영역이며, 무한하거나 퇴화할 수도 있습니다. 다만 어떤 site는 weight 차이 때문에 cell이 아예 사라질 수 있습니다.
 
 ## 작은 예시
 
@@ -89,3 +89,8 @@ site 수가 작으면 site마다 half-plane intersection을 돌려도 됩니다.
 | regular triangulation 기반 전체 구성 | 구현/라이브러리 의존 |
 
 대회에서는 보통 전체 diagram 라이브러리 구현보다 "특정 점이 어느 site에 속하는지", "site 몇 개의 경계가 어디인지", "cell이 비었는지" 같은 제한된 형태로 나옵니다.
+
+## 로컬 연습: Power Cell 경계와 빈 Cell
+
+
+[Power Diagram](https://h.readiz.com/learn/geometry-robustness-and-duality/power-diagram)의 power 부등식을 사용합니다. A=(0,0,w=0), B=(4,0,w=12)의 경계는 x=0.5입니다. 여기에 C=(-4,0,w=20)를 추가하면 A가 C보다 가까운 영역은 x>=0.5가 되어 A의 cell은 선으로 퇴화합니다. C의 w를 24로 바꾸면 x>=1과 x<=0.5를 동시에 만족해야 하므로 A의 cell은 비어 있습니다.

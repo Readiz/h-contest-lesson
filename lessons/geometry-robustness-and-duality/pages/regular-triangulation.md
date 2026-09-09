@@ -77,6 +77,8 @@ Power Diagram에서는 어떤 weighted site의 cell이 비어 있을 수 있습�
 | 두 cell이 변을 공유 | neighboring cells | triangulation edge |
 | 세 cell이 만남 | power vertex | triangulation face |
 
+위 표는 퇴화가 없는 일반 위치의 대응입니다. 셀이 선이나 점으로 퇴화하거나 여러 셀이 한 점에서 만나면 subdivision과 삼각분할 tie 정책을 함께 봅니다.
+
 이 대응을 알면 weighted nearest site query와 adjacency 문제를 같은 그림으로 볼 수 있습니다.
 
 ## 시간 복잡도와 구현 선택

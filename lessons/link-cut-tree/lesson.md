@@ -43,7 +43,7 @@ access(3)
 return aggregate at 3
 ```
 
-### 3.1 `makeRoot(1)`
+### `makeRoot(1)`
 
 `makeRoot(1)`은 먼저 `access(1)`로 represented tree root에서 `1`까지의 preferred path를 드러낸 뒤, 그 path에 reverse lazy를 겁니다. 이 reverse는 실제 edge를 삭제하거나 다시 만들지 않습니다. auxiliary splay 안의 좌우 방향만 뒤집어서 "이제 1을 represented root로 보겠다"는 방향을 맞춥니다.
 
@@ -54,7 +54,7 @@ after makeRoot(1): represented root를 1처럼 다룰 수 있음
 
 그래서 이후 `1 -> 3` 경로를 root-to-node path처럼 노출할 수 있습니다.
 
-### 3.2 `access(3)`
+### `access(3)`
 
 `access(3)`은 `3`에서 parent pointer를 따라 올라가며 각 auxiliary splay의 오른쪽 child를 직전 path로 교체합니다. 결과적으로 represented root `1`에서 `3`까지의 preferred path가 하나의 auxiliary splay로 드러납니다.
 
@@ -70,7 +70,7 @@ after makeRoot(1): represented root를 1처럼 다룰 수 있음
 tree[3].sum = 10 + 20 + 30 = 60
 ```
 
-### 3.3 `cut(u, v)` 조건이 저 모양인 이유
+### `cut(u, v)` 조건이 저 모양인 이유
 
 `cut(u, v)`도 같은 원리입니다.
 

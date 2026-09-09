@@ -37,9 +37,9 @@ B = {b_1, b_2, ..., b_m}
 
 이 point들은 보통 초기 belief에서 action/observation을 sampling하거나, 문제에서 중요한 상황을 직접 넣어 만듭니다. 품질은 `B`가 실제 reachable belief를 얼마나 잘 덮는지에 크게 좌우됩니다.
 
-## Alpha 선택 구현
+## Alpha 선택 원리
 
-아래 코드는 belief 하나에서 가장 큰 값을 주는 alpha vector를 고릅니다.
+belief 하나에서 가장 큰 값을 주는 alpha vector를 선택합니다.
 
 각 alpha는 state 수와 같은 길이입니다. belief와 alpha의 내적이 최대인 벡터를 고른 뒤 아래 backup에 사용합니다. 단순 내적 루프를 PBVI 구현으로 따로 싣지 않습니다.
 

@@ -40,7 +40,7 @@ belief particles:
 
 ## UCT 선택 Skeleton
 
-아래 코드는 history node에서 action을 고르는 UCT 부분만 분리한 skeleton입니다.
+History node의 action 선택에는 다음 UCT 원리를 사용합니다.
 
 UCT의 보상 평균+탐색 항은 [Monte Carlo Tree Search](https://h.readiz.com/learn/probabilistic-decision-ai/monte-carlo-tree-search)을 재사용합니다. POMCP에서는 같은 history의 action 통계를 사용하며, 한 플레이어의 할인 return을 누적하므로 플레이어 교대 보상 반전은 적용하지 않습니다.
 

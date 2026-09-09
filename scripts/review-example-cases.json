@@ -47,8 +47,8 @@
         "block": 0
       },
       {
-        "path": "lessons/palindrome-structures/pages/practice-set.md",
-        "block": 0
+        "path": "lessons/palindrome-structures/pages/palindromic-tree.md",
+        "block": 2
       }
     ],
     "body": null,
@@ -75,11 +75,11 @@
     "name": "sam-occurrence-idempotent",
     "snippets": [
       {
-        "path": "lessons/suffix-periodicity-structures/pages/suffix-automaton-applications.md",
+        "path": "lessons/suffix-periodicity-structures/pages/suffix-automaton.md",
         "block": 0
       }
     ],
-    "body": "SuffixAutomatonApplications t;t.build(\"ababa\");auto a=t.occurrenceByState();assert(a==t.occurrenceByState());int v=0;v=t.st[v].next[0];assert(a[v]==3);t.build(\"b\");assert(t.st.size()==2);",
+    "body": "SuffixAutomaton t;t.build(\"ababa\");auto a=t.occurrenceByState();assert(a==t.occurrenceByState());int v=0;v=t.st[v].next[0];assert(a[v]==3);t.build(\"b\");assert(t.st.size()==2);",
     "stdin": "",
     "expected": ""
   },
@@ -195,8 +195,8 @@
         "block": 0
       },
       {
-        "path": "lessons/polynomial-recurrence-algorithms/pages/practice-set.md",
-        "block": 0
+        "path": "lessons/polynomial-recurrence-algorithms/pages/linear-recurrence-kitamasa.md",
+        "block": 1
       }
     ],
     "body": null,
@@ -211,8 +211,8 @@
         "block": 0
       },
       {
-        "path": "lessons/probabilistic-decision-ai/pages/practice-set.md",
-        "block": 0
+        "path": "lessons/probabilistic-decision-ai/pages/finite-horizon-mdp.md",
+        "block": 2
       }
     ],
     "body": null,
@@ -227,8 +227,8 @@
         "block": 0
       },
       {
-        "path": "lessons/parametric-optimization/pages/practice-set.md",
-        "block": 0
+        "path": "lessons/parametric-optimization/pages/fractional-objectives.md",
+        "block": 1
       }
     ],
     "body": null,
@@ -303,8 +303,8 @@
         "block": 2
       },
       {
-        "path": "lessons/convex-dp-optimization/pages/practice-set.md",
-        "block": 0
+        "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md",
+        "block": 3
       }
     ],
     "body": null,
@@ -395,8 +395,8 @@
         "block": 0
       },
       {
-        "path": "lessons/geometry-robustness-and-duality/pages/practice-set.md",
-        "block": 0
+        "path": "lessons/geometry-robustness-and-duality/pages/robust-geometry-predicates.md",
+        "block": 1
       }
     ],
     "body": null,
@@ -439,8 +439,8 @@
         "block": 0
       },
       {
-        "path": "lessons/planar-graph-duality/pages/practice-set.md",
-        "block": 0
+        "path": "lessons/planar-graph-duality/pages/half-edge-and-face-traversal.md",
+        "block": 2
       }
     ],
     "body": null,
@@ -548,6 +548,18 @@
       }
     ],
     "body": "\nvector<long long> terms={2,5};for(int i=2;i<40;i++)terms.push_back((3*terms[i-1]-2*terms[i-2]+MOD_BM)%MOD_BM);vector<long long> train(terms.begin(),terms.begin()+4);auto c=berlekampMassey(train);assert(c.size()==2);assert(verifyRecurrenceGuess(terms,c));terms.back()=(terms.back()+1)%MOD_BM;assert(!verifyRecurrenceGuess(terms,c));assert(!verifyRecurrenceGuess({},c));\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "manacher-exhaustive-binary",
+    "snippets": [
+      {
+        "path": "lessons/palindrome-structures/pages/palindrome-query-structures.md",
+        "block": 0
+      }
+    ],
+    "body": "Manacher empty(\"\"); assert(empty.odd.empty()); for(int n=1;n<=10;++n) for(int mask=0;mask<(1<<n);++mask){ string s(n,'a');for(int i=0;i<n;++i)if(mask>>i&1)s[i]='b';Manacher m(s);for(int l=0;l<n;++l)for(int r=l;r<n;++r){bool ok=true;for(int a=l,b=r;a<b;++a,--b)if(s[a]!=s[b])ok=false;assert(m.isPalindrome(l,r)==ok);}}",
     "stdin": "",
     "expected": ""
   }

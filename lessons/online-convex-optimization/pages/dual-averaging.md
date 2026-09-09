@@ -9,7 +9,7 @@ Dual Averaging은 online convex optimization에서 매 라운드 gradient를 바
 3. simplex, box, ball 같은 feasible set에 맞는 closed form update를 고른다.
 
 
-actionCount>0, loss 벡터 길이 일치, eta>=0과 유한 누적 손실을 전제로 합니다. 반환값은 모든 관측 뒤 다음 라운드의 분포입니다. 실수 exp는 underflow로 0이 될 수 있으므로 수학적으로 양수라는 사실과 구분합니다.
+actionCount>0, loss 벡터 길이 일치, eta>=0과 누적 손실과 `eta * cumulativeLoss`가 모두 유한함을 전제로 합니다. 반환값은 모든 관측 뒤 다음 라운드의 분포입니다. 실수 exp는 underflow로 0이 될 수 있으므로 수학적으로 양수라는 사실과 구분합니다.
 
 ## 문제 신호
 

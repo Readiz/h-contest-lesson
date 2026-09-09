@@ -1,6 +1,6 @@
-# Generalized Suffix Automaton
+# 여러 문자열의 Suffix Automaton 질의
 
-Generalized Suffix Automaton은 여러 문자열의 substring 집합을 하나의 automaton에 합치고, 문자열별 등장 여부나 occurrence를 상태 단위로 집계하는 문자열 심화 기법입니다. 단일 문자열 SAM이 "한 문자열의 모든 substring"을 압축한다면, generalized SAM은 여러 문자열에서 공통으로 등장하는 substring, 특정 그룹에만 등장하는 substring, dictionary 전체의 substring 통계를 다룹니다.
+여러 문자열의 공통 부분 문자열 질의는 첫 문자열의 SAM을 만들고 나머지 문자열을 스캔해 처리할 수 있습니다. 모든 문자열의 substring 집합을 합치는 generalized SAM 구축은 이와 다른 작업입니다. 단일 문자열 SAM이 "한 문자열의 모든 substring"을 압축한다면, generalized SAM은 여러 문자열에서 공통으로 등장하는 substring, 특정 그룹에만 등장하는 substring, dictionary 전체의 substring 통계를 다룹니다.
 
 
 아래 코드는 모든 문자열의 substring을 합친 generalized SAM을 구축하지 않습니다. 첫 문자열의 SAM을 만든 뒤 나머지를 순회하여 공통 substring 길이를 구하는 제한형입니다.

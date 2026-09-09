@@ -56,6 +56,7 @@ V(A) = 1 / 0.7
 
 ```cpp compile-check
 #include <algorithm>
+#include <limits>
 #include <vector>
 using namespace std;
 
@@ -84,7 +85,7 @@ vector<double> stochasticShortestPathValueIteration(
                 nextValue[state] = 0.0;
                 continue;
             }
-            double best = 1e100;
+            double best = numeric_limits<double>::infinity();
             for (const Action& action : actions[state]) {
                 double candidate = action.cost;
                 for (const Transition& transition : action.transitions) {

@@ -136,4 +136,4 @@ f = F * mu
 | 모든 gcd 값 pair count | `O(N log N)` |
 | 단일 query after preprocessing | 문제 구조에 따라 `O(1)` 또는 `O(log N)` |
 
-입력 값의 최댓값 `A`가 크고 원소 수 `N`이 작으면 좌표 압축이나 divisor enumeration이 더 나을 수 있습니다.
+입력 값의 최댓값 `A`가 크고 원소 수 `N`이 작으면 실제 약수를 key로 보존하는 희소 사전과 divisor enumeration이 더 나을 수 있습니다.
