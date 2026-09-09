@@ -100,6 +100,8 @@ python3 scripts/generate_catalog.py
 python3 scripts/validate_lessons.py
 ```
 
+학습 지도에 등록한 강의 ID가 manifest에 없으면 카탈로그 생성과 `--check`가 실패합니다. 강의를 통합하거나 삭제할 때 `QUICK_GUIDES`와 `TRACK_GUIDES`도 함께 갱신합니다.
+
 아래 파일은 직접 편집하지 않고 생성 결과를 커밋합니다.
 
 ```text

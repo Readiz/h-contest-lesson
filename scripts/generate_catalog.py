@@ -82,7 +82,7 @@ QUICK_GUIDES = [
             ),
             ("정확히 K개/penalty", ["parametric-optimization", "convex-cost-flow"], " / "),
             ("convex 비용", ["convex-dp-optimization", "convex-cost-flow", "online-convex-optimization"], " / "),
-            ("검증/증명", ["quadrangle-inequality-proofs", "proof-and-invariants", "testing-and-stress"], " / "),
+            ("검증/증명", ["monge-smawk", "proof-and-invariants", "testing-and-stress"], " / "),
         ],
     },
     {
@@ -141,7 +141,7 @@ TRACK_GUIDES = [
                 " / ",
             ),
             ("C. 제약 완화", ["parametric-optimization", "convex-cost-flow"], " / "),
-            ("D. 증명/검증", ["proof-and-invariants", "quadrangle-inequality-proofs", "testing-and-stress"], " / "),
+            ("D. 증명/검증", ["proof-and-invariants", "monge-smawk", "testing-and-stress"], " / "),
         ],
     },
     {
@@ -383,7 +383,7 @@ def markdown_lesson_link(item: str | tuple[str, str], lessons_by_id: dict[str, d
     lesson = lessons_by_id.get(lesson_id)
     title = label or (lesson["title"] if lesson else lesson_id)
     if lesson is None:
-        return f"`{title}`"
+        raise ValueError(f"Unknown lesson in catalog navigation: {lesson_id}")
     return f"[{title}](lessons/{lesson_id}/lesson.md)"
 
 
@@ -393,7 +393,7 @@ def html_lesson_link(item: str | tuple[str, str], lessons_by_id: dict[str, dict]
     title = label or (lesson["title"] if lesson else lesson_id)
     safe_title = escape(title, quote=True)
     if lesson is None:
-        return f"<code>{safe_title}</code>"
+        raise ValueError(f"Unknown lesson in catalog navigation: {lesson_id}")
     safe_id = escape(lesson_id, quote=True)
     return f'<a href="lessons/{safe_id}/lesson.md">{safe_title}</a>'
 

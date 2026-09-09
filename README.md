@@ -58,7 +58,7 @@ h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. �
 - DP 전이 최적화: [Divide and Conquer DP Optimization](lessons/divide-and-conquer-dp-optimization/lesson.md) / [Knuth Optimization](lessons/knuth-optimization/lesson.md) / [Monge와 SMAWK](lessons/monge-smawk/lesson.md) / [Convex DP Optimization](lessons/convex-dp-optimization/lesson.md)
 - 정확히 K개/penalty: [Parametric Optimization](lessons/parametric-optimization/lesson.md) / [Convex Cost Flow](lessons/convex-cost-flow/lesson.md)
 - convex 비용: [Convex DP Optimization](lessons/convex-dp-optimization/lesson.md) / [Convex Cost Flow](lessons/convex-cost-flow/lesson.md) / [Online Convex Optimization](lessons/online-convex-optimization/lesson.md)
-- 검증/증명: `quadrangle-inequality-proofs` / [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
+- 검증/증명: [Monge와 SMAWK](lessons/monge-smawk/lesson.md) / [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
 
 ### 그래프
 
@@ -92,7 +92,7 @@ h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. �
 - A. 판정으로 바꾸기: [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md) → [Parametric Optimization](lessons/parametric-optimization/lesson.md)
 - B. DP 전이 줄이기: [Divide and Conquer DP Optimization](lessons/divide-and-conquer-dp-optimization/lesson.md) / [Knuth Optimization](lessons/knuth-optimization/lesson.md) / [Monge와 SMAWK](lessons/monge-smawk/lesson.md) / [Convex DP Optimization](lessons/convex-dp-optimization/lesson.md)
 - C. 제약 완화: [Parametric Optimization](lessons/parametric-optimization/lesson.md) / [Convex Cost Flow](lessons/convex-cost-flow/lesson.md)
-- D. 증명/검증: [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / `quadrangle-inequality-proofs` / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
+- D. 증명/검증: [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) / [Monge와 SMAWK](lessons/monge-smawk/lesson.md) / [Testing과 Stress Test](lessons/testing-and-stress/lesson.md)
 
 ### 그래프 트랙
 
