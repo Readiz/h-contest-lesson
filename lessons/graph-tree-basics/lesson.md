@@ -112,6 +112,12 @@ int treeDiameter(const vector<vector<int>>& tree) {
 
 ## 트리 중심과 센트로이드
 
+![정점0에 네 잎과 길이4의 꼬리가 붙은9정점 트리에서 거리 중심은5와6, 센트로이드는0입니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/graph-tree-basics/lesson-assets/structure-trace.svg)
+
+이 트리의 중심 5·6은 가장 먼 정점까지의 거리를 최소화합니다. 센트로이드 0은 제거 후 가장 큰 컴포넌트가 4개이므로 `⌊9/2⌋` 이하가 됩니다. 5를 제거하면 0 쪽에 5개가 남아 센트로이드가 아닙니다.
+
 트리 지름을 배우면 자주 헷갈리는 개념이 두 개 있습니다.
 
 | 개념 | 기준 |

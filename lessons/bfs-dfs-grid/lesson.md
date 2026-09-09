@@ -23,6 +23,12 @@ BFS: 시작점에서 가까운 곳부터 차례로 본다.
 
 ## 발견한 시점에 방문 표시하기
 
+![0에서1과2로 가고 둘 다3으로 연결됩니다. 1이3을 큐에 넣으며 방문 표시하므로2는3을 다시 넣지 않습니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/bfs-dfs-grid/lesson-assets/structure-trace.svg)
+
+아래 방향 그래프에서 1과 2는 모두 3을 발견할 수 있습니다. 큐에 넣을 때 `dist[3]`을 기록하면 3은 한 번만 들어가고, 거리 2가 확정됩니다.
+
 이미 발견한 정점을 다시 넣지 않도록 표시합니다. BFS나 반복 DFS에서는 큐·스택에서 꺼낼 때까지 기다리지 않고 **넣는 순간** 표시해야 여러 이웃이 같은 정점을 중복으로 넣지 않습니다.
 
 ## DFS

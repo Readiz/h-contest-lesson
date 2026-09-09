@@ -132,6 +132,12 @@ after V - 1 relax rounds:
 
 ## 음수 사이클의 영향 범위
 
+![0에서 도달하는1과2의 사이클 비용은-2입니다. 그 뒤 정점3도 거리가 무한히 작아지지만0의 거리는0입니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/bellman-ford-negative-cycle/lesson-assets/structure-trace.svg)
+
+음수 사이클을 반복한 뒤 3으로 이동할 수 있으므로 3도 유한한 최단거리가 없습니다. 반면 사이클에서 0으로 돌아갈 수 없으므로 모든 정점을 음수 무한대로 처리하면 안 됩니다.
+
 문제에 따라 음수 사이클이 하나라도 있으면 `YES`를 출력하면 되는 경우가 있고, 특정 정점까지의 최단거리가 영향을 받는지 물을 수도 있습니다.
 
 특정 정점까지의 답이 영향을 받는지 보려면 아래처럼 생각합니다.

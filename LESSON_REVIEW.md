@@ -1,5 +1,14 @@
 # 학습 노트 전체 본문 검토 기록
 
+## 2026-09-09 후속 시각화 12개
+
+앞선 전체 검토 뒤 남긴 후속 후보를 보강했습니다. 기본자료의 기존 시각화 8개에 이어 12개를 추가했으며 강의 97개·본문 169개는 유지합니다. 각 그림은 해당 설명 옆에 두고 원본 확대 링크와 입력 전제를 함께 적었습니다.
+
+- 복잡도 증가 비율, 좌표 압축의 거리 손실, 힙의 배열 인덱스, Skew Heap 병합, BFS 방문 시점, 0-1 BFS deque 순서, 위상 정렬 진입 차수, 음수 사이클 영향 범위, Floyd-Warshall의 경유지, Treap split, 동적 세그먼트 트리 노드 생성, 트리 중심/센트로이드 반례.
+- 표의 P2 완료는 이번 후속 보강을 뜻합니다. 기존 도식이 충분하거나 그림보다 계약·검증 코드가 중요한 자료는 유지했습니다.
+- 검증: 전체 validator(97개 강의·공통 코드 7개·조합/경계/차분 사례 41개, ASan/UBSan) 통과. 실제 앱의 1280px·390px에서 새 그림 12개를 각각 촬영해 직접 확인했습니다. 트리 반례의 모든 시작점 거리와 삭제 후 성분 크기도 별도 계산으로 검산했습니다.
+- 화면 검증 중 발견한 대체 텍스트의 Markdown 대괄호 충돌을 수정했습니다. 앱이 상대 SVG 링크를 `#`으로 바꾸므로 앞선 8개까지 포함한 확대 링크 20개를 공개 원본 절대 URL로 교정했습니다. 보호된 운영 로그인 본문을 직접 확인했다는 뜻은 아닙니다.
+
 ## 2026-09-09 전수 재검토와 기본자료 시각화
 
 기준 커밋 `92ead1f`. 당시 등록된 97개 강의의 본문·하위 페이지 **190개 모두**를 코드 블록까지 읽고 개별 판단을 기록했습니다. 앞선 부분 검토나 최초 216개 기록으로 이번 검토를 대신하지 않았습니다. 아래 판단은 읽을 당시 발견한 사항이며, 편집 결과는 통합 경로와 이번 변경에 반영했습니다. 알고리즘의 모든 입력에 대한 형식적 증명을 의미하지는 않습니다.
@@ -212,36 +221,36 @@ P1은 이번에 보강한 상태 변화·경계·불변식입니다. P2는 도�
 
 | 강의 | 판단 | 근거 |
 | --- | --- | --- |
-| [복잡도와 입력 크기 감각](lessons/complexity-input-size/lesson.md) | P2 | 표의 수치 비교가 직접적. 입력 규모별 증가 곡선은 후속 후보. |
+| [복잡도와 입력 크기 감각](lessons/complexity-input-size/lesson.md) | P2 완료 | 입력 2배가 연산 2배는 아닙니다 |
 | [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md) | 유지 | TC 초기화와 제출 계약은 코드·호출 순서가 핵심. |
 | [정렬 알고리즘](lessons/sorting/lesson.md) | 유지 | 기존 Radix 도식 유지. |
 | [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md) | P1 완료 | 2차원 누적합: 겹친 부분을 한 번 복구 |
 | [그리디 알고리즘](lessons/greedy/lesson.md) | 유지 | 기존 여섯 예시 그림 유지. |
 | [투 포인터와 슬라이딩 윈도우](lessons/two-pointers-sliding-window/lesson.md) | P1 완료 | 투 포인터: 확장과 축소의 역할 |
 | [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md) | P1 완료 | 이분 탐색: 첫 번째 참의 경계 |
-| [좌표 압축](lessons/coordinate-compression/lesson.md) | P2 | 순위와 실제 거리 차이는 후속 좌표축 그림 후보. |
-| [우선순위 큐와 힙](lessons/priority-queue-heap/lesson.md) | P2 | 배열과 완전이진트리 대응을 후속 보강. |
-| [Meldable Heap](lessons/meldable-heap/lesson.md) | P2 | meld 재귀의 교환은 후속 단계 그림 후보. |
+| [좌표 압축](lessons/coordinate-compression/lesson.md) | P2 완료 | 좌표 압축: 순위와 거리는 다릅니다 |
+| [우선순위 큐와 힙](lessons/priority-queue-heap/lesson.md) | P2 완료 | 힙: 트리와 배열은 같은 구조입니다 |
+| [Meldable Heap](lessons/meldable-heap/lesson.md) | P2 완료 | Skew Heap: 오른쪽 병합 후 교환 |
 | [휴리스틱 알고리즘](lessons/heuristic/lesson.md) | 유지 | 기존 실전 하위 자료와 AIRCONTECH 전이 그림 유지. |
 | [동적 계획법](lessons/dynamic-programming/lesson.md) | P1 완료 | 0/1 배낭: 큰 용량부터 갱신 |
 | [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md) | 유지 | 기존 방문 상태·경로 그림 세 개 유지. |
 | [Union-Find 알고리즘](lessons/union-find/lesson.md) | 유지 | 기존 합치기와 경로 압축 그림 세 개 유지. |
-| [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md) | P2 | 거리별 frontier와 큐 순서는 후속 보강. |
-| [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md) | 유지 | 지름과 centroid의 차이는 통합된 설명 다음 보강 후보. |
-| [0-1 BFS](lessons/zero-one-bfs/lesson.md) | P2 | deque 앞뒤 삽입은 후속 상태 그림 후보. |
-| [위상 정렬과 DAG DP](lessons/topological-sort-dag/lesson.md) | P2 | 진입 차수 감소와 해제 순서를 후속 보강. |
+| [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md) | P2 완료 | BFS: 같은 정점을 두 번 넣지 않기 |
+| [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md) | P2 완료 | 트리 중심과 센트로이드는 다릅니다 |
+| [0-1 BFS](lessons/zero-one-bfs/lesson.md) | P2 완료 | 0-1 BFS: 같은 거리면 앞에 넣습니다 |
+| [위상 정렬과 DAG DP](lessons/topological-sort-dag/lesson.md) | P2 완료 | 위상 정렬: 마지막 의존성이 풀릴 때 |
 | [Dijkstra 최단거리](lessons/dijkstra/lesson.md) | P1 완료 | Dijkstra: 큐에 남은 낡은 후보 |
-| [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md) | P2 | V번째 완화의 영향 전파를 후속 보강. |
-| [Floyd-Warshall](lessons/floyd-warshall/lesson.md) | P2 | 허용 중간 정점 집합의 변화를 후속 보강. |
+| [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md) | P2 완료 | 음수 사이클의 영향은 앞으로 퍼집니다 |
+| [Floyd-Warshall](lessons/floyd-warshall/lesson.md) | P2 완료 | Floyd-Warshall: 경유지 하나를 허용 |
 | [Sqrt Decomposition](lessons/sqrt-decomposition/lesson.md) | 유지 | 기존 블록 분해·lazy 그림 두 개 유지. |
 | [Fenwick Tree](lessons/fenwick-tree/lesson.md) | P1 완료 | Fenwick: prefix를 구간으로 분해 |
 | [Segment Tree](lessons/segment-tree/lesson.md) | P1 완료 | Lazy: 합과 대기 중인 증가량 |
 | [Hungarian Algorithm](lessons/hungarian-algorithm/lesson.md) | 유지 | 기존 potential과 tight edge 그림 두 개 유지. |
-| [Treap과 BST 기본](lessons/treap/lesson.md) | P2 | split/merge의 재귀 경계는 후속 보강. |
+| [Treap과 BST 기본](lessons/treap/lesson.md) | P2 완료 | Treap split: 경계에서 연결만 바꿉니다 |
 | [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md) | P1 완료 | Alpha-Beta: 이미 확보한 선택과 비교 |
 | [Testing과 Stress Test](lessons/testing-and-stress/lesson.md) | 유지 | 재현 가능한 입력과 실제 비교 코드가 핵심. |
 | [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) | 유지 | 증명 질문과 반례를 먼저 읽도록 현재 예시 유지. |
-| [Dynamic Segment Tree](lessons/dynamic-segment-tree/lesson.md) | P2 | 노드 생성 시점과 희소 구간은 후속 보강. |
+| [Dynamic Segment Tree](lessons/dynamic-segment-tree/lesson.md) | P2 완료 | 동적 세그먼트 트리: 필요한 경로만 |
 
 ---
 

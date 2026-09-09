@@ -47,6 +47,12 @@ int compress(const vector<int>& values, int x) {
 
 ## 구간 좌표 압축에서 주의할 점
 
+![좌표10,20,100은 인덱스0,1,2가 되지만 실제 간격10과80은 둘 다 인덱스 차이1로 바뀝니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/coordinate-compression/lesson-assets/structure-trace.svg)
+
+`[10,20)`과 `[20,100)`은 압축 후 각각 한 칸이지만 길이는 10과 80입니다. 길이·넓이를 합산할 때는 원본 좌표 간격을 함께 저장합니다.
+
 구간 `[l, r]`을 다룰 때는 문제의 의미에 따라 `r + 1`도 같이 넣어야 할 수 있습니다. 예를 들어 차분 배열처럼 `[l, r]`에 더하고 `r + 1`에서 빼는 방식이면 `r + 1` 좌표가 반드시 필요합니다.
 
 또 면적이나 길이를 계산하는 문제에서는 압축 인덱스 차이가 실제 거리와 다릅니다. 이때는 `values[i + 1] - values[i]`처럼 원래 좌표 간격을 곱해야 합니다.

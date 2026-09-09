@@ -20,7 +20,7 @@
 
 ![왼쪽 MIN 값3을 확보한 MAX는 오른쪽 MIN의 첫 값2를 보고 나머지9를 생략합니다. 오른쪽 값은2 이하입니다.](lesson-assets/concept-trace.svg)
 
-[그림 크게 보기](lesson-assets/concept-trace.svg)
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/minimax-alpha-beta/lesson-assets/concept-trace.svg)
 
 왼쪽 가지를 먼저 계산하면 MAX는 이미 3을 확보할 수 있습니다. 이 하한이 `alpha = 3`입니다.
 

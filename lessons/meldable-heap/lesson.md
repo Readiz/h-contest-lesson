@@ -49,6 +49,12 @@ b를 a의 한쪽 subtree와 다시 merge
 
 ## 컴포넌트별 Skew Heap
 
+![루트2의 왼쪽7 오른쪽6인 힙과 단일5를 합칩니다. 결과는2의 왼쪽5 오른쪽7, 5의 왼쪽6입니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/meldable-heap/lesson-assets/structure-trace.svg)
+
+더 작은 2를 루트로 남깁니다. `merge(6,5)`의 결과는 5의 왼쪽에 6이 붙은 힙이고, 마지막에 2의 좌우 자식을 바꾸어 그림의 구조를 얻습니다.
+
 각 컴포넌트의 후보를 최소 힙에 넣고, 컴포넌트가 합쳐질 때 두 힙도 합칩니다. 모든 힙이 같은 `pool`을 공유하며 `-1`을 빈 자식으로 씁니다.
 
 `merge`는 더 작은 루트를 위에 두고 오른쪽 자식과 나머지 힙을 합친 뒤 두 자식을 바꿉니다. `push`는 원소 하나짜리 힙과의 병합, `pop`은 루트의 두 자식 사이의 병합입니다.

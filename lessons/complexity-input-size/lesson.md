@@ -17,6 +17,12 @@
 
 ## 입력 크기에서 가능한 복잡도 찾기
 
+![입력이 두 배면 n은2배, n제곱은4배, n세제곱은8배입니다. n log2 n은1024에서2048로 늘 때2.2배입니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/complexity-input-size/lesson-assets/structure-trace.svg)
+
+같은 구현에서 입력이 커질 때를 비교한 그림입니다. `n log₂ n`의 비율은 `n`에 따라 달라지며, 실제 실행 시간의 배율을 보장하는 수치는 아닙니다.
+
 입력 크기를 보면 먼저 아래 표처럼 후보를 좁힙니다.
 
 | 입력 크기 | 자주 가능한 복잡도 | 대표 풀이 감각 |

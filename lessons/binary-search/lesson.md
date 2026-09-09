@@ -14,7 +14,7 @@
 
 ![배열1,2,4,4,7에서4 이상인 첫 인덱스는2입니다. 참이면 high를 mid로, 거짓이면 low를 mid+1로 옮깁니다.](lesson-assets/concept-trace.svg)
 
-[그림 크게 보기](lesson-assets/concept-trace.svg)
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/binary-search/lesson-assets/concept-trace.svg)
 
 `lower_bound`는 `target` 이상인 첫 위치를 찾습니다.
 

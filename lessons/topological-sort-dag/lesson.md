@@ -31,6 +31,12 @@ B를 끝내야 C를 할 수 있다.
 
 ## 진입 차수
 
+![간선0에서2, 1에서2, 2에서3에서2는 두 선행 간선을 모두 제거한 뒤에만 큐에 들어갑니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/topological-sort-dag/lesson-assets/structure-trace.svg)
+
+0만 처리한 시점에는 1의 의존성이 남아 있습니다. 들어오는 간선 수가 정확히 0이 되었을 때만 2를 처리 후보로 넣습니다.
+
 진입 차수는 어떤 정점으로 들어오는 간선의 수입니다.
 
 ```text

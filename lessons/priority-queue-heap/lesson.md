@@ -17,6 +17,12 @@ C++의 `priority_queue`는 기본적으로 가장 큰 값이 먼저 나오는 ma
 
 ## 힙의 핵심 아이디어
 
+![max heap10,7,9,1,3,4를 층별로 배열에 저장합니다. 인덱스1의 자식은3과4입니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/priority-queue-heap/lesson-assets/structure-trace.svg)
+
+배열은 정렬된 순서가 아니라 트리를 위에서 아래로, 같은 층에서는 왼쪽부터 읽은 순서입니다. 부모와 자식 사이의 우선순위만 보장합니다.
+
 우선순위 큐는 보통 binary heap으로 구현합니다. 힙은 완전 이진 트리 모양을 배열에 담고, 부모가 자식보다 우선순위가 높다는 조건을 유지합니다.
 
 max-heap에서는 부모가 자식보다 크거나 같습니다.

@@ -15,6 +15,12 @@ u --1--> w  거리 1 증가
 
 ## deque를 쓰는 이유
 
+![거리4인 u에서 비용0의 v는 deque 앞에, 비용1의 w는 뒤에 넣어 거리4와5의 순서를 유지합니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/zero-one-bfs/lesson-assets/structure-trace.svg)
+
+괄호는 정점의 거리 후보입니다. 두 이웃의 기존 거리가 더 컸다고 가정하면 비용 0의 v는 현재 거리 층에, 비용 1의 w는 다음 거리 층에 들어갑니다.
+
 현재 정점 `u`에서 이웃 `v`로 가는 비용이 `0`이면 `dist[v]`는 `dist[u]`와 같습니다. 이 정점은 지금 처리 중인 거리 그룹과 같은 우선순위이므로 deque 앞쪽에 넣습니다.
 
 비용이 `1`이면 다음 거리 그룹이므로 뒤쪽에 넣습니다.

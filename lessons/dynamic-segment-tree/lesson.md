@@ -16,6 +16,12 @@ Dynamic Segment Tree는 좌표 범위가 매우 크지만 실제로 접근하는
 
 ## 기본 구조
 
+![\[0,8)에서\[5,6)에3을 더하면\[0,8),\[4,8),\[4,6),\[5,6) 네 노드만 생성됩니다. 다른 자식은0입니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/dynamic-segment-tree/lesson-assets/structure-trace.svg)
+
+점 하나의 갱신에서는 그 점으로 내려가는 경로만 만듭니다. 그림은 초기값이 0이고 기존 lazy가 없는 경우입니다. 구간 갱신 뒤 lazy를 내리는 질의에서는 양쪽 자식이 새로 생길 수 있습니다.
+
 일반 Segment Tree는 `4N` 배열을 잡지만, Dynamic Segment Tree는 node pool을 두고 child index를 필요할 때 만듭니다.
 
 ```text

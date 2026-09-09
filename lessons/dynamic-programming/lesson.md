@@ -64,7 +64,7 @@ for (int x = 1; x <= target; ++x) {
 
 ![무게2 가치3 물건 하나를 정방향 갱신하면 두 번 써서6이 되지만 역방향은 이전 값만 읽어3입니다.](lesson-assets/concept-trace.svg)
 
-[그림 크게 보기](lesson-assets/concept-trace.svg)
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/dynamic-programming/lesson-assets/concept-trace.svg)
 
 용량은 음이 아닌 정수, 물건 무게는 양의 정수이며 가치 합은 사용 자료형 범위 안입니다. 각 물건을 한 번씩만 골라 무게 제한 안에서 가치 합을 최대화합니다. 앞 `i`개 물건을 본 답을 `dp[i][w]`라 두면, 현재 물건을 건너뛴 `dp[i - 1][w]`와 고른 `dp[i - 1][w - weight] + value` 중 큰 값이 답입니다.
 

@@ -81,6 +81,12 @@ BST 조건은 `a < b` 전제 때문에 유지됩니다. Heap 조건은 priority�
 
 ## Treap split
 
+![키4의 왼쪽2 오른쪽6, 6의 왼쪽5인 Treap을5에서 나누면 왼쪽은2와4, 오른쪽은5와6입니다.](lesson-assets/structure-trace.svg)
+
+[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/treap/lesson-assets/structure-trace.svg)
+
+4는 왼쪽 결과에 남기고 오른쪽 자식 6을 재귀로 나눕니다. 6의 왼쪽 5도 오른쪽 결과이므로, 4의 오른쪽 연결만 비게 됩니다. 다시 merge하면 priority에 따라 원래 구조가 복원됩니다.
+
 `split(root, key, a, b)`는 하나의 Treap을 두 개로 나눕니다.
 
 ```text
