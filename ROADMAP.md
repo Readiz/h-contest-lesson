@@ -789,7 +789,7 @@
 - TODO: 그래프 경로 xor 최댓값 `/practice/...` 문제 필요 / cycle basis와 prefix xor / graph xor
 - TODO: K번째 xor 값 `/practice/...` 문제 필요 / basis 정규화와 순서 생성 / reduced basis
 
-### [CHT DP Applications](lessons/convex-dp-optimization/pages/cht-dp-applications.md)
+### [CHT DP Applications](lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md)
 
 - TODO: quadratic partition CHT `/practice/...` 문제 필요 / 식 전개와 line 분리 / prefix square
 - TODO: Li Chao DP `/practice/...` 문제 필요 / 임의 query 처리 / dynamic hull
@@ -810,7 +810,7 @@
 - TODO: DP 전이 최적화 `/practice/...` 문제 필요 / `m_j*x_i+b_j`로 식 변형 / CHT DP
 - TODO: 큰 좌표와 overflow `/practice/...` 문제 필요 / x 범위, INF, `m*x+b` 점검 / overflow
 
-### [Convex Hull Trick Variants](lessons/convex-dp-optimization/pages/convex-hull-trick-variants.md)
+### [Convex Hull Trick Variants](lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md)
 
 - TODO: monotone CHT `/practice/...` 문제 필요 / slope/query 단조 조건 사용 / deque CHT
 - TODO: arbitrary query CHT `/practice/...` 문제 필요 / breakpoint binary search / lower hull

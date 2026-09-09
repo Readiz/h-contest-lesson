@@ -272,7 +272,7 @@
     "snippets": [
       {
         "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md",
-        "block": 0
+        "block": 2
       }
     ],
     "body": "\nLiChaoTree tree(-100,100);vector<pair<long long,long long>> ls;mt19937 gen(4);for(int j=0;j<80;j++){long long m=(int)(gen()%101)-50,b=(int)(gen()%201)-100;ls.push_back({m,b});tree.addLine({m,b});for(int x=-100;x<=100;x++){long long best=LLONG_MAX;for(auto l:ls)best=min(best,l.first*x+l.second);assert(tree.query(x)==best);}}\n",
@@ -283,12 +283,12 @@
     "name": "cht-shared-quadratic-dp",
     "snippets": [
       {
-        "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-variants.md",
+        "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md",
         "block": 0
       },
       {
-        "path": "lessons/convex-dp-optimization/pages/cht-dp-applications.md",
-        "block": 0
+        "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md",
+        "block": 1
       }
     ],
     "body": "\nmt19937 gen(6);for(int t=0;t<100;t++){vector<long long> p(50),dp(50);for(int i=1;i<50;i++)p[i]=p[i-1]+gen()%5;for(int i=1;i<50;i++){dp[i]=LLONG_MAX;for(int j=0;j<i;j++)dp[i]=min(dp[i],dp[j]+(p[i]-p[j])*(p[i]-p[j])+3);}assert(optimizeQuadraticPartition(p,3)==dp);}\n",
@@ -300,7 +300,7 @@
     "snippets": [
       {
         "path": "lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md",
-        "block": 0
+        "block": 2
       },
       {
         "path": "lessons/convex-dp-optimization/pages/practice-set.md",

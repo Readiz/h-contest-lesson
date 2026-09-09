@@ -2,43 +2,192 @@
 
 Convex Hull Trick은 여러 직선 중 특정 x에서 최솟값이나 최댓값을 빠르게 찾는 기법입니다. DP 전이가 `dp[i] = min_j(a_j * x_i + b_j)` 꼴로 정리되면, 각 후보 `j`를 직선으로 보고 query를 빠르게 처리할 수 있습니다.
 
+## 식 분리 예시
 
-좌표는 xLeft<=xRight, xRight-xLeft가 long long 범위이며 모든 질의 x가 이 안에 있어야 합니다. 아래 sentinel 구현은 모든 실제 m*x+b가 long long 범위이면서 INF보다 작다는 전제입니다. 직선이 없으면 INF를 반환합니다.
-
-## 문제 신호
-
-아래처럼 후보 `j`와 현재 `i`가 곱으로 분리되면 CHT를 의심합니다.
+아래 전이가 있다고 합시다.
 
 ```text
-dp[i] = min_j(dp[j] + A[j] * X[i] + B[j])
+dp[i] = min over j < i:
+  dp[j] + (prefix[i] - prefix[j])^2 + C
 ```
 
-`j`마다 직선 `y = A[j] * x + (dp[j] + B[j])`를 만들고, `x = X[i]`에서 최소 y를 query합니다.
+전개하면 다음과 같습니다.
 
-| 조건 | 어울리는 구현 |
+```text
+dp[i] = prefix[i]^2 + C + min_j(
+  dp[j] + prefix[j]^2 - 2*prefix[j]*prefix[i]
+)
+```
+
+따라서 `x = prefix[i]`, `m = -2*prefix[j]`, `b = dp[j] + prefix[j]^2`인 직선 최솟값 질의가 됩니다.
+
+`prefix`가 비감소하면 `x = prefix[i]`도 비감소하고 기울기 `-2 * prefix[j]`는 비증가합니다. `j < i`이므로 현재 `dp[i]`를 질의한 뒤 그 결과로 직선 `i`를 추가해야 합니다. 같은 위치를 먼저 후보에 넣지 않습니다.
+
+## 구현 선택표
+
+| 조건 | 추천 구현 |
 | --- | --- |
-| slope가 단조로 추가되고 x query도 단조 | deque CHT |
-| slope만 단조 | hull + binary search |
-| 삽입 순서와 query 순서가 일반적 | Li Chao Tree |
-| x좌표 범위가 크지만 query 좌표만 안다 | 좌표 압축 Li Chao |
+| slope 추가 단조, query x 단조 | deque CHT |
+| slope 추가 단조, query x 임의 | hull breakpoints + binary search |
+| slope와 query 모두 임의, x 범위 고정 | Li Chao Tree |
+| query x 좌표를 모두 미리 안다 | compressed Li Chao |
+| 직선 삭제가 필요하다 | 임의 삭제 전용 구조 또는 rollback/offline |
 
-## 직선으로 바꾸는 법
+## Min/Max Convention
 
-예를 들어 전이가 아래라고 합시다.
+한 구현 안에서는 최솟값 또는 최댓값 중 하나로 고정합니다. 최댓값 문제를 최솟값 구현으로 풀고 싶으면 직선과 답의 부호를 뒤집습니다.
 
 ```text
-dp[i] = min_j(dp[j] + m[j] * x[i] + c[j])
+max(m*x + b)
+= - min((-m)*x + (-b))
 ```
 
-후보 `j`가 정해지면 `m[j]`와 `dp[j] + c[j]`는 고정입니다. 따라서 line을 추가하고, 현재 `x[i]`에서 가장 작은 값을 묻습니다.
+같은 slope에서는 min 문제라면 intercept가 작은 직선만 남기고, max 문제라면 intercept가 큰 직선만 남깁니다. 이 처리를 빼면 불필요한 직선이 쌓이거나 교점 계산에서 나눗셈이 깨집니다.
 
-중요한 것은 변형 후 후보마다 x의 계수와 절편이 현재 i와 독립이어야 한다는 점입니다. `j`와 `i`가 더 복잡하게 섞이면 CHT가 바로 적용되지 않습니다.
+## Monotone Deque CHT
+
+아래 구현은 기울기를 비증가 순서로 삽입하고 x를 비감소 순서로 질의합니다. 같은 기울기와 같은 x도 허용합니다. 평가값은 `long long`, 교점 비교의 곱은 `__int128` 범위 안이어야 합니다. `__int128` 변환은 뺄셈 전에 합니다.
+
+```cpp compile-check
+#include <deque>
+#include <limits>
+using namespace std;
+
+struct MonotoneMinCht {
+    struct Line {
+        long long slope = 0;
+        long long intercept = 0;
+
+        long long value(long long x) const {
+            return slope * x + intercept;
+        }
+    };
+
+    deque<Line> hull;
+
+    static bool isBad(const Line& left, const Line& middle, const Line& right) {
+        __int128 a = ((__int128)middle.intercept - left.intercept) * ((__int128)left.slope - right.slope);
+        __int128 b = ((__int128)right.intercept - left.intercept) * ((__int128)left.slope - middle.slope);
+        return a >= b;
+    }
+
+    void addLine(long long slope, long long intercept) {
+        Line line{slope, intercept};
+        if (!hull.empty() && hull.back().slope == slope) {
+            if (hull.back().intercept <= intercept) {
+                return;
+            }
+            hull.pop_back();
+        }
+        while (hull.size() >= 2 && isBad(hull[hull.size() - 2], hull[hull.size() - 1], line)) {
+            hull.pop_back();
+        }
+        hull.push_back(line);
+    }
+
+    long long queryIncreasingX(long long x) {
+        while (hull.size() >= 2 && hull[0].value(x) >= hull[1].value(x)) {
+            hull.pop_front();
+        }
+        if (hull.empty()) {
+            return numeric_limits<long long>::max() / 4;
+        }
+        return hull.front().value(x);
+    }
+};
+```
+
+이 구현은 x query가 되돌아가지 않는다는 전제가 있습니다. query x가 임의 순서라면 front pop을 하면 안 되고, breakpoints를 저장해 binary search해야 합니다.
+
+## 앞의 전이식에 적용하기
+
+위 `MonotoneMinCht` 바로 뒤에 아래 함수를 붙입니다. `prefix`는 비어 있지 않은 비감소 배열이며, 모든 DP 값과 곱셈 결과는 `long long` 범위 안이어야 합니다.
+
+```cpp
+#include <vector>
+using namespace std;
+
+vector<long long> optimizeQuadraticPartition(const vector<long long>& prefix, long long cost) {
+    int n = (int)prefix.size() - 1;
+    vector<long long> dp(n + 1, 0);
+    MonotoneMinCht cht;
+    cht.addLine(-2 * prefix[0], dp[0] + prefix[0] * prefix[0]);
+
+    for (int i = 1; i <= n; ++i) {
+        long long x = prefix[i];
+        dp[i] = x * x + cost + cht.queryIncreasingX(x);
+        cht.addLine(-2 * prefix[i], dp[i] + prefix[i] * prefix[i]);
+    }
+    return dp;
+}
+```
+
+`prefix`가 감소하는 입력에는 이 deque를 쓰지 않습니다. 아래 Li Chao처럼 임의 순서 질의를 지원하는 구현으로 바꿔야 합니다.
+
+## 작은 예시
+
+```text
+prefix = 0, 2, 5
+C = 3
+
+i=1, x=2
+line j=0: m=0, b=0
+dp[1] = 4 + 3 + 0 = 7
+add j=1: m=-4, b=11
+
+i=2, x=5
+line j=0 => 0
+line j=1 => -20 + 11 = -9
+dp[2] = 25 + 3 - 9 = 19
+```
+
+손으로 한두 단계 따라가면 직선의 `m`, `b`가 DP 전이와 맞는지 빠르게 확인할 수 있습니다.
+
+## 중간 직선이 필요 없어지는 예
+
+```text
+lines:
+  y = 3x + 0
+  y = 2x + 5
+  y = 1x + 9
+
+x = 0: 3x = 0이 최소
+x = 3: 2x+5 = 11, 1x+9 = 12, 3x = 9라서 3x가 여전히 최소
+x = 5: 1x+9 = 14, 2x+5 = 15, 3x = 15라서 1x+9가 최소
+```
+
+손으로 교점 순서를 확인하면 "어떤 직선이 중간에서 완전히 필요 없는지"를 볼 수 있습니다.
+
+## Breakpoint Binary Search
+
+slope는 단조로 추가되지만 query x가 임의이면, 각 직선이 최적이 되는 시작 x를 저장합니다.
+
+```text
+line 0: active from -inf
+line 1: active from p1
+line 2: active from p2
+query x: 마지막 p <= x인 line 선택
+```
+
+정수 문제에서는 교점을 floor/ceil로 처리해야 합니다. min 문제와 max 문제, slope 증가와 감소에 따라 부등호가 바뀌므로 별도 함수로 테스트하는 편이 안전합니다.
+
+## Dynamic Line Container
+
+직선 삽입 순서가 완전히 임의이고 x query도 임의이면 Li Chao Tree가 가장 안정적입니다. 하지만 x 범위가 너무 크거나 실수 좌표이면 multiset 기반 line container를 쓰기도 합니다.
+
+| 방식 | 장점 | 단점 |
+| --- | --- | --- |
+| Li Chao Tree | 구현 규칙이 명확, segment line 확장 가능 | x 범위 필요 |
+| Compressed Li Chao | query 좌표만 관리해 메모리 절약 | offline 필요 |
+| multiset LineContainer | x 범위가 없어도 가능 | 교점 정수 나눗셈 필요, 임의 삭제 미지원 |
+
+대회에서는 삭제가 없다면 Li Chao가 더 실수하기 어렵습니다.
 
 ## Li Chao Tree
 
 Li Chao Tree는 x좌표 구간을 Segment Tree처럼 나누고, 각 node에 그 구간 중앙에서 좋은 직선을 저장합니다. 새 직선을 넣을 때 기존 직선과 비교해 더 좋은 쪽을 node에 남기고, 밀려난 직선을 한쪽 child로 내려보냅니다.
 
-아래 구현은 정수 x 범위 `[xLeft, xRight]`에서 최솟값을 구합니다.
+아래 구현은 정수 x 범위 `[xLeft, xRight]`에서 최솟값을 구합니다. `xLeft <= xRight`이고 구간 길이와 모든 평가값은 `long long` 범위 안이어야 합니다. 실제 평가값은 sentinel인 `INF = numeric_limits<long long>::max()/4`보다 작아야 하며, 직선이 없으면 `INF`를 반환합니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -139,33 +288,24 @@ query가 나올 x좌표를 모두 미리 알 수 있다면, 실제 x값 전체 �
 
 좌표 압축 방식에서도 line의 값은 압축 index가 아니라 실제 x좌표에서 계산해야 합니다.
 
-## Deque CHT 조건
+## D&C DP와 구분
 
-Deque CHT는 구현이 더 짧고 빠르지만 조건이 강합니다.
+`cost(j, i)`가 Monge이고 argmin이 단조라면 Divide and Conquer Optimization이 더 간단할 수 있습니다. CHT는 보통 곱셈 항을 직선 질의로 분리할 수 있을 때 유리합니다.
 
-1. 직선의 slope가 단조 순서로 추가된다.
-2. query x도 단조 순서로 들어온다.
-3. 최솟값 또는 최댓값 중 하나로 고정된다.
-
-이 조건이 깨지면 front에서 pop하는 방식이 틀릴 수 있습니다. 문제에서 정렬로 slope와 query 순서를 맞출 수 있는지 먼저 확인합니다.
-
-## DP 적용 절차
-
-1. 원래 전이를 `j` 후보와 `i` query로 분리한다.
-2. 후보 `j`의 line slope와 intercept를 적는다.
-3. 현재 `i`의 x값을 적는다.
-4. `dp[i] = query(x)` 뒤에 현재 i의 line을 추가할지, 먼저 추가할지 순서를 정한다.
-5. 자기 자신을 후보로 쓰면 안 되는 문제인지 확인한다.
-
-line 추가 순서가 오답을 만드는 경우가 많습니다. `j < i`만 허용되면 query 후 add 또는 add 후 query를 문제에 맞게 고정해야 합니다.
+| 구조 | 우선 후보 |
+| --- | --- |
+| `A[j] * X[i] + B[j]` | CHT/Li Chao |
+| `cost(j, i)`가 Monge | D&C DP |
+| convex function에 point update | Slope Trick |
+| 선택 개수 penalty | Parametric DP |
 
 ## 시간 복잡도
 
-| 작업 | 시간 | 메모리 |
+| 구현 | 추가 | 질의 |
 | --- | ---: | ---: |
-| Li Chao line 추가 | `O(log X)` | 동적 node |
-| Li Chao query | `O(log X)` | 없음 |
-| 좌표 압축 Li Chao | `O(log Q)` | `O(Q)` |
-| 단조 deque CHT | amortized `O(1)` | `O(N)` |
+| monotone deque CHT | amortized `O(1)` | amortized `O(1)` |
+| breakpoint hull | amortized `O(1)` | `O(log N)` |
+| Li Chao Tree | `O(log X)` | `O(log X)` |
+| compressed Li Chao | `O(log Q)` | `O(log Q)` |
 
-여기서 `X`는 x좌표 범위 크기, `Q`는 압축된 query x 개수입니다.
+`X`는 정수 x 구간의 크기, `Q`는 압축한 질의 좌표 개수입니다. 위 비감소 prefix 예제는 각 직선이 deque에 한 번 들어가고 나가므로 전체 `O(N)`입니다.

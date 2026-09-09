@@ -3309,24 +3309,10 @@
       "pages": [
         {
           "pageId": "convex-hull-trick-li-chao",
-          "title": "Convex Hull Trick and Li Chao Tree",
-          "description": "직선 삽입과 x query로 DP 전이를 처리합니다.",
+          "title": "Convex Hull Trick과 Li Chao Tree",
+          "description": "DP 식 전개, 단조 deque 구현과 적용, Li Chao 대안을 한 흐름으로 읽습니다.",
           "order": 30,
           "file": "pages/convex-hull-trick-li-chao.md"
-        },
-        {
-          "pageId": "convex-hull-trick-variants",
-          "title": "Convex Hull Trick Variants",
-          "description": "단조성, 좌표 압축, dynamic 조건에 따라 CHT 구현을 고릅니다.",
-          "order": 40,
-          "file": "pages/convex-hull-trick-variants.md"
-        },
-        {
-          "pageId": "cht-dp-applications",
-          "title": "CHT DP Applications",
-          "description": "실제 DP 식을 직선과 query로 바꾸는 응용 패턴입니다.",
-          "order": 50,
-          "file": "pages/cht-dp-applications.md"
         },
         {
           "pageId": "slope-trick",

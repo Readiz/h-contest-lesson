@@ -1,5 +1,8 @@
 # 학습 노트 전체 본문 검토 기록
 
+2026-09-09 화면 기반 후속 검토: CHT의 정의·변형·적용 3개 페이지를 한 본문으로 통합하고 기울기 방향 설명을 바로잡았습니다. 현재 공개 97개 강의, 190개 본문입니다. 운영 게시본을 격리 로컬 UI에서 읽었으며 운영 로그인 본문 확인은 아닙니다.
+
+
 2026-09-09 추가 구조 검토: XOR Basis·Rotating Calipers의 기본/응용 카드와 DP·Segment Tree·TSP의 소개/본문, FPS log·exp와 점화식 추정/구현을 통합했습니다. 공개 강의는 97개, 본문은 192개입니다. Calipers의 점·외적 코드를 공유하도록 바꾼 부분은 지름·폭의 퇴화 입력과 사각형·삼각형 검산으로 확인합니다.
 
 
@@ -122,8 +125,8 @@
 | 103 | [lessons/linear-basis-xor/lesson.md](lessons/linear-basis-xor/lesson.md) | 완료 | 반영: unsigned 64비트인데 bit 63을 누락한 오류 수정. 그래프는 단순 경로가 아닌 walk XOR이며 rank64 개수 표현 주의. |
 | 104 | [lessons/convex-dp-optimization/lesson.md](lessons/convex-dp-optimization/lesson.md) | 완료 | 유지: 최적화 전이별 진입 허브. 삭제·통합 페이지 링크 갱신. |
 | 105 | [lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md](lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md) | 완료 | 반영: 음수 좌표 midpoint 무한 재귀 오류, 빈 직선 sentinel 한계·좌표 및 값 범위 보완. 반복 전이 분해·실수 목록 축약. |
-| 106 | [lessons/convex-dp-optimization/pages/convex-hull-trick-variants.md](lessons/convex-dp-optimization/pages/convex-hull-trick-variants.md) | 완료 | 반영: 최소 deque는 기울기 감소·x 증가로 조건 수정, 128비트 변환을 뺄셈 전으로 이동. 일반 line container 임의 삭제 가능 오해 제거. |
-| 107 | [lessons/convex-dp-optimization/pages/cht-dp-applications.md](lessons/convex-dp-optimization/pages/cht-dp-applications.md) | 완료 | 통합 반영: 중복 CHT 클래스는 106 재사용. 감소 slope 설명, 잘못된 Li Chao 조건 목록 정리. 제곱 비용 전개·trace 유지. |
+| 106 | [lessons/convex-dp-optimization/pages/convex-hull-trick-variants.md](lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md) | 완료 | 반영: 최소 deque는 기울기 감소·x 증가로 조건 수정, 128비트 변환을 뺄셈 전으로 이동. 일반 line container 임의 삭제 가능 오해 제거. |
+| 107 | [lessons/convex-dp-optimization/pages/cht-dp-applications.md](lessons/convex-dp-optimization/pages/convex-hull-trick-li-chao.md) | 완료 | 통합 반영: 중복 CHT 클래스는 106 재사용. 감소 slope 설명, 잘못된 Li Chao 조건 목록 정리. 제곱 비용 전개·trace 유지. |
 | 108 | [lessons/convex-dp-optimization/pages/slope-trick.md](lessons/convex-dp-optimization/pages/slope-trick.md) | 완료 | 반영: 빈 heap의 최적 구간 해석과 산술 범위를 명시하고 일반 볼록 함수와 단위 hinge 표현 범위를 구분한다. |
 | 109 | [lessons/convex-dp-optimization/pages/min-plus-convolution.md](lessons/convex-dp-optimization/pages/min-plus-convolution.md) | 완료 | 반영: 빈 입력 반환·INF 조건 수정. 두 이산 볼록 수열은 차분 merge로 선형임을 설명하고 반복 복잡도 절 축약. |
 | 110 | [lessons/convex-dp-optimization/pages/kinetic-hull.md](lessons/convex-dp-optimization/pages/kinetic-hull.md) | 완료 | 반영: 고정 후보 일차식은 일반 CHT로 충분하며 전체 kinetic hull에 단순 이웃 교차 규칙을 일반화하지 않도록 범위 축소. |

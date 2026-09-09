@@ -6,9 +6,7 @@ Convex DP Optimization은 DP 전이식의 모양을 보고 어떤 최적화 기�
 
 | 전이식/문제 신호 | 먼저 볼 페이지 |
 | --- | --- |
-| `dp[i] = min_j(a[j] * x[i] + b[j])` 꼴이다 | [Convex Hull Trick and Li Chao Tree](pages/convex-hull-trick-li-chao.md) |
-| slope나 query x의 단조성에 따라 구현을 골라야 한다 | [Convex Hull Trick Variants](pages/convex-hull-trick-variants.md) |
-| CHT를 실제 DP 문제에 끼워 넣는 과정이 어렵다 | [CHT DP Applications](pages/cht-dp-applications.md) |
+| DP 식을 직선 질의로 바꾸고 단조성에 맞는 구현을 고른다 | [Convex Hull Trick과 Li Chao Tree](pages/convex-hull-trick-li-chao.md) |
 | 절댓값/median 비용이 누적되어 convex function을 유지한다 | [Slope Trick](pages/slope-trick.md) |
 | 두 cost sequence를 `min_i A[i] + B[k-i]`로 합친다 | [Min-Plus Convolution](pages/min-plus-convolution.md) |
 | 직선이나 hull이 시간에 따라 움직인다 | [Kinetic Hull](pages/kinetic-hull.md) |
