@@ -34,7 +34,9 @@ dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
 ## 기본 구현
 
-아래 구현은 0-index 정점과 `long long` 거리를 사용합니다. 도달 불가는 코드와 같은 `INF`로 초기화하고, 모든 덧셈 결과는 정수 범위 안이어야 합니다. 음수 사이클이 있으면 반복 중 값이 급격히 작아질 수 있으므로 단순 경로 길이만으로 범위를 잡으면 부족합니다.
+아래 구현은 0-index 정점과 `long long` 거리를 사용합니다. 도달 불가는 코드와 같은 `INF = LLONG_MAX / 4`로 초기화합니다. 간선 비용의 절댓값 상한이 `W`라면 `N * W < INF`인 범위에서 사용합니다. 이 조건은 음수 사이클의 영향을 받지 않는 유한 최단거리를 `(-INF, INF)` 안에 둡니다.
+
+음수 사이클이 있으면 중간 값은 단순 경로 길이보다 훨씬 작아질 수 있습니다. 서로 다른 모든 정점 사이의 비용이 `-1`인 30정점 그래프도 원래 덧셈만 반복하면 `long long`을 넘칩니다. 그래서 각 갱신에서 하한을 `-INF`로 제한합니다. 두 피연산자가 `[-INF, INF)` 안에 있으므로 **하한을 적용하기 전 덧셈도** 정수 범위 안입니다.
 
 > **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
@@ -57,12 +59,29 @@ vector<vector<long long>> floydWarshall(vector<vector<long long>> dist) {
                 if (dist[k][j] == INF) {
                     continue;
                 }
-                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                long long through = max(-INF, dist[i][k] + dist[k][j]);
+                dist[i][j] = min(dist[i][j], through);
             }
         }
     }
 
     return dist;
+}
+
+vector<vector<bool>> negativeCyclePairs(const vector<vector<long long>>& dist) {
+    const long long INF = numeric_limits<long long>::max() / 4;
+    int n = (int)dist.size();
+    vector<vector<bool>> affected(n, vector<bool>(n, false));
+    for (int v = 0; v < n; ++v) {
+        if (dist[v][v] >= 0) continue;
+        for (int i = 0; i < n; ++i) {
+            if (dist[i][v] == INF) continue;
+            for (int j = 0; j < n; ++j) {
+                if (dist[v][j] != INF) affected[i][j] = true;
+            }
+        }
+    }
+    return affected;
 }
 ```
 
@@ -74,6 +93,7 @@ vector<vector<long long>> floydWarshall(vector<vector<long long>> dist) {
 
 ```cpp compile-check
 #include <algorithm>
+#include <limits>
 #include <vector>
 using namespace std;
 
@@ -97,14 +117,17 @@ void relaxPath(
     vector<vector<long long>>& dist,
     vector<vector<int>>& nextVertex
 ) {
-    if (dist[i][k] + dist[k][j] < dist[i][j]) {
-        dist[i][j] = dist[i][k] + dist[k][j];
+    const long long INF = numeric_limits<long long>::max() / 4;
+    if (dist[i][k] == INF || dist[k][j] == INF) return;
+    long long through = max(-INF, dist[i][k] + dist[k][j]);
+    if (through < dist[i][j]) {
+        dist[i][j] = through;
         nextVertex[i][j] = nextVertex[i][k];
     }
 }
 ```
 
-`next[i][i] = i`로 두면 자기 자신으로 가는 길도 `[i]`로 복원합니다. 초기에는 간선이 있는 `i -> j`에 대해 `next[i][j] = j`로 둡니다. 경로가 없으면 `-1`입니다. `relaxPath`는 기본 구현의 두 `INF` 검사 뒤에서만 호출합니다. 음수 사이클의 영향을 받는 쌍에는 최단 경로가 없으므로 복원하지 않습니다.
+`next[i][i] = i`로 두면 자기 자신으로 가는 길도 `[i]`로 복원합니다. 초기에는 간선이 있는 `i -> j`에 대해 `next[i][j] = j`로 둡니다. 경로가 없으면 `-1`입니다. `relaxPath`는 기본 구현과 같은 `k, i, j` 순서에서 거리 갱신을 대신하며, 내부에서 두 `INF` 검사와 하한 처리를 수행합니다. 계산 후 `negativeCyclePairs(dist)[start][target]`이 true인 쌍에는 최단 경로가 없으므로 복원하지 않습니다. 여러 질의를 처리한다면 이 영향 행렬도 한 번만 계산합니다.
 
 ## 도달 가능성만 필요할 때
 
@@ -119,7 +142,17 @@ if dist[i][v] != INF and dist[v][v] < 0 and dist[v][j] != INF:
     i -> j 최단거리는 -infinity 영향을 받음
 ```
 
-문제에 따라 단순히 "음수 사이클 존재 여부"만 출력할 수도 있고, 영향을 받는 쌍을 별도로 표시해야 할 수도 있습니다.
+위 구현의 `negativeCyclePairs`가 이 조건을 모든 쌍에 적용합니다. 결과는 다음 세 가지로 읽습니다.
+
+| 조건 | 의미 |
+| --- | --- |
+| `dist[i][j] == INF` | 도달 불가 |
+| `affected[i][j] == true` | 음수 사이클을 반복할 수 있어 유한한 최솟값이 없음 |
+| 나머지 | `dist[i][j]`가 유한 최단거리 |
+
+`-INF`는 계산 중 오버플로를 막기 위한 하한일 뿐, 영향 여부를 판정하는 기준이 아닙니다. 음수 사이클의 영향을 받아도 값이 하한까지 내려가지 않을 수 있습니다.
+
+예를 들어 `0→1:3`, `1→2:-2`, `2→1:1`, `2→3:4`, `0→4:9`이면 `1→2→1`의 비용이 `-1`입니다. `0→3`은 이 사이클을 반복한 뒤 도착할 수 있어 최솟값이 없지만, `0→4`의 최단거리는 여전히 `9`이고 `4→0`은 도달 불가입니다. 그래프에 음수 사이클이 있다는 이유로 모든 쌍을 같은 상태로 표시하면 안 됩니다.
 
 ## 시간 복잡도
 
@@ -127,6 +160,7 @@ if dist[i][v] != INF and dist[v][v] < 0 and dist[v][j] != INF:
 | --- | ---: | ---: |
 | 거리 초기화 | `O(N^2 + M)` | `O(N^2)` |
 | Floyd-Warshall | `O(N^3)` | `O(N^2)` |
+| 음수 사이클 영향 쌍 표시 | `O(N^3)` | `O(N^2)` |
 | transitive closure | `O(N^3)` | `O(N^2)` |
 | 경로 복원 1회 | 경로 길이 | `next` matrix |
 

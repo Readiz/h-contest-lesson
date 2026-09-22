@@ -1,5 +1,11 @@
 # h-contest lesson content changelog
 
+## 2026-09-22 후속 검토: 코드 동작과 경계 조건
+
+- 23개 본문을 재검토하고 7개 강의를 수정했습니다. Floyd-Warshall에 음수 사이클 계산의 오버플로 방지·영향 쌍 표시를 추가하고, Dijkstra의 음수 간선 예시를 실제 재삽입 코드 동작에 맞췄습니다.
+- Bellman-Ford·Min-Cost Flow의 수치 범위, Directed MST의 수축 이후 도달성 검사, Weighted Matching의 상수 선택을 구체화했습니다. Rolling Hash에는 실제 충돌 쌍과 정확 비교의 비용을 추가했습니다.
+- Markdown 실행 검증을 41개에서 48개로 늘리고 sanitizer 오류는 즉시 실패하도록 바꿨습니다. 전체 검증과 PC·모바일 화면 확인 범위는 [검토 기록](LESSON_REVIEW.md)에 남겼습니다.
+
 ## 2026-09-22 내용·실습·학습 순서 일관성 교정
 
 - 통계적 개선 방향, 예산 제한 재탐색의 보장, Wavelet Matrix 입력 범위, POMDP 최대화 식과 근사 구분을 수정했습니다.

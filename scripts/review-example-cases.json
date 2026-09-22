@@ -562,5 +562,101 @@
     "body": "Manacher empty(\"\"); assert(empty.odd.empty()); for(int n=1;n<=10;++n) for(int mask=0;mask<(1<<n);++mask){ string s(n,'a');for(int i=0;i<n;++i)if(mask>>i&1)s[i]='b';Manacher m(s);for(int l=0;l<n;++l)for(int r=l;r<n;++r){bool ok=true;for(int a=l,b=r;a<b;++a,--b)if(s[a]!=s[b])ok=false;assert(m.isPalindrome(l,r)==ok);}}",
     "stdin": "",
     "expected": ""
+  },
+  {
+    "name": "floyd-negative-cycles-range-and-paths",
+    "snippets": [
+      {
+        "path": "lessons/floyd-warshall/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/floyd-warshall/lesson.md",
+        "block": 1
+      }
+    ],
+    "body": "\nconst long long INF = numeric_limits<long long>::max() / 4;\nusing Matrix = vector<vector<long long>>;\nauto verify = [&](const Matrix& input) {\n    int n = (int)input.size();\n    auto got = floydWarshall(input);\n    auto affected = negativeCyclePairs(got);\n    Matrix restored = input;\n    vector<vector<int>> next(n, vector<int>(n, -1));\n    for(int i=0;i<n;++i) for(int j=0;j<n;++j)\n        if(input[i][j]!=INF) next[i][j]=j;\n    for(int k=0;k<n;++k) for(int i=0;i<n;++i) for(int j=0;j<n;++j)\n        relaxPath(i,j,k,restored,next);\n    assert(got==restored);\n    for(int s=0;s<n;++s) {\n        // Independent edge-count DP: every round reads the previous round.\n        vector<long long> best(n,INF); best[s]=0;\n        for(int step=0;step<n-1;++step) {\n            auto after=best;\n            for(int u=0;u<n;++u) for(int v=0;v<n;++v)\n                if(best[u]!=INF && input[u][v]!=INF)\n                    after[v]=min(after[v],best[u]+input[u][v]);\n            best.swap(after);\n        }\n        vector<bool> bad(n,false);\n        for(int u=0;u<n;++u) for(int v=0;v<n;++v)\n            if(best[u]!=INF && input[u][v]!=INF && best[u]+input[u][v]<best[v])\n                bad[v]=true;\n        for(int pass=0;pass<n;++pass)\n            for(int u=0;u<n;++u) for(int v=0;v<n;++v)\n                if(bad[u] && input[u][v]!=INF) bad[v]=true;\n        for(int t=0;t<n;++t) {\n            assert(got[s][t]>=-INF && got[s][t]<=INF);\n            assert(affected[s][t]==bad[t]);\n            if(bad[t]) continue;\n            assert(got[s][t]==best[t]);\n            auto path=restorePath(s,t,next);\n            if(best[t]==INF) { assert(path.empty()); continue; }\n            assert(!path.empty() && path.front()==s && path.back()==t);\n            assert(path.size()<=size_t(n));\n            long long cost=0;\n            for(size_t i=1;i<path.size();++i) {\n                assert(input[path[i-1]][path[i]]!=INF);\n                cost+=input[path[i-1]][path[i]];\n            }\n            assert(cost==best[t]);\n        }\n    }\n};\nverify({});\nverify({{0}});\nverify({{-1}});\nMatrix example(5,vector<long long>(5,INF));\nfor(int i=0;i<5;++i) example[i][i]=0;\nexample[0][1]=3; example[1][2]=-2; example[2][1]=1;\nexample[2][3]=4; example[0][4]=9;\nverify(example);\nauto got=floydWarshall(example);\nauto bad=negativeCyclePairs(got);\nassert(bad[0][3] && !bad[0][4] && got[0][4]==9 && got[4][0]==INF);\nMatrix dense(30,vector<long long>(30,-1));\nfor(int i=0;i<30;++i) dense[i][i]=0;\nverify(dense);\ngot=floydWarshall(dense);\nassert(got[29][29]==-INF);\nlong long w=INF/4;\nverify({{0,w,INF},{INF,0,w},{INF,INF,0}});\nverify({{0,-w,INF},{INF,0,-w},{INF,INF,0}});\nmt19937 rng(20260922);\nfor(int tc=0;tc<300;++tc) {\n    int n=1+rng()%7;\n    Matrix d(n,vector<long long>(n,INF));\n    for(int i=0;i<n;++i) d[i][i]=0;\n    for(int e=0;e<n*n;++e) {\n        int u=rng()%n,v=rng()%n;\n        if(rng()%3) d[u][v]=min(d[u][v],(long long)(int(rng()%21)-10));\n    }\n    verify(d);\n}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "dijkstra-contract-and-negative-example",
+    "snippets": [
+      {
+        "path": "lessons/dijkstra/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nvector<vector<Edge>> negative(3);\nnegative[0]={{1,2},{2,5}}; negative[2]={{1,-10}};\nassert((dijkstra(negative,0)==vector<long long>{0,-5,5}));\nmt19937 rng(20260922);\nfor(int tc=0;tc<300;++tc) {\n    int n=1+rng()%10,s=rng()%n;\n    vector<vector<Edge>> g(n);\n    for(int e=0;e<n*n;++e) if(rng()%2)\n        g[rng()%n].push_back({int(rng()%n),rng()%1000000001LL});\n    vector<long long> best(n,INF); best[s]=0;\n    for(int step=0;step<n-1;++step) {\n        auto after=best;\n        for(int u=0;u<n;++u) if(best[u]!=INF)\n            for(auto e:g[u]) after[e.to]=min(after[e.to],best[u]+e.cost);\n        best.swap(after);\n    }\n    assert(dijkstra(g,s)==best);\n}\nvector<vector<Edge>> parallel(4);\nparallel[0]={{1,7},{1,0},{2,9}}; parallel[1]={{2,0}};\nassert((dijkstra(parallel,0)==vector<long long>{0,0,0,INF}));\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "string-matching-exactness-and-fixed-collision",
+    "snippets": [
+      {
+        "path": "lessons/string-matching-kmp-z/lesson.md",
+        "block": 0
+      },
+      {
+        "path": "lessons/string-matching-kmp-z/lesson.md",
+        "block": 1
+      },
+      {
+        "path": "lessons/string-matching-kmp-z/lesson.md",
+        "block": 2
+      }
+    ],
+    "body": "\nstring a=\"yxwvnird\",b=\"inlchzgm\";\nassert(a!=b);\nRollingHash ha(a),hb(b);\nassert(ha.get(0,8)==104431294 && hb.get(0,8)==104431294);\nassert(kmpSearch(a,b).empty());\nstring wrapped=\"xx\"+a+\"yy\"+b;\nRollingHash hw(wrapped);\nassert(hw.get(2,10)==hw.get(12,20));\nassert(hw.get(0,0)==0 && hw.get(20,20)==0);\nfor(int n=0;n<=8;++n) for(int mask=0;mask<(1<<n);++mask) {\n    string text;\n    for(int i=0;i<n;++i) text+=char('a'+((mask>>i)&1));\n    auto z=zFunction(text);\n    for(int i=1;i<n;++i) {\n        int expected=0;\n        while(i+expected<n && text[expected]==text[i+expected]) ++expected;\n        assert(z[i]==expected);\n    }\n    for(int m=0;m<=5;++m) for(int pm=0;pm<(1<<m);++pm) {\n        string pattern;\n        for(int i=0;i<m;++i) pattern+=char('a'+((pm>>i)&1));\n        vector<int> expected;\n        if(m) for(int i=0;i+m<=n;++i)\n            if(text.compare(i,m,pattern)==0) expected.push_back(i);\n        assert(kmpSearch(text,pattern)==expected);\n        if(m) {\n            auto values=zFunction(pattern+\"#\"+text);\n            vector<int> positions;\n            for(int i=0;i<n;++i) if(values[m+1+i]>=m) positions.push_back(i);\n            assert(positions==expected);\n        }\n    }\n}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "directed-mst-contraction-and-brute",
+    "snippets": [
+      {
+        "path": "lessons/directed-mst/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nassert(!directedMST(3,0,{{1,2,1},{2,1,1}}));\nassert(directedMST(3,0,{{0,1,4},{0,2,7},{1,2,1},{2,1,1}})==5);\nassert(directedMST(1,0,{{0,0,-99}})==0);\nmt19937 rng(20260922);\nfor(int tc=0;tc<240;++tc) {\n    int n=1+rng()%5,root=rng()%n;\n    vector<DirectedEdge> edges;\n    vector<vector<int>> incoming(n);\n    for(int i=0;i<n*n;++i) if(rng()%2) {\n        int u=rng()%n,v=rng()%n;\n        edges.push_back({u,v,int(rng()%21)-10});\n        if(u!=v && v!=root) incoming[v].push_back(int(edges.size())-1);\n    }\n    optional<long long> expected;\n    vector<int> parent(n,-1);\n    function<void(int,long long)> enumerate=[&](int v,long long cost) {\n        if(v==n) {\n            for(int u=0;u<n;++u) {\n                int x=u,steps=0;\n                while(x!=root && steps<n) { x=parent[x]; ++steps; }\n                if(x!=root) return;\n            }\n            if(!expected || cost<*expected) expected=cost;\n            return;\n        }\n        if(v==root) { enumerate(v+1,cost); return; }\n        for(int index:incoming[v]) {\n            parent[v]=edges[index].from;\n            enumerate(v+1,cost+edges[index].cost);\n        }\n    };\n    enumerate(0,0);\n    assert(directedMST(n,root,edges)==expected);\n}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "weighted-matching-objective-and-brute",
+    "snippets": [
+      {
+        "path": "lessons/weighted-matching/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nconst long long NEG=-(1LL<<60);\nauto enumerate=[&](const vector<vector<long long>>& w) {\n    vector<pair<int,long long>> answers;\n    int n=int(w.size());\n    function<void(int,int,long long)> dfs=[&](int used,int count,long long sum) {\n        int first=0; while(first<n && (used&(1<<first))) ++first;\n        if(first==n) { answers.push_back({count,sum}); return; }\n        dfs(used|(1<<first),count,sum);\n        for(int j=first+1;j<n;++j)\n            if(!(used&(1<<j)) && w[first][j]!=NEG)\n                dfs(used|(1<<first)|(1<<j),count+1,sum+w[first][j]);\n    };\n    dfs(0,0,0);\n    return answers;\n};\nvector<vector<long long>> path(4,vector<long long>(4,NEG));\npath[0][1]=path[1][0]=-5; path[1][2]=path[2][1]=5; path[2][3]=path[3][2]=-5;\nauto candidates=enumerate(path);\nauto winner=[&](long long b) {\n    pair<int,long long> result{0,0}; long long score=0;\n    for(auto x:candidates) if(x.first*b+x.second>score) {\n        result=x; score=x.first*b+x.second;\n    }\n    return result;\n};\nassert((winner(11)==pair<int,long long>{1,5}));\nassert((winner(21)==pair<int,long long>{2,-10}));\nassert(maxWeightPerfectMatchingSmall(path)==-10);\nmt19937 rng(20260922);\nfor(int tc=0;tc<256;++tc) {\n    int n=rng()%9,m=n/2; long long wmax=5,b=2*m*wmax+1;\n    vector<vector<long long>> w(n,vector<long long>(n,NEG));\n    for(int i=0;i<n;++i) for(int j=i+1;j<n;++j)\n        if(rng()%3) w[i][j]=w[j][i]=int(rng()%11)-5;\n    auto all=enumerate(w);\n    long long perfect=NEG;\n    pair<int,long long> lex{0,0},actual{0,0};\n    long long score=0;\n    for(auto x:all) {\n        if(2*x.first==n) perfect=max(perfect,x.second);\n        lex=max(lex,x);\n        if(x.first*b+x.second>score) { actual=x; score=x.first*b+x.second; }\n    }\n    assert(maxWeightPerfectMatchingSmall(w)==perfect);\n    assert(actual==lex);\n}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "min-cost-flow-residual-range-and-brute",
+    "snippets": [
+      {
+        "path": "lessons/min-cost-flow/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nMinCostFlow assignment(6);\nassignment.addEdge(0,1,1,0); assignment.addEdge(0,2,1,0);\nassignment.addEdge(1,3,1,0); assignment.addEdge(1,4,1,1);\nassignment.addEdge(2,3,1,1); assignment.addEdge(2,4,1,100);\nassignment.addEdge(3,5,1,0); assignment.addEdge(4,5,1,0);\nassert((assignment.minCostFlow(0,5,2)==pair<long long,long long>{2,2}));\nconst long long INF=numeric_limits<long long>::max()/4;\nfor(long long cost:{INF-1,-(INF-1),INF/2}) {\n    MinCostFlow big(2); big.addEdge(0,1,3,cost);\n    assert((big.minCostFlow(0,1,3)==pair<long long,long long>{3,3*cost}));\n}\nMinCostFlow loop(2); loop.addEdge(0,0,2,5); loop.addEdge(0,1,1,4);\nfor(int u=0;u<2;++u) for(int i=0;i<(int)loop.graph[u].size();++i) {\n    auto e=loop.graph[u][i];\n    auto back=loop.graph[e.to][e.rev];\n    assert(back.to==u && back.rev==i && back.cost==-e.cost);\n}\nassert((loop.minCostFlow(0,1,2)==pair<long long,long long>{1,4}));\nmt19937 rng(20260922);\nfor(int tc=0;tc<240;++tc) {\n    struct InputEdge { int u,v,cap,cost; };\n    int n=2+rng()%4,required=rng()%6;\n    vector<InputEdge> edges;\n    MinCostFlow flow(n);\n    for(int i=0;i<6;++i) {\n        int u=rng()%(n-1),v=u+1+rng()%(n-u-1);\n        int cap=rng()%3,cost=int(rng()%15)-7;\n        edges.push_back({u,v,cap,cost}); flow.addEdge(u,v,cap,cost);\n    }\n    pair<long long,long long> expected{0,0};\n    vector<int> net(n,0);\n    function<void(int,long long)> dfs=[&](int i,long long cost) {\n        if(i==(int)edges.size()) {\n            int f=net[0];\n            if(f<0 || f>required || net[n-1]!=-f) return;\n            for(int v=1;v<n-1;++v) if(net[v]) return;\n            if(f>expected.first || (f==expected.first && cost<expected.second))\n                expected={f,cost};\n            return;\n        }\n        auto e=edges[i];\n        for(int f=0;f<=e.cap;++f) {\n            net[e.u]+=f; net[e.v]-=f; dfs(i+1,cost+f*e.cost);\n            net[e.u]-=f; net[e.v]+=f;\n        }\n    };\n    dfs(0,0);\n    assert(flow.minCostFlow(0,n-1,required)==expected);\n}\n",
+    "stdin": "",
+    "expected": ""
+  },
+  {
+    "name": "bellman-ford-simple-path-cycle-oracle",
+    "snippets": [
+      {
+        "path": "lessons/bellman-ford-negative-cycle/lesson.md",
+        "block": 0
+      }
+    ],
+    "body": "\nassert(!bellmanFord(3,{{1,2,-1},{2,1,0}},0).hasReachableNegativeCycle);\nassert(bellmanFord(1,{{0,0,-1}},0).hasReachableNegativeCycle);\nlong long w=INF/8;\nauto large=bellmanFord(2,{{0,0,-w},{0,1,1}},0);\nassert(large.hasReachableNegativeCycle && large.dist[0]==-w && large.dist[1]==1-w);\nmt19937 rng(20260922);\nfor(int tc=0;tc<240;++tc) {\n    int n=1+rng()%7,start=rng()%n;\n    vector<Edge> edges;\n    vector<vector<pair<int,long long>>> graph(n);\n    for(int i=0;i<n*n;++i) if(rng()%3==0) {\n        int u=rng()%n,v=rng()%n,c=int(rng()%15)-7;\n        edges.push_back({u,v,c}); graph[u].push_back({v,c});\n    }\n    vector<long long> best(n,INF),prefix(n,0);\n    bool cycle=false;\n    // Enumerate simple paths and inspect back edges to the current path.\n    function<void(int,int,long long)> dfs=[&](int u,int mask,long long sum) {\n        best[u]=min(best[u],sum); prefix[u]=sum;\n        for(auto e:graph[u]) {\n            if(mask&(1<<e.first)) {\n                if(sum+e.second-prefix[e.first]<0) cycle=true;\n            } else dfs(e.first,mask|(1<<e.first),sum+e.second);\n        }\n    };\n    dfs(start,1<<start,0);\n    auto result=bellmanFord(n,edges,start);\n    assert(result.hasReachableNegativeCycle==cycle);\n    if(!cycle) assert(result.dist==best);\n}\n",
+    "stdin": "",
+    "expected": ""
   }
 ]

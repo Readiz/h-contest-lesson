@@ -1,5 +1,35 @@
 # 학습 노트 전체 본문 검토 기록
 
+## 2026-09-22 후속 검토: 코드 동작·수치 범위·반례
+
+기준 `709d2e7`에서 아래 23개 본문을 다시 읽고, 설명을 실제 코드 동작과 대조했습니다. 이번 수정은 7개 강의이며 전체 97개 강의·169개 본문 구성은 유지합니다. C++ 230개 블록 중 Floyd-Warshall의 2개 블록을 수정하고, 나머지 코드는 보존했습니다.
+
+| 수정 대상 | 확인한 문제와 반영 |
+| --- | --- |
+| [Floyd-Warshall](lessons/floyd-warshall/lesson.md) | 30정점·간선 비용 -1의 조밀한 그래프에서 기존 덧셈의 정수 오버플로 재현. 하한 제한과 영향 쌍 계산을 추가하고, 경로 복원도 같은 처리를 사용. 유한 거리·도달 불가·음수 사이클 영향을 구분. |
+| [Dijkstra](lessons/dijkstra/lesson.md) | 기존 음수 간선 예시에 현재 재삽입 코드는 -5를 반환함을 명시. 잘못된 확정·조기 종료와 재삽입 시 시간 보장을 구분. |
+| [Bellman-Ford](lessons/bellman-ford-negative-cycle/lesson.md) | 한 회차에 여러 간선이 연속 반영되는 구현에 맞춰 중간 계산 상한과 INF 구분을 설명. 로컬 연습 제한을 실제 수치로 확인. |
+| [Min-Cost Flow](lessons/min-cost-flow/lesson.md) | long long 범위만으로는 부족한 거리용 INF 조건을 코드 앞에 명시. 총 비용과 거리의 상한을 구분하고 음수 사이클 전제를 같은 위치로 이동. |
+| [Directed MST](lessons/directed-mst/lesson.md) | 모든 비루트 정점에 incoming edge가 있어도 루트에서 갈 수 없는 3정점 반례 추가. 수축 이후에도 검사해야 함을 표와 설명에 반영. |
+| [Weighted Matching](lessons/weighted-matching/lesson.md) | 큰 상수의 충분조건 B = 2mW + 1과 실패·성공 숫자 예시 추가. 간선 수가 고정인 perfect matching DP와 변환의 적용 대상을 구분. |
+| [문자열 매칭](lessons/string-matching-kmp-z/lesson.md) | 고정 해시의 실제 충돌 쌍 yxwvnird/inlchzgm과 값 104431294를 확인. 해시 비교·정확한 원문 확인의 보장과 복잡도를 분리. |
+
+추가로 읽고 유지한 16개 본문:
+
+- Binary Search, Sorting, Fenwick Tree, Segment Tree, Sqrt Decomposition, Dynamic Segment Tree: 인덱스·갱신 순서·lazy 의미와 제시된 입력 제한 확인.
+- Meldable Heap, Treap, Link-Cut Tree, Euler Tour Tree: 중복 키·병합 대상·연결 상태·표현 방식의 전제와 연산 설명 확인. 전체 구현이 아닌 ETT의 경계 유지.
+- Hungarian Algorithm, Max Flow/Min Cut, TSP/Hamiltonian, 0-1 BFS, 위상 정렬/DAG DP, Trie/Aho-Corasick: 목적식·간선 조건·호출 순서와 예시 대조. 이번에 별도 실행 사례를 추가한 7개 대상과 구분.
+
+검증 결과:
+
+- 전체 validator: 97개 강의, 기초 연습 19개, STL 없는 공통 코드 7개, ORDERING 탐색 검사, 조합·경계·차분 사례 **48개** 통과. 카탈로그 생성 결과도 일치.
+- 새 7개 사례는 실제 Markdown을 추출. Floyd 300개 무작위 그래프와 30정점 오버플로 입력·영향 쌍·복원 경로, Dijkstra 300개 비음수 그래프, Directed MST 240개 부모 선택 완전탐색, Weighted Matching 256개 모든 matching 열거, Min-Cost Flow 240개 정수 유량 열거·역간선 재배정·거리/총비용 경계, Bellman-Ford 240개 단순 경로·사이클 열거를 대조.
+- KMP·Z는 길이 0..8의 모든 이진 텍스트와 길이 0..5의 모든 이진 패턴, 32,193쌍을 기준 비교와 대조. 고정 해시 충돌과 시작 위치가 다른 구간 해시도 확인.
+- 세 C++ 실행 검사에 `-fno-sanitize-recover=all` 적용. 정수 오버플로를 의도적으로 넣은 임시 사례가 검증 실패로 끝나는지 별도 확인. 기존 41개 사례도 이 설정에서 통과.
+- 운영 프론트엔드 빌드·실제 lesson router·가짜 로그인 정보를 쓰는 격리 로컬 환경에서 수정한 7개 구간을 1280px·390px로 검사. 수식 강조 기호가 그대로 노출된 한 곳을 고친 뒤 재확인. 운영 로그인 본문을 직접 검증한 결과와는 구분.
+
+재현은 [본문 조합 검증](scripts/check_review_examples.py)과 [사례 데이터](scripts/review-example-cases.json)를 사용합니다. 작성·검증 방식 변경은 CONTRIBUTING에도 반영했습니다.
+
 ## 2026-09-22 내용·실습·학습 순서 일관성 교정
 
 기준 `a71f5d2`의 97개 강의(기본 30·참고 67), 등록 본문 169개를 검토한 뒤 아래 사항을 반영했습니다. 문장·표·수식·예시의 전수 검토와 C++ 실행 검증 범위는 구분합니다. 기존 C++ 228개 블록은 바이트 그대로 보존하고, ORDERING SA의 구현·제출 wrapper 2개 블록을 추가했습니다.

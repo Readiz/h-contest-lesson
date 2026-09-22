@@ -15,6 +15,7 @@ HEADERS = '''#include <algorithm>
 #include <numeric>
 #include <random>
 #include <string>
+#include <utility>
 #include <vector>
 '''
 
@@ -33,7 +34,8 @@ def main():
             src.write_text('\n'.join(parts))
             try:
                 subprocess.run(['c++', '-std=c++17', '-O1', '-g',
-                                '-fsanitize=address,undefined', str(src), '-o', str(exe)],
+                                '-fsanitize=address,undefined', '-fno-sanitize-recover=all',
+                                str(src), '-o', str(exe)],
                                check=True, capture_output=True, text=True, timeout=60)
                 result = subprocess.run([str(exe)], input=case['stdin'], capture_output=True,
                                         text=True, check=True, timeout=30)

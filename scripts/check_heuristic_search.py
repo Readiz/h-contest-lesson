@@ -143,7 +143,8 @@ def run_checks(values: dict[str, str]) -> None:
         src = Path(folder) / "check.cpp"
         exe = Path(folder) / "check"
         src.write_text(values["common"] + "\n" + HARNESS)
-        subprocess.run(["c++", "-std=c++17", "-O1", "-g", "-fsanitize=address,undefined", str(src), "-o", str(exe)], check=True)
+        subprocess.run(["c++", "-std=c++17", "-O1", "-g", "-fsanitize=address,undefined",
+                        "-fno-sanitize-recover=all", str(src), "-o", str(exe)], check=True)
         subprocess.run([str(exe)], check=True, timeout=60)
     print("OK: ORDERING local minimum, all-move deltas, SA bounds/best/replay, no-header composition (ASan/UBSan)")
 

@@ -34,6 +34,12 @@ cost(u -> v) - in[v]
 
 그래서 수축 후 간선 비용을 이 값으로 보정합니다. 이 과정을 cycle이 없어질 때까지 반복합니다.
 
+## Incoming edge가 있어도 루트에서 갈 수 없는 경우
+
+루트가 `0`이고 간선이 `1→2:1`, `2→1:1`뿐이라고 합시다. 루트 이외의 모든 정점에 들어오는 간선이 있지만, `0`에서 어느 쪽으로도 갈 수 없으므로 arborescence는 없습니다.
+
+처음 incoming edge 검사만으로는 이 입력을 거부할 수 없습니다. `1, 2`의 cycle을 수축하면 그 성분으로 들어오는 간선이 없고, **다음 반복의 검사**에서 불가능하다고 판정합니다. 또는 비용과 무관하게 루트에서 DFS/BFS를 먼저 하여 모든 정점의 도달성을 확인해도 됩니다.
+
 ## 구현
 
 아래 구현은 `root`에서 모든 정점으로 도달하는 최소 arborescence 비용을 반환합니다. 불가능하면 `nullopt`를 반환합니다.
@@ -130,8 +136,8 @@ optional<long long> directedMST(int n, int root, vector<DirectedEdge> edges) {
 | --- | --- | --- |
 | 목적 | 각 정점까지의 거리 최소 | 선택 간선 총합 최소 |
 | 간선 선택 | 정점별 shortest predecessor | 정점별 incoming edge와 cycle 수축 |
-| 음수 간선 | Bellman-Ford 필요 | 음수 cost도 가능 |
-| 루트 도달성 | 거리 계산으로 확인 | incoming edge 불가능성으로 확인 |
+| 음수 간선 | Bellman-Ford 등 음수 간선용 최단경로 알고리즘 필요 | 음수 cost도 가능 |
+| 루트 도달성 | 거리 계산으로 확인 | 매 수축 단계의 incoming edge 검사 또는 사전 DFS/BFS |
 
 두 구조가 같은 결과를 낼 수는 있지만, 최적화 기준이 다르기 때문에 서로 대체하면 안 됩니다.
 

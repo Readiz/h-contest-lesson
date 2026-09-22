@@ -147,7 +147,8 @@ def main() -> None:
         source.write_text("\n\n".join(snippets.values()) + "\n" + HARNESS)
         compiler = shlex.split(os.environ.get("CXX", "c++"))
         subprocess.run(compiler + ["-std=c++17", "-O1", "-g", "-Wall", "-Wextra",
-                                  "-fsanitize=address,undefined", "-fno-omit-frame-pointer",
+                                  "-fsanitize=address,undefined", "-fno-sanitize-recover=all",
+                                  "-fno-omit-frame-pointer",
                                   str(source), "-o", str(binary)], check=True)
         subprocess.run([str(binary)], check=True, timeout=30)
     print(f"OK: {len(snippets)} STL-free lesson snippets; boundary, differential and sanitizer checks passed")
