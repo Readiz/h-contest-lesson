@@ -43,7 +43,7 @@ min weight non-tree edge crossing (A, B)를 replacement로 선택
 
 아래 코드는 활성 간선 집합에서 MST 비용을 다시 계산하는 기준 구현입니다. 복잡도는 무겁지만, 작은 입력이나 sqrt decomposition rebuild의 내부 루틴으로 유용합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

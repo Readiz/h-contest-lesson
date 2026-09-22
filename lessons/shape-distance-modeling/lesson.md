@@ -20,7 +20,7 @@ Shape Distance Modeling은 점, 선분, 원, 볼록 다각형 사이의 거리�
 
 polygonDistance2는 구멍 없는 단순 다각형의 내부를 포함한 거리를 구합니다. 한 도형이 다른 도형 안에 있으면 0입니다. 이 실수 baseline의 절대 오차 기준은 좌표 scale에 맞춰야 하며 exact predicate가 아닙니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

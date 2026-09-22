@@ -42,7 +42,7 @@ reverse:  v -> u, cap = 0, cost = -7
 
 거리 계산은 `INF = LLONG_MAX / 4`를 도달 불가 표시로 씁니다. 탐색에서 저장하거나 완화 후보로 계산하는 거리는 `(-INF, INF)` 안이어야 합니다. 단순히 `long long`에 들어간다는 조건만으로는 부족합니다. 예를 들어 간선 한 개의 비용이 `INF`이면 실제로 연결되어 있어도 `nextDist < dist`가 성립하지 않아 도달 불가로 남습니다. 역간선 비용의 부호 반전, 누적 유량, `flow * dist`와 총 비용도 `long long` 범위 안이어야 합니다. 총 비용에는 거리용 `INF` 상한을 적용하지 않습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

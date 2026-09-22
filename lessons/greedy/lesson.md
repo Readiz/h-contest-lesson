@@ -76,20 +76,33 @@
 
 가장 직관적인 풀이는 시작 시간 순서로 강의를 보면서, 이미 끝난 강의실이 있으면 그 방을 재사용하고, 없으면 새 방을 여는 것입니다. 구현에서는 현재 사용 중인 강의실의 종료 시각을 최소 힙에 넣습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+공통 라이브러리의 `sort`, `min-heap` 블록을 한 번 붙인 뒤 아래 두 예제를 사용할 수 있습니다. 강의는 `start < end`인 반열린 구간이며 `0 <= n <= 200000`입니다. `classes`와 `temp`는 서로 겹치지 않는 `n`칸 이상의 배열이고, 함수가 `classes`를 정렬합니다. 큰 작업 배열과 힙은 전역에 둡니다. `-1`은 입력 크기 또는 용량 계약을 위반한 경우입니다.
+
+> **코드 환경: STL 없는 C++17 예제.** [공통 라이브러리](https://h.readiz.com/learn/cpp-common-library)의 필요한 블록을 앞에 붙입니다. 표준 헤더·STL·동적 할당을 사용하지 않으며, 실제 제출에서는 문제의 공개 API와 배열 상한을 맞춥니다.
 
 ```cpp
-sort(classes.begin(), classes.end()); // start 오름차순
-priority_queue<int, vector<int>, greater<int>> ends;
+struct ClassPeriod { long long start, end; };
+const int MAX_CLASS = 200000;
+hc::MinHeap<MAX_CLASS> roomEnds;
 
-for (auto [start, end] : classes) {
-    if (!ends.empty() && ends.top() <= start) {
-        ends.pop();
-    }
-    ends.push(end);
+bool classBefore(const ClassPeriod& a, const ClassPeriod& b) {
+    return a.start < b.start;
 }
 
-answer = ends.size();
+int minimumRooms(ClassPeriod classes[], ClassPeriod temp[], int n) {
+    if (n < 0 || n > MAX_CLASS) return -1;
+    hc::stableSort(classes, temp, n, classBefore);
+    roomEnds.clear();
+
+    for (int i = 0; i < n; ++i) {
+        hc::HeapItem earliest;
+        if (roomEnds.top(earliest) && earliest.key <= classes[i].start) {
+            roomEnds.pop(earliest);
+        }
+        if (!roomEnds.push(classes[i].end, i)) return -1;
+    }
+    return roomEnds.size;
+}
 ```
 
 ![강의실 배정 하한](lesson-assets/classroom-allocation.svg)
@@ -98,21 +111,41 @@ answer = ends.size();
 
 위 알고리즘이 새 강의실을 열어야 하는 순간에는 기존 강의실의 강의들이 모두 아직 끝나지 않았습니다. 즉, 그 시각에 동시에 진행되는 강의 수가 실제로 현재 방 개수만큼 존재합니다. 알고리즘이 만든 방 개수와 피할 수 없는 하한이 같아지는 순간이 있으므로, 더 적은 방으로는 불가능하다는 "증거"가 됩니다.
 
+힙에는 사용했던 각 방의 마지막 종료 시각이 하나씩 남습니다. 이미 끝난 방을 전부 지우는 대신 가장 일찍 끝난 방 하나만 재사용하므로, 마지막 힙 크기가 지금 진행 중인 강의 수가 아니라 필요한 방 수입니다.
+
 ## 중급 예시: 마감이 있는 과제 선택
 
 각 과제는 하루가 걸리고, 1 이상의 정수 마감일과 음이 아닌 점수가 있습니다. 마감일 안에 할 수 있는 과제들의 점수 합을 최대로 만들고 싶습니다.
 
 단순히 마감일이 빠른 과제부터 하면 점수가 큰 과제를 놓칠 수 있습니다. 단순히 점수가 큰 과제부터 하면 마감이 촉박한 과제를 놓칠 수 있습니다. 이때 쓰기 좋은 관점은 "일단 후보에 넣고, 불가능해지는 순간 가장 손해가 작은 것을 버린다"입니다.
 
-```cpp
-sort(tasks.begin(), tasks.end(), byDeadline);
-priority_queue<int, vector<int>, greater<int>> pickedScores;
+`0 <= n <= 200000`, `deadline >= 1`, `0 <= score <= 10^9`로 둡니다. `tasks`와 `temp`는 별도의 `n`칸 배열이며 함수가 `tasks`를 정렬합니다. 점수 합은 최대 `2 * 10^14`여서 `long long`을 사용합니다. 두 함수 모두 호출할 때 힙을 비우므로 TC가 달라져도 이전 후보가 남지 않습니다.
 
-for (auto [deadline, score] : tasks) {
-    pickedScores.push(score);
-    if ((int)pickedScores.size() > deadline) {
-        pickedScores.pop(); // 지금까지 고른 것 중 점수가 가장 작은 과제를 포기
+```cpp
+struct Task { int deadline; long long score; };
+const int MAX_TASK = 200000;
+hc::MinHeap<MAX_TASK> pickedScores;
+
+bool deadlineBefore(const Task& a, const Task& b) {
+    return a.deadline < b.deadline;
+}
+
+long long maximumScore(Task tasks[], Task temp[], int n) {
+    if (n < 0 || n > MAX_TASK) return -1;
+    hc::stableSort(tasks, temp, n, deadlineBefore);
+    pickedScores.clear();
+    long long total = 0;
+
+    for (int i = 0; i < n; ++i) {
+        if (!pickedScores.push(tasks[i].score, i)) return -1;
+        total += tasks[i].score;
+        if (pickedScores.size > tasks[i].deadline) {
+            hc::HeapItem removed;
+            pickedScores.pop(removed);
+            total -= removed.key;
+        }
     }
+    return total;
 }
 ```
 

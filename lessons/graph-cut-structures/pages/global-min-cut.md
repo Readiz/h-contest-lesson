@@ -45,7 +45,7 @@ phase:
 
 입력은 비음수 대칭 용량 행렬이며 self-loop를 제외합니다. 모든 용량 합은 INF 미만이어야 합니다. n<=1의 반환 0은 코드의 관례이며 비자명한 cut이 존재한다는 뜻은 아닙니다. 고정 root와 나머지 정점 간 N-1번 min-cut의 최솟값으로도 global cut을 구할 수 있습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

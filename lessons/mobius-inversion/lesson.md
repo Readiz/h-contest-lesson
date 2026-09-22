@@ -53,7 +53,7 @@ f(d) = sum_{d | x} mu(x / d) * G(x)
 
 입력 값은 양수이고 frequency[0]=0입니다. frequency 범위는 미리 만든 mu 범위를 넘지 않아야 합니다. countOrderedCoprimePairs는 같은 인덱스도 허용하는 순서 있는 원소 쌍을 셉니다. 서로 다른 인덱스의 무순서 쌍이면 (answer-frequency[1])/2입니다. 모든 중간 합산은 long long 범위여야 합니다. 단순 순위 좌표 압축은 약수 관계를 보존하지 않습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

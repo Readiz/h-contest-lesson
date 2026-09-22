@@ -552,6 +552,7 @@ def main() -> None:
     validate_generated_files()
     subprocess.run([sys.executable, str(ROOT / "scripts/check_foundation_exercises.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_cpp_basics.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts/check_submission_examples.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_heuristic_search.py")], check=True)
 
     subprocess.run([sys.executable, str(ROOT / "scripts/check_review_examples.py")], check=True)

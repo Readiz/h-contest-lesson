@@ -66,7 +66,7 @@ relaxed values = [5, 4, 3, 2]
 
 아래 함수는 long long에 들어가는 점수·penalty 및 곱을 전제로 합니다. relaxed.score+penalty*K는 일반적으로 최대화 원문제의 상계입니다. 정확한 K 해 또는 강한 복원 조건 없이는 정답이라고 반환하지 않습니다. 예산 부등식 완화는 최대화에서 value-lambda*(cost-B), lambda>=0처럼 부호를 정합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

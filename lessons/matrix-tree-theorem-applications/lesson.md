@@ -56,7 +56,7 @@ Laplacian을 만든 뒤 cofactor determinant를 계산합니다.
 
 cofactor 입력은 n>=1, 유효한 정점·removed, `1 <= mod <= 10^9+7`을 받습니다. 연결할 determinant 구현은 소수 mod를 요구합니다. n=1이면 0x0 determinant를 1로 정의하여 단일 정점 tree 하나를 셉니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 vector<vector<long long>> buildCofactor(

@@ -66,7 +66,7 @@ P(accept) = exp(-loss / T), T > 0
 
 ## ORDERING에 붙이는 구현
 
-먼저 [배송 순서 개선](ordering-route-improvement.md)의 완성 코드를 복사하고, 그 코드의 `build_path` 이름만 `build_initial_path`로 바꿉니다. 그러면 동일한 nearest neighbor + 2-opt 초기해를 여러 탐색 방식에서 재사용할 수 있습니다. [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-contest-basics/arrays-and-random)도 한 번 붙인 뒤 아래 코드를 추가합니다.
+먼저 [배송 순서 개선](ordering-route-improvement.md)의 완성 코드를 복사하고, 그 코드의 `build_path` 이름만 `build_initial_path`로 바꿉니다. 그러면 동일한 nearest neighbor + 2-opt 초기해를 여러 탐색 방식에서 재사용할 수 있습니다. [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-common-library)도 한 번 붙인 뒤 아래 코드를 추가합니다.
 
 **코드 환경: h-contest 제출 확장용.** 표준 헤더·STL 없이 공개 거리 API만 사용합니다. `1 <= n <= 100`, 유효한 초기 순열, `attempts >= 0`, 유한한 `startTemperature >= endTemperature >= 0`을 전제로 합니다. `order[]`에는 최선해를 보존하고 작업 배열 `current[]`만 흔듭니다.
 

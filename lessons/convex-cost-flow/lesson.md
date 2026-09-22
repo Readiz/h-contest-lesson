@@ -38,7 +38,7 @@ u -> v (cap 1, cost 7)
 
 누적 비용은 C(0)=0, 보낼 총 수요는 고정합니다. 아래 생성기는 비감소 marginal cost만 받습니다. 음수 marginal cost가 있으면 사용하는 MCF의 초기 음수 cycle 조건도 별도로 확인합니다. 비볼록 비용은 단순 edge split이나 음수 cycle 처리만으로 해결되지 않습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

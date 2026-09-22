@@ -30,7 +30,7 @@ def sources() -> dict[str, str]:
     route = blocks("lessons/heuristic/pages/ordering-route-improvement.md")[-1]
     assert route.count("void build_path(") == 1
     initial = route.replace("void build_path(", "void build_initial_path(")
-    random = snippet(basics + "arrays-and-random.md", "random")
+    random = snippet("lessons/cpp-common-library/lesson.md", "random")
     anneal = snippet(search, "ordering-sa")
     entry = snippet(search, "ordering-sa-entry")
     common = "\n".join([initial, random, anneal])

@@ -32,7 +32,7 @@ BST를 왼쪽 자식, 현재 노드, 오른쪽 자식 순으로 방문하면 key
 
 순위 질의와 k번째 원소를 처리하려면 각 subtree 크기를 저장합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 struct Node {
@@ -131,7 +131,7 @@ Node* insert(Node* root, Node* node) {
 }
 ```
 
-이 삽입 함수는 같은 key가 아직 없다는 전제로 호출합니다. 중복이 가능한 입력이면 key를 비교하며 트리를 탐색해 존재 여부를 먼저 확인하거나 `(value, id)`처럼 유일한 키를 사용합니다. `priority`는 입력 key와 독립적으로 뽑습니다. 난수 생성기는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics/arrays-and-random)를 사용할 수 있습니다.
+이 삽입 함수는 같은 key가 아직 없다는 전제로 호출합니다. 중복이 가능한 입력이면 key를 비교하며 트리를 탐색해 존재 여부를 먼저 확인하거나 `(value, id)`처럼 유일한 키를 사용합니다. `priority`는 입력 key와 독립적으로 뽑습니다. 난수 생성기는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)를 사용할 수 있습니다.
 
 삭제는 찾은 노드를 제거하고, 그 노드의 왼쪽 subtree와 오른쪽 subtree를 merge합니다.
 

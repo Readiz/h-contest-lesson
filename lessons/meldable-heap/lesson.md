@@ -59,7 +59,7 @@ b를 a의 한쪽 subtree와 다시 merge
 
 `merge`는 더 작은 루트를 위에 두고 오른쪽 자식과 나머지 힙을 합친 뒤 두 자식을 바꿉니다. `push`는 원소 하나짜리 힙과의 병합, `pop`은 루트의 두 자식 사이의 병합입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 #include <algorithm>

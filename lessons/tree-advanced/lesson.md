@@ -30,7 +30,7 @@ Small-to-large: subtree 정보를 큰 쪽에 작은 쪽을 합치며 관리한�
 
 DFS로 정점을 처음 방문한 시간을 `tin[u]`, subtree를 빠져나온 직후를 `tout[u]`라고 합시다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 // 각 독립 예제의 vector는 사용 전에 정점 수 n으로 resize한다.

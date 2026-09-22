@@ -40,7 +40,7 @@ denominator_i = i! * (-1)^(n-1-i) * (n-1-i)!
 
 `1<=y.size()<MOD`, deg(F)<y.size()를 전제로 합니다. 이 구현은 factorial 전처리까지 포함해 한 질의 `O(N+log MOD)`입니다. 일반 보간을 O(N²)에 하려면 공통 곱 다항식을 만든 뒤 각 선형 인수로 synthetic division합니다. basis를 매번 처음부터 곱하면 O(N³)이 될 수 있습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

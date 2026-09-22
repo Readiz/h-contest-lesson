@@ -35,7 +35,7 @@ Wavelet Tree는 node마다 값 범위를 나누고 child pointer를 둡니다. W
 
 아래 구현은 `0..2^31-1`의 `int` 값을 대상으로 합니다. 음수나 더 큰 정수는 아래 좌표 압축 절차로 순위를 만든 뒤 넣습니다. 단순히 unsigned로 형 변환하면 음수가 양수 뒤로 이동해 원래의 대소 관계가 깨지고, 이 구현의 31층 범위도 벗어날 수 있습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

@@ -41,7 +41,7 @@ f(x) <- f(x) + |x - a|
 
 이 표현은 f=0에서 단위 hinge를 추가하며 시작합니다. 일반 실수 기울기의 모든 볼록 함수를 그대로 표현하는 코드는 아닙니다. 왼쪽 heap이 비면 최적 구간은 -∞까지, 오른쪽이 비면 +∞까지 열립니다. top/pop은 비어 있지 않을 때만 호출하고 offset·minimum의 합산 범위를 확인합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <functional>

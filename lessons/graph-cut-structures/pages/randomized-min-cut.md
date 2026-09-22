@@ -47,7 +47,7 @@ lambda / (k * lambda / 2) = 2 / k
 
 각 trial은 간선 인스턴스의 균등 무작위 순열을 훑습니다. 이미 수축된 내부 간선은 계속 내부 간선이므로 건너뛰어도 남은 crossing edge의 균등 선택과 같습니다. 빈·비연결 입력도 유한 시간에 0을 반환합니다. trial 비용은 O(N+M alpha(N)), 저장은 O(N+M)입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

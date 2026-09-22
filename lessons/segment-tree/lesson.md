@@ -55,7 +55,7 @@ node [l, r] = a[l] + a[l + 1] + ... + a[r]
 
 아래 구현은 비어 있지 않은 0-indexed 배열에서 구간 합과 점 업데이트를 처리합니다. 질의는 `0 <= l <= r < n`, 갱신 위치는 `0..n-1` 범위입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 #include <vector>

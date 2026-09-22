@@ -29,12 +29,14 @@ python3 scripts/validate_lessons.py
 
 h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. 카탈로그는 같은 분류의 필수 선수 레슨이 먼저 오도록 정렬하며, 선택 참고는 관련 레슨으로 구분합니다.
 
-1. [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md): 제출 계약 → 고정 배열 → 필요한 스니펫 → ORDERING의 유효한 기준선.
+1. [실전 C++ 제출과 검증](lessons/cpp-contest-basics/lesson.md): 제출 계약 → TC 초기화 → ORDERING의 유효한 기준선.
 2. [ORDERING 경로 개선](lessons/heuristic/pages/ordering-route-improvement.md): 번호 순서 → nearest neighbor → 2-opt. 매 단계 같은 TC의 비용과 실행 시간을 비교합니다.
 3. [Testing과 Stress Test](lessons/testing-and-stress/lesson.md): 전체 비용과 차분값, apply/undo, 같은 seed의 재현성을 대조합니다.
 4. [지역 탐색과 SA](lessons/heuristic/pages/search-strategies.md): 작은 지역 최적 반례를 따라가고, 실행 가능한 탐색의 비용과 시간을 비교합니다.
 5. [휴리스틱 모델링과 실전 변형](lessons/heuristic/lesson.md): 배치·repair·빔 탐색으로 확장합니다. 추가 문제 연결은 [ROADMAP.md](ROADMAP.md)를 따릅니다.
 6. 정렬·자료구조·그래프·수학과 참고 노트는 문제에서 필요한 작업과 신호를 보고 찾아봅니다.
+
+필요한 배열·난수·정렬·큐·힙은 별도 [STL 없는 공통 라이브러리](lessons/cpp-common-library/lesson.md)에서 찾아 씁니다. 공통 블록의 사용 계약과 풀이의 선택 기준을 나누며, 라이브러리 전체를 첫 실습의 선수로 요구하지 않습니다.
 
 ## 문제 신호별 빠른 길찾기
 
@@ -137,7 +139,7 @@ predicate에서 시작해 convex, sweep, arrangement, duality와 robustness로 �
 
 | 카테고리 | 설명 | 레슨 수 |
 | --- | --- | ---: |
-| 휴리스틱 기본 및 심화 노트 | 현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 개념을 모은 직접 학습 트랙입니다. | 30 |
+| 휴리스틱 기본 및 심화 노트 | 현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 개념을 모은 직접 학습 트랙입니다. | 31 |
 | 휴리스틱 참고 노트 | 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 희소 고급 도구, 장기 확장용 레퍼런스 노트입니다. | 67 |
 
 전체 레슨과 하위 페이지 링크는 [index.html](index.html)에서 확인합니다.

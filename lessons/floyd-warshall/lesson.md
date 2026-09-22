@@ -38,7 +38,7 @@ dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
 음수 사이클이 있으면 중간 값은 단순 경로 길이보다 훨씬 작아질 수 있습니다. 서로 다른 모든 정점 사이의 비용이 `-1`인 30정점 그래프도 원래 덧셈만 반복하면 `long long`을 넘칩니다. 그래서 각 갱신에서 하한을 `-INF`로 제한합니다. 두 피연산자가 `[-INF, INF)` 안에 있으므로 **하한을 적용하기 전 덧셈도** 정수 범위 안입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

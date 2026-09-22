@@ -48,7 +48,7 @@ max(m*x + b)
 
 아래 구현은 기울기를 비증가 순서로 삽입하고 x를 비감소 순서로 질의합니다. 같은 기울기와 같은 x도 허용합니다. 평가값은 `long long`, 교점 비교의 곱은 `__int128` 범위 안이어야 합니다. `__int128` 변환은 뺄셈 전에 합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <deque>

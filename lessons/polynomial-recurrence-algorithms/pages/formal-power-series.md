@@ -26,7 +26,7 @@ A(x) = a0 + a1*x + a2*x^2 + ...
 
 계수는 `[0,MOD)`로 정규화합니다. n과 truncate 길이는 비음수, 역원은 n>0이면 a가 비어 있지 않고 a[0]!=0이어야 합니다. 적분은 분모가 MOD 배수가 되지 않는 길이에서만 사용합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

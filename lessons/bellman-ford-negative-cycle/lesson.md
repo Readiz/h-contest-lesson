@@ -57,7 +57,7 @@ Bellman-Ford는 인접 리스트보다 간선 목록으로 구현하면 가장 �
 
 정점은 `0..V-1`, 도달 불가 표시는 `INF = LLONG_MAX / 4`입니다. 유한 거리와 완화 후보는 `(-INF, INF)` 안에 있어야 합니다. 간선 비용 절댓값의 상한이 `W`라면 `V * max(1, E) * W < INF`는 충분한 조건입니다. 한 회차에서 앞선 갱신을 즉시 사용하므로, 음수 사이클이 있을 때는 최종 단순 경로의 `V * W`만으로 중간 계산 범위를 판단하면 안 됩니다. 아래 로컬 연습의 상한은 `200 * 2000 * 10^6 = 4 * 10^11`로 이 조건을 만족합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <limits>

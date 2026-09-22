@@ -41,7 +41,7 @@ component size는 root마다 `(time, size)` history를 저장하고, query time 
 
 정점은 `1..n`, 조회 시각은 `0..currentTime`이고 전체 union 호출 수는 `INF`보다 작아야 합니다. 아래 구현은 union operation이 한 번 호출될 때마다 시간이 1씩 증가하는 모델입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

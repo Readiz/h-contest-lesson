@@ -42,7 +42,7 @@ A + B = { a + b | a in A, b in B }
 
 이 edge-merge 구현은 빈 집합 또는 꼭짓점 3개 이상의 엄격한 CCW 볼록 다각형을 입력받습니다. 중복·연속 collinear 꼭짓점은 사전에 제거하고 좌표 절댓값은 10^8 이하로 둡니다. 점·선분 입력은 평행이동 또는 별도 퇴화 처리가 필요합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

@@ -33,7 +33,7 @@ old root
 
 `n >= 1`, 위치는 `1..n`, 질의는 `1 <= left <= right <= n`이며 버전 번호는 이미 생성된 버전입니다. 아래 코드는 점 업데이트와 구간 합 질의를 지원하는 Persistent Segment Tree입니다. `roots[v]`가 버전 `v`의 root node index입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

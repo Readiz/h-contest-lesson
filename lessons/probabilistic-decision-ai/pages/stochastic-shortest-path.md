@@ -53,7 +53,7 @@ V(A) = 1 / 0.7
 
 아래 예시는 모든 비목표 상태에 행동이 있고 모든 정책이 proper인 유한 모델로 제한합니다. proper 정책 하나의 존재와 비음수 비용만으로는 충분하지 않습니다. 예를 들어 비용 0 자기 반복과 비용 1 종료 행동이 있으면 0에서 시작한 반복이 종료 정책의 비용 1을 찾지 못합니다. 고정 반복 횟수는 오차 보장을 대신하지 않습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

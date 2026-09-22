@@ -53,7 +53,7 @@ x_i = weight_i / sum weight
 
 actionCount>0, loss 벡터 길이 일치, eta>=0과 누적 손실과 `eta * cumulativeLoss`가 모두 유한함을 전제로 합니다. 반환값은 모든 관측 뒤 다음 라운드의 분포입니다. 실수 exp는 underflow로 0이 될 수 있으므로 수학적으로 양수라는 사실과 구분합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <cmath>

@@ -60,7 +60,7 @@ DSU는 앞서 링크한 `RollbackDsu` 정의를 사용하고, 아래에는 시�
 
 정점 번호는 공유 DSU 기준 `0..N-1`입니다. `queryCount >= 0`, 활성 구간은 `0 <= l <= r <= Q`여야 합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 #include <utility>

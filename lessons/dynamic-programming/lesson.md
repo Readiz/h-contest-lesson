@@ -16,7 +16,7 @@ dp[r][c] = (0, 0)에서 (r, c)까지 오는 경로 수
 
 현재 칸에 도착하는 방법은 위에서 내려오거나 왼쪽에서 오는 것뿐입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 vector<vector<long long>> dp(h, vector<long long>(w, 0));

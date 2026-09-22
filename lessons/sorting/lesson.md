@@ -17,7 +17,9 @@
 
 기준이 하나만 있으면 단순합니다. 하지만 실전 문제에서는 동률 처리까지 같이 정해야 하는 경우가 많습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+비교 기준은 이 레슨에서 정하고, 정렬의 공통 구현은 별도 라이브러리의 `sort` 블록을 사용합니다. 아래 `a`와 `temp`는 서로 겹치지 않는 길이 `n` 이상의 배열이며 `0 <= n <= 1,000,000`입니다. 큰 배열은 전역으로 준비합니다.
+
+> **코드 환경: STL 없는 C++17 예제.** [공통 라이브러리](https://h.readiz.com/learn/cpp-common-library)의 필요한 블록을 앞에 붙입니다. 표준 헤더·STL·동적 할당을 사용하지 않으며, 실제 제출에서는 문제의 공개 API와 배열 상한을 맞춥니다.
 
 ```cpp
 struct Meeting {
@@ -25,13 +27,17 @@ struct Meeting {
     int end;
 };
 
-bool cmp(const Meeting& a, const Meeting& b) {
+bool meetingBefore(const Meeting& a, const Meeting& b) {
     if (a.end != b.end) return a.end < b.end;
     return a.start < b.start;
 }
+
+void sortMeetings(Meeting a[], Meeting temp[], int n) {
+    hc::stableSort(a, temp, n, meetingBefore);
+}
 ```
 
-비교 함수에서는 `<=`를 쓰면 안 됩니다. `a`와 `b`가 같을 때 `cmp(a, b)`와 `cmp(b, a)`가 둘 다 참이 되면 정렬 기준이 깨집니다. 보통 "앞에 와야 하면 true, 아니면 false"라고 생각하면 됩니다.
+비교 함수에서는 `<=`를 쓰면 안 됩니다. `a`와 `b`가 같을 때 `meetingBefore(a, b)`와 `meetingBefore(b, a)`가 둘 다 참이 되면 정렬 기준이 깨집니다. 보통 "앞에 와야 하면 true, 아니면 false"라고 생각하면 됩니다.
 
 `const Meeting&`로 받으면 비교할 때마다 구조체를 복사하지 않고, 함수 안에서 원소를 수정할 수도 없습니다.
 
@@ -40,14 +46,18 @@ bool cmp(const Meeting& a, const Meeting& b) {
 예를 들어 배열에서 같은 값의 묶음을 세려면 값 기준으로 정렬합니다. 그러면 같은 값이 모두 연속해서 나오므로, 이전 값과 달라지는 지점만 보면 됩니다.
 
 ```cpp
-sort(a, a + n);
+bool intBefore(int a, int b) { return a < b; }
 
-int groupCount = 0;
-for (int i = 0; i < n; ) {
-    int j = i + 1;
-    while (j < n && a[j] == a[i]) j++;
-    groupCount++;
-    i = j;
+int countGroups(int a[], int temp[], int n) {
+    hc::stableSort(a, temp, n, intBefore);
+    int groupCount = 0;
+    for (int i = 0; i < n; ) {
+        int j = i + 1;
+        while (j < n && a[j] == a[i]) ++j;
+        ++groupCount;
+        i = j;
+    }
+    return groupCount;
 }
 ```
 
@@ -62,7 +72,7 @@ for (int i = 0; i < n; ) {
 | 방식 | 대표 예시 | 시간 복잡도 | 쓰기 좋은 상황 |
 | --- | --- | ---: | --- |
 | 단순 비교 정렬 | 선택 정렬, 삽입 정렬 | `O(n^2)` | 입력이 작거나 구현 원리를 확인할 때 |
-| 빠른 비교 정렬 | merge sort, heap sort, `std::sort` | `O(n log n)` | 일반적인 정렬 문제 대부분 |
+| 빠른 비교 정렬 | merge sort, heap sort | `O(n log n)` | 일반적인 정렬 문제 대부분 |
 | 값 범위 활용 | counting sort | `O(n + K)` | 값의 범위 `K`가 작을 때 |
 | 자릿수 활용 | radix sort | `O(pass * (n + K))` | 정수나 문자열처럼 자릿수로 나눌 수 있을 때 |
 
@@ -93,43 +103,48 @@ for (int i = 0; i < n; ) {
 
 두 번째 정렬이 안정 정렬이기 때문에 같은 `major` 안에서 첫 번째 정렬이 만들어 둔 `minor` 순서가 보존됩니다.
 
+공통 `stableSort`는 이 동률 순서를 보존합니다. 반면 `sortIds`는 키가 같을 때 ID 오름차순을 추가 기준으로 사용합니다. 여러 기준을 차례로 정렬하는 예제에는 `stableSort`와 해당 기준만 비교하는 함수를 사용합니다.
+
 ## Counting Sort
 
 값의 범위가 작다면 비교를 하지 않고도 정렬할 수 있습니다. 값이 `0`부터 `K - 1`까지라면 각 값이 몇 번 나왔는지 세면 됩니다.
 
+아래 두 구현은 `0 <= n <= 1,000,000`, `1 <= k <= 1000`, 모든 키가 `0..k-1`인 조건을 사용합니다. 입력 배열은 `n`칸 이상이어야 합니다.
+
 ```cpp
-int cnt[1000];
-
-for (int i = 0; i < K; ++i) cnt[i] = 0;
-for (int i = 0; i < n; ++i) cnt[a[i]]++;
-
-int idx = 0;
-for (int value = 0; value < K; ++value) {
-    while (cnt[value] > 0) {
-        a[idx++] = value;
-        cnt[value]--;
+void countingSort(int a[], int n, int k) {
+    int count[1000];
+    for (int i = 0; i < k; ++i) count[i] = 0;
+    for (int i = 0; i < n; ++i) ++count[a[i]];
+    int pos = 0;
+    for (int value = 0; value < k; ++value) {
+        while (count[value] > 0) {
+            a[pos++] = value;
+            --count[value];
+        }
     }
 }
 ```
 
 이 코드는 값 자체만 정렬할 때는 충분합니다. 하지만 원소에 다른 정보가 붙어 있고 안정성이 필요하다면 누적합을 써서 각 값이 들어갈 위치를 계산해야 합니다.
 
-앞 코드가 `cnt`를 소모했으므로 빈도를 다시 센 뒤 배치합니다. `0 <= a[i] < K <= 1000`이고 `tmp`의 용량은 `n` 이상이어야 합니다.
+값 대신 원래 ID를 옮기면 같은 키 안에서 순서가 보존되는지 확인할 수 있습니다. 다음 함수의 `id`는 `0..n-1`의 순열이고, `key`는 원본 키 배열입니다. `temp`는 길이 `n` 이상의 별도 배열로 `key`, `id`와 겹치지 않습니다. 각 함수는 빈도 배열을 직접 초기화합니다.
 
 ```cpp
-for (int i = 0; i < K; ++i) cnt[i] = 0;
-for (int i = 0; i < n; ++i) cnt[a[i]]++;
-for (int i = 1; i < K; ++i) {
-    cnt[i] += cnt[i - 1];
-}
-
-for (int i = n - 1; i >= 0; --i) {
-    int key = a[i];
-    tmp[--cnt[key]] = a[i];
+void countingSortIds(const int key[], int id[], int temp[], int n, int k) {
+    int count[1000];
+    for (int i = 0; i < k; ++i) count[i] = 0;
+    for (int i = 0; i < n; ++i) ++count[key[id[i]]];
+    for (int i = 1; i < k; ++i) count[i] += count[i - 1];
+    for (int i = n - 1; i >= 0; --i) {
+        int value = key[id[i]];
+        temp[--count[value]] = id[i];
+    }
+    for (int i = 0; i < n; ++i) id[i] = temp[i];
 }
 ```
 
-뒤에서 앞으로 배치하면 같은 key를 가진 원소의 원래 순서가 유지됩니다. 이 안정성이 radix sort의 핵심 재료가 됩니다.
+뒤에서 앞으로 배치하면 같은 key를 가진 원소의 현재 ID 순서가 유지됩니다. `key = [2, 1, 2]`, `id = [2, 0, 1]`이면 결과는 `[1, 2, 0]`입니다. ID 오름차순으로 바꾸지 않는다는 점을 확인하세요. 이 안정성이 radix sort의 핵심 재료가 됩니다.
 
 ## Radix Sort
 

@@ -34,7 +34,7 @@ rollback을 하려면 update가 바꾼 값을 모두 기록해야 합니다.
 
 snapshot은 현재 history 크기 이하인 유효한 조상 상태여야 합니다. find/unite는 union by size로 O(log N), rollback은 실제 제거하는 기록 수에 비례합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <numeric>

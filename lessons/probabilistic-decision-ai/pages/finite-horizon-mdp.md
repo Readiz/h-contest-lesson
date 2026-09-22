@@ -17,7 +17,7 @@ dp[t][s] = max_a sum P(s' | s, a) * (reward(s,a,s') + dp[t-1][s'])
 
 코드는 종료 보상 0인 유한 지평 모델입니다. turns>=0, 유효한 nextState, 각 action의 비음수 확률 합 1, 유한 보상을 전제로 합니다. 행동이 없는 상태는 이후 보상 0으로 처리합니다. 일반 terminal reward가 있으면 초기 value와 terminal 갱신을 함께 바꿉니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

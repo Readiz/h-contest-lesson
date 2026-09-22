@@ -160,7 +160,7 @@ minCut_G(0, 3) = min(5, 8, 7) = 5
 
 n>=1, 비음수 무향 용량, oracle의 길이 n인 source-side 배열을 전제로 합니다. side[s]=true, side[t]=false이며 매 호출은 원본 용량에서 시작합니다. 질의 u,v는 서로 달라야 합니다. 병렬 간선은 합산하거나 별개의 용량 간선으로 보존할 수 있습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <functional>

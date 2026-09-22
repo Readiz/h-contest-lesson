@@ -1,4 +1,4 @@
-"""Compile and execute the exact STL-free snippets from the C++ foundation lesson."""
+"""Check canonical STL-free library blocks and the separate submission examples."""
 from __future__ import annotations
 
 import os
@@ -8,19 +8,20 @@ import shlex
 import subprocess
 import tempfile
 
+from cpp_library import check_submission_code, read_library_snippets
+
 ROOT = Path(__file__).resolve().parents[1]
 LESSON = ROOT / "lessons/cpp-contest-basics"
-EXPECTED = {"array", "random", "index-sort", "queue", "min-heap", "state-reset", "ordering-baseline"}
+EXPECTED = {"array", "random", "sort", "queue", "min-heap", "state-reset", "ordering-baseline"}
 
 
 def read_snippets() -> dict[str, str]:
-    snippets = {}
+    snippets = read_library_snippets()
     for page in sorted(LESSON.rglob("*.md")):
         for name, code in re.findall(r"```cpp compile-check snippet=([\w-]+)\n(.*?)\n```", page.read_text(), re.S):
             if name in snippets:
                 raise ValueError(f"duplicate snippet: {name}")
-            if re.search(r"^\s*#\s*(include|pragma)\b|\bstd\s*::|\bextern\s*\"", code, re.M):
-                raise ValueError(f"submission-incompatible construct in {name}")
+            check_submission_code(code, name)
             snippets[name] = code
     if set(snippets) != EXPECTED:
         raise ValueError(f"unexpected snippet set: {set(snippets) ^ EXPECTED}")
@@ -83,6 +84,18 @@ int main() {
         assert(id == expected);
     }
 
+    struct Record { int key, serial; };
+    auto before = [](const Record& a, const Record& b) { return a.key < b.key; };
+    for (int n : {0, 1, 2, 17, 1000}) {
+        std::vector<Record> records(n), temp(n);
+        for (int i = 0; i < n; ++i) records[i] = {(int)(referenceRng() % 5), i};
+        auto expected = records;
+        std::stable_sort(expected.begin(), expected.end(), before);
+        hc::stableSort(records.data(), temp.data(), n, before);
+        for (int i = 0; i < n; ++i)
+            assert(records[i].key == expected[i].key && records[i].serial == expected[i].serial);
+    }
+
     hc::Queue<3> q; q.clear();
     int value = 99;
     assert(!q.pop(value) && value == 99);
@@ -96,6 +109,7 @@ int main() {
     using Pair = std::pair<long long, int>;
     std::priority_queue<Pair, std::vector<Pair>, std::greater<Pair>> expectedHeap;
     hc::HeapItem item = {123, 456};
+    assert(!heap.top(item) && item.key == 123 && item.id == 456);
     assert(!heap.pop(item) && item.key == 123 && item.id == 456);
     for (int i = 0; i < 20000; ++i) {
         if (referenceRng() % 3 != 0) {
@@ -108,6 +122,11 @@ int main() {
             assert(heap.pop(item) == have);
             if (have) { assert(Pair(item.key, item.id) == expectedHeap.top()); expectedHeap.pop(); }
         }
+        if (!expectedHeap.empty()) {
+            assert(heap.top(item));
+            assert(Pair(item.key, item.id) == expectedHeap.top());
+            assert(heap.size == (int)expectedHeap.size());
+        } else assert(!heap.top(item));
     }
     while (!expectedHeap.empty()) {
         assert(heap.pop(item) && Pair(item.key, item.id) == expectedHeap.top());

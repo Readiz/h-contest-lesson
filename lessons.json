@@ -51,21 +51,20 @@
     },
     {
       "lessonId": "cpp-contest-basics",
-      "title": "실전 C++ 기본기와 공통 코드",
-      "description": "함수 구현형 제출 계약, TC 초기화와 고정 배열, STL 없는 난수·정렬·큐·힙을 익히고 ORDERING 기준선으로 연결합니다.",
-      "summary": "공개 API 기반 user.cpp, 독립적으로 복사하는 공통 코드, 경계·재현성 검증, 실제 채점기로 유효한 기준선 만들기",
+      "title": "실전 C++ 제출과 검증",
+      "description": "함수 구현형 제출 계약과 TC 초기화를 확인하고, STL 없는 ORDERING 기준선을 실제 채점기로 검증합니다.",
+      "summary": "공개 API와 배열 상한, TC 초기화, 유효한 기준선 실행에서 경로 개선과 검증으로 이어지는 입문",
       "order": 3,
       "folderId": "heuristic-notes",
       "tags": [
         "cpp",
         "no-stl",
-        "snippets",
         "fixed-array",
         "overflow",
         "practice"
       ],
       "level": "beginner",
-      "estimatedMinutes": 65,
+      "estimatedMinutes": 30,
       "prerequisites": [
         "complexity-input-size"
       ],
@@ -76,7 +75,8 @@
       ],
       "relatedLessons": [
         "priority-queue-heap",
-        "testing-and-stress"
+        "testing-and-stress",
+        "cpp-common-library"
       ],
       "pages": [
         {
@@ -87,28 +87,55 @@
           "file": "pages/submission-and-state.md"
         },
         {
-          "pageId": "arrays-and-random",
-          "title": "배열과 재현 가능한 난수",
-          "description": "복사·초기화·교환과 독립적인 solver seed, 창고를 고정한 부분 셔플을 익힙니다.",
-          "order": 2,
-          "file": "pages/arrays-and-random.md"
-        },
-        {
-          "pageId": "sorting-queue-heap",
-          "title": "정렬·큐·최소 힙",
-          "description": "필요한 처리 순서에 맞춰 공통 코드를 고르고 용량과 실패 조건을 확인합니다.",
-          "order": 3,
-          "file": "pages/sorting-queue-heap.md"
-        },
-        {
           "pageId": "practice",
-          "title": "작은 검증부터 ORDERING까지",
-          "description": "코드 블록 자체의 실행 검증과 실제 문제 채점기를 사용한 기준선 만들기를 연결합니다.",
-          "order": 4,
+          "title": "ORDERING 기준선 실행과 검증",
+          "description": "함수 구현형 제출 계약과 TC 초기화를 확인하고, STL 없는 ORDERING 기준선을 실제 채점기로 검증합니다.",
+          "order": 2,
           "file": "pages/practice.md"
         }
       ],
       "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation"
+      ],
+      "status": "published"
+    },
+    {
+      "lessonId": "cpp-common-library",
+      "title": "STL 없는 공통 라이브러리",
+      "description": "배열·난수·안정 정렬·큐·최소 힙을 독립된 블록으로 관리하고, 필요한 코드만 제출 풀이에 조합합니다.",
+      "summary": "헤더·STL·동적 할당 없는 공통 연산, 용량과 초기화 계약, 선택 추출과 실제 레슨 조합 검증",
+      "order": 4,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "cpp",
+        "no-stl",
+        "snippets",
+        "fixed-array",
+        "sorting",
+        "heap",
+        "practice"
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 35,
+      "prerequisites": [
+        "cpp-contest-basics"
+      ],
+      "nextLessons": [
+        "sorting",
+        "greedy",
+        "priority-queue-heap"
+      ],
+      "relatedLessons": [
+        "heuristic",
+        "testing-and-stress",
+        "bfs-dfs-grid"
+      ],
+      "pages": [],
+      "lessonType": "implementation",
       "practiceStatus": "linked",
       "implementationStatus": "full",
       "audience": "contest-core",
@@ -143,7 +170,8 @@
         "coordinate-compression"
       ],
       "relatedLessons": [
-        "two-pointers-sliding-window"
+        "two-pointers-sliding-window",
+        "cpp-common-library"
       ],
       "pages": [],
       "lessonType": "implementation",
@@ -179,7 +207,8 @@
         "proof-and-invariants"
       ],
       "relatedLessons": [
-        "heuristic"
+        "heuristic",
+        "cpp-common-library"
       ],
       "pages": [],
       "lessonType": "core",
@@ -225,7 +254,8 @@
       "relatedLessons": [
         "tsp-hamiltonian",
         "greedy",
-        "dynamic-programming"
+        "dynamic-programming",
+        "cpp-common-library"
       ],
       "pages": [
         {
@@ -294,7 +324,8 @@
       ],
       "relatedLessons": [
         "greedy",
-        "dynamic-programming"
+        "dynamic-programming",
+        "cpp-common-library"
       ],
       "pages": [],
       "lessonType": "core",
@@ -480,7 +511,8 @@
         "meldable-heap"
       ],
       "relatedLessons": [
-        "greedy"
+        "greedy",
+        "cpp-common-library"
       ],
       "pages": [],
       "lessonType": "implementation",

@@ -9,7 +9,7 @@
 Dijkstra에서 가장 짧은 후보 정점을 먼저 확정한다.
 ```
 
-C++의 `priority_queue`는 기본적으로 가장 큰 값이 먼저 나오는 max-heap입니다. 작은 값을 먼저 꺼내려면 비교 기준을 바꾸어 min-heap으로 사용합니다.
+이 레슨은 배열로 구현한 공통 최소 힙을 사용합니다. 최대 힙과 최소 힙은 부모·자식 사이에서 어떤 값이 먼저 나와야 하는지만 다릅니다.
 
 ## 후보가 계속 들어올 때
 
@@ -45,33 +45,42 @@ left(i) = 2 * i + 1
 right(i) = 2 * i + 2
 ```
 
-배열로 작성한 전체 구현은 [공통 코드의 최소 힙](https://h.readiz.com/learn/cpp-contest-basics/sorting-queue-heap)에 있습니다. 삽입은 부모와 비교하며 올리고, 루트 삭제는 마지막 원소를 루트에 옮긴 뒤 두 자식 중 더 작은 쪽과 비교하며 내립니다. 동일 우선순위의 처리 순서가 결과에 영향을 준다면 id까지 비교 기준에 넣습니다.
+배열로 작성한 전체 구현은 [공통 라이브러리의 최소 힙](https://h.readiz.com/learn/cpp-common-library)에 있습니다. 이 구현은 위 그림과 달리 1-index 배열을 써서 부모가 `i / 2`, 자식이 `2 * i`, `2 * i + 1`입니다. 삽입은 부모와 비교하며 올리고, 루트 삭제는 마지막 원소를 루트에 옮긴 뒤 두 자식 중 더 작은 쪽과 비교하며 내립니다. 같은 key는 ID 오름차순으로 처리합니다.
 
 ## 상위 K개 유지
 
 `0 <= K <= 원소 수`에서 가장 큰 K개만 유지하려면 min-heap을 씁니다. heap 안에는 현재 선택된 K개가 들어 있고, 그중 가장 작은 값이 top입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+공통 `min-heap` 블록을 붙인 뒤 아래 함수를 사용합니다. `values`와 `result`는 각각 `n`칸 이상이며 `0 <= n <= 200000`, `0 <= k <= n`, `|values[i]| <= 10^9`입니다. `result[i]`에 도착한 값 `i+1`개 중 상위 `min(k, i+1)`개 합을 기록합니다. 빈 입력이면 기록하지 않습니다.
+
+> **코드 환경: STL 없는 C++17 예제.** [공통 라이브러리](https://h.readiz.com/learn/cpp-common-library)의 필요한 블록을 앞에 붙입니다. 표준 헤더·STL·동적 할당을 사용하지 않으며, 실제 제출에서는 문제의 공개 API와 배열 상한을 맞춥니다.
 
 ```cpp
-long long sumTopK(const vector<int>& values, int k) {
-    priority_queue<int, vector<int>, greater<int>> pq;
+const int MAX_TOP_K = 200000;
+hc::MinHeap<MAX_TOP_K> topKHeap;
+
+bool topKSums(const int values[], int n, int k, long long result[]) {
+    if (n < 0 || n > MAX_TOP_K || k < 0 || k > n) return false;
+    topKHeap.clear();
     long long sum = 0;
 
-    for (int value : values) {
-        pq.push(value);
-        sum += value;
-
-        if ((int)pq.size() > k) {
-            sum -= pq.top();
-            pq.pop();
+    for (int i = 0; i < n; ++i) {
+        if (!topKHeap.push(values[i], i)) return false;
+        sum += values[i];
+        if (topKHeap.size > k) {
+            hc::HeapItem removed;
+            topKHeap.pop(removed);
+            sum -= removed.key;
         }
+        result[i] = sum;
     }
-    return sum;
+    return true;
 }
 ```
 
 새 값이 들어올 때마다 일단 넣고, K개를 넘으면 가장 작은 값을 버립니다. 그러면 남은 값들은 가장 큰 K개입니다.
+
+한 번 넣은 직후에는 최대 `min(k + 1, n)`개가 있으므로 힙 용량을 `MAX_TOP_K`로 잡았습니다. `k = 0`이면 매번 넣은 값을 바로 버려 모든 합이 0입니다. 입력 계약 안에서는 true를 반환하며, 호출할 때마다 힙과 합을 초기화합니다.
 
 반대로 가장 작은 K개만 유지하려면 max-heap을 쓰고, K개를 넘으면 가장 큰 값을 버립니다.
 
@@ -93,7 +102,7 @@ long long sumTopK(const vector<int>& values, int k) {
 | 전체 n개 heapify | `O(n)` |
 | n개를 모두 push 후 pop | `O(n log n)` |
 
-`priority_queue`는 임의 원소 검색이 빠르지 않습니다. 특정 값이 있는지 확인하거나 중간 값을 삭제해야 한다면 `set`, `multiset`, `map` 같은 balanced tree가 더 맞을 수 있습니다.
+이 표의 heapify는 힙 전체를 한 번에 만드는 일반 알고리즘의 비용입니다. 공통 최소 힙은 `clear`, `top`, `push`, `pop`을 제공하며, n개를 push해서 만드는 데는 `O(n log n)`이 듭니다. 임의 원소 검색·중간 삭제가 핵심이면 인덱스를 따로 관리하는 힙이나 [Treap](https://h.readiz.com/learn/treap) 같은 탐색 트리를 검토합니다.
 
 ## 로컬 연습: 스트림에서 가장 큰 K개 합
 

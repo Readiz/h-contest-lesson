@@ -30,7 +30,7 @@ next(u -> v) = outgoing[v][position(v -> u) - 1]
 
 이 구현은 연결된 straight-line planar embedding, 서로 다른 정점 좌표, self-loop·중첩 간선·간선 내부의 다른 정점 없음, 좌표 절댓값<=10^9를 전제로 합니다. 비연결 입력에서는 순회 하나가 face가 아니라 boundary component일 수 있어 포함 관계로 합쳐야 합니다. 연결된 단일 정점은 outer face 하나로 처리합니다. 정렬은 정수 반평면과 외적을 사용하고 면적 합은 __int128입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

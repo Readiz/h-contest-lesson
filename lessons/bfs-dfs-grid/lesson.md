@@ -35,7 +35,7 @@ BFS: 시작점에서 가까운 곳부터 차례로 본다.
 
 한 경로를 따라 깊이 들어갔다가 되돌아옵니다. 아래 함수는 `u`와 연결된 모든 정점을 표시합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 void dfs(int u, const vector<vector<int>>& graph, vector<int>& visited) {
@@ -100,7 +100,7 @@ vector<int> shortestDistance(int start, const vector<vector<int>>& graph) {
 }
 ```
 
-새 정점은 현재 거리보다 정확히 1 멀리 있으므로 처음 넣을 때 거리가 확정됩니다. 다른 비용의 간선이 섞이면 이 성질이 깨집니다. 큐의 배열 구현은 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics/sorting-queue-heap)를 참고합니다.
+새 정점은 현재 거리보다 정확히 1 멀리 있으므로 처음 넣을 때 거리가 확정됩니다. 다른 비용의 간선이 섞이면 이 성질이 깨집니다. 큐의 배열 구현은 [공통 코드](https://h.readiz.com/learn/cpp-common-library)를 참고합니다.
 
 ## 연결 요소 세기
 

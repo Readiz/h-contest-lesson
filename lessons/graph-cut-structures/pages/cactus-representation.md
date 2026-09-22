@@ -30,7 +30,7 @@ Cactus graph는 보통 아래 성질 중 하나로 정의합니다.
 
 아래 DFS는 cactus가 보장되고 self-loop가 없으며 무향 간선마다 고유 ID를 쓰는 입력에서 각 연결 성분에 한 번 실행합니다. 재귀 깊이는 N까지 늘어납니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

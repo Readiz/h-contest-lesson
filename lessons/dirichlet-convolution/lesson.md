@@ -42,7 +42,7 @@ Mobius Inversion은 Dirichlet convolution에서 `1` 함수의 역원이 `mu`라�
 
 배열은 0번을 사용하지 않는 limit+1 길이이며 limit>=0입니다. 곱과 누적합은 long long 범위여야 합니다. multiplicative 함수는 f(1)=1을 포함하는 정의를 사용합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

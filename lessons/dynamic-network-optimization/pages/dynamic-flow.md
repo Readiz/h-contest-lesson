@@ -57,7 +57,7 @@ move edge: node(t, u) -> node(t+1, v)
 
 totalSupply는 비음수이며 기다림을 허용할 때의 충분한 용량 상한입니다. 각 arc capacity와 정점 번호는 유효해야 하고 (timeCount+1)*vertexCount가 int 범위여야 합니다. 실제 저장은 T+1층이며 이동·기다림은 한 시간 단위입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

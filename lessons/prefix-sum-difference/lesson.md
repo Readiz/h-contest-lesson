@@ -39,7 +39,7 @@ prefix[4] - prefix[1] = 9 - 3 = 6
 
 `prefix[i]`에는 앞의 `i`개 원소 합을 저장합니다. `prefix[0] = 0`을 두면 `l = 0`인 구간도 같은 식으로 계산할 수 있습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 #include <tuple>

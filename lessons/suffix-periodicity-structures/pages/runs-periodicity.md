@@ -36,7 +36,7 @@ period candidate = 9 - 6 = 3
 
 일반 주기는 나누어떨어질 필요가 없습니다. 비어 있지 않은 문자열의 최소 주기는 `N-pi[N-1]`입니다. 아래 `smallestRepeatingBlockLength`는 문자열 전체를 같은 블록으로 정확히 분할하는 최소 블록 길이를 구하므로 추가로 나눗셈 조건을 검사합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

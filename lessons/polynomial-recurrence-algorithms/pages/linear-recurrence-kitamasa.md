@@ -46,7 +46,7 @@ a_n = p0*a_0 + p1*a_1 + ... + p_{K-1}*a_{K-1}
 
 `K>=1`, initial.size()==coeff.size()==K, n>=0을 전제로 합니다. 공개 nth 함수는 계수를 정규화합니다. 내부 함수에는 정규화된 길이 K 벡터를 전달합니다. Kitamasa 자체는 역원이 필요 없으므로 합성수 modulus에도 적용할 수 있지만 BM은 field가 필요합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

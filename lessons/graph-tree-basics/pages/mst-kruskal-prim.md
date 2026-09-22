@@ -21,7 +21,7 @@ MST를 생각할 때 조건을 분리하면 실수가 줄어듭니다.
 
 아래 코드는 [Union-Find 강의](https://h.readiz.com/learn/union-find)의 `DSU`를 사용합니다. `unite`가 성공한 간선만 비용에 더합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 struct Edge {

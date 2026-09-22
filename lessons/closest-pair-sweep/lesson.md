@@ -32,7 +32,7 @@ Closest Pair는 평면 위 점들 중 가장 가까운 두 점의 거리를 찾�
 
 최소 두 점을 입력하며 좌표 절댓값은 `10^9` 이하입니다. 제곱 거리는 최대 `8*10^18`이므로 작은 INF로 초기화하지 않습니다. 활성 구간의 점 사이 거리가 현재 최솟값 이상이라는 packing 성질로 후보 수가 제한되며, 전체 시간은 `O(N log N)`입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

@@ -76,7 +76,7 @@ dp[s] += dp[s - w]
 
 무한 반복의 weight는 양수여야 합니다. `maxDegree>=0`이며 1/(1-A)의 형식적 급수는 A(0)=0일 때 정의됩니다. 다항식 곱셈은 [Formal Power Series](https://h.readiz.com/learn/polynomial-recurrence-algorithms/formal-power-series)의 multiplyTruncated를 사용하되 그 함수의 limit은 최대 차수가 아닌 계수 개수이므로 maxDegree+1을 전달합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

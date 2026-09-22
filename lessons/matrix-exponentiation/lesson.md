@@ -39,7 +39,7 @@ F(n) = F(n - 1) + F(n - 2)
 
 아래 곱셈은 비어 있지 않은 직사각 행렬의 차원이 맞고 원소가 `[0,mod)`에 정규화되어 있다는 전제입니다. 거듭제곱은 정방행렬, exp>=0, `1<=mod<=10^9`를 받습니다. min-plus 전이는 덧셈·곱셈 정의까지 바꿔야 하므로 이 코드를 그대로 쓰지 않습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

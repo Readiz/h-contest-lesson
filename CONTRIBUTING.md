@@ -139,15 +139,19 @@ ZeroOneBFS
 
 직접 풀이 트랙(`heuristic-notes`)의 새 제출 예제는 h-contest 함수 구현형 `user.cpp`를 기준으로 작성합니다. STL과 표준 헤더를 쓰지 않고, 공개 API·고정 배열·직접 구현을 기본으로 합니다. `struct`, 참조, `template`는 사용 가능합니다. 일반 C++/STL이 필요한 참고 예제와 로컬 테스트 하네스는 적용 환경을 명시합니다. 기존 레슨의 전환은 ROADMAP 순서로 진행합니다.
 
-C++가 있는 본문은 첫 코드 앞에 적용 환경을 표시합니다. 일반 C++17 학습용, h-contest 제출용·제출 확장용, 설계 조각을 구분하고, 문서 중간에 환경이 바뀌면 그 코드 옆에 다시 표시합니다. 설계 조각을 완성 제출로 소개하지 않으며, 일반 C++ 예제에는 [공통 코드로 옮기는 기준](lessons/cpp-contest-basics/lesson.md)을 연결합니다.
+C++가 있는 본문은 첫 코드 앞에 적용 환경을 표시합니다. 일반 C++17 학습용, h-contest 제출용·제출 확장용, 설계 조각을 구분하고, 문서 중간에 환경이 바뀌면 그 코드 옆에 다시 표시합니다. 설계 조각을 완성 제출로 소개하지 않으며, 일반 C++ 예제에는 [공통 코드로 옮기는 기준](lessons/cpp-common-library/lesson.md)을 연결합니다.
 
-배열·난수·정렬·큐·힙의 공통 코드는 [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md)를 원문으로 사용합니다. 문제별 예제에는 필요한 블록 이름, 배열 상한, 인덱스 범위, TC 초기화 위치를 함께 적습니다. 설명 없이 거대한 템플릿을 전부 복사시키지 않습니다. 새 공통 코드가 필요하면 실제 사용 문제와 경계 검증을 함께 추가합니다.
+배열·난수·정렬·큐·힙의 공통 코드는 별도 [STL 없는 공통 라이브러리](lessons/cpp-common-library/lesson.md)를 원문으로 사용합니다. [제출 계약과 검증](lessons/cpp-contest-basics/lesson.md)은 문제를 풀기 시작하는 흐름을 다룹니다. 문제별 예제에는 필요한 블록 이름, 배열 상한, 인덱스 범위, TC 초기화 위치를 함께 적습니다. 설명 없이 거대한 템플릿을 전부 복사시키지 않습니다. 새 공통 코드가 필요하면 실제 사용 문제와 경계 검증을 함께 추가합니다.
 
-이 레슨의 `cpp compile-check snippet=<name>` 블록은 `python3 scripts/check_cpp_basics.py`가 직접 추출하여 실행 검증합니다. 전체 validator에서도 호출하므로 C++17 컴파일러와 ASan/UBSan 지원이 필요합니다. 독립적으로 복사할 블록은 다른 블록에 대한 숨은 의존성을 두지 않습니다. 제출 소스에는 테스트 하네스의 헤더와 `main`을 넣지 않습니다.
+공통 라이브러리와 제출 계약의 `cpp compile-check snippet=<name>` 블록은 `python3 scripts/check_cpp_basics.py`가 직접 추출하여 실행 검증합니다. 전체 validator에서도 호출하므로 C++17 컴파일러와 ASan/UBSan 지원이 필요합니다. 독립적으로 복사할 블록은 다른 블록에 대한 숨은 의존성을 두지 않습니다. 제출 소스에는 테스트 하네스의 헤더와 `main`을 넣지 않습니다.
+
+공통 블록은 `python3 scripts/export_cpp_library.py --blocks array random --output /tmp/hc-common.cpp`처럼 본문에서 선택 추출합니다. 별도 복제 소스를 원문처럼 관리하지 않습니다. 풀이 레슨은 사용하는 블록 이름·입력 상한·작업 배열·초기화 시점을 적고 공통 구현을 다시 싣지 않습니다. 새 공통 기능은 실제 사용하는 레슨과 함께 추가합니다.
+
+제출 입문 → ORDERING → 검증 → SA 흐름은 STL·표준 헤더·동적 할당 없이 유지합니다. 정렬·그리디·힙까지 전환한 본문은 `scripts/check_submission_examples.py`에서 금지 의존성과 헤더 없는 조합 컴파일, 실제 입력의 기준 답을 검사합니다. 일반 C++ 참고 예제를 일부 바꾼 것만으로 전체 기본 트랙이 전환됐다고 표시하지 않습니다.
 
 ORDERING의 2-opt·난수·SA 블록 조합은 `python3 scripts/check_heuristic_search.py`로 검사합니다. 작은 지역 최적 반례, 모든 구간의 차분, 경계 입력, 최선해 보존과 재현성을 ASan/UBSan으로 확인합니다. 공개 채점기의 `main.cpp`를 보유한 경우 `--judge /path/to/main.cpp --output /tmp/ordering-bench.json`을 붙여 단계별 비용과 시간을 재현할 수 있습니다. 같은 후보 수와 같은 실행 시간은 서로 다른 비교 조건이므로 측정 기록에 구분해서 적습니다.
 
-본문의 조합·경계·차분 사례는 `scripts/review-example-cases.json`에 추가하고 `python3 scripts/check_review_examples.py`로 실행합니다. 수정한 Markdown에서 코드를 직접 추출하며, 작은 독립 풀이와의 비교나 구체적인 실패 입력으로 설명과 구현을 함께 확인합니다. 세 C++ 실행 검증 스크립트는 `-fno-sanitize-recover=all`을 사용하여 sanitizer 오류가 경고만 남기고 성공으로 끝나지 않도록 합니다.
+본문의 조합·경계·차분 사례는 `scripts/review-example-cases.json`에 추가하고 `python3 scripts/check_review_examples.py`로 실행합니다. 수정한 Markdown에서 코드를 직접 추출하며, 작은 독립 풀이와의 비교나 구체적인 실패 입력으로 설명과 구현을 함께 확인합니다. C++ 실행 검증 스크립트는 `-fno-sanitize-recover=all`을 사용하여 sanitizer 오류가 경고만 남기고 성공으로 끝나지 않도록 합니다.
 
 문제 상황에서 시작해 작은 예시로 원리를 설명하고, 필요한 구현과 비용으로 이어갑니다. 모든 강의에 같은 목차를 맞추지 않습니다. 하위 페이지 목록을 썼다면 같은 링크를 나열하는 학습 순서를 다시 붙이지 않습니다.
 
