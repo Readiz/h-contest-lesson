@@ -2,9 +2,6 @@
 
 Multipoint Evaluation은 하나의 polynomial `P(x)`를 여러 점 `x_0, x_1, ..., x_{m-1}`에서 빠르게 평가하는 기법입니다. 각 점마다 Horner를 쓰면 `O(NM)`이지만, subproduct tree와 polynomial remainder를 쓰면 NTT 기반으로 훨씬 빠르게 만들 수 있습니다.
 
-
-Product tree의 점 개수 M과 다항식 길이 N이 같은 규모일 때 빠른 평가 비용을 `O(N log² N)`으로 씁니다. 선형 인수는 monic인 `x-x_i`로 통일합니다. `x_i-x`도 근은 같지만 계수 스케일을 일관되게 처리해야 합니다.
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -32,6 +29,8 @@ node = left * right
 ```
 
 root는 모든 `(x - x_i)`의 곱입니다. 이 tree를 만들면 각 구간의 평가점들이 공유하는 modulus를 알 수 있습니다.
+
+Product tree의 점 개수 M과 다항식 길이 N이 같은 규모일 때 빠른 평가 비용을 `O(N log² N)`으로 씁니다. 선형 인수는 monic인 `x-x_i`로 통일합니다. `x_i-x`도 근은 같지만 계수 스케일을 일관되게 처리해야 합니다.
 
 ## Remainder를 내려보내기
 

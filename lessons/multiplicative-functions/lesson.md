@@ -2,9 +2,6 @@
 
 Multiplicative Functions는 `gcd(a, b)=1`일 때 `f(ab)=f(a)f(b)`를 만족하는 산술 함수입니다. Euler phi, Mobius function, divisor count, divisor sum처럼 정수론 문제에서 반복되는 함수들을 linear sieve로 한 번에 계산할 수 있습니다.
 
-
-multiplicative 함수는 f(1)=1입니다. 아래 여러 int 배열을 함께 만들면 N=10^7에서 약 240MB(32비트 int 배열 6개)와 primes 공간이 필요하므로 필요한 함수만 남깁니다.
-
 ## 문제 신호
 
 | 문제 표현 | Multiplicative Function 관점 |
@@ -28,6 +25,8 @@ multiplicative 함수는 f(1)=1입니다. 아래 여러 int 배열을 함께 만
 
 대부분의 산술 함수는 multiplicative일 뿐입니다. 예를 들어 `phi(p^2)`는 `phi(p)^2`가 아닙니다.
 
+multiplicative 함수는 f(1)=1입니다.
+
 ## Prime Power 공식
 
 Multiplicative function은 prime power 값만 알면 전체 값을 조립할 수 있습니다.
@@ -44,6 +43,10 @@ Multiplicative function은 prime power 값만 알면 전체 값을 조립할 수
 ## Linear Sieve 구현
 
 아래 코드는 `phi`, `mu`, 약수 개수 `tau`를 `O(N)`에 계산합니다.
+
+아래 여러 int 배열을 함께 만들면 N=10^7에서 약 240MB(32비트 int 배열 6개)와 primes 공간이 필요하므로 필요한 함수만 남깁니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

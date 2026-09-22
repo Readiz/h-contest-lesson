@@ -8,9 +8,6 @@ Matroid Parity는 원소가 짝으로 묶여 있을 때, 선택한 짝들의 원
 2. 선택한 pair들의 원소 전체가 어떤 독립성 조건을 만족해야 하는지 이름 붙인다.
 3. 일반 matroid oracle 문제가 아니라, contest에서 다룰 수 있는 특수 구조인지 확인한다.
 
-
-pair 내부 두 vector의 순서는 독립성 결과에 영향을 주지 않습니다. 둘 다 검사해야 한다는 점이 중요합니다. matching 환원에서는 간선별 endpoint occurrence를 서로 다른 원소로 두고, 같은 정점 occurrence를 capacity 1인 partition class에 넣습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Matroid Parity 관점 |
@@ -78,6 +75,8 @@ underlying matroid를 "선택된 vector들이 선형 독립"인 linear matroid�
 
 이 판정은 GF(2) linear matroid에만 맞습니다. 일반 field vector라면 Gaussian elimination, sparse vector라면 basis representation을 따로 잡아야 합니다.
 
+pair 내부 두 vector의 순서는 독립성 결과에 영향을 주지 않습니다. 둘 다 검사해야 한다는 점이 중요합니다.
+
 ## 모델링 체크
 
 | 질문 | 이유 |
@@ -95,6 +94,8 @@ underlying matroid를 "선택된 vector들이 선형 독립"인 linear matroid�
 일반 graph matching도 parity 관점으로 해석할 수 있습니다. 간선을 선택하면 양 끝점 두 개가 동시에 사용되고, 각 vertex는 한 번만 사용되어야 합니다.
 
 다만 실제 matching 문제는 blossom, Tutte matrix, augmenting path 같은 더 직접적인 도구가 있습니다. Matroid Parity는 matching 자체를 다시 풀기 위한 도구라기보다, matching과 비슷한 pair 선택이 더 추상적인 독립성 조건과 결합될 때 떠올리는 모델입니다.
+
+matching 환원에서는 간선별 endpoint occurrence를 서로 다른 원소로 두고, 같은 정점 occurrence를 capacity 1인 partition class에 넣습니다.
 
 ## 시간 복잡도 감각
 

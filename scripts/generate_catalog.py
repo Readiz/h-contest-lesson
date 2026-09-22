@@ -41,13 +41,14 @@ python3 scripts/validate_lessons.py
 
 ## 학습 로드맵
 
-h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. 기존 카탈로그 전체의 순번과 선수 관계 개편은 [ROADMAP.md](ROADMAP.md)에 따라 진행합니다. 참고 노트를 모두 선행 학습할 필요는 없습니다.
+h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. 카탈로그는 같은 분류의 필수 선수 레슨이 먼저 오도록 정렬하며, 선택 참고는 관련 레슨으로 구분합니다.
 
 1. [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md): 제출 계약 → 고정 배열 → 필요한 스니펫 → ORDERING의 유효한 기준선.
 2. [ORDERING 경로 개선](lessons/heuristic/pages/ordering-route-improvement.md): 번호 순서 → nearest neighbor → 2-opt. 매 단계 같은 TC의 비용과 실행 시간을 비교합니다.
-3. [휴리스틱 모델링과 점수](lessons/heuristic/lesson.md): 상태·유효성·목적 함수·이웃 연산·차분 평가를 정리합니다.
-4. 이후 실전 연결 개편: 실험/검증 → SA → MINEEXPLORE와 AIRCONTECH의 탐색/행동 분리 → 배정·경로·배치 문제. 현재 진행 단계와 완료 기준은 로드맵을 따릅니다.
-5. 정렬·자료구조·그래프·수학과 참고 노트는 문제에서 필요한 작업과 신호를 보고 찾아봅니다.
+3. [Testing과 Stress Test](lessons/testing-and-stress/lesson.md): 전체 비용과 차분값, apply/undo, 같은 seed의 재현성을 대조합니다.
+4. [지역 탐색과 SA](lessons/heuristic/pages/search-strategies.md): 작은 지역 최적 반례를 따라가고, 실행 가능한 탐색의 비용과 시간을 비교합니다.
+5. [휴리스틱 모델링과 실전 변형](lessons/heuristic/lesson.md): 배치·repair·빔 탐색으로 확장합니다. 추가 문제 연결은 [ROADMAP.md](ROADMAP.md)를 따릅니다.
+6. 정렬·자료구조·그래프·수학과 참고 노트는 문제에서 필요한 작업과 신호를 보고 찾아봅니다.
 
 """
 

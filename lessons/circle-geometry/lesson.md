@@ -2,9 +2,6 @@
 
 Circle Geometry는 점, 직선, 원 사이의 거리와 교점을 계산하고 tangent construction으로 이어지는 계산기하 레슨입니다. Segment intersection이나 convex polygon보다 실수 오차와 case 분기가 더 자주 등장하므로, 공식을 쓰기 전에 어떤 기하 관계를 판정하는지 분리해야 합니다.
 
-
-원-직선 코드는 a!=b, radius>=0인 유한 좌표를 받습니다. 두 원은 d=0일 때 동심·일치·서로 다른 반지름을 먼저 분리합니다. arc 공식은 r1*d!=0이며 부분 교차일 때만 적용하고 acos 인자를 [-1,1]로 clamp합니다. 완전 포함·분리·반지름0은 별도 판정합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Circle Geometry 관점 |
@@ -18,6 +15,10 @@ Circle Geometry는 점, 직선, 원 사이의 거리와 교점을 계산하고 t
 좌표를 바로 구하기보다 먼저 교점 개수, 접함, 포함, 분리 상태를 판정합니다.
 
 ## 기본 Point 연산
+
+원-직선 코드는 a!=b, radius>=0인 유한 좌표를 받습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -117,6 +118,8 @@ h^2 = r1^2 - x^2
 
 `h^2 < 0`이면 교점이 없습니다. `h = 0`이면 접하고, 양수면 두 점입니다.
 
+두 원은 d=0일 때 동심·일치·서로 다른 반지름을 먼저 분리합니다.
+
 ## Tangent Construction
 
 외부 점 `p`에서 원 `(c, r)`에 접선을 그을 때, `pc`를 빗변으로 하는 직각삼각형을 봅니다.
@@ -140,6 +143,8 @@ covered interval = [base - delta, base + delta]
 ```
 
 각도는 `[-pi, pi)` 경계에서 끊기므로 구간을 정규화하거나 `+2pi` 복사본을 같이 둡니다.
+
+arc 공식은 r1*d!=0이며 부분 교차일 때만 적용하고 acos 인자를 [-1,1]로 clamp합니다. 완전 포함·분리·반지름0은 별도 판정합니다.
 
 ## 작은 예시
 

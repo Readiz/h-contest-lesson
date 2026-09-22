@@ -2,9 +2,6 @@
 
 Border Automaton은 KMP의 prefix function을 상태 전이표로 바꿔, 문자열을 한 글자씩 읽으면서 현재 matched prefix 길이를 즉시 갱신하는 기법입니다. 패턴 하나를 여러 텍스트, 여러 DP 상태, 혹은 online stream에 반복 적용할 때 KMP fallback을 매번 따라가지 않고 automaton 전이로 처리합니다.
 
-
-패턴은 소문자로 구성합니다. 빈 패턴의 검색 결과는 빈 목록으로 정합니다. 텍스트의 소문자 이외 문자는 매칭을 끊습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Border Automaton 관점 |
@@ -44,6 +41,10 @@ else:
 ## 구현
 
 아래 코드는 lowercase alphabet을 가정한 border automaton입니다. alphabet이 다르면 문자 압축이나 `map` 기반 전이를 사용합니다.
+
+패턴은 소문자로 구성합니다. 빈 패턴의 검색 결과는 빈 목록으로 정합니다. 텍스트의 소문자 이외 문자는 매칭을 끊습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <string>

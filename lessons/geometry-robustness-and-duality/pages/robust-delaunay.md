@@ -2,9 +2,6 @@
 
 Robust Delaunay는 Delaunay triangulation을 구현하거나 검증할 때 orientation, incircle, degeneracy 처리를 안정화하는 레슨입니다. Voronoi-Delaunay의 개념을 알아도 실제 좌표 문제에서는 거의 같은 점, 같은 원 위 점, collinear case가 답을 흔듭니다.
 
-
-네 점의 incircle 판정만으로 전역 Delaunay 간선 여부를 확정하지 않습니다. 삼각분할의 인접·볼록성 조건과 다른 점들의 빈 원 조건이 함께 필요합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Robust Delaunay 관점 |
@@ -46,6 +43,8 @@ if d is inside circumcircle(a,b,c):
 ```
 
 단, `a,b,c`의 방향이 CCW라는 전제가 있습니다. collinear triangle이면 circumcircle이 정의되지 않으므로 입력 전처리나 tie policy가 필요합니다.
+
+네 점의 incircle 판정만으로 전역 Delaunay 간선 여부를 확정하지 않습니다. 삼각분할의 인접·볼록성 조건과 다른 점들의 빈 원 조건이 함께 필요합니다.
 
 ## 작은 예시
 

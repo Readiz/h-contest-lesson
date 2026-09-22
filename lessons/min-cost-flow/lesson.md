@@ -38,6 +38,8 @@ reverse:  v -> u, cap = 0, cost = -7
 
 아래 구현은 residual graph에서 비용이 가장 작은 경로를 SPFA로 찾고, 그 경로에 가능한 만큼 유량을 보냅니다. 목표 유량 `requiredFlow`를 넘기 전까지 반복합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <algorithm>
 #include <limits>

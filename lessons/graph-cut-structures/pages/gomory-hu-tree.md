@@ -2,9 +2,6 @@
 
 Gomory-Hu Tree는 무향 그래프의 모든 정점 쌍 minimum cut 값을 `N-1`번의 min-cut 계산으로 압축하는 구조입니다. 완성된 tree에서는 두 정점 사이 경로의 최소 edge weight가 원래 그래프에서의 두 정점 min cut 값이 됩니다.
 
-
-n>=1, 비음수 무향 용량, oracle의 길이 n인 source-side 배열을 전제로 합니다. side[s]=true, side[t]=false이며 매 호출은 원본 용량에서 시작합니다. 질의 u,v는 서로 달라야 합니다. 병렬 간선은 합산하거나 별개의 용량 간선으로 보존할 수 있습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Gomory-Hu Tree 관점 |
@@ -160,6 +157,10 @@ minCut_G(0, 3) = min(5, 8, 7) = 5
 ## 구현 골격
 
 아래 코드는 max-flow 구현을 주입받아 Gomory-Hu parent tree를 만드는 골격입니다. `minCut(s, t)`는 min cut 값과 residual reachable side를 반환해야 합니다.
+
+n>=1, 비음수 무향 용량, oracle의 길이 n인 source-side 배열을 전제로 합니다. side[s]=true, side[t]=false이며 매 호출은 원본 용량에서 시작합니다. 질의 u,v는 서로 달라야 합니다. 병렬 간선은 합산하거나 별개의 용량 간선으로 보존할 수 있습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <functional>

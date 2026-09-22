@@ -2,9 +2,6 @@
 
 Flow with Lower Bound는 각 간선에 `lower <= flow <= upper` 제약이 있는 유량 모델입니다. 일반 Max Flow는 간선마다 `0..capacity`만 생각하지만, lower bound가 있으면 반드시 흘려야 하는 최소량 때문에 feasibility를 먼저 확인해야 합니다.
 
-
-아래 코드는 [Max Flow, Min Cut, Bipartite Matching](https://h.readiz.com/learn/max-flow-min-cut)의 Dinic 정의 뒤에 붙이는 lower-bound 어댑터입니다.
-
 ## 문제 신호
 
 아래 표현이 있으면 lower bound flow를 의심합니다.
@@ -52,6 +49,10 @@ v는 lower만큼 받았으므로 demand[v] += lower
 ## Dinic 기반 feasibility 구현
 
 아래 코드는 lower/upper 간선을 추가하고 feasibility를 검사합니다. `0 <= lower <= upper`와 정점 범위를 확인하고, 모든 간선 추가 후 `feasible()`을 한 번만 호출합니다. demand 합과 유량은 `long long` 범위 안이어야 합니다.
+
+아래 코드는 [Max Flow, Min Cut, Bipartite Matching](https://h.readiz.com/learn/max-flow-min-cut)의 Dinic 정의 뒤에 붙이는 lower-bound 어댑터입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 #include <vector>

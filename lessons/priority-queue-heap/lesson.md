@@ -51,6 +51,8 @@ right(i) = 2 * i + 2
 
 `0 <= K <= 원소 수`에서 가장 큰 K개만 유지하려면 min-heap을 씁니다. heap 안에는 현재 선택된 K개가 들어 있고, 그중 가장 작은 값이 top입니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 long long sumTopK(const vector<int>& values, int k) {
     priority_queue<int, vector<int>, greater<int>> pq;
@@ -92,3 +94,29 @@ long long sumTopK(const vector<int>& values, int k) {
 | n개를 모두 push 후 pop | `O(n log n)` |
 
 `priority_queue`는 임의 원소 검색이 빠르지 않습니다. 특정 값이 있는지 확인하거나 중간 값을 삭제해야 한다면 `set`, `multiset`, `map` 같은 balanced tree가 더 맞을 수 있습니다.
+
+## 로컬 연습: 스트림에서 가장 큰 K개 합
+
+정수가 하나씩 들어올 때 지금까지 들어온 값 중 가장 큰 min(K,현재 개수)개의 합을 출력하세요. 같은 값도 서로 다른 원소이며 음수라고 임의로 버리지 않습니다.
+
+**입력:** N K와 도착 순서의 N개 값. 1 <= N <= 200000, 0 <= K <= N, |값| <= 10^9입니다.
+
+**출력:** 매 도착 직후의 합을 N줄 출력합니다.
+
+### 예시
+
+```text exercise=priority-queue-heap role=input
+6 3
+5 1 9 2 9 -3
+```
+
+```text exercise=priority-queue-heap role=output
+5
+6
+15
+16
+23
+23
+```
+
+**확인 방법:** K개를 유지하는 최소 힙에서 가장 작은 값을 교체합니다. 작은 입력은 매 prefix를 정렬한 합과 비교합니다. K=0, K=N, 음수만 있는 입력과 중복 최댓값을 검사합니다.

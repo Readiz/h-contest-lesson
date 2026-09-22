@@ -2,9 +2,6 @@
 
 Mirror Descent는 Euclidean distance가 문제의 decision space와 잘 맞지 않을 때, 다른 regularizer가 만드는 geometry에서 한 걸음 이동하는 관점입니다. Online Convex Optimization에서 가장 자주 쓰는 예시는 simplex 위의 entropy regularizer이고, 이는 Multiplicative Weights update로 나타납니다.
 
-
-제약 집합 C에서 Mirror Descent는 x_{t+1}=argmin_{x∈C}{η〈g_t,x〉+D_ψ(x,x_t)}입니다. D_ψ(x,y)=ψ(x)-ψ(y)-〈∇ψ(y),x-y〉이며 일반적으로 단순 mirror-map 역변환만으로 제약이 만족되지는 않습니다. Simplex의 음의 entropy는 KL divergence와 정규화된 지수 갱신으로 이어집니다.
-
 ## 왜 projection만으로 부족한가
 
 Projected Gradient Descent는 아래 형태입니다.
@@ -21,6 +18,8 @@ Mirror Descent는 `x` 자체의 좌표보다 regularizer가 정의하는 dual sp
 dual coordinate <- dual coordinate - eta * gradient
 primal coordinate <- mirror map inverse
 ```
+
+제약 집합 C에서 Mirror Descent는 x_{t+1}=argmin_{x∈C}{η〈g_t,x〉+D_ψ(x,x_t)}입니다. D_ψ(x,y)=ψ(x)-ψ(y)-〈∇ψ(y),x-y〉이며 일반적으로 단순 mirror-map 역변환만으로 제약이 만족되지는 않습니다. Simplex의 음의 entropy는 KL divergence와 정규화된 지수 갱신으로 이어집니다.
 
 ## Entropy Regularizer와 Simplex
 
@@ -110,6 +109,8 @@ cumulative_expected_loss best_fixed_expert_loss regret
 누적 expected loss는 `1.622459...`이고, 가장 좋은 고정 expert는 expert 0으로 loss `1`입니다.
 
 ### 구현 기준
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

@@ -2,9 +2,6 @@
 
 Palindrome Range DP는 "구간이 palindrome인가"라는 판정 구조를 DP 전이와 결합하는 문자열/DP 응용 레슨입니다. Palindrome Query Structures가 판정 도구를 고르는 레슨이라면, 이 레슨은 그 판정값을 어떻게 구간 DP, 분할 DP, 최소 편집 DP의 상태로 넣을지 다룹니다.
 
-
-빈 문자열의 분할 조각 수와 삽입 수는 0입니다. 최소 cut 수는 `max(0, 조각 수-1)`이고, 삽입 DP는 빈 구간·길이 1 구간에서 0으로 시작합니다.
-
 ## 문제 신호
 
 | 문제 표현 | 우선 모델 |
@@ -40,6 +37,10 @@ isPal[l][r] =
 dp[0] = 0
 dp[i] = min(dp[l] + 1) where isPal[l][i - 1]
 ```
+
+빈 문자열의 분할 조각 수는 0입니다. 최소 cut 수는 `max(0, 조각 수-1)`입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -98,6 +99,8 @@ Prefix 분할 DP는 왼쪽에서 오른쪽으로 조각을 붙입니다. Interva
 ## 최소 삽입 예시
 
 문자열을 palindrome으로 만들기 위한 최소 삽입 횟수는 아래처럼 볼 수 있습니다.
+
+빈 문자열의 삽입 수는 0입니다. 삽입 DP는 빈 구간·길이 1 구간에서 0으로 시작합니다.
 
 ```text
 if s[l] == s[r]:

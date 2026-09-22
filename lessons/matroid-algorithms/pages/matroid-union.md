@@ -8,9 +8,6 @@ Matroid Union은 여러 개의 matroid 독립 집합을 합쳐 얼마나 많은 
 2. 각 원소를 어떤 layer에 배치할 수 있는지 확인한다.
 3. union rank와 covering 조건을 matroid 성질로 해석한다.
 
-
-class ID는 capacity 배열 범위, copies와 capacity는 비음수이며 item 개수는 int 범위입니다. 용량 곱은 long long으로 계산한 뒤 실제 item 개수로 제한합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Matroid Union 관점 |
@@ -52,6 +49,10 @@ cycle이 생긴 간선을 같은 색에 넣을 수 없으므로, 각 색마다 D
 ## Partition Matroid의 쉬운 경우
 
 원소마다 class가 있고, 한 독립 집합은 class별로 capacity만큼만 고를 수 있다고 합시다. 같은 matroid를 `k`번 union하면 class별 capacity가 `k`배가 됩니다.
+
+class ID는 capacity 배열 범위, copies와 capacity는 비음수이며 item 개수는 int 범위입니다. 용량 곱은 long long으로 계산한 뒤 실제 item 개수로 제한합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

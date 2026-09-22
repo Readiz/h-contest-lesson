@@ -63,6 +63,8 @@ comp[u] -> comp[v] 간선을 만든다.
 
 각 변수 `i`에 대해 `i가 false`와 `i가 true`를 서로 다른 정점으로 둡니다. 한 변수의 참/거짓 정점 번호를 일관되게 정하는 것이 중요합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <algorithm>
 #include <vector>

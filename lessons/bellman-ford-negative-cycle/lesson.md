@@ -55,6 +55,8 @@ repeat V - 1 times:
 
 Bellman-Ford는 인접 리스트보다 간선 목록으로 구현하면 가장 단순합니다. 매 반복마다 모든 간선을 확인하기 때문입니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <limits>
 #include <vector>
@@ -159,3 +161,29 @@ O(VE)
 정점과 간선이 모두 크면 매우 느립니다. 예를 들어 `V = 100,000`, `E = 200,000`이면 사용할 수 없습니다. 그래서 음수 간선이 없다는 조건이 보이면 Dijkstra를 써야 하고, 그래프가 DAG라면 위상 순서 DP를 써야 합니다.
 
 SPFA는 큐를 써서 실제로 갱신된 정점 주변만 보는 Bellman-Ford 변형입니다. 평균적으로 빠른 경우도 있지만 최악 시간 복잡도는 여전히 나쁩니다. 문제에서 명시적으로 허용될 만한 제한이 아니라면, SPFA를 만능 대체재처럼 쓰면 위험합니다.
+
+## 로컬 연습: 도달 가능한 음수 cycle의 영향
+
+방향 그래프에서 시작점 기준 최단거리와 음수 cycle의 영향을 구하세요. 시작점에서 갈 수 있고 그 cycle을 거쳐 갈 수 있는 정점만 값이 아래로 제한되지 않습니다.
+
+**입력:** N M S 뒤 M줄의 u v w. 1 <= N <= 200, 0 <= M <= 2000, |w| <= 1000000, 정점은 0-based입니다.
+
+**출력:** 정점 번호순으로 유한 거리, 도달 불가이면 UNREACHABLE, 음수 cycle의 영향을 받으면 NEGATIVE를 한 줄에 출력합니다.
+
+### 예시
+
+```text exercise=bellman-ford-negative-cycle role=input
+6 6 0
+0 1 2
+1 2 -4
+2 1 1
+2 3 3
+0 4 7
+4 4 0
+```
+
+```text exercise=bellman-ford-negative-cycle role=output
+0 NEGATIVE NEGATIVE NEGATIVE 7 UNREACHABLE
+```
+
+**확인 방법:** 1↔2의 cycle 비용은 -3이고 정점 3에도 영향이 갑니다. N번째 완화가 가능한 도달 정점에서 방향 간선을 따라 영향을 전파합니다. 작은 입력은 Floyd-Warshall의 도달성과 음수 대각 원소를 조합해 비교하며, 시작점에서 갈 수 없는 음수 cycle은 구분합니다.

@@ -2,9 +2,6 @@
 
 XOR Linear Basis는 여러 수의 xor 조합으로 만들 수 있는 값의 공간을 선형대수처럼 다루는 기법입니다. GF(2) 위의 벡터 기저로 생각하면 maximum xor, representability, rank, 부분집합 xor 개수 문제를 일관되게 처리할 수 있습니다.
 
-
-모든 64비트를 사용합니다. rank=64이면 2^rank는 unsigned long long 한 칸에 표현되지 않습니다. 그래프 cycle XOR 응용은 같은 연결 성분의 walk에 적용하며 단순 경로만 허용하면 별도 문제입니다.
-
 ## 문제 신호
 
 | 문제 표현 | Linear Basis 관점 |
@@ -33,6 +30,10 @@ if x remains nonzero, it becomes a new basis vector
 ## 구현
 
 아래 구현은 unsigned 64-bit 값을 기준으로 합니다. signed integer를 그대로 shift하면 헷갈리므로 bit 문제에서는 unsigned 타입이 안전합니다.
+
+모든 64비트를 사용합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <array>
@@ -107,6 +108,8 @@ kernel dimension = n - rank
 
 단, 빈 부분집합을 제외하거나 non-empty 조건이 있으면 `x = 0`에서 보정이 필요합니다.
 
+rank=64이면 2^rank는 unsigned long long 한 칸에 표현되지 않습니다.
+
 ## 정규화된 Basis와 k번째 xor
 
 위 `XorLinearBasis`의 high-bit basis는 maximum query에는 충분하지만, k번째 작은 xor 값을 만들려면 lower bit가 서로 정리된 형태가 필요합니다. 아래 확장은 같은 문서의 `XorLinearBasis` 뒤에 붙입니다. rank가 64이면 모든 unsigned long long k가 유효하며 `1ULL << 64`는 계산하지 않습니다.
@@ -165,6 +168,8 @@ answer = maximize(pathXor(u, v))
 ```
 
 이 방식은 두 정점 사이의 walk에서 cycle을 추가로 돌아 xor 값을 바꿀 수 있을 때 사용합니다. simple path만 허용되는 문제라면 이 모델이 맞지 않을 수 있습니다.
+
+그래프 cycle XOR 응용은 같은 연결 성분의 walk에 적용하며 단순 경로만 허용하면 별도 문제입니다.
 
 ## Range Query Basis
 

@@ -2,9 +2,6 @@
 
 Sparse Linear Systems는 대부분의 계수가 0인 큰 연립방정식 `A x = b`를 푸는 관점입니다. 모든 원소를 dense matrix로 펼치면 `O(N^3)` Gaussian elimination이 필요하지만, nonzero 구조와 matvec oracle을 이용하면 훨씬 큰 상태를 다룰 수 있습니다.
 
-
-연결된 무향 양의 가중치 실수 Laplacian은 rank N-1입니다. 비연결이면 성분 수만큼 영공간이 생기고, 유한체로 줄이면 추가 rank 감소가 가능하므로 실수 성질을 그대로 적용하지 않습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Sparse Linear System 관점 |
@@ -56,7 +53,7 @@ Sparse row를 map이나 sorted vector로 저장하면 pivot 제거 때 nonzero�
 
 희소 matvec는 [Black-Box Linear Algebra](https://h.readiz.com/learn/black-box-linear-algebra)의 구현을 재사용합니다. sparse elimination은 pivot row와 현재 row의 같은 열 계수를 더하고 빼며 0 항을 제거해야 하고, fill-in 때문에 희소성이 유지되지 않을 수 있습니다.
 
-이 코드는 matvec용입니다. Elimination까지 하려면 pivot row를 더하고 빼면서 같은 column을 합쳐야 하므로 자료구조 선택이 중요합니다. column 수가 작으면 dense vector가 오히려 빠를 수 있습니다.
+링크한 구현은 matvec용입니다. Elimination에는 위의 row 갱신이 추가로 필요합니다. column 수가 작으면 dense vector가 오히려 빠를 수 있습니다.
 
 ## Black-Box Solver 관점
 
@@ -86,6 +83,8 @@ minimal polynomial 또는 recurrence를 찾음
 | path parity | incidence over GF(2) |
 
 특히 Laplacian은 각 row의 degree만큼만 nonzero가 있습니다. 하지만 Laplacian은 rank가 하나 부족한 경우가 많으므로 기준 vertex를 고정하거나 합 조건을 추가해야 합니다.
+
+연결된 무향 양의 가중치 실수 Laplacian은 rank N-1입니다. 비연결이면 성분 수만큼 영공간이 생기고, 유한체로 줄이면 추가 rank 감소가 가능하므로 실수 성질을 그대로 적용하지 않습니다.
 
 ## 시간 복잡도
 

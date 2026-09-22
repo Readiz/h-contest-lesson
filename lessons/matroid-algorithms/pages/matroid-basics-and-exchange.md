@@ -2,9 +2,6 @@
 
 Matroid는 greedy가 맞는 독립성 구조를 추상화한 모델입니다. 독립 집합의 모든 부분집합도 독립이고, 작은 독립 집합은 큰 독립 집합의 어떤 원소를 받아 더 커질 수 있다는 exchange 성질이 핵심입니다.
 
-
-최대 가중치 독립 집합은 음수 weight 원소를 건너뜁니다. 반드시 기저를 골라야 하는 문제는 최대 rank까지 채워야 하므로 음수도 필요할 수 있습니다. 단일 matroid의 가중치 문제 자체는 greedy 적용 대상입니다.
-
 ## 독립성 공리
 
 원소 집합 `E`와 독립 집합들의 모음 `I`가 있을 때, matroid는 보통 아래 성질을 만족합니다.
@@ -40,6 +37,8 @@ for e in sorted order:
 ```
 
 이때 필요한 것은 `S + e` 독립성 판정입니다. Partition matroid라면 count, graphic matroid라면 DSU, linear matroid라면 basis insertion입니다.
+
+최대 가중치 독립 집합은 음수 weight 원소를 건너뜁니다. 반드시 기저를 골라야 하는 문제는 최대 rank까지 채워야 하므로 음수도 필요할 수 있습니다. 단일 matroid의 가중치 문제 자체는 greedy 적용 대상입니다.
 
 ## Greedy가 부족한 경우
 
@@ -114,6 +113,8 @@ weight 내림차순으로 보면 아래 순서입니다.
 답은 `10 + 6 + 5 = 21`입니다.
 
 ### 구현 기준
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

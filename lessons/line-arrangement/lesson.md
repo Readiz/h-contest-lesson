@@ -2,9 +2,6 @@
 
 Line Arrangement는 여러 직선이 평면을 어떻게 나누는지, 교점이 어떤 순서로 생기는지, 그리고 각 직선이 arrangement에 몇 개의 새 영역을 추가하는지 분석하는 주제입니다. Segment intersection sweep보다 한 단계 더 구조적인 기하 관점입니다.
 
-
-직선 `ax+by+c=0`에서 `(a,b)!=(0,0)`이어야 합니다. 계수 절댓값·gcd 부호 변경·교점 determinant가 사용 타입에 들어가는 입력만 받습니다. 평행과 일치 직선은 교점 나눗셈 전에 구분합니다.
-
 ## 문제 신호
 
 | 문제 표현 | 접근 |
@@ -43,6 +40,8 @@ a*x + b*y + c = 0
 
 입력이 두 점으로 주어지면 `a = y1 - y2`, `b = x2 - x1`, `c = -(a*x1 + b*y1)`로 만들 수 있습니다.
 
+직선 `ax+by+c=0`에서 `(a,b)!=(0,0)`이어야 합니다. 계수 절댓값·gcd 부호 변경·교점 determinant가 사용 타입에 들어가는 입력만 받습니다. 평행과 일치 직선은 교점 나눗셈 전에 구분합니다.
+
 ## 교점 표현
 
 두 직선
@@ -65,6 +64,8 @@ y = (c1*a2 - c2*a1) / det
 ## 영역 수 구현
 
 아래 구현은 무한 직선 arrangement의 영역 수를 셉니다. 각 새 직선 위의 서로 다른 교점만 세기 위해 rational pair를 set에 넣습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <numeric>

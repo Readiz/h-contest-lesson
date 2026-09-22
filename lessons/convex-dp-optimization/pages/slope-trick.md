@@ -2,9 +2,6 @@
 
 Slope Trick은 `min |x-a|`, `max(x-a,0)` 같은 convex piecewise-linear cost를 heap 두 개로 유지하는 DP 최적화 기법입니다. 상태가 "현재 위치 x를 고를 때의 최소 비용 함수"로 표현되고, 그 함수가 볼록이면 전체 함수를 배열로 들고 있지 않고 기울기 변화점만 관리할 수 있습니다.
 
-
-이 표현은 f=0에서 단위 hinge를 추가하며 시작합니다. 일반 실수 기울기의 모든 볼록 함수를 그대로 표현하는 코드는 아닙니다. 왼쪽 heap이 비면 최적 구간은 -∞까지, 오른쪽이 비면 +∞까지 열립니다. top/pop은 비어 있지 않을 때만 호출하고 offset·minimum의 합산 범위를 확인합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Slope Trick 관점 |
@@ -41,6 +38,10 @@ f(x) <- f(x) + |x - a|
 ## 기본 구현
 
 아래 구조는 `max(a-x,0)`, `max(x-a,0)`, `|x-a|`, 전체 shift를 제공합니다.
+
+이 표현은 f=0에서 단위 hinge를 추가하며 시작합니다. 일반 실수 기울기의 모든 볼록 함수를 그대로 표현하는 코드는 아닙니다. 왼쪽 heap이 비면 최적 구간은 -∞까지, 오른쪽이 비면 +∞까지 열립니다. top/pop은 비어 있지 않을 때만 호출하고 offset·minimum의 합산 범위를 확인합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <functional>

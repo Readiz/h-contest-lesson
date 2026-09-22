@@ -32,6 +32,8 @@ BST를 왼쪽 자식, 현재 노드, 오른쪽 자식 순으로 방문하면 key
 
 순위 질의와 k번째 원소를 처리하려면 각 subtree 크기를 저장합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 struct Node {
     int key;
@@ -188,3 +190,38 @@ int kth(Node* root, int k) {
 ```
 
 둘 다 subtree 크기만 보고 한쪽으로 내려가므로 기대 `O(log n)`입니다.
+
+## 로컬 연습: 중복 없는 집합의 순위와 k번째 값
+
+I x는 값 삽입, D x는 삭제, R x는 x보다 작은 값의 수, K k는 0-based k번째 작은 값을 묻습니다. 이미 있는 값 삽입과 없는 값 삭제는 집합을 바꾸지 않습니다.
+
+**입력:** Q 뒤 Q개 연산. 0 <= Q <= 200000, |x| <= 10^9, 0 <= k <= Q입니다.
+
+**출력:** R과 K의 답을 출력합니다. k가 현재 크기 이상이면 INVALID를 출력합니다.
+
+### 예시
+
+```text exercise=treap role=input
+11
+I 5
+I 2
+I 8
+I 5
+R 5
+K 1
+D 5
+K 1
+D 7
+R 9
+K 2
+```
+
+```text exercise=treap role=output
+1
+5
+8
+2
+INVALID
+```
+
+**확인 방법:** 중복 key는 새 노드를 만들기 전에 검사합니다. R은 왼쪽 subtree 크기를 누적하며 탐색합니다. 작은 입력은 정렬된 vector/set 기준 풀이와 대조하고 빈 트리·root 삭제·오름차순 삽입·동일 key 반복을 검사합니다.

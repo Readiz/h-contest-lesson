@@ -46,6 +46,8 @@ Dinic은 Max Flow의 대표적인 구현입니다.
 
 BFS level은 "현재 residual graph에서 source에서 각 정점까지의 shortest edge count 구조"를 만듭니다. DFS는 그 구조 위에서 더 보낼 수 있는 유량을 여러 번 흘립니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <algorithm>
 #include <limits>

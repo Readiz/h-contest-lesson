@@ -2,9 +2,6 @@
 
 Online Planning Evaluation은 simulator 기반 policy나 search agent를 제출하기 전에, rollout score를 통계적으로 비교하고 시간 예산 안에서 안정성을 검증하는 절차입니다. 좋은 policy를 만드는 것만큼, 우연히 좋아 보이는 policy를 걸러내는 일이 중요합니다.
 
-
-paired 비교는 같은 문제 인스턴스에서 수행합니다. 정책마다 난수를 소비하는 순서가 달라지면 같은 seed라도 같은 외생 사건열이 아닐 수 있습니다. mean±2*stderr는 독립 표본이 충분하고 근사 정규성이 타당할 때의 근사 구간입니다. 적은 표본·heavy tail·반복 후보 선택에는 별도 분석이 필요합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Online Planning Evaluation 관점 |
@@ -19,7 +16,7 @@ paired 비교는 같은 문제 인스턴스에서 수행합니다. 정책마다 
 
 ## Paired Seed 비교
 
-baseline policy `A`와 후보 policy `B`를 비교할 때, 서로 다른 seed로 평균을 내면 noise가 큽니다. 같은 seed에서 둘 다 실행하고 차이 `B - A`를 모읍니다.
+baseline policy `A`와 후보 policy `B`는 같은 문제 인스턴스에서 비교합니다. **양수일수록 후보가 좋다**고 방향을 맞춰, 보상 최대화에서는 `B - A`, 비용 최소화에서는 `A - B`를 모읍니다. 아래 예시는 보상 최대화입니다.
 
 ```text
 seed 1: B - A = +12
@@ -29,6 +26,8 @@ seed 3: B - A = +8
 ```
 
 이 차이의 평균과 분산을 보면, 후보가 baseline보다 안정적으로 나은지 판단하기 쉽습니다.
+
+paired 비교는 같은 문제 인스턴스에서 수행합니다. 정책마다 난수를 소비하는 순서가 달라지면 같은 seed라도 같은 외생 사건열이 아닐 수 있습니다.
 
 ## Confidence Interval
 
@@ -40,11 +39,17 @@ stderr = sample_std(d_i) / sqrt(n)
 rough 95% interval = mean +- 2 * stderr
 ```
 
-구간이 0을 충분히 벗어나면 개선이라고 볼 수 있습니다. 구간이 0을 크게 걸치면 seed를 늘리거나 후보를 더 명확히 바꿔야 합니다.
+구간의 **하한이 0보다 크면 개선의 근거**, **상한이 0보다 작으면 악화의 근거**입니다. 0을 포함하면 이 비교만으로 어느 쪽이 좋은지 확정하지 않습니다. 표본을 늘릴 때도 결과가 좋아질 때까지만 반복해서 확인하지 말고, 평가할 입력 수와 비교 방법을 미리 정합니다.
+
+예를 들어 구간이 `[2, 5]`이면 개선 방향이고 `[-5, -2]`이면 악화 방향입니다. `[-2, 5]`는 0을 포함합니다. 세 경우 모두 구간이 얼마나 좁은지와 점수 차이가 실제로 의미 있는 크기인지 함께 봅니다.
+
+mean±2*stderr는 독립 표본이 충분하고 근사 정규성이 타당할 때의 근사 구간입니다. 적은 표본·heavy tail·반복 후보 선택에는 별도 분석이 필요합니다.
 
 ## 평가 코드 골격
 
 아래 코드는 이미 얻은 score 차이 목록에서 평균과 표준오차를 계산하는 최소 골격입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 #include <cmath>
@@ -96,7 +101,7 @@ parameter를 여러 번 바꾸며 같은 seed에서만 성능을 올리면 overf
 | stress seeds | rare failure, timeout, invalid move 탐지 |
 | adversarial cases | 알려진 약점 재현 |
 
-holdout 결과가 tuning 결과보다 훨씬 나쁘면 parameter가 특정 seed에 맞춰진 것입니다.
+holdout 결과가 tuning 결과보다 훨씬 나쁘면 특정 seed에 대한 과적합을 의심합니다. 표본 변동이나 입력 분포 차이도 확인해야 하며, 이 차이만으로 원인을 확정하지 않습니다. holdout을 보고 다시 조정했다면 그 묶음은 더 이상 최종 검증용이 아니므로 새 검증 입력을 남깁니다.
 
 ## Budget-Aware Evaluation
 

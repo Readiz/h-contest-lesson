@@ -6,6 +6,8 @@
 
 아래 구현은 주어진 반시계 볼록 다각형을 제약마다 자릅니다. 초기 영역이 사각형이고 제약이 N개면 최악 `O(N²)`, 메모리 `O(N)`입니다. 무한 영역 전체를 표현하는 구현이 아니므로 bounding box 자체가 문제의 제약이어야 합니다. 임의로 큰 상자를 넣어 무한 영역·공집합을 구분할 수는 없습니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <vector>
 using namespace std;

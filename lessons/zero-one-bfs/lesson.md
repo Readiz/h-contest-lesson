@@ -34,6 +34,8 @@ cost 1: push_back
 
 ## 기본 구현
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 struct Edge {
     int to;
@@ -83,3 +85,29 @@ vector<int> zeroOneBfs(const vector<vector<Edge>>& graph, int start) {
 | deque 삽입/삭제 | `O(V + E)` |
 | 전체 | `O(V + E)` |
 | 메모리 | `O(V + E)` |
+
+## 로컬 연습: 무료 간선과 유료 간선
+
+방향 그래프에서 시작점부터 모든 정점까지의 최소 비용을 구하세요. 간선 비용은 0 또는 1입니다.
+
+**입력:** N M S 뒤 M줄의 u v w. 1 <= N <= 200000, 0 <= M <= 400000, 정점은 0-based입니다. 중복 간선과 self-loop를 허용합니다.
+
+**출력:** 정점 번호순 최소 비용을 한 줄에 출력하고 도달 불가 정점은 -1로 표시합니다.
+
+### 예시
+
+```text exercise=zero-one-bfs role=input
+5 6 0
+0 1 1
+0 2 0
+2 1 0
+1 3 1
+2 3 1
+3 2 0
+```
+
+```text exercise=zero-one-bfs role=output
+0 0 0 1 -1
+```
+
+**확인 방법:** 0→2→1은 비용 0입니다. 작은 입력은 Dijkstra와 비교합니다. 비용 0의 cycle, 더 비싼 경로로 먼저 발견되는 정점, 고립 정점을 검사합니다. 최초 발견만으로 거리를 확정하지 말고 더 짧아질 때 갱신합니다.

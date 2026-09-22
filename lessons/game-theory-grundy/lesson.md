@@ -2,9 +2,6 @@
 
 Game Theory 문제 중 impartial game은 두 플레이어가 같은 선택지를 가지고, 마지막 수를 둔 사람이 이기는 형태가 많습니다. 이런 게임은 각 상태의 Grundy number를 계산해 여러 게임의 합까지 판정할 수 있습니다.
 
-
-Grundy DFS의 memo는 -1로 초기화합니다. 유한 DAG와 normal play를 전제로 하며 긴 경로는 재귀 스택을 넘을 수 있습니다. 아래 mex와 임시 벡터 처리를 포함한 시간은 O(V+E), 재귀 경로에 남는 임시 벡터까지 포함한 추가 공간 상한은 O(V+E)입니다.
-
 ## Impartial Game
 
 Impartial game은 현재 가능한 움직임이 플레이어에 따라 달라지지 않는 게임입니다.
@@ -28,6 +25,8 @@ winning state: 갈 수 있는 상태 중 losing이 하나라도 있음
 ```
 
 움직일 수 없는 terminal state는 losing입니다. 상대에게 losing state를 넘길 수 있으면 현재는 winning입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>
@@ -70,6 +69,8 @@ mex({1, 2}) = 0
 Grundy number가 0이면 losing state입니다. 0이 아니면 winning state입니다.
 
 ## Grundy 계산
+
+Grundy DFS의 memo는 -1로 초기화합니다. 유한 DAG와 normal play를 전제로 하며 긴 경로는 재귀 스택을 넘을 수 있습니다. 아래 mex와 임시 벡터 처리를 포함한 시간은 O(V+E), 재귀 경로에 남는 임시 벡터까지 포함한 추가 공간 상한은 O(V+E)입니다.
 
 ```cpp compile-check
 #include <vector>

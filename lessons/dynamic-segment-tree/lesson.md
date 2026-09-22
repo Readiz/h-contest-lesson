@@ -39,6 +39,8 @@ node {
 
 아래 구현은 모든 원소의 초기값이 0인 구간에 덧셈과 합 질의를 처리합니다. 생성하지 않은 자식의 합도 0으로 봅니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <vector>
 using namespace std;
@@ -175,3 +177,32 @@ node count = O(number_of_operations * log coordinate_range)
 | range update/query | `O(log C)` |
 | 생성 node 수 | touched interval 수에 비례 |
 | 전체 메모리 | 보통 `O(Q log C)` |
+
+## 로컬 연습: 큰 좌표의 구간 덧셈과 합
+
+정수 좌표 0..10^12-1의 값은 처음에 모두 0입니다. A l r delta는 [l,r)에 delta를 더하고, S l r은 그 구간의 합을 묻습니다.
+
+**입력:** Q 뒤 Q개 연산. 0 <= Q <= 20000, 0 <= l <= r <= 10^12, |delta| <= 100입니다. 합과 lazy는 long long으로 계산합니다.
+
+**출력:** S 연산마다 합을 출력합니다.
+
+### 예시
+
+```text exercise=dynamic-segment-tree role=input
+6
+A 0 10 2
+S 0 1
+A 5 8 -1
+S 4 9
+S 9 10
+S 5 5
+```
+
+```text exercise=dynamic-segment-tree role=output
+2
+7
+2
+0
+```
+
+**확인 방법:** 좌표 상한을 20으로 줄이면 실제 배열의 원소별 갱신·합산과 비교할 수 있습니다. 빈 구간, 전체 구간 갱신 뒤 작은 부분 질의, 같은 구간의 더하기·빼기를 검사합니다. 큰 상한에서는 10^12개의 배열을 만들지 말고 생성한 노드 수와 메모리를 함께 기록합니다.

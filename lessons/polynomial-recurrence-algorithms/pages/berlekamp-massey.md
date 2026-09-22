@@ -73,6 +73,8 @@ BM은 이전에 잘 작동하던 recurrence를 적절히 shift해서 이 discrep
 
 아래 구현은 `coeff[i]`가 `s[n-i-1]`에 곱해지는 형태로 반환합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <vector>
 using namespace std;

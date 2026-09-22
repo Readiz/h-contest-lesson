@@ -30,4 +30,4 @@ Versioned Data Structures는 과거 상태 조회, 분기 버전 생성, rollbac
 
 ## 연습 문제
 
-이 허브의 연습 흐름은 [Practice Set](pages/persistent-segment-tree.md)에 모읍니다.
+[Persistent Segment Tree의 구간 k번째 수 연습](pages/persistent-segment-tree.md)에서 두 prefix root의 차이를 이용합니다. 이 연습은 해당 구조를 확인하며, persistent lazy·Union-Find·queue의 구현까지 검사하는 공통 연습은 아닙니다.

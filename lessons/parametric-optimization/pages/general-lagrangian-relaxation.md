@@ -2,9 +2,6 @@
 
 Lagrangian Relaxation Patterns는 딱 맞춰야 하는 제약을 penalty로 목적식에 흡수해, DP, flow, greedy, shortest path 같은 더 단순한 oracle을 반복 호출하는 모델링 패턴입니다. Alien Optimization은 그중 "정확히 K개" 제약을 DP count와 함께 다루는 대표 사례이고, 이 레슨은 같은 생각을 더 넓은 최적화 문제에 적용하는 기준을 정리합니다.
 
-
-아래 함수는 long long에 들어가는 점수·penalty 및 곱을 전제로 합니다. relaxed.score+penalty*K는 일반적으로 최대화 원문제의 상계입니다. 정확한 K 해 또는 강한 복원 조건 없이는 정답이라고 반환하지 않습니다. 예산 부등식 완화는 최대화에서 value-lambda*(cost-B), lambda>=0처럼 부호를 정합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Lagrangian 관점 |
@@ -66,6 +63,10 @@ relaxed values = [5, 4, 3, 2]
 ## Count를 같이 들고 가는 DP
 
 아래 코드는 path independent set에서 penalty가 붙은 최댓값과 선택 개수를 동시에 계산합니다. 동점이면 더 많이 고른 해를 택해 count 단조성을 관찰하기 쉽게 만듭니다.
+
+아래 함수는 long long에 들어가는 점수·penalty 및 곱을 전제로 합니다. relaxed.score+penalty*K는 일반적으로 최대화 원문제의 상계입니다. 정확한 K 해 또는 강한 복원 조건 없이는 정답이라고 반환하지 않습니다. 예산 부등식 완화는 최대화에서 value-lambda*(cost-B), lambda>=0처럼 부호를 정합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

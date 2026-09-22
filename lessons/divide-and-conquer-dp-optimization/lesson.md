@@ -2,9 +2,6 @@
 
 Divide and Conquer DP Optimization은 `dp[layer][mid]`의 최적 선택 위치가 오른쪽으로 갈수록 뒤로만 움직이는 단조성을 이용해, 한 층의 DP 계산을 `O(N^2)`에서 한 층 `O(N log N)`, K층 `O(KN log N)` 수준으로 줄이는 기법입니다.
 
-
-K개 비어 있지 않은 구간 분할에서는 g층을 computeLayer(g,N,g-1,N-1,...)로 계산하고 previous[0]=0은 0층에만 둡니다. 불가능한 previous 상태는 전이에서 제외합니다. 모든 유한 비용과 합은 INF보다 작은 산술 범위여야 합니다. cost 배열의 인덱스는 cost[j+1][i]입니다.
-
 ## 문제 신호
 
 다음 형태의 여러 layer DP에서 자주 등장합니다.
@@ -35,6 +32,8 @@ i1 < i2 이면 opt[i1] <= opt[i2]
 ## 기본 구현
 
 아래 함수는 한 layer를 계산합니다. `cost[j+1][i]`는 마지막 구간 `[j+1,i]`의 비용이라고 가정합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -89,6 +88,8 @@ computeLayer(g, N, g - 1, N - 1, previous, current, cost)
 ```
 
 `j < i` 조건이 있으면 후보 상한을 `mid - 1`로 제한해야 합니다. 빈 구간을 허용하는 문제라면 `j <= mid`가 될 수도 있습니다. 이 경계는 문제마다 다릅니다.
+
+K개 비어 있지 않은 구간 분할에서는 g층을 computeLayer(g,N,g-1,N-1,...)로 계산하고 previous[0]=0은 0층에만 둡니다. 불가능한 previous 상태는 전이에서 제외합니다. 모든 유한 비용과 합은 INF보다 작은 산술 범위여야 합니다. cost 배열의 인덱스는 cost[j+1][i]입니다.
 
 ## Cost 계산
 

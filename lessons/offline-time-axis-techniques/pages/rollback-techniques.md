@@ -2,9 +2,6 @@
 
 Rollback Techniques는 오프라인 알고리즘에서 상태를 적용한 뒤 정확히 이전 snapshot으로 되돌리는 구현 패턴입니다. 대표 예시는 Rollback DSU지만, stack에 변경 전 값을 기록하는 방식은 Fenwick, segment tree, DP state, frequency table에도 적용할 수 있습니다.
 
-
-snapshot은 현재 history 크기 이하인 유효한 조상 상태여야 합니다. find/unite는 union by size로 O(log N), rollback은 실제 제거하는 기록 수에 비례합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Rollback 관점 |
@@ -34,6 +31,10 @@ rollback을 하려면 update가 바꾼 값을 모두 기록해야 합니다.
 ## Rollback DSU 구현
 
 아래 구현은 path compression을 쓰지 않고 union by size만 사용합니다. 각 union은 parent와 size 변경 전 값을 기록합니다.
+
+snapshot은 현재 history 크기 이하인 유효한 조상 상태여야 합니다. find/unite는 union by size로 O(log N), rollback은 실제 제거하는 기록 수에 비례합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <numeric>

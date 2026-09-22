@@ -2,9 +2,6 @@
 
 POMCP(Partially Observable Monte Carlo Planning)는 POMDP를 belief table 전체로 풀지 않고, particle belief와 UCT 탐색을 결합해 online action을 고르는 방법입니다. PBVI가 대표 belief point에서 value function을 근사한다면, POMCP는 현재 belief에서 simulation tree를 키워 다음 행동을 고릅니다.
 
-
-각 simulation은 현재 root belief에서 상태를 새로 뽑아 시작합니다. rollout policy도 관측 가능한 history로 행동해야 하며 숨은 상태를 직접 이용하지 않습니다. 실제 관측 뒤 particle이 소진되면 모델에 맞는 보강이 필요합니다.
-
 ## 문제 신호
 
 | 문제 표현 | POMCP 관점 |
@@ -60,6 +57,8 @@ simulate(state s, history h, depth d):
 ```
 
 tree policy는 방문한 history에서만 쓰고, 처음 보는 history는 rollout policy로 값을 추정합니다.
+
+각 simulation은 현재 root belief에서 상태를 새로 뽑아 시작합니다. rollout policy도 관측 가능한 history로 행동해야 하며 숨은 상태를 직접 이용하지 않습니다. 실제 관측 뒤 particle이 소진되면 모델에 맞는 보강이 필요합니다.
 
 ## 작은 예시
 

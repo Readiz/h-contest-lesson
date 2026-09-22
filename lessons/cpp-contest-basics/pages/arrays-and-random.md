@@ -4,6 +4,8 @@
 
 모든 배열은 호출자가 준비합니다. `[0, n)`이 유효해야 하며 `n >= 0`입니다. `copy`는 두 구간이 겹치지 않거나 시작 주소가 같을 때 사용합니다. 시작 주소가 다른 채로 한 칸씩 겹쳐 이동하려면 방향을 정해 별도로 구현합니다.
 
+> **코드 환경: h-contest 공통 코드.** 표준 헤더·STL 없이 사용하는 블록입니다. 필요한 블록만 복사하고 문제별 배열 상한과 TC 초기화를 맞춥니다.
+
 ```cpp compile-check snippet=array
 namespace hc {
 template<class T> void swap(T& a, T& b) {

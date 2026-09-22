@@ -2,9 +2,6 @@
 
 Offline Range Query Techniques는 정적 배열과 구간 질의가 섞인 문제에서 질의 순서를 바꾸거나 시간축을 나눠서 전체 비용을 줄이는 레슨입니다. 현재 구간에 값을 넣고 빼면서 답을 유지하는 Mo, 값 순서로 처리하는 Fenwick sweep, 업데이트가 섞인 변형을 비교합니다.
 
-
-압축값은 0..V-1, 질의는 0<=l<=r<N, index는 0..Q-1의 순열입니다. N=0이면 질의도 없어야 합니다. 수정 Mo의 흔한 O(N^(5/3)) 설명은 배열·질의·수정 수가 같은 규모이고 블록 크기를 N^(2/3)으로 정한 경우입니다.
-
 ## 문제 신호
 
 | 문제 표현 | 우선 후보 |
@@ -42,6 +39,10 @@ add와 remove가 정확히 역연산이어야 합니다. 한쪽에서만 보조 
 ## 기본 Mo 구현
 
 아래 코드는 구간의 distinct count를 답하는 기본 Mo skeleton입니다.
+
+압축값은 0..V-1, 질의는 0<=l<=r<N, index는 0..Q-1의 순열입니다. N=0이면 질의도 없어야 합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -138,6 +139,8 @@ t = 이 질의보다 앞에 적용된 update 개수
 | `undoUpdate(id)` | 배열 값을 이전 값으로 되돌림 |
 
 update 대상 위치가 현재 구간 안에 있으면 remove old, add new를 같이 해야 합니다. 구간 밖이면 배열 값만 바꾸면 됩니다.
+
+수정 Mo의 흔한 O(N^(5/3)) 설명은 배열·질의·수정 수가 같은 규모이고 블록 크기를 N^(2/3)으로 정한 경우입니다.
 
 ## Offline Sorting + Fenwick
 

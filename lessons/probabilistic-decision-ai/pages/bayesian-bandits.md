@@ -2,9 +2,6 @@
 
 Bayesian Bandits는 여러 선택지의 보상 확률을 모르는 상태에서, 관측할수록 posterior를 갱신하며 다음 선택을 정하는 모델입니다. 단순한 multi-armed bandit이 "탐색과 활용의 균형"을 다룬다면, Bayesian 관점은 불확실성을 확률분포로 들고 다닙니다.
 
-
-Beta 사전분포는 alpha,beta>0이고 각 arm의 성공 확률이 고정된 독립 Bernoulli 모델을 가정합니다. 표준 Bayesian UCB는 라운드별 높은 posterior 분위수를 사용합니다. mean+c*std는 별도 근사 휴리스틱이며 같은 보장을 자동으로 갖지 않습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Bayesian Bandit 관점 |
@@ -34,6 +31,8 @@ E[p] = alpha / (alpha + beta)
 ```
 
 이 값만 쓰면 greedy 정책입니다. Bayesian bandit의 핵심은 mean뿐 아니라 불확실성도 같이 이용하는 것입니다.
+
+Beta 사전분포는 alpha,beta>0이고 각 arm의 성공 확률이 고정된 독립 Bernoulli 모델을 가정합니다.
 
 ## 작은 예시
 
@@ -70,6 +69,8 @@ score_i = posterior_mean_i + c * posterior_std_i
 
 분산이 큰 arm은 평균이 조금 낮아도 탐색됩니다. contest에서 exact quantile을 구하기 어렵다면, 문제 조건이 간단한 Beta-Bernoulli인지 또는 normal approximation이 허용되는지 확인해야 합니다.
 
+표준 Bayesian UCB는 라운드별 높은 posterior 분위수를 사용합니다. mean+c*std는 별도 근사 휴리스틱이며 같은 보장을 자동으로 갖지 않습니다.
+
 ## Finite-Horizon DP
 
 arm 수와 남은 선택 횟수가 작으면 belief state를 DP로 풀 수 있습니다.
@@ -89,6 +90,8 @@ value(i) =
 상태 수는 빠르게 커집니다. arm 수가 크거나 horizon이 길면 Thompson/UCB 같은 근사 정책이나 regret bound 분석으로 넘어갑니다.
 
 ## 구현 조각: Posterior Update
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 struct BetaArm {

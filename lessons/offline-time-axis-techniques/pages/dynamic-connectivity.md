@@ -3,11 +3,6 @@
 Dynamic Connectivity는 간선이 추가되고 삭제되는 그래프에서 두 정점의 연결 여부를 묻는 주제입니다. 온라인으로 처리하면 Link-Cut Tree나 Euler Tour Tree 같은 고급 구조가 필요하지만, 질의를 모두 알고 있다면 시간축 Segment Tree와 Rollback DSU로 실용적으로 풀 수 있습니다.
 
 
-정점 번호는 링크한 공유 DSU 기준 0..N-1입니다. queryCount>=0, 활성 구간은 0<=l<=r<=Q입니다. 일반 그래프 온라인 연결성은 동적 forest 외에 대체 간선 탐색 구조가 필요합니다. 전체 비용은 O(N+Q+(M log(Q+1)+Q)log(N+1))이며 M은 활성 구간 수입니다.
-
-
-아래 시간축 어댑터는 [Rollback Techniques](https://h.readiz.com/learn/offline-time-axis-techniques/rollback-techniques)의 RollbackDsu 정의 뒤에 붙입니다.
-
 ## 문제 신호
 
 | 문제 표현 | Dynamic Connectivity 관점 |
@@ -60,6 +55,12 @@ DSU는 앞서 링크한 `RollbackDsu` 정의를 사용하고, 아래에는 시�
 ## Offline Solver 골격
 
 아래 구조는 이미 계산된 edge interval을 받아 query answer를 채웁니다. 실제 입력 파싱에서는 `map<pair<int,int>, int>`로 add 시점을 저장하고 remove 때 interval을 닫습니다.
+
+아래 시간축 어댑터는 [Rollback Techniques](https://h.readiz.com/learn/offline-time-axis-techniques/rollback-techniques)의 RollbackDsu 정의 뒤에 붙입니다.
+
+정점 번호는 공유 DSU 기준 `0..N-1`입니다. `queryCount >= 0`, 활성 구간은 `0 <= l <= r <= Q`여야 합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 #include <utility>
@@ -150,7 +151,11 @@ key = (u, v)
 
 실전에서는 offline이 가능한지 먼저 봅니다. Online general dynamic connectivity는 구현 난도가 훨씬 높습니다.
 
+일반 그래프 온라인 연결성은 동적 forest 외에 대체 간선 탐색 구조가 필요합니다.
+
 ## 시간 복잡도
+
+`M`은 간선의 활성 구간 수입니다. 같은 간선이 삭제된 뒤 다시 추가되면 별도 구간으로 셉니다.
 
 | 작업 | 복잡도 |
 | --- | --- |

@@ -2,9 +2,6 @@
 
 Runs와 Periodicity는 문자열 안에서 반복되는 구간을 구조적으로 다루는 주제입니다. KMP의 border, Z algorithm의 일치 길이, Suffix 구조를 배운 뒤 "반복이 어디에 얼마나 조밀하게 있는가"를 보는 단계입니다.
 
-
-일반 주기는 나누어떨어질 필요가 없습니다. 비어 있지 않은 문자열의 최소 주기는 `N-pi[N-1]`입니다. 아래 `smallestRepeatingBlockLength`는 문자열 전체를 같은 블록으로 정확히 분할하는 최소 블록 길이를 구하므로 추가로 나눗셈 조건을 검사합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Periodicity 관점 |
@@ -36,6 +33,10 @@ period candidate = 9 - 6 = 3
 ## Prefix Function으로 전체 주기 찾기
 
 아래 함수는 문자열 전체의 최소 반복 단위를 찾습니다. 완전히 반복되지 않으면 원래 길이를 반환합니다.
+
+일반 주기는 나누어떨어질 필요가 없습니다. 비어 있지 않은 문자열의 최소 주기는 `N-pi[N-1]`입니다. 아래 `smallestRepeatingBlockLength`는 문자열 전체를 같은 블록으로 정확히 분할하는 최소 블록 길이를 구하므로 추가로 나눗셈 조건을 검사합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

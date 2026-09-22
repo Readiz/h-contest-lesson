@@ -2,9 +2,6 @@
 
 Black-Box Linear Algebra는 큰 행렬을 직접 저장하거나 `O(N^3)`으로 다루지 않고, sparse matrix-vector product만으로 rank, determinant, linear recurrence 정보를 얻는 관점입니다. 구현 대회에서 자주 쓰는 완성 템플릿은 아니지만, 큰 선형 시스템과 recurrence를 연결하는 중요한 모델입니다.
 
-
-투영 수열의 최소 다항식은 행렬 최소 다항식의 약수일 수 있습니다. 한 번의 BM 결과가 곧 행렬의 최소 다항식이라는 뜻은 아닙니다. state·probe·entry는 [0,MOD)로 정규화하고 길이·인덱스 및 terms>=0을 맞춥니다. 현재 matvec는 0 초기화까지 O(N+nnz), T항은 O(T*(N+nnz))입니다. 여러 소수의 rank를 CRT로 합쳐 일반 해를 얻을 수는 없습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Black-box 관점 |
@@ -29,9 +26,15 @@ Cayley-Hamilton 정리에 의해 이 수열은 선형 점화식을 가집니다.
 
 무작위 `u`, `v`를 쓰는 이유는 특정 방향이 중요한 eigenspace를 놓치는 일을 줄이기 위해서입니다. 그래서 이 계열은 보통 randomized algorithm입니다.
 
+투영 수열의 최소 다항식은 행렬 최소 다항식의 약수일 수 있습니다. 한 번의 BM 결과가 곧 행렬의 최소 다항식이라는 뜻은 아닙니다.
+
 ## Sparse Matrix-Vector Product
 
 아래는 edge list 형태의 sparse matrix를 vector에 곱하는 기본 skeleton입니다.
+
+state·probe·entry는 [0,MOD)로 정규화하고 길이·인덱스 및 terms>=0을 맞춥니다. 현재 matvec는 0 초기화까지 O(N+nnz), T항은 O(T*(N+nnz))입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>
@@ -133,6 +136,8 @@ s_k = u^T A^k v
 Berlekamp-Massey와 많은 black-box 선형대수 기법은 field가 필요합니다. 즉 modulo가 prime이어야 나눗셈이 안전합니다.
 
 합성수 modulo에서는 이 field 알고리즘을 그대로 적용하지 않습니다. 정수 determinant처럼 정수 값의 크기 상한과 각 소수에서의 올바른 잔여값이 있는 경우에는 CRT 복원이 가능하지만, rank나 일반 선형계의 해에 같은 조언을 적용할 수는 없습니다.
+
+여러 소수의 rank를 CRT로 합쳐 일반 해를 얻을 수는 없습니다.
 
 ## 검증 전략
 

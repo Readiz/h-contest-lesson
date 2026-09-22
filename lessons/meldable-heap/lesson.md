@@ -59,6 +59,8 @@ b를 a의 한쪽 subtree와 다시 merge
 
 `merge`는 더 작은 루트를 위에 두고 오른쪽 자식과 나머지 힙을 합친 뒤 두 자식을 바꿉니다. `push`는 원소 하나짜리 힙과의 병합, `pop`은 루트의 두 자식 사이의 병합입니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 #include <algorithm>
 #include <vector>
@@ -162,3 +164,36 @@ Leftist Heap은 각 노드에서 빈 자식까지의 최단 거리 `dist`를 저
 | 메모리 | `O(총 push 횟수)` |
 
 Binary Heap의 `push`, `pop`도 `O(log n)`이지만, `meld`가 빠르지 않다는 차이가 있습니다.
+
+## 로컬 연습: 컴포넌트 병합과 최소 원소 제거
+
+정점마다 값 하나로 시작합니다. M a b는 두 정점이 속한 컴포넌트를 합치고, P v는 v의 컴포넌트에서 아직 남은 최소 값을 출력하고 제거합니다. 원소가 없어져도 정점의 컴포넌트 소속은 유지됩니다.
+
+**입력:** N Q, N개 초기 값, Q개의 연산. 1 <= N <= 200000, 0 <= Q <= 200000, 0 <= 정점 < N, |값| <= 10^9입니다.
+
+**출력:** P마다 최소 값을 출력하며 비었으면 EMPTY를 출력합니다.
+
+### 예시
+
+```text exercise=meldable-heap role=input
+4 8
+8 3 5 3
+M 0 1
+P 0
+M 2 3
+M 0 2
+P 3
+P 1
+P 2
+P 0
+```
+
+```text exercise=meldable-heap role=output
+3
+3
+5
+8
+EMPTY
+```
+
+**확인 방법:** Union-Find의 대표에 heap root를 저장하고 같은 컴포넌트의 중복 병합은 건너뜁니다. 작은 입력은 컴포넌트별 값 목록을 합쳐 정렬하는 기준 풀이와 비교합니다. 중복 최소 값·빈 컴포넌트·이미 제거된 정점으로의 질의도 검사합니다.

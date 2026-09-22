@@ -89,7 +89,7 @@ belief --action--> observation distribution --updated belief
 | 상태가 크고 rollout이 쉬움 | information set MCTS |
 | 빠른 heuristic이 필요 | 여러 determinization 평균 |
 | 상대 모델이 중요 | opponent modeling 추가 |
-| 정확한 증명이 필요한 문제 | 숨은 정보를 상태에 포함한 DP 가능성부터 확인 |
+| 정확한 증명이 필요한 문제 | 관측 이력에서 얻은 belief 또는 information set을 상태로 하는 DP 가능성 확인 |
 
 대회 문제에서는 완전한 게임 AI보다 "숨은 정보 때문에 상태를 어떻게 표현할 것인가"가 핵심인 경우가 많습니다.
 

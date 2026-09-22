@@ -8,9 +8,6 @@ Online Decision and Regret은 매 라운드 선택을 먼저 하고 그 뒤 손�
 2. 손실을 본 뒤 gradient나 subgradient로 다음 decision을 갱신한다.
 3. 최적 고정 decision과의 차이인 regret을 작게 만드는 것이 목표다.
 
-
-아래 함수는 선형 손실 gradient 목록을 재생해 마지막 갱신점 x_(T+1)을 반환합니다. 일반 online 환경은 x_t를 먼저 선택한 뒤 그 점의 subgradient를 받아 갱신합니다. dimension·gradient 길이 일치, radius>=0, 유한 값·학습률을 전제로 합니다. 유계 convex 영역·유계 subgradient와 적절한 학습률에서 누적 regret을 제어하며 마지막 점의 최적성을 보장하는 것은 아닙니다.
-
 ## 문제 신호
 
 | 문제 표현 | OCO 관점 |
@@ -33,6 +30,8 @@ regret(T) = sum f_t(x_t) - min_x sum f_t(x)
 
 regret이 `o(T)`이면 라운드 평균 손실은 최적 고정 선택과 가까워집니다. 즉 매 순간 완벽하지 않아도 장기적으로 좋은 선택 규칙입니다.
 
+유계 convex 영역·유계 subgradient와 적절한 학습률에서 누적 regret을 제어하며 마지막 점의 최적성을 보장하는 것은 아닙니다.
+
 ## Online Gradient Descent
 
 가장 기본적인 규칙은 gradient 반대 방향으로 조금 이동한 뒤 feasible set으로 projection하는 것입니다.
@@ -46,6 +45,10 @@ x_{t+1} = projection_C(x_t - eta_t * g_t)
 ## Projection 구현 조각
 
 아래 코드는 Euclidean ball 제약에서 online gradient descent를 수행합니다.
+
+아래 함수는 선형 손실 gradient 목록을 재생해 마지막 갱신점 x_(T+1)을 반환합니다. 일반 online 환경은 x_t를 먼저 선택한 뒤 그 점의 subgradient를 받아 갱신합니다. dimension·gradient 길이 일치, radius>=0, 유한 값·학습률을 전제로 합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <cmath>

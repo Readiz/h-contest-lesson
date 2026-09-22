@@ -2,9 +2,6 @@
 
 Palindromic Tree는 문자열의 모든 서로 다른 palindrome substring을 노드로 압축해 저장하는 자료구조입니다. Eertree라고도 부르며, 문자열을 왼쪽에서 오른쪽으로 읽으면서 새로 생기는 palindrome을 `O(1)` amortized에 가까운 방식으로 추가합니다.
 
-
-입력은 소문자입니다. 등장 횟수 누적은 모든 문자를 추가한 뒤 `accumulatePalindromeCounts(eertree.tree)`로 한 번만 호출합니다. suffix link는 항상 먼저 생성된 노드를 가리키므로 생성 번호 역순 누적이 가능합니다. 노드 길이가 생성 순서대로 증가하는 것은 아닙니다.
-
 ## 문제 신호
 
 Palindromic Tree는 palindrome substring을 "모두" 다뤄야 할 때 강합니다.
@@ -35,6 +32,10 @@ Palindromic Tree에는 특수 root가 두 개 있습니다.
 문자열의 새 위치 `pos`에 문자 `s[pos]`를 추가한다고 합시다. 현재 longest palindromic suffix를 가리키는 `last`에서 suffix link를 따라가며, 양끝에 새 문자를 붙여도 palindrome이 되는 가장 긴 노드를 찾습니다.
 
 이미 그 문자 transition이 있으면 `last`만 이동합니다. 없으면 새 palindrome 노드를 만들고 suffix link를 정합니다.
+
+입력은 소문자입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <array>
@@ -130,6 +131,8 @@ distinct palindrome count = number of nodes - 2
 ## 등장 횟수 누적
 
 `count[v]`를 노드 `v`가 longest palindromic suffix로 선택된 횟수로 두면, suffix link 역순으로 더해 각 palindrome의 총 등장 횟수를 얻습니다.
+
+등장 횟수 누적은 모든 문자를 추가한 뒤 `accumulatePalindromeCounts(eertree.tree)`로 한 번만 호출합니다. suffix link는 항상 먼저 생성된 노드를 가리키므로 생성 번호 역순 누적이 가능합니다. 노드 길이가 생성 순서대로 증가하는 것은 아닙니다.
 
 ```cpp compile-check
 #include <vector>

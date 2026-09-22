@@ -2,9 +2,6 @@
 
 정수론 문제는 나눗셈, 나머지, 약수, 소수, 합동식을 정확히 다루는 문제입니다. 모듈러 연산을 익힌 뒤에는 `gcd`, 확장 유클리드 알고리즘, CRT, 소수 전처리로 자연스럽게 확장됩니다.
 
-
-`gcdLong` 입력은 LLONG_MIN을 제외하며 gcd(0,0)=0으로 정합니다. extendedGcd는 비음수 입력, 역원은 mod>1, CRT는 양수 modulus와 long long에 들어가는 lcm을 전제로 합니다. 곱의 중간값은 __int128로 계산합니다. SPF 분해는 `1<=x<spf.size()` 범위에서만 호출합니다.
-
 ## GCD와 유클리드 알고리즘
 
 `gcd(a, b)`는 `a`와 `b`를 모두 나누는 가장 큰 양의 정수입니다. 유클리드 알고리즘은 아래 성질을 이용합니다.
@@ -12,6 +9,10 @@
 ```text
 gcd(a, b) = gcd(b, a mod b)
 ```
+
+`gcdLong` 입력은 LLONG_MIN을 제외하며 gcd(0,0)=0으로 정합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 long long gcdLong(long long a, long long b) {
@@ -40,7 +41,11 @@ a*x + b*y = gcd(a, b)
 
 `a`와 `mod`가 서로소이면 `a*x + mod*y = 1`입니다. 따라서 `a*x = 1 mod mod`가 되어 `x`가 `a`의 모듈러 역원입니다.
 
+`extendedGcd`는 비음수 입력을 전제로 합니다.
+
 ## 일반 mod에서 역원 구하기
+
+역원 함수의 modulus는 `mod > 1`이어야 합니다.
 
 Fermat 역원은 mod가 소수일 때만 바로 쓸 수 있습니다. mod가 합성수일 수 있으면 `gcd(a, mod) == 1`인지 확인해야 합니다.
 
@@ -49,6 +54,8 @@ Fermat 역원은 mod가 소수일 때만 바로 쓸 수 있습니다. mod가 합
 역원이 없을 수 있다는 점이 중요합니다. `a`와 `mod`가 서로소가 아니면 나눗셈을 역원 곱셈으로 바꿀 수 없습니다.
 
 ## CRT
+
+아래 CRT 구현은 양수 modulus와 `long long`에 들어가는 lcm을 전제로 합니다. 곱의 중간값은 `__int128`로 계산합니다.
 
 CRT(Chinese Remainder Theorem)는 여러 합동식을 하나로 합치는 도구입니다.
 
@@ -111,6 +118,8 @@ long long inverseIfExists(long long a,long long mod) {
 ## Sieve와 최소 소인수
 
 많은 수에 대해 소수 여부나 소인수분해가 필요하면 매번 나눠 보지 않고 전처리합니다.
+
+SPF 분해는 `1<=x<spf.size()` 범위에서만 호출합니다.
 
 ```cpp compile-check
 #include <vector>

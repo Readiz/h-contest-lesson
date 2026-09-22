@@ -2,9 +2,6 @@
 
 Global Min Cut은 무향 가중 그래프에서 두 집합으로 정점을 나눌 때 끊기는 edge capacity 합의 최솟값을 찾는 문제입니다. 특정 두 정점 `s`, `t`를 분리하는 min cut이 아니라, 어떤 두 집합이든 허용하는 전체 graph connectivity의 최약 지점을 찾습니다.
 
-
-입력은 비음수 대칭 용량 행렬이며 self-loop를 제외합니다. 모든 용량 합은 INF 미만이어야 합니다. n<=1의 반환 0은 코드의 관례이며 비자명한 cut이 존재한다는 뜻은 아닙니다. 고정 root와 나머지 정점 간 N-1번 min-cut의 최솟값으로도 global cut을 구할 수 있습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Global Min Cut 관점 |
@@ -45,6 +42,10 @@ phase:
 ## 구현
 
 아래 구현은 정점 수가 중간 이하이고 adjacency matrix를 둘 수 있는 경우에 쓰는 `O(N^3)` Stoer-Wagner입니다. 입력에서 parallel edge가 있으면 matrix에 더해서 넣습니다.
+
+입력은 비음수 대칭 용량 행렬이며 self-loop를 제외합니다. 모든 용량 합은 INF 미만이어야 합니다. n<=1의 반환 0은 코드의 관례이며 비자명한 cut이 존재한다는 뜻은 아닙니다. 고정 root와 나머지 정점 간 N-1번 min-cut의 최솟값으로도 global cut을 구할 수 있습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

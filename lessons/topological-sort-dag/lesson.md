@@ -56,6 +56,8 @@ indegree[v] = v로 들어오는 간선 수 (중복 간선도 각각 센다)
 
 아래는 0-indexed 정점 `0`부터 `n - 1`까지를 다루는 구현입니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 #include <queue>
 #include <vector>
@@ -148,3 +150,27 @@ vector<long long> earliestFinish(
 ## 시간 복잡도
 
 진입 차수 계산, 큐를 쓴 위상 정렬, 위의 작업 시간 DP는 각각 `O(V + E)`입니다. 최소 힙을 쓰면 정점별 삽입·삭제 비용이 붙어 `O(E + V log V)`입니다. 인접 목록과 보조 배열의 메모리는 `O(V + E)`입니다.
+
+## 로컬 연습: 사전순으로 가장 작은 위상 순서
+
+작업 의존 그래프에서 가능한 위상 순서 중 정점 번호의 사전순으로 가장 작은 순서를 구하세요.
+
+**입력:** N M 뒤 M줄의 u v이며 u를 v보다 먼저 수행해야 합니다. 1 <= N <= 200000, 0 <= M <= 400000, 정점은 0-based입니다.
+
+**출력:** 순서가 존재하면 N개 정점, cycle이 있으면 CYCLE을 출력합니다.
+
+### 예시
+
+```text exercise=topological-sort-dag role=input
+5 4
+0 2
+1 2
+1 3
+2 4
+```
+
+```text exercise=topological-sort-dag role=output
+0 1 2 3 4
+```
+
+**확인 방법:** 현재 진입 차수가 0인 정점 중 가장 작은 것을 최소 힙에서 꺼냅니다. 출력에서 모든 간선의 앞뒤 순서를 검사하고, N <= 8에서는 모든 순열 중 유효한 첫 순서와 비교합니다. 간선 없음·중복 간선·self-loop를 검사합니다.

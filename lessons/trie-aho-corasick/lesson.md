@@ -19,6 +19,8 @@ Trie의 한 노드는 "지금까지 읽은 접두사"를 뜻합니다. 같은 �
 
 알파벳 소문자만 다루는 문제라면 각 노드에 `26`개 자식 인덱스를 둘 수 있습니다. 문자가 더 다양하면 `map`이나 압축 인덱스를 쓰지만, 대회 문제에서는 배열 Trie가 빠르고 단순합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <array>
 #include <string>

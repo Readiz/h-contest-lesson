@@ -2,9 +2,6 @@
 
 Min-Plus Convolution은 두 수열 `A`, `B`에서 `C[k] = min_i A[i] + B[k-i]`를 계산하는 연산입니다. 일반적으로는 느리지만, convex sequence, Monge 성질, DP 전이 구조가 있으면 argmin 단조성을 이용해 크게 줄일 수 있습니다.
 
-
-유한 원소의 합은 INF보다 작고 long long 범위여야 합니다. 아래 구현에는 INF 입력을 넣지 않습니다. 불가능 상태를 허용하려면 스킵뿐 아니라 유효 후보 존재와 opt 단조성 증명을 다시 설계해야 합니다. 두 배열 중 하나라도 비면 convolution도 빈 배열입니다.
-
 ## 문제 신호
 
 | 문제 표현 | Min-Plus Convolution 관점 |
@@ -66,6 +63,10 @@ B = [0, 100, 0]
 ## Naive와 Monotone 최적화
 
 아래 구현은 naive와 argmin monotone을 가정한 divide and conquer 버전을 함께 보여 줍니다. convex sequence 조합처럼 argmin이 k에 대해 감소하지 않는 경우에만 최적화 버전을 사용합니다.
+
+유한 원소의 합은 INF보다 작고 long long 범위여야 합니다. 아래 구현에는 INF 입력을 넣지 않습니다. 불가능 상태를 허용하려면 스킵뿐 아니라 유효 후보 존재와 opt 단조성 증명을 다시 설계해야 합니다. 두 배열 중 하나라도 비면 convolution도 빈 배열입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

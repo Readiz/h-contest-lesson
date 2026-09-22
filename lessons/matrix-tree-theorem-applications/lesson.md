@@ -2,9 +2,6 @@
 
 Matrix-Tree Theorem은 그래프의 spanning tree 개수를 Laplacian matrix의 cofactor determinant로 계산하는 정리입니다. 단순 count뿐 아니라 edge criticality, rooted arborescence, graph reliability 모델링으로 이어집니다.
 
-
-cofactor 입력은 n>=1, 유효한 정점·removed, `1 <= mod <= 10^9+7`을 받습니다. 연결할 determinant 구현은 소수 mod를 요구합니다. n=1이면 0x0 determinant를 1로 정의하여 단일 정점 tree 하나를 셉니다. 간선 포함 contraction 공식은 self-loop가 아닌 특정 간선에 적용합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Matrix-Tree 관점 |
@@ -56,6 +53,10 @@ determinant는 `4 - 1 = 3`입니다. 실제로 삼각형에서 간선 하나를 
 ## Modular 구현 골격
 
 Laplacian을 만든 뒤 cofactor determinant를 계산합니다.
+
+cofactor 입력은 n>=1, 유효한 정점·removed, `1 <= mod <= 10^9+7`을 받습니다. 연결할 determinant 구현은 소수 mod를 요구합니다. n=1이면 0x0 determinant를 1로 정의하여 단일 정점 tree 하나를 셉니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 vector<vector<long long>> buildCofactor(
@@ -119,6 +120,8 @@ count(exclude e) = treeCount(G - e)
 ```
 
 모든 간선에 대해 이 값을 하나씩 계산하면 너무 느릴 수 있습니다. 그때는 effective resistance나 Laplacian inverse 같은 고급 도구가 필요하지만, 기본 문제에서는 contraction/deletion 관점만으로도 모델링이 됩니다.
+
+간선 포함 contraction 공식은 self-loop가 아닌 특정 간선에 적용합니다.
 
 ## 시간 복잡도
 

@@ -2,9 +2,6 @@
 
 여러 문자열의 공통 부분 문자열 질의는 첫 문자열의 SAM을 만들고 나머지 문자열을 스캔해 처리할 수 있습니다. 모든 문자열의 substring 집합을 합치는 generalized SAM 구축은 이와 다른 작업입니다. 단일 문자열 SAM이 "한 문자열의 모든 substring"을 압축한다면, generalized SAM은 여러 문자열에서 공통으로 등장하는 substring, 특정 그룹에만 등장하는 substring, dictionary 전체의 substring 통계를 다룹니다.
 
-
-아래 코드는 모든 문자열의 substring을 합친 generalized SAM을 구축하지 않습니다. 첫 문자열의 SAM을 만든 뒤 나머지를 순회하여 공통 substring 길이를 구하는 제한형입니다.
-
 ## 문제 신호
 
 | 문제 표현 | Generalized SAM 관점 |
@@ -48,6 +45,10 @@ for each string T:
 ## Longest Common Substring of Many Strings
 
 첫 번째 문자열로 SAM을 만들고 나머지 문자열을 하나씩 scan하는 방식입니다. state마다 "지금까지 처리한 모든 문자열에서 가능한 최대 길이"를 유지합니다.
+
+아래 코드는 모든 문자열의 substring을 합친 generalized SAM을 구축하지 않습니다. 첫 문자열의 SAM을 만든 뒤 나머지를 순회하여 공통 substring 길이를 구하는 제한형입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

@@ -16,6 +16,8 @@ dp[r][c] = (0, 0)에서 (r, c)까지 오는 경로 수
 
 현재 칸에 도착하는 방법은 위에서 내려오거나 왼쪽에서 오는 것뿐입니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 vector<vector<long long>> dp(h, vector<long long>(w, 0));
 dp[0][0] = 1;
@@ -160,3 +162,27 @@ void dfs(int u, int parent) {
 `graph`는 무방향 트리의 인접 목록, `weight[u]`는 정점 가중치입니다. `dfs(root, -1)` 뒤 답은 `max(dp[root][0], dp[root][1])`입니다. 가중치 합이 클 수 있으면 `dp`를 `long long`으로 둡니다. 일자 트리에서는 재귀 깊이가 정점 수까지 늘어납니다.
 
 방문한 집합까지 상태에 필요하다면 [TSP의 비트마스크 DP](https://h.readiz.com/learn/tsp-hamiltonian)로 이어집니다.
+
+## 로컬 연습: 각 물건을 한 번만 고르는 배낭
+
+물건을 각각 최대 한 번 골라 총 무게가 W 이하일 때의 최대 가치 합을 구하세요. 아무 물건도 고르지 않아도 됩니다.
+
+**입력:** N W 뒤 N줄의 무게와 가치. 1 <= N <= 100, 0 <= W <= 10000, 1 <= 무게 <= 10000, 0 <= 가치 <= 10^9입니다.
+
+**출력:** 최대 가치 합을 출력합니다.
+
+### 예시
+
+```text exercise=dynamic-programming role=input
+4 7
+3 4
+4 5
+2 3
+5 7
+```
+
+```text exercise=dynamic-programming role=output
+10
+```
+
+**확인 방법:** 무게 2와 5인 물건을 고르면 가치 10입니다. 한 배열로 갱신할 때 용량을 감소 방향으로 순회해야 같은 물건을 중복 사용하지 않습니다. N <= 20에서는 모든 subset과 비교하고 W=0, 모든 물건이 너무 무거운 경우를 검사합니다.

@@ -2,9 +2,6 @@
 
 Shape Distance Modeling은 점, 선분, 원, 볼록 다각형 사이의 거리와 충돌 문제를 어떤 수학 모델로 바꿀지 정리하는 기하 심화 레슨입니다. Minkowski Sum이나 Rotating Calipers를 바로 구현하기 전에, 어떤 도형을 점으로 줄이고 어떤 도형을 확장할지 결정하는 단계입니다.
 
-
-polygonDistance2는 구멍 없는 단순 다각형의 내부를 포함한 거리를 구합니다. 한 도형이 다른 도형 안에 있으면 0입니다. 이 실수 baseline의 절대 오차 기준은 좌표 scale에 맞춰야 하며 exact predicate가 아닙니다. SAT의 최소 분리 이동은 포함된 투영에서도 두 끝점까지의 이동량을 비교해야 하므로 단순 교집합 길이가 아닙니다.
-
 ## 문제 신호
 
 | 문제 표현 | 모델링 후보 |
@@ -20,6 +17,10 @@ polygonDistance2는 구멍 없는 단순 다각형의 내부를 포함한 거리
 ## 점, 선분, 다각형의 기본 거리
 
 복잡한 모델을 쓰기 전에는 작은 baseline을 갖고 있어야 합니다. 아래 코드는 점과 선분 거리, polygon 간 segment distance baseline을 계산합니다.
+
+polygonDistance2는 구멍 없는 단순 다각형의 내부를 포함한 거리를 구합니다. 한 도형이 다른 도형 안에 있으면 0입니다. 이 실수 baseline의 절대 오차 기준은 좌표 scale에 맞춰야 하며 exact predicate가 아닙니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -177,6 +178,8 @@ for each edge normal axis:
 ```
 
 최소 이동 거리나 penetration depth가 필요한 문제에서는 각 축에서 두 투영 구간을 분리하는 최소 이동량을 비교합니다. 포함 관계에서도 `min(maxA-minB, maxB-minA)`를 사용하고, 단순 교집합 길이로 대체하지 않습니다. 정수 좌표라면 projection 비교를 dot product로 하고, 실제 거리에는 axis length 정규화가 필요합니다.
+
+SAT의 최소 분리 이동은 포함된 투영에서도 두 끝점까지의 이동량을 비교해야 하므로 단순 교집합 길이가 아닙니다.
 
 ## 어떤 모델을 고를까
 

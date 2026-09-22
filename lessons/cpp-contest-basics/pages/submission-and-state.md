@@ -13,6 +13,8 @@
 
 [ORDERING](/practice/ORDERING)은 `build_path`가 `order[0..n-1]`에 결과를 써야 합니다. 표준 입력을 읽고 출력하는 프로그램이 아닙니다. `0`은 창고이며 맨 앞에 한 번만 들어가야 합니다.
 
+> **코드 환경: h-contest 공통 코드.** 표준 헤더·STL 없이 사용하는 블록입니다. 필요한 블록만 복사하고 문제별 배열 상한과 TC 초기화를 맞춥니다.
+
 ```cpp compile-check snippet=ordering-baseline
 void build_path(int n, const int points[][2], int order[]) {
     (void)points;

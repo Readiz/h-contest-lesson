@@ -24,6 +24,8 @@ a[i] >= target 이 되는 가장 작은 i
 
 이때 탐색 구간을 반열린 구간 `[left, right)`로 두면 깔끔합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 int lowerBound(const vector<int>& a, int target) {
     int left = 0;
@@ -159,3 +161,24 @@ int maximizeMinimumDistance(vector<int> pos, int k) {
     return left;
 }
 ```
+
+## 로컬 연습: 생산 목표를 처음 달성하는 시각
+
+기계 i는 time[i] 시간마다 제품 하나를 완성하고 모든 기계가 시각 0부터 동시에 작동합니다. K개 이상을 완성하는 최초의 정수 시각을 구하세요.
+
+**입력:** N K와 길이 N의 time 배열. 1 <= N <= 200000, 1 <= K <= 10^9, 1 <= time[i] <= 10^9입니다.
+
+**출력:** 최초 시각을 출력합니다.
+
+### 예시
+
+```text exercise=binary-search role=input
+3 10
+2 3 7
+```
+
+```text exercise=binary-search role=output
+12
+```
+
+**확인 방법:** 시각 11에는 5+3+1=9개, 12에는 6+4+1=11개입니다. 작은 입력에서 시각을 하나씩 증가시키는 기준 풀이와 대조합니다. 상한은 min(time)*K이며 생산량 합은 K에 도달하면 판정을 끝내 누적 overflow를 피합니다.

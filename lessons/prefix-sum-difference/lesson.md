@@ -39,6 +39,8 @@ prefix[4] - prefix[1] = 9 - 3 = 6
 
 `prefix[i]`에는 앞의 `i`개 원소 합을 저장합니다. `prefix[0] = 0`을 두면 `l = 0`인 구간도 같은 식으로 계산할 수 있습니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 #include <tuple>
 #include <vector>
@@ -224,3 +226,31 @@ vector<vector<long long>> applyRectAdds(
 ```
 
 `diff`를 `(h + 1) × (w + 1)`로 만들면 `y2 + 1 == h`나 `x2 + 1 == w`인 표시도 안전합니다. 최종 결과는 `h × w`만 사용합니다.
+
+## 로컬 연습: 구간을 모두 갱신한 뒤 합 질의
+
+배열에 M개의 구간 덧셈을 모두 적용한 뒤 Q개의 구간 합을 구하세요. 모든 구간은 0-based [l,r)이며 빈 구간도 허용합니다.
+
+**입력:** N M Q, 길이 N의 초기 배열, M줄의 l r delta, Q줄의 l r 순서입니다. 1 <= N <= 200000, 0 <= M,Q <= 200000, |원소|,|delta| <= 1000000, 0 <= l <= r <= N입니다.
+
+**출력:** 각 질의의 합을 한 줄씩 출력합니다.
+
+### 예시
+
+```text exercise=prefix-sum-difference role=input
+5 2 3
+2 -1 3 0 4
+1 4 2
+0 2 -1
+0 5
+1 4
+2 2
+```
+
+```text exercise=prefix-sum-difference role=output
+12
+7
+0
+```
+
+**확인 방법:** 차분으로 갱신을 모은 뒤 복원한 배열은 [1,0,5,2,4]입니다. 그 배열의 누적합으로 질의합니다. N <= 20에서는 원소별 갱신·직접 합산과 비교하고, l=r과 r=N을 검사합니다.

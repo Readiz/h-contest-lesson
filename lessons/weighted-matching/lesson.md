@@ -31,6 +31,8 @@ weighted:    maximize sum of selected edge weights
 
 정점 수가 작다면 일반 그래프 weighted perfect matching을 bitmask DP로 풀 수 있습니다. 아래 코드는 모든 정점을 짝지어야 하는 maximum weight perfect matching입니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <algorithm>
 #include <vector>

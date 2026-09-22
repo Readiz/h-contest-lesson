@@ -61,6 +61,8 @@ lessons.json
 
 `lessons.json`에는 새 레슨이 들어갈 `folderId`, `level`, `estimatedMinutes`, `prerequisites`, `nextLessons`, `relatedLessons`를 함께 지정합니다. 하위 페이지가 있으면 `pageId`, `title`, `description`, `order`, `file`을 가진 `pages` 배열을 추가합니다.
 
+`prerequisites`에는 실제 필수 지식만 넣고 선택 참고는 `relatedLessons`로 연결합니다. 선수 관계는 순환할 수 없으며, 같은 분류에서는 선수 레슨의 `order`가 더 작아야 합니다. validator가 두 조건을 검사합니다.
+
 현재 공개 분류는 두 가지입니다.
 
 - `heuristic-notes`: 휴리스틱 기본 및 심화 노트. 현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 레슨만 들어갑니다.
@@ -137,9 +139,13 @@ ZeroOneBFS
 
 직접 풀이 트랙(`heuristic-notes`)의 새 제출 예제는 h-contest 함수 구현형 `user.cpp`를 기준으로 작성합니다. STL과 표준 헤더를 쓰지 않고, 공개 API·고정 배열·직접 구현을 기본으로 합니다. `struct`, 참조, `template`는 사용 가능합니다. 일반 C++/STL이 필요한 참고 예제와 로컬 테스트 하네스는 적용 환경을 명시합니다. 기존 레슨의 전환은 ROADMAP 순서로 진행합니다.
 
+C++가 있는 본문은 첫 코드 앞에 적용 환경을 표시합니다. 일반 C++17 학습용, h-contest 제출용·제출 확장용, 설계 조각을 구분하고, 문서 중간에 환경이 바뀌면 그 코드 옆에 다시 표시합니다. 설계 조각을 완성 제출로 소개하지 않으며, 일반 C++ 예제에는 [공통 코드로 옮기는 기준](lessons/cpp-contest-basics/lesson.md)을 연결합니다.
+
 배열·난수·정렬·큐·힙의 공통 코드는 [실전 C++ 기본기와 공통 코드](lessons/cpp-contest-basics/lesson.md)를 원문으로 사용합니다. 문제별 예제에는 필요한 블록 이름, 배열 상한, 인덱스 범위, TC 초기화 위치를 함께 적습니다. 설명 없이 거대한 템플릿을 전부 복사시키지 않습니다. 새 공통 코드가 필요하면 실제 사용 문제와 경계 검증을 함께 추가합니다.
 
 이 레슨의 `cpp compile-check snippet=<name>` 블록은 `python3 scripts/check_cpp_basics.py`가 직접 추출하여 실행 검증합니다. 전체 validator에서도 호출하므로 C++17 컴파일러와 ASan/UBSan 지원이 필요합니다. 독립적으로 복사할 블록은 다른 블록에 대한 숨은 의존성을 두지 않습니다. 제출 소스에는 테스트 하네스의 헤더와 `main`을 넣지 않습니다.
+
+ORDERING의 2-opt·난수·SA 블록 조합은 `python3 scripts/check_heuristic_search.py`로 검사합니다. 작은 지역 최적 반례, 모든 구간의 차분, 경계 입력, 최선해 보존과 재현성을 ASan/UBSan으로 확인합니다. 공개 채점기의 `main.cpp`를 보유한 경우 `--judge /path/to/main.cpp --output /tmp/ordering-bench.json`을 붙여 단계별 비용과 시간을 재현할 수 있습니다. 같은 후보 수와 같은 실행 시간은 서로 다른 비교 조건이므로 측정 기록에 구분해서 적습니다.
 
 문제 상황에서 시작해 작은 예시로 원리를 설명하고, 필요한 구현과 비용으로 이어갑니다. 모든 강의에 같은 목차를 맞추지 않습니다. 하위 페이지 목록을 썼다면 같은 링크를 나열하는 학습 순서를 다시 붙이지 않습니다.
 
@@ -163,6 +169,8 @@ ZeroOneBFS
 h-contest 문제 링크를 넣을 때는 `/practice/<PROBLEM_ID>` 형식을 사용합니다. 운영 화면에서는 h-contest에 로그인한 사용자에게만 이 링크가 실제 문제 진입 링크로 활성화됩니다.
 
 연습은 실제 문제 또는 입력·과제·확인 방법이 갖춰진 로컬 연습만 싣습니다. 본문 중간의 문제 링크, 짧은 문단, 목록도 사용할 수 있으며, 별도 연습 절이나 입문·표준·응용·함정 네 단계 표는 필수가 아닙니다. 관련성이 약한 문제를 분량을 채우기 위해 연결하지 않습니다.
+
+입출력 예제를 자동 검산할 때는 `text exercise=<lessonId> role=input`과 `role=output` 코드 블록을 한 쌍으로 둡니다. `scripts/check_foundation_exercises.py`는 본문의 예제를 읽고 작은 독립 기준 풀이와 비교합니다. 이 검사는 예제의 정합성을 확인하며, 독자가 작성할 전체 제한용 풀이의 정확성까지 보장하지는 않습니다.
 
 아직 준비하지 못한 연습과 본문 보강 항목은 [ROADMAP.md](ROADMAP.md)에 둡니다. 강의 본문에 `TODO` 행이나 빈 연습 페이지를 만들지 않습니다. `practiceStatus`는 실제 내용에 맞춰 `none`/`todo`/`linked`/`verified`로 표시하며, 예정 항목만 있는 강의를 `linked`로 표시하지 않습니다.
 

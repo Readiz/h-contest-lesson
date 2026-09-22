@@ -92,6 +92,8 @@ tree[u].child[1] == 0
 
 아래 구현의 정점 번호는 `1..n`이며, `queryPathSum(u,v)`는 `connected(u,v)`가 true일 때만 호출합니다. 정점 값의 path sum을 관리합니다. 간선 weight 문제는 각 간선을 별도 노드로 만들어 두 endpoint와 연결하는 방식으로 확장합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <algorithm>
 #include <vector>

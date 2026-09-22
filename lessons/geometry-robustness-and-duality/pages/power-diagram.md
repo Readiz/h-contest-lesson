@@ -2,9 +2,6 @@
 
 Power Diagram은 점마다 가중치가 있을 때 "가까움"을 `거리 제곱 - weight`로 정의하는 weighted Voronoi 구조입니다. 일반 Voronoi가 가장 가까운 점을 나누는 구조라면, Power Diagram은 반지름이 다른 원이나 영향력이 다른 점의 지배 영역을 선형 경계로 나눕니다.
 
-
-Power diagram은 제곱 거리에서 가중치를 빼는 모델입니다. 거리에서 가중치를 빼거나 거리에 가중치를 곱하는 다른 weighted Voronoi와 구분합니다. cell은 비어 있거나 무한할 수 있습니다. 동일 좌표면 더 큰 weight가 지배하며 같은 weight의 tie 정책은 별도로 정합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Power Diagram 관점 |
@@ -73,6 +70,8 @@ power_i(x) <= power_j(x)
 ```
 
 site 수가 작으면 site마다 half-plane intersection을 돌려도 됩니다. 전체 diagram을 효율적으로 만들려면 regular triangulation이나 lifting 관점을 사용하지만, 구현 난도는 훨씬 높습니다.
+
+Power diagram은 제곱 거리에서 가중치를 빼는 모델입니다. 거리에서 가중치를 빼거나 거리에 가중치를 곱하는 다른 weighted Voronoi와 구분합니다. cell은 비어 있거나 무한할 수 있습니다. 동일 좌표면 더 큰 weight가 지배하며 같은 weight의 tie 정책은 별도로 정합니다.
 
 ## Radical Axis와 원
 

@@ -2,9 +2,6 @@
 
 Regular Triangulation은 weighted point를 3차원으로 lifting한 뒤 lower hull을 투영해서 얻는 Power Diagram의 dual 구조입니다. 일반 Delaunay Triangulation이 Voronoi Diagram의 dual이라면, Regular Triangulation은 Power Diagram의 dual입니다.
 
-
-일반 위치가 아니면 lower hull의 투영은 삼각형보다 큰 cell을 가진 regular subdivision일 수 있습니다. 이를 일관되게 삼각분할하는 tie 정책이 필요합니다. cell의 내부가 비는 퇴화 상태와 완전히 빈 cell도 구분합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Regular Triangulation 관점 |
@@ -80,6 +77,8 @@ Power Diagram에서는 어떤 weighted site의 cell이 비어 있을 수 있습�
 위 표는 퇴화가 없는 일반 위치의 대응입니다. 셀이 선이나 점으로 퇴화하거나 여러 셀이 한 점에서 만나면 subdivision과 삼각분할 tie 정책을 함께 봅니다.
 
 이 대응을 알면 weighted nearest site query와 adjacency 문제를 같은 그림으로 볼 수 있습니다.
+
+일반 위치가 아니면 lower hull의 투영은 삼각형보다 큰 cell을 가진 regular subdivision일 수 있습니다. 이를 일관되게 삼각분할하는 tie 정책이 필요합니다. cell의 내부가 비는 퇴화 상태와 완전히 빈 cell도 구분합니다.
 
 ## 시간 복잡도와 구현 선택
 

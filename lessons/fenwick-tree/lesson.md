@@ -75,6 +75,8 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 아래 구현은 1-indexed Fenwick Tree입니다. `add`에는 `1..n`, `prefixSum`에는 `0..n`, `rangeSum`에는 `1 <= l <= r <= n`을 전달합니다. 원소별 `add`로 초기화하므로 빌드는 `O(n log n)`, 이후 갱신과 질의는 `O(log n)`입니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 #include <vector>
 using namespace std;
@@ -150,3 +152,31 @@ int lowerBound(long long target) const {
 이 함수는 Fenwick Tree 위에서 이진 탐색을 하는 느낌입니다. 왼쪽부터 구간을 크게 붙여 보면서 target에 아직 못 미치면 그 구간을 통째로 건너뜁니다.
 
 주의할 점은 값이 음수일 수 있으면 prefix 합이 단조 증가하지 않는다는 것입니다. 그 경우에는 이 방식으로 lower_bound를 할 수 없습니다.
+
+## 로컬 연습: 점 덧셈과 구간 합
+
+배열의 점 덧셈과 닫힌 구간 합을 처리하세요. 이 연습은 본문의 Fenwick 구현과 같은 1-based 인덱스를 사용합니다.
+
+**입력:** N Q, N개 초기 값, Q개 연산. A i delta는 점 덧셈, S l r은 [l,r] 합입니다. 1 <= N <= 200000, 0 <= Q <= 200000, |초기 값|,|delta| <= 10^9, 1 <= l <= r <= N입니다.
+
+**출력:** S 연산의 답을 한 줄씩 출력합니다.
+
+### 예시
+
+```text exercise=fenwick-tree role=input
+5 5
+1 2 3 4 5
+S 1 5
+A 3 -5
+S 2 4
+A 1 10
+S 1 1
+```
+
+```text exercise=fenwick-tree role=output
+15
+4
+11
+```
+
+**확인 방법:** 작은 배열을 직접 갱신·합산하는 기준 풀이와 비교합니다. i=1, i=N, l=r, 음수 갱신을 검사합니다. 실제 Fenwick 내부 함수에 index 0을 넣으면 lowbit 진행이 멈추므로 wrapper에서 경계를 맞춥니다.

@@ -2,9 +2,6 @@
 
 Dynamic MST는 그래프의 간선 가중치나 활성 상태가 바뀔 때 minimum spanning tree를 유지하는 주제입니다. 완전한 online dynamic MST는 매우 어렵지만, 대회에서는 "작은 변경은 MST 성질로 갱신"하거나 "질의를 모아서 오프라인으로 처리"하는 형태가 더 자주 등장합니다.
 
-
-block에서 가중치·활성 여부가 바뀌는 간선을 전부 먼저 제외하고 나머지 고정 활성 간선의 MSF를 만듭니다. 각 질의는 그 MSF와 현재 활성인 변경 간선을 합쳐 Kruskal을 돌립니다. 후보는 O(N+B)개라 큰 N에서 자동으로 빠른 방법은 아닙니다. 정적 HLD는 tree 교체 뒤 재구축 없이는 쓸 수 없고, 온라인 교체는 LCT 등 동적 tree가 필요합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Dynamic MST 관점 |
@@ -28,6 +25,8 @@ cycle에서 가장 무거운 간선이 새 간선보다 무거우면 교체
 
 따라서 online 추가만 있다면 MST 위 path maximum query가 필요합니다. Link-Cut Tree, Heavy-Light Decomposition, binary lifting rebuild 중 제약에 맞는 것을 고릅니다.
 
+정적 HLD는 tree 교체 뒤 재구축 없이는 쓸 수 없고, 온라인 교체는 LCT 등 동적 tree가 필요합니다.
+
 ## 간선 삭제
 
 삭제된 간선이 MST 밖이면 MST는 변하지 않습니다. 삭제된 간선이 MST 안이면 MST가 두 component로 갈라지고, 두 component를 잇는 non-tree edge 중 가장 싼 edge를 찾아야 합니다.
@@ -43,6 +42,8 @@ min weight non-tree edge crossing (A, B)를 replacement로 선택
 ## Rebuild Baseline
 
 아래 코드는 활성 간선 집합에서 MST 비용을 다시 계산하는 기준 구현입니다. 복잡도는 무겁지만, 작은 입력이나 sqrt decomposition rebuild의 내부 루틴으로 유용합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -154,6 +155,8 @@ Dynamic Connectivity에서 쓰는 segment tree over time과 비슷해 보이지�
 3. query마다 고정 MSF와 현재 활성인 변경 간선을 합쳐 Kruskal을 돌린다.
 
 block마다 고정 MSF 구성 비용과 질의마다 O((N+B)log(N+B)) 비용을 함께 계산합니다.
+
+block에서 가중치·활성 여부가 바뀌는 간선을 전부 먼저 제외하고 나머지 고정 활성 간선의 MSF를 만듭니다. 각 질의는 그 MSF와 현재 활성인 변경 간선을 합쳐 Kruskal을 돌립니다. 후보는 O(N+B)개라 큰 N에서 자동으로 빠른 방법은 아닙니다.
 
 ## 시간 복잡도 감각
 

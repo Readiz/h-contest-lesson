@@ -4,6 +4,8 @@
 
 [미니 물품 배송](/practice/ORDERING)에서 구현할 함수는 다음과 같습니다.
 
+> **코드 환경: h-contest 제출용.** 공개 API 선언과 설명 조각을 먼저 읽고, 아래 ‘제출 가능한 기본 구현’을 user.cpp에 넣습니다.
+
 ```cpp
 extern int get_dist(int a, int b);
 extern int get_path_dist(const int order[], int size);

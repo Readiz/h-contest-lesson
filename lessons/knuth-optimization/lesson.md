@@ -2,9 +2,6 @@
 
 Knuth Optimization은 interval DP에서 최적 분할점의 범위가 좁아지는 성질을 이용해 `O(N^3)` DP를 `O(N^2)`로 줄이는 기법입니다. 파일 합치기, optimal binary search tree처럼 구간을 둘로 나누는 DP에서 자주 등장합니다.
 
-
-파일 크기는 비음수여야 구간 포함 단조성이 성립합니다. 비용 합과 DP 중간값은 INF 미만이어야 합니다. 빈 배열의 합병 비용은 0입니다.
-
 ## 문제 신호
 
 Knuth Optimization은 interval DP에서 나옵니다.
@@ -39,6 +36,10 @@ opt[l][r - 1] <= opt[l][r] <= opt[l + 1][r]
 ## 기본 구현
 
 아래 코드는 구간 합 비용을 갖는 파일 합치기 형태입니다.
+
+파일 크기는 비음수여야 구간 포함 단조성이 성립합니다. 비용 합과 DP 중간값은 INF 미만이어야 합니다. 빈 배열의 합병 비용은 0입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

@@ -2,9 +2,6 @@
 
 Polynomial Interpolation은 몇 개의 점을 지나는 다항식을 복원하거나, 복원하지 않고 특정 위치의 값을 계산하는 기법입니다. Multipoint Evaluation이 "하나의 다항식을 여러 점에서 평가"하는 방향이라면, Interpolation은 "여러 점에서 다항식을 되찾는" 반대 방향입니다.
 
-
-`1<=y.size()<MOD`, deg(F)<y.size()를 전제로 합니다. 이 구현은 factorial 전처리까지 포함해 한 질의 `O(N+log MOD)`입니다. 일반 보간을 O(N²)에 하려면 공통 곱 다항식을 만든 뒤 각 선형 인수로 synthetic division합니다. basis를 매번 처음부터 곱하면 O(N³)이 될 수 있습니다.
-
 ## 문제 신호
 
 | 문제 표현 | Interpolation 관점 |
@@ -40,6 +37,10 @@ denominator_i = i! * (-1)^(n-1-i) * (n-1-i)!
 ## 구현
 
 아래 함수는 `f(0), f(1), ..., f(n-1)`이 주어졌을 때 `f(x)`를 계산합니다. `x < n`이면 저장된 값을 바로 반환합니다.
+
+`1<=y.size()<MOD`, deg(F)<y.size()를 전제로 합니다. 이 구현은 factorial 전처리까지 포함해 한 질의 `O(N+log MOD)`입니다. 일반 보간을 O(N²)에 하려면 공통 곱 다항식을 만든 뒤 각 선형 인수로 synthetic division합니다. basis를 매번 처음부터 곱하면 O(N³)이 될 수 있습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

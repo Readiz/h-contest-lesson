@@ -2,9 +2,6 @@
 
 Bostan-Mori는 rational generating function `P(x) / Q(x)`의 `x^n` 계수를 빠르게 구하는 알고리즘입니다. 선형 점화식의 n번째 항을 characteristic polynomial이 아니라 생성함수 관점에서 계산할 수 있습니다.
 
-
-p,q는 비어 있지 않고 q[0] mod MOD !=0, n>=0이어야 합니다. 입력은 시작 시 정규화합니다. 복잡도의 K는 P와 Q 중 큰 차수이며, 아래 단순 곱셈 버전은 `O(K² log n)`입니다.
-
 ## 문제 신호
 
 | 문제 표현 | Bostan-Mori 관점 |
@@ -36,6 +33,10 @@ P(x) / Q(x) = P(x)Q(-x) / (Q(x)Q(-x))
 ## Polynomial 도우미
 
 아래 코드는 나이브 곱셈을 사용한 Bostan-Mori 구현입니다. 큰 입력에서는 `multiply`를 NTT로 바꾸면 됩니다.
+
+p,q는 비어 있지 않고 q[0] mod MOD !=0, n>=0이어야 합니다. 입력은 시작 시 정규화합니다. 복잡도의 K는 P와 Q 중 큰 차수이며, 아래 단순 곱셈 버전은 `O(K² log n)`입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>

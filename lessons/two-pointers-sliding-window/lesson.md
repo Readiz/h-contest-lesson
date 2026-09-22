@@ -24,6 +24,8 @@ a[l] + a[r] > target 이면 r을 왼쪽으로 이동
 
 정렬되어 있기 때문에 `l`을 오른쪽으로 옮기면 합은 커지고, `r`을 왼쪽으로 옮기면 합은 작아집니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 bool hasPairWithSum(vector<int> a, int target) {
     sort(a.begin(), a.end());
@@ -96,3 +98,24 @@ int longestAtMostKDistinct(const vector<int>& a, int k) {
 해시 테이블 연산이 평균 `O(1)`이라는 전제에서 전체 평균 시간은 `O(n)`입니다.
 
 `while` 조건에는 "현재 창이 유효하지 않은 동안"을 넣습니다. 유효해진 뒤에 답을 갱신하면 창이 항상 문제 조건을 만족합니다.
+
+## 로컬 연습: 목표 합 이상인 가장 짧은 구간
+
+양수 배열에서 합이 S 이상인 연속 구간의 최소 길이를 구하세요. 그런 구간이 없으면 0입니다.
+
+**입력:** N S와 길이 N의 배열. 1 <= N <= 200000, 1 <= a[i] <= 1000000, 1 <= S <= 10^12입니다.
+
+**출력:** 최소 길이 하나를 출력합니다.
+
+### 예시
+
+```text exercise=two-pointers-sliding-window role=input
+6 7
+2 3 1 2 4 3
+```
+
+```text exercise=two-pointers-sliding-window role=output
+2
+```
+
+**확인 방법:** 마지막 [4,3]의 길이가 2입니다. N <= 30에서 모든 구간을 열거해 비교합니다. 한 원소가 바로 S 이상인 경우와 전체 합이 S보다 작은 경우를 검사합니다. 음수 입력으로 바꾼 경우에는 창의 단조성이 유지되지 않습니다.

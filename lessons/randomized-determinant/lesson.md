@@ -2,9 +2,6 @@
 
 Randomized Determinant는 determinant를 직접 수식 전개하지 않고, 무작위 값을 대입한 뒤 modular Gaussian elimination으로 nonzero 여부나 rank 성질을 확률적으로 판정하는 관점입니다. Polynomial Identity Testing과 Schwartz-Zippel lemma가 핵심 안전장치입니다.
 
-
-정방행렬과 소수 2<=mod<=10^9+7을 전제로 하며 입력을 정규화합니다. Tutte 예시는 홀수 소수 field를 사용하고 각 간선 변수에 독립·균등 대입합니다. 0 대입도 Schwartz-Zippel의 정상 표본이며 이를 임의로 편향시키지 않습니다. 반복 실패 확률은 독립 trial에서 (degree/fieldSize)^K 이하로 평가합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Randomized Determinant 관점 |
@@ -32,6 +29,10 @@ Pr[P(random values) = 0] <= degree(P) / fieldSize
 ## Modular Determinant 구현
 
 아래는 prime modulo에서 determinant를 계산하는 기본 골격입니다.
+
+정방행렬과 소수 2<=mod<=10^9+7을 전제로 하며 입력을 정규화합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -119,6 +120,8 @@ A[j][i] = -r
 
 이 방식은 matching 자체를 복원하는 알고리즘과는 다릅니다. "존재성 판정"과 "구성 복원"을 분리해서 생각해야 합니다.
 
+Tutte 예시는 홀수 소수 field를 사용하고 각 간선 변수에 독립·균등 대입합니다. 0 대입도 Schwartz-Zippel의 정상 표본이며 이를 임의로 편향시키지 않습니다.
+
 ## Rank와 무작위 대입의 구분
 
 고정 행렬에 가역인 무작위 대각 행렬을 곱해도 rank는 그대로입니다. 이를 pivot 상쇄를 없애 rank를 높이는 기법으로 설명할 수 없습니다. 여기의 확률성은 symbolic 행렬의 변수에 독립적인 값을 대입하는 데서 옵니다. 원래 field에서 다항식이 0이 아니라는 조건과 총차수/표본 집합 크기를 확인합니다.
@@ -135,6 +138,8 @@ return "probably zero"
 ```
 
 `probably zero`는 증명이 아니라 확률적 결론입니다. `K`, prime 크기, polynomial degree에 따라 신뢰도를 설명할 수 있어야 합니다.
+
+반복 실패 확률은 독립 trial에서 (degree/fieldSize)^K 이하로 평가합니다.
 
 ## 시간 복잡도
 

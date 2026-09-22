@@ -36,6 +36,8 @@ dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
 아래 구현은 0-index 정점과 `long long` 거리를 사용합니다. 도달 불가는 코드와 같은 `INF`로 초기화하고, 모든 덧셈 결과는 정수 범위 안이어야 합니다. 음수 사이클이 있으면 반복 중 값이 급격히 작아질 수 있으므로 단순 경로 길이만으로 범위를 잡으면 부족합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp compile-check
 #include <algorithm>
 #include <limits>
@@ -129,3 +131,34 @@ if dist[i][v] != INF and dist[v][v] < 0 and dist[v][j] != INF:
 | 경로 복원 1회 | 경로 길이 | `next` matrix |
 
 `N = 500`이면 `125,000,000`번 갱신이라 언어와 제한에 따라 빡빡할 수 있습니다. `N = 1000`이면 보통 일반 Floyd-Warshall은 어렵습니다.
+
+## 로컬 연습: 여러 출발점의 거리 질의
+
+비음수 방향 그래프의 Q개 출발점·도착점 쌍에 대해 최소 비용을 구하세요.
+
+**입력:** N M Q, M줄의 u v w, Q줄의 s t. 1 <= N <= 300, 0 <= M <= 90000, 0 <= Q <= 100000, 0 <= w <= 10^9, 정점은 0-based입니다.
+
+**출력:** 질의마다 최소 비용을 출력하고 도달 불가이면 UNREACHABLE을 출력합니다.
+
+### 예시
+
+```text exercise=floyd-warshall role=input
+4 4 4
+0 1 5
+1 2 2
+0 2 10
+2 0 1
+0 2
+2 1
+3 0
+3 3
+```
+
+```text exercise=floyd-warshall role=output
+7
+6
+UNREACHABLE
+0
+```
+
+**확인 방법:** 대각 원소는 0, 평행 간선은 최소 비용으로 초기화합니다. 거쳐 갈 수 없는 INF 항을 더하지 않습니다. 모든 시작점에서 Dijkstra를 실행한 결과와 비교하고, k 반복문을 바깥에 두는 이유를 허용 경유지 집합으로 설명합니다.

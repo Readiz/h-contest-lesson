@@ -2,7 +2,7 @@
 
 AVL Tree와 Splay Tree는 Treap과 같은 BST 계열이지만, 현재 기본 학습 트랙에서는 Treap을 먼저 봅니다. Treap은 `split`과 `merge` 구현이 짧고 order statistics나 implicit sequence로 확장하기 쉬워 대회 코드에서 바로 쓰기 좋습니다.
 
-이 문서는 Treap 이후에 "다른 균형 BST는 어떤 보장을 주는가"를 확인하는 참고 노트입니다. BST 기본 연산과 회전이 낯설다면 먼저 [Treap과 BST 기본](https://h.readiz.com/learn/treap)을 봅니다.
+이 문서는 Treap 이후에 "다른 균형 BST는 어떤 보장을 주는가"를 확인하는 참고 노트입니다. BST의 key 순서와 기본 연산은 [Treap과 BST 기본](https://h.readiz.com/learn/treap)을 참고합니다. 그 레슨은 split/merge 방식이며, 회전은 아래 AVL 예제에서 따로 설명합니다.
 
 ## AVL Tree
 
@@ -14,6 +14,8 @@ balance = height(left) - height(right)
 ```
 
 삽입이나 삭제 후 어떤 노드의 balance가 `2` 또는 `-2`가 되면 회전으로 고칩니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp
 struct AvlNode {

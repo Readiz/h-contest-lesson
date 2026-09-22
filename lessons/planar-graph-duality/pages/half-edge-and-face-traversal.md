@@ -2,9 +2,6 @@
 
 좌표와 간선만 주어진 planar graph에서 dual graph를 만들려면 먼저 face를 찾아야 합니다. 가장 안정적인 방법은 무향 간선을 양방향 half-edge로 쪼개고, 각 정점의 outgoing half-edge를 polar angle 순서로 정렬한 뒤, 아직 방문하지 않은 half-edge를 따라 face를 순회하는 것입니다.
 
-
-이 구현은 연결된 straight-line planar embedding, 서로 다른 정점 좌표, self-loop·중첩 간선·간선 내부의 다른 정점 없음, 좌표 절댓값<=10^9를 전제로 합니다. 비연결 입력에서는 순회 하나가 face가 아니라 boundary component일 수 있어 포함 관계로 합쳐야 합니다. 연결된 단일 정점은 outer face 하나로 처리합니다. 정렬은 정수 반평면과 외적을 사용하고 면적 합은 __int128입니다.
-
 ## Half-edge 구조
 
 무향 edge `(u, v)` 하나는 두 directed half-edge `u -> v`, `v -> u`가 됩니다. 각 half-edge는 반대 방향 half-edge와 같은 primal edge id를 공유합니다.
@@ -30,6 +27,10 @@ next(u -> v) = outgoing[v][position(v -> u) - 1]
 ## 구현
 
 아래 코드는 straight-line planar embedding을 가정합니다. 간선 교차가 없고, 같은 두 정점을 잇는 여러 edge가 같은 선분 위에 완전히 겹치지 않는다는 조건이 필요합니다. 겹치는 multi-edge나 곡선 embedding이 필요한 입력은 좌표만으로 rotation order를 복원할 수 없으므로, 문제에서 half-edge 순서나 face 정보를 따로 줘야 합니다.
+
+이 구현은 연결된 straight-line planar embedding, 서로 다른 정점 좌표, self-loop·중첩 간선·간선 내부의 다른 정점 없음, 좌표 절댓값<=10^9를 전제로 합니다. 비연결 입력에서는 순회 하나가 face가 아니라 boundary component일 수 있어 포함 관계로 합쳐야 합니다. 연결된 단일 정점은 outer face 하나로 처리합니다. 정렬은 정수 반평면과 외적을 사용하고 면적 합은 __int128입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

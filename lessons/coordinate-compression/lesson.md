@@ -17,6 +17,8 @@
 
 먼저 모든 값을 한 벡터에 모아 정렬하고 중복을 제거합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 vector<int> values = a;
 sort(values.begin(), values.end());
@@ -66,3 +68,26 @@ int compress(const vector<int>& values, int x) {
 | 값 하나 압축 | `O(log n)` |
 | unordered map으로 미리 매핑 | 평균 `O(1)` |
 | 메모리 | `O(n)` |
+
+## 로컬 연습: 중복과 음수가 있는 값의 순위
+
+서로 다른 값을 정렬한 뒤 각 원소를 그 배열에서의 0-based 위치로 바꾸세요. 압축값의 차이가 실제 거리라고 가정하지 않습니다.
+
+**입력:** N과 길이 N의 정수 배열. 1 <= N <= 200000, |a[i]| <= 10^12입니다.
+
+**출력:** 첫 줄에 서로 다른 값의 수, 둘째 줄에 원래 순서의 압축값, 셋째 줄에 정렬된 서로 다른 원본 값을 출력합니다.
+
+### 예시
+
+```text exercise=coordinate-compression role=input
+6
+-10 100 -10 7 100 8
+```
+
+```text exercise=coordinate-compression role=output
+4
+0 3 0 1 3 2
+-10 7 8 100
+```
+
+**확인 방법:** 원본의 같음·대소 관계가 압축값에서도 유지되고 coords[rank[i]]가 a[i]로 복원되는지 확인합니다. 전부 같은 값, 감소 순서, 64비트 값을 검사합니다.

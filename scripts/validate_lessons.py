@@ -416,6 +416,28 @@ def validate_lesson_references(lessons: list[dict], lesson_ids: set[str]) -> Non
         if parent_lesson_id is not None and parent_lesson_id not in lesson_ids:
             fail(f"parentLessonId for {lesson_id} references missing lessonId: {parent_lesson_id}")
 
+    by_id = {lesson["lessonId"]: lesson for lesson in lessons}
+    complete: set[str] = set()
+    active: list[str] = []
+
+    def visit(lesson_id: str) -> None:
+        if lesson_id in active:
+            fail(f"prerequisite cycle: {' -> '.join(active + [lesson_id])}")
+        if lesson_id in complete:
+            return
+        active.append(lesson_id)
+        lesson = by_id[lesson_id]
+        for prerequisite_id in lesson["prerequisites"]:
+            prerequisite = by_id[prerequisite_id]
+            visit(prerequisite_id)
+            if prerequisite["folderId"] == lesson["folderId"] and prerequisite["order"] >= lesson["order"]:
+                fail(f"prerequisite {prerequisite_id} must appear before {lesson_id} in its folder")
+        active.pop()
+        complete.add(lesson_id)
+
+    for lesson_id in by_id:
+        visit(lesson_id)
+
 
 def validate_generated_files() -> None:
     subprocess.run(
@@ -528,7 +550,9 @@ def main() -> None:
 
     validate_lesson_references(lessons, seen_ids)
     validate_generated_files()
+    subprocess.run([sys.executable, str(ROOT / "scripts/check_foundation_exercises.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_cpp_basics.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts/check_heuristic_search.py")], check=True)
 
     subprocess.run([sys.executable, str(ROOT / "scripts/check_review_examples.py")], check=True)
 

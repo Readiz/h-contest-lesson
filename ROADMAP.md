@@ -4,7 +4,7 @@
 
 ## 실전 풀이 중심 개편 — 다음 작업의 기준
 
-목표는 수강자가 `문제 계약 읽기 → 유효한 기준선 → 점수 측정 → 개선 연산 → 검증 → 실전 변형`을 직접 수행하는 것입니다. 이론 목차를 전부 학습해야 첫 휴리스틱 문제에 도전할 수 있는 구조는 줄입니다. 기존 `heuristic-notes` 30개와 `heuristic-reference` 70개의 두 분류를 유지하고, 한 번에 한 단위씩 개편합니다.
+목표는 수강자가 `문제 계약 읽기 → 유효한 기준선 → 점수 측정 → 개선 연산 → 검증 → 실전 변형`을 직접 수행하는 것입니다. 이론 목차를 전부 학습해야 첫 휴리스틱 문제에 도전할 수 있는 구조는 줄입니다. 현재 `heuristic-notes` 30개와 `heuristic-reference` 67개의 두 분류를 유지하고, 한 번에 한 단위씩 개편합니다.
 
 공통 기준:
 
@@ -25,14 +25,13 @@
 | 7 | 규모·부분 관측·변하는 상태 | COUPANG1 후보 축소, ROBOTCLEAN/DRONESORT 관측 메모리, FRIEGHTFIX 갱신, ANTENNAS/TELEVISION 자원 배분 | 실제 입력 상한·API 비용·갱신 빈도로 자료구조와 탐색 예산을 선택하는 연습 |
 | 8 | 특수 점수식 읽기 | GERMMATCH의 동기화 비용, ENTROPY2D의 거리 합과 이동 예산 | 채점식을 손으로 재현한 작은 TC와 실측 대조, 수학적 성질을 풀이로 옮기는 기준 |
 
-위 순서는 앞으로 작성할 단위입니다. 공통 코드 기초 레슨의 첫 개편은 CHANGELOG에 기록했습니다. 다음 착수 단위는 **1번 ORDERING 중심의 첫 휴리스틱 실습**입니다.
+2026-09-22 기준으로 1번은 번호 순서·nearest neighbor·2-opt의 동일 TC 비용·시간과 차분 검증까지 반영했습니다. 2번은 ORDERING 다음에 검증 레슨을 읽도록 연결했고, 실패·복구·재현성 검사와 입력/seed를 바꾸는 실험 과제를 제공합니다. 3번은 지역 최적 반례와 실행 가능한 ORDERING SA, best/current·전체 차분 대조, 같은 후보 수의 측정까지 반영했습니다. 여러 seed·미사용 입력을 통한 성능 일반화와 같은 시간 비교, SCHEDULX 연결은 남아 있습니다.
 
-이번 예시 정리에서 ORDERING을 휴리스틱의 첫 페이지로 옮기고 테스트 강의에 2-opt 차분·복구 대조 절차를 연결했습니다. 위 단계의 제출별 성능 기록과 실전 확장까지 완료한 것은 아닙니다. Digit DP, 구간 DP, Implicit Treap은 미완성 골격을 본문에 두지 않고, 실제 문제와 끝까지 동작하는 풀이가 준비될 때 다시 다룹니다.
+다음 실전 확장은 **SA의 온도·수락률 실험과 SCHEDULX 연결**입니다. 4~8번은 후속 문제 단위로 진행합니다. Digit DP, 구간 DP, Implicit Treap은 미완성 골격을 본문에 두지 않고, 실제 문제와 끝까지 동작하는 풀이가 준비될 때 다시 다룹니다.
 
 ### 목차와 연결도 함께 정리할 항목
 
-- 기본 트랙의 표시 순서와 선수 관계를 맞춥니다. 현재 meldable-heap → union-find, heuristic → dynamic-programming, tsp-hamiltonian → graph-tree-basics, minimax-alpha-beta → testing-and-stress 등의 역순 의존을 확인하고, 실제 필수 지식과 선택 참고를 분리합니다.
-- 휴리스틱 입문에 DP 전체나 고급 matching 이론을 필수 선수로 두는지 다시 판단합니다. 필요한 작은 개념은 해당 실습 안에서 설명합니다.
+- 기본 트랙의 표시 순서는 필수 선수 레슨이 먼저 오도록 정리했습니다. 휴리스틱 입문의 DP, Hungarian의 고급 matching, minimax의 Grundy 등 선택 참고는 필수 선수에서 관련 레슨으로 옮겼습니다. 새 레슨에서도 필수 지식과 선택 참고를 구분합니다.
 - 각 레슨의 선수·다음·연관 레슨을 h-contest 화면에서도 이동 가능한 학습 경로로 보여 주는 작업을 별도 UI 단위로 진행합니다.
 - 기본 연습 ALLOCATE/CLUSTERX/MINEEXPLORE와 CITYSUM2D 등 이미 있는 문제를 해당 기초 레슨에 연결합니다. 단순 링크 추가가 아니라 계약과 풀이 연결 설명을 함께 작성합니다.
 - 로그인 전 강의 접근은 h-contest 서비스에서 제한합니다. 원본 GitHub/Pages의 공개 범위는 별도 운영 정책이며, 서비스의 인증만으로 원본이 비공개가 되지는 않습니다.
@@ -41,40 +40,40 @@
 
 공개 목록은 `휴리스틱 기본 및 심화 노트`와 `휴리스틱 참고 노트` 두 분류로 유지합니다. 현재 h-contest 문제 풀이에 바로 쓰는 핵심/직접 심화 레슨은 `heuristic-notes`, 직접성이 낮은 전통 알고리즘/이론/희소 고급 도구/장기 확장용 레퍼런스는 `heuristic-reference`에 둡니다. `audience`는 레슨의 대상 독자를 나타내므로, 참고 노트에도 `contest-core` 또는 `advanced-contest` 레슨이 들어갈 수 있습니다. 그래프, 수학, 문자열 같은 세부 주제 구분은 별도 폴더를 늘리지 않고 태그, 선수/다음 레슨, 하위 페이지, 문제 신호별 길찾기에서 표현합니다.
 
-## 기본 30개 강의의 연습 보강 대기
+## 기본 강의의 추가 연습 후보
 
-기존 본문의 빈 연습표를 이 목록으로 옮겼습니다. 아래 항목은 문제나 완결형 로컬 연습이 준비되면 본문에 연결할 후보이며, 네 단계 분량을 채우는 할당량이 아닙니다. `FUNCSUM1`·`SORTTEST`만으로 누적합·좌표 압축 실습을 대체하던 연결도 걷어냈습니다.
+2026-09-22에 연습이 없던 19개 기본 강의에 입력·출력·제한·검산 방법을 갖춘 로컬 연습을 추가해, 기본 30개 모두 실제 연습으로 연결했습니다. 아래는 그 첫 연습 이후의 추가 후보입니다. 네 단계 분량을 채우는 할당량은 아닙니다. `FUNCSUM1`·`SORTTEST`만으로 누적합·좌표 압축 실습을 대체하지 않습니다.
 
 | 강의 | 아직 마련할 연습 후보 |
 | --- | --- |
-| [복잡도와 입력 크기 감각](lessons/complexity-input-size/lesson.md) | 반복문 횟수 직접 세기; 입력 제한 보고 풀이 후보 고르기; 여러 테스트 케이스 비용 계산; 큰 2차원 DP 테이블 검토 |
+| [복잡도와 입력 크기 감각](lessons/complexity-input-size/lesson.md) | 입력 제한 보고 풀이 후보 고르기; 큰 2차원 DP 테이블의 메모리 검토 |
 | [정렬 알고리즘](lessons/sorting/lesson.md) | 값과 인덱스 동반 정렬; 좌표 압축 전처리; 안정성이 필요한 다중 기준 정렬 |
-| [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md) | 여러 구간 합 질의; 여러 구간 업데이트 후 최종 배열; 2차원 직사각형 합 |
+| [누적합과 차분 배열](lessons/prefix-sum-difference/lesson.md) | 2차원 직사각형 합과 직사각형 업데이트 |
 | [그리디 알고리즘](lessons/greedy/lesson.md) | 회의실 배정; 마감이 있는 과제 선택; 그리디 반례 찾기 |
-| [투 포인터와 슬라이딩 윈도우](lessons/two-pointers-sliding-window/lesson.md) | 두 수의 합 찾기; 합이 S 이상인 가장 짧은 양수 구간; 서로 다른 값이 K개 이하인 가장 긴 구간; 음수가 섞인 구간 합 |
-| [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md) | 정렬 배열에서 lower_bound 찾기; 최소 가능한 답 찾기; 최대 거리/최소 시간 최적화; 실수형 이분 탐색 |
-| [좌표 압축](lessons/coordinate-compression/lesson.md) | 압축 인덱스를 원래 입력 순서로 출력; inversion count; 구간 칠하기와 전체 길이 계산 |
+| [투 포인터와 슬라이딩 윈도우](lessons/two-pointers-sliding-window/lesson.md) | 두 수의 합 찾기; 서로 다른 값이 K개 이하인 가장 긴 구간; 음수가 섞인 구간 합 |
+| [이분 탐색과 파라메트릭 서치](lessons/binary-search/lesson.md) | 정렬 배열에서 lower_bound 찾기; 최소 간격 최대화; 실수형 이분 탐색 |
+| [좌표 압축](lessons/coordinate-compression/lesson.md) | inversion count; 구간 칠하기와 전체 길이 계산 |
 | [우선순위 큐와 힙](lessons/priority-queue-heap/lesson.md) | 최댓값 반복 추출; 최솟값 후보를 계속 고르는 스케줄링; stale entry 제거; 같은 우선순위 tie-break |
-| [Meldable Heap](lessons/meldable-heap/lesson.md) | 두 heap meld 연산 추적; 그룹별 최소값 조회; 여러 우선순위 큐 병합; pool 공유 실수 확인 |
-| [동적 계획법](lessons/dynamic-programming/lesson.md) | 계단 오르기/피보나치 계열; 동전/0-1 배낭; LIS 또는 구간 DP; 비트마스크 DP |
+| [Meldable Heap](lessons/meldable-heap/lesson.md) | 그룹별 지연 가산과 병합; pool 공유 실수 확인 |
+| [동적 계획법](lessons/dynamic-programming/lesson.md) | 동전의 무제한 사용; LIS 또는 구간 DP; 비트마스크 DP |
 | [TSP와 해밀턴 경로](lessons/tsp-hamiltonian/lesson.md) | 작은 해밀턴 경로 완전탐색; 비트마스크 TSP DP |
 | [Union-Find 알고리즘](lessons/union-find/lesson.md) | Kruskal MST; rollback이 필요한 오프라인 연결성 |
-| [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md) | 연결 요소 세기; 격자 최단거리; 여러 시작점 BFS; 위치에 방향/열쇠가 붙는 상태 그래프 |
+| [BFS/DFS와 격자 탐색](lessons/bfs-dfs-grid/lesson.md) | 연결 요소 세기; 여러 시작점 BFS; 위치에 방향/열쇠가 붙는 상태 그래프 |
 | [그래프와 트리 기본 성질](lessons/graph-tree-basics/lesson.md) | 연결 요소 세기; 트리 지름/센트로이드; MST |
 | [0-1 BFS](lessons/zero-one-bfs/lesson.md) | 무료 이동과 유료 이동이 있는 선형 그래프; 방향 전환 비용이 있는 격자 최단거리; 벽을 부수는 횟수를 최소화하는 미로; 비용이 0, 1, 2인 그래프 |
-| [위상 정렬과 DAG DP](lessons/topological-sort-dag/lesson.md) | 작업 순서 출력; 사이클이면 불가능 판정; DAG 최장/최단 경로; 사전순 위상 정렬 |
-| [Dijkstra 최단거리](lessons/dijkstra/lesson.md) | 모든 간선 비용이 1인 최단거리; 양수 가중치 그래프 최단거리; 다중 시작점과 단일 목표 최단거리; 음수 간선이 섞인 그래프 |
-| [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md) | 음수 간선이 있지만 음수 사이클은 없는 최단거리; 음수 사이클 존재 판정; 목표 정점의 음수 사이클 영향 판정; 음수 간선이 있는 DAG 최단거리 |
-| [Floyd-Warshall](lessons/floyd-warshall/lesson.md) | 모든 쌍 최단거리; 도달 가능성 전파; 최단 경로 복원; 음수 사이클 영향 |
+| [위상 정렬과 DAG DP](lessons/topological-sort-dag/lesson.md) | DAG 최장/최단 경로; 작업별 소요 시간을 포함한 완료 시점 |
+| [Dijkstra 최단거리](lessons/dijkstra/lesson.md) | 다중 시작점과 단일 목표 최단거리; 경로 복원; 음수 간선이 섞일 때의 반례 |
+| [Bellman-Ford와 음수 사이클](lessons/bellman-ford-negative-cycle/lesson.md) | 음수 사이클 자체를 출력; 시작점과 무관한 전체 그래프의 음수 사이클 탐지 |
+| [Floyd-Warshall](lessons/floyd-warshall/lesson.md) | 도달 가능성 전파; 최단 경로 복원; 음수 사이클 영향 |
 | [Sqrt Decomposition](lessons/sqrt-decomposition/lesson.md) | 정적 구간 합 질의; 구간에서 k보다 작은 원소 개수; Mo's Algorithm |
-| [Fenwick Tree](lessons/fenwick-tree/lesson.md) | 점 업데이트 + prefix 합; 점 업데이트 + 구간 합; inversion count; k번째 원소 찾기 |
+| [Fenwick Tree](lessons/fenwick-tree/lesson.md) | inversion count; k번째 원소 찾기 |
 | [Segment Tree](lessons/segment-tree/lesson.md) | 점 업데이트 + 구간 합; 구간 최솟값 + 구간 덧셈; 구간 대입과 덧셈의 합성 |
 | [Hungarian Algorithm](lessons/hungarian-algorithm/lesson.md) | 작은 assignment problem; forbidden edge가 있는 sparse assignment |
-| [Treap과 BST 기본](lessons/treap/lesson.md) | BST inorder 순회; k번째 원소/순위 질의; 구간 뒤집기 Implicit Treap; 중복 key 처리 |
-| [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md) | 작은 게임 minimax; alpha-beta pruning; depth-limited game search; 반복 상태 게임 |
+| [Treap과 BST 기본](lessons/treap/lesson.md) | 구간 뒤집기 Implicit Treap; 중복 횟수를 세는 multiset 변형 |
+| [Minimax와 Alpha-Beta Pruning](lessons/minimax-alpha-beta/lesson.md) | depth-limited game search; 반복 상태 게임 |
 | [Testing과 Stress Test](lessons/testing-and-stress/lesson.md) | 배열 구간 질의와 brute force 비교; 그리디 후보 풀이의 반례 찾기; 기하/그래프의 edge case 수집; 빠른 풀이와 brute force가 같은 버그를 공유하는 사례 |
-| [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) | 이분 탐색 invariant 작성; exchange argument로 그리디 선택 증명; DP 상태 정의와 전이 완전성 설명; 틀린 그리디의 최소 반례 찾기 |
-| [Dynamic Segment Tree](lessons/dynamic-segment-tree/lesson.md) | sparse point update; 큰 좌표 range add sum; online rectangle sweep; persistent sparse query |
+| [Proof와 Invariant](lessons/proof-and-invariants/lesson.md) | 이분 탐색 invariant 작성; exchange argument로 그리디 선택 증명; DP 상태 정의와 전이 완전성 설명 |
+| [Dynamic Segment Tree](lessons/dynamic-segment-tree/lesson.md) | online rectangle sweep; persistent sparse query |
 
 ## 구조 개편 후보
 

@@ -2,9 +2,6 @@
 
 Monte Carlo Tree Search(MCTS)는 게임 트리를 모두 탐색하기 어려울 때, 유망한 수를 통계적으로 더 많이 시도하면서 선택을 개선하는 탐색 방법입니다. Minimax는 terminal까지 탐색하면 정확하지만 깊이 제한 평가를 쓰면 근사입니다. MCTS는 simulation 결과를 누적해 선택을 근사합니다.
 
-
-아래 통계는 각 노드로 들어오는 수를 둔 플레이어의 승리 확률입니다. 따라서 부모는 자식의 평균 보상을 최대화합니다. backpropagate에 전달하는 값도 이 관점이며, 두 플레이어가 번갈아 한 수씩 두고 보상이 [0,1]인 게임에 한해 1-result로 전환합니다. 연속 턴·chance node·일반 점수형에는 별도 변환이 필요합니다.
-
 ## 언제 MCTS인가
 
 | 문제 신호 | 접근 |
@@ -43,6 +40,10 @@ score = wins / visits + C * sqrt(log(parentVisits) / visits)
 ## 기본 Node와 UCB
 
 아래 코드는 tree node 통계와 UCB 기반 child 선택의 최소 골격입니다.
+
+아래 통계는 각 노드로 들어오는 수를 둔 플레이어의 승리 확률입니다. 따라서 부모는 자식의 평균 보상을 최대화합니다. backpropagate에 전달하는 값도 이 관점이며, 두 플레이어가 번갈아 한 수씩 두고 보상이 [0,1]인 게임에 한해 1-result로 전환합니다. 연속 턴·chance node·일반 점수형에는 별도 변환이 필요합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

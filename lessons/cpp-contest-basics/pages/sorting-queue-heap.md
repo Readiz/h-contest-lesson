@@ -12,6 +12,8 @@
 
 `id[0..n-1]`에는 `key[]`의 유효한 인덱스가 있어야 합니다. `temp`는 길이 `n` 이상인 별도 배열이고 `id`, `key`와 겹치지 않습니다. 이 구현은 `0 <= n <= 1,000,000` 범위를 전제로 합니다.
 
+> **코드 환경: h-contest 공통 코드.** 표준 헤더·STL 없이 사용하는 블록입니다. 필요한 블록만 복사하고 문제별 배열 상한과 TC 초기화를 맞춥니다.
+
 ```cpp compile-check snippet=index-sort
 namespace hc {
 bool keyBefore(int a, int b, const long long key[]) {

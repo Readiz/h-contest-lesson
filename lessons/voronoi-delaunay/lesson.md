@@ -2,9 +2,6 @@
 
 Voronoi Diagram과 Delaunay Triangulation은 평면의 점 집합에서 "가장 가까운 점" 구조를 다루는 쌍대 개념입니다. 구현 난도는 높지만, 문제에서 어떤 성질을 써야 하는지 알면 closest pair, nearest neighbor, Euclidean MST를 더 구조적으로 볼 수 있습니다.
 
-
-incircle 부호 보정 함수는 triangle 방향을 내부에서 반영합니다. 세 기준점이 일직선이면 외접원이 정의되지 않으므로 호출하지 않습니다. 고정 EPS는 모든 좌표 크기에 대한 정확성 보장이 아닙니다.
-
 ## 문제 신호
 
 | 문제 표현 | 관점 |
@@ -38,6 +35,10 @@ no point p lies strictly inside circumcircle(a, b, c)
 ```
 
 이 조건은 determinant로 판정할 수 있습니다. 아래 코드는 `a,b,c`의 방향을 보정하여, 비공선 삼각형의 외접원 내부이면 양수를 반환합니다.
+
+incircle 부호 보정 함수는 triangle 방향을 내부에서 반영합니다. 세 기준점이 일직선이면 외접원이 정의되지 않으므로 호출하지 않습니다. 고정 EPS는 모든 좌표 크기에 대한 정확성 보장이 아닙니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <cmath>

@@ -69,6 +69,8 @@ Dijkstra의 핵심 선택은 단순합니다.
 
 C++의 `priority_queue`는 기본이 max heap이므로, `greater`를 붙여 min heap처럼 사용합니다. 아래 코드는 방향 그래프이며, 무방향 간선이면 양쪽 인접 리스트에 모두 추가합니다.
 
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+
 ```cpp
 #include <functional>
 #include <queue>
@@ -181,3 +183,29 @@ vector<int> restorePath(int target, const vector<int>& parent) {
 ## 더 단순한 큐로 충분한 경우
 
 모든 간선 비용이 1이면 [BFS](https://h.readiz.com/learn/bfs-dfs-grid), 0과 1만 있으면 [0-1 BFS](https://h.readiz.com/learn/zero-one-bfs)로 처리할 수 있습니다. 거리 순서를 유지하는 데 일반적인 최소 힙까지 필요하지 않기 때문입니다.
+
+## 로컬 연습: 비음수 방향 그래프의 거리
+
+시작점에서 각 정점까지의 최소 비용을 구하세요. 평행 간선과 비용 0인 간선도 허용합니다.
+
+**입력:** N M S 뒤 M줄의 u v w. 1 <= N <= 200000, 0 <= M <= 400000, 0 <= w <= 10^9, 정점은 0-based입니다.
+
+**출력:** 정점 번호순 최소 비용을 한 줄에 출력하고 도달 불가 정점은 -1로 표시합니다.
+
+### 예시
+
+```text exercise=dijkstra role=input
+5 6 0
+0 1 4
+0 2 1
+2 1 2
+1 3 1
+2 3 7
+0 1 5
+```
+
+```text exercise=dijkstra role=output
+0 3 1 4 -1
+```
+
+**확인 방법:** 0→2→1→3은 비용 4입니다. 작은 입력은 Bellman-Ford와 대조합니다. 큐에서 꺼낸 오래된 거리 후보를 건너뛰고, 모든 거리와 누적 비용은 long long으로 계산합니다. 제출용 전환에서는 고정 인접 리스트와 공통 최소 힙을 사용하되 성공한 완화마다 push할 공간을 확보합니다.

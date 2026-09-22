@@ -2,9 +2,6 @@
 
 Rotating Calipers는 Convex Hull 위에서 서로 마주 보는 점이나 변을 선형 시간에 훑는 기법입니다. 모든 점 쌍을 비교하면 `O(n^2)`이지만, 볼록 다각형 위에서는 포인터가 한 방향으로만 움직이므로 지름, 폭, antipodal pair 같은 값을 `O(n)`에 구할 수 있습니다.
 
-
-입력은 중복점·연속한 일직선 점을 제거한 반시계 볼록 hull이며 좌표 절댓값은 `10^9` 이하입니다. 폭에서 외적 절댓값은 삼각형 넓이의 두 배이므로 이를 변 길이로 나눕니다.
-
 ## 언제 필요한가
 
 Convex Hull까지 만든 뒤 아래 질문이 나오면 Rotating Calipers를 의심합니다.
@@ -32,6 +29,10 @@ area(edge i, point j+1) > area(edge i, point j)
 ## 지름 구하기
 
 아래 구현은 hull이 반시계 방향이며, 첫 점을 끝에 다시 붙이지 않은 상태라고 가정합니다. 반환값은 최대 거리의 제곱입니다.
+
+입력은 중복점·연속한 일직선 점을 제거한 반시계 볼록 hull이며 좌표 절댓값은 `10^9` 이하입니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -123,7 +124,7 @@ while area(i, j+1) > area(i, j):
 | 폭 | 변-점 거리 최소 | 각 변과 반대편 점의 높이 |
 | 최소 bounding rectangle | 회전 방향의 가로/세로 | 여러 caliper를 동시에 회전 |
 
-폭은 `area(edge, point) / edge_length`로 높이를 구합니다. 정수 비교만으로 끝나지 않고 실수 값이 필요할 수 있으므로 오차 처리까지 확인해야 합니다.
+폭은 `abs(cross(edge, point)) / edge_length`로 높이를 구합니다. 외적 절댓값은 삼각형 넓이의 두 배이므로 이를 변 길이로 나눕니다. 정수 비교만으로 끝나지 않고 실수 값이 필요할 수 있으므로 오차 처리까지 확인해야 합니다.
 
 ## 최소 폭 구현
 

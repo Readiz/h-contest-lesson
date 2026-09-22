@@ -2,9 +2,6 @@
 
 Monge array는 행과 열의 최솟값 위치가 단조로 움직이는 특수한 행렬입니다. 이런 구조에서는 각 행의 최솟값을 모든 열에 대해 직접 보지 않고도 빠르게 찾을 수 있습니다. SMAWK는 totally monotone matrix에서 행 최솟값을 선형에 가깝게 구하는 알고리즘입니다.
 
-
-행·열 ID는 각각 증가 순서이며 행이 있으면 열도 비어 있지 않아야 합니다. 모든 부분행렬에서 가장 왼쪽 최소 열이 아래로 갈수록 감소하지 않는 totally monotone 조건을 사용합니다. 아래 strict 부등식은 이 tie 규칙에 맞춘 방향입니다.
-
 ## Monge Array
 
 행렬 `A`가 Monge라는 것은 모든 `i1 < i2`, `j1 < j2`에 대해 아래가 성립한다는 뜻입니다.
@@ -26,6 +23,8 @@ A[i1][j1] > A[i1][j2] 이면 A[i2][j1] > A[i2][j2]
 
 이 조건은 row minimum의 단조성을 보장합니다. Monge array는 totally monotone이지만, totally monotone이 항상 Monge인 것은 아닙니다.
 
+행·열 ID는 각각 증가 순서이며 행이 있으면 열도 비어 있지 않아야 합니다. 모든 부분행렬에서 가장 왼쪽 최소 열이 아래로 갈수록 감소하지 않는 totally monotone 조건을 사용합니다. 아래 strict 부등식은 이 tie 규칙에 맞춘 방향입니다.
+
 ## 언제 쓰는가
 
 | 문제 신호 | 접근 |
@@ -40,6 +39,8 @@ SMAWK는 행렬 값을 전부 저장하지 않고 `value(row, col)` 함수로 �
 ## 단순 monotone row minima
 
 SMAWK 전체 구현은 까다롭습니다. 먼저 row minimum이 단조일 때 divide-and-conquer로 찾는 구조를 이해하면 좋습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <functional>

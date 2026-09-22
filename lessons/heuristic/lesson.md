@@ -10,7 +10,8 @@
 
 ## 본문
 
-- [배송 순서 개선](pages/ordering-route-improvement.md): 열린 경로의 유효한 초기해, 2-opt 차분과 완성 구현.
-- [초기해와 지역 탐색](pages/search-strategies.md): 지역 최적, 나쁜 이동의 수락, 재시도와 실험 비교.
-- [광고판 도시 배치](pages/placement-and-repair.md): bitmask 점유 검사, 위치 평가와 destroy/repair.
-- [31일 설치 일정 Beam Search](pages/aircontech-beam-search.md): 행동 후보와 경로 후보를 따로 줄이고 실제 수익으로 일정을 선택.
+1. [배송 순서 개선](pages/ordering-route-improvement.md): 열린 경로의 유효한 초기해, 2-opt 차분과 완성 구현.
+2. [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress): 차분을 전체 비용 재계산과 대조하고 복구·재현성을 확인.
+3. [초기해와 지역 탐색](pages/search-strategies.md): 지역 최적 반례에서 출발해 ORDERING에 SA를 붙이고 후보 수·비용·실행 시간을 비교.
+4. [광고판 도시 배치](pages/placement-and-repair.md): bitmask 점유 검사, 위치 평가와 destroy/repair.
+5. [31일 설치 일정 Beam Search](pages/aircontech-beam-search.md): 행동 후보와 경로 후보를 따로 줄이고 실제 수익으로 일정을 선택.

@@ -2,9 +2,6 @@
 
 Point-Based Value Iteration(PBVI)은 POMDP의 연속적인 belief space 전체를 다루지 않고, 대표 belief point 집합에서 value function을 근사하는 planning 기법입니다. 정확한 대회 정답용 알고리즘이라기보다, POMDP가 왜 어려운지와 belief 기반 근사가 어떻게 구성되는지 이해하는 레슨입니다.
 
-
-유한 지평·유한 상태/행동/관측에서 보상 최대화의 value는 piecewise-linear convex입니다. 대표 belief에서의 근사 정확도는 점 집합과 오차 분석에 달려 있으며, 단순히 출력 허용 오차가 있다고 PBVI가 그 오차를 만족하는 것은 아닙니다.
-
 ## 문제 신호
 
 | 문제 표현 | PBVI 관점 |
@@ -26,6 +23,8 @@ V(b) = max_alpha sum_s b[s] * alpha[s]
 ```
 
 각 alpha vector는 어떤 조건부 계획을 따랐을 때 state별 기대 보상을 담습니다. belief가 달라지면 가장 좋은 alpha도 달라집니다.
+
+유한 지평·유한 상태/행동/관측에서 보상 최대화의 value는 piecewise-linear convex입니다. 대표 belief에서의 근사 정확도는 점 집합과 오차 분석에 달려 있으며, 단순히 출력 허용 오차가 있다고 PBVI가 그 오차를 만족하는 것은 아닙니다.
 
 ## 대표 Belief Point
 

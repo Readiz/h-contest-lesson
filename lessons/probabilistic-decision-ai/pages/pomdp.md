@@ -2,9 +2,6 @@
 
 Partially Observable MDP(POMDP)는 실제 상태를 직접 볼 수 없고, action 이후 관측만 받는 Markov Decision Process입니다. Imperfect Information Search가 게임/탐색 관점에서 정보 집합을 다룬다면, POMDP는 belief distribution을 상태로 올려 기대 보상을 계산합니다.
 
-
-관측 likelihood와 전이 확률은 모델에 맞게 정규화되어야 합니다. 확률 0인 관측의 posterior는 정의되지 않으며 빈 벡터로 실패를 알립니다. 이를 영 확률분포로 다음 계산에 넘기지 않습니다. belief 반올림·격자화는 근사이며 정확 memoization과 다릅니다.
-
 ## 문제 신호
 
 | 문제 표현 | POMDP 관점 |
@@ -34,6 +31,10 @@ b'(t) proportional to O(o | t, a) * sum_s P(t | s, a) * b(s)
 정규화 상수는 observation `o`가 나올 확률입니다.
 
 ## Belief Update 구현
+
+관측 likelihood와 전이 확률은 모델에 맞게 정규화되어야 합니다. 확률 0인 관측의 posterior는 정의되지 않으며 빈 벡터로 실패를 알립니다. 이를 영 확률분포로 다음 계산에 넘기지 않습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <vector>
@@ -103,12 +104,16 @@ observation: 길이 젖음 / 마름
 
 ```text
 value(turn, belief) =
-  max_action expected immediate reward
-  + sum_observation P(observation | belief, action)
-      * value(turn - 1, updated_belief)
+  max_action {
+    expected immediate reward(belief, action)
+    + sum_observation P(observation | belief, action)
+        * value(turn - 1, updated_belief(belief, action, observation))
+  }
 ```
 
-belief는 실수 vector라 그대로 map key로 쓰기 어렵습니다. 작은 문제에서는 rational state, discretization, canonical rounding 중 하나를 선택합니다.
+최대화는 즉시 보상과 미래 기대 보상의 **합 전체**에 적용합니다. `value(0, belief)`는 문제에서 정한 종료 보상입니다.
+
+belief를 정확한 유리수나 유한한 관측 이력으로 표현할 수 있다면 같은 상태를 정확히 합칠 수 있습니다. 실수 vector를 이산화하거나 반올림해 map key로 쓰는 것은 근사입니다. 예를 들어 숨은 이진 상태를 맞히면 보상 1인 문제에서 확률 `0.4999`와 `0.5001`은 최적 행동이 반대인데, 둘을 `0.500`으로 합치면 그 차이를 잃습니다. 근사 상태를 쓸 때는 작은 정확 풀이와 오차를 비교합니다.
 
 ## MDP와의 차이
 

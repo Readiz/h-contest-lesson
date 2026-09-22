@@ -2,9 +2,6 @@
 
 Robust Geometry Predicates는 orientation, incircle, 교차 판정처럼 기하 알고리즘의 분기 조건을 안정적으로 계산하는 방법을 정리합니다. 좌표를 구하는 공식보다 `왼쪽인가`, `겹치는가`, `원 안인가` 같은 predicate가 틀리면 전체 알고리즘이 무너집니다.
 
-
-아래 orientation은 좌표 절댓값<=10^18에서 __int128 중간값이 안전합니다. long long 전체 범위를 자동으로 지원하지는 않습니다. EPS comparator의 문제는 근사 동치가 추이적이지 않아 strict weak ordering을 깨뜨릴 수 있다는 것입니다.
-
 ## 문제 신호
 
 | 문제 표현 | Robust Predicate 관점 |
@@ -30,6 +27,10 @@ zero: collinear
 정수 좌표 범위가 `1e9`라면 곱은 `1e18` 근처까지 갑니다. 차이까지 생각하면 `long long` 경계에 닿을 수 있으므로 `__int128`이 안전합니다.
 
 ## 정수 좌표 선분 교차
+
+아래 orientation은 좌표 절댓값<=10^18에서 __int128 중간값이 안전합니다. long long 전체 범위를 자동으로 지원하지는 않습니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -107,6 +108,8 @@ bool segmentsIntersect(RobustPoint a, RobustPoint b, RobustPoint c, RobustPoint 
 | 정렬 comparator | EPS로 strict weak ordering 깨지 않게 주의 |
 
 EPS를 크게 잡으면 가까운 두 점이 같은 점이 되어 버리고, 너무 작게 잡으면 접하는 경우를 놓칩니다.
+
+EPS comparator의 문제는 근사 동치가 추이적이지 않아 strict weak ordering을 깨뜨릴 수 있다는 것입니다.
 
 ## Incircle Predicate
 

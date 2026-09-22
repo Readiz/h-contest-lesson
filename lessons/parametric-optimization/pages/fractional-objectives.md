@@ -2,9 +2,6 @@
 
 Fractional Programming DP는 `benefit / cost`, 평균값, 밀도, 비율 목적식을 직접 최적화하기 어려울 때 `benefit - lambda * cost` 형태의 판정 문제로 바꾸는 기법입니다. DP나 graph feasibility가 비율 안쪽에 들어가면 parametric search, Dinkelbach iteration, binary search on answer를 함께 봅니다.
 
-
-모든 feasible 해의 분모 합이 양수이고 해가 비어 있지 않아야 부등식 변환이 맞습니다. 아래 배열은 비어 있지 않고 1<=minLength<=N, 값은 유한한 실수입니다. 반복 횟수는 초기 폭/2^iterations를 줄이지만 판정의 반올림 오차는 없애지 못합니다.
-
 ## 문제 신호
 
 | 문제 표현 | Fractional 관점 |
@@ -37,6 +34,10 @@ sum (value_i - x * weight_i) >= 0
 ## 평균 Subarray 예시
 
 길이 `k` 이상인 subarray의 최대 평균을 구하려면 각 원소에서 `x`를 뺀 뒤, 길이 `k` 이상 subarray sum이 0 이상인지 확인합니다.
+
+모든 feasible 해의 분모 합이 양수이고 해가 비어 있지 않아야 부등식 변환이 맞습니다. 아래 배열은 비어 있지 않고 1<=minLength<=N, 값은 유한한 실수입니다. 반복 횟수는 초기 폭/2^iterations를 줄이지만 판정의 반올림 오차는 없애지 못합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>

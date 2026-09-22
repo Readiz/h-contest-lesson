@@ -2,9 +2,6 @@
 
 Cactus Representation은 여러 cut이나 biconnected 구조를 "각 edge가 하나의 cycle에만 속하는" 그래프로 압축해 보는 관점입니다. 특히 모든 global minimum cut을 compact하게 표현할 때 cactus가 등장하지만, 구현 난도 때문에 먼저 어떤 문제에서 cactus 모델이 필요한지 구분하는 것이 중요합니다.
 
-
-min-cut cactus의 통상적인 압축 표현은 global min-cut 값이 양수인 무향 그래프를 대상으로 합니다. 비연결 그래프의 0-cut family는 별도로 다룹니다. 아래 DFS는 cactus가 보장되고 self-loop가 없으며 무향 간선마다 고유 ID를 쓰는 입력에서 각 연결 성분에 한 번 실행합니다. 재귀 깊이는 N까지 늘어납니다.
-
 ## 문제 신호
 
 | 문제 표현 | Cactus 관점 |
@@ -30,6 +27,10 @@ Cactus graph는 보통 아래 성질 중 하나로 정의합니다.
 ## 입력 Cactus 처리
 
 입력 그래프가 이미 cactus라면 DFS로 cycle을 찾아 component를 만들 수 있습니다.
+
+아래 DFS는 cactus가 보장되고 self-loop가 없으며 무향 간선마다 고유 ID를 쓰는 입력에서 각 연결 성분에 한 번 실행합니다. 재귀 깊이는 N까지 늘어납니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <algorithm>
@@ -103,6 +104,8 @@ struct CactusDfs {
 | 두 정점이 자주 함께 분리됨 | cactus 위 위치 관계 |
 
 대회에서 이 구조를 직접 구성하는 문제는 드뭅니다. 하지만 "minimum cut이 여러 개"라는 문제 문장을 읽을 때 단일 partition만으로 부족하다는 신호가 됩니다.
+
+min-cut cactus의 통상적인 압축 표현은 global min-cut 값이 양수인 무향 그래프를 대상으로 합니다. 비연결 그래프의 0-cut family는 별도로 다룹니다.
 
 ## Bridge Tree와의 차이
 

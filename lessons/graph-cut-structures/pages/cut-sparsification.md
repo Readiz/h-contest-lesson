@@ -2,9 +2,6 @@
 
 Cut Sparsification은 그래프의 모든 cut 값을 정확히 또는 근사적으로 보존하면서 edge 수를 줄이는 관점입니다. 대회 문제에서는 이론적인 spectral sparsifier보다, MST/forest 기반 certificate, Nagamochi-Ibaraki 스타일의 edge connectivity 보존, cut 후보를 줄이는 모델링으로 자주 등장합니다.
 
-
-각 cut에 대해 certificate의 간선 수는 원래 cut 수 이하이며 min(k,원래 cut 수) 이상입니다. 따라서 크기 k 이하 cut은 정확히 보존하고 더 큰 cut도 k 아래로 줄이지 않습니다. 각 forest는 남은 cut이 비어 있지 않으면 반드시 그 cut을 건넙니다.
-
 ## 문제 신호
 
 | 문제 표현 | Cut Sparsification 관점 |
@@ -30,6 +27,8 @@ repeat k times:
 
 어떤 cut의 크기가 k 이하라면, 각 forest는 그 cut을 건너는 edge를 적어도 하나 포함하려고 합니다. 그래서 작은 cut은 certificate 안에서도 관찰됩니다.
 
+각 cut에 대해 certificate의 간선 수는 원래 cut 수 이하이며 min(k,원래 cut 수) 이상입니다. 따라서 크기 k 이하 cut은 정확히 보존하고 더 큰 cut도 k 아래로 줄이지 않습니다. 각 forest는 남은 cut이 비어 있지 않으면 반드시 그 cut을 건넙니다.
+
 ## Cut Threshold
 
 문제에서 "min cut이 k보다 작은가?"만 필요하면, cut 값이 큰 부분을 정확히 보존할 필요가 없습니다.
@@ -46,6 +45,8 @@ threshold가 있으면 sparse certificate가 실용적입니다. 반대로 정�
 ## Forest Layer Certificate
 
 아래 코드는 unweighted undirected graph에서 forest layer를 최대 `k`번 뽑아 certificate edge를 만드는 뼈대입니다. 실제 문제에서는 multi-edge id와 edge removal을 정확히 관리해야 합니다.
+
+> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-contest-basics)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
 
 ```cpp compile-check
 #include <numeric>
