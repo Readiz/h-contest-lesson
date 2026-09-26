@@ -557,6 +557,8 @@ def main() -> None:
 
     subprocess.run([sys.executable, str(ROOT / "scripts/check_review_examples.py")], check=True)
 
+    subprocess.run(["node", str(ROOT / "scripts/check_demos.cjs")], check=True)
+
     print(f"OK: {len(lessons)} lessons validated")
 
 

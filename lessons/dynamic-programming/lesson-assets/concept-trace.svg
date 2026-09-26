@@ -1,1 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc"><title id="title">0/1 배낭: 큰 용량부터 갱신</title><desc id="desc">무게2 가치3 물건 하나를 정방향 갱신하면 두 번 써서6이 되지만 역방향은 이전 값만 읽어3입니다.</desc><style>text{font-family:system-ui,sans-serif;fill:#172a46;font-size:21px}.small{font-size:18px}.title{font-size:28px;font-weight:700}.strong{font-weight:700}rect,line,path,circle{vector-effect:non-scaling-stroke}</style><rect width="720" height="500" rx="18" fill="#f5f8fc"/><text x="28" y="44" class="title">0/1 배낭: 큰 용량부터 갱신</text><text x="28" y="90" class="">한 물건: 무게 2, 가치 3 / 용량 4</text><text x="28" y="135" class="">잘못된 정방향: 같은 물건을 다시 사용</text><rect x="28" y="160" width="280" height="55" rx="8" fill="#fee2e2" stroke="#607999"/><text x="40" y="194.5" class="">dp[2] = dp[0]+3 = 3</text><rect x="360" y="160" width="332" height="55" rx="8" fill="#fee2e2" stroke="#607999"/><text x="372" y="194.5" class="">dp[4] = 새 dp[2]+3 = 6</text><line x1="310" y1="188" x2="356" y2="188" stroke="#607999" stroke-width="3"/><text x="28" y="270" class="">올바른 역방향: 이전 물건까지의 값 참조</text><rect x="28" y="295" width="330" height="55" rx="8" fill="#d1fae5" stroke="#607999"/><text x="40" y="329.5" class="">dp[4] = 이전 dp[2]+3 = 3</text><rect x="398" y="295" width="294" height="55" rx="8" fill="#d1fae5" stroke="#607999"/><text x="410" y="329.5" class="">dp[2] = dp[0]+3 = 3</text><text x="28" y="407" class="strong">용량 순서: 4 → 3 → 2</text><text x="28" y="456" class="">아직 갱신하지 않은 작은 용량을 읽습니다.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 1160" role="img" aria-labelledby="title desc">
+<title id="title">0/1 배낭: 역방향과 정방향의 셀 갱신 비교</title><desc id="desc">무게 2 가치 3인 물건 하나, 용량 4, 초기 dp는 모두 0입니다. 역방향 4 3 2는 아직 갱신하지 않은 작은 용량을 읽어 답 3을 얻습니다. 정방향 2 3 4는 이번 물건으로 갱신한 dp[2]=3을 다시 읽어 dp[4]=6을 만들어 같은 물건을 두 번 씁니다.</desc>
+<style>text{font-family:system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;fill:#172c49;font-size:24px}.title{font-size:29px;font-weight:750}.label{font-weight:700}.small{font-size:22px}.muted{fill:#53657d}.mono{font-family:ui-monospace,SFMono-Regular,monospace;font-size:25px;font-weight:650}path,line{stroke-linecap:round;stroke-linejoin:round}</style>
+<rect width="560" height="1160" rx="18" fill="#f5f8fc"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="context-stroke"/></marker></defs>
+<text x="24" y="44" class="title">0/1 배낭: 읽는 값이 다릅니다</text>
+<text x="24" y="83" class="label">물건 하나: 무게 2 · 가치 3</text>
+<text x="24" y="119" class="small muted">용량 4 · 처음에는 모든 dp가 0</text>
+<rect x="16" y="145" width="528" height="451" rx="12" fill="#fff" stroke="#b7dfcf"/>
+<text x="32" y="184" class="label" style="fill:#087f73">역방향 4 → 3 → 2: 한 번 사용</text>
+<text x="33" y="214" class="small muted">용량</text>
+<text x="78" y="246" class="small muted" text-anchor="middle">0</text>
+<text x="179" y="246" class="small muted" text-anchor="middle">1</text>
+<text x="280" y="246" class="small muted" text-anchor="middle">2</text>
+<text x="381" y="246" class="small muted" text-anchor="middle">3</text>
+<text x="482" y="246" class="small muted" text-anchor="middle">4</text>
+<text x="32" y="267" class="small">① dp[4] = 이전 dp[2] + 3</text>
+<rect x="32" y="294" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="78" y="328" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="133" y="294" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="179" y="328" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="234" y="294" width="92" height="49" rx="9" fill="#eaf2ff" stroke="#2563eb"/>
+<text x="280" y="328" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="335" y="294" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="381" y="328" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="436" y="294" width="92" height="49" rx="9" fill="#e6f5ef" stroke="#087f73"/>
+<text x="482" y="328" class="mono" style="fill:#087f73" text-anchor="middle">3</text>
+<path d="M280 287V277H482V287" fill="none" stroke="#087f73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="32" y="376" class="small">② dp[3] = 이전 dp[1] + 3</text>
+<rect x="32" y="403" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="78" y="437" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="133" y="403" width="92" height="49" rx="9" fill="#eaf2ff" stroke="#2563eb"/>
+<text x="179" y="437" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="234" y="403" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="280" y="437" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="335" y="403" width="92" height="49" rx="9" fill="#e6f5ef" stroke="#087f73"/>
+<text x="381" y="437" class="mono" style="fill:#087f73" text-anchor="middle">3</text>
+<rect x="436" y="403" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="482" y="437" class="mono" style="fill:#172c49" text-anchor="middle">3</text>
+<path d="M179 396V386H381V396" fill="none" stroke="#087f73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="32" y="485" class="small">③ dp[2] = 이전 dp[0] + 3</text>
+<rect x="32" y="512" width="92" height="49" rx="9" fill="#eaf2ff" stroke="#2563eb"/>
+<text x="78" y="546" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="133" y="512" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="179" y="546" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="234" y="512" width="92" height="49" rx="9" fill="#e6f5ef" stroke="#087f73"/>
+<text x="280" y="546" class="mono" style="fill:#087f73" text-anchor="middle">3</text>
+<rect x="335" y="512" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="381" y="546" class="mono" style="fill:#172c49" text-anchor="middle">3</text>
+<rect x="436" y="512" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="482" y="546" class="mono" style="fill:#172c49" text-anchor="middle">3</text>
+<path d="M78 505V495H280V505" fill="none" stroke="#087f73" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="32" y="582" class="small" style="fill:#087f73">파란 칸은 아직 0 → 최종 답 3</text>
+<rect x="16" y="624" width="528" height="451" rx="12" fill="#fff" stroke="#efc8c4"/>
+<text x="32" y="663" class="label" style="fill:#b93838">정방향 2 → 3 → 4: 중복 사용</text>
+<text x="33" y="693" class="small muted">용량</text>
+<text x="78" y="725" class="small muted" text-anchor="middle">0</text>
+<text x="179" y="725" class="small muted" text-anchor="middle">1</text>
+<text x="280" y="725" class="small muted" text-anchor="middle">2</text>
+<text x="381" y="725" class="small muted" text-anchor="middle">3</text>
+<text x="482" y="725" class="small muted" text-anchor="middle">4</text>
+<text x="32" y="746" class="small">① dp[2] = dp[0] + 3</text>
+<rect x="32" y="773" width="92" height="49" rx="9" fill="#eaf2ff" stroke="#2563eb"/>
+<text x="78" y="807" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="133" y="773" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="179" y="807" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="234" y="773" width="92" height="49" rx="9" fill="#fff0ef" stroke="#b93838"/>
+<text x="280" y="807" class="mono" style="fill:#b93838" text-anchor="middle">3</text>
+<rect x="335" y="773" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="381" y="807" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="436" y="773" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="482" y="807" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<path d="M78 766V756H280V766" fill="none" stroke="#b93838" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="32" y="855" class="small">② dp[3] = dp[1] + 3</text>
+<rect x="32" y="882" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="78" y="916" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="133" y="882" width="92" height="49" rx="9" fill="#eaf2ff" stroke="#2563eb"/>
+<text x="179" y="916" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="234" y="882" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="280" y="916" class="mono" style="fill:#172c49" text-anchor="middle">3</text>
+<rect x="335" y="882" width="92" height="49" rx="9" fill="#fff0ef" stroke="#b93838"/>
+<text x="381" y="916" class="mono" style="fill:#b93838" text-anchor="middle">3</text>
+<rect x="436" y="882" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="482" y="916" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<path d="M179 875V865H381V875" fill="none" stroke="#b93838" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="32" y="964" class="small">③ dp[4] = 새 dp[2] + 3</text>
+<rect x="32" y="991" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="78" y="1025" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="133" y="991" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="179" y="1025" class="mono" style="fill:#172c49" text-anchor="middle">0</text>
+<rect x="234" y="991" width="92" height="49" rx="9" fill="#eaf2ff" stroke="#2563eb"/>
+<text x="280" y="1025" class="mono" style="fill:#172c49" text-anchor="middle">3</text>
+<rect x="335" y="991" width="92" height="49" rx="9" fill="#fff" stroke="#cad5e2"/>
+<text x="381" y="1025" class="mono" style="fill:#172c49" text-anchor="middle">3</text>
+<rect x="436" y="991" width="92" height="49" rx="9" fill="#fff0ef" stroke="#b93838"/>
+<text x="482" y="1025" class="mono" style="fill:#b93838" text-anchor="middle">6</text>
+<path d="M280 984V974H482V984" fill="none" stroke="#b93838" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="32" y="1061" class="small" style="fill:#b93838">새 값 3을 다시 읽음 → 잘못된 답 6</text>
+<text x="24" y="1114" class="small muted">화살표: 읽는 칸 → 갱신하는 칸</text>
+<text x="24" y="1146" class="small muted">같은 물건의 재사용 여부를 확인하세요.</text>
+</svg>

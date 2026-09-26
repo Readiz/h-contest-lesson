@@ -61,9 +61,9 @@ Dijkstra의 핵심 선택은 단순합니다.
 
 ## 우선순위 큐 구현
 
-![정점0에서2로 직접 비용5, 1을 거치면2+1=3입니다. 큐의 거리5 후보는 현재 거리3과 달라 버립니다.](lesson-assets/concept-trace.svg)
+[Dijkstra: 거리 갱신과 낡은 후보 건너뛰기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=dijkstra)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/dijkstra/lesson-assets/concept-trace.svg)
+우선순위 큐의 후보와 현재 최단거리 배열을 나란히 비교해 보세요. 더 짧은 경로를 찾은 뒤에도 큐에 남아 있는 이전 후보를 꺼내면, 거리 불일치를 확인하고 확장하지 않습니다.
 
 매번 아직 확정하지 않은 모든 정점을 훑어 최솟값을 찾으면 `O(V^2)`입니다. 간선이 많지 않은 그래프에서는 우선순위 큐를 써서 더 빠르게 구현합니다.
 

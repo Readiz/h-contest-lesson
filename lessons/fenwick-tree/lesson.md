@@ -51,7 +51,7 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 ## prefixSum
 
-![prefixSum(13)은 13, 9부터12, 1부터8의 서로 겹치지 않는 구간을 더합니다.](lesson-assets/concept-trace.svg)
+![prefixSum(13)은 tree[13]의 한 칸, tree[12]의 9부터 12까지 네 칸, tree[8]의 1부터 8까지 여덟 칸을 더합니다. lowbit를 빼며 인덱스 13, 12, 8, 0으로 이동하고 세 구간은 1부터 13까지를 겹침 없이 덮습니다.](lesson-assets/concept-trace.svg)
 
 [그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/fenwick-tree/lesson-assets/concept-trace.svg)
 

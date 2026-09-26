@@ -105,7 +105,7 @@ contact가 높으면 광고가 구석이나 기존 물체에 붙어 빈 공간�
 
 광고 하나만 빼서는 빈 공간 구조가 크게 바뀌지 않습니다. 이미 나쁘게 쪼개진 공간은 작은 이동만으로 회복하기 어렵습니다.
 
-![2행4열의 가운데 두 열을 점수3인 A와 B가 막으면2행3열 점수10인 C는 못 들어갑니다. 둘을 제거하면6점에서10점으로 개선됩니다.](../lesson-assets/destroy-repair.svg)
+![2행 4열 보드에서 A와 B가 가운데 두 열을 차지합니다. A만 제거하면 빈 폭이 2라서 폭 3인 C가 B와 겹칩니다. A와 B를 함께 제거하고 C를 넣으면 점수가 6에서 10으로 개선됩니다.](../lesson-assets/destroy-repair.svg)
 
 [그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/destroy-repair.svg)
 

@@ -192,6 +192,27 @@ long long square(int value) {
 ```
 ````
 
+## 시각 자료와 단계별 데모
+
+그림은 요약 문장을 장식하는 대신 입력·좌표·연결·상태 변화 중 무엇을 보여 주는지 먼저 정합니다. 넓은 SVG 안에 긴 설명을 작게 넣지 않고, 모바일 본문 폭에서도 읽을 수 있도록 짧은 라벨과 충분한 글자 크기를 씁니다. 전제와 긴 설명은 본문에 둡니다. 모든 SVG에는 `title`·`desc`와 구체적인 Markdown 대체 텍스트가 필요합니다.
+
+진행 순서가 핵심인 예제는 `demos/`의 정적 HTML/CSS/classic JavaScript 데모를 사용합니다. 별도 라이브러리나 빌드 없이 실행되며, 모델은 `demos/models.js`에서 실제 상태를 계산합니다. 임의의 예시 슬라이드를 알고리즘 실행 결과처럼 표시하지 않습니다.
+
+본문에는 다음과 같은 **단독 문단 링크**를 해당 설명 옆에 둡니다. GitHub/Pages에서는 독립 페이지로 열리고 h-contest 레슨 화면에서는 눌러 여는 데모로 표시됩니다.
+
+```markdown
+[이분 탐색: 답이 남는 구간 따라가기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=binary-search)
+```
+
+등록 ID는 `binary-search`, `bfs`, `dijkstra`, `prefix-sum`, `two-opt`, `annealing`입니다. 새 ID를 추가하면 앱의 허용 목록도 같은 릴리즈에서 갱신해야 합니다. 공개 링크는 정확한 `https` URL과 `demo` 파라미터 하나만 사용합니다.
+
+- 이전·다음·재생·처음·진행 위치와 관련 입력/예제를 제공하고 기본 자동재생은 끕니다. 입력 변경·마지막 단계·페이지 비활성화 시 재생을 멈춥니다.
+- 작은 화면에서도 상태 설명과 수치는 HTML 텍스트로 읽을 수 있어야 합니다. 색상만으로 상태를 구분하지 않고 이름·테두리·기호를 함께 씁니다.
+- 앱 iframe은 `sandbox="allow-scripts"`만 허용합니다. 외부 통신·저장소·부모 DOM 접근 없이 실행하고, 높이만 `hcontest-lesson-demo-resize` 메시지로 전달합니다.
+- `node scripts/check_demos.cjs`로 독립 기준값·경계·중간 상태를 확인합니다. 전체 Python validator에도 포함되므로 Python/C++ 외 Node.js가 필요합니다.
+- 390px·1280px 실제 브라우저에서 각 데모의 처음·중간·마지막 상태와 입력 변경, 키보드 조작, overflow를 확인합니다. 모델 검산만으로 시각 검수가 끝나지는 않습니다.
+- 원본 Pages 공개 후 앱 저장소의 `node scripts/sync-lesson-demos.mjs ../h-contest-lesson`로 검증된 원본을 복사 배포합니다. 앱 복사본은 직접 수정하지 않습니다.
+
 ## PR 전에 확인할 것
 
 - `lessons/<lessonId>/lesson.md`를 추가하거나 수정했나요?

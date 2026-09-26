@@ -1,1 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 610" role="img" aria-labelledby="title desc"><title id="title">한 개 제거로는 안 열리는 공간</title><desc id="desc">2행4열의 가운데 두 열을 점수3인 A와 B가 막으면2행3열 점수10인 C는 못 들어갑니다. 둘을 제거하면6점에서10점으로 개선됩니다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#607b98"/></marker></defs><style>text{font-family:system-ui,sans-serif}path,rect,circle{vector-effect:non-scaling-stroke}</style><rect width="600" height="610" rx="16" fill="#f5f8fc"/><text x="24" y="43" font-size="27" fill="#18324f">한 개 제거로는 안 열리는 공간</text><text x="24" y="90" font-size="22" fill="#18324f">같은 2×4 공간 / 회전 없음 / 창문 없음</text><text x="24" y="139" font-size="21" fill="#18324f">기존: A(3점), B(3점)</text><rect x="24" y="165" width="58" height="58" rx="9" fill="#fff" stroke="#91a4b9"/><text x="36" y="202.0" font-size="24" fill="#18324f">.</text><rect x="86" y="165" width="58" height="58" rx="9" fill="#fde68a" stroke="#91a4b9"/><text x="98" y="202.0" font-size="24" fill="#18324f">A</text><rect x="148" y="165" width="58" height="58" rx="9" fill="#fde68a" stroke="#91a4b9"/><text x="160" y="202.0" font-size="24" fill="#18324f">B</text><rect x="210" y="165" width="58" height="58" rx="9" fill="#fff" stroke="#91a4b9"/><text x="222" y="202.0" font-size="24" fill="#18324f">.</text><rect x="24" y="227" width="58" height="58" rx="9" fill="#fff" stroke="#91a4b9"/><text x="36" y="264.0" font-size="24" fill="#18324f">.</text><rect x="86" y="227" width="58" height="58" rx="9" fill="#fde68a" stroke="#91a4b9"/><text x="98" y="264.0" font-size="24" fill="#18324f">A</text><rect x="148" y="227" width="58" height="58" rx="9" fill="#fde68a" stroke="#91a4b9"/><text x="160" y="264.0" font-size="24" fill="#18324f">B</text><rect x="210" y="227" width="58" height="58" rx="9" fill="#fff" stroke="#91a4b9"/><text x="222" y="264.0" font-size="24" fill="#18324f">.</text><text x="320" y="139" font-size="21" fill="#18324f">repair: C(10점)</text><rect x="320" y="165" width="58" height="58" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="332" y="202.0" font-size="24" fill="#18324f">C</text><rect x="382" y="165" width="58" height="58" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="394" y="202.0" font-size="24" fill="#18324f">C</text><rect x="444" y="165" width="58" height="58" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="456" y="202.0" font-size="24" fill="#18324f">C</text><rect x="506" y="165" width="58" height="58" rx="9" fill="#fff" stroke="#91a4b9"/><text x="518" y="202.0" font-size="24" fill="#18324f">.</text><rect x="320" y="227" width="58" height="58" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="332" y="264.0" font-size="24" fill="#18324f">C</text><rect x="382" y="227" width="58" height="58" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="394" y="264.0" font-size="24" fill="#18324f">C</text><rect x="444" y="227" width="58" height="58" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="456" y="264.0" font-size="24" fill="#18324f">C</text><rect x="506" y="227" width="58" height="58" rx="9" fill="#fff" stroke="#91a4b9"/><text x="518" y="264.0" font-size="24" fill="#18324f">.</text><text x="24" y="335" font-size="22" fill="#18324f">A 하나만 빼면 B가 남아 C(2×3)를 막습니다.</text><text x="24" y="385" font-size="22" fill="#18324f">A와 B를 함께 빼고 C를 넣으면 6 → 10점.</text><rect x="24" y="430" width="552" height="57" rx="9" fill="#e5effa" stroke="#91a4b9"/><text x="36" y="466.5" font-size="24" fill="#18324f">제거·시험·복구는 로컬 상태에서만</text><text x="24" y="529" font-size="22" fill="#18324f">최종 배치를 선택한 뒤 place_ad를 호출합니다.</text><text x="24" y="574" font-size="21" fill="#18324f">공개 API로 놓은 광고는 로컬 삭제로 복구 불가</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 892" role="img" aria-labelledby="title desc">
+<title id="title">함께 비워야 열리는 공간</title><desc id="desc">2행 4열 보드의 가운데 두 열을 각각 점수 3인 2행 1열 광고 A와 B가 차지합니다. A만 제거하면 최대 빈 폭은 2여서 2행 3열 광고 C가 들어가지 않습니다. 둘을 제거하고 C를 배치하면 점수가 6에서 10으로 오릅니다.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#2664ce"/></marker>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#147d69"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515"/></marker>
+</defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="598" height="890" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce" stroke="#2664ce" stroke-width="1.5"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">함께 비워야 열리는 공간</text>
+<text x="28" y="91" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">2행 × 4열 · A와 B는 각 3점 · C는 10점</text>
+<rect x="28" y="114" width="544" height="213" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="149" font-size="24" fill="#172b45" font-weight="750" text-anchor="start">01  현재 배치</text>
+<rect x="44" y="169" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="108" y="169" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="172" y="169" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="236" y="169" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="44" y="233" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="108" y="233" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="172" y="233" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="236" y="233" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="111" y="172" width="58" height="122" rx="8" fill="#fff0d8" stroke="#d9a668" stroke-width="1.5"/>
+<text x="140.0" y="241" font-size="29" fill="#ae5515" font-weight="750" text-anchor="middle">A</text>
+<rect x="175" y="172" width="58" height="122" rx="8" fill="#e9e5fb" stroke="#a299cd" stroke-width="1.5"/>
+<text x="204.0" y="241" font-size="29" fill="#64518e" font-weight="750" text-anchor="middle">B</text>
+<text x="329" y="200" font-size="23" fill="#172b45" font-weight="700" text-anchor="start">점수 3 + 3</text>
+<text x="329" y="240" font-size="30" fill="#172b45" font-weight="750" text-anchor="start">= 6</text>
+<text x="329" y="282" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">빈칸이 나뉨</text>
+<path d="M 172 336 V 363" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="28" y="350" width="544" height="213" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="385" font-size="24" fill="#172b45" font-weight="750" text-anchor="start">02  A만 제거</text>
+<rect x="44" y="405" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="108" y="405" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="172" y="405" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="236" y="405" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="44" y="469" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="108" y="469" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="172" y="469" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="236" y="469" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="175" y="408" width="58" height="122" rx="8" fill="#e9e5fb" stroke="#a299cd" stroke-width="1.5"/>
+<text x="204.0" y="477" font-size="29" fill="#64518e" font-weight="750" text-anchor="middle">B</text>
+<rect x="47" y="408" width="122" height="122" rx="8" fill="#e6f4ed" stroke="#a9d2bf" stroke-width="1.5"/>
+<text x="108" y="477" font-size="22" fill="#147d69" font-weight="700" text-anchor="middle">빈 폭 2</text>
+<rect x="50" y="413" width="180" height="112" rx="8" fill="none" stroke="#ae5515" stroke-width="1.5" stroke-dasharray="7 5"/>
+<path d="M 190 493 l 24 24 m 0 -24 l -24 24" fill="none" stroke="#ae5515" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="329" y="436" font-size="23" fill="#ae5515" font-weight="750" text-anchor="start">C는 폭 3</text>
+<text x="329" y="476" font-size="25" fill="#ae5515" font-weight="750" text-anchor="start">B와 겹침</text>
+<text x="329" y="518" font-size="22" fill="#ae5515" font-weight="400" text-anchor="start">배치 불가</text>
+<path d="M 172 572 V 599" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="28" y="586" width="544" height="213" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="621" font-size="24" fill="#172b45" font-weight="750" text-anchor="start">03  A·B 제거 후 재배치</text>
+<rect x="44" y="641" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="108" y="641" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="172" y="641" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="236" y="641" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="44" y="705" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="108" y="705" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="172" y="705" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="236" y="705" width="64" height="64" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="47" y="644" width="186" height="122" rx="8" fill="#dcf1e7" stroke="#69ae92" stroke-width="1.5"/>
+<text x="140.0" y="702" font-size="30" fill="#147d69" font-weight="750" text-anchor="middle">C</text>
+<text x="140.0" y="738" font-size="24" fill="#147d69" font-weight="650" text-anchor="middle">2 × 3</text>
+<text x="329" y="672" font-size="27" fill="#147d69" font-weight="750" text-anchor="start">점수 10</text>
+<text x="329" y="712" font-size="27" fill="#147d69" font-weight="750" text-anchor="start">6 → 10</text>
+<text x="329" y="754" font-size="22" fill="#147d69" font-weight="400" text-anchor="start">4점 개선</text>
+<text x="28" y="839" font-size="23" fill="#172b45" font-weight="650" text-anchor="start">로컬 상태에서 제거·시험·복구합니다.</text>
+<text x="28" y="875" font-size="23" fill="#53657d" font-weight="400" text-anchor="start">최종 배치를 고른 뒤 place_ad를 호출합니다.</text>
+</svg>

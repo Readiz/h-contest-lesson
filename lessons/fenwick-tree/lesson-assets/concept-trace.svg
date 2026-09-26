@@ -1,1 +1,87 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc"><title id="title">Fenwick: prefix를 구간으로 분해</title><desc id="desc">prefixSum(13)은 13, 9부터12, 1부터8의 서로 겹치지 않는 구간을 더합니다.</desc><style>text{font-family:system-ui,sans-serif;fill:#172a46;font-size:21px}.small{font-size:18px}.title{font-size:28px;font-weight:700}.strong{font-weight:700}rect,line,path,circle{vector-effect:non-scaling-stroke}</style><rect width="720" height="500" rx="18" fill="#f5f8fc"/><text x="28" y="44" class="title">Fenwick: prefix를 구간으로 분해</text><text x="28" y="90" class="">prefixSum(13): 겹치지 않는 세 구간</text><rect x="28" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="40" y="151.0" class="">1</text><rect x="78" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="90" y="151.0" class="">2</text><rect x="128" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="140" y="151.0" class="">3</text><rect x="178" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="190" y="151.0" class="">4</text><rect x="228" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="240" y="151.0" class="">5</text><rect x="278" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="290" y="151.0" class="">6</text><rect x="328" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="340" y="151.0" class="">7</text><rect x="378" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="390" y="151.0" class="">8</text><rect x="428" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="440" y="151.0" class="">9</text><rect x="478" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="490" y="151.0" class="">10</text><rect x="528" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="540" y="151.0" class="">11</text><rect x="578" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="590" y="151.0" class="">12</text><rect x="628" y="120" width="46" height="48" rx="8" fill="#fff" stroke="#607999"/><text x="640" y="151.0" class="">13</text><rect x="28" y="205" width="396" height="52" rx="8" fill="#dbeafe" stroke="#607999"/><text x="40" y="238.0" class="">tree[8] = a[1..8]</text><rect x="428" y="275" width="196" height="52" rx="8" fill="#d1fae5" stroke="#607999"/><text x="440" y="308.0" class="">tree[12]: 9..12</text><rect x="628" y="345" width="64" height="52" rx="8" fill="#fde68a" stroke="#607999"/><text x="640" y="378.0" class="">13</text><text x="28" y="380" class="strong">13 → 12 → 8 → 0</text><text x="28" y="423" class="">idx -= lowbit(idx) 로 바로 앞 구간에 이동</text><text x="28" y="464" class="">총합 = tree[13] + tree[12] + tree[8]</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 694" role="img" aria-labelledby="title desc">
+<title id="title">Fenwick: 구간을 건너뛰며 더하기</title><desc id="desc">prefixSum(13)은 tree[13]의 13번째 한 칸, tree[12]의 9번째부터 12번째까지 네 칸, tree[8]의 1번째부터 8번째까지 여덟 칸을 차례로 더합니다. 인덱스에서 lowbit를 빼며 13, 12, 8, 0으로 이동합니다. 이 세 구간은 서로 겹치지 않고 1부터 13까지를 덮습니다.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#2664ce"/></marker>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#147d69"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515"/></marker>
+</defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="598" height="692" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce" stroke="#2664ce" stroke-width="1.5"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">Fenwick: 구간을 건너뛰며 더하기</text>
+<text x="28" y="91" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">prefixSum(13) · 칸의 숫자는 값이 아닌 인덱스</text>
+<text x="60.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">1</text>
+<text x="100.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">2</text>
+<text x="140.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">3</text>
+<text x="180.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">4</text>
+<text x="220.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">5</text>
+<text x="260.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">6</text>
+<text x="300.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">7</text>
+<text x="340.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">8</text>
+<text x="380.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">9</text>
+<text x="420.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">10</text>
+<text x="460.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">11</text>
+<text x="500.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">12</text>
+<text x="540.0" y="139" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">13</text>
+<text x="28" y="175" font-size="24" fill="#ae5515" font-weight="750" text-anchor="start">1  tree[13]</text>
+<text x="572" y="175" font-size="22" fill="#ae5515" font-weight="650" text-anchor="end">lowbit(13) = 1</text>
+<rect x="40" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="80" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="120" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="160" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="200" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="240" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="280" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="320" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="360" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="400" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="440" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="480" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="520" y="202" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="520" y="202" width="40" height="49" rx="4" fill="#fff0d8" stroke="#ae5515" stroke-width="1.5"/>
+<text x="540" y="235" font-size="23" fill="#ae5515" font-weight="750" text-anchor="middle">13</text>
+<text x="28" y="287" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">13 − 1 = 12 · 바로 앞 구간으로</text>
+<text x="28" y="312" font-size="24" fill="#147d69" font-weight="750" text-anchor="start">2  tree[12]</text>
+<text x="572" y="312" font-size="22" fill="#147d69" font-weight="650" text-anchor="end">lowbit(12) = 4</text>
+<rect x="40" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="80" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="120" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="160" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="200" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="240" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="280" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="320" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="360" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="400" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="440" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="480" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="520" y="339" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="360" y="339" width="160" height="49" rx="4" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="440" y="372" font-size="23" fill="#147d69" font-weight="750" text-anchor="middle">9..12</text>
+<text x="28" y="424" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">12 − 4 = 8 · 바로 앞 구간으로</text>
+<text x="28" y="449" font-size="24" fill="#2664ce" font-weight="750" text-anchor="start">3  tree[8]</text>
+<text x="572" y="449" font-size="22" fill="#2664ce" font-weight="650" text-anchor="end">lowbit(8) = 8</text>
+<rect x="40" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="80" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="120" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="160" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="200" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="240" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="280" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="320" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="360" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="400" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="440" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="480" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="520" y="476" width="40" height="49" rx="0" fill="#edf1f6" stroke="#d6dfeb" stroke-width="1.5"/>
+<rect x="40" y="476" width="320" height="49" rx="4" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="200" y="509" font-size="23" fill="#2664ce" font-weight="750" text-anchor="middle">1..8</text>
+<text x="28" y="561" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">8 − 8 = 0 · 종료</text>
+<rect x="28" y="595" width="544" height="74" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="626" font-size="23" fill="#2664ce" font-weight="750" text-anchor="start">1..8</text>
+<text x="138" y="626" font-size="23" fill="#53657d" font-weight="400" text-anchor="start">+</text>
+<text x="174" y="626" font-size="23" fill="#147d69" font-weight="750" text-anchor="start">9..12</text>
+<text x="278" y="626" font-size="23" fill="#53657d" font-weight="400" text-anchor="start">+</text>
+<text x="314" y="626" font-size="23" fill="#ae5515" font-weight="750" text-anchor="start">13</text>
+<text x="368" y="626" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">= 1..13</text>
+<text x="44" y="656" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">세 구간은 겹치지 않고 전체 prefix를 덮습니다.</text>
+</svg>

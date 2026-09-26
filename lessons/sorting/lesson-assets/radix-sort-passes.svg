@@ -1,40 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
-  <title id="title">16비트 radix sort 흐름</title>
-  <desc id="desc">32비트 정수를 하위 16비트와 상위 16비트로 나누어 두 번 안정 정렬하는 흐름</desc>
-  <rect width="920" height="360" rx="0" fill="#f8fafc"/>
-  <text x="48" y="56" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="25" font-weight="800" fill="#0f172a">32비트 정수를 16비트씩 나누어 정렬한다</text>
-  <text x="48" y="88" font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif" font-size="15" fill="#475569">낮은 자리부터 안정 정렬하면, 높은 자리가 같을 때 낮은 자리 순서가 유지된다.</text>
-
-  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
-    <rect x="56" y="130" width="222" height="78" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-    <text x="167" y="162" text-anchor="middle" font-size="18" font-weight="800" fill="#0f172a">원본 값</text>
-    <text x="167" y="190" text-anchor="middle" font-size="14" fill="#475569">[상위 16비트 | 하위 16비트]</text>
-
-    <path d="M294 169H402" fill="none" stroke="#64748b" stroke-width="3"/>
-    <path d="M402 169l-13-8v16z" fill="#64748b"/>
-    <text x="348" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">1st pass</text>
-
-    <rect x="418" y="118" width="224" height="104" rx="8" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/>
-    <text x="530" y="150" text-anchor="middle" font-size="18" font-weight="800" fill="#155e75">하위 16비트</text>
-    <text x="530" y="176" text-anchor="middle" font-size="15" fill="#155e75">stable counting sort</text>
-    <text x="530" y="201" text-anchor="middle" font-size="13" fill="#0f766e">낮은 자리 순서 생성</text>
-
-    <path d="M658 169H766" fill="none" stroke="#64748b" stroke-width="3"/>
-    <path d="M766 169l-13-8v16z" fill="#64748b"/>
-    <text x="712" y="146" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">2nd pass</text>
-
-    <rect x="56" y="254" width="222" height="58" rx="8" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
-    <text x="167" y="288" text-anchor="middle" font-size="16" font-weight="800" fill="#854d0e">bucket 0부터 65535까지</text>
-
-    <rect x="418" y="254" width="224" height="58" rx="8" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
-    <text x="530" y="288" text-anchor="middle" font-size="16" font-weight="800" fill="#854d0e">각 pass마다 cnt 초기화</text>
-
-    <rect x="782" y="118" width="92" height="104" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
-    <text x="828" y="152" text-anchor="middle" font-size="17" font-weight="800" fill="#166534">상위</text>
-    <text x="828" y="175" text-anchor="middle" font-size="17" font-weight="800" fill="#166534">16비트</text>
-    <text x="828" y="200" text-anchor="middle" font-size="13" fill="#15803d">전체 정렬</text>
-
-    <path d="M167 222v22" fill="none" stroke="#ca8a04" stroke-width="2"/>
-    <path d="M530 222v22" fill="none" stroke="#ca8a04" stroke-width="2"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 990" role="img" aria-labelledby="title desc">
+<title id="title">Radix sort: 실제 네 정수의 두 번 안정 정렬</title><desc id="desc">A=65538, B=3, C=65537, D=2를 상위 16비트와 하위 16비트로 나눕니다. 하위 자리 정렬 후 C A D B, 상위 자리 정렬 후 D B C A입니다. 같은 버킷 안에서는 입력 순서를 보존합니다.</desc>
+<style>text{font-family:system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;fill:#172c49;font-size:24px}.title{font-size:29px;font-weight:750}.label{font-weight:700}.small{font-size:22px}.muted{fill:#53657d}.mono{font-family:ui-monospace,SFMono-Regular,monospace;font-size:25px;font-weight:650}path,line{stroke-linecap:round;stroke-linejoin:round}</style>
+<rect width="560" height="990" rx="18" fill="#f5f8fc"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="context-stroke"/></marker></defs>
+<text x="24" y="44" class="title">Radix: 두 번의 안정 정렬</text>
+<text x="24" y="81" class="small muted">값 = 상위 × 65536 + 하위</text>
+<text x="24" y="126" class="label">입력 순서: A → B → C → D</text>
+<rect x="24" y="144" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="34" y="154" width="34" height="30" rx="8" fill="#2563eb" stroke="#2563eb"/>
+<text x="51" y="177" class="small" style="fill:#fff" text-anchor="middle">A</text>
+<text x="85" y="215" class="mono" text-anchor="middle">1 | 2</text>
+<text x="85" y="248" class="small muted" text-anchor="middle">65538</text>
+<rect x="154" y="144" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="164" y="154" width="34" height="30" rx="8" fill="#a56310" stroke="#a56310"/>
+<text x="181" y="177" class="small" style="fill:#fff" text-anchor="middle">B</text>
+<text x="215" y="215" class="mono" text-anchor="middle">0 | 3</text>
+<text x="215" y="248" class="small muted" text-anchor="middle">3</text>
+<rect x="284" y="144" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="294" y="154" width="34" height="30" rx="8" fill="#087f73" stroke="#087f73"/>
+<text x="311" y="177" class="small" style="fill:#fff" text-anchor="middle">C</text>
+<text x="345" y="215" class="mono" text-anchor="middle">1 | 1</text>
+<text x="345" y="248" class="small muted" text-anchor="middle">65537</text>
+<rect x="414" y="144" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="424" y="154" width="34" height="30" rx="8" fill="#7c3aed" stroke="#7c3aed"/>
+<text x="441" y="177" class="small" style="fill:#fff" text-anchor="middle">D</text>
+<text x="475" y="215" class="mono" text-anchor="middle">0 | 2</text>
+<text x="475" y="248" class="small muted" text-anchor="middle">2</text>
+<rect x="24" y="291" width="512" height="61" rx="12" fill="#eaf2ff" stroke="#c3d9fc"/>
+<text x="40" y="330" class="label" style="fill:#2563eb">① 하위 자리로 버킷에 넣기</text>
+<text x="38" y="404" class="label">하위 1</text>
+<path d="M148 396L192 396" fill="none" stroke="#97a7ba" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="213" y="375" width="60" height="41" rx="9" fill="#087f73" stroke="#087f73"/>
+<text x="243" y="404" class="label" style="fill:#fff" text-anchor="middle">C</text>
+<text x="38" y="459" class="label">하위 2</text>
+<path d="M148 451L192 451" fill="none" stroke="#97a7ba" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="213" y="430" width="60" height="41" rx="9" fill="#2563eb" stroke="#2563eb"/>
+<text x="243" y="459" class="label" style="fill:#fff" text-anchor="middle">A</text>
+<rect x="288" y="430" width="60" height="41" rx="9" fill="#7c3aed" stroke="#7c3aed"/>
+<text x="318" y="459" class="label" style="fill:#fff" text-anchor="middle">D</text>
+<text x="372" y="459" class="small" style="fill:#087f73">순서 유지</text>
+<text x="38" y="514" class="label">하위 3</text>
+<path d="M148 506L192 506" fill="none" stroke="#97a7ba" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="213" y="485" width="60" height="41" rx="9" fill="#a56310" stroke="#a56310"/>
+<text x="243" y="514" class="label" style="fill:#fff" text-anchor="middle">B</text>
+<rect x="24" y="546" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="34" y="556" width="34" height="30" rx="8" fill="#087f73" stroke="#087f73"/>
+<text x="51" y="579" class="small" style="fill:#fff" text-anchor="middle">C</text>
+<text x="85" y="617" class="mono" text-anchor="middle">1 | 1</text>
+<text x="85" y="650" class="small muted" text-anchor="middle">65537</text>
+<path d="M96 626L108 626" fill="none" stroke="#2563eb" stroke-width="3"/>
+<rect x="154" y="546" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="164" y="556" width="34" height="30" rx="8" fill="#2563eb" stroke="#2563eb"/>
+<text x="181" y="579" class="small" style="fill:#fff" text-anchor="middle">A</text>
+<text x="215" y="617" class="mono" text-anchor="middle">1 | 2</text>
+<text x="215" y="650" class="small muted" text-anchor="middle">65538</text>
+<path d="M226 626L238 626" fill="none" stroke="#2563eb" stroke-width="3"/>
+<rect x="284" y="546" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="294" y="556" width="34" height="30" rx="8" fill="#7c3aed" stroke="#7c3aed"/>
+<text x="311" y="579" class="small" style="fill:#fff" text-anchor="middle">D</text>
+<text x="345" y="617" class="mono" text-anchor="middle">0 | 2</text>
+<text x="345" y="650" class="small muted" text-anchor="middle">2</text>
+<path d="M356 626L368 626" fill="none" stroke="#2563eb" stroke-width="3"/>
+<rect x="414" y="546" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="424" y="556" width="34" height="30" rx="8" fill="#a56310" stroke="#a56310"/>
+<text x="441" y="579" class="small" style="fill:#fff" text-anchor="middle">B</text>
+<text x="475" y="617" class="mono" text-anchor="middle">0 | 3</text>
+<text x="475" y="650" class="small muted" text-anchor="middle">3</text>
+<path d="M486 626L498 626" fill="none" stroke="#2563eb" stroke-width="3"/>
+<rect x="24" y="696" width="512" height="61" rx="12" fill="#e6f5ef" stroke="#b7dfcf"/>
+<text x="40" y="735" class="label" style="fill:#087f73">② 상위 자리로 다시 모으기</text>
+<text x="28" y="791" class="label">상위 0: D → B</text>
+<text x="296" y="791" class="label">상위 1: C → A</text>
+<rect x="24" y="813" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="34" y="823" width="34" height="30" rx="8" fill="#7c3aed" stroke="#7c3aed"/>
+<text x="51" y="846" class="small" style="fill:#fff" text-anchor="middle">D</text>
+<text x="85" y="884" class="mono" text-anchor="middle">0 | 2</text>
+<text x="85" y="917" class="small muted" text-anchor="middle">2</text>
+<path d="M60 893L72 893" fill="none" stroke="#2563eb" stroke-width="3"/>
+<rect x="154" y="813" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="164" y="823" width="34" height="30" rx="8" fill="#a56310" stroke="#a56310"/>
+<text x="181" y="846" class="small" style="fill:#fff" text-anchor="middle">B</text>
+<text x="215" y="884" class="mono" text-anchor="middle">0 | 3</text>
+<text x="215" y="917" class="small muted" text-anchor="middle">3</text>
+<path d="M190 893L202 893" fill="none" stroke="#2563eb" stroke-width="3"/>
+<rect x="284" y="813" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="294" y="823" width="34" height="30" rx="8" fill="#087f73" stroke="#087f73"/>
+<text x="311" y="846" class="small" style="fill:#fff" text-anchor="middle">C</text>
+<text x="345" y="884" class="mono" text-anchor="middle">1 | 1</text>
+<text x="345" y="917" class="small muted" text-anchor="middle">65537</text>
+<path d="M320 893L332 893" fill="none" stroke="#2563eb" stroke-width="3"/>
+<rect x="414" y="813" width="122" height="121" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<rect x="424" y="823" width="34" height="30" rx="8" fill="#2563eb" stroke="#2563eb"/>
+<text x="441" y="846" class="small" style="fill:#fff" text-anchor="middle">A</text>
+<text x="475" y="884" class="mono" text-anchor="middle">1 | 2</text>
+<text x="475" y="917" class="small muted" text-anchor="middle">65538</text>
+<path d="M450 893L462 893" fill="none" stroke="#2563eb" stroke-width="3"/>
+<text x="280" y="970" class="mono" style="fill:#087f73" text-anchor="middle">2 &lt; 3 &lt; 65537 &lt; 65538</text>
 </svg>

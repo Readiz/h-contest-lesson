@@ -1,1 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc"><title id="title">Lazy: 합과 대기 중인 증가량</title><desc id="desc">루트 push 뒤 합은22가 되고 자식 합은3과7인 채 lazy3이 대기합니다. 자식 방문 시 합9와13으로 갱신합니다.</desc><style>text{font-family:system-ui,sans-serif;fill:#172a46;font-size:21px}.small{font-size:18px}.title{font-size:28px;font-weight:700}.strong{font-weight:700}rect,line,path,circle{vector-effect:non-scaling-stroke}</style><rect width="720" height="500" rx="18" fill="#f5f8fc"/><text x="28" y="44" class="title">Lazy: 합과 대기 중인 증가량</text><text x="28" y="90" class="">원래 배열 [1, 2, 3, 4]에 전체 +3</text><rect x="190" y="115" width="340" height="55" rx="8" fill="#fde68a" stroke="#607999"/><text x="202" y="149.5" class="">루트 [0..3]: sum 10, lazy 3</text><text x="210" y="205" class="">push: sum += 4 × 3</text><line x1="360" y1="225" x2="190" y2="265" stroke="#607999" stroke-width="3"/><line x1="360" y1="225" x2="530" y2="265" stroke="#607999" stroke-width="3"/><rect x="28" y="270" width="300" height="62" rx="8" fill="#dbeafe" stroke="#607999"/><text x="40" y="308.0" class="">[0..1]: sum 3, lazy 3</text><rect x="382" y="270" width="310" height="62" rx="8" fill="#dbeafe" stroke="#607999"/><text x="394" y="308.0" class="">[2..3]: sum 7, lazy 3</text><text x="28" y="380" class="strong">루트: sum 22, lazy 0</text><text x="28" y="423" class="">자식 합은 아직 3과 7, 증가량은 lazy에 대기</text><text x="28" y="464" class="">자식 방문 시 push → 합 9와 13</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 884" role="img" aria-labelledby="title desc">
+<title id="title">Lazy: 합 반영과 전달을 분리하기</title><desc id="desc">배열 1, 2, 3, 4에서 루트의 lazy가 3인 상태를 봅니다. 루트 push 전에는 합 10, 자식 합은 3과 7입니다. 루트 push 뒤 루트 합은 22, lazy는 0이고 자식 합은 3과 7 그대로이며 각 lazy가 3입니다. 왼쪽 자식을 방문해 push하면 합은 3 더하기 2 곱하기 3으로 9가 됩니다.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#2664ce"/></marker>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#147d69"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515"/></marker>
+</defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="598" height="882" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce" stroke="#2664ce" stroke-width="1.5"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">Lazy: 합 반영과 전달을 분리하기</text>
+<text x="28" y="91" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">이 구현의 lazy = 현재 합에도 아직 반영 안 된 값</text>
+<rect x="20" y="125" width="560" height="267" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="159" font-size="24" fill="#172b45" font-weight="750" text-anchor="start">01  루트 push 전</text>
+<text x="552" y="159" font-size="21" fill="#ae5515" font-weight="700" text-anchor="end">lazy</text>
+<line x1="300" y1="279" x2="159" y2="301" stroke="#53657d" stroke-width="2"/>
+<line x1="300" y1="279" x2="441" y2="301" stroke="#53657d" stroke-width="2"/>
+<rect x="187" y="186" width="226" height="93" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="300" y="215" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">[0..3] · 길이 4</text>
+<text x="300" y="252" font-size="27" fill="#172b45" font-weight="750" text-anchor="middle">합 10</text>
+<rect x="345" y="230" width="57" height="35" rx="7" fill="#fff0d8" stroke="#e1b77d" stroke-width="1.5"/>
+<text x="373.5" y="255" font-size="22" fill="#ae5515" font-weight="700" text-anchor="middle">+3</text>
+<rect x="46" y="301" width="226" height="93" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="159" y="330" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">[0..1] · 길이 2</text>
+<text x="159" y="367" font-size="27" fill="#172b45" font-weight="750" text-anchor="middle">합 3</text>
+<rect x="204" y="345" width="57" height="35" rx="7" fill="#edf1f6" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="232.5" y="370" font-size="22" fill="#53657d" font-weight="700" text-anchor="middle">0</text>
+<rect x="328" y="301" width="226" height="93" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="441" y="330" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">[2..3] · 길이 2</text>
+<text x="441" y="367" font-size="27" fill="#172b45" font-weight="750" text-anchor="middle">합 7</text>
+<rect x="486" y="345" width="57" height="35" rx="7" fill="#edf1f6" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="514.5" y="370" font-size="22" fill="#53657d" font-weight="700" text-anchor="middle">0</text>
+<rect x="20" y="459" width="560" height="267" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="493" font-size="24" fill="#172b45" font-weight="750" text-anchor="start">02  루트 push 후</text>
+<text x="552" y="493" font-size="21" fill="#ae5515" font-weight="700" text-anchor="end">lazy</text>
+<line x1="300" y1="613" x2="159" y2="635" stroke="#53657d" stroke-width="2"/>
+<line x1="300" y1="613" x2="441" y2="635" stroke="#53657d" stroke-width="2"/>
+<rect x="187" y="520" width="226" height="93" rx="12" fill="#e5f4ef" stroke="#8ebfaa" stroke-width="1.5"/>
+<text x="300" y="549" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">[0..3] · 길이 4</text>
+<text x="300" y="586" font-size="27" fill="#147d69" font-weight="750" text-anchor="middle">합 22</text>
+<rect x="345" y="564" width="57" height="35" rx="7" fill="#edf1f6" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="373.5" y="589" font-size="22" fill="#53657d" font-weight="700" text-anchor="middle">0</text>
+<rect x="46" y="635" width="226" height="93" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="159" y="664" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">[0..1] · 길이 2</text>
+<text x="159" y="701" font-size="27" fill="#172b45" font-weight="750" text-anchor="middle">합 3</text>
+<rect x="204" y="679" width="57" height="35" rx="7" fill="#fff0d8" stroke="#e1b77d" stroke-width="1.5"/>
+<text x="232.5" y="704" font-size="22" fill="#ae5515" font-weight="700" text-anchor="middle">+3</text>
+<rect x="328" y="635" width="226" height="93" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="441" y="664" font-size="22" fill="#53657d" font-weight="600" text-anchor="middle">[2..3] · 길이 2</text>
+<text x="441" y="701" font-size="27" fill="#172b45" font-weight="750" text-anchor="middle">합 7</text>
+<rect x="486" y="679" width="57" height="35" rx="7" fill="#fff0d8" stroke="#e1b77d" stroke-width="1.5"/>
+<text x="514.5" y="704" font-size="22" fill="#ae5515" font-weight="700" text-anchor="middle">+3</text>
+<path d="M 300 403 V 451" fill="none" stroke="#147d69" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
+<rect x="96" y="411" width="408" height="36" rx="8" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="300" y="437" font-size="23" fill="#147d69" font-weight="750" text-anchor="middle">루트 합: 10 + 4 × 3 = 22</text>
+<rect x="28" y="765" width="544" height="91" rx="12" fill="#e9f0ff" stroke="#c1d2ec" stroke-width="1.5"/>
+<text x="45" y="800" font-size="23" fill="#2664ce" font-weight="700" text-anchor="start">자식 합 3·7은 아직 그대로, lazy에 +3</text>
+<text x="45" y="836" font-size="23" fill="#2664ce" font-weight="400" text-anchor="start">왼쪽 방문 시 push: 3 + 2 × 3 = 9</text>
+</svg>

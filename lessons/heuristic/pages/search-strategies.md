@@ -58,11 +58,15 @@ P(accept) = exp(-loss / T), T > 0
 
 움직이는 상태 `current`와 지금까지 가장 좋은 상태 `best`는 따로 둡니다. 나쁜 이동을 채택해도 `best`는 유지하며, 제출할 답은 실제 비용이 가장 작은 `best`입니다. `T = 0`에서는 나쁜 이동을 거절해 0으로 나누지 않도록 처리합니다.
 
-![채택된 비용이10 13 11 8일 때 현재해는 그대로 움직이지만 최선해 비용은10 10 10 8입니다.](../lesson-assets/current-best.svg)
+![채택된 현재해 비용은 10, 13, 11, 8로 움직이지만 최선해 비용은 10, 10, 10, 8입니다. 그래프의 파란 실선은 현재해, 초록 점선은 지금까지의 최저 비용을 나타냅니다.](../lesson-assets/current-best.svg)
 
 [그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/current-best.svg)
 
 비용 `10 → 13` 이동은 확률적으로 채택된 경우를 가정합니다. 이후 `13 → 11`을 받아들였다는 이유로 `best`까지 11로 덮어쓰면 이전의 더 좋은 답 10을 잃습니다. `best`에는 비용뿐 아니라 그 비용을 만드는 순열·배치도 함께 복사합니다.
+
+[SA: 온도·나쁜 이동·최선해 보존 실험하기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=annealing)
+
+온도와 비용 증가량을 바꾸며 채택 확률을 확인하고, 같은 난수 예제의 진행을 따라가 보세요. 나쁜 이동을 받아들여 current가 커져도 best는 보존해야 합니다. 이 데모는 채택 규칙을 보여 주는 작은 예제이며, 실제 문제에서 어떤 온도나 냉각 일정이 좋은지를 보장하지 않습니다.
 
 ## ORDERING에 붙이는 구현
 

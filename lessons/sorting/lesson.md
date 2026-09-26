@@ -204,6 +204,8 @@ void radix_sort_u32(int n, unsigned int values[]) {
 }
 ```
 
-![16비트 radix sort 흐름](lesson-assets/radix-sort-passes.svg)
+![A=65538, B=3, C=65537, D=2를 하위 16비트로 정렬하면 C A D B, 상위 16비트로 안정 정렬하면 D B C A가 됩니다.](lesson-assets/radix-sort-passes.svg)
+
+그림의 각 카드는 `상위 16비트 | 하위 16비트`와 원래 정수를 함께 표시합니다. 첫 pass의 하위 자리 2 버킷은 A 다음 D라는 입력 순서를 보존합니다. 두 번째 pass에서는 상위 자리가 같은 D·B, C·A의 순서가 유지되어, 앞서 만든 하위 자리 순서까지 정렬 결과에 남습니다.
 
 입력은 `0 <= n <= 4,000,000`이며 `values`와 전역 버퍼 `tmp`는 겹치지 않아야 합니다. 두 pass가 끝나면 결과는 원래 `values`에 있습니다. 각 pass 전에 `cnt`를 0으로 초기화합니다. 이 구현은 `unsigned int`의 32비트 패턴을 다루므로, 중간에 부호 있는 타입으로 바꾸면 shift와 정렬 순서가 달라질 수 있습니다.

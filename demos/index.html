@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>알고리즘 실험실 · H Contest Lesson</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+<script defer src="models.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<main id="lab" class="lab">
+  <header class="lab-header"><div><p class="eyebrow">ALGORITHM LAB <span>직접 움직이며 이해하기</span></p><h1 id="title">알고리즘 실험실</h1><p id="subtitle" class="subtitle"></p></div><span id="demo-badge" class="badge">LIVE</span></header>
+  <section id="settings" class="settings" aria-label="예제와 매개변수"></section>
+  <nav class="controls" aria-label="단계 이동"><div class="buttons"><button id="reset" type="button" aria-label="처음 단계">처음</button><button id="previous" type="button" aria-label="이전 단계">← 이전</button><button id="play" type="button" aria-label="자동 재생" aria-pressed="false">▶ 재생</button><button id="next" type="button" aria-label="다음 단계">다음 →</button></div><label class="timeline"><span id="counter">1 / 1</span><input id="timeline" type="range" min="0" max="1" value="0" aria-label="단계 선택"></label></nav>
+  <div class="workspace"><section class="visual-panel" aria-label="현재 알고리즘 상태"><div id="visual"></div><div id="legend" class="legend"></div></section><section class="detail-panel" aria-label="상태와 계산"><div id="metrics" class="metrics"></div><div id="details"></div></section></div>
+  <section class="explanation" aria-label="단계 설명"><span id="phase" class="phase">시작</span><p id="message" aria-live="polite" aria-atomic="true"></p></section>
+
+  <p id="footnote" class="footnote"></p>
+</main>
+<noscript>이 데모는 JavaScript가 필요합니다. 레슨 본문의 설명과 코드로도 같은 내용을 학습할 수 있습니다.</noscript>
+</body>
+</html>

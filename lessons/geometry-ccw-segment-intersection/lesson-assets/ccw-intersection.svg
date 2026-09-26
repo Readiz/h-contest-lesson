@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 1330" role="img" aria-labelledby="title desc">
+<title id="title">CCW와 선분 교차: 좌표로 확인하는 경계 조건</title><desc id="desc">A=(0,0), B=(4,0)에서 C=(2,2)는 양수 CCW, C=(2,-2)는 음수, C=(2,0)는 0입니다. 선분의 내부 교차, 끝점 접촉, 일직선 겹침은 참이고 일직선 분리는 거짓입니다. 그림의 위쪽이 양의 y입니다.</desc>
+<style>text{font-family:system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;fill:#172c49;font-size:24px}.title{font-size:29px;font-weight:750}.label{font-weight:700}.small{font-size:22px}.muted{fill:#53657d}.mono{font-family:ui-monospace,SFMono-Regular,monospace;font-size:25px;font-weight:650}path,line{stroke-linecap:round;stroke-linejoin:round}</style>
+<rect width="560" height="1330" rx="18" fill="#f5f8fc"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="context-stroke"/></marker></defs>
+<text x="24" y="44" class="title">CCW와 선분 교차</text>
+<text x="24" y="82" class="small muted">좌표의 위쪽이 +y입니다.</text>
+<rect x="16" y="106" width="528" height="356" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<text x="32" y="144" class="small label">A=(0,0) → B=(4,0)를 기준으로</text>
+<path d="M70 295L490 295" fill="none" stroke="#bac7d6" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M102 414L102 177" fill="none" stroke="#bac7d6" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M102 295L458 295" fill="none" stroke="#172c49" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M102 295L280 199" fill="none" stroke="#087f73" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="280" cy="199" r="5" fill="#087f73"/>
+<text x="304" y="207" class="small" style="fill:#087f73">C=(2,2)</text>
+<path d="M102 295L280 390" fill="none" stroke="#b93838" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="280" cy="390" r="5" fill="#b93838"/>
+<text x="304" y="398" class="small" style="fill:#b93838">C=(2,−2)</text>
+<circle cx="280" cy="295" r="6" fill="#a56310"/>
+<text x="268" y="328" class="small" style="fill:#a56310">C=(2,0)</text>
+<text x="73" y="326" class="label">A</text>
+<text x="459" y="326" class="label">B</text>
+<text x="130" y="189" class="mono" style="fill:#087f73">+8</text>
+<text x="132" y="409" class="mono" style="fill:#b93838">−8</text>
+<text x="279" y="280" class="mono" style="fill:#a56310">0</text>
+<text x="32" y="444" class="small">왼쪽 회전 + / 오른쪽 − / 일직선 0</text>
+<text x="24" y="505" class="small label">선분 교차: 끝점·겹침을 포함하는 판정</text>
+<rect x="16" y="530" width="528" height="180" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<text x="32" y="566" class="label">① 내부 교차</text>
+<text x="502" y="566" class="label" style="fill:#087f73" text-anchor="end">참</text>
+<path d="M108 662L450 619" fill="none" stroke="#2563eb" stroke-width="4"/>
+<path d="M108 619L450 662" fill="none" stroke="#087f73" stroke-width="4"/>
+<circle cx="108" cy="662" r="6" fill="#2563eb"/>
+<text x="100" y="693" class="small" style="fill:#2563eb" text-anchor="middle">A(0,0)</text>
+<circle cx="450" cy="619" r="6" fill="#2563eb"/>
+<text x="455" y="604" class="small" style="fill:#2563eb" text-anchor="middle">B(4,2)</text>
+<circle cx="108" cy="619" r="6" fill="#087f73"/>
+<text x="110" y="604" class="small" style="fill:#087f73" text-anchor="middle">C(0,2)</text>
+<circle cx="450" cy="662" r="6" fill="#087f73"/>
+<text x="449" y="693" class="small" style="fill:#087f73" text-anchor="middle">D(4,0)</text>
+<rect x="16" y="729" width="528" height="180" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<text x="32" y="765" class="label">② 끝점에서 만남</text>
+<text x="502" y="765" class="label" style="fill:#087f73" text-anchor="end">참</text>
+<path d="M90 827L285 827" fill="none" stroke="#2563eb" stroke-width="4"/>
+<path d="M285 827L455 789" fill="none" stroke="#087f73" stroke-width="4"/>
+<circle cx="90" cy="827" r="6" fill="#2563eb"/>
+<text x="93" y="858" class="small" style="fill:#2563eb" text-anchor="middle">A(0,0)</text>
+<circle cx="285" cy="827" r="6" fill="#172c49"/>
+<text x="285" y="858" class="small" style="fill:#172c49" text-anchor="middle">B=C=(2,0)</text>
+<circle cx="455" cy="789" r="6" fill="#087f73"/>
+<text x="451" y="810" class="small" style="fill:#087f73" text-anchor="middle">D(4,2)</text>
+<rect x="16" y="929" width="528" height="180" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<text x="32" y="965" class="label">③ 일직선 + 구간 겹침</text>
+<text x="502" y="965" class="label" style="fill:#087f73" text-anchor="end">참</text>
+<path d="M77 1017L459 1017" fill="none" stroke="#c4cfdb" stroke-width="1.5"/>
+<path d="M77 1017L332 1017" fill="none" stroke="#2563eb" stroke-width="6"/>
+<path d="M205 1017L459 1017" fill="none" stroke="#087f73" stroke-width="3"/>
+<circle cx="77" cy="1017" r="6" fill="#2563eb"/>
+<text x="77" y="1050" class="small" style="fill:#2563eb" text-anchor="middle">A(0,0)</text>
+<circle cx="205" cy="1017" r="6" fill="#087f73"/>
+<text x="205" y="1050" class="small" style="fill:#087f73" text-anchor="middle">C(2,0)</text>
+<circle cx="332" cy="1017" r="6" fill="#2563eb"/>
+<text x="332" y="1050" class="small" style="fill:#2563eb" text-anchor="middle">B(4,0)</text>
+<circle cx="459" cy="1017" r="6" fill="#087f73"/>
+<text x="459" y="1050" class="small" style="fill:#087f73" text-anchor="middle">D(6,0)</text>
+<rect x="16" y="1129" width="528" height="180" rx="12" fill="#fff" stroke="#d7e1ed"/>
+<text x="32" y="1165" class="label">④ 일직선 + 구간 분리</text>
+<text x="502" y="1165" class="label" style="fill:#b93838" text-anchor="end">거짓</text>
+<path d="M70 1218L490 1218" fill="none" stroke="#c4cfdb" stroke-width="1.5"/>
+<path d="M78 1218L188 1218" fill="none" stroke="#2563eb" stroke-width="5"/>
+<path d="M350 1218L462 1218" fill="none" stroke="#087f73" stroke-width="5"/>
+<circle cx="78" cy="1218" r="6" fill="#2563eb"/>
+<text x="78" y="1253" class="small" style="fill:#2563eb" text-anchor="middle">A(0,0)</text>
+<circle cx="188" cy="1218" r="6" fill="#2563eb"/>
+<text x="188" y="1253" class="small" style="fill:#2563eb" text-anchor="middle">B(1,0)</text>
+<circle cx="350" cy="1218" r="6" fill="#087f73"/>
+<text x="350" y="1253" class="small" style="fill:#087f73" text-anchor="middle">C(3,0)</text>
+<circle cx="462" cy="1218" r="6" fill="#087f73"/>
+<text x="462" y="1253" class="small" style="fill:#087f73" text-anchor="middle">D(4,0)</text>
+</svg>

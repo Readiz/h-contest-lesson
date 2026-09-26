@@ -12,9 +12,9 @@
 
 ## lower_bound
 
-![배열1,2,4,4,7에서4 이상인 첫 인덱스는2입니다. 참이면 high를 mid로, 거짓이면 low를 mid+1로 옮깁니다.](lesson-assets/concept-trace.svg)
+[이분 탐색: 답이 남는 구간 따라가기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=binary-search)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/binary-search/lesson-assets/concept-trace.svg)
+중복 원소가 있을 때도 같은 값의 첫 위치를 찾는지 살펴보세요. 찾는 값을 최솟값보다 작게, 최댓값보다 크게 바꾸면 경계가 왜 0 또는 배열 길이가 되는지도 확인할 수 있습니다.
 
 `lower_bound`는 `target` 이상인 첫 위치를 찾습니다.
 

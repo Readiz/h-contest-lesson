@@ -1,57 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
-  <title id="title">Beam Search 후보 유지</title>
-  <desc id="desc">각 깊이에서 여러 후보를 확장한 뒤 점수가 높은 일부 후보만 다음 깊이로 남기는 구조</desc>
-  <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-      <path d="M2 2 L10 6 L2 10 Z" fill="#475467"/>
-    </marker>
-    <style>
-      .node { fill: #f8fafc; stroke: #475467; stroke-width: 2; }
-      .keep { fill: #e7f1ee; stroke: #2f6f5e; stroke-width: 3; }
-      .drop { fill: #f2f4f7; stroke: #98a2b3; stroke-width: 2; stroke-dasharray: 6 5; }
-      .line { stroke: #98a2b3; stroke-width: 2; fill: none; marker-end: url(#arrow); }
-      .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; font-size: 20px; font-weight: 700; text-anchor: middle; }
-      .small { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #52616f; font-size: 15px; text-anchor: middle; }
-      .score { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2933; font-size: 14px; text-anchor: middle; }
-    </style>
-  </defs>
-  <text x="120" y="44" class="label">depth 0</text>
-  <text x="360" y="44" class="label">depth 1</text>
-  <text x="610" y="44" class="label">depth 2</text>
-  <text x="840" y="44" class="label">top K</text>
-  <circle cx="120" cy="205" r="34" class="keep"/>
-  <text x="120" y="210" class="score">start</text>
-  <path d="M154 196 C210 146 250 112 305 98" class="line"/>
-  <path d="M154 205 C216 205 250 205 305 205" class="line"/>
-  <path d="M154 214 C210 264 250 298 305 312" class="line"/>
-  <circle cx="340" cy="92" r="32" class="keep"/>
-  <text x="340" y="97" class="score">91</text>
-  <circle cx="340" cy="205" r="32" class="keep"/>
-  <text x="340" y="210" class="score">88</text>
-  <circle cx="340" cy="318" r="32" class="drop"/>
-  <text x="340" y="323" class="score">72</text>
-  <path d="M372 92 C430 88 468 80 526 74" class="line"/>
-  <path d="M372 92 C430 116 468 132 526 150" class="line"/>
-  <path d="M372 205 C430 198 468 190 526 184" class="line"/>
-  <path d="M372 205 C430 232 468 248 526 266" class="line"/>
-  <circle cx="560" cy="70" r="30" class="keep"/>
-  <text x="560" y="75" class="score">107</text>
-  <circle cx="560" cy="150" r="30" class="keep"/>
-  <text x="560" y="155" class="score">103</text>
-  <circle cx="560" cy="185" r="30" class="drop" transform="translate(0 72)"/>
-  <text x="560" y="262" class="score">94</text>
-  <circle cx="560" cy="338" r="30" class="drop"/>
-  <text x="560" y="343" class="score">81</text>
-  <path d="M590 70 C665 80 710 98 775 116" class="line"/>
-  <path d="M590 150 C665 158 710 170 775 188" class="line"/>
-  <rect x="780" y="88" width="120" height="58" class="keep" rx="12"/>
-  <text x="840" y="112" class="score">남김</text>
-  <text x="840" y="132" class="small">score 107</text>
-  <rect x="780" y="164" width="120" height="58" class="keep" rx="12"/>
-  <text x="840" y="188" class="score">남김</text>
-  <text x="840" y="208" class="small">score 103</text>
-  <rect x="780" y="250" width="120" height="58" class="drop" rx="12"/>
-  <text x="840" y="274" class="score">버림</text>
-  <text x="840" y="294" class="small">K 밖 후보</text>
-  <text x="480" y="388" class="small">각 단계에서 후보를 넓게 만들고, 점수가 높은 K개만 다음 단계로 보낸다.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 808" role="img" aria-labelledby="title desc">
+<title id="title">Beam Search: 넓힌 뒤 추리기</title><desc id="desc">설명용 beam 폭은 2입니다. 시작 상태에서 key 91, 88, 72인 후보를 만들고 91과 88만 남깁니다. 이 두 상태에서 key 107, 103, 94, 81을 만들면 부모에 관계없이 전체 후보 중 107과 103만 남깁니다. 72인 후보는 확장하지 않습니다.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#2664ce"/></marker>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#147d69"/></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515"/></marker>
+</defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="598" height="806" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce" stroke="#2664ce" stroke-width="1.5"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">Beam Search: 넓힌 뒤 추리기</text>
+<text x="28" y="91" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">설명용 폭 K = 2 · 탐색 평가값 key가 클수록 우선</text>
+<path d="M 300 196 L 110 285" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 300 196 L 300 285" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 300 196 L 490 285" fill="none" stroke="#53657d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 5"/>
+<path d="M 110 401 L 83 523" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 110 401 L 223 523" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 300 401 L 363 523" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 300 401 L 503 523" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="237" y="126" width="126" height="70" rx="12" fill="#e9f0ff" stroke="#9bb7e5" stroke-width="1.5"/>
+<text x="300" y="170" font-size="26" fill="#2664ce" font-weight="750" text-anchor="middle">시작</text>
+<text x="28" y="245" font-size="22" fill="#53657d" font-weight="700" text-anchor="start">깊이 1</text>
+<rect x="46" y="285" width="128" height="116" rx="12" fill="#e5f4ef" stroke="#7fb9a9" stroke-width="1.5"/>
+<text x="110" y="320" font-size="25" fill="#147d69" font-weight="750" text-anchor="middle">A</text>
+<text x="110" y="355" font-size="23" fill="#147d69" font-weight="600" text-anchor="middle">key 91</text>
+<text x="110" y="386" font-size="22" fill="#147d69" font-weight="700" text-anchor="middle">유지</text>
+<rect x="236" y="285" width="128" height="116" rx="12" fill="#e5f4ef" stroke="#7fb9a9" stroke-width="1.5"/>
+<text x="300" y="320" font-size="25" fill="#147d69" font-weight="750" text-anchor="middle">B</text>
+<text x="300" y="355" font-size="23" fill="#147d69" font-weight="600" text-anchor="middle">key 88</text>
+<text x="300" y="386" font-size="22" fill="#147d69" font-weight="700" text-anchor="middle">유지</text>
+<rect x="426" y="285" width="128" height="116" rx="12" fill="#f0f2f6" stroke="#b8c1ce" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="490" y="320" font-size="25" fill="#53657d" font-weight="750" text-anchor="middle">C</text>
+<text x="490" y="355" font-size="23" fill="#53657d" font-weight="600" text-anchor="middle">key 72</text>
+<text x="490" y="386" font-size="22" fill="#53657d" font-weight="700" text-anchor="middle">탈락</text>
+<text x="490" y="443" font-size="21" fill="#53657d" font-weight="400" text-anchor="middle">확장 없음</text>
+<text x="28" y="467" font-size="22" fill="#53657d" font-weight="700" text-anchor="start">깊이 2</text>
+<rect x="24" y="529" width="118" height="128" rx="12" fill="#e5f4ef" stroke="#7fb9a9" stroke-width="1.5"/>
+<text x="83" y="565" font-size="22" fill="#147d69" font-weight="650" text-anchor="middle">A → D</text>
+<text x="83" y="603" font-size="28" fill="#147d69" font-weight="750" text-anchor="middle">107</text>
+<text x="83" y="638" font-size="22" fill="#147d69" font-weight="700" text-anchor="middle">유지</text>
+<rect x="164" y="529" width="118" height="128" rx="12" fill="#e5f4ef" stroke="#7fb9a9" stroke-width="1.5"/>
+<text x="223" y="565" font-size="22" fill="#147d69" font-weight="650" text-anchor="middle">A → E</text>
+<text x="223" y="603" font-size="28" fill="#147d69" font-weight="750" text-anchor="middle">103</text>
+<text x="223" y="638" font-size="22" fill="#147d69" font-weight="700" text-anchor="middle">유지</text>
+<rect x="304" y="529" width="118" height="128" rx="12" fill="#f0f2f6" stroke="#b8c1ce" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="363" y="565" font-size="22" fill="#53657d" font-weight="650" text-anchor="middle">B → D</text>
+<text x="363" y="603" font-size="28" fill="#53657d" font-weight="750" text-anchor="middle">94</text>
+<text x="363" y="638" font-size="22" fill="#53657d" font-weight="700" text-anchor="middle">탈락</text>
+<rect x="444" y="529" width="118" height="128" rx="12" fill="#f0f2f6" stroke="#b8c1ce" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="503" y="565" font-size="22" fill="#53657d" font-weight="650" text-anchor="middle">B → F</text>
+<text x="503" y="603" font-size="28" fill="#53657d" font-weight="750" text-anchor="middle">81</text>
+<text x="503" y="638" font-size="22" fill="#53657d" font-weight="700" text-anchor="middle">탈락</text>
+<rect x="28" y="693" width="544" height="86" rx="12" fill="#e9f0ff" stroke="#c1d2ec" stroke-width="1.5"/>
+<text x="45" y="728" font-size="24" fill="#2664ce" font-weight="750" text-anchor="start">모든 부모의 후보를 모아 상위 K개 선택</text>
+<text x="45" y="763" font-size="22" fill="#2664ce" font-weight="400" text-anchor="start">두 후보가 같은 부모에서 나와도 됩니다.</text>
 </svg>
