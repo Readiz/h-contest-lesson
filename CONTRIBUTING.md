@@ -201,7 +201,7 @@ long long square(int value) {
 본문에는 다음과 같은 **단독 문단 링크**를 해당 설명 옆에 둡니다. GitHub/Pages에서는 독립 페이지로 열리고 h-contest 레슨 화면에서는 눌러 여는 데모로 표시됩니다.
 
 ```markdown
-[이분 탐색: 답이 남는 구간 따라가기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=binary-search)
+[이분 탐색: 답이 남는 구간 따라가기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=binary-search)
 ```
 
 등록 ID는 `binary-search`, `bfs`, `dijkstra`, `prefix-sum`, `two-opt`, `annealing`입니다. 새 ID를 추가하면 앱의 허용 목록도 같은 릴리즈에서 갱신해야 합니다. 공개 링크는 정확한 `https` URL과 `demo` 파라미터 하나만 사용합니다.

@@ -166,7 +166,7 @@ long long get(int idx) {
 
 ![구간2부터7에3을 더하면 a의2와3만3이 됩니다. 블록1의 lazy가3이므로4부터7의 실제 값도3입니다.](lesson-assets/lazy-values.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/sqrt-decomposition/lesson-assets/lazy-values.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/sqrt-decomposition/lesson-assets/lazy-values.svg)
 
 `n=8`, `B=4`, 모든 값이 0인 상태에서 닫힌 구간 `[2,7]`에 3을 더했습니다. 블록 전체 갱신에서는 `a`와 `lazy`를 동시에 증가시키지 않습니다. 둘 다 더하면 조회 때 증가량이 두 번 반영됩니다.
 

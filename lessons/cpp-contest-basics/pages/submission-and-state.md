@@ -49,7 +49,7 @@ bool resetCase(int n) {
 
 ![TC 크기4에서2로 줄면 뒤 두 칸은 남지만 읽지 않습니다. 다음 크기4 TC 시작에 네 칸을 모두 초기화합니다.](../lesson-assets/case-reset.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/cpp-contest-basics/lesson-assets/case-reset.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/cpp-contest-basics/lesson-assets/case-reset.svg)
 
 TC 크기를 `4 → 2 → 4`로 바꿔 검사합니다. 가운데 TC에서 남은 두 값은 오류가 아니지만, 마지막 TC가 시작될 때는 다시 활성 구간에 들어오므로 반드시 지워야 합니다.
 

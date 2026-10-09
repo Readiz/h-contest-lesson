@@ -30,7 +30,7 @@ CCW는 기하 문제의 조건문입니다. "왼쪽으로 도는가", "일직선
 
 ![A=(0,0), B=(4,0)에서 C=(2,2)는 양수, C=(2,-2)는 음수, C=(2,0)는 0입니다. 내부 교차·끝점 접촉·일직선 겹침은 교차이고 일직선 분리는 교차가 아닙니다.](lesson-assets/ccw-intersection.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/geometry-ccw-segment-intersection/lesson-assets/ccw-intersection.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/geometry-ccw-segment-intersection/lesson-assets/ccw-intersection.svg)
 
 그림은 위쪽을 양의 y로 잡은 수학 좌표입니다. 첫 도식의 외적은 차례로 `4×2=8`, `4×(-2)=-8`, `4×0=0`입니다. 아래 네 사례는 끝점 접촉과 겹침도 교차로 보는 이 레슨의 구현 기준을 보여 줍니다. 일직선에서는 외적이 모두 0이므로, 마지막 두 사례를 구분할 좌표 구간 검사가 필요합니다.
 

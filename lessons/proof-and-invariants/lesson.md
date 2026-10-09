@@ -27,7 +27,7 @@
 
 ![3행3열 격자의 도착 경로6개는 위칸에서 내려온3개와 왼쪽칸에서 온3개로 겹치지 않게 나뉩니다.](lesson-assets/disjoint-paths.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/proof-and-invariants/lesson-assets/disjoint-paths.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/proof-and-invariants/lesson-assets/disjoint-paths.svg)
 
 각 칸의 숫자는 좌상단에서 그 칸까지의 경로 수입니다. 도착 직전 칸으로 집합을 나누면 서로 겹치지 않는다는 점이 보입니다. 반대로 단지 “특정 칸을 지나는가”로 둘을 골라 더하면 한 경로가 두 칸을 모두 지나 중복될 수 있습니다.
 

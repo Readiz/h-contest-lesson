@@ -159,7 +159,7 @@ vector<vector<long long>> buildPrefix2D(const vector<vector<int>>& grid) {
 
 ## 2차원 직사각형 합
 
-[2차원 누적합: 더하고 빼는 영역 따라가기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=prefix-sum)
+[2차원 누적합: 더하고 빼는 영역 따라가기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=prefix-sum)
 
 질의 직사각형을 바꾸고 네 항을 한 단계씩 적용해 보세요. 중복으로 뺀 왼쪽 위 영역을 마지막에 되돌리면, 선택한 직사각형의 셀만 한 번씩 남습니다. 데모의 반열린 구간 `[r1, r2) × [c1, c2)`에서 `r2`, `c2`는 아래 양끝 포함 코드의 `y2 + 1`, `x2 + 1`에 해당합니다.
 

@@ -51,7 +51,7 @@ int compress(const vector<int>& values, int x) {
 
 ![좌표10,20,100은 인덱스0,1,2가 되지만 실제 간격10과80은 둘 다 인덱스 차이1로 바뀝니다.](lesson-assets/structure-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/coordinate-compression/lesson-assets/structure-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/coordinate-compression/lesson-assets/structure-trace.svg)
 
 `[10,20)`과 `[20,100)`은 압축 후 각각 한 칸이지만 길이는 10과 80입니다. 길이·넓이를 합산할 때는 원본 좌표 간격을 함께 저장합니다.
 

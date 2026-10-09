@@ -12,7 +12,7 @@
 
 ## lower_bound
 
-[이분 탐색: 답이 남는 구간 따라가기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=binary-search)
+[이분 탐색: 답이 남는 구간 따라가기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=binary-search)
 
 중복 원소가 있을 때도 같은 값의 첫 위치를 찾는지 살펴보세요. 찾는 값을 최솟값보다 작게, 최댓값보다 크게 바꾸면 경계가 왜 0 또는 배열 길이가 되는지도 확인할 수 있습니다.
 

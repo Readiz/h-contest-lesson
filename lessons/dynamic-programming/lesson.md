@@ -66,7 +66,7 @@ for (int x = 1; x <= target; ++x) {
 
 ![무게 2 가치 3인 물건 하나의 DP 셀 갱신. 역방향은 아직 0인 작은 용량을 읽어 답 3을 얻지만, 정방향은 이번 물건으로 만든 dp[2]=3을 다시 읽어 잘못된 답 6을 만듭니다.](lesson-assets/concept-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/dynamic-programming/lesson-assets/concept-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/dynamic-programming/lesson-assets/concept-trace.svg)
 
 각 행은 한 칸을 갱신한 직후의 배열입니다. 화살표의 시작은 읽는 칸, 끝은 갱신하는 칸입니다. 같은 `dp[2]`를 읽어도 역방향에서는 이전 물건까지의 값 0, 정방향에서는 이번 물건을 이미 넣은 값 3이라는 차이를 확인하세요.
 

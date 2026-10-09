@@ -17,7 +17,7 @@ u --1--> w  거리 1 증가
 
 ![거리4인 u에서 비용0의 v는 deque 앞에, 비용1의 w는 뒤에 넣어 거리4와5의 순서를 유지합니다.](lesson-assets/structure-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/zero-one-bfs/lesson-assets/structure-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/zero-one-bfs/lesson-assets/structure-trace.svg)
 
 괄호는 정점의 거리 후보입니다. 두 이웃의 기존 거리가 더 컸다고 가정하면 비용 0의 v는 현재 거리 층에, 비용 1의 w는 다음 거리 층에 들어갑니다.
 

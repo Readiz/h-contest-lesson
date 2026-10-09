@@ -61,7 +61,7 @@ Dijkstra의 핵심 선택은 단순합니다.
 
 ## 우선순위 큐 구현
 
-[Dijkstra: 거리 갱신과 낡은 후보 건너뛰기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=dijkstra)
+[Dijkstra: 거리 갱신과 낡은 후보 건너뛰기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=dijkstra)
 
 우선순위 큐의 후보와 현재 최단거리 배열을 나란히 비교해 보세요. 더 짧은 경로를 찾은 뒤에도 큐에 남아 있는 이전 후보를 꺼내면, 거리 불일치를 확인하고 확장하지 않습니다.
 

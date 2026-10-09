@@ -158,7 +158,7 @@ Segment Tree에서 바뀌는 것은 세 가지입니다.
 
 ![배열 1, 2, 3, 4의 루트에 lazy 3이 대기합니다. 루트 push 뒤 합은 10에서 22로 바뀌고 루트 lazy는 0이 됩니다. 두 자식의 합은 3과 7인 채 lazy 3이 대기하며, 왼쪽 자식을 방문해 push하면 합은 9가 됩니다.](lesson-assets/concept-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/segment-tree/lesson-assets/concept-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/segment-tree/lesson-assets/concept-trace.svg)
 
 재귀로 노드를 방문할 때 먼저 `push`를 호출해 현재 노드에 밀려 있는 값을 처리합니다.
 

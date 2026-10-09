@@ -23,7 +23,7 @@ BFS: 시작점에서 가까운 곳부터 차례로 본다.
 
 ## 발견한 시점에 방문 표시하기
 
-[BFS: 발견 표시와 큐를 함께 따라가기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=bfs)
+[BFS: 발견 표시와 큐를 함께 따라가기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=bfs)
 
 합류하는 정점이 있는 예제에서 큐에 넣는 순간 거리가 정해지는지 확인해 보세요. 이미 발견한 정점에 다시 도달해도 큐에 중복으로 넣지 않습니다.
 

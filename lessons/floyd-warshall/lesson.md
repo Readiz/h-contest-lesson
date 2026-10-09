@@ -20,7 +20,7 @@ Floyd-Warshall은 정점 수가 작을 때 모든 쌍 정보를 단순하게 얻
 
 ![0에서2로 직접10, 1을 거치면3+4=7입니다. k=1 단계에서 중간 정점1을 허용하며 갱신합니다.](lesson-assets/structure-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/floyd-warshall/lesson-assets/structure-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/floyd-warshall/lesson-assets/structure-trace.svg)
 
 간선이 `0→1:3`, `1→2:4`, `0→2:10`인 예시입니다. 각 단계는 지금까지 허용한 정점 집합 안에서 경유지를 선택한 최단거리입니다.
 

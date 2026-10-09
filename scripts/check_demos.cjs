@@ -82,7 +82,7 @@ const demoIds=new Set(['binary-search','bfs','dijkstra','prefix-sum','two-opt','
 for(const lesson of manifest.lessons){
   for(const file of ['lesson.md',...(lesson.pages||[]).map(page=>page.file)]){
     const body=fs.readFileSync(path.join(root,'lessons',lesson.lessonId,file),'utf8');
-    for(const match of body.matchAll(/https:\/\/blog\.readiz\.com\/h-contest-lesson\/demos\/[^)\s]+/g)){
+    for(const match of body.matchAll(/https:\/\/git\.readiz\.com\/h-contest-lesson\/demos\/[^)\s]+/g)){
       const url=new URL(match[0]);equal(url.pathname,'/h-contest-lesson/demos/index.html');
       equal([...url.searchParams.keys()],['demo']);assert(demoIds.has(url.searchParams.get('demo')));checks++;
       linked.add(url.searchParams.get('demo'));

@@ -19,7 +19,7 @@ Dijkstra에서 가장 짧은 후보 정점을 먼저 확정한다.
 
 ![max heap10,7,9,1,3,4를 층별로 배열에 저장합니다. 인덱스1의 자식은3과4입니다.](lesson-assets/structure-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/priority-queue-heap/lesson-assets/structure-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/priority-queue-heap/lesson-assets/structure-trace.svg)
 
 배열은 정렬된 순서가 아니라 트리를 위에서 아래로, 같은 층에서는 왼쪽부터 읽은 순서입니다. 부모와 자식 사이의 우선순위만 보장합니다.
 

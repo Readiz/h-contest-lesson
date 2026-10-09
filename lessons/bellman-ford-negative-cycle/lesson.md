@@ -138,7 +138,7 @@ after V - 1 relax rounds:
 
 ![0에서 도달하는1과2의 사이클 비용은-2입니다. 그 뒤 정점3도 거리가 무한히 작아지지만0의 거리는0입니다.](lesson-assets/structure-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/bellman-ford-negative-cycle/lesson-assets/structure-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/bellman-ford-negative-cycle/lesson-assets/structure-trace.svg)
 
 음수 사이클을 반복한 뒤 3으로 이동할 수 있으므로 3도 유한한 최단거리가 없습니다. 반면 사이클에서 0으로 돌아갈 수 없으므로 모든 정점을 음수 무한대로 처리하면 안 됩니다.
 

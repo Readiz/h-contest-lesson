@@ -51,7 +51,7 @@ b를 a의 한쪽 subtree와 다시 merge
 
 ![루트2의 왼쪽7 오른쪽6인 힙과 단일5를 합칩니다. 결과는2의 왼쪽5 오른쪽7, 5의 왼쪽6입니다.](lesson-assets/structure-trace.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/meldable-heap/lesson-assets/structure-trace.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/meldable-heap/lesson-assets/structure-trace.svg)
 
 더 작은 2를 루트로 남깁니다. `merge(6,5)`의 결과는 5의 왼쪽에 6이 붙은 힙이고, 마지막에 2의 좌우 자식을 바꾸어 그림의 구조를 얻습니다.
 

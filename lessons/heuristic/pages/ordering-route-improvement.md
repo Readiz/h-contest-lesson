@@ -128,13 +128,13 @@ after  += dist(b, d)
 
 ![같은 x축 위에서 꼬리 B-C-D를 뒤집으면 방문 순서가 0-A-D-C-B가 됩니다. 내부 거리는 그대로이고 A에서 꼬리로 이어지는 거리만 8에서 1로 줄어 총비용이 16에서 9가 됩니다.](../lesson-assets/open-tail.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/open-tail.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/open-tail.svg)
 
 위아래 그림의 점은 같은 x좌표에 고정되어 있습니다. 곡선 화살표는 방문 순서를 나타내며, 비용은 곡선 길이가 아니라 두 점의 x좌표 차이입니다. 초록색 내부 간선은 방향만 바뀌어 비용 `1 + 6`이 그대로이고, 주황색 경계 간선의 비용만 `8 → 1`로 바뀝니다.
 
 작은 입력에서 모든 `left, right` 조합을 뒤집어 보고, 차분식의 결과가 `get_path_dist`로 다시 구한 비용 변화와 같은지 대조합니다. 인접한 두 점과 경로 끝을 포함하는 구간도 넣습니다.
 
-[열린 경로 2-opt: 구간과 경계 비용 비교하기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=two-opt)
+[열린 경로 2-opt: 구간과 경계 비용 비교하기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=two-opt)
 
 뒤집을 구간을 바꾸며 전후 경로와 경계 간선의 차분을 비교해 보세요. 맨해튼 거리를 사용하며 시작점 0은 고정합니다. 끝점을 포함하는 구간에서는 오른쪽 경계를 더하지 않습니다. 더 좋아지지 않는 후보도 직접 확인할 수 있습니다.
 

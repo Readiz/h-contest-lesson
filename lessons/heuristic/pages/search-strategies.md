@@ -60,11 +60,11 @@ P(accept) = exp(-loss / T), T > 0
 
 ![채택된 현재해 비용은 10, 13, 11, 8로 움직이지만 최선해 비용은 10, 10, 10, 8입니다. 그래프의 파란 실선은 현재해, 초록 점선은 지금까지의 최저 비용을 나타냅니다.](../lesson-assets/current-best.svg)
 
-[그림 크게 보기](https://blog.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/current-best.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/current-best.svg)
 
 비용 `10 → 13` 이동은 확률적으로 채택된 경우를 가정합니다. 이후 `13 → 11`을 받아들였다는 이유로 `best`까지 11로 덮어쓰면 이전의 더 좋은 답 10을 잃습니다. `best`에는 비용뿐 아니라 그 비용을 만드는 순열·배치도 함께 복사합니다.
 
-[SA: 온도·나쁜 이동·최선해 보존 실험하기](https://blog.readiz.com/h-contest-lesson/demos/index.html?demo=annealing)
+[SA: 온도·나쁜 이동·최선해 보존 실험하기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=annealing)
 
 온도와 비용 증가량을 바꾸며 채택 확률을 확인하고, 같은 난수 예제의 진행을 따라가 보세요. 나쁜 이동을 받아들여 current가 커져도 best는 보존해야 합니다. 이 데모는 채택 규칙을 보여 주는 작은 예제이며, 실제 문제에서 어떤 온도나 냉각 일정이 좋은지를 보장하지 않습니다.
 
@@ -180,7 +180,7 @@ void build_path(int n, const int points[][2], int order[]) {
 
 한 채점 입력 묶음과 한 seed의 기록이므로 일반적인 우열이나 최적 온도로 해석하지 않습니다. 다음 실험에서는 입력 크기·분포와 seed를 바꾸고, 같은 시간에 돌릴 수 있는 후보 수를 따로 맞춥니다. 절대 시간은 기기와 부하에 따라 달라지며, 특히 매우 짧은 기준선 시간은 정밀한 성능 비교에 쓰기 어렵습니다.
 
-[TC별 비용과 측정 원본](https://blog.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/ordering-search-benchmark.json)에는 채점기 파일의 SHA-256과 개별 측정값도 담았습니다. 저장소에서 공개 채점기의 `main.cpp` 경로를 지정하면 같은 본문 코드를 추출해 재현할 수 있습니다.
+[TC별 비용과 측정 원본](https://git.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/ordering-search-benchmark.json)에는 채점기 파일의 SHA-256과 개별 측정값도 담았습니다. 저장소에서 공개 채점기의 `main.cpp` 경로를 지정하면 같은 본문 코드를 추출해 재현할 수 있습니다.
 
 ```bash
 python3 scripts/check_heuristic_search.py \
