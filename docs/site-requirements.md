@@ -45,3 +45,9 @@ python3 scripts/validate_lessons.py
 README의 이 문서 링크는 생성기 `README_HEADER`에서 관리한다. 생성형 README를 직접 수정하지 않는다. 이번 작업에서는 문서와 생성기 링크를 추가했으며, 강의 본문, manifest, 데모와 운영 상태는 바꾸지 않았다.
 
 2026-10-23 카탈로그 재생성 및 `--check`, 전체 validator를 통과했다. 강의 98개, 기초 연습 19개, STL 없는 코드 7개, 제출 흐름 28블록, ORDERING 탐색, 본문 조합과 경계 사례 48개, 데모 47,097개 assertion이 포함됐다. 새 브라우저 검사와 운영 배포는 수행하지 않았다.
+
+## 2026-10-23 원격과 Pages 후속 점검
+
+후속 점검 시작 시 로컬은 `a2adde3`, 원격 main과 마지막 성공한 Pages 배포는 `d9522b2`였다. 차이는 이 요구사항 문서와 README의 안내 링크 및 생성기 헤더뿐이고 강의, manifest와 데모 소스는 같았다. 공개 요구사항 문서가 404인 것도 이 미반영 커밋에 해당했다.
+
+`generate_catalog.py --check`와 전체 `validate_lessons.py`를 다시 실행해 98개 강의와 위의 코드·데모 검사를 모두 통과했다. 이 문서 변경은 main push에 연결된 Validate Lessons와 Deploy GitHub Pages workflow로 반영하며, 완료 여부는 해당 커밋의 두 workflow 성공과 공개 문서·카탈로그 응답을 함께 확인한다. h-contest 앱 로그인과 물리 기기 동작은 이 배포 확인 범위에 포함하지 않는다.
