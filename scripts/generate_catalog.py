@@ -19,6 +19,7 @@ This repository is the source of truth for h-contest heuristic notes. Lesson sou
 ## 탐색
 
 - 전체 카탈로그: [index.html](index.html)
+- 사이트 기능 요구사항과 검증 경계: [docs/site-requirements.md](docs/site-requirements.md)
 - Published manifest: https://git.readiz.com/h-contest-lesson/lessons.json
 - API mirror (h-contest 로그인 필요): https://h.readiz.com/api/lessons
 - 공개 기록: [CHANGELOG.md](CHANGELOG.md)
