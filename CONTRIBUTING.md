@@ -16,7 +16,7 @@ API와 공개 manifest는 이 저장소의 내용을 기준으로 제공됩니�
 5. 기존 레슨에 예제나 실수 포인트 추가
 6. 새 레슨 추가
 
-새 주제 후보와 아직 적절한 h-contest 문제가 없는 연습 문제는 [ROADMAP.md](ROADMAP.md)에 TODO로 관리합니다. 이미 공개된 레슨의 이동 기록과 보강 완료 기록은 [CHANGELOG.md](CHANGELOG.md)에 남깁니다.
+새 주제 후보와 아직 적절한 h-contest 문제가 없는 연습 문제는 [ROADMAP.md](ROADMAP.md)에 TODO로 관리합니다. 레슨의 변경 기록은 별도 문서 없이 git 기록(커밋 메시지와 PR)으로 남깁니다.
 
 ## 레슨 수정 방법
 
@@ -61,33 +61,30 @@ lessons.json
 
 `lessons.json`에는 새 레슨이 들어갈 `folderId`, `level`, `estimatedMinutes`, `prerequisites`, `nextLessons`, `relatedLessons`를 함께 지정합니다. 하위 페이지가 있으면 `pageId`, `title`, `description`, `order`, `file`을 가진 `pages` 배열을 추가합니다.
 
-`prerequisites`에는 실제 필수 지식만 넣고 선택 참고는 `relatedLessons`로 연결합니다. 선수 관계는 순환할 수 없으며, 같은 분류에서는 선수 레슨의 `order`가 더 작아야 합니다. validator가 두 조건을 검사합니다.
+`prerequisites`에는 실제 필수 지식만 넣고 선택 참고는 `relatedLessons`로 연결합니다. 선수 관계는 순환할 수 없으며, 선수 레슨의 `order`가 더 작아야 합니다. validator가 두 조건을 검사합니다.
 
-현재 공개 분류는 두 가지입니다.
+현재 공개 분류는 `heuristic-notes`(휴리스틱 노트) 하나입니다. h-contest 문제 풀이에 쓰는 제출·검증, 휴리스틱 탐색, 기본 알고리즘 강의만 들어갑니다. 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘이나 희소 고급 도구는 이 저장소에 추가하지 않습니다. 삭제한 참고 노트는 git 태그 `archive/pre-prune-20261118`에서 복구할 수 있습니다.
 
-- `heuristic-notes`: 휴리스틱 기본 및 심화 노트. 현재 h-contest 문제 풀이에 바로 쓰는 기본 구현, 모델링, 최적화, 검증 레슨만 들어갑니다.
-- `heuristic-reference`: 휴리스틱 참고 노트. 현재 문제 풀이의 직접 범위를 넘는 전통 알고리즘, 이론, 희소 고급 도구, 장기 확장용 레퍼런스 레슨이 들어갑니다. 이 폴더에는 `research-reference`뿐 아니라 직접성이 낮은 `contest-core` 또는 `advanced-contest` 레슨도 들어갈 수 있습니다.
-
-새 폴더를 추가하기보다 위 두 분류 중 하나를 먼저 고릅니다. 주제별 탐색은 `tags`, `difficultyAxes`, `prerequisites`, `nextLessons`, `relatedLessons`, 하위 `pages`로 표현합니다.
+새 폴더를 추가하기보다 이 분류를 사용합니다. 주제별 탐색은 `tags`, `difficultyAxes`, `prerequisites`, `nextLessons`, `relatedLessons`, 하위 `pages`로 표현합니다.
 
 문서의 공개 성격이 명확하지 않으면 아래 metadata를 함께 지정합니다.
 
 ```json
 {
   "status": "draft | review | published",
-  "lessonType": "core | implementation | overview | reference | experimental",
-  "seriesId": "parametric-optimization",
-  "parentLessonId": "parametric-optimization",
+  "lessonType": "core | implementation | overview",
+  "seriesId": "heuristic-search",
+  "parentLessonId": "heuristic",
   "practiceStatus": "none | todo | linked | verified",
   "implementationStatus": "concept-only | partial | full",
-  "audience": "contest-core | advanced-contest | research-reference",
+  "audience": "contest-core | advanced-contest",
   "difficultyAxes": ["implementation | proof | modeling | selection"]
 }
 ```
 
 `difficultyAxes`는 레슨이 어려운 이유를 표시합니다. 코드와 corner case가 핵심이면 `implementation`, 조건 증명이 핵심이면 `proof`, 수학/그래프 모델로 바꾸는 과정이 핵심이면 `modeling`, 여러 기법 중 무엇을 고를지 판단하는 문서면 `selection`을 사용합니다. 둘 이상이 동시에 필요하면 여러 값을 넣습니다.
 
-`published`인 `core` 또는 `implementation` 레슨은 `practiceStatus: todo` 상태로 둘 수 없습니다. 실제 practice 링크나 저장소 안의 로컬 완결형 연습을 준비한 뒤 정식 구현 레슨으로 올립니다. 실제 문제와 완전 구현이 아직 없으면 `overview` 또는 `reference`로 분류합니다.
+`published`인 `core` 또는 `implementation` 레슨은 `practiceStatus: todo` 상태로 둘 수 없습니다. 실제 practice 링크나 저장소 안의 로컬 완결형 연습을 준비한 뒤 정식 구현 레슨으로 올립니다. 실제 문제와 완전 구현이 아직 없으면 `overview`로 분류합니다.
 
 이미지가 필요하면 아래 디렉터리에 추가합니다.
 
@@ -102,7 +99,7 @@ python3 scripts/generate_catalog.py
 python3 scripts/validate_lessons.py
 ```
 
-학습 지도에 등록한 강의 ID가 manifest에 없으면 카탈로그 생성과 `--check`가 실패합니다. 강의를 통합하거나 삭제할 때 `QUICK_GUIDES`와 `TRACK_GUIDES`도 함께 갱신합니다.
+학습 지도에 등록한 강의 ID가 manifest에 없으면 카탈로그 생성과 `--check`가 실패합니다. 강의를 통합하거나 삭제할 때 `QUICK_GUIDES`도 함께 갱신합니다.
 
 아래 파일은 직접 편집하지 않고 생성 결과를 커밋합니다.
 
@@ -111,7 +108,7 @@ README.md
 index.html
 ```
 
-`README.md`와 `index.html` 상단의 문제 신호별 빠른 길찾기, 심화 트랙 지도, 카드 배지 기준도 `scripts/generate_catalog.py`에서 생성됩니다. 새 허브 레슨을 추가하거나 기존 허브의 역할이 바뀌면 `QUICK_GUIDES`, `TRACK_GUIDES`, `METADATA_GUIDE`가 현재 학습 경로와 맞는지 함께 확인합니다.
+`README.md`와 `index.html` 상단의 문제 신호별 빠른 길찾기와 카드 배지 기준도 `scripts/generate_catalog.py`에서 생성됩니다. 새 허브 레슨을 추가하거나 기존 허브의 역할이 바뀌면 `QUICK_GUIDES`, `METADATA_GUIDE`가 현재 학습 경로와 맞는지 함께 확인합니다.
 
 새 레슨을 처음 작성할 때는 `templates/lesson.md`를 출발점으로 사용할 수 있습니다.
 
@@ -137,7 +134,7 @@ ZeroOneBFS
 
 ## 레슨 작성 스타일
 
-직접 풀이 트랙(`heuristic-notes`)의 새 제출 예제는 h-contest 함수 구현형 `user.cpp`를 기준으로 작성합니다. STL과 표준 헤더를 쓰지 않고, 공개 API·고정 배열·직접 구현을 기본으로 합니다. `struct`, 참조, `template`는 사용 가능합니다. 일반 C++/STL이 필요한 참고 예제와 로컬 테스트 하네스는 적용 환경을 명시합니다. 기존 레슨의 전환은 ROADMAP 순서로 진행합니다.
+새 제출 예제는 h-contest 함수 구현형 `user.cpp`를 기준으로 작성합니다. STL과 표준 헤더를 쓰지 않고, 공개 API·고정 배열·직접 구현을 기본으로 합니다. `struct`, 참조, `template`는 사용 가능합니다. 일반 C++/STL이 필요한 예제와 로컬 테스트 하네스는 적용 환경을 명시합니다. 기존 레슨의 전환은 ROADMAP 순서로 진행합니다.
 
 C++가 있는 본문은 첫 코드 앞에 적용 환경을 표시합니다. 일반 C++17 학습용, h-contest 제출용·제출 확장용, 설계 조각을 구분하고, 문서 중간에 환경이 바뀌면 그 코드 옆에 다시 표시합니다. 설계 조각을 완성 제출로 소개하지 않으며, 일반 C++ 예제에는 [공통 코드로 옮기는 기준](lessons/cpp-common-library/lesson.md)을 연결합니다.
 
@@ -180,7 +177,7 @@ h-contest 문제 링크를 넣을 때는 `/practice/<PROBLEM_ID>` 형식을 사�
 
 아직 준비하지 못한 연습과 본문 보강 항목은 [ROADMAP.md](ROADMAP.md)에 둡니다. 강의 본문에 `TODO` 행이나 빈 연습 페이지를 만들지 않습니다. `practiceStatus`는 실제 내용에 맞춰 `none`/`todo`/`linked`/`verified`로 표시하며, 예정 항목만 있는 강의를 `linked`로 표시하지 않습니다.
 
-validator는 목차나 표 형식을 강제하지 않습니다. 기본·심화와 참고 노트의 모든 강의에서 본문의 `TODO`와 근거 없는 `linked`/`verified` 표시를 검사합니다. 미완성 연습 후보는 ROADMAP에 보관하고, 실제 연습이 없는 강의를 `linked`로 표시하지 않습니다.
+validator는 목차나 표 형식을 강제하지 않습니다. 모든 강의에서 본문의 `TODO`와 근거 없는 `linked`/`verified` 표시를 검사합니다. 미완성 연습 후보는 ROADMAP에 보관하고, 실제 연습이 없는 강의를 `linked`로 표시하지 않습니다.
 
 C++ 코드 블록은 기본적으로 문법을 직접 확인합니다. 독립 translation unit으로 컴파일 가능한 예제는 fence에 `compile-check`를 붙이면 validator가 `c++ -std=c++17 -fsyntax-only`로 검사합니다.
 
@@ -226,6 +223,6 @@ long long square(int value) {
 - 결론·체크리스트가 본문을 반복하거나 일반론으로 분량을 채우지 않나요?
 - `lessonType`, `practiceStatus`, `implementationStatus`가 실제 문서 완성도와 맞나요?
 - `difficultyAxes`가 레슨의 어려운 이유를 정확히 설명하나요?
-- 새 허브나 트랙 역할이 생겼다면 생성 카탈로그의 빠른 길찾기와 트랙 지도도 맞게 갱신했나요?
+- 새 허브 역할이 생겼다면 생성 카탈로그의 빠른 길찾기도 맞게 갱신했나요?
 
-공통 구현을 참조하는 예제는 의존 본문의 정의를 먼저 붙인다고 명시합니다. `scripts/review-example-cases.json`은 실제 Markdown 블록을 조합하고 `scripts/check_review_examples.py`로 경계·단순 풀이 비교를 실행합니다. 전체 validator에도 포함되어 있습니다. 전체 재검토 기록은 [LESSON_REVIEW.md](LESSON_REVIEW.md)에 남깁니다.
+공통 구현을 참조하는 예제는 의존 본문의 정의를 먼저 붙인다고 명시합니다. `scripts/review-example-cases.json`은 실제 Markdown 블록을 조합하고 `scripts/check_review_examples.py`로 경계·단순 풀이 비교를 실행합니다. 전체 validator에도 포함되어 있습니다.

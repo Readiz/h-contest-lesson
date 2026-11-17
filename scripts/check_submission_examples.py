@@ -15,6 +15,8 @@ from cpp_library import assemble_library, check_submission_code
 ROOT = Path(__file__).resolve().parents[1]
 PROTECTED = {"cpp-contest-basics", "cpp-common-library", "sorting", "greedy",
              "priority-queue-heap", "heuristic", "testing-and-stress"}
+# Local-harness pages that explicitly declare general C++17 (STL allowed).
+GENERAL_CPP_PAGES = {"lessons/testing-and-stress/pages/experiment-evaluation.md"}
 CPP = re.compile(r"```(?:cpp|c\+\+)(?:[^\n]*)\n(.*?)\n```", re.S)
 
 
@@ -30,6 +32,11 @@ def check_flow_policy() -> int:
         base = ROOT / "lessons" / lesson_id
         paths = [base / "lesson.md"] + [base / p["file"] for p in lesson.get("pages", [])]
         for path in paths:
+            relative = str(path.relative_to(ROOT))
+            if relative in GENERAL_CPP_PAGES:
+                if "코드 환경: 일반 C++17" not in path.read_text():
+                    raise ValueError(f"general C++ page must state its environment: {relative}")
+                continue
             for code in CPP.findall(path.read_text()):
                 check_submission_code(code, str(path.relative_to(ROOT)))
                 count += 1

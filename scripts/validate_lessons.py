@@ -17,10 +17,10 @@ MARKDOWN_LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)"
 FENCE_RE = re.compile(r"^```(.*)$")
 LESSON_LEVELS = {"beginner", "intermediate", "advanced"}
 LESSON_STATUSES = {"draft", "review", "published"}
-LESSON_TYPES = {"core", "implementation", "overview", "reference", "experimental"}
+LESSON_TYPES = {"core", "implementation", "overview"}
 PRACTICE_STATUSES = {"none", "todo", "linked", "verified"}
 IMPLEMENTATION_STATUSES = {"concept-only", "partial", "full"}
-AUDIENCES = {"contest-core", "advanced-contest", "research-reference"}
+AUDIENCES = {"contest-core", "advanced-contest"}
 DIFFICULTY_AXES = {"implementation", "proof", "modeling", "selection"}
 LESSON_REFERENCE_FIELDS = ("prerequisites", "nextLessons", "relatedLessons")
 HCONTEST_PROBLEM_ROUTE_RE = re.compile(
@@ -179,7 +179,7 @@ def practice_sections(markdown: str) -> list[str]:
 
 
 def validate_practice_content(markdown: str, lesson: dict) -> None:
-    # Both collections keep unfinished exercises in ROADMAP, not public lessons.
+    # Unfinished exercises stay in ROADMAP, not in public lessons.
 
     lesson_id = lesson["lessonId"]
     if TODO_RE.search(markdown):

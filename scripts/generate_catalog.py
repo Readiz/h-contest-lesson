@@ -22,8 +22,6 @@ This repository is the source of truth for h-contest heuristic notes. Lesson sou
 - 사이트 기능 요구사항과 검증 경계: [docs/site-requirements.md](docs/site-requirements.md)
 - Published manifest: https://git.readiz.com/h-contest-lesson/lessons.json
 - API mirror (h-contest 로그인 필요): https://h.readiz.com/api/lessons
-- 공개 기록: [CHANGELOG.md](CHANGELOG.md)
-- 학습 노트 전체 본문 검토: [LESSON_REVIEW.md](LESSON_REVIEW.md)
 - 실전 풀이 중심 개편 계획과 practice TODO: [ROADMAP.md](ROADMAP.md)
 - 기여 절차: [CONTRIBUTING.md](CONTRIBUTING.md)
 
@@ -42,14 +40,14 @@ python3 scripts/validate_lessons.py
 
 ## 학습 로드맵
 
-h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. 카탈로그는 같은 분류의 필수 선수 레슨이 먼저 오도록 정렬하며, 선택 참고는 관련 레슨으로 구분합니다.
+h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. 카탈로그는 필수 선수 레슨이 먼저 오도록 정렬하며, 선택 참고는 관련 레슨으로 구분합니다.
 
 1. [실전 C++ 제출과 검증](lessons/cpp-contest-basics/lesson.md): 제출 계약 → TC 초기화 → ORDERING의 유효한 기준선.
 2. [ORDERING 경로 개선](lessons/heuristic/pages/ordering-route-improvement.md): 번호 순서 → nearest neighbor → 2-opt. 매 단계 같은 TC의 비용과 실행 시간을 비교합니다.
 3. [Testing과 Stress Test](lessons/testing-and-stress/lesson.md): 전체 비용과 차분값, apply/undo, 같은 seed의 재현성을 대조합니다.
 4. [지역 탐색과 SA](lessons/heuristic/pages/search-strategies.md): 작은 지역 최적 반례를 따라가고, 실행 가능한 탐색의 비용과 시간을 비교합니다.
 5. [휴리스틱 모델링과 실전 변형](lessons/heuristic/lesson.md): 배치·repair·빔 탐색으로 확장합니다. 추가 문제 연결은 [ROADMAP.md](ROADMAP.md)를 따릅니다.
-6. 정렬·자료구조·그래프·수학과 참고 노트는 문제에서 필요한 작업과 신호를 보고 찾아봅니다.
+6. 정렬·자료구조·그래프 등 기본 알고리즘 강의는 문제에서 필요한 작업과 신호를 보고 찾아봅니다.
 
 필요한 배열·난수·정렬·큐·힙은 별도 [STL 없는 공통 라이브러리](lessons/cpp-common-library/lesson.md)에서 찾아 씁니다. 공통 블록의 사용 계약과 풀이의 선택 기준을 나누며, 라이브러리 전체를 첫 실습의 선수로 요구하지 않습니다.
 
@@ -59,125 +57,30 @@ h-contest 실전 문제를 처음 풀 때는 아래 경로로 시작합니다. �
 QUICK_GUIDES = [
     {
         "title": "구간 질의/업데이트",
-        "description": "질의가 많은 문제에서 온라인/오프라인, 업데이트, 좌표 크기, 시간축을 먼저 나눕니다.",
+        "description": "질의가 많은 문제에서 온라인/오프라인, 업데이트, 좌표 크기를 먼저 나눕니다.",
         "rows": [
             ("정적 구간 합", ["prefix-sum-difference"]),
             ("점 업데이트 + 구간 질의", ["fenwick-tree", "segment-tree"], " / "),
             ("구간 업데이트/블록 처리", ["segment-tree", "sqrt-decomposition"], " / "),
             ("좌표가 크다", ["coordinate-compression", "dynamic-segment-tree"], " / "),
-            ("질의를 재정렬할 수 있다", ["offline-time-axis-techniques", "sqrt-decomposition"], " / "),
-            ("되돌리기/버전이 필요하다", ["versioned-data-structures", "offline-time-axis-techniques"], " / "),
+            ("질의를 재정렬할 수 있다", ["sqrt-decomposition"]),
         ],
     },
     {
         "title": "최적화",
-        "description": "답을 판정으로 바꿀지, DP 전이를 줄일지, 제약을 완화할지부터 구분합니다.",
+        "description": "답을 판정으로 바꿀 수 있는지와 풀이의 정당성을 검증하는 방법부터 구분합니다.",
         "rows": [
-            ("단조 판정", ["binary-search", "parametric-optimization"]),
-            (
-                "DP 전이 최적화",
-                [
-                    "divide-and-conquer-dp-optimization",
-                    "knuth-optimization",
-                    "monge-smawk",
-                    "convex-dp-optimization",
-                ],
-                " / ",
-            ),
-            ("정확히 K개/penalty", ["parametric-optimization", "convex-cost-flow"], " / "),
-            ("convex 비용", ["convex-dp-optimization", "convex-cost-flow", "online-convex-optimization"], " / "),
-            ("검증/증명", ["monge-smawk", "proof-and-invariants", "testing-and-stress"], " / "),
+            ("단조 판정", ["binary-search"]),
+            ("검증/증명", ["proof-and-invariants", "testing-and-stress"], " / "),
         ],
     },
     {
         "title": "그래프",
-        "description": "탐색, 최단거리, DAG, 트리, flow/cut, 동적 변화 순서로 문제 신호를 좁힙니다.",
+        "description": "탐색, 최단거리, DAG 순서로 문제 신호를 좁힙니다.",
         "rows": [
             ("탐색/연결성", ["bfs-dfs-grid", "graph-tree-basics", "union-find"], " / "),
             ("최단거리", ["zero-one-bfs", "dijkstra", "bellman-ford-negative-cycle", "floyd-warshall"], " / "),
             ("DAG 순서", ["topological-sort-dag"]),
-            ("트리", ["tree-advanced", "link-cut-tree", "euler-tour-tree"], " / "),
-            ("Flow/Cut", ["max-flow-min-cut", "min-cost-flow", "flow-with-lower-bound", "graph-cut-structures"], " / "),
-            ("동적/오프라인", ["offline-time-axis-techniques", "dynamic-network-optimization"], " / "),
-        ],
-    },
-    {
-        "title": "수학/모델링",
-        "description": "계산 루틴과 모델링 도구를 분리해, 수식 처리가 필요한 이유부터 확인합니다.",
-        "rows": [
-            ("기본 계산", ["modular-arithmetic", "gcd-extended-euclid-crt", "combinatorics-ncr"], " / "),
-            ("행렬/점화식", ["matrix-exponentiation", "polynomial-recurrence-algorithms"], " / "),
-            (
-                "정수론 변환",
-                ["mobius-inversion", "dirichlet-convolution", "multiplicative-functions", "summatory-number-theory"],
-                " / ",
-            ),
-            (
-                "선형대수 모델링",
-                [
-                    "linear-basis-xor",
-                    "black-box-linear-algebra",
-                    "sparse-linear-systems",
-                    "linear-algebra-applications",
-                ],
-                " / ",
-            ),
-            ("확률/게임/의사결정", ["probability-expected-value", "game-theory-grundy", "probabilistic-decision-ai"], " / "),
-        ],
-    },
-]
-
-
-TRACK_GUIDES = [
-    {
-        "title": "최적화 트랙",
-        "description": "최적화는 하나의 선형 순서가 아니라 판정, 전이 축소, 제약 완화, 증명 검증이 서로 교차합니다.",
-        "rows": [
-            ("A. 판정으로 바꾸기", ["binary-search", "parametric-optimization"]),
-            (
-                "B. DP 전이 줄이기",
-                [
-                    "divide-and-conquer-dp-optimization",
-                    "knuth-optimization",
-                    "monge-smawk",
-                    "convex-dp-optimization",
-                ],
-                " / ",
-            ),
-            ("C. 제약 완화", ["parametric-optimization", "convex-cost-flow"], " / "),
-            ("D. 증명/검증", ["proof-and-invariants", "monge-smawk", "testing-and-stress"], " / "),
-        ],
-    },
-    {
-        "title": "그래프 트랙",
-        "description": "저장소 폴더와 별개로, 학습 목차는 탐색에서 동적 네트워크까지 단계별로 읽습니다.",
-        "rows": [
-            ("그래프 기본", ["bfs-dfs-grid", "graph-tree-basics", "topological-sort-dag", "union-find"], " / "),
-            ("최단거리", ["zero-one-bfs", "dijkstra", "bellman-ford-negative-cycle", "floyd-warshall"], " / "),
-            ("트리", ["tree-advanced", "link-cut-tree", "euler-tour-tree"], " / "),
-            ("Flow/Cut", ["max-flow-min-cut", "min-cost-flow", "flow-with-lower-bound", "graph-cut-structures"], " / "),
-            ("동적/오프라인 그래프", ["offline-time-axis-techniques", "dynamic-network-optimization"], " / "),
-        ],
-    },
-    {
-        "title": "수학 트랙",
-        "description": "계산 도구와 모델링 도구를 분리하면 advanced 수학 레슨의 어려운 이유가 더 선명해집니다.",
-        "rows": [
-            ("수학 기본 계산", ["modular-arithmetic", "gcd-extended-euclid-crt", "combinatorics-ncr", "matrix-exponentiation"], " / "),
-            ("정수론 변환", ["mobius-inversion", "dirichlet-convolution", "multiplicative-functions", "summatory-number-theory"], " / "),
-            ("선형대수 모델링", ["linear-basis-xor", "black-box-linear-algebra", "linear-algebra-applications"], " / "),
-            ("확률/게임", ["probability-expected-value", "game-theory-grundy", "game-theory-applications", "probabilistic-decision-ai"], " / "),
-        ],
-    },
-    {
-        "title": "기하 트랙",
-        "description": "predicate에서 시작해 convex, sweep, arrangement, duality와 robustness로 확장합니다.",
-        "rows": [
-            ("기하 입문", ["geometry-ccw-segment-intersection", "rotating-calipers"], " / "),
-            ("Convex polygon", ["minkowski-sum", "rotating-calipers", "shape-distance-modeling"], " / "),
-            ("Sweep/Arrangement", ["sweep-line-geometry", "closest-pair-sweep", "line-arrangement", "circle-arrangement"], " / "),
-            ("Half-plane/Voronoi", ["half-plane-intersection", "voronoi-delaunay", "geometry-robustness-and-duality"], " / "),
-            ("Robustness/Advanced", ["geometry-robustness-and-duality", "inversion-geometry"], " / "),
         ],
     },
 ]
@@ -186,10 +89,10 @@ TRACK_GUIDES = [
 METADATA_GUIDE = [
     ("난이도", "beginner / intermediate / advanced"),
     ("난이도 축", "implementation / proof / modeling / selection"),
-    ("성격", "core / implementation / overview / reference / experimental"),
+    ("성격", "core / implementation / overview"),
     ("완성도", "concept-only / partial / full"),
     ("연습", "none / todo / linked / verified"),
-    ("대상", "contest-core / advanced-contest / research-reference"),
+    ("대상", "contest-core / advanced-contest"),
 ]
 
 
@@ -310,8 +213,6 @@ def lesson_type_label(lesson_type: str | None) -> str | None:
         "core": "core",
         "implementation": "implementation",
         "overview": "overview",
-        "reference": "reference",
-        "experimental": "experimental",
     }.get(lesson_type, lesson_type)
 
 
@@ -342,7 +243,6 @@ def audience_label(audience: str | None) -> str | None:
     return {
         "contest-core": "contest-core",
         "advanced-contest": "advanced-contest",
-        "research-reference": "research-reference",
     }.get(audience, audience)
 
 
@@ -495,29 +395,19 @@ def build_readme(folders: list[dict], lessons: list[dict]) -> str:
     lines.append(
         render_markdown_guide_section(
             "문제 신호별 빠른 길찾기",
-            "두 노트 분류와 별개로, 문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
+            "문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
             QUICK_GUIDES,
             lessons_by_id,
         )
     )
-    lines.append(
-        render_markdown_guide_section(
-            "심화 트랙 지도",
-            "고급 주제는 선형 난이도보다 여러 축의 선택 문제에 가깝습니다. 아래 지도는 허브끼리의 관계를 먼저 보여 줍니다.",
-            TRACK_GUIDES,
-            lessons_by_id,
-        )
-    )
     lines.append(render_markdown_metadata_guide())
-    lines.append("## 카테고리 요약\n\n")
-    lines.append("| 카테고리 | 설명 | 레슨 수 |\n")
-    lines.append("| --- | --- | ---: |\n")
+    lines.append("## 분류\n\n")
     for folder in folders:
         folder_lessons = grouped.get(folder["folderId"], [])
         if not folder_lessons:
             continue
         lines.append(
-            f"| {folder['title']} | {folder.get('description', '')} | {len(folder_lessons)} |\n"
+            f"- {folder['title']}: {folder.get('description', '')} (레슨 {len(folder_lessons)}개)\n"
         )
     lines.append("\n전체 레슨과 하위 페이지 링크는 [index.html](index.html)에서 확인합니다.\n")
     return f"{''.join(lines).rstrip()}\n"
@@ -530,16 +420,8 @@ def build_index(folders: list[dict], lessons: list[dict]) -> str:
     lines.append(
         render_html_guide_section(
             "문제 신호별 빠른 길찾기",
-            "두 노트 분류와 별개로, 문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
+            "문제에서 먼저 보이는 신호로 읽을 수 있는 개념 지도입니다.",
             QUICK_GUIDES,
-            lessons_by_id,
-        )
-    )
-    lines.append(
-        render_html_guide_section(
-            "심화 트랙 지도",
-            "고급 주제는 선형 난이도보다 여러 축의 선택 문제에 가깝습니다. 아래 지도는 허브끼리의 관계를 먼저 보여 줍니다.",
-            TRACK_GUIDES,
             lessons_by_id,
         )
     )
