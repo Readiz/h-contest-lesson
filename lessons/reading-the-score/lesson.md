@@ -31,7 +31,7 @@ E = 모든 입자 쌍(i < j)의 |dy| + |dx| 합        E0는 process 시작 때�
 
 입자는 서로 구별되지 않으므로 상태는 입자 목록 `py, px`, 점유 격자 `occ`, 사용 횟수가 전부입니다. `occ`와 목록은 채점기 상태를 따라 그린 **거울**이며, 한 곳(`act`)에서만 갱신합니다. 행동 전에 `occ`로 막으면 실패 호출로 예산을 쓰지 않습니다. 입자 수는 최대 180×180 = 32400이라 배열 상한이 되고, 초기화는 `process` 시작의 `init`에서 한 번 합니다.
 
-> **코드 환경: h-contest 제출용.** `ent-state`, `ent-score`, `ent-axis`, `ent-act`를 이 순서로 `user.cpp`에 붙이고 마지막에 단계별 `process`를 하나 붙입니다. 2단계 이상은 `ent-greedy`를, 4단계는 `ent-relocate`도 먼저 붙입니다. 5단계는 `ent-greedy`와 `ent-relocate` 없이 `ent-target`, `ent-shift`, `ent-fill`을 이 순서로 붙입니다.
+> **코드 환경: h-contest 제출용.** `ent-state`, `ent-score`, `ent-axis`, `ent-act`를 이 순서로 `user.cpp`에 붙이고 마지막에 단계별 `process`를 하나 붙입니다. 2단계 이상은 `ent-greedy`를, 4단계는 `ent-relocate`도 먼저 붙입니다. 5단계는 `ent-greedy`와 `ent-relocate` 없이 `ent-target`, `ent-match`를 이 순서로 붙입니다.
 
 ```cpp snippet=ent-state
 extern int getHeight();
@@ -379,22 +379,22 @@ void process() {
 }
 ```
 
-4단계가 모자란 점수는 이동 횟수에 있습니다. 한 번의 이동은 열 경계 하나 또는 행 경계 하나만 건너므로, 경계마다 처음과 끝 누적합의 차이만큼은 반드시 건너야 하고 이 차이의 합이 **이동 횟수의 하한**입니다. 모든 이동이 경계를 한 방향으로만 건너면 하한에 닿습니다. 4단계는 입자를 빈 칸으로만 보내 막히면 돌아가거나 포기하므로 하한에서 멀어집니다. 5단계는 세 가지를 바꿉니다. 첫째, **끝 배치를 먼저 정합니다.** 입자를 a에서 b로 옮기는 변화 `ΔE = F(b) − |b − a| − F(a)`에서 F(행 F와 열 F의 합)가 작은 칸이 좋은 칸이므로 F가 작은 n칸을 목표로 잡습니다. F는 배치에서 만들어지므로 고른 목표로 F를 다시 만들어 되풀이합니다.
+4단계가 모자란 점수는 이동 횟수에 있습니다. 한 번의 이동은 열 경계 하나 또는 행 경계 하나만 건너므로, 경계마다 처음과 끝 누적합의 차이만큼은 반드시 건너야 하고 이 합이 **이동 횟수의 하한**입니다. 모든 이동이 경계를 한 방향으로만 건너면 하한에 닿습니다. 4단계는 빈 칸만 지나 입자를 보내서 막히면 돌아가거나 포기하므로 하한에서 멀어집니다. 5단계는 **끝 배치를 먼저 정합니다.** 입자를 a에서 b로 옮기는 변화 `ΔE = F(b) − |b − a| − F(a)`에서 F(행 F와 열 F의 합)가 작은 칸이 좋으므로 F가 작은 n칸을 목표로 잡고, 고른 목표의 F로 키를 다시 만들어 되풀이합니다.
 
 ```cpp snippet=ent-target
 namespace ent {
 int absv(int v) { return v < 0 ? -v : v; }
 const int ROUNDS = 8;                    // 목표를 다시 고르는 횟수
-bool inR[MAXHW][MAXHW];                  // 목표 배치에 속한 칸
-int cntY[MAXHW], cntX[MAXHW];            // 배치의 행별·열별 입자 수. 처음에는 지금 배치, 이후에는 목표 배치
+bool inR[MAXHW][MAXHW];                  // 목표 배치에 속한 칸. 처음에는 지금 입자가 있는 칸
+int cntY[MAXHW], cntX[MAXHW];            // 그 배치의 행별·열별 입자 수
 long long gy[MAXHW], gx[MAXHW];          // 그 배치에서 행 r, 열 c까지의 거리 합 F
 
 // 키 gy[y] + gx[x]가 작은 n칸을 목표로 잡는다. 고른 목표의 F로 키를 다시 만들어 ROUNDS번 반복한다.
 void chooseTarget() {
-    for (int r = 0; r < G.H; ++r) cntY[r] = 0;
-    for (int c = 0; c < G.W; ++c) cntX[c] = 0;
-    for (int i = 0; i < G.n; ++i) { ++cntY[G.py[i]]; ++cntX[G.px[i]]; }
+    for (int y = 0; y < G.H; ++y) for (int x = 0; x < G.W; ++x) inR[y][x] = G.occ[y][x];
     for (int round = 0; round < ROUNDS; ++round) {
+        for (int k = 0; k < MAXHW; ++k) cntY[k] = cntX[k] = 0;
+        for (int y = 0; y < G.H; ++y) for (int x = 0; x < G.W; ++x) if (inR[y][x]) { ++cntY[y]; ++cntX[x]; }
         for (int r = 0; r < G.H; ++r) { gy[r] = 0; for (int k = 0; k < G.H; ++k) gy[r] += (long long)cntY[k] * absv(r - k); }
         for (int c = 0; c < G.W; ++c) { gx[c] = 0; for (int k = 0; k < G.W; ++k) gx[c] += (long long)cntX[k] * absv(c - k); }
         long long lo = 0, hi = (long long)G.n * (G.H + G.W);       // 키가 lo 이하인 칸이 n개 이상인 가장 작은 lo
@@ -403,27 +403,19 @@ void chooseTarget() {
             for (int y = 0; y < G.H; ++y) for (int x = 0; x < G.W; ++x) cnt += gy[y] + gx[x] <= mid;
             if (cnt >= G.n) hi = mid; else lo = mid + 1;
         }
-        int ties = G.n;                                            // 키가 lo보다 작은 칸을 빼고 남은 만큼만 키가 lo인 칸을 택한다
-        for (int y = 0; y < G.H; ++y) for (int x = 0; x < G.W; ++x) ties -= gy[y] + gx[x] < lo;
-        for (int r = 0; r < G.H; ++r) cntY[r] = 0;
-        for (int c = 0; c < G.W; ++c) cntX[c] = 0;
-        for (int y = 0; y < G.H; ++y) for (int x = 0; x < G.W; ++x) {
-            inR[y][x] = gy[y] + gx[x] < lo || (gy[y] + gx[x] == lo && ties-- > 0);
-            if (inR[y][x]) { ++cntY[y]; ++cntX[x]; }
-        }
+        for (int y = 0; y < G.H; ++y) for (int x = 0; x < G.W; ++x) inR[y][x] = gy[y] + gx[x] <= lo;   // 키가 같은 칸이 많으면 n개를 넘을 수 있다
     }
 }
 }
 ```
 
-둘째, 입자는 구별되지 않으므로 **짝은 누구와 누구든 상관없고 거리 합만 작으면 됩니다.** 셋째, 짝을 **직선 경로**로 옮깁니다. 경로 위에 다른 입자가 있어도 앞 칸이 빈 입자부터 한 칸씩 가면 경로의 변을 정확히 한 번씩만 건너고 결과는 `a`가 비고 `b`가 찬 것과 같습니다. 경로 `1 0 1 0`(1이 입자)은 셋째 칸, 첫째 칸, 둘째 칸의 입자가 차례로 한 칸 가서 3번 만에 `0 0 1 1`이 됩니다. 비용은 언제나 `|a − b|`이고 돌아가는 일이 없습니다.
+입자는 구별되지 않아 **누가 어느 칸으로 가든 최종 배치만 같으면 점수가 같습니다.** 그래서 목표 안의 빈 칸마다 목표 밖의 입자 하나를 짝지어 보냅니다. 짝은 가까운 쌍부터 맺고(거리 d를 1부터 넓히며 못 채운 빈 칸의 둘레만 훑습니다), 서로 다른 짝의 a와 b는 겹치지 않으므로 맺는 즉시 옮깁니다. 옮길 때는 **직선 경로**를 쓰고 경로 위에 다른 입자가 있어도 됩니다. 입자 다음의 첫 빈 칸까지 뒤에서부터 한 칸씩 밀고, 그 칸의 입자로 b까지 되풀이합니다. 경로 `1 0 1 0`(1이 입자)은 첫째 칸이 한 칸 가서 `0 1 1 0`, 이어 셋째·둘째 칸이 차례로 한 칸 가서 `0 0 1 1`이 됩니다(3번). 경로의 변을 정확히 한 번씩만 건너 비용이 언제나 `|a − b|`이고 돌아가는 일이 없습니다.
 
-```cpp snippet=ent-shift
+```cpp snippet=ent-match
 namespace ent {
 int who[MAXHW][MAXHW];                   // 칸에 있는 입자의 번호(입자가 있는 칸에서만 유효)
 
-// a의 입자를 빈 칸 b로 보낸 것과 같은 결과(a가 비고 b가 참)를 |a - b|번의 이동으로 만든다.
-// 직선 경로(세로 먼저)의 변을 한 번씩만 앞으로 건너며, 앞 칸이 비어 있는 입자부터 간다. 경로 위의 입자는 한 칸씩 밀려 비켜 준다.
+// a의 입자를 빈 칸 b로 보낸 것과 같은 결과를 |a - b|번의 이동으로 만든다. 경로는 직선(세로 먼저)이다.
 bool shiftAlong(int ay, int ax, int by, int bx) {
     int cy[2 * MAXHW], cx[2 * MAXHW], cd[2 * MAXHW], L = 0;    // 경로 칸의 좌표와, 칸 i에서 i + 1로 가는 방향
     for (cy[0] = ay, cx[0] = ax; cy[L] != by || cx[L] != bx; ++L) {
@@ -431,57 +423,34 @@ bool shiftAlong(int ay, int ax, int by, int bx) {
         cy[L + 1] = cy[L] + DY[cd[L]]; cx[L + 1] = cx[L] + DX[cd[L]];
     }
     if (G.used + L > G.limit) return false;
-    for (int left = L, before = 0; left > 0 && left != before; ) {    // 한 바퀴에 하나도 못 건너면 멈춘다
-        before = left;
-        for (int i = L - 1; i >= 0; --i) {
-            if (cd[i] < 0 || !G.occ[cy[i]][cx[i]] || G.occ[cy[i + 1]][cx[i + 1]]) continue;
+    for (int s = 0, e = 1; s < L; s = e) {
+        for (e = s + 1; G.occ[cy[e]][cx[e]]; ++e) {}           // s 다음의 첫 빈 칸 e (b가 비어 있으므로 L 이하)
+        for (int i = e - 1; i >= s; --i) {                     // s..e-1의 입자를 뒤에서부터 한 칸씩 민다
             int p = who[cy[i]][cx[i]];
             if (!act(p, cd[i])) return false;
-            who[G.py[p]][G.px[p]] = p; cd[i] = -1; --left;      // 건넌 변은 -1로 표시한다
+            who[cy[i + 1]][cx[i + 1]] = p;
         }
-        if (left == 0) return true;
     }
-    return L == 0;
+    return true;
 }
-}
-```
 
-짝짓기는 목표 안의 빈 칸마다 목표 밖의 입자를 가까운 순서로 찾습니다. 거리 d를 1부터 넓히며, 못 채운 빈 칸에서만 둘레를 훑습니다. 짝은 찾는 즉시 옮깁니다. 서로 다른 짝의 `a`와 `b`는 겹치지 않고 옮겨도 다른 짝의 칸 상태가 바뀌지 않기 때문입니다.
-
-```cpp snippet=ent-fill
-namespace ent {
-bool outside[MAXHW][MAXHW];              // 목표 밖에 있고 아직 짝이 없는 입자
-int holeY[MAXN], holeX[MAXN];            // 목표 안의 아직 채우지 못한 빈 칸
-
-// 거리 d = 1, 2, ...를 차례로 넓히며, 못 채운 빈 칸마다 마름모 둘레(|dy| + |dx| = d)에서 목표 밖 입자를 찾아 보낸다.
+// 거리 d = 1, 2, ...를 차례로 넓히며, 목표 안의 빈 칸마다 마름모 둘레(|dy| + |dx| = d)에서 목표 밖 입자를 찾아 보낸다.
 void fillHoles() {
-    int nh = 0;
     for (int i = 0; i < G.n; ++i) who[G.py[i]][G.px[i]] = i;
-    for (int y = 0; y < G.H; ++y) for (int x = 0; x < G.W; ++x) {
-        outside[y][x] = G.occ[y][x] && !inR[y][x];
-        if (inR[y][x] && !G.occ[y][x]) { holeY[nh] = y; holeX[nh++] = x; }
-    }
-    for (int d = 1; nh > 0 && d <= G.H + G.W; ++d) {
-        int keep = 0;
-        for (int h = 0; h < nh; ++h) {
-            int hy = holeY[h], hx = holeX[h], fy = -1, fx = -1;
-            for (int dy = -d; dy <= d && fy < 0; ++dy) {
-                int y = hy + dy, w = d - absv(dy);
-                if (y < 0 || y >= G.H) continue;
-                if (hx + w < G.W && outside[y][hx + w]) { fy = y; fx = hx + w; }
-                else if (hx - w >= 0 && outside[y][hx - w]) { fy = y; fx = hx - w; }
-            }
-            if (fy < 0) { holeY[keep] = hy; holeX[keep++] = hx; continue; }
-            outside[fy][fx] = false;
-            shiftAlong(fy, fx, hy, hx);
+    for (int d = 1; d <= G.H + G.W; ++d)
+        for (int hy = 0; hy < G.H; ++hy) for (int hx = 0; hx < G.W; ++hx) {
+            if (!inR[hy][hx] || G.occ[hy][hx]) continue;           // 채워진 칸은 occ가 되므로 못 채운 빈 칸만 남는다
+            int fy = -1, fx = -1;
+            for (int dy = -d; dy <= d && fy < 0; ++dy)
+                for (int s = -1; s <= 1 && fy < 0; s += 2) {
+                    int y = hy + dy, x = hx + s * (d - absv(dy));   // 목표 밖 입자: 입자가 있고 목표가 아닌 칸
+                    if (0 <= y && y < G.H && 0 <= x && x < G.W && G.occ[y][x] && !inR[y][x]) { fy = y; fx = x; }
+                }
+            if (fy >= 0) shiftAlong(fy, fx, hy, hx);
         }
-        nh = keep;
-    }
 }
 }
-```
 
-```cpp snippet=ent-entry-shift
 void process() {
     ent::init();
     ent::chooseTarget();

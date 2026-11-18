@@ -44,7 +44,7 @@ STAGES = {
     2: ("차분 탐욕", COMMON + ("ent-greedy", "ent-entry-greedy")),
     3: ("큰 이득부터", COMMON + ("ent-greedy", "ent-entry-threshold")),
     4: ("빈 칸 경로 재배치", COMMON + ("ent-greedy", "ent-relocate", "ent-entry-final")),
-    5: ("목표 배치 짝짓기", COMMON + ("ent-target", "ent-shift", "ent-fill", "ent-entry-shift")),
+    5: ("목표 배치 짝짓기", COMMON + ("ent-target", "ent-match")),
 }
 PASS_SCORE = 1917000
 HAND_POINTS = [(0, 0), (0, 4), (3, 0), (3, 4), (1, 2)]
@@ -309,8 +309,7 @@ FAILURES = {
 
 
 FAILURES5 = {
-    "TC 사이에 개수가 남음": [(r"    for \(int r = 0; r < G\.H; \+\+r\) cntY\[r\] = 0;\n    for \(int c = 0; c < G\.W; \+\+c\) cntX\[c\] = 0;\n    for \(int i",
-                         "    for (int i")],
+    "번호 표 갱신 누락": [(r"            who\[cy\[i \+ 1\]\]\[cx\[i \+ 1\]\] = p;\n", "")],
 }
 
 
@@ -430,18 +429,20 @@ def check_reference(sn: dict[str, str]) -> dict:
         out = run(exes[5], "shift")
         m = re.search(r"^SHIFT OK pairs=(\d+) moves=(\d+)$", out, re.M)
         assert m and int(m.group(1)) >= 2000, out
-        assert "SHIFT TRACE ok=1 moves=3 0,2,1 0,0,1 0,1,1 final=0011" in out, out     # the lesson's 1 0 1 0 example
+        assert "SHIFT TRACE ok=1 moves=3 0,0,1 0,2,1 0,1,1 final=0011" in out, out     # the lesson's 1 0 1 0 example
         print(f"OK: shiftAlong on {m.group(1)} random pairs: only a emptied and b filled, exactly |a - b| moves ({m.group(2)} in all), "
               "mirror == reference at every call; the 1 0 1 0 trace is 3 moves")
         ratios = check_plan(exes[5])
         print("OK: stage 5 on small instances: entropies == pair sums, margin bound <= optimal transport (Hungarian) <= moves used "
               f"(moves / transport {min(ratios):.2f}~{max(ratios):.2f}), final layout is its own lowest-F-key set")
         extra["plan_ratio_max"] = max(ratios)
-        for name, fut in bad5.items():     # state left over from the previous test case must be caught by the chained run
-            good = parse_ref(run(exes[5], "run", *CHAIN))["score"]
-            broken = parse_ref(run(fut.result(), "run", *CHAIN))["score"]
-            assert broken[1] != broken[4] or broken != good, name
-            print(f"OK: failure '{name}': chained TC no longer reproduces (correct {good[1]}/{good[4]}, broken {broken[1]}/{broken[4]})")
+        for name, fut in bad5.items():     # a stale particle table makes the mirror leave the real state: caught at the next call
+            try:
+                run(fut.result(), "run", "30:30:400:7")
+                raise AssertionError(f"{name} must be detected")
+            except subprocess.CalledProcessError:
+                pass
+            print(f"OK: failure '{name}': the mirror entropy differs from the reference before the next call")
         out = run(big.result(), "big")
         m = re.fullmatch(r"BIG n=(\d+) mirror=(\d+) pairs=(\d+) ref=(\d+)\n?", out)
         assert m and m.group(2) == m.group(3) == m.group(4) and int(m.group(4)) > 2 ** 31, out
@@ -666,15 +667,8 @@ SWEEPS = [("KEEP", ["4", "7"]), ("MINPER", ["1", "100", "300"])]
 ARR5 = STAGES[5][1][len(COMMON):]
 BASE5 = f"5단계 {STAGES[5][0]}"
 # edits that turn the stage 5 code into the variants of the on/off table (the lesson text keeps the plain code)
-RASTER_CODE = """    for (int s = 0, h = 0; h < nh; ++h) {          // pair by index order
-        while (!outside[s / G.W][s % G.W]) ++s;
-        outside[s / G.W][s % G.W] = false;
-        shiftAlong(s / G.W, s % G.W, holeY[h], holeX[h]);
-    }
-"""
 GATE_PRE = """double minRatio = 1e18;
 void fillHoles() {
-    int nh = 0;
     long long eR = 0;
     for (int pre = 0, r = 0; r + 1 < G.H; ++r) { pre += cntY[r]; eR += (long long)pre * (G.n - pre); }
     for (int pre = 0, c = 0; c + 1 < G.W; ++c) { pre += cntX[c]; eR += (long long)pre * (G.n - pre); }
@@ -693,20 +687,22 @@ RELOC_TAIL = """for (bool moved = true; moved && ent::G.used < ent::G.limit; ) {
 
 
 def ablations() -> list[tuple[str, int, tuple[str, ...] | None, list]]:
-    gate = [(r"void fillHoles\(\) \{\n    int nh = 0;\n", lambda m: GATE_PRE), (r"shiftAlong\(fy, fx, hy, hx\);", lambda m: GATE_SHIFT),
+    gate = [(r"void fillHoles\(\) \{\n", lambda m: GATE_PRE), (r"shiftAlong\(fy, fx, hy, hx\);", lambda m: GATE_SHIFT),
             (r"void process\(\) \{\n    ent::init\(\);", lambda m: "#include <cstdio>\nvoid process() {\n    ent::init();\n    ent::minRatio = 1e18;"),
             (r"ent::finish\(\);", lambda m: 'ent::finish();\n    printf("RATIO %lld\\n", (long long)ent::minRatio);')]
-    out = [(f"ROUNDS {k}", 5, None, with_const("ROUNDS", str(k))) for k in (1, 2, 3)]
-    out.append(("짝짓기를 번호 순서로", 5, None, [(r"(?s)    for \(int d = 1;.*?        nh = keep;\n    \}\n", lambda m: RASTER_CODE)]))
-    out.append(("3단계를 먼저 실행", 5, COMMON + ("ent-greedy",) + ARR5,
-                [(r"ent::init\(\);", lambda m: "ent::init();\n    ent::thresholdSweeps();")]))
-    out.append(("문턱 켬", 5, None, gate))
-    out.append(("5단계 뒤에 4단계 재배치", 5, COMMON + ("ent-relocate",) + ARR5,
-                [(r"int absv\(int v\) \{[^\n]*\}\nconst int ROUNDS", lambda m: "const int ROUNDS"), (r"ent::finish\(\);", lambda m: RELOC_TAIL)]))
-    for k in (1, 10):
-        out.append((f"4단계 TC별 문턱 ×{k}", 4, None,
-                    [(r"const long long MINPER = 10;", lambda m: "long long MINPER = 10;"),
-                     (r"ent::init\(\);", lambda m, k=k: f"ent::init();\n    ent::MINPER = (long long)({k} * 0.01 * ent::G.e0 / (2e6 * 0.43)) + 1;")]))
+    per_hole = [(r"    for \(int d = 1; d <= G\.H \+ G\.W; \+\+d\)\n        for \(int hy = 0; hy < G\.H; \+\+hy\) for \(int hx = 0; hx < G\.W; \+\+hx\) \{\n([^\n]*\n)",
+                 lambda m: "        for (int hy = 0; hy < G.H; ++hy) for (int hx = 0; hx < G.W; ++hx) {\n" + m.group(1) + "            for (int d = 1; d <= G.H + G.W; ++d) {\n"),
+                (r"            if \(fy >= 0\) shiftAlong\(fy, fx, hy, hx\);\n        \}",
+                 lambda m: "            if (fy >= 0) { shiftAlong(fy, fx, hy, hx); break; }\n            }\n        }")]
+    out = [("ROUNDS 1", 5, None, with_const("ROUNDS", "1")),
+           ("빈 칸 순서대로 짝짓기", 5, None, per_hole),
+           ("3단계를 먼저 실행", 5, COMMON + ("ent-greedy",) + ARR5, [(r"ent::init\(\);", lambda m: "ent::init();\n    ent::thresholdSweeps();")]),
+           ("문턱 켬", 5, None, gate),
+           ("5단계 뒤에 4단계 재배치", 5, COMMON + ("ent-relocate",) + ARR5,
+            [(r"int absv\(int v\) \{[^\n]*\}\nconst int ROUNDS", lambda m: "const int ROUNDS"), (r"ent::finish\(\);", lambda m: RELOC_TAIL)]),
+           ("4단계 TC별 문턱 ×10", 4, None,
+            [(r"const long long MINPER = 10;", lambda m: "long long MINPER = 10;"),
+             (r"ent::init\(\);", lambda m: "ent::init();\n    ent::MINPER = (long long)(10 * 0.01 * ent::G.e0 / (2e6 * 0.43)) + 1;")])]
     return out
 
 
@@ -736,8 +732,6 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
         record("MINPER 0", 4, with_const("MINPER", "0"), bucket="failures", timeout=600)
         for name in ("int 누적", "위쪽 차분 off-by-one"):    # the doubled pair sum never reaches the score
             record(name, 4, FAILURES[name], bucket="failures", timeout=600)
-        for name, edits in FAILURES5.items():
-            record(name, 5, edits, bucket="failures", timeout=600)
         for label, stage, blocks, edits in ablations():
             record(label, stage, edits, bucket="ablations", timeout=600, blocks=blocks)
         for s in STAGES:         # sanitizer pass on the public grader
@@ -761,11 +755,11 @@ def table_lines(data: dict) -> dict[str, list[str]]:
         e = r4["entropy"][i]
         out["ref_rows"].append(f"| {t['tc']} | {t['H']} × {t['W']} | {t['n']} | {t['e0']} | {e} | {1 - e / t['e0']:.4f} "
                                f"| {1 - t['disk'] / t['e0']:.4f} | {1 - t['lower'] / t['e0']:.4f} "
-                               f"| {1 - r5['entropy'][i] / t['e0']:.4f} | {r5['used'][i]} | {r5['lb'][i]} |")
+                               f"| {r5['used'][i]} | {r5['lb'][i]} |")
     out["sweep_rows"].append(f"| 기본값 (MINPER 10, KEEP 6) | {r4['total']} | {r4['ms']} |")
     for label in ("MINPER 0", "MINPER 1", "MINPER 100", "MINPER 300", "KEEP 4", "KEEP 7"):
         out["sweep_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['ms']} |")
-    for label in ("int 누적", "위쪽 차분 off-by-one", *FAILURES5):
+    for label in ("int 누적", "위쪽 차분 off-by-one"):
         out["fail_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['mirror_total']} | {by[label]['ms']} |")
     out["abl_rows"].append(f"| 5단계 전체 | {r5['total']} | {sum(r5['used'])} | {r5['ms']} | |")
     for r in data["ablations"]:
