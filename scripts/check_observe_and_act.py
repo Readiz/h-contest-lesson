@@ -266,6 +266,7 @@ def check_reference(sn: dict[str, str]) -> None:
         res = parse_scores(run(exe, "run", *CHAIN))["score"]
         assert res[1] != res[5] or res[1] == 0
         print(f"OK: stale seen changes a repeated input: first {res[1]}, repeat {res[5]}")
+        return {"chain_ok": alone, "chain_stale": res[5]}
 
 
 # hand-calculated values written independently of the code (see the lesson text)
@@ -382,7 +383,7 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
     return result
 
 
-def check_tables(data: dict) -> None:
+def check_tables(data: dict, extra: dict) -> None:
     text = LESSON.read_text()
     rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in text.splitlines() if line.startswith("|")]
     def present(label: str, *needles: object) -> None:
@@ -393,7 +394,20 @@ def check_tables(data: dict) -> None:
     for bucket in ("rows", "sweeps", "failures"):
         for row in data[bucket]:
             present(row["label"], row["total"])
-    text_numbers = [str(data["calibration"]["next_gain_per_around"]), str(data["date"])]
+    for row in data["rows"]:
+        present(row["label"] + " TC별", *row["tcs"])
+    # paired comparison of the default against WEIGHT 0.0 (same 10 inputs)
+    by = {r["label"]: r for r in data["rows"] + data["sweeps"]}
+    diff = [a - b for a, b in zip(by["정책 2"]["tcs"], by["WEIGHT 0.0"]["tcs"])]
+    mean = statistics.mean(diff)
+    err = statistics.stdev(diff) / len(diff) ** 0.5
+    assert mean - 2 * err < 0 < mean + 2 * err, "the lesson says this interval contains 0"
+    wins = sum(a > b for a, b in zip(by["정책 2"]["tcs"], by["정책 1"]["tcs"]))
+    text_numbers = [f"{mean:.1f}", f"{err:.1f}", f"{mean - 2 * err:.1f}", f"{mean + 2 * err:.1f}",
+                    f"{wins}개", str(extra["chain_ok"]), str(extra["chain_stale"]),
+                    str(data["calibration"]["next_gain_per_around"]),
+                    str(data["calibration"]["decisions"]), str(data["calibration"]["sum_around"]),
+                    str(data["calibration"]["sum_next_gain"]), str(data["date"])]
     for n in text_numbers:
         assert n in text, f"calibration/date not in lesson: {n}"
     print(f"OK: lesson tables match {DATA.name} ({sum(len(data[b]) for b in ('rows', 'sweeps', 'failures'))} rows)")
@@ -422,12 +436,14 @@ def main() -> None:
     args = parser.parse_args()
     sn = snippets()
     if not args.tables:
-        check_reference(sn)
+        extra = check_reference(sn)
         check_hand(sn, need_text=not (args.judge and args.output))
     if args.tables:
         for bucket in ("rows", "sweeps", "failures"):
             for r in json.loads(DATA.read_text())[bucket]:
                 print(f"| {r['label']} | {r['total']} | {r['mirror_total']} | {r['refused_total']} | {int(r['ms'])} |")
+                if bucket == "rows":
+                    print(f"| {r['label']} TC별 | " + " | ".join(map(str, r['tcs'])) + " |")
         return
     if args.judge and args.output:
         data = measure(args.judge, sn)
@@ -436,7 +452,7 @@ def main() -> None:
     data = json.loads(DATA.read_text())
     if args.judge:
         recheck_judge(args.judge, sn, data)
-    check_tables(data)
+    check_tables(data, extra)
 
 
 if __name__ == "__main__":
