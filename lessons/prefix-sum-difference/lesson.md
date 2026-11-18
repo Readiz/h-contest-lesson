@@ -39,24 +39,21 @@ prefix[4] - prefix[1] = 9 - 3 = 6
 
 `prefix[i]`에는 앞의 `i`개 원소 합을 저장합니다. `prefix[0] = 0`을 두면 `l = 0`인 구간도 같은 식으로 계산할 수 있습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 이 강의의 코드는 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록이 필요 없습니다. 표준 헤더·STL·동적 할당 없이 호출자가 준비한 고정 배열을 씁니다.
+
+배열 상한은 이 강의 연습의 입력 상한인 `MAX_N = 200000`이고, 2차원 코드는 `MAX_H = MAX_W = 500`입니다(`(501 × 501)`칸의 `long long`은 약 2MB). 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 배열은 전역으로 선언하고, 각 함수는 이번 TC에서 쓰는 `[0, n)`(누적합과 차분은 `[0, n]`)만 스스로 채우거나 지우므로 TC가 바뀌어도 이전 값이 섞이지 않습니다.
 
 ```cpp
-#include <tuple>
-#include <vector>
-using namespace std;
+const int MAX_N = 200000; // 배열 길이 상한
 
-vector<long long> buildPrefix(const vector<int>& a) {
-    int n = (int)a.size();
-    vector<long long> prefix(n + 1, 0);
-
+void buildPrefix(const long long a[], int n, long long prefix[]) { // prefix는 n + 1칸 이상
+    prefix[0] = 0;
     for (int i = 0; i < n; ++i) {
         prefix[i + 1] = prefix[i] + a[i];
     }
-    return prefix;
 }
 
-long long rangeSum(const vector<long long>& prefix, int l, int r) {
+long long rangeSum(const long long prefix[], int l, int r) {
     return prefix[r + 1] - prefix[l];
 }
 ```
@@ -104,25 +101,27 @@ diff[r + 1] -= x
 `diff`에 업데이트만 모은 뒤 누적해서 원래 배열에 더합니다. 처음부터 0인 배열도 같은 코드에 넣을 수 있습니다.
 
 ```cpp
-vector<long long> addRangesToArray(
-    const vector<long long>& a,
-    const vector<tuple<int, int, long long>>& queries
-) {
-    int n = (int)a.size();
-    vector<long long> diff(n + 1, 0);
+struct RangeAdd {
+    int l, r; // a[l]부터 a[r]까지, 양 끝 포함
+    long long value;
+};
 
-    for (auto [l, r, value] : queries) {
-        diff[l] += value;
-        diff[r + 1] -= value;
+long long diff[MAX_N + 1];
+
+void addRangesToArray(const long long a[], int n,
+                      const RangeAdd queries[], int q, long long result[]) {
+    for (int i = 0; i <= n; ++i) diff[i] = 0; // 이전 TC의 표시를 지운다
+
+    for (int k = 0; k < q; ++k) {
+        diff[queries[k].l] += queries[k].value;
+        diff[queries[k].r + 1] -= queries[k].value;
     }
 
-    vector<long long> result(n);
     long long extra = 0;
     for (int i = 0; i < n; ++i) {
         extra += diff[i];
         result[i] = a[i] + extra;
     }
-    return result;
 }
 ```
 
@@ -140,15 +139,18 @@ vector<long long> addRangesToArray(
 
 격자에서 직사각형 합을 많이 물어보면 2차원 누적합을 씁니다.
 
-`prefix[y][x]`를 왼쪽 위부터 `(y - 1, x - 1)`까지의 직사각형 합으로 정의합니다. 모든 행의 길이가 같은 직사각형 격자를 받으며, 배열 크기는 `(h + 1) x (w + 1)`로 둡니다.
+`prefix[y][x]`를 왼쪽 위부터 `(y - 1, x - 1)`까지의 직사각형 합으로 정의합니다. `h` x `w` 직사각형 격자를 받으며, `prefix`는 `(h + 1) x (w + 1)`칸을 사용합니다. 0행과 0열은 함수가 0으로 채웁니다.
 
 ```cpp
-vector<vector<long long>> buildPrefix2D(const vector<vector<int>>& grid) {
-    int h = (int)grid.size();
-    int w = h == 0 ? 0 : (int)grid[0].size();
-    vector<vector<long long>> prefix(h + 1, vector<long long>(w + 1, 0));
+const int MAX_H = 500; // 격자 상한
+const int MAX_W = 500;
+
+void buildPrefix2D(const int grid[][MAX_W], int h, int w,
+                   long long prefix[][MAX_W + 1]) {
+    for (int x = 0; x <= w; ++x) prefix[0][x] = 0;
 
     for (int y = 0; y < h; ++y) {
+        prefix[y + 1][0] = 0;
         for (int x = 0; x < w; ++x) {
             prefix[y + 1][x + 1] =
                 prefix[y][x + 1]
@@ -157,7 +159,6 @@ vector<vector<long long>> buildPrefix2D(const vector<vector<int>>& grid) {
                 + grid[y][x];
         }
     }
-    return prefix;
 }
 ```
 
@@ -173,7 +174,7 @@ vector<vector<long long>> buildPrefix2D(const vector<vector<int>>& grid) {
 
 ```cpp
 long long rectSum(
-    const vector<vector<long long>>& prefix,
+    const long long prefix[][MAX_W + 1],
     int y1,
     int x1,
     int y2,
@@ -205,39 +206,39 @@ answer = 전체 - 위쪽 - 왼쪽 + 왼쪽 위 중복 영역
 여러 직사각형에 값을 더한 뒤 최종 격자만 필요할 때 씁니다. `(y1, x1)`에서 증가를 시작하고, 아래쪽과 오른쪽 경계 다음 칸에서 각각 취소합니다. 두 번 취소된 오른쪽 아래 영역은 한 번 더해 복구합니다.
 
 ```cpp
-#include <tuple>
-#include <vector>
-using namespace std;
+struct RectAdd {
+    int y1, x1, y2, x2; // 양 끝 포함
+    long long value;
+};
 
-vector<vector<long long>> applyRectAdds(
-    int h,
-    int w,
-    const vector<tuple<int, int, int, int, long long>>& queries
-) {
-    vector<vector<long long>> diff(h + 1, vector<long long>(w + 1, 0));
+long long diff2D[MAX_H + 1][MAX_W + 1];
 
-    for (auto [y1, x1, y2, x2, value] : queries) {
-        diff[y1][x1] += value;
-        diff[y2 + 1][x1] -= value;
-        diff[y1][x2 + 1] -= value;
-        diff[y2 + 1][x2 + 1] += value;
+void applyRectAdds(int h, int w, const RectAdd queries[], int q,
+                   long long result[][MAX_W]) {
+    for (int y = 0; y <= h; ++y)
+        for (int x = 0; x <= w; ++x) diff2D[y][x] = 0; // 이전 TC의 표시를 지운다
+
+    for (int k = 0; k < q; ++k) {
+        const RectAdd& r = queries[k];
+        diff2D[r.y1][r.x1] += r.value;
+        diff2D[r.y2 + 1][r.x1] -= r.value;
+        diff2D[r.y1][r.x2 + 1] -= r.value;
+        diff2D[r.y2 + 1][r.x2 + 1] += r.value;
     }
 
-    vector<vector<long long>> result(h, vector<long long>(w, 0));
     for (int y = 0; y < h; ++y) {
         for (int x = 0; x < w; ++x) {
-            long long value = diff[y][x];
+            long long value = diff2D[y][x];
             if (y > 0) value += result[y - 1][x];
             if (x > 0) value += result[y][x - 1];
             if (y > 0 && x > 0) value -= result[y - 1][x - 1];
             result[y][x] = value;
         }
     }
-    return result;
 }
 ```
 
-`diff`를 `(h + 1) × (w + 1)`로 만들면 `y2 + 1 == h`나 `x2 + 1 == w`인 표시도 안전합니다. 최종 결과는 `h × w`만 사용합니다.
+`diff2D`를 `(h + 1) × (w + 1)`칸까지 쓰면 `y2 + 1 == h`나 `x2 + 1 == w`인 표시도 안전합니다. 최종 결과는 `h × w`만 사용하며, 함수가 그 구간을 모두 덮어씁니다.
 
 ## 로컬 연습: 구간을 모두 갱신한 뒤 합 질의
 

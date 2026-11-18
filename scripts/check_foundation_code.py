@@ -34,7 +34,10 @@ EXERCISE = re.compile(r"```text exercise=([\w-]+) role=(input|output)\n(.*?)\n``
 LESSONS = {
     "bfs-dfs-grid": ["queue"],
     "dijkstra": ["min-heap"],
+    "union-find": ["array"],
+    "prefix-sum-difference": [],
 }
+NO_LOCAL_EXERCISE = {"union-find"}  # this lesson has no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))
 SANITIZE = ["-O1", "-g", "-fsanitize=address,undefined", "-fno-sanitize-recover=all",
             "-fno-omit-frame-pointer"]
@@ -66,6 +69,9 @@ def check_lesson(lesson_id: str, work: Path) -> str:
     selftest = run([str(binary)], timeout=50).stdout.strip()
 
     examples = EXERCISE.findall(markdown)
+    if lesson_id in NO_LOCAL_EXERCISE:
+        assert not examples, lesson_id
+        return f"{lesson_id}: {len(blocks)} blocks, {selftest}; no local exercise"
     assert [(s, role) for s, role, _ in examples] == [(lesson_id, "input"), (lesson_id, "output")], lesson_id
     sample = run([str(binary), "sample"], input=examples[0][2] + "\n", timeout=20).stdout
     assert sample.split() == examples[1][2].split(), (lesson_id, sample, examples[1][2])

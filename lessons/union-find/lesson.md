@@ -101,21 +101,24 @@ m번 find/union: O(m alpha(n))
 
 아래는 0-indexed 원소 `0`부터 `n - 1`까지를 다루는 기본 구현입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `array` 블록(`hc::swap`)을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 고정 배열로 구현합니다.
+
+원소 수 상한 `MAX_N = 200000`은 이 사이트 연습의 입력 상한이며, 실제 문제에서는 제한에 맞춰 바꿉니다. `parent`와 `size`는 정적 배열이므로 이전 TC의 값이 남습니다. 큰 `DSU`는 전역으로 선언하고, TC가 시작될 때마다 `init(n)`으로 사용할 `[0, n)`만 초기화합니다. 크기 기준 합치기를 쓰면 트리 높이가 `log n` 이하라서 재귀 `find`의 깊이도 작습니다.
 
 ```cpp
-#include <algorithm>
-#include <vector>
-using namespace std;
+const int MAX_N = 200000; // 원소 수 상한
 
 struct DSU {
-    vector<int> parent;
-    vector<int> size;
+    int parent[MAX_N];
+    int size[MAX_N];
 
-    DSU(int n) : parent(n), size(n, 1) {
+    bool init(int n) { // 0 <= n <= MAX_N이 아니면 false
+        if (n < 0 || n > MAX_N) return false;
         for (int i = 0; i < n; ++i) {
             parent[i] = i;
+            size[i] = 1;
         }
+        return true;
     }
 
     int find(int x) {
@@ -133,7 +136,7 @@ struct DSU {
         if (rootA == rootB) return false;
 
         if (size[rootA] < size[rootB]) {
-            swap(rootA, rootB);
+            hc::swap(rootA, rootB);
         }
         parent[rootB] = rootA;
         size[rootA] += size[rootB];
@@ -160,13 +163,23 @@ struct DSU {
 
 [모임으로 나뉜 팀](/practice/TEAMSIZE)은 같은 모임에 나온 사람들을 한 팀으로 묶는 문제입니다. 모임 하나가 `{a, b, c, d}`라면 모든 쌍을 합칠 필요는 없습니다.
 
-```cpp
+```text
 unite(a, b);
 unite(a, c);
 unite(a, d);
 ```
 
-첫 사람을 기준으로 나머지를 합치면 모임 안의 사람들은 모두 같은 집합이 됩니다. 모든 모임을 처리한 뒤에는 대표별 `componentSize`를 한 번씩 모으고, 필요한 순서로 정렬하면 됩니다.
+첫 사람을 기준으로 나머지를 합치면 모임 안의 사람들은 모두 같은 집합이 됩니다. 배열로 받은 모임 하나를 처리하는 함수는 다음과 같습니다. `DSU dsu;`는 전역으로 선언하고 `init`을 마친 상태를 전제로 합니다.
+
+```cpp
+DSU dsu;
+
+void uniteMeeting(const int people[], int count) {
+    for (int i = 1; i < count; ++i) {
+        dsu.unite(people[0], people[i]);
+    }
+}
+``` 모든 모임을 처리한 뒤에는 대표별 `componentSize`를 한 번씩 모으고, 필요한 순서로 정렬하면 됩니다.
 
 주의할 점은 세 가지입니다.
 
