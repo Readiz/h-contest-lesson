@@ -1,81 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 960" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 938" role="img" aria-labelledby="title desc">
 <title id="title">손계산 예시: 한 번 나빠진 뒤 좋아지는 이동열</title><desc id="desc">작업 5개와 기계 2개의 예시입니다. 시작 상태는 두 기계의 부하가 14와 14로 모든 이웃이 더 나쁩니다. 작업 2를 기계 0으로 옮겨 최대 부하 15로 1 늘린 뒤 작업 0과 4를 교환하면 12, 작업 1을 기계 0으로 옮기면 9가 됩니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
-<rect x="1" y="1" width="718" height="958" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5" />
-<rect x="33.6" y="34.8" width="7.2" height="34.8" rx="3" fill="#2664ce" />
-<text x="56.4" y="63.6" font-size="27" fill="#172b45" font-weight="750">한 번 나빠진 뒤 좋아지는 이동열</text>
-<text x="33.6" y="109.2" font-size="20" fill="#53657d">막대 폭 = 처리 시간 · 숫자 = 작업 번호 · 점선 = 최대 부하</text>
-<rect x="24" y="134.4" width="672" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" />
-<text x="45.6" y="171.6" font-size="20" fill="#172b45" font-weight="700">0  시작</text>
-<text x="674.4" y="171.6" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 14</text>
-<text x="45.6" y="224.4" font-size="20" fill="#53657d">기계 0</text>
-<rect x="124.8" y="192" width="208.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="229.2" y="223.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<rect x="336" y="192" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="414" y="223.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
-<text x="504" y="223.2" font-size="20" fill="#172b45" font-weight="700">14</text>
-<text x="45.6" y="279.6" font-size="20" fill="#53657d">기계 1</text>
-<rect x="124.8" y="247.2" width="76.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="163.2" y="278.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
-<rect x="204" y="247.2" width="129.6" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="268.8" y="278.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
-<rect x="336" y="247.2" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="414" y="278.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
-<text x="504" y="278.4" font-size="20" fill="#172b45" font-weight="700">14</text>
-<line x1="493.2" y1="187.2" x2="493.2" y2="300" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5" />
-<rect x="24" y="326.4" width="672" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" />
-<text x="45.6" y="363.6" font-size="20" fill="#172b45" font-weight="700">1  작업 2 → 기계 0</text>
-<text x="674.4" y="363.6" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 15 (+1)</text>
-<text x="45.6" y="416.4" font-size="20" fill="#53657d">기계 0</text>
-<rect x="124.8" y="384" width="208.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="229.2" y="415.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<rect x="336" y="384" width="24" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2" />
-<text x="348" y="415.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
-<rect x="362.4" y="384" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="440.4" y="415.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
-<text x="530.4" y="415.2" font-size="20" fill="#172b45" font-weight="700">15</text>
-<text x="45.6" y="471.6" font-size="20" fill="#53657d">기계 1</text>
-<rect x="124.8" y="439.2" width="76.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="163.2" y="470.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
-<rect x="204" y="439.2" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="282" y="470.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
-<text x="372" y="470.4" font-size="20" fill="#172b45" font-weight="700">9</text>
-<line x1="519.6" y1="379.2" x2="519.6" y2="492" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5" />
-<rect x="24" y="518.4" width="672" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" />
-<text x="45.6" y="555.6" font-size="20" fill="#172b45" font-weight="700">2  작업 0 ↔ 작업 4</text>
-<text x="674.4" y="555.6" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 12 (−3)</text>
-<text x="45.6" y="608.4" font-size="20" fill="#53657d">기계 0</text>
-<rect x="124.8" y="576" width="24" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="136.8" y="607.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
-<rect x="151.2" y="576" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="229.2" y="607.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
-<rect x="309.6" y="576" width="24" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2" />
-<text x="321.6" y="607.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
-<text x="345.6" y="607.2" font-size="20" fill="#172b45" font-weight="700">8</text>
-<text x="45.6" y="663.6" font-size="20" fill="#53657d">기계 1</text>
-<rect x="124.8" y="631.2" width="235.2" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2" />
-<text x="242.4" y="662.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<rect x="362.4" y="631.2" width="76.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="400.8" y="662.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
-<text x="451.2" y="662.4" font-size="20" fill="#172b45" font-weight="700">12</text>
-<line x1="440.4" y1="571.2" x2="440.4" y2="684" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5" />
-<rect x="24" y="710.4" width="672" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" />
-<text x="45.6" y="747.6" font-size="20" fill="#172b45" font-weight="700">3  작업 1 → 기계 0</text>
-<text x="674.4" y="747.6" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 9 (−3)</text>
-<text x="45.6" y="800.4" font-size="20" fill="#53657d">기계 0</text>
-<rect x="124.8" y="768" width="24" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2" />
-<text x="136.8" y="799.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
-<rect x="151.2" y="768" width="24" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="163.2" y="799.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
-<rect x="177.6" y="768" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="255.6" y="799.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
-<rect x="336" y="768" width="24" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="348" y="799.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
-<text x="372" y="799.2" font-size="20" fill="#172b45" font-weight="700">9</text>
-<text x="45.6" y="855.6" font-size="20" fill="#53657d">기계 1</text>
-<rect x="124.8" y="823.2" width="235.2" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
-<text x="242.4" y="854.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<text x="372" y="854.4" font-size="20" fill="#172b45" font-weight="700">9</text>
-<line x1="361.2" y1="763.2" x2="361.2" y2="876" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5" />
-<text x="33.6" y="919.2" font-size="20" fill="#53657d">주황 칸 = 이번 이동에서 자리가 바뀐 작업</text>
+<rect x="1" y="1" width="718" height="936" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한 번 나빠진 뒤 좋아지는 이동열</text>
+<text x="28" y="91" font-size="20" fill="#53657d">막대 폭 = 처리 시간 · 숫자 = 작업 번호 · 점선 = 최대 부하</text>
+<rect x="20" y="112" width="680" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="149.2" font-size="20" fill="#172b45" font-weight="700">0  시작</text>
+<text x="682" y="149.2" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 14</text>
+<text x="38" y="202" font-size="20" fill="#53657d">기계 0</text>
+<rect x="124.8" y="169.6" width="208.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="229.2" y="200.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="336" y="169.6" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="414" y="200.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="504" y="200.8" font-size="20" fill="#172b45" font-weight="700">14</text>
+<text x="38" y="257.2" font-size="20" fill="#53657d">기계 1</text>
+<rect x="124.8" y="224.8" width="76.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="163.2" y="256" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="204" y="224.8" width="129.6" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="268.8" y="256" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="336" y="224.8" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="414" y="256" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="504" y="256" font-size="20" fill="#172b45" font-weight="700">14</text>
+<line x1="493.2" y1="164.8" x2="493.2" y2="277.6" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="20" y="304" width="680" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="341.2" font-size="20" fill="#172b45" font-weight="700">1  작업 2 → 기계 0</text>
+<text x="682" y="341.2" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 15 (+1)</text>
+<text x="38" y="394" font-size="20" fill="#53657d">기계 0</text>
+<rect x="124.8" y="361.6" width="208.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="229.2" y="392.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="336" y="361.6" width="24" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<text x="348" y="392.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="362.4" y="361.6" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="440.4" y="392.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="530.4" y="392.8" font-size="20" fill="#172b45" font-weight="700">15</text>
+<text x="38" y="449.2" font-size="20" fill="#53657d">기계 1</text>
+<rect x="124.8" y="416.8" width="76.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="163.2" y="448" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="204" y="416.8" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="282" y="448" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="372" y="448" font-size="20" fill="#172b45" font-weight="700">9</text>
+<line x1="519.6" y1="356.8" x2="519.6" y2="469.6" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="20" y="496" width="680" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="533.2" font-size="20" fill="#172b45" font-weight="700">2  작업 0 ↔ 작업 4</text>
+<text x="682" y="533.2" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 12 (−3)</text>
+<text x="38" y="586" font-size="20" fill="#53657d">기계 0</text>
+<rect x="124.8" y="553.6" width="24" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="136.8" y="584.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="151.2" y="553.6" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="229.2" y="584.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="309.6" y="553.6" width="24" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<text x="321.6" y="584.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="345.6" y="584.8" font-size="20" fill="#172b45" font-weight="700">8</text>
+<text x="38" y="641.2" font-size="20" fill="#53657d">기계 1</text>
+<rect x="124.8" y="608.8" width="235.2" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<text x="242.4" y="640" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="362.4" y="608.8" width="76.8" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="400.8" y="640" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="451.2" y="640" font-size="20" fill="#172b45" font-weight="700">12</text>
+<line x1="440.4" y1="548.8" x2="440.4" y2="661.6" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="20" y="688" width="680" height="177.6" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="725.2" font-size="20" fill="#172b45" font-weight="700">3  작업 1 → 기계 0</text>
+<text x="682" y="725.2" font-size="20" fill="#172b45" font-weight="750" text-anchor="end">최대 9 (−3)</text>
+<text x="38" y="778" font-size="20" fill="#53657d">기계 0</text>
+<rect x="124.8" y="745.6" width="24" height="43.2" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<text x="136.8" y="776.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="151.2" y="745.6" width="24" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="163.2" y="776.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="177.6" y="745.6" width="156" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="255.6" y="776.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="336" y="745.6" width="24" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="348" y="776.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="372" y="776.8" font-size="20" fill="#172b45" font-weight="700">9</text>
+<text x="38" y="833.2" font-size="20" fill="#53657d">기계 1</text>
+<rect x="124.8" y="800.8" width="235.2" height="43.2" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="242.4" y="832" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="372" y="832" font-size="20" fill="#172b45" font-weight="700">9</text>
+<line x1="361.2" y1="740.8" x2="361.2" y2="853.6" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="28" y="896.8" font-size="20" fill="#53657d">주황 칸 = 이번 이동에서 자리가 바뀐 작업</text>
 </svg>

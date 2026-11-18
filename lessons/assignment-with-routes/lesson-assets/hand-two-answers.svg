@@ -1,86 +1,86 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 840" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 914" role="img" aria-labelledby="title desc">
 <title id="title">손계산 예시: 배정만 본 최적과 경로까지 본 최적</title><desc id="desc">기사 2명과 승객 4명의 예시입니다. 배정만 본 최적 {2,3}/{0,1}은 비용 행렬 기준 최대 22이지만 실제 점수는 29입니다. 경로까지 본 최적 {0,3}/{1,2}는 두 기사가 모두 23입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
-<rect x="1" y="1" width="718" height="838" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="1" y="1" width="718" height="912" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">같은 4명, 두 가지 배정</text>
 <text x="28" y="91" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">선: 파랑=기사 0, 초록=기사 1 · 점선=빈 차 · 실선=탑승</text>
-<rect x="20" y="112" width="680" height="344" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="20" y="112" width="680" height="383" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="38" y="145" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">배정만 본 최적</text>
 <text x="682" y="145" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">실제 점수 29</text>
-<rect x="48" y="166" width="264" height="264" fill="#f6f8fc" stroke="#d8e1ed"/>
-<polyline points="213.0,221.0 213.0,221.0 213.0,265.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="213.0,265.0 103.0,265.0 103.0,309.0" fill="none" stroke="#2664ce" stroke-width="4"/>
-<polyline points="103.0,309.0 191.0,309.0 191.0,199.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="191.0,199.0 103.0,199.0 103.0,353.0" fill="none" stroke="#2664ce" stroke-width="4"/>
-<polyline points="103.0,375.0 169.0,375.0 169.0,419.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="169.0,419.0 147.0,419.0 147.0,331.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
-<polyline points="147.0,331.0 213.0,331.0 213.0,353.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="213.0,353.0 301.0,353.0 301.0,331.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
-<rect x="293.0" y="323.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="313.0" y="352.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">0</text>
-<circle cx="213.0" cy="353.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="213.0" y="359.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<rect x="139.0" y="323.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="159.0" y="352.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">1</text>
-<circle cx="169.0" cy="419.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="169.0" y="425.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
-<rect x="95.0" y="301.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="115.0" y="330.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">2</text>
-<circle cx="213.0" cy="265.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="213.0" y="271.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
-<rect x="95.0" y="345.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="77.0" y="349.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">3</text>
-<circle cx="191.0" cy="199.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="191.0" y="205.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
-<rect x="194.0" y="208.0" width="38" height="26" rx="6" fill="#2664ce"/>
-<text x="213.0" y="227.0" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D0</text>
-<rect x="84.0" y="362.0" width="38" height="26" rx="6" fill="#1c7a4d"/>
-<text x="103.0" y="381.0" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D1</text>
-<text x="340" y="192" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">배정만 본 최대 22</text>
-<text x="340" y="224" font-size="21" fill="#2664ce" font-weight="700" text-anchor="start">기사 0: 29 (2→3)</text>
-<text x="340" y="256" font-size="21" fill="#1c7a4d" font-weight="700" text-anchor="start">기사 1: 19 (1→0)</text>
-<text x="340" y="302" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">원 = 출발지</text>
-<text x="340" y="332" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">작은 네모 = 도착지</text>
-<text x="340" y="362" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">D = 기사 처음 위치</text>
-<text x="340" y="412" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">실제 29 (최대)</text>
-<rect x="20" y="472" width="680" height="344" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="38" y="505" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">경로까지 본 최적</text>
-<text x="682" y="505" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">실제 점수 23</text>
-<rect x="48" y="526" width="264" height="264" fill="#f6f8fc" stroke="#d8e1ed"/>
-<polyline points="213.0,581.0 191.0,581.0 191.0,559.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="191.0,559.0 103.0,559.0 103.0,713.0" fill="none" stroke="#2664ce" stroke-width="4"/>
-<polyline points="103.0,713.0 213.0,713.0 213.0,713.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="213.0,713.0 301.0,713.0 301.0,691.0" fill="none" stroke="#2664ce" stroke-width="4"/>
-<polyline points="103.0,735.0 169.0,735.0 169.0,779.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="169.0,779.0 147.0,779.0 147.0,691.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
-<polyline points="147.0,691.0 213.0,691.0 213.0,625.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
-<polyline points="213.0,625.0 103.0,625.0 103.0,669.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
-<rect x="293.0" y="683.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="313.0" y="712.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">0</text>
-<circle cx="213.0" cy="713.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="213.0" y="719.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<rect x="139.0" y="683.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="159.0" y="712.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">1</text>
-<circle cx="169.0" cy="779.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="169.0" y="785.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
-<rect x="95.0" y="661.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="115.0" y="690.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">2</text>
-<circle cx="213.0" cy="625.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="213.0" y="631.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
-<rect x="95.0" y="705.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
-<text x="77.0" y="709.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="start">3</text>
-<circle cx="191.0" cy="559.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
-<text x="191.0" y="565.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
-<rect x="194.0" y="568.0" width="38" height="26" rx="6" fill="#2664ce"/>
-<text x="213.0" y="587.0" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D0</text>
-<rect x="84.0" y="722.0" width="38" height="26" rx="6" fill="#1c7a4d"/>
-<text x="103.0" y="741.0" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D1</text>
-<text x="340" y="552" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">배정만 본 최대 27</text>
-<text x="340" y="584" font-size="21" fill="#2664ce" font-weight="700" text-anchor="start">기사 0: 23 (3→0)</text>
-<text x="340" y="616" font-size="21" fill="#1c7a4d" font-weight="700" text-anchor="start">기사 1: 23 (1→2)</text>
-<text x="340" y="662" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">원 = 출발지</text>
-<text x="340" y="692" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">작은 네모 = 도착지</text>
-<text x="340" y="722" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">D = 기사 처음 위치</text>
-<text x="340" y="772" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">실제 23 (최대)</text>
+<rect x="38" y="164" width="300" height="311" fill="#f6f8fc" stroke="#d8e1ed"/>
+<polyline points="213,214 213,214 213,269" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213,269 75.5,269 75.5,324" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="75.5,324 185.5,324 185.5,186.5" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="185.5,186.5 75.5,186.5 75.5,379" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="75.5,406.5 158,406.5 158,461.5" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="158,461.5 130.5,461.5 130.5,351.5" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<polyline points="130.5,351.5 213,351.5 213,379" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213,379 323,379 323,351.5" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<rect x="315" y="343.5" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="213" cy="379" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213" y="385" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="122.5" y="343.5" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="158" cy="461.5" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="158" y="467.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="67.5" y="316" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="213" cy="269" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213" y="275" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="67.5" y="371" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="185.5" cy="186.5" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="185.5" y="192.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="194" y="201" width="38" height="26" rx="6" fill="#2664ce"/>
+<text x="213" y="220" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D0</text>
+<rect x="56.5" y="393.5" width="38" height="26" rx="6" fill="#1c7a4d"/>
+<text x="75.5" y="412.5" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D1</text>
+<text x="309" y="358" font-size="18" fill="#172b45" font-weight="700" text-anchor="end" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">0</text>
+<text x="116.5" y="358" font-size="18" fill="#172b45" font-weight="700" text-anchor="end" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">1</text>
+<text x="61.5" y="330.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="end" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">2</text>
+<text x="89.5" y="385.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="start" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">3</text>
+<text x="366" y="198" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">배정만 본 최대 22</text>
+<text x="366" y="236" font-size="21" fill="#2664ce" font-weight="700" text-anchor="start">기사 0: 29 (2→3)</text>
+<text x="366" y="274" font-size="21" fill="#1c7a4d" font-weight="700" text-anchor="start">기사 1: 19 (1→0)</text>
+<text x="366" y="330" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">원 = 출발지</text>
+<text x="366" y="366" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">작은 네모 = 도착지</text>
+<text x="366" y="402" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">D = 기사 처음 위치</text>
+<text x="366" y="462" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">실제 29 (최대)</text>
+<rect x="20" y="511" width="680" height="383" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="544" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">경로까지 본 최적</text>
+<text x="682" y="544" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">실제 점수 23</text>
+<rect x="38" y="563" width="300" height="311" fill="#f6f8fc" stroke="#d8e1ed"/>
+<polyline points="213,613 185.5,613 185.5,585.5" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="185.5,585.5 75.5,585.5 75.5,778" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="75.5,778 213,778 213,778" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213,778 323,778 323,750.5" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="75.5,805.5 158,805.5 158,860.5" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="158,860.5 130.5,860.5 130.5,750.5" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<polyline points="130.5,750.5 213,750.5 213,668" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213,668 75.5,668 75.5,723" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<rect x="315" y="742.5" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="213" cy="778" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213" y="784" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="122.5" y="742.5" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="158" cy="860.5" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="158" y="866.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="67.5" y="715" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="213" cy="668" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213" y="674" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="67.5" y="770" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="185.5" cy="585.5" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="185.5" y="591.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="194" y="600" width="38" height="26" rx="6" fill="#2664ce"/>
+<text x="213" y="619" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D0</text>
+<rect x="56.5" y="792.5" width="38" height="26" rx="6" fill="#1c7a4d"/>
+<text x="75.5" y="811.5" font-size="18" fill="#ffffff" font-weight="750" text-anchor="middle">D1</text>
+<text x="309" y="757" font-size="18" fill="#172b45" font-weight="700" text-anchor="end" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">0</text>
+<text x="116.5" y="757" font-size="18" fill="#172b45" font-weight="700" text-anchor="end" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">1</text>
+<text x="89.5" y="729.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="start" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">2</text>
+<text x="61.5" y="784.5" font-size="18" fill="#172b45" font-weight="700" text-anchor="end" stroke="#f6f8fc" stroke-width="3" paint-order="stroke">3</text>
+<text x="366" y="597" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">배정만 본 최대 27</text>
+<text x="366" y="635" font-size="21" fill="#2664ce" font-weight="700" text-anchor="start">기사 0: 23 (3→0)</text>
+<text x="366" y="673" font-size="21" fill="#1c7a4d" font-weight="700" text-anchor="start">기사 1: 23 (1→2)</text>
+<text x="366" y="729" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">원 = 출발지</text>
+<text x="366" y="765" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">작은 네모 = 도착지</text>
+<text x="366" y="801" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">D = 기사 처음 위치</text>
+<text x="366" y="861" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">실제 23 (최대)</text>
 </svg>
