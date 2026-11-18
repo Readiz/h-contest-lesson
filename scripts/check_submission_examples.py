@@ -14,7 +14,7 @@ from cpp_library import assemble_library, check_submission_code
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTECTED = {"cpp-contest-basics", "cpp-common-library", "sorting", "greedy",
-             "priority-queue-heap", "heuristic", "testing-and-stress"}
+             "priority-queue-heap", "heuristic", "testing-and-stress", "observe-and-act"}
 # Local-harness pages that explicitly declare general C++17 (STL allowed).
 GENERAL_CPP_PAGES = {"lessons/testing-and-stress/pages/experiment-evaluation.md"}
 CPP = re.compile(r"```(?:cpp|c\+\+)(?:[^\n]*)\n(.*?)\n```", re.S)
