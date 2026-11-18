@@ -57,7 +57,9 @@ reducedCost(i, j) = cost[i][j] - u[i] - v[j]
 3. 그러면 새로운 tight edge가 생긴다.
 4. 새 tight edge를 포함해 다시 augmenting path를 찾고 matching을 하나 키운다.
 
-![Hungarian potential과 tight edge 시각화](lesson-assets/hungarian-potentials.svg)
+![reduced cost 행렬 A는 3, 0, 2, B는 2, 0, 5, C는 1, 0, 0에서 0인 칸이 tight edge이고, tree에 닿은 row A, B와 닿지 않은 column X, Z 사이 최소 slack 2만큼 potential을 조정하면 B-X가 새 tight edge가 되어 A-Y, B-X, C-Z로 matching을 뒤집을 수 있습니다.](lesson-assets/hungarian-potentials.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/hungarian-algorithm/lesson-assets/hungarian-potentials.svg)
 
 이 관점은 Min-Cost Flow의 shortest augmenting path와도 이어집니다. 다만 Hungarian은 assignment 구조를 이용해 potential과 slack을 훨씬 짧게 관리합니다.
 
@@ -108,7 +110,9 @@ alternating path는 이름 그대로 두 종류의 간선을 번갈아 탑니다
 
 미배정 column에 도착하면 경로의 간선을 뒤집어 matching을 하나 늘릴 수 있습니다. 지금은 `B → Y → A`까지만 도달합니다. A의 다른 0이 없어 더 나아갈 수 없습니다.
 
-![Hungarian alternating tree와 line cover](lesson-assets/hungarian-alternating-tree.svg)
+![0 간선 그래프에서 A-Y와 C-Z가 matching이고 B가 남았을 때, B에서 비매칭 간선 B-Y와 matching 간선 Y-A를 번갈아 타다가 A에서 멈춥니다. 표시된 row는 A, B이고 표시된 column은 Y이며, 선은 표시되지 않은 C row와 표시된 Y column에 긋습니다.](lesson-assets/hungarian-alternating-tree.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/hungarian-algorithm/lesson-assets/hungarian-alternating-tree.svg)
 
 표시된 row는 `B`, `A`이고, 표시된 column은 `Y`입니다. 표시되지 않은 row는 `C`, 표시되지 않은 column은 `X`, `Z`입니다.
 
@@ -141,6 +145,12 @@ A-X = 2, A-Z = 2, B-X = 1, B-Z = 5
 이제 alternating tree를 다시 보면 `B`에서 새 0 `B-X`로 갈 수 있습니다. `X`는 현재 matching `A-Y`, `C-Z`에 쓰이지 않은 column입니다. 따라서 `B -> X`가 바로 augmenting path가 되고, matching 크기를 2에서 3으로 키울 수 있습니다.
 
 결과적으로 `A-Y`, `B-X`, `C-Z`를 서로 겹치지 않게 고를 수 있습니다. 원래 비용으로 돌아가면 총 비용은 `1 + 2 + 2 = 5`입니다.
+
+![비용 행렬 A는 4, 1, 3, B는 2, 0, 5, C는 3, 2, 2에서 row 최솟값을, 이어서 column X의 최솟값 1을 빼 0을 만들고, 0을 덮는 선 2개가 matching 크기 2에 머무는 것을 확인한 뒤 delta 1로 조정하면 B-X가 새 0이 되어 A-Y, B-X, C-Z 배정과 원래 비용 5가 나옵니다.](lesson-assets/hungarian-steps.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/hungarian-algorithm/lesson-assets/hungarian-steps.svg)
+
+위 손계산의 여섯 단계를 한 장에 모은 그림입니다. 초록 칸이 0이고, ⑤의 주황 칸은 delta를 뺀 칸, 빨간 칸은 delta를 더한 칸입니다.
 
 ## 구현 변수 읽는 법
 

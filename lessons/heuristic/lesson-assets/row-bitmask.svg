@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 602" role="img" aria-labelledby="title desc">
+<title id="title">행 bitmask로 배치 가능 검사</title><desc id="desc">폭 8인 행에서 1번과 5번 열이 막혀 있어 occ는 34입니다. 폭 3인 광고를 x=0에 놓으면 mask 7과 겹치는 값이 2, x=1이면 mask 14와 겹치는 값이 2라 겹치고, x=2이면 mask 28과 겹치는 값이 0이라 놓을 수 있습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="600" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">행 bitmask로 배치 가능 검사</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">occ &amp; mask 가 0이면 겹치지 않음 · 비트 x = 열 x</text>
+<rect x="20" y="104" width="680" height="408" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="start">열</text>
+<text x="198.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">0</text>
+<text x="242.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">1</text>
+<text x="286.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">2</text>
+<text x="330.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">3</text>
+<text x="374.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">4</text>
+<text x="418.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">5</text>
+<text x="462.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">6</text>
+<text x="506.0" y="140" font-size="19" fill="#53657d" font-weight="700" text-anchor="middle">7</text>
+<text x="36" y="185" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">occ = 34</text>
+<rect x="178" y="156" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="198.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="222" y="156" width="40" height="40" rx="7" fill="#53657d" stroke="#53657d" stroke-width="2.3"/>
+<text x="242.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="266" y="156" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="286.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="310" y="156" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="330.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="354" y="156" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="374.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="398" y="156" width="40" height="40" rx="7" fill="#53657d" stroke="#53657d" stroke-width="2.3"/>
+<text x="418.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="442" y="156" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="462.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="486" y="156" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="506.0" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="36" y="230" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">폭 3 광고, mask = 7 &lt;&lt; x</text>
+<text x="36" y="277" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">x=0 · 7</text>
+<rect x="178" y="248" width="40" height="40" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.3"/>
+<rect x="222" y="248" width="40" height="40" rx="7" fill="#fdeaea" stroke="#b42318" stroke-width="2.3"/>
+<text x="242.0" y="276" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="266" y="248" width="40" height="40" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.3"/>
+<rect x="310" y="248" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="354" y="248" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="398" y="248" width="40" height="40" rx="7" fill="#e8edf3" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="418.0" y="276" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="442" y="248" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="486" y="248" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="542" y="277" font-size="20" fill="#b42318" font-weight="700" text-anchor="start">= 2</text>
+<text x="542" y="306" font-size="19" fill="#b42318" font-weight="700" text-anchor="start">겹침</text>
+<text x="36" y="361" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">x=1 · 14</text>
+<rect x="178" y="332" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="222" y="332" width="40" height="40" rx="7" fill="#fdeaea" stroke="#b42318" stroke-width="2.3"/>
+<text x="242.0" y="360" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="266" y="332" width="40" height="40" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.3"/>
+<rect x="310" y="332" width="40" height="40" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.3"/>
+<rect x="354" y="332" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="398" y="332" width="40" height="40" rx="7" fill="#e8edf3" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="418.0" y="360" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="442" y="332" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="486" y="332" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="542" y="361" font-size="20" fill="#b42318" font-weight="700" text-anchor="start">= 2</text>
+<text x="542" y="390" font-size="19" fill="#b42318" font-weight="700" text-anchor="start">겹침</text>
+<text x="36" y="445" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">x=2 · 28</text>
+<rect x="178" y="416" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="222" y="416" width="40" height="40" rx="7" fill="#e8edf3" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="242.0" y="444" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="266" y="416" width="40" height="40" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.3"/>
+<rect x="310" y="416" width="40" height="40" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.3"/>
+<rect x="354" y="416" width="40" height="40" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.3"/>
+<rect x="398" y="416" width="40" height="40" rx="7" fill="#e8edf3" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="418.0" y="444" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="442" y="416" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<rect x="486" y="416" width="40" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="2.3"/>
+<text x="542" y="445" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">= 0</text>
+<text x="542" y="474" font-size="19" fill="#147d69" font-weight="700" text-anchor="start">가능</text>
+<text x="36" y="500" font-size="19" fill="#53657d" font-weight="600" text-anchor="start">파랑 = 광고가 차지할 칸 · 빨강 = 막힌 칸과 겹침</text>
+<rect x="28" y="528" width="664" height="54" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="562" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">x=2에서 처음으로 occ &amp; mask = 0 → 이 위치에 배치</text>
+</svg>
