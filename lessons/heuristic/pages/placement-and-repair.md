@@ -192,3 +192,5 @@ repair가 계속 같은 나쁜 배치를 만들면 반복 횟수나 빔 폭을 �
 ## 다른 배치 문제
 
 [상자 쌓기](/practice/STACKING)에서도 작은 이동으로 해소되지 않는 빈 공간이 생깁니다. 일부 배치를 제거한 뒤 다시 채우는 destroy/repair를 비교해 볼 수 있습니다.
+
+세 방법을 같은 후보 검사 수로 실제 채점기에서 비교한 실험은 [격자 배치 문제: 유효한 후보, 국소 이동, destroy/repair 비교](https://h.readiz.com/learn/placement-search)에서 이어집니다.

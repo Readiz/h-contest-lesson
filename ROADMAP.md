@@ -33,6 +33,8 @@
 
 4번은 [채점기 상태를 따라 그리며 행동하기](lessons/observe-and-act/lesson.md)로 MINEEXPLORE의 채점기 상태·관측 기록·추정 구분, TC 시작 초기화, 가까운 칸 정책과 이동당 이득 평가식, 예측 대비 실제 점수 기록까지 반영했습니다. AIRCONTECH 빔 너비·예측 깊이를 따로 바꾸는 실험과 7번의 다른 문제(ROBOTCLEAN/DRONESORT 등) 연결은 남아 있습니다.
 
+6번은 [격자 배치 문제: 유효한 후보, 국소 이동, destroy/repair 비교](lessons/placement-search/lesson.md)로 LANDINGX를 반영했습니다. 후보 선택 집합 상태와 점유 격자의 `put`/`take`(apply/undo), 제안 단계의 무효 거절, 추가·교체 차분, 4×6 지도 손계산(35점에서 멈추고 두 개를 함께 빼면 40점), 같은 후보 검사 수에서 first-fit·정렬 탐욕·국소 이동·destroy/repair를 solver seed 9개로 비교한 예산별·destroy 크기별·무작위 배율별 표, 되돌리기 누락과 종류별 한도 누락 실패 재현을 포함하며 `scripts/check_placement_search.py`가 코드 추출·후보 완전 열거 대조·ASan/UBSan·손계산 표·저장된 측정 대조를 수행합니다. CHIPDESIGN/TENSORALLOC 연결, 같은 시간 예산 비교, 숨은 채점 입력에서의 일반화는 남아 있습니다.
+
 5~8번은 후속 문제 단위로 진행합니다. Digit DP, 구간 DP, Implicit Treap은 미완성 골격을 본문에 두지 않고, 실제 문제와 끝까지 동작하는 풀이가 준비될 때 다시 다룹니다.
 
 ### 목차와 연결도 함께 정리할 항목

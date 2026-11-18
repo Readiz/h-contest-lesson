@@ -40,7 +40,7 @@ BLOCKS = ("land-state", "land-build", "land-greedy", "land-local", "land-destroy
 SNIP_RE = re.compile(r"```cpp[^\n]*\bsnippet=([\w-]+)[^\n]*\n(.*?)\n```", re.S)
 SAN = ["-O1", "-g", "-fsanitize=address,undefined", "-fno-sanitize-recover=all"]
 MODE_NAMES = {0: "한 영역", 1: "무작위 k개", 2: "낮은 점수 k개"}
-DESTROY_GRID = [(0, 1), (0, 2), (0, 4), (0, 8), (0, 16), (1, 1), (1, 2), (1, 4), (1, 8), (1, 16), (2, 2), (2, 4), (2, 8)]
+DESTROY_GRID = [(0, 1), (0, 4), (0, 16), (1, 1), (1, 4), (1, 16), (2, 2), (2, 8)]
 NOISES = [0, 30, 100, 200, 400]
 
 # Hand example: a 4 x 6 map and four spaceships (height, width).
@@ -175,13 +175,6 @@ def cand_name(c: tuple[int, int, int, int]) -> str:
     return f"{c[2]}×{c[3]} @({c[0]},{c[1]})"
 
 
-def hand_map_table() -> str:
-    lines = ["| 행＼열 | 0 | 1 | 2 | 3 | 4 | 5 |", "| --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
-    for r, row in enumerate(HAND_MAP):
-        lines.append(f"| {r} | " + " | ".join(str(v) for v in row) + " |")
-    return "\n".join(lines)
-
-
 def hand_table() -> str:
     f = hand_facts()
     c, w = f["cands"], f["weights"]
@@ -292,7 +285,6 @@ static void sameGrid(const land::Board& bd) {
     for (int k = 0; k < land::KINDS; ++k) assert(have[k] == bd.have[k] && have[k] <= land::kindLimit[k]);
     for (int y = 0; y < MAP_SIZE; ++y)
         for (int x = 0; x < MAP_SIZE; ++x) assert(fresh[y][x] == bd.owner[y][x]);
-    assert(land::consistent(bd));
 }
 
 static void submitAndJudge(int n) {
@@ -363,7 +355,8 @@ static void handExample() {
         rng.reset(seed);
         int iters = 0;
         while (board.score < 40 && iters < 1000) { land::destroyRepair(board, rng, noisy); ++iters; }
-        assert(board.score == 40 && land::consistent(board));
+        assert(board.score == 40);
+        sameGrid(board);
         worst = std::max(worst, iters);
         std::printf("HANDSEED %u %d\n", seed, iters);
     }
@@ -373,13 +366,15 @@ static void handExample() {
     greedyByWeight();
     land::take(board, board.picked[0]);
     land::take(board, board.picked[0]);
-    assert(board.count == 0 && board.score == 0 && land::consistent(board));
+    assert(board.count == 0 && board.score == 0);
+    sameGrid(board);
     assert(land::candRow[3] == 0 && land::candCol[3] == 0 && land::candRow[5] == 2 && land::candCol[5] == 0);
     assert(land::canAdd(board, 3));
     land::put(board, 3);
     assert(land::canAdd(board, 5));
     land::put(board, 5);
-    assert(board.score == 40 && land::consistent(board));
+    assert(board.score == 40);
+    sameGrid(board);
     land::clear(board);
 }
 
@@ -532,7 +527,8 @@ static void edges() {
     land::hillClimb(board, rng, 100);
     land::DestroyParams prm = {land::REGION, 3, 200};
     for (long long stop = land::evaluations + 100; land::evaluations < stop;) land::destroyRepair(board, rng, prm);
-    assert(board.count == 0 && land::consistent(board));
+    assert(board.count == 0);
+    sameGrid(board);
     submitAndJudge(3);
     // One spaceship, many candidates: never more than one is selected.
     for (int y = 0; y < 8; ++y) for (int x = 0; x < 8; ++x) world[y][x] = 0;
@@ -561,7 +557,8 @@ static void entry() {
         process(ansRow, ansCol, ansDir);
         long long score;
         assert(judgeVerify(SPACESHIP_SIZE, score));
-        assert(score == layout.score && land::consistent(layout));
+        assert(score == layout.score);
+        sameGrid(layout);
         assert(score > 0);
     }
 }
@@ -600,28 +597,20 @@ static double micros(std::chrono::steady_clock::time_point a, std::chrono::stead
 
 void process(int row[], int col[], int dir[]) {
     using namespace land;
-    int greedy = (int)envNumber("GREEDY", 1);   // 0 first-fit, 1 largest weight first, 2 smallest weight first
+    int greedy = (int)envNumber("GREEDY", 1);   // 0 candidate order (baseline), 1 largest weight first
     int mode = (int)envNumber("MODE", 2);       // 0 greedy only, 1 hill climbing, 2 destroy/repair
     long long budget = (long long)envNumber("BUDGET", 1000000);
     unsigned seed = (unsigned)envNumber("SEED", 20261118);
     evaluations = 0;
     {
         long long all = 0;
-        for (int k = 0; k < KINDS; ++k) {
-            int cnt = kindEnd[k] - kindBegin[k];
-            if (cnt == 0) continue;
-            int w = candWeight[kindBegin[k]];
-            all += (long long)w * (cnt < kindLimit[k] ? cnt : kindLimit[k]);
-        }
+        int cnt[KINDS] = {0}, wt[KINDS] = {0};
+        for (int c = 0; c < candCount; ++c) { ++cnt[candKind[c]]; wt[candKind[c]] = candWeight[c]; }
+        for (int k = 0; k < KINDS; ++k) all += (long long)wt[k] * (cnt[k] < kindLimit[k] ? cnt[k] : kindLimit[k]);
         fprintf(stderr, "BOUND %lld\n", all);
     }
-    if (greedy == 0) firstFit(expBoard);
-    else {
-        for (int c = 0; c < candCount; ++c) {
-            expKey[c] = greedy == 1 ? -(long long)candWeight[c] : (long long)candWeight[c];  // 1: 점수 큰 순, 2: 점수 작은 순
-        }
-        sweep(expBoard, expKey, expOrder, expTemp);
-    }
+    for (int c = 0; c < candCount; ++c) expKey[c] = greedy == 1 ? -(long long)candWeight[c] : c;
+    sweep(expBoard, expKey, expOrder, expTemp);
     long long greedyScore = expBoard.score, greedyEval = evaluations;
     hc::Random rng;
     rng.reset(seed);
@@ -643,7 +632,6 @@ void process(int row[], int col[], int dir[]) {
         if (expBoard.slot[x] < 0 && evaluate(expBoard, x, drop, delta) && delta > 0) ++improving;
     }
     fprintf(stderr, "EXP %d %lld %lld %lld %lld %lld %d %d %lld\n", candCount, greedyScore, greedyEval, expBoard.score, removedTotal, iters, expBoard.count, improving, used);
-    if (envNumber("CHECK", 0) > 0 && !consistent(expBoard)) fprintf(stderr, "INCONSISTENT\n");
     if (envNumber("COPYTEST", 0) > 0) {
         int n = 300;
         auto t0 = std::chrono::steady_clock::now();
@@ -668,12 +656,7 @@ void process(int row[], int col[], int dir[]) {
 '''
 
 BUGGY_UNDO_OLD = "        else put(bd, op.cand);"
-BUGGY_UNDO_NEW = '''        else {  // 격자 칠하기를 빠뜨린 되돌리기
-            ++bd.have[candKind[op.cand]];
-            bd.slot[op.cand] = bd.count;
-            bd.picked[bd.count++] = op.cand;
-            bd.score += candWeight[op.cand];
-        }'''
+BUGGY_UNDO_NEW = "        else { ++bd.have[candKind[op.cand]]; bd.slot[op.cand] = bd.count; bd.picked[bd.count++] = op.cand; bd.score += candWeight[op.cand]; }"
 BUGGY_LIMIT_OLD = "bd.have[candKind[c]] < kindLimit[candKind[c]] && "
 BUGGY_LIMIT_NEW = ""
 BUGGY_LIMIT_FRAGMENT = "    return reason(bd, candRow[c], candCol[c], candH[c], candW[c]) == 0;"
@@ -730,7 +713,7 @@ def run_checks(values: dict[str, str]) -> dict:
     # Two wrong variants must be caught by the same harness.
     sn = values["blocks"]
     lesson = LESSON.read_text()
-    assert BUGGY_UNDO_NEW in lesson and BUGGY_LIMIT_FRAGMENT in lesson
+    assert BUGGY_UNDO_NEW.strip() in lesson and BUGGY_LIMIT_FRAGMENT.strip() in lesson
     buggy_undo = mutate(final, BUGGY_UNDO_OLD, BUGGY_UNDO_NEW)
     caught = compile_run(buggy_undo + "\n" + HARNESS, SAN, expect_ok=False)
     assert caught.returncode != 0, "undo without grid restore was not detected"
@@ -821,8 +804,7 @@ def benchmark(values: dict[str, str], judge: Path, output: Path, checks: dict) -
         final = build_judge(judge_text, values["final"], folder, "final")
 
         stage_defs = [
-            ("first-fit", "기준선: 입력 순서 first-fit", {"GREEDY": "0", "MODE": "0"}),
-            ("ascending", "탐욕: 점수 작은 후보부터", {"GREEDY": "2", "MODE": "0"}),
+            ("first-fit", "기준선: 후보 번호 순 first-fit", {"GREEDY": "0", "MODE": "0"}),
             ("weight", "탐욕: 점수 큰 후보부터", {"GREEDY": "1", "MODE": "0"}),
             ("hill", "국소 이동(hill climbing)", {"GREEDY": "1", "MODE": "1"}),
             ("dr", "destroy/repair(한 영역)", {"GREEDY": "1", "MODE": "2"}),
@@ -894,7 +876,7 @@ def benchmark(values: dict[str, str], judge: Path, output: Path, checks: dict) -
 
         # Inputs not used for choosing parameters: other grader seeds and a flatter height range.
         unseen = []
-        for label, seed, modulus in (("다른 seed 101", 101, 125), ("다른 seed 102", 102, 125), ("다른 seed 103", 103, 125), ("고도 범위 0~89, seed 101", 101, 90)):
+        for label, seed, modulus in (("다른 seed 101", 101, 125), ("다른 seed 102", 102, 125), ("다른 seed 103", 103, 125), ("고도 범위 0~109, seed 101", 101, 110), ("고도 범위 0~149, seed 101", 101, 150)):
             exe = build_judge(judge_text, exp_code, folder, f"unseen{seed}x{modulus}", seed=seed, modulus=modulus)
             row = {"label": label, "seed": seed, "modulus": modulus}
             row["first_fit"] = run_judge(exe, {"GREEDY": "0", "MODE": "0"})["total"]
@@ -935,8 +917,6 @@ def budget_table(data: dict) -> str:
     greedy = next(s for s in data["stages"] if s["key"] == "weight")["total"]
     lines = ["| 탐욕 뒤 추가 후보 검사(TC당) | 국소 이동 중앙값 | 최소~최대 | 시간(ms) | destroy/repair 중앙값 | 최소~최대 | 시간(ms) |",
              "| ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
-    ms = next(s for s in data["stages"] if s["key"] == "weight")["median_ms"]
-    lines.append(f"| 0 (탐욕만) | {greedy} | - | {ms:.0f} | {greedy} | - | {ms:.0f} |")
     for b in data["budgets"]:
         h, d = b["hill"], b["dr"]
         lines.append(f"| {b['budget']:,} | {num(h['median'])} | {h['min']}~{h['max']} | {h['median_ms']:.0f} | {num(d['median'])} | {d['min']}~{d['max']} | {d['median_ms']:.0f} |")
@@ -960,7 +940,7 @@ def noise_table(data: dict) -> str:
 
 
 def unseen_table(data: dict) -> str:
-    lines = ["| 입력 | first-fit | 점수 큰 순 탐욕 | 국소 이동 중앙값 | 최소~최대 | destroy/repair 중앙값 | 최소~최대 |",
+    lines = ["| 입력 | 기준선 | 점수 큰 순 탐욕 | 국소 이동 중앙값 | 최소~최대 | destroy/repair 중앙값 | 최소~최대 |",
              "| --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
     for u in data["unseen"]:
         h, d = u["hill"], u["dr"]
@@ -969,7 +949,7 @@ def unseen_table(data: dict) -> str:
 
 
 def tables(data: dict) -> dict[str, str]:
-    return {"handmap": hand_map_table(), "hand": hand_table(), "stages": stage_table(data), "budgets": budget_table(data),
+    return {"hand": hand_table(), "stages": stage_table(data), "budgets": budget_table(data),
             "destroy": destroy_table(data), "noise": noise_table(data), "unseen": unseen_table(data)}
 
 

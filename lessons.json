@@ -939,6 +939,44 @@
       ]
     },
     {
+      "lessonId": "placement-search",
+      "title": "격자 배치 문제: 유효한 후보, 국소 이동, destroy/repair 비교",
+      "description": "LANDINGX에서 유효성 판정을 한 함수로 모으고, 탐욕·국소 이동·destroy/repair를 같은 후보 검사 수로 실제 비교합니다. 손계산으로 국소 이동이 멈추는 배치와 점유 격자 되돌리기 실패까지 확인합니다.",
+      "summary": "후보 선택 집합 상태, 제안 단계의 무효 거절, 추가·교체 차분, 점유 격자 apply/undo, 예산별·destroy 크기별 비교와 실패 재현을 LANDINGX 한 문제로 연결",
+      "order": 30,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "placement",
+        "destroy-repair",
+        "local-search",
+        "grid",
+        "validity",
+        "incremental-evaluation",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "heuristic",
+        "testing-and-stress"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "cpp-common-library",
+        "assignment-local-search",
+        "greedy"
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "selection"
+      ]
+    },
+    {
       "lessonId": "bellman-ford-negative-cycle",
       "title": "Bellman-Ford와 음수 사이클",
       "description": "음수 간선이 있는 그래프에서 최단거리를 계산하고, 시작점에서 도달 가능한 음수 사이클을 판정하는 Bellman-Ford 알고리즘을 익힙니다.",
