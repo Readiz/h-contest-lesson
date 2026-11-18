@@ -8,7 +8,9 @@
 
 두 문제 모두 방문한 정점 집합과 마지막 정점을 상태로 사용합니다.
 
-![해밀턴 경로와 TSP의 관계](lesson-assets/problem-family.svg)
+![해밀턴 경로는 시작과 끝이 달라도 되는 경로, 해밀턴 사이클은 시작점으로 복귀하는 순회의 존재를 묻고, TSP는 복귀하는 순회 중 비용 최소를 묻습니다. 예시 순회 비용은 8+4+7+6+5=30입니다.](lesson-assets/problem-family.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/tsp-hamiltonian/lesson-assets/problem-family.svg)
 
 이 문제군은 입력 크기에 따라 접근이 크게 갈립니다.
 
@@ -20,7 +22,9 @@
 
 정확한 최적해를 보장하는 알고리즘은 보통 지수 시간입니다. 그래서 이 레슨은 완전탐색에서 시작해 DP로 중복을 줄이고, 더 큰 입력에서는 휴리스틱으로 좋은 답을 만드는 흐름으로 봅니다.
 
-![입력 크기에 따른 접근 선택](lesson-assets/exact-methods-scale.svg)
+![n이 10 안팎이면 순열 완전탐색, 20 안팎이면 비트마스크 DP, 수십 이상이면 초기해와 지역 탐색을 고르고, 오른쪽으로 갈수록 최적 보장이 약해집니다.](lesson-assets/exact-methods-scale.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/tsp-hamiltonian/lesson-assets/exact-methods-scale.svg)
 
 
 
@@ -237,7 +241,9 @@ route.push_back(0); // TSP cycle이면 시작점으로 복귀
 
 TSP에서 가장 유명한 개선 연산 중 하나가 2-opt입니다. 경로의 간선 두 개를 끊고, 가운데 구간을 뒤집어 다시 연결합니다.
 
-![2-opt가 교차 간선을 줄이는 모습](lesson-assets/two-opt-improvement.svg)
+![a(0,0), b(4,2), c(0,2), d(4,0)에서 교차하는 간선 a-b, c-d의 합 약 9를 a-c, b-d로 바꾸면 합 4가 되고 가운데 b에서 c 구간은 뒤집힙니다.](lesson-assets/two-opt-improvement.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/tsp-hamiltonian/lesson-assets/two-opt-improvement.svg)
 
 경로가 `... a - b ... c - d ...` 형태일 때, `a-b`, `c-d`를 끊고 `a-c`, `b-d`로 바꿉니다. 가운데 구간 `b ... c`는 뒤집힙니다.
 

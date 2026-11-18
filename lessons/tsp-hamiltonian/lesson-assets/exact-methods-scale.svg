@@ -1,45 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
-  <title id="title">TSP와 해밀턴 경로 접근 선택</title>
-  <desc id="desc">입력 크기에 따라 완전탐색, 비트마스크 DP, 휴리스틱으로 접근이 바뀌는 흐름도</desc>
-  <rect width="920" height="360" fill="#ffffff"/>
-  <rect x="24" y="24" width="872" height="312" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#334155"/>
-    </marker>
-  </defs>
-  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
-    <text x="50" y="66" fill="#0f172a" font-size="25" font-weight="800">정확한 풀이와 휴리스틱의 경계는 입력 크기가 만든다</text>
-    <text x="50" y="96" fill="#475569" font-size="15">작은 입력에서는 순서를 전부 보고, 중간 입력에서는 같은 상태를 합치고, 큰 입력에서는 좋은 답을 개선한다.</text>
-
-    <g transform="translate(58 144)">
-      <rect width="220" height="116" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
-      <text x="110" y="33" text-anchor="middle" fill="#1d4ed8" font-size="18" font-weight="800">완전탐색</text>
-      <text x="110" y="63" text-anchor="middle" fill="#334155" font-size="14">모든 순열 시험</text>
-      <text x="110" y="88" text-anchor="middle" fill="#0f172a" font-size="15" font-weight="800">O(n!)</text>
-      <text x="110" y="108" text-anchor="middle" fill="#64748b" font-size="12">n &lt;= 10 안팎</text>
-    </g>
-
-    <g transform="translate(350 144)">
-      <rect width="220" height="116" rx="14" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
-      <text x="110" y="33" text-anchor="middle" fill="#166534" font-size="18" font-weight="800">비트마스크 DP</text>
-      <text x="110" y="63" text-anchor="middle" fill="#334155" font-size="14">방문 집합과 마지막 정점</text>
-      <text x="110" y="88" text-anchor="middle" fill="#0f172a" font-size="15" font-weight="800">O(2^n n^2)</text>
-      <text x="110" y="108" text-anchor="middle" fill="#64748b" font-size="12">n &lt;= 20 안팎</text>
-    </g>
-
-    <g transform="translate(642 144)">
-      <rect width="220" height="116" rx="14" fill="#fff7ed" stroke="#fed7aa" stroke-width="2"/>
-      <text x="110" y="33" text-anchor="middle" fill="#c2410c" font-size="18" font-weight="800">휴리스틱</text>
-      <text x="110" y="63" text-anchor="middle" fill="#334155" font-size="14">초기해와 지역 개선</text>
-      <text x="110" y="88" text-anchor="middle" fill="#0f172a" font-size="15" font-weight="800">최적 보장 없음</text>
-      <text x="110" y="108" text-anchor="middle" fill="#64748b" font-size="12">큰 n, 점수형 문제</text>
-    </g>
-
-    <path d="M290 202 H334" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
-    <path d="M582 202 H626" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
-
-    <rect x="144" y="292" width="632" height="30" rx="15" fill="#0f172a"/>
-    <text x="460" y="312" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">정확도 요구와 n 제한을 먼저 보고, 그 다음 구현 방식을 고른다</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 442" role="img" aria-labelledby="title desc">
+<title id="title">입력 크기가 정하는 접근</title><desc id="desc">n이 10 안팎이면 (n-1)!가지 순서를 모두 시험하는 순열 완전탐색, 20 안팎이면 시간 O(2^n n^2)의 비트마스크 DP, 수십 이상이면 최적을 보장하지 않는 초기해와 지역 탐색을 씁니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="440" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#ae5515"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">입력 크기가 정하는 접근</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">정확도 요구와 n 제한을 먼저 보고 구현 방식을 고른다</text>
+<rect x="20" y="110" width="212" height="200" rx="12" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="126" y="152" font-size="22" fill="#2664ce" font-weight="750" text-anchor="middle">n ≤ 10 안팎</text>
+<text x="126" y="204" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">순열 완전탐색</text>
+<text x="126" y="258" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">(n−1)!가지 순서</text>
+<rect x="254" y="110" width="212" height="200" rx="12" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
+<text x="360" y="152" font-size="22" fill="#147d69" font-weight="750" text-anchor="middle">n ≤ 20 안팎</text>
+<text x="360" y="204" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">비트마스크 DP</text>
+<text x="360" y="258" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">O(2ⁿ n²)</text>
+<rect x="488" y="110" width="212" height="200" rx="12" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="594" y="152" font-size="22" fill="#ae5515" font-weight="750" text-anchor="middle">n이 수십 이상</text>
+<text x="594" y="204" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">초기해 + 지역 탐색</text>
+<text x="594" y="258" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">최적 보장 없음</text>
+<text x="243" y="222" font-size="30" fill="#53657d" font-weight="700" text-anchor="middle">›</text>
+<text x="477" y="222" font-size="30" fill="#53657d" font-weight="700" text-anchor="middle">›</text>
+<rect x="28" y="336" width="664" height="86" rx="12" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="360" y="372" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">왼쪽일수록 정확하지만 n이 늘면 지수적으로 느려짐</text>
+<text x="360" y="404" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">오른쪽은 큰 n에서도 돌지만 최적은 보장하지 않음</text>
 </svg>

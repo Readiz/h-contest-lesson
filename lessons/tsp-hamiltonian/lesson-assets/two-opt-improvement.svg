@@ -1,57 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
-  <title id="title">2-opt 지역 탐색</title>
-  <desc id="desc">교차하는 두 간선을 끊고 가운데 구간을 뒤집어 더 짧은 TSP 경로로 바꾸는 2-opt 개선 과정</desc>
-  <rect width="920" height="360" fill="#f8fafc"/>
-  <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#475569"/>
-    </marker>
-  </defs>
-  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
-    <text x="48" y="56" fill="#0f172a" font-size="25" font-weight="800">2-opt는 간선 두 개를 바꾸고 가운데 구간을 뒤집는다</text>
-    <text x="48" y="86" fill="#475569" font-size="15">교차하거나 돌아가는 간선을 줄이면 비용이 내려갈 수 있다.</text>
-
-    <g transform="translate(70 124)">
-      <rect width="300" height="178" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-      <text x="150" y="32" text-anchor="middle" fill="#991b1b" font-size="18" font-weight="800">Before</text>
-      <path d="M52 132 L235 58 M70 58 L248 130" stroke="#dc2626" stroke-width="5" stroke-linecap="round"/>
-      <path d="M52 132 L70 58 M235 58 L248 130" stroke="#94a3b8" stroke-width="3" stroke-linecap="round"/>
-      <g fill="#ffffff" stroke="#0f172a" stroke-width="3">
-        <circle cx="52" cy="132" r="12"/>
-        <circle cx="70" cy="58" r="12"/>
-        <circle cx="235" cy="58" r="12"/>
-        <circle cx="248" cy="130" r="12"/>
-      </g>
-      <g fill="#0f172a" font-size="12" font-weight="800" text-anchor="middle">
-        <text x="52" y="137">a</text>
-        <text x="70" y="63">b</text>
-        <text x="235" y="63">c</text>
-        <text x="248" y="135">d</text>
-      </g>
-      <text x="150" y="162" text-anchor="middle" fill="#64748b" font-size="13">a-b, c-d 간선을 사용</text>
-    </g>
-
-    <path d="M400 213 H514" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
-    <text x="457" y="190" text-anchor="middle" fill="#334155" font-size="15" font-weight="800">reverse(b ... c)</text>
-
-    <g transform="translate(550 124)">
-      <rect width="300" height="178" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-      <text x="150" y="32" text-anchor="middle" fill="#166534" font-size="18" font-weight="800">After</text>
-      <path d="M52 132 L235 58 M70 58 L248 130" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 7"/>
-      <path d="M52 132 L235 58 L70 58 L248 130" fill="none" stroke="#16a34a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <g fill="#ffffff" stroke="#0f172a" stroke-width="3">
-        <circle cx="52" cy="132" r="12"/>
-        <circle cx="70" cy="58" r="12"/>
-        <circle cx="235" cy="58" r="12"/>
-        <circle cx="248" cy="130" r="12"/>
-      </g>
-      <g fill="#0f172a" font-size="12" font-weight="800" text-anchor="middle">
-        <text x="52" y="137">a</text>
-        <text x="70" y="63">b</text>
-        <text x="235" y="63">c</text>
-        <text x="248" y="135">d</text>
-      </g>
-      <text x="150" y="162" text-anchor="middle" fill="#64748b" font-size="13">a-c, b-d 간선으로 교체</text>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 706" role="img" aria-labelledby="title desc">
+<title id="title">2-opt: 교차하는 두 간선을 바꾸고 가운데를 뒤집기</title><desc id="desc">경로 a-b ... c-d에서 a, b, c, d를 좌표 (0,0), (4,2), (0,2), (4,0)에 두면 간선 a-b와 c-d는 교차하고 합이 약 4.5+4.5=9입니다. a-c, b-d로 바꾸고 가운데 b에서 c 구간을 뒤집으면 교차가 사라져 합이 2+2=4가 됩니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="704" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#b42318"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">2-opt: 교차하는 두 간선을 바꾸고 가운데를 뒤집기</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">점 a(0,0) b(4,2) c(0,2) d(4,0) · 길이는 직선 거리</text>
+<rect x="20" y="104" width="680" height="246" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="140" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">바꾸기 전</text>
+<line x1="300" y1="184" x2="60" y2="184" stroke="#9fb0c6" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 7"/>
+<line x1="60" y1="304" x2="300" y2="184" stroke="#b42318" stroke-width="5" stroke-linecap="round"/>
+<line x1="60" y1="184" x2="300" y2="304" stroke="#b42318" stroke-width="5" stroke-linecap="round"/>
+<circle cx="60" cy="304" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="60" y="311" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">a</text>
+<circle cx="300" cy="184" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="300" y="191" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">b</text>
+<circle cx="60" cy="184" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="60" y="191" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">c</text>
+<circle cx="300" cy="304" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="300" y="311" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">d</text>
+<text x="330" y="194" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">a–b, c–d 사용</text>
+<text x="330" y="230" font-size="20" fill="#b42318" font-weight="700" text-anchor="start">≈ 4.5 + 4.5 = 9</text>
+<text x="330" y="274" font-size="20" fill="#53657d" font-weight="500" text-anchor="start">두 간선이 교차</text>
+<rect x="20" y="366" width="680" height="246" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="402" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">바꾼 뒤</text>
+<line x1="300" y1="446" x2="60" y2="446" stroke="#9fb0c6" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 7"/>
+<line x1="60" y1="566" x2="60" y2="446" stroke="#147d69" stroke-width="5" stroke-linecap="round"/>
+<line x1="300" y1="446" x2="300" y2="566" stroke="#147d69" stroke-width="5" stroke-linecap="round"/>
+<circle cx="60" cy="566" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="60" y="573" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">a</text>
+<circle cx="300" cy="446" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="300" y="453" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">b</text>
+<circle cx="60" cy="446" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="60" y="453" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">c</text>
+<circle cx="300" cy="566" r="20" fill="#fff" stroke="#2664ce" stroke-width="3"/>
+<text x="300" y="573" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">d</text>
+<text x="330" y="456" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">a–c, b–d 사용</text>
+<text x="330" y="492" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">2 + 2 = 4</text>
+<text x="330" y="536" font-size="20" fill="#53657d" font-weight="500" text-anchor="start">b … c 구간은 뒤집힘</text>
+<rect x="28" y="632" width="664" height="54" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="666" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">after &lt; before 이면 reverse(b … c)를 반영</text>
 </svg>

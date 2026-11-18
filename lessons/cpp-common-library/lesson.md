@@ -219,6 +219,12 @@ template<int CAP> struct MinHeap {
 
 매 독립 탐색 시작에 `clear()`를 호출합니다. `(key, id) = (5, 2), (1, 7), (1, 3)`을 넣으면 `(1, 3), (1, 7), (5, 2)` 순서로 나옵니다. `top`은 삭제 없이 최솟값을 확인하며 `O(1)`, push/pop은 `O(log size)`입니다. 빈 힙의 `top`과 `pop`은 출력 인자를 바꾸지 않고 `false`를 반환하며, 용량을 넘는 `push`도 실패합니다. 큰 `Queue<CAP>`나 `MinHeap<CAP>` 인스턴스는 전역/정적으로 선언합니다.
 
+![MinHeap<3>에 (5,2), (1,7), (1,3)을 넣으면 (1,7)이 (5,2)를 밀고 올라가고 (1,3)은 key가 같아 id가 작은 쪽이 루트가 되며, 네 번 꺼내면 (1,3), (1,7), (5,2) 순서이고 마지막은 빈 힙이라 false입니다.](lesson-assets/min-heap-trace.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/cpp-common-library/lesson-assets/min-heap-trace.svg)
+
+`data[1..3]`은 1-index 배열이고, 주황 칸이 그 연산 뒤 루트입니다. 로컬 연습의 입력과 같습니다.
+
 이 힙은 decrease-key를 제공하지 않습니다. Dijkstra에서 개선된 거리를 새 항목으로 넣는 방식을 사용하면 정점 수보다 많은 항목이 쌓일 수 있습니다. 꺼낸 거리와 최신 거리의 불일치 검사, push 횟수·최대 적재량 계산은 사용하는 풀이의 책임입니다.
 
 ## 로컬 연습: 경계와 사용 계약 확인
