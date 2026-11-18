@@ -743,6 +743,16 @@ def holdout_maps() -> list[list[str]]:
     return maps
 
 
+def read_input(path: Path) -> list[list[str]]:
+    rows = ["".join("#" if v == "1" else "." for v in line.split()) for line in path.read_text().splitlines() if line.strip()]
+    return [rows[i:i + 64] for i in range(0, len(rows), 64)]
+
+
+def move_floor(maps: list[list[str]]) -> int:
+    """Cost of the moves alone if every run stepped on each free cell once: 10 runs per map, (free - 1) moves of 10."""
+    return sum(10 * 10 * (sum(r[1:-1].count(".") for r in m[1:-1]) - 1) for m in maps)
+
+
 def write_input(path: Path, maps: list[list[str]]) -> None:
     path.write_text("\n".join(" ".join("1" if ch == "#" else "0" for ch in row) for m in maps for row in m) + "\n")
 
@@ -821,6 +831,9 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
               "rows": [], "sweeps": [], "holdout_rows": [], "holdout_sweeps": [], "failures": []}
     maps = holdout_maps()
     result["holdout_free_cells"] = [sum(r.count(".") for r in m) for m in maps]
+    official = read_input(sample)
+    result["official_free_cells"] = [sum(r.count(".") for r in m) for m in official]
+    result["move_floor"] = {"official": move_floor(official), "holdout": move_floor(maps)}
     with tempfile.TemporaryDirectory(prefix="lesson-robot-judge-") as tmp:
         folder = Path(tmp)
         src = patched_judge(judge, folder)
@@ -883,6 +896,8 @@ COMPARISONS = [
     ("UNK_PEN 10 대 0", ("sweep", "UNK_PEN 10"), ("sweep", "UNK_PEN 0")),
     ("홀드아웃 BFS 대 Dijkstra", ("hold", "정책 1 SCAN_MIN 6"), ("hold", "정책 2 SCAN_MIN 6")),
     ("홀드아웃 SCAN_MIN 6 대 3", ("holdsweep", "SCAN_MIN 6"), ("holdsweep", "SCAN_MIN 3")),
+    ("홀드아웃 TURN_W 15 대 5", ("holdsweep", "TURN_W 15"), ("holdsweep", "TURN_W 5")),
+    ("BFS 대 Dijkstra (SCAN_MIN 1)", ("official", "정책 1 SCAN_MIN 1"), ("official", "정책 2 SCAN_MIN 1")),
 ]
 
 
@@ -898,17 +913,20 @@ def check_tables(data: dict, extra: dict) -> None:
 
     for bucket in ("rows", "sweeps", "holdout_rows", "holdout_sweeps"):
         for row in data[bucket]:
-            if bucket in ("rows", "holdout_rows"):
-                present(row["label"], row["total"], row["mirror_total"], row["scans"], row["moves"], row["bumps"], row["turns"])
-            else:
-                present(row["label"], row["total"])
+            extra_cols = [row["mirror_total"]] if bucket in ("rows", "holdout_rows") else []
+            ms_cols = [row["ms"]] if bucket == "rows" else []
+            present(row["label"], row["total"], row["scans"], row["moves"], row["bumps"], row["turns"], *extra_cols, *ms_cols)
     for row in data["failures"]:
         present(row["label"], row["total"] if row["total"] is not None else "비정상 종료")
+        assert extra["failures"][row["label"]] in text, f"first mismatch message not in lesson: {row['label']}"
     by = lookup(data)
     for name, a, b in COMPARISONS:
         s = stats(by[a]["tcs"], by[b]["tcs"])
-        for needle in (f"{s['mean']:.0f}", f"{s['err']:.0f}", f"{s['low']:.0f}", f"{s['high']:.0f}", f"{s['worse']}개"):
-            assert needle in text, f"comparison '{name}' value not in lesson: {needle}"
+        present(name, f"{s['mean']:.0f}", f"{s['err']:.0f}", f"{s['low']:.0f}", f"{s['high']:.0f}", s["worse"])
+    for label, key, bucket in (("공식 입력", "official", "rows"), ("홀드아웃 지도", "holdout", "holdout_rows")):
+        r = next(x for x in data[bucket] if x["label"] == "정책 2 SCAN_MIN 6")
+        assert r["scans"] * 20 + (r["moves"] + r["bumps"]) * 10 + r["turns"] * 15 == r["total"]
+        present(label, r["scans"] * 20, r["moves"] * 10, r["bumps"] * 10, r["turns"] * 15, r["total"], data["move_floor"][key])
     for needle in (str(data["date"]), str(extra["heap_peak"]), str(extra["hand_total"])):
         assert needle in text, f"value not in lesson: {needle}"
     print(f"OK: lesson tables match {DATA.name} ({sum(len(data[b]) for b in ('rows', 'sweeps', 'holdout_rows', 'holdout_sweeps', 'failures'))} rows, "
@@ -921,6 +939,7 @@ def recheck_judge(judge: Path, sn: dict[str, str], data: dict) -> None:
     assert hashlib.sha256(sample.read_bytes()).hexdigest() == data["input_sha256"], "input file differs from the measured one"
     maps = holdout_maps()
     assert [sum(r.count(".") for r in m) for m in maps] == data["holdout_free_cells"], "hold-out maps changed"
+    assert move_floor(read_input(sample)) == data["move_floor"]["official"]
     with tempfile.TemporaryDirectory(prefix="lesson-robot-judge-") as tmp:
         folder = Path(tmp)
         src = patched_judge(judge, folder)
@@ -972,7 +991,7 @@ def main() -> None:
     check_reference(sn)
     extra.update(check_planners(sn))
     extra["hand_total"] = check_hand(sn)["total"]
-    check_failures(sn)
+    extra["failures"] = check_failures(sn)
     data = json.loads(DATA.read_text())
     if args.judge:
         recheck_judge(args.judge, sn, data)
