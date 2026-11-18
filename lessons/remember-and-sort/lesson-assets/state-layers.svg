@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+<title id="title">한 칸을 세 층으로 나누기: 채점기, 내 거울, pick 한 번 뒤</title>
+<desc id="desc">칸 (6,4)에 상자 5개가 쌓여 있습니다. 바닥 3개는 처음부터 있던 상자로 목적지와 무게를 pick 해야 알 수 있고, 위 2개는 내가 목적지 (6,4)를 보고 쌓았으므로 값을 기억합니다. 채점기는 5개의 값을 모두 알지만 읽을 수 없습니다. 내 거울은 높이 5, 열지 않은 상자 3개, 위 2개의 기억을 가집니다. pick 한 번 뒤에는 위 상자를 들고 높이가 4가 되며, 들어온 값이 기억과 같은지 대조합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="538" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한 칸을 세 층으로 나누기</text>
+<rect x="20" y="76" width="680" height="444" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="110" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">채점기 안</text>
+<text x="38" y="138" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">읽을 수 없다</text>
+<text x="262" y="110" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">내 거울</text>
+<text x="262" y="138" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">내가 기록한다</text>
+<text x="486" y="110" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">pick 한 번 뒤</text>
+<text x="486" y="138" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">들어온 값을 대조</text>
+<rect x="38" y="390" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2"/>
+<text x="128.0" y="416.0" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">→(1,9)·120</text>
+<rect x="38" y="350" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2"/>
+<text x="128.0" y="376.0" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">→(8,0)·870</text>
+<rect x="38" y="310" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2"/>
+<text x="128.0" y="336.0" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">→(2,5)·455</text>
+<rect x="38" y="270" width="180" height="40" rx="5" fill="#e3edfb" stroke="#2664ce" stroke-width="2"/>
+<text x="128.0" y="296.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">→(6,4)·540</text>
+<rect x="38" y="230" width="180" height="40" rx="5" fill="#e3edfb" stroke="#2664ce" stroke-width="2"/>
+<text x="128.0" y="256.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">→(6,4)·260</text>
+<rect x="262" y="390" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="352.0" y="416.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">?</text>
+<rect x="262" y="350" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="352.0" y="376.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">?</text>
+<rect x="262" y="310" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="352.0" y="336.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">?</text>
+<rect x="262" y="270" width="180" height="40" rx="5" fill="#e3edfb" stroke="#2664ce" stroke-width="2"/>
+<text x="352.0" y="296.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">→(6,4)·540</text>
+<rect x="262" y="230" width="180" height="40" rx="5" fill="#e3edfb" stroke="#2664ce" stroke-width="2"/>
+<text x="352.0" y="256.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">→(6,4)·260</text>
+<rect x="486" y="390" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="576.0" y="416.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">?</text>
+<rect x="486" y="350" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="576.0" y="376.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">?</text>
+<rect x="486" y="310" width="180" height="40" rx="5" fill="#eef2f8" stroke="#8a9bb3" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="576.0" y="336.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">?</text>
+<rect x="486" y="270" width="180" height="40" rx="5" fill="#e3edfb" stroke="#2664ce" stroke-width="2"/>
+<text x="576.0" y="296.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">→(6,4)·540</text>
+<rect x="486" y="168" width="180" height="40" rx="5" fill="#fdeedd" stroke="#c4510c" stroke-width="2.5"/>
+<text x="576.0" y="194.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">→(6,4)·260</text>
+<line x1="576.0" y1="208" x2="576.0" y2="268" stroke="#c4510c" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="32" y1="432" x2="224" y2="432" stroke="#8a9bb3" stroke-width="3"/>
+<line x1="256" y1="432" x2="448" y2="432" stroke="#8a9bb3" stroke-width="3"/>
+<line x1="480" y1="432" x2="672" y2="432" stroke="#8a9bb3" stroke-width="3"/>
+<text x="38" y="460" font-size="19" fill="#172b45" font-weight="700" text-anchor="start">높이 5</text>
+<text x="262" y="460" font-size="19" fill="#172b45" font-weight="700" text-anchor="start">H = 5, orig = 3</text>
+<text x="486" y="460" font-size="19" fill="#172b45" font-weight="700" text-anchor="start">H = 4, orig = 3</text>
+<text x="38" y="484" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">5개 값을 모두 안다</text>
+<text x="262" y="484" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">위 2개만 값을 기억</text>
+<text x="486" y="484" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">꺼낸 값이 기억과</text>
+<text x="486" y="508" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">같은지 확인한다</text>
+</svg>

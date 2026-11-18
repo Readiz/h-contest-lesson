@@ -1237,6 +1237,43 @@
       ]
     },
     {
+      "lessonId": "remember-and-sort",
+      "title": "열어 본 상자를 기억해 쌓고 정렬하기",
+      "description": "DRONESORT를 따라 pick으로만 알 수 있는 상자 값과 높이를 거울에 기억하고, 기억으로 비행 고도와 정렬을 계획해 기준선, 지형 따라 날기, 인내 정렬로 호출 수를 줄입니다.",
+      "summary": "관측이 곧 행동인 문제의 거울 설계, 호출 비용 하한, 지형을 따라 나는 고도 계획, 알고 있는 무게로 세우는 인내 정렬, 기억과 실제 상태가 어긋나는 실패 재현",
+      "order": 37,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "state-mirror",
+        "simulation",
+        "sorting",
+        "stack",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "heuristic",
+        "observe-and-act"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "cpp-common-library",
+        "cpp-contest-basics",
+        "reading-the-score"
+      ],
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "modeling",
+        "implementation"
+      ]
+    },
+    {
       "lessonId": "fenwick-tree",
       "title": "Fenwick Tree",
       "description": "배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.",

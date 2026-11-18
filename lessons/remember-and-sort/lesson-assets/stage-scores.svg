@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title desc">
+<title id="title">단계별 점수 합: 기준선, 1단계, 2단계</title>
+<desc id="desc">공개 채점기 10개 TC의 호출 수 합을 로그 축으로 그렸습니다. 기준선은 31억 3508만, 1단계는 3억 2536만, 2단계는 2억 3524만입니다. 통과 기준은 2억 5000만이고 하한은 6865만입니다. 2단계만 통과 기준 안에 있습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="478" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">단계별 점수 합 (로그 축)</text>
+<rect x="20" y="76" width="680" height="384" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="191.6" y1="124" x2="191.6" y2="340" stroke="#4a5d78" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="187.6" y="114" font-size="18" fill="#4a5d78" font-weight="700" text-anchor="end">하한 6865만</text>
+<line x1="315.1" y1="124" x2="315.1" y2="340" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="319.1" y="114" font-size="18" fill="#c4510c" font-weight="700" text-anchor="start">통과 2억 5000만</text>
+<text x="38" y="174" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">기준선</text>
+<rect x="140" y="146" width="416.7" height="40" rx="5" fill="#8a9bb3"/>
+<text x="150" y="173" font-size="19" fill="#ffffff" font-weight="700" text-anchor="start">31억 3508만</text>
+<text x="572.7" y="173" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">z = 99 고정</text>
+<text x="38" y="236" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">1단계</text>
+<rect x="140" y="208" width="200.3" height="40" rx="5" fill="#2664ce"/>
+<text x="150" y="235" font-size="19" fill="#ffffff" font-weight="700" text-anchor="start">3억 2536만</text>
+<text x="356.3" y="235" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">지형 따라 날기</text>
+<text x="38" y="298" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">2단계</text>
+<rect x="140" y="270" width="169.3" height="40" rx="5" fill="#2664ce"/>
+<text x="150" y="297" font-size="19" fill="#ffffff" font-weight="700" text-anchor="start">2억 3524만</text>
+<text x="325.3" y="297" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="start">인내 정렬</text>
+<line x1="140" y1="342" x2="580" y2="342" stroke="#8a9bb3" stroke-width="2"/>
+<line x1="227.5" y1="342" x2="227.5" y2="350" stroke="#8a9bb3" stroke-width="2"/>
+<text x="227.5" y="372" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">1억</text>
+<line x1="447.5" y1="342" x2="447.5" y2="350" stroke="#8a9bb3" stroke-width="2"/>
+<text x="447.5" y="372" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">10억</text>
+<text x="38" y="424" font-size="19" fill="#172b45" font-weight="400" text-anchor="start">막대 길이는 호출 수의 로그입니다. 2단계만 통과 기준 안입니다.</text>
+</svg>

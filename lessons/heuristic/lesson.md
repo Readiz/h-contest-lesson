@@ -22,3 +22,4 @@
 10. [특수한 점수식 읽기](https://h.readiz.com/learn/reading-the-score): ENTROPY2D에서 채점식을 내 코드로 재현해 대조하고, 축별 분리에서 O(1) 차분식을 만들어 풀이로 옮김.
 11. [입력이 클 때](https://h.readiz.com/learn/large-input-search): COUPANG1에서 연산 수 예산을 먼저 계산하고, 좌표 칸으로 후보를 줄여 남은 시간을 배분.
 12. [보이는 만큼만 아는 문제](https://h.readiz.com/learn/explore-unknown-map): ROBOTCLEAN에서 스캔과 이동 결과로 지도와 자세를 그려 가며, 스캔 비용과 헛걸음 비용의 균형을 실측.
+13. [열어 본 상자를 기억해 쌓고 정렬하기](https://h.readiz.com/learn/remember-and-sort): DRONESORT에서 꺼내야만 알 수 있는 값과 높이를 기억해 날 높이와 정렬 순서를 미리 계획.
