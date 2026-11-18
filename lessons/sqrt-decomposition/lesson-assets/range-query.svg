@@ -1,44 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300" role="img" aria-labelledby="title desc">
-  <title id="title">Sqrt decomposition range query</title>
-  <desc id="desc">A range query split into a left partial block, full middle blocks, and a right partial block.</desc>
-  <rect width="900" height="300" fill="#f8fafc"/>
-  <text x="48" y="54" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">구간 질의 처리 방식</text>
-  <text x="48" y="86" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">양 끝의 잘린 블록은 직접 훑고, 가운데 완전한 블록은 저장된 값을 사용합니다.</text>
-  <g transform="translate(48 125)" font-family="Arial, sans-serif" text-anchor="middle">
-    <g font-size="13">
-      <rect x="0" y="0" width="58" height="54" rx="6" fill="#e5e7eb" stroke="#9ca3af"/>
-      <rect x="62" y="0" width="58" height="54" rx="6" fill="#e5e7eb" stroke="#9ca3af"/>
-      <rect x="124" y="0" width="58" height="54" rx="6" fill="#fee2e2" stroke="#dc2626"/>
-      <rect x="186" y="0" width="58" height="54" rx="6" fill="#fee2e2" stroke="#dc2626"/>
-      <rect x="268" y="0" width="58" height="54" rx="6" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="330" y="0" width="58" height="54" rx="6" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="392" y="0" width="58" height="54" rx="6" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="454" y="0" width="58" height="54" rx="6" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="536" y="0" width="58" height="54" rx="6" fill="#fef3c7" stroke="#d97706"/>
-      <rect x="598" y="0" width="58" height="54" rx="6" fill="#fef3c7" stroke="#d97706"/>
-      <rect x="660" y="0" width="58" height="54" rx="6" fill="#fef3c7" stroke="#d97706"/>
-      <rect x="722" y="0" width="58" height="54" rx="6" fill="#e5e7eb" stroke="#9ca3af"/>
-      <text x="29" y="32" fill="#374151">0</text>
-      <text x="91" y="32" fill="#374151">1</text>
-      <text x="153" y="32" fill="#991b1b">2</text>
-      <text x="215" y="32" fill="#991b1b">3</text>
-      <text x="297" y="32" fill="#14532d">4</text>
-      <text x="359" y="32" fill="#14532d">5</text>
-      <text x="421" y="32" fill="#14532d">6</text>
-      <text x="483" y="32" fill="#14532d">7</text>
-      <text x="565" y="32" fill="#78350f">8</text>
-      <text x="627" y="32" fill="#78350f">9</text>
-      <text x="689" y="32" fill="#78350f">10</text>
-      <text x="751" y="32" fill="#374151">11</text>
-    </g>
-    <g font-size="15" font-weight="700">
-      <path d="M124 80 H244" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/>
-      <path d="M268 80 H512" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
-      <path d="M536 80 H718" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
-      <text x="184" y="116" fill="#991b1b">직접 더하기</text>
-      <text x="390" y="116" fill="#14532d">blockSum 사용</text>
-      <text x="627" y="116" fill="#78350f">직접 더하기</text>
-    </g>
-    <text x="421" y="154" font-size="16" fill="#374151">query [2, 10]</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 554" role="img" aria-labelledby="title desc">
+<title id="title">구간 [2, 9] 질의: 양 끝만 직접 읽기</title><desc id="desc">같은 배열에서 [2,9]를 물으면 위치 2와 3의 7과 1은 직접 더하고, 블록 1(4부터 7)은 저장된 합 21을 쓰고, 위치 8과 9의 9와 2는 직접 더해 7+1+21+9+2=40입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="552" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#147d69"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">구간 [2, 9] 질의: 양 끝만 직접 읽기</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">B = 4 · 질의 [2, 9] · 원소 4개 + 블록 합 1개</text>
+<rect x="20" y="104" width="680" height="430" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="140" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">위치</text>
+<text x="81.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">0</text>
+<text x="143.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">1</text>
+<text x="205.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">2</text>
+<text x="267.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">3</text>
+<text x="329.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">4</text>
+<text x="391.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">5</text>
+<text x="453.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">6</text>
+<text x="515.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">7</text>
+<text x="577.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">8</text>
+<text x="639.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">9</text>
+<text x="36" y="178" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">a</text>
+<rect x="53" y="186" width="56" height="46" rx="8" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="81.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<rect x="115" y="186" width="56" height="46" rx="8" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="143.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="177" y="186" width="56" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="205.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<rect x="239" y="186" width="56" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="267.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="301" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="329.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<rect x="363" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="391.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
+<rect x="425" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="453.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="487" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="515.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">8</text>
+<rect x="549" y="186" width="56" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="577.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">9</text>
+<rect x="611" y="186" width="56" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="639.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<line x1="177" y1="248" x2="177" y2="262" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<line x1="177" y1="262" x2="295" y2="262" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<line x1="295" y1="262" x2="295" y2="248" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<line x1="301" y1="248" x2="301" y2="262" stroke="#147d69" stroke-width="3" stroke-linecap="round"/>
+<line x1="301" y1="262" x2="543" y2="262" stroke="#147d69" stroke-width="3" stroke-linecap="round"/>
+<line x1="543" y1="262" x2="543" y2="248" stroke="#147d69" stroke-width="3" stroke-linecap="round"/>
+<line x1="549" y1="248" x2="549" y2="262" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<line x1="549" y1="262" x2="667" y2="262" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<line x1="667" y1="262" x2="667" y2="248" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<text x="205.0" y="296" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">직접</text>
+<text x="205.0" y="324" font-size="20" fill="#172b45" font-weight="600" text-anchor="middle">7 + 1 = 8</text>
+<text x="422" y="296" font-size="20" fill="#147d69" font-weight="700" text-anchor="middle">블록 합 사용</text>
+<text x="422" y="324" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">21</text>
+<text x="608" y="296" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">직접</text>
+<text x="608" y="324" font-size="20" fill="#172b45" font-weight="600" text-anchor="middle">9 + 2 = 11</text>
+<text x="36" y="392" font-size="20" fill="#53657d" font-weight="500" text-anchor="start">블록 1의 네 원소는 4+6+3+8 = 21 한 번으로 처리</text>
+<rect x="28" y="424" width="664" height="86" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="458" font-size="24" fill="#147d69" font-weight="750" text-anchor="middle">8 + 21 + 11 = 40</text>
+<text x="360" y="492" font-size="20" fill="#147d69" font-weight="600" text-anchor="middle">직접 본 원소는 양 끝 4개뿐</text>
 </svg>

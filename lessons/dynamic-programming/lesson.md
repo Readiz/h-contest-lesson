@@ -188,3 +188,9 @@ void dfs(int u, int parent) {
 ```
 
 **확인 방법:** 무게 2와 5인 물건을 고르면 가치 10입니다. 한 배열로 갱신할 때 용량을 감소 방향으로 순회해야 같은 물건을 중복 사용하지 않습니다. N <= 20에서는 모든 subset과 비교하고 W=0, 모든 물건이 너무 무거운 경우를 검사합니다.
+
+![용량 7에서 물건 (무게,가치) (3,4), (4,5), (2,3), (5,7)을 차례로 넣을 때 dp 표가 바뀐 칸이 주황색으로 표시되며, 마지막 dp[7]은 무게 2와 5인 물건의 가치 3과 7을 더한 10입니다.](lesson-assets/knapsack-table.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/dynamic-programming/lesson-assets/knapsack-table.svg)
+
+위 연습 예시의 dp 배열을 물건마다 한 줄씩 펼친 그림입니다. 각 줄은 용량을 큰 쪽부터 갱신하므로 읽는 값은 항상 바로 위 줄의 값입니다.
