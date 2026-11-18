@@ -1,1 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc"><title id="title">TC가 작아졌다 다시 커질 때</title><desc id="desc">TC 크기4에서2로 줄면 뒤 두 칸은 남지만 읽지 않습니다. 다음 크기4 TC 시작에 네 칸을 모두 초기화합니다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#607b98"/></marker></defs><style>text{font-family:system-ui,sans-serif}path,rect,circle{vector-effect:non-scaling-stroke}</style><rect width="600" height="600" rx="16" fill="#f5f8fc"/><text x="24" y="43" font-size="27" fill="#18324f">TC가 작아졌다 다시 커질 때</text><text x="24" y="92" font-size="23" fill="#18324f">used 배열: 활성 구간만 초기화하는 예시</text><text x="24" y="145" font-size="23" fill="#18324f">TC 1 종료</text><rect x="180" y="113" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="192" y="148.5" font-size="24" fill="#18324f">1</text><rect x="275" y="113" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="287" y="148.5" font-size="24" fill="#18324f">1</text><rect x="370" y="113" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="382" y="148.5" font-size="24" fill="#18324f">1</text><rect x="465" y="113" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="477" y="148.5" font-size="24" fill="#18324f">1</text><text x="180" y="199" font-size="22" fill="#18324f">n=4 / 모든 활성 칸 사용</text><text x="24" y="275" font-size="23" fill="#18324f">TC 2 시작</text><rect x="180" y="243" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="192" y="278.5" font-size="24" fill="#18324f">0</text><rect x="275" y="243" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="287" y="278.5" font-size="24" fill="#18324f">0</text><rect x="370" y="243" width="80" height="55" rx="9" fill="#e2e8f0" stroke="#91a4b9"/><text x="382" y="278.5" font-size="24" fill="#18324f">1</text><rect x="465" y="243" width="80" height="55" rx="9" fill="#e2e8f0" stroke="#91a4b9"/><text x="477" y="278.5" font-size="24" fill="#18324f">1</text><text x="180" y="329" font-size="22" fill="#18324f">n=2 / 뒤의 두 칸은 읽지 않음</text><text x="24" y="405" font-size="23" fill="#18324f">TC 3 시작</text><rect x="180" y="373" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="192" y="408.5" font-size="24" fill="#18324f">0</text><rect x="275" y="373" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="287" y="408.5" font-size="24" fill="#18324f">0</text><rect x="370" y="373" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="382" y="408.5" font-size="24" fill="#18324f">0</text><rect x="465" y="373" width="80" height="55" rx="9" fill="#d1fae5" stroke="#91a4b9"/><text x="477" y="408.5" font-size="24" fill="#18324f">0</text><text x="180" y="459" font-size="22" fill="#18324f">n=4 / 모든 활성 칸 사용</text><text x="24" y="555" font-size="22" fill="#18324f">각 TC 시작에 resetCase(n), 행동 중에는 유지</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 616" role="img" aria-labelledby="title desc">
+<title id="title">TC가 작아졌다 다시 커질 때</title><desc id="desc">TC 크기 4에서 2로 줄면 뒤 두 칸은 남지만 읽지 않습니다. 다음 크기 4 TC 시작에 네 칸을 모두 초기화합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="614" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#147d69"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">TC가 작아졌다 다시 커질 때</text>
+<text x="28" y="86" font-size="22" fill="#53657d" font-weight="400">used 배열: 활성 구간만 초기화하는 예시</text>
+<rect x="28" y="108" width="664" height="132" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="46" y="164" font-size="20" fill="#172b45" font-weight="700">TC 1 종료</text>
+<rect x="190" y="132" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="242" y="165" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="308" y="132" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="360" y="165" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="426" y="132" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="478" y="165" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="544" y="132" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="596" y="165" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="190" y="218" font-size="20" fill="#147d69" font-weight="400">n=4 / 모든 활성 칸 사용</text>
+<rect x="28" y="254" width="664" height="132" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="46" y="310" font-size="20" fill="#172b45" font-weight="700">TC 2 시작</text>
+<rect x="190" y="278" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="242" y="311" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="308" y="278" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="360" y="311" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="426" y="278" width="104" height="52" rx="10" fill="#e2e8f0" stroke="#9fb0c6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="478" y="311" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">1</text>
+<rect x="544" y="278" width="104" height="52" rx="10" fill="#e2e8f0" stroke="#9fb0c6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="596" y="311" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">1</text>
+<text x="190" y="364" font-size="20" fill="#53657d" font-weight="700">n=2 / 뒤의 두 칸은 읽지 않음</text>
+<rect x="28" y="400" width="664" height="132" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="46" y="456" font-size="20" fill="#172b45" font-weight="700">TC 3 시작</text>
+<rect x="190" y="424" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="242" y="457" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="308" y="424" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="360" y="457" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="426" y="424" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="478" y="457" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="544" y="424" width="104" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="596" y="457" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="190" y="510" font-size="20" fill="#147d69" font-weight="400">n=4 / 모든 활성 칸 사용</text>
+<circle cx="40" cy="578.0" r="4" fill="#147d69"/>
+<text x="56" y="584" font-size="20" fill="#172b45">각 TC 시작에 resetCase(n), 행동 중에는 유지</text>
+</svg>

@@ -1,1 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 590" role="img" aria-labelledby="title desc"><title id="title">동적 세그먼트 트리: 필요한 경로만</title><desc id="desc">[0,8)에서[5,6)에3을 더하면[0,8),[4,8),[4,6),[5,6) 네 노드만 생성됩니다. 다른 자식은0입니다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#607b98"/></marker></defs><style>text{font-family:system-ui,sans-serif;fill:#18324f}path,rect,circle{vector-effect:non-scaling-stroke}</style><rect width="600" height="590" rx="16" fill="#f5f8fc"/><text x="24" y="43" font-size="28" fill="#18324f">동적 세그먼트 트리: 필요한 경로만</text><text x="24" y="89" font-size="24" fill="#18324f">초기값 0 / 루트 [0,8)에 add(5,6,+3)</text><rect x="208" y="119" width="184" height="49" rx="9" fill="#e5effa" stroke="#91a4b9"/><text x="220" y="151.5" font-size="24" fill="#18324f">[0,8): 합 3</text><path d="M245 169 L139 222" fill="none" stroke="#607b98" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M355 169 L458 222" fill="none" stroke="#607b98" stroke-width="2.5"/><rect x="40" y="226" width="190" height="49" rx="9" fill="#fff" stroke="#91a4b9"/><text x="52" y="258.5" font-size="22" fill="#18324f">[0,4): 미생성</text><rect x="374" y="226" width="190" height="49" rx="9" fill="#e5effa" stroke="#91a4b9"/><text x="386" y="258.5" font-size="22" fill="#18324f">[4,8): 합 3</text><path d="M428 276 L340 327" fill="none" stroke="#607b98" stroke-width="2.5"/><path d="M503 276 L524 327" fill="none" stroke="#607b98" stroke-width="2.5" stroke-dasharray="6 5"/><rect x="247" y="331" width="170" height="49" rx="9" fill="#e5effa" stroke="#91a4b9"/><text x="259" y="363.5" font-size="22" fill="#18324f">[4,6): 합 3</text><rect x="435" y="331" width="149" height="49" rx="9" fill="#fff" stroke="#91a4b9"/><text x="447" y="363.5" font-size="19" fill="#18324f">[6,8): 없음</text><path d="M306 382 L234 429" fill="none" stroke="#607b98" stroke-width="2.5" stroke-dasharray="6 5"/><path d="M359 382 L433 429" fill="none" stroke="#607b98" stroke-width="2.5"/><rect x="135" y="433" width="177" height="49" rx="9" fill="#fff" stroke="#91a4b9"/><text x="147" y="465.5" font-size="21" fill="#18324f">[4,5): 없음</text><rect x="355" y="433" width="210" height="49" rx="9" fill="#e5effa" stroke="#91a4b9"/><text x="367" y="465.5" font-size="22" fill="#18324f">[5,6): 합 3</text><text x="24" y="550" font-size="23" fill="#18324f">생성 노드 4개 / 빠진 자식의 합은 0</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 590" role="img" aria-labelledby="title desc">
+<title id="title">동적 세그먼트 트리: 필요한 경로만</title><desc id="desc">[0,8)에서 [5,6)에 3을 더하면 [0,8), [4,8), [4,6), [5,6) 네 노드만 생성됩니다. 다른 자식은 0입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="588" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">동적 세그먼트 트리: 필요한 경로만</text>
+<text x="28" y="86" font-size="22" fill="#53657d" font-weight="400">초기값 0 / 루트 [0,8)에 add(5,6,+3)</text>
+<rect x="28" y="108" width="664" height="380" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="300" y1="170" x2="140" y2="214" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5"/>
+<line x1="300" y1="170" x2="490" y2="214" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="490" y1="260" x2="370" y2="304" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="490" y1="260" x2="584" y2="304" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5"/>
+<line x1="370" y1="350" x2="270" y2="394" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5"/>
+<line x1="370" y1="350" x2="470" y2="394" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="216" y="124" width="168" height="46" rx="10" fill="#dbeafe" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="300" y="155" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">[0,8): 합 3</text>
+<rect x="56" y="214" width="168" height="46" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="140" y="245" font-size="20" fill="#172b45" font-weight="400" text-anchor="middle">[0,4): 미생성</text>
+<rect x="406" y="214" width="168" height="46" rx="10" fill="#dbeafe" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="490" y="245" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">[4,8): 합 3</text>
+<rect x="286" y="304" width="168" height="46" rx="10" fill="#dbeafe" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="370" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">[4,6): 합 3</text>
+<rect x="500" y="304" width="168" height="46" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="584" y="335" font-size="20" fill="#172b45" font-weight="400" text-anchor="middle">[6,8): 없음</text>
+<rect x="186" y="394" width="168" height="46" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="270" y="425" font-size="20" fill="#172b45" font-weight="400" text-anchor="middle">[4,5): 없음</text>
+<rect x="386" y="394" width="168" height="46" rx="10" fill="#dbeafe" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="470" y="425" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">[5,6): 합 3</text>
+<rect x="28" y="508" width="664" height="54" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="1.5"/>
+<text x="46" y="542" font-size="20" fill="#172b45" font-weight="700">생성 노드 4개 / 빠진 자식의 합은 0</text>
+</svg>

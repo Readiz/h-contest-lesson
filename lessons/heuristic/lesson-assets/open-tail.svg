@@ -1,81 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 728" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 873.6" role="img" aria-labelledby="title desc">
 <title id="title">열린 경로: 바뀌는 경계는 하나</title><desc id="desc">같은 x축 위에 0, A, D, C, B가 각각 0, 1, 2, 8, 9에 있습니다. 방문 순서 0-A-B-C-D를 0-A-D-C-B로 바꾸면 내부 거리 7은 유지되고 A에서 꼬리로 가는 거리만 8에서 1로 줄어 총비용이 16에서 9가 됩니다.</desc>
 <defs>
-<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#2664ce"/></marker>
-<marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#147d69"/></marker>
-<marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515"/></marker>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#2664ce" /></marker>
+<marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#147d69" /></marker>
+<marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515" /></marker>
 </defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
-<rect x="1" y="1" width="598" height="726" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
-<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce" stroke="#2664ce" stroke-width="1.5"/>
-<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">열린 경로: 바뀌는 경계는 하나</text>
-<text x="28" y="91" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">점의 가로 위치 = 실제 x좌표 · 곡선 = 방문 순서</text>
-<rect x="20" y="112" width="560" height="236" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="38" y="147" font-size="23" fill="#172b45" font-weight="700" text-anchor="start">01  뒤집기 전</text>
-<text x="560" y="147" font-size="24" fill="#172b45" font-weight="750" text-anchor="end">비용 16</text>
-<text x="38" y="180" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">0 → A → B → C → D</text>
-<line x1="46" y1="298" x2="550" y2="298" stroke="#d8e1ed" stroke-width="2"/>
-<line x1="64" y1="315" x2="64" y2="326" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="64" cy="298" r="17" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="64" y="305" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<text x="64" y="343" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">0</text>
-<line x1="116" y1="315" x2="116" y2="326" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="116" cy="298" r="17" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="116" y="305" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
-<text x="116" y="343" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">1</text>
-<line x1="168" y1="315" x2="168" y2="326" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="168" cy="298" r="17" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
-<text x="168" y="305" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">D</text>
-<text x="168" y="343" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">2</text>
-<line x1="480" y1="315" x2="480" y2="326" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="480" cy="298" r="17" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
-<text x="480" y="305" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">C</text>
-<text x="480" y="343" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">8</text>
-<line x1="532" y1="315" x2="532" y2="326" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="532" cy="298" r="17" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
-<text x="532" y="305" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
-<text x="532" y="343" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">9</text>
-<path d="M 65 279 Q 90 238 115 279" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<text x="89" y="252" font-size="21" fill="#2664ce" font-weight="650" text-anchor="middle">1</text>
-<path d="M 118 278 Q 324 130 530 278" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)"/>
-<text x="324" y="196" font-size="23" fill="#ae5515" font-weight="700" text-anchor="middle">A–B = 8</text>
-<path d="M 530 278 Q 506 237 482 278" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
-<path d="M 478 278 Q 324 185 170 278" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
-<text x="506" y="252" font-size="21" fill="#147d69" font-weight="650" text-anchor="middle">1</text>
-<text x="324" y="253" font-size="21" fill="#147d69" font-weight="650" text-anchor="middle">6</text>
-<rect x="20" y="366" width="560" height="236" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="38" y="401" font-size="23" fill="#172b45" font-weight="700" text-anchor="start">02  꼬리 뒤집기 후</text>
-<text x="560" y="401" font-size="24" fill="#147d69" font-weight="750" text-anchor="end">비용 9</text>
-<text x="38" y="434" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">0 → A → D → C → B</text>
-<line x1="46" y1="552" x2="550" y2="552" stroke="#d8e1ed" stroke-width="2"/>
-<line x1="64" y1="569" x2="64" y2="580" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="64" cy="552" r="17" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="64" y="559" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
-<text x="64" y="597" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">0</text>
-<line x1="116" y1="569" x2="116" y2="580" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="116" cy="552" r="17" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="116" y="559" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
-<text x="116" y="597" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">1</text>
-<line x1="168" y1="569" x2="168" y2="580" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="168" cy="552" r="17" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
-<text x="168" y="559" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">D</text>
-<text x="168" y="597" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">2</text>
-<line x1="480" y1="569" x2="480" y2="580" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="480" cy="552" r="17" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
-<text x="480" y="559" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">C</text>
-<text x="480" y="597" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">8</text>
-<line x1="532" y1="569" x2="532" y2="580" stroke="#d8e1ed" stroke-width="2"/>
-<circle cx="532" cy="552" r="17" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
-<text x="532" y="559" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
-<text x="532" y="597" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">9</text>
-<path d="M 65 533 Q 90 492 115 533" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<text x="89" y="506" font-size="21" fill="#2664ce" font-weight="650" text-anchor="middle">1</text>
-<path d="M 118 532 Q 142 491 166 532" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)"/>
-<text x="142" y="504" font-size="21" fill="#ae5515" font-weight="700" text-anchor="middle">1</text>
-<path d="M 170 532 Q 324 409 478 532" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
-<text x="324" y="459" font-size="21" fill="#147d69" font-weight="650" text-anchor="middle">6</text>
-<path d="M 482 532 Q 506 491 530 532" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)"/>
-<text x="506" y="506" font-size="21" fill="#147d69" font-weight="650" text-anchor="middle">1</text>
-<rect x="28" y="619" width="544" height="79" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="45" y="650" font-size="24" fill="#147d69" font-weight="750" text-anchor="start">경계 비용만 비교: 1 − 8 = −7</text>
-<text x="45" y="683" font-size="22" fill="#147d69" font-weight="400" text-anchor="start">내부 거리 6 + 1은 유지 · 창고 복귀 없음</text>
+<rect x="1" y="1" width="718" height="871.6" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5" />
+<rect x="33.6" y="34.8" width="7.2" height="34.8" rx="3" fill="#2664ce" stroke="#2664ce" stroke-width="1.5" />
+<text x="56.4" y="63.6" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">열린 경로: 바뀌는 경계는 하나</text>
+<text x="33.6" y="109.2" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">점의 가로 위치 = 실제 x좌표 · 곡선 = 방문 순서</text>
+<rect x="24" y="134.4" width="672" height="283.2" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" />
+<text x="45.6" y="176.4" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">01  뒤집기 전</text>
+<text x="672" y="176.4" font-size="22" fill="#172b45" font-weight="750" text-anchor="end">비용 16</text>
+<text x="45.6" y="216" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">0 → A → B → C → D</text>
+<line x1="55.2" y1="357.6" x2="660" y2="357.6" stroke="#d8e1ed" stroke-width="2" />
+<line x1="76.8" y1="378" x2="76.8" y2="391.2" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="76.8" cy="357.6" r="20.4" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
+<text x="76.8" y="366" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="76.8" y="411.6" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">0</text>
+<line x1="139.2" y1="378" x2="139.2" y2="391.2" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="139.2" cy="357.6" r="20.4" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
+<text x="139.2" y="366" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
+<text x="139.2" y="411.6" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">1</text>
+<line x1="201.6" y1="378" x2="201.6" y2="391.2" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="201.6" cy="357.6" r="20.4" fill="#e5f4ef" stroke="#147d69" stroke-width="2" />
+<text x="201.6" y="366" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">D</text>
+<text x="201.6" y="411.6" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">2</text>
+<line x1="576" y1="378" x2="576" y2="391.2" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="576" cy="357.6" r="20.4" fill="#e5f4ef" stroke="#147d69" stroke-width="2" />
+<text x="576" y="366" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">C</text>
+<text x="576" y="411.6" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">8</text>
+<line x1="638.4" y1="378" x2="638.4" y2="391.2" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="638.4" cy="357.6" r="20.4" fill="#e5f4ef" stroke="#147d69" stroke-width="2" />
+<text x="638.4" y="366" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
+<text x="638.4" y="411.6" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">9</text>
+<path d="M 78 334.8 Q 108 285.6 138 334.8" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text x="106.8" y="302.4" font-size="20" fill="#2664ce" font-weight="650" text-anchor="middle">1</text>
+<path d="M 141.6 333.6 Q 388.8 156 636 333.6" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<text x="388.8" y="235.2" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">A–B = 8</text>
+<path d="M 636 333.6 Q 607.2 284.4 578.4 333.6" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<path d="M 573.6 333.6 Q 388.8 222 204 333.6" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="607.2" y="302.4" font-size="20" fill="#147d69" font-weight="650" text-anchor="middle">1</text>
+<text x="388.8" y="303.6" font-size="20" fill="#147d69" font-weight="650" text-anchor="middle">6</text>
+<rect x="24" y="439.2" width="672" height="283.2" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" />
+<text x="45.6" y="481.2" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">02  꼬리 뒤집기 후</text>
+<text x="672" y="481.2" font-size="22" fill="#147d69" font-weight="750" text-anchor="end">비용 9</text>
+<text x="45.6" y="520.8" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">0 → A → D → C → B</text>
+<line x1="55.2" y1="662.4" x2="660" y2="662.4" stroke="#d8e1ed" stroke-width="2" />
+<line x1="76.8" y1="682.8" x2="76.8" y2="696" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="76.8" cy="662.4" r="20.4" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
+<text x="76.8" y="670.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="76.8" y="716.4" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">0</text>
+<line x1="139.2" y1="682.8" x2="139.2" y2="696" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="139.2" cy="662.4" r="20.4" fill="#e9f0ff" stroke="#2664ce" stroke-width="2" />
+<text x="139.2" y="670.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
+<text x="139.2" y="716.4" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">1</text>
+<line x1="201.6" y1="682.8" x2="201.6" y2="696" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="201.6" cy="662.4" r="20.4" fill="#e5f4ef" stroke="#147d69" stroke-width="2" />
+<text x="201.6" y="670.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">D</text>
+<text x="201.6" y="716.4" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">2</text>
+<line x1="576" y1="682.8" x2="576" y2="696" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="576" cy="662.4" r="20.4" fill="#e5f4ef" stroke="#147d69" stroke-width="2" />
+<text x="576" y="670.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">C</text>
+<text x="576" y="716.4" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">8</text>
+<line x1="638.4" y1="682.8" x2="638.4" y2="696" stroke="#d8e1ed" stroke-width="2" />
+<circle cx="638.4" cy="662.4" r="20.4" fill="#e5f4ef" stroke="#147d69" stroke-width="2" />
+<text x="638.4" y="670.8" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
+<text x="638.4" y="716.4" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">9</text>
+<path d="M 78 639.6 Q 108 590.4 138 639.6" fill="none" stroke="#2664ce" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" />
+<text x="106.8" y="607.2" font-size="20" fill="#2664ce" font-weight="650" text-anchor="middle">1</text>
+<path d="M 141.6 638.4 Q 170.4 589.2 199.2 638.4" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-amber)" />
+<text x="170.4" y="604.8" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">1</text>
+<path d="M 204 638.4 Q 388.8 490.8 573.6 638.4" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="388.8" y="550.8" font-size="20" fill="#147d69" font-weight="650" text-anchor="middle">6</text>
+<path d="M 578.4 638.4 Q 607.2 589.2 636 638.4" fill="none" stroke="#147d69" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-teal)" />
+<text x="607.2" y="607.2" font-size="20" fill="#147d69" font-weight="650" text-anchor="middle">1</text>
+<rect x="33.6" y="742.8" width="652.8" height="94.8" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5" />
+<text x="54" y="780" font-size="22" fill="#147d69" font-weight="750" text-anchor="start">경계 비용만 비교: 1 − 8 = −7</text>
+<text x="54" y="819.6" font-size="20" fill="#147d69" font-weight="400" text-anchor="start">내부 거리 6 + 1은 유지 · 창고 복귀 없음</text>
 </svg>

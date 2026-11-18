@@ -1,1 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 590" role="img" aria-labelledby="title desc"><title id="title">좌표 압축: 순위와 거리는 다릅니다</title><desc id="desc">좌표10,20,100은 인덱스0,1,2가 되지만 실제 간격10과80은 둘 다 인덱스 차이1로 바뀝니다.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#607b98"/></marker></defs><style>text{font-family:system-ui,sans-serif;fill:#18324f}path,rect,circle{vector-effect:non-scaling-stroke}</style><rect width="600" height="590" rx="16" fill="#f5f8fc"/><text x="24" y="43" font-size="28" fill="#18324f">좌표 압축: 순위와 거리는 다릅니다</text><text x="24" y="92" font-size="24" fill="#18324f">원래 좌표: 10, 20, 100</text><path d="M55 160 L550 160" fill="none" stroke="#607b98" stroke-width="2.5"/><path d="M55 149 L55 173" fill="none" stroke="#607b98" stroke-width="2.5"/><text x="37" y="210" font-size="24" fill="#18324f">10</text><path d="M110 149 L110 173" fill="none" stroke="#607b98" stroke-width="2.5"/><text x="92" y="210" font-size="24" fill="#18324f">20</text><path d="M550 149 L550 173" fill="none" stroke="#607b98" stroke-width="2.5"/><text x="532" y="210" font-size="24" fill="#18324f">100</text><text x="48" y="257" font-size="22" fill="#18324f">거리 10</text><text x="315" y="257" font-size="22" fill="#18324f">거리 80</text><text x="24" y="315" font-size="24" fill="#18324f">압축 인덱스: 0, 1, 2</text><path d="M65 365 L525 365" fill="none" stroke="#607b98" stroke-width="2.5"/><circle cx="65" cy="365" r="27" fill="#dbeafe" stroke="#607b98"/><text x="65" y="373" text-anchor="middle" font-size="24">0</text><circle cx="295" cy="365" r="27" fill="#dbeafe" stroke="#607b98"/><text x="295" y="373" text-anchor="middle" font-size="24">1</text><circle cx="525" cy="365" r="27" fill="#dbeafe" stroke="#607b98"/><text x="525" y="373" text-anchor="middle" font-size="24">2</text><text x="95" y="426" font-size="22" fill="#18324f">차이 1</text><text x="345" y="426" font-size="22" fill="#18324f">차이 1</text><rect x="24" y="464" width="550" height="65" rx="9" fill="#e5effa" stroke="#91a4b9"/><text x="36" y="504.5" font-size="23" fill="#18324f">순서는 보존하지만 실제 거리는 사라집니다.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 550" role="img" aria-labelledby="title desc">
+<title id="title">좌표 압축: 순위와 거리는 다릅니다</title><desc id="desc">좌표 10, 20, 100은 인덱스 0, 1, 2가 되지만 실제 간격 10과 80은 둘 다 인덱스 차이 1로 바뀝니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="548" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">좌표 압축: 순위와 거리는 다릅니다</text>
+<rect x="28" y="76" width="664" height="214" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="108" font-size="22" fill="#172b45" font-weight="700">원래 좌표: 10, 20, 100</text>
+<line x1="60" y1="150" x2="660" y2="150" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="80" y1="138" x2="80" y2="162" stroke="#172b45" stroke-width="2.5" stroke-linecap="round"/>
+<text x="80" y="194" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">10</text>
+<line x1="142.2" y1="138" x2="142.2" y2="162" stroke="#172b45" stroke-width="2.5" stroke-linecap="round"/>
+<text x="142.2" y="194" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">20</text>
+<line x1="640" y1="138" x2="640" y2="162" stroke="#172b45" stroke-width="2.5" stroke-linecap="round"/>
+<text x="640" y="194" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">100</text>
+<path d="M80 212 L80 220 L142.2 220 L142.2 212" fill="none" stroke="#ae5515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="111.1" y="248" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">거리 10</text>
+<path d="M142.2 212 L142.2 220 L640 220 L640 212" fill="none" stroke="#ae5515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="391.1" y="248" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">거리 80</text>
+<rect x="28" y="306" width="664" height="140" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="338" font-size="22" fill="#172b45" font-weight="700">압축 인덱스: 0, 1, 2</text>
+<line x1="110" y1="382" x2="610" y2="382" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="110" cy="382" r="26" fill="#dbeafe" stroke="#9fb0c6" stroke-width="2"/>
+<text x="110" y="389" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<circle cx="360" cy="382" r="26" fill="#dbeafe" stroke="#9fb0c6" stroke-width="2"/>
+<text x="360" y="389" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="610" cy="382" r="26" fill="#dbeafe" stroke="#9fb0c6" stroke-width="2"/>
+<text x="610" y="389" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="235" y="366" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">차이 1</text>
+<text x="485" y="366" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">차이 1</text>
+<rect x="28" y="466" width="664" height="54" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="1.5"/>
+<text x="46" y="500" font-size="20" fill="#172b45" font-weight="700">순서는 보존하지만 실제 거리는 사라집니다.</text>
+</svg>

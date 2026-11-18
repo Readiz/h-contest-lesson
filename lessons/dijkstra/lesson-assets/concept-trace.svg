@@ -1,1 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc"><title id="title">Dijkstra: 큐에 남은 낡은 후보</title><desc id="desc">정점0에서2로 직접 비용5, 1을 거치면2+1=3입니다. 큐의 거리5 후보는 현재 거리3과 달라 버립니다.</desc><style>text{font-family:system-ui,sans-serif;fill:#172a46;font-size:21px}.small{font-size:18px}.title{font-size:28px;font-weight:700}.strong{font-weight:700}rect,line,path,circle{vector-effect:non-scaling-stroke}</style><rect width="720" height="500" rx="18" fill="#f5f8fc"/><text x="28" y="44" class="title">Dijkstra: 큐에 남은 낡은 후보</text><text x="28" y="90" class="">두 경로가 같은 정점 2의 후보를 만듭니다.</text><rect x="80" y="130" width="76" height="55" rx="8" fill="#dbeafe" stroke="#607999"/><text x="92" y="164.5" class="">0</text><rect x="320" y="130" width="76" height="55" rx="8" fill="#dbeafe" stroke="#607999"/><text x="332" y="164.5" class="">1</text><rect x="560" y="260" width="76" height="55" rx="8" fill="#dbeafe" stroke="#607999"/><text x="572" y="294.5" class="">2</text><line x1="156" y1="155" x2="316" y2="155" stroke="#607999" stroke-width="3"/><text x="215" y="140" class="">2</text><line x1="396" y1="169" x2="560" y2="275" stroke="#607999" stroke-width="3"/><text x="472" y="205" class="">1</text><line x1="118" y1="187" x2="555" y2="302" stroke="#607999" stroke-width="3"/><text x="275" y="290" class="">직접 비용 5</text><rect x="28" y="335" width="320" height="55" rx="8" fill="#d1fae5" stroke="#607999"/><text x="40" y="369.5" class="">새 후보: (거리 3, 정점 2)</text><rect x="370" y="335" width="322" height="55" rx="8" fill="#fee2e2" stroke="#607999"/><text x="382" y="369.5" class="">옛 후보: (거리 5, 정점 2)</text><text x="28" y="438" class="">거리 5를 꺼내면 dist[2]=3과 달라 건너뜁니다.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" role="img" aria-labelledby="title desc">
+<title id="title">Dijkstra: 큐에 남은 낡은 후보</title><desc id="desc">정점 0에서 2로 직접 비용 5, 1을 거치면 2+1=3입니다. 큐의 거리 5 후보는 현재 거리 3과 달라 버립니다.</desc>
+<defs><marker id="ar-9fb0c6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#9fb0c6"/></marker><marker id="ar-ae5515" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515"/></marker></defs>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="578" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">Dijkstra: 큐에 남은 낡은 후보</text>
+<text x="28" y="86" font-size="22" fill="#53657d" font-weight="400">두 경로가 같은 정점 2의 후보를 만듭니다.</text>
+<rect x="28" y="108" width="664" height="252" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="149.8" y1="184.5" x2="324.2" y2="164.2" stroke="#9fb0c6" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-9fb0c6)"/>
+<line x1="388.8" y1="168.4" x2="565.4" y2="219.9" stroke="#9fb0c6" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-9fb0c6)"/>
+<path d="M136 216 Q360 340 584 252" fill="none" stroke="#ae5515" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ar-ae5515)"/>
+<text x="236" y="160" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="492" y="180" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="360" y="322" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">직접 비용 5</text>
+<circle cx="120" cy="188" r="28" fill="#dbeafe" stroke="#9fb0c6" stroke-width="2"/>
+<text x="120" y="195" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<circle cx="360" cy="160" r="28" fill="#dbeafe" stroke="#9fb0c6" stroke-width="2"/>
+<text x="360" y="167" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="600" cy="230" r="28" fill="#fef3c7" stroke="#b7791f" stroke-width="2"/>
+<text x="600" y="237" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="28" y="380" width="664" height="54" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="46" y="414" font-size="20" fill="#172b45" font-weight="700">새 후보: (거리 3, 정점 2)</text>
+<rect x="28" y="446" width="664" height="54" rx="10" fill="#fee2e2" stroke="#b42318" stroke-width="1.5"/>
+<text x="46" y="480" font-size="20" fill="#172b45" font-weight="700">옛 후보: (거리 5, 정점 2)</text>
+<circle cx="40" cy="542.0" r="4" fill="#2664ce"/>
+<text x="56" y="548" font-size="20" fill="#172b45">거리 5를 꺼내면 dist[2]=3과 달라 건너뜁니다.</text>
+</svg>

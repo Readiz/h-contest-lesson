@@ -1,159 +1,145 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 922" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1032" role="img" aria-labelledby="title desc">
 <title id="title">세 층의 상태: 채점기 · 관측 기록 · 추정</title><desc id="desc">5×5 예시 지도에서 시작 칸 (2,1)에서 (2,2), (1,2) 순서로 두 번 이동한 상태입니다. 채점기는 방문 칸과 위치와 오늘 이동 횟수를 알고 있지만 제출 코드가 읽을 수 없습니다. 내 관측 기록은 내가 호출한 이동으로 쌓은 방문 표시와 위치와 남은 횟수입니다. 추정은 아직 가지 않은 목표 (0,3)까지의 경로 이득 71과 이동 2번입니다.</desc>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#2664ce"/></marker><marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#ae5515"/></marker><marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1 L9 5 L1 9 Z" fill="#147d69"/></marker></defs><style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
-<rect x="1" y="1" width="598" height="920" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
-<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
-<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">세 층의 상태: 채점기 · 관측 기록 · 추정</text>
-<rect x="20" y="84" width="560" height="262" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="38" y="120" font-size="23" fill="#172b45" font-weight="700" text-anchor="start">01  채점기가 아는 것</text>
-<text x="562" y="120" font-size="19" fill="#53657d" font-weight="400" text-anchor="end">읽을 수 없다</text>
-<rect x="40" y="138" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="163.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="76" y="138" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="163.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="112" y="138" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="163.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">4</text>
-<rect x="148" y="138" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="163.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">30</text>
-<rect x="184" y="138" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="163.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">9</text>
-<rect x="40" y="174" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="199.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">2</text>
-<rect x="76" y="174" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="199.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="112" y="174" width="36" height="36" fill="#eef3fb" stroke="#2664ce" stroke-width="2.5"/>
-<text x="130.0" y="199.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">22</text>
-<rect x="148" y="174" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="199.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">41</text>
-<rect x="184" y="174" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="199.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">6</text>
-<rect x="40" y="210" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="235.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="76" y="210" width="36" height="36" fill="#eef3fb" stroke="#2664ce" stroke-width="2.5"/>
-<text x="94.0" y="235.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="112" y="210" width="36" height="36" fill="#eef3fb" stroke="#2664ce" stroke-width="2.5"/>
-<text x="130.0" y="235.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="148" y="210" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="235.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">18</text>
-<rect x="184" y="210" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="235.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="40" y="246" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="271.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">5</text>
-<rect x="76" y="246" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="271.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="112" y="246" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="271.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="148" y="246" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="271.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="184" y="246" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="271.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="40" y="282" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="307.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="76" y="282" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="307.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="112" y="282" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="307.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="148" y="282" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="307.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<rect x="184" y="282" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="307.0" font-size="17" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
-<text x="250" y="174" font-size="22" fill="#172b45" font-weight="600" text-anchor="start">방문 3칸 · 위치 (1,2)</text>
-<text x="250" y="214" font-size="22" fill="#172b45" font-weight="400" text-anchor="start">오늘 이동 2/10</text>
-<text x="250" y="254" font-size="22" fill="#172b45" font-weight="400" text-anchor="start">점수 22 · 무효 여부</text>
-<text x="250" y="288" font-size="19" fill="#ae5515" font-weight="600" text-anchor="start">비공개 심볼은 쓰지 않는다</text>
-<rect x="20" y="360" width="560" height="262" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="38" y="396" font-size="23" fill="#172b45" font-weight="700" text-anchor="start">02  내가 관측한 것</text>
-<text x="562" y="396" font-size="19" fill="#53657d" font-weight="400" text-anchor="end">호출한 결과만 기록</text>
-<rect x="40" y="414" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="76" y="414" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="112" y="414" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="148" y="414" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="184" y="414" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="40" y="450" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="76" y="450" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="112" y="450" width="36" height="36" fill="#dbe7fb" stroke="#2664ce" stroke-width="2.5"/>
-<text x="130.0" y="475.0" font-size="17" fill="#2664ce" font-weight="700" text-anchor="middle">●</text>
-<rect x="148" y="450" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="184" y="450" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="40" y="486" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="76" y="486" width="36" height="36" fill="#dbe7fb" stroke="#2664ce" stroke-width="2.5"/>
-<text x="94.0" y="511.0" font-size="17" fill="#2664ce" font-weight="700" text-anchor="middle">✓</text>
-<rect x="112" y="486" width="36" height="36" fill="#dbe7fb" stroke="#2664ce" stroke-width="2.5"/>
-<text x="130.0" y="511.0" font-size="17" fill="#2664ce" font-weight="700" text-anchor="middle">✓</text>
-<rect x="148" y="486" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="184" y="486" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="40" y="522" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="76" y="522" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="112" y="522" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="148" y="522" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="184" y="522" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="40" y="558" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="76" y="558" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="112" y="558" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="148" y="558" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect x="184" y="558" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
-<text x="250" y="450" font-size="22" fill="#172b45" font-weight="600" text-anchor="start">seen 3칸 · 위치 (1,2)</text>
-<text x="250" y="490" font-size="22" fill="#172b45" font-weight="400" text-anchor="start">dayMoves 2 · 남은 98</text>
-<text x="250" y="530" font-size="22" fill="#172b45" font-weight="400" text-anchor="start">mirrorScore 22</text>
-<text x="250" y="564" font-size="19" fill="#147d69" font-weight="600" text-anchor="start">행동마다 갱신, TC 시작에 초기화</text>
-<rect x="20" y="636" width="560" height="262" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="38" y="672" font-size="23" fill="#172b45" font-weight="700" text-anchor="start">03  내가 추정한 것</text>
-<text x="562" y="672" font-size="19" fill="#53657d" font-weight="400" text-anchor="end">아직 가지 않은 곳</text>
-<rect x="40" y="690" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="717.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="76" y="690" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="717.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="112" y="690" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="717.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">4</text>
-<rect x="148" y="690" width="36" height="36" fill="#fff1e4" stroke="#ae5515" stroke-width="2.5"/>
-<text x="166.0" y="717.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">30</text>
-<rect x="184" y="690" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="717.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">9</text>
-<rect x="40" y="726" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="753.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">2</text>
-<rect x="76" y="726" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="753.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="112" y="726" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="753.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">22</text>
-<rect x="148" y="726" width="36" height="36" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
-<text x="166.0" y="753.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">41</text>
-<rect x="184" y="726" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="753.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">6</text>
-<rect x="40" y="762" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="789.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="76" y="762" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="789.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="112" y="762" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="789.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="148" y="762" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="789.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">18</text>
-<rect x="184" y="762" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="789.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="40" y="798" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="825.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle">5</text>
-<rect x="76" y="798" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="825.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="112" y="798" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="825.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="148" y="798" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="825.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="184" y="798" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="825.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="40" y="834" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="58.0" y="861.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="76" y="834" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="94.0" y="861.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="112" y="834" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="130.0" y="861.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="148" y="834" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="166.0" y="861.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<rect x="184" y="834" width="36" height="36" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="202.0" y="861.0" font-size="17" fill="#172b45" font-weight="400" text-anchor="middle"></text>
-<circle cx="175" cy="736" r="10" fill="#ae5515"/><text x="175" y="741" font-size="14" fill="#ffffff" font-weight="700" text-anchor="middle">1</text>
-<circle cx="175" cy="700" r="10" fill="#ae5515"/><text x="175" y="705" font-size="14" fill="#ffffff" font-weight="700" text-anchor="middle">2</text>
-<text x="130.0" y="892" font-size="17" fill="#53657d" font-weight="400" text-anchor="middle">번호 = 추정 이동 순서</text>
-<text x="250" y="726" font-size="22" fill="#172b45" font-weight="600" text-anchor="start">목표 (0,3) · 이동 2</text>
-<text x="250" y="766" font-size="22" fill="#172b45" font-weight="400" text-anchor="start">경로 이득 g = 71</text>
-<text x="250" y="806" font-size="22" fill="#172b45" font-weight="400" text-anchor="start">주변 값 h는 불확실</text>
-<text x="250" y="840" font-size="19" fill="#147d69" font-weight="600" text-anchor="start">걸어 보면 g만 확정된다</text>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="1030" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">세 층의 상태: 채점기 · 관측 기록 · 추정</text>
+<rect x="28" y="76" width="664" height="290" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="108" font-size="22" fill="#172b45" font-weight="700">01  채점기가 아는 것</text>
+<text x="676" y="108" font-size="18" fill="#53657d" text-anchor="end">읽을 수 없다</text>
+<rect x="46" y="128" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="128" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="128" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="128" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="128" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="172" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="172" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="172" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="172" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="216" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="216" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="216" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="260" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="260" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="260" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="260" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="260" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="304" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="304" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="304" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="304" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="304" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="172" width="44" height="44" fill="#eef3fb" stroke="#2664ce" stroke-width="2.5"/>
+<rect x="90" y="216" width="44" height="44" fill="#eef3fb" stroke="#2664ce" stroke-width="2.5"/>
+<rect x="134" y="216" width="44" height="44" fill="#eef3fb" stroke="#2664ce" stroke-width="2.5"/>
+<text x="68" y="157" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="112" y="157" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="156" y="157" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">4</text>
+<text x="200" y="157" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">30</text>
+<text x="244" y="157" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">9</text>
+<text x="68" y="201" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">2</text>
+<text x="112" y="201" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="156" y="201" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">22</text>
+<text x="200" y="201" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">41</text>
+<text x="244" y="201" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">6</text>
+<text x="68" y="245" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="112" y="245" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="156" y="245" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="200" y="245" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">18</text>
+<text x="244" y="245" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="68" y="289" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">5</text>
+<text x="112" y="289" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="156" y="289" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="200" y="289" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="244" y="289" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="68" y="333" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="112" y="333" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="156" y="333" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="200" y="333" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="244" y="333" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">0</text>
+<text x="316" y="198" font-size="20" fill="#172b45" font-weight="700">방문 3칸 · 위치 (1,2)</text>
+<text x="316" y="238" font-size="20" fill="#172b45" font-weight="400">오늘 이동 2/10</text>
+<text x="316" y="278" font-size="20" fill="#172b45" font-weight="400">점수 22 · 무효 여부</text>
+<text x="316" y="314" font-size="18" fill="#ae5515" font-weight="600">비공개 심볼은 쓰지 않는다</text>
+<rect x="28" y="382" width="664" height="290" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="414" font-size="22" fill="#172b45" font-weight="700">02  내가 관측한 것</text>
+<text x="676" y="414" font-size="18" fill="#53657d" text-anchor="end">호출한 결과만 기록</text>
+<rect x="46" y="434" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="90" y="434" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="134" y="434" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="178" y="434" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="222" y="434" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="46" y="478" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="90" y="478" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="178" y="478" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="222" y="478" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="46" y="522" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="178" y="522" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="222" y="522" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="46" y="566" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="90" y="566" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="134" y="566" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="178" y="566" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="222" y="566" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="46" y="610" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="90" y="610" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="134" y="610" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="178" y="610" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="222" y="610" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect x="134" y="478" width="44" height="44" fill="#dbe7fb" stroke="#2664ce" stroke-width="2.5"/>
+<rect x="90" y="522" width="44" height="44" fill="#dbe7fb" stroke="#2664ce" stroke-width="2.5"/>
+<rect x="134" y="522" width="44" height="44" fill="#dbe7fb" stroke="#2664ce" stroke-width="2.5"/>
+<text x="156" y="507" font-size="18" fill="#2664ce" font-weight="700" text-anchor="middle">●</text>
+<text x="112" y="551" font-size="18" fill="#2664ce" font-weight="700" text-anchor="middle">✓</text>
+<text x="156" y="551" font-size="18" fill="#2664ce" font-weight="700" text-anchor="middle">✓</text>
+<text x="316" y="504" font-size="20" fill="#172b45" font-weight="700">seen 3칸 · 위치 (1,2)</text>
+<text x="316" y="544" font-size="20" fill="#172b45" font-weight="400">dayMoves 2 · 남은 98</text>
+<text x="316" y="584" font-size="20" fill="#172b45" font-weight="400">mirrorScore 22</text>
+<text x="316" y="620" font-size="18" fill="#147d69" font-weight="600">행동마다 갱신, TC 시작에 초기화</text>
+<rect x="28" y="688" width="664" height="322" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="44" y="720" font-size="22" fill="#172b45" font-weight="700">03  내가 추정한 것</text>
+<text x="676" y="720" font-size="18" fill="#53657d" text-anchor="end">아직 가지 않은 곳</text>
+<rect x="46" y="740" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="740" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="740" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="740" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="784" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="784" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="784" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="784" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="828" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="828" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="828" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="828" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="828" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="872" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="872" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="872" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="872" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="872" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="46" y="916" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="90" y="916" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="134" y="916" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="916" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="222" y="916" width="44" height="44" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="178" y="740" width="44" height="44" fill="#fff1e4" stroke="#ae5515" stroke-width="2.5"/>
+<rect x="178" y="784" width="44" height="44" fill="#fff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="156" y="776" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">4</text>
+<text x="200" y="776" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">30</text>
+<text x="244" y="776" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">9</text>
+<text x="68" y="820" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">2</text>
+<text x="156" y="820" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">22</text>
+<text x="200" y="820" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">41</text>
+<text x="244" y="820" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">6</text>
+<text x="200" y="864" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">18</text>
+<text x="68" y="908" font-size="18" fill="#172b45" font-weight="400" text-anchor="middle">5</text>
+<circle cx="211" cy="795" r="10" fill="#ae5515"/>
+<text x="211" y="800.5" font-size="16" fill="#fff" font-weight="700" text-anchor="middle">1</text>
+<circle cx="211" cy="751" r="10" fill="#ae5515"/>
+<text x="211" y="756.5" font-size="16" fill="#fff" font-weight="700" text-anchor="middle">2</text>
+<text x="156" y="988" font-size="18" fill="#53657d" text-anchor="middle">번호 = 추정 이동 순서</text>
+<text x="316" y="810" font-size="20" fill="#172b45" font-weight="700">목표 (0,3) · 이동 2</text>
+<text x="316" y="850" font-size="20" fill="#172b45" font-weight="400">경로 이득 g = 71</text>
+<text x="316" y="890" font-size="20" fill="#172b45" font-weight="400">주변 값 h는 불확실</text>
+<text x="316" y="926" font-size="18" fill="#147d69" font-weight="600">걸어 보면 g만 확정된다</text>
 </svg>
