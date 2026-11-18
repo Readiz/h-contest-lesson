@@ -1017,6 +1017,43 @@
       ]
     },
     {
+      "lessonId": "reading-the-score",
+      "title": "특수한 점수식 읽기: 채점식을 손으로 재현하고 성질을 풀이로 옮기기",
+      "description": "ENTROPY2D의 공개 채점 규칙을 내 코드로 옮겨 손계산·내 점수·채점기 점수를 맞추고, 거리 합이 열·행 경계로 갈라지는 성질에서 이동 한 번의 O(1) 차분식을 만들어 탐욕과 빈 칸 경로 재배치로 키웁니다. 쌍을 두 번 세기, int 누적, 차분 off-by-one 실패도 재현합니다.",
+      "summary": "점수식의 상수 항·비율 제곱·이동 보너스 분해, 채점식 재현과 세 값 대조, 축별 경계 식과 O(1) 차분, 차분 탐욕과 빈 칸 경로 재배치, 하한·참고 배치 대비 위치와 실패 재현을 ENTROPY2D 한 문제로 연결",
+      "order": 32,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "score-function",
+        "incremental-evaluation",
+        "modeling",
+        "simulation",
+        "grid",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 80,
+      "prerequisites": [
+        "heuristic",
+        "testing-and-stress"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "observe-and-act",
+        "placement-search",
+        "cpp-common-library"
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "modeling",
+        "implementation"
+      ]
+    },
+    {
       "lessonId": "bellman-ford-negative-cycle",
       "title": "Bellman-Ford와 음수 사이클",
       "description": "음수 간선이 있는 그래프에서 최단거리를 계산하고, 시작점에서 도달 가능한 음수 사이클을 판정하는 Bellman-Ford 알고리즘을 익힙니다.",
