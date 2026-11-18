@@ -5,6 +5,8 @@ import re
 import subprocess
 import tempfile
 
+from cpp_library import assemble_library
+
 ROOT = Path(__file__).resolve().parents[1]
 CASES = json.loads((ROOT / 'scripts/review-example-cases.json').read_text())
 HEADERS = '''#include <algorithm>
@@ -23,10 +25,15 @@ def main():
     with tempfile.TemporaryDirectory(prefix='lesson-review-') as folder:
         for case in CASES:
             parts = [HEADERS]
+            # Header-free lessons need their common library blocks first.
+            if case.get('library'):
+                parts.append(assemble_library(case['library']))
             for snippet in case['snippets']:
                 markdown = (ROOT / snippet['path']).read_text()
                 blocks = re.findall(r'```cpp[^\n]*\n(.*?)\n```', markdown, re.S)
                 parts.append(blocks[snippet['block']])
+            if case.get('library'):
+                parts.append('using namespace std;')  # only the test body uses the STL
             if case['body'] is not None:
                 parts.append('int main() {\n' + case['body'] + '\n}')
             src = Path(folder) / (case['name'] + '.cpp')

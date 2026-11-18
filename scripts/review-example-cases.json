@@ -21,11 +21,18 @@
       {
         "path": "lessons/dijkstra/lesson.md",
         "block": 0
+      },
+      {
+        "path": "lessons/dijkstra/lesson.md",
+        "block": 1
       }
     ],
-    "body": "\nvector<vector<Edge>> negative(3);\nnegative[0]={{1,2},{2,5}}; negative[2]={{1,-10}};\nassert((dijkstra(negative,0)==vector<long long>{0,-5,5}));\nmt19937 rng(20260922);\nfor(int tc=0;tc<300;++tc) {\n    int n=1+rng()%10,s=rng()%n;\n    vector<vector<Edge>> g(n);\n    for(int e=0;e<n*n;++e) if(rng()%2)\n        g[rng()%n].push_back({int(rng()%n),static_cast<long long>(rng()%1000000001ULL)});\n    vector<long long> best(n,INF); best[s]=0;\n    for(int step=0;step<n-1;++step) {\n        auto after=best;\n        for(int u=0;u<n;++u) if(best[u]!=INF)\n            for(auto e:g[u]) after[e.to]=min(after[e.to],best[u]+e.cost);\n        best.swap(after);\n    }\n    assert(dijkstra(g,s)==best);\n}\nvector<vector<Edge>> parallel(4);\nparallel[0]={{1,7},{1,0},{2,9}}; parallel[1]={{2,0}};\nassert((dijkstra(parallel,0)==vector<long long>{0,0,0,INF}));\n",
+    "body": "\nstatic Graph g;\nstatic long long dist[MAX_V];\ng.init(3);\nassert(g.addEdge(0,1,2) && g.addEdge(0,2,5) && g.addEdge(2,1,-10));\nassert(dijkstra(g,3,0,dist) && dist[0]==0 && dist[1]==-5 && dist[2]==5);\nmt19937 rng(20260922);\nfor(int tc=0;tc<300;++tc) {\n    int n=1+rng()%10,s=rng()%n;\n    g.init(n);\n    vector<array<long long,3>> edges;\n    for(int e=0;e<n*n;++e) if(rng()%2) {\n        int u=rng()%n,v=rng()%n; long long w=static_cast<long long>(rng()%1000000001ULL);\n        assert(g.addEdge(u,v,w)); edges.push_back({u,v,w});\n    }\n    vector<long long> best(n,INF); best[s]=0;\n    for(int step=0;step<n-1;++step) {\n        auto after=best;\n        for(auto& e:edges) if(best[e[0]]!=INF) after[e[1]]=min(after[e[1]],best[e[0]]+e[2]);\n        best.swap(after);\n    }\n    assert(dijkstra(g,n,s,dist));\n    for(int i=0;i<n;++i) assert(dist[i]==best[i]);\n}\ng.init(4);\nassert(g.addEdge(0,1,7) && g.addEdge(0,1,0) && g.addEdge(0,2,9) && g.addEdge(1,2,0));\nassert(dijkstra(g,4,0,dist) && dist[0]==0 && dist[1]==0 && dist[2]==0 && dist[3]==INF);\nassert(!dijkstra(g,4,4,dist) && !dijkstra(g,0,0,dist));\n",
     "stdin": "",
-    "expected": ""
+    "expected": "",
+    "library": [
+      "min-heap"
+    ]
   },
   {
     "name": "bellman-ford-simple-path-cycle-oracle",

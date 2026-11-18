@@ -15,25 +15,48 @@
 
 ## 정렬 + unique
 
-먼저 모든 값을 한 벡터에 모아 정렬하고 중복을 제거합니다.
+먼저 모든 값을 한 배열에 모아 정렬하고 중복을 제거합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `sort` 블록을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 호출자가 준비한 배열과 길이 `n`을 받습니다. 값은 `long long`이며 개수 상한 `MAX_N = 200000`은 이 강의 연습의 입력 상한입니다(실제 문제의 제한에 맞춰 바꿉니다). `values`와 `temp`는 `n`칸 이상의 서로 겹치지 않는 배열이고, 함수가 호출될 때마다 `values[0..n)`을 새로 채우므로 TC마다 따로 비울 필요가 없습니다.
 
 ```cpp
-vector<int> values = a;
-sort(values.begin(), values.end());
-values.erase(unique(values.begin(), values.end()), values.end());
+const int MAX_N = 200000; // 값 개수 상한
+
+bool longBefore(long long a, long long b) {
+    return a < b;
+}
+
+// a[0..n)의 서로 다른 값을 오름차순으로 values[0..m)에 만들고 m을 반환한다.
+// n이 0..MAX_N 밖이면 -1.
+int buildCoords(const long long a[], int n, long long values[], long long temp[]) {
+    if (n < 0 || n > MAX_N) return -1;
+    for (int i = 0; i < n; ++i) values[i] = a[i];
+    hc::stableSort(values, temp, n, longBefore);
+
+    int m = 0;
+    for (int i = 0; i < n; ++i) {
+        if (m == 0 || values[i] != values[m - 1]) values[m++] = values[i];
+    }
+    return m;
+}
 ```
 
-이제 `values[i]`는 압축 인덱스 `i`가 나타내는 원래 값입니다.
+이제 `values[i]`는 압축 인덱스 `i`가 나타내는 원래 값이고, 반환값 `m`이 서로 다른 값의 수입니다.
 
 ## lower_bound로 압축 인덱스 만들기
 
 원래 값 `x`의 압축 인덱스는 `lower_bound`로 찾습니다.
 
 ```cpp
-int compress(const vector<int>& values, int x) {
-    return lower_bound(values.begin(), values.end(), x) - values.begin();
+int compress(const long long values[], int m, long long x) {
+    int low = 0;
+    int high = m;
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (values[mid] < x) low = mid + 1;
+        else high = mid;
+    }
+    return low;
 }
 ```
 
@@ -66,7 +89,7 @@ int compress(const vector<int>& values, int x) {
 | 값 수집 | `O(n)` |
 | 정렬과 중복 제거 | `O(n log n)` |
 | 값 하나 압축 | `O(log n)` |
-| unordered map으로 미리 매핑 | 평균 `O(1)` |
+| 해시 표로 미리 매핑(직접 구현 필요) | 평균 `O(1)` |
 | 메모리 | `O(n)` |
 
 ## 로컬 연습: 중복과 음수가 있는 값의 순위

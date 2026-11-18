@@ -16,7 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 PROTECTED = {"cpp-contest-basics", "cpp-common-library", "sorting", "greedy",
              "priority-queue-heap", "heuristic", "testing-and-stress", "observe-and-act", "assignment-local-search",
              "assignment-with-routes", "placement-search", "reading-the-score",
-             "large-input-search"}
+             "large-input-search", "bfs-dfs-grid", "dijkstra", "union-find",
+             "prefix-sum-difference", "binary-search", "two-pointers-sliding-window",
+             "coordinate-compression", "zero-one-bfs"}
 # Local-harness pages that explicitly declare general C++17 (STL allowed).
 GENERAL_CPP_PAGES = {"lessons/testing-and-stress/pages/experiment-evaluation.md"}
 CPP = re.compile(r"```(?:cpp|c\+\+)(?:[^\n]*)\n(.*?)\n```", re.S)

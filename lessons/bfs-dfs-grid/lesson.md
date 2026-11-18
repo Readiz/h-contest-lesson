@@ -7,7 +7,7 @@ DFS: 한 방향으로 깊게 들어갔다가 돌아온다.
 BFS: 시작점에서 가까운 곳부터 차례로 본다.
 ```
 
-아래 예시는 미방문 정점 표시와 최단거리 계산의 차이를 다룹니다. 인접 목록 표현은 [그래프와 트리](https://h.readiz.com/learn/graph-tree-basics)에 있습니다.
+아래 예시는 미방문 정점 표시와 최단거리 계산의 차이를 다룹니다. 인접 목록 표현의 개념은 [그래프와 트리](https://h.readiz.com/learn/graph-tree-basics)에 있고, 이 강의의 제출용 코드는 아래 `head`/`next` 배열로 구현합니다.
 
 ## 그래프로 생각하기
 
@@ -31,42 +31,73 @@ BFS: 시작점에서 가까운 곳부터 차례로 본다.
 
 이미 발견한 정점을 다시 넣지 않도록 표시합니다. BFS나 반복 DFS에서는 큐·스택에서 꺼낼 때까지 기다리지 않고 **넣는 순간** 표시해야 여러 이웃이 같은 정점을 중복으로 넣지 않습니다.
 
-## DFS
+## 제출용 인접 리스트
 
-한 경로를 따라 깊이 들어갔다가 되돌아옵니다. 아래 함수는 `u`와 연결된 모든 정점을 표시합니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열로 구현합니다. 아래 그래프·DFS·BFS 블록과 `gridDistance`는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `queue` 블록을 먼저 붙인 뒤 이어서 사용합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+STL 컨테이너 대신 간선을 번호로 저장하는 head/next 배열을 씁니다. `head[u]`는 `u`에서 나가는 마지막 간선 번호이고, `next[e]`는 같은 정점에서 나가는 이전 간선입니다. 간선을 추가한 반대 순서로 이웃을 돕니다. 정점 상한 `MAX_V = 200000`, 간선 상한 `MAX_E = 400000`은 이 사이트 그래프 연습의 입력 상한과 같은 값이며, 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 `Graph`는 전역으로 선언하고, TC마다 `init(n)`으로 사용할 정점만 비웁니다. 무방향 간선은 `addEdge`를 양쪽으로 두 번 호출하므로 `MAX_E`에서 두 칸을 씁니다.
 
 ```cpp
-void dfs(int u, const vector<vector<int>>& graph, vector<int>& visited) {
+const int MAX_V = 200000; // 정점 수 상한
+const int MAX_E = 400000; // 방향 간선 수 상한
+
+struct Graph {
+    int head[MAX_V];
+    int next[MAX_E];
+    int to[MAX_E];
+    int edgeCount;
+
+    void init(int n) { // 전제: 0 <= n <= MAX_V
+        for (int i = 0; i < n; ++i) head[i] = -1;
+        edgeCount = 0;
+    }
+    bool addEdge(int u, int v) { // 간선이 가득 차면 false
+        if (edgeCount == MAX_E) return false;
+        to[edgeCount] = v;
+        next[edgeCount] = head[u];
+        head[u] = edgeCount++;
+        return true;
+    }
+};
+```
+
+## DFS
+
+한 경로를 따라 깊이 들어갔다가 되돌아옵니다. 아래 함수는 `u`와 연결된 모든 정점을 표시합니다. 호출하기 전에 `visited[0..n)`를 0으로 채웁니다.
+
+```cpp
+void dfs(int u, const Graph& graph, int visited[]) {
     visited[u] = 1;
 
-    for (int v : graph[u]) {
+    for (int e = graph.head[u]; e != -1; e = graph.next[e]) {
+        int v = graph.to[e];
         if (visited[v]) continue;
         dfs(v, graph, visited);
     }
 }
 ```
 
-길게 이어진 그래프에서는 재귀 깊이도 정점 수만큼 늘어납니다. 실행 환경의 스택 제한을 넘는다면 명시적인 스택으로 바꿉니다. 다음 구현은 방문한 정점 수도 반환합니다.
+길게 이어진 그래프에서는 재귀 깊이도 정점 수만큼 늘어납니다. `MAX_V`까지 이어진 경로에서는 실행 환경의 스택 제한을 넘을 수 있으므로 명시적인 스택으로 바꿉니다. 정점은 발견할 때 표시하고 넣기 때문에 한 번만 들어가며, 스택은 `MAX_V`칸이면 충분합니다. 다음 구현은 방문한 정점 수도 반환합니다.
 
 ```cpp
-int dfsSizeIterative(int start, const vector<vector<int>>& graph, vector<int>& visited) {
+int dfsStack[MAX_V];
+
+int dfsSizeIterative(int start, const Graph& graph, int visited[]) {
     int size = 0;
-    vector<int> stack;
+    int top = 0;
 
     visited[start] = 1;
-    stack.push_back(start);
+    dfsStack[top++] = start;
 
-    while (!stack.empty()) {
-        int u = stack.back();
-        stack.pop_back();
+    while (top > 0) {
+        int u = dfsStack[--top];
         size++;
 
-        for (int v : graph[u]) {
+        for (int e = graph.head[u]; e != -1; e = graph.next[e]) {
+            int v = graph.to[e];
             if (visited[v]) continue;
             visited[v] = 1;
-            stack.push_back(v);
+            dfsStack[top++] = v;
         }
     }
     return size;
@@ -77,45 +108,45 @@ int dfsSizeIterative(int start, const vector<vector<int>>& graph, vector<int>& v
 
 모든 간선 비용이 1이면 거리 0, 1, 2인 정점 순서로 큐에서 나옵니다. `dist[v] == -1`을 미방문 표시로 함께 사용합니다.
 
+공통 `queue` 블록의 `hc::Queue<MAX_V>`를 씁니다. 발견할 때 `dist`를 기록하므로 각 정점은 한 번만 넣고 누적 push는 `n <= MAX_V`입니다. `dist[0..n)`은 함수가 -1로 채우고, 호출 전제는 `0 <= start < n <= MAX_V`입니다.
+
 ```cpp
-vector<int> shortestDistance(int start, const vector<vector<int>>& graph) {
-    int n = (int)graph.size();
-    vector<int> dist(n, -1);
-    queue<int> q;
+hc::Queue<MAX_V> vertexQueue;
+
+void shortestDistance(int start, const Graph& graph, int n, int dist[]) {
+    for (int i = 0; i < n; ++i) dist[i] = -1;
+    vertexQueue.clear();
 
     dist[start] = 0;
-    q.push(start);
+    vertexQueue.push(start);
 
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-
-        for (int v : graph[u]) {
+    int u;
+    while (vertexQueue.pop(u)) {
+        for (int e = graph.head[u]; e != -1; e = graph.next[e]) {
+            int v = graph.to[e];
             if (dist[v] != -1) continue;
             dist[v] = dist[u] + 1;
-            q.push(v);
+            vertexQueue.push(v);
         }
     }
-    return dist;
 }
 ```
 
-새 정점은 현재 거리보다 정확히 1 멀리 있으므로 처음 넣을 때 거리가 확정됩니다. 다른 비용의 간선이 섞이면 이 성질이 깨집니다. 큐의 배열 구현은 [공통 코드](https://h.readiz.com/learn/cpp-common-library)를 참고합니다.
+새 정점은 현재 거리보다 정확히 1 멀리 있으므로 처음 넣을 때 거리가 확정됩니다. 다른 비용의 간선이 섞이면 이 성질이 깨집니다.
 
 ## 연결 요소 세기
 
-무방향 그래프에서 연결 요소 개수는 아직 방문하지 않은 정점마다 탐색을 시작해서 셉니다.
+무방향 그래프에서 연결 요소 개수는 아직 방문하지 않은 정점마다 탐색을 시작해서 셉니다. 깊은 재귀를 피하려고 반복형 DFS를 씁니다. `visited[0..n)`는 함수가 0으로 채웁니다.
 
 ```cpp
-int countComponents(const vector<vector<int>>& graph) {
-    int n = (int)graph.size();
-    vector<int> visited(n, 0);
+int countComponents(const Graph& graph, int n, int visited[]) {
+    for (int i = 0; i < n; ++i) visited[i] = 0;
     int components = 0;
 
     for (int i = 0; i < n; ++i) {
         if (visited[i]) continue;
         components++;
-        dfs(i, graph, visited);
+        dfsSizeIterative(i, graph, visited);
     }
     return components;
 }
@@ -129,27 +160,31 @@ int countComponents(const vector<vector<int>>& graph) {
 
 상하좌우 이동 비용이 모두 1이면 격자 최단거리는 BFS입니다. 시작점이 유효한 빈 칸이라는 보장이 없다면, 큐에 넣기 전에 범위와 벽 여부를 검사합니다.
 
+격자는 `char grid[MAX_H][MAX_W]`로 받고 칸 `(y, x)`를 정수 `y * w + x`로 큐에 넣습니다. 꺼낼 때 `y = id / w`, `x = id % w`로 되돌립니다. 연습 상한 `H, W <= 500`에 맞춰 `MAX_H = MAX_W = 500`이고, 한 칸을 한 번만 넣으므로 큐 용량은 `MAX_H * MAX_W`입니다. `dist[0..h)[0..w)`는 함수가 -1로 채우며, 범위를 벗어난 `h`, `w`이면 `false`를 반환합니다.
+
 ```cpp
-vector<vector<int>> gridDistance(
-    const vector<string>& grid,
-    int sy,
-    int sx
-) {
-    int h = (int)grid.size();
-    int w = h == 0 ? 0 : (int)grid[0].size();
-    vector<vector<int>> dist(h, vector<int>(w, -1));
-    queue<pair<int, int>> q;
+const int MAX_H = 500;
+const int MAX_W = 500;
+hc::Queue<MAX_H * MAX_W> cellQueue;
 
-    int dy[4] = {-1, 1, 0, 0};
-    int dx[4] = {0, 0, -1, 1};
+bool gridDistance(const char grid[][MAX_W], int h, int w,
+                  int sy, int sx, int dist[][MAX_W]) {
+    if (h < 0 || h > MAX_H || w < 0 || w > MAX_W) return false;
+    for (int y = 0; y < h; ++y)
+        for (int x = 0; x < w; ++x) dist[y][x] = -1;
+    cellQueue.clear();
 
-    if (sy < 0 || sy >= h || sx < 0 || sx >= w || grid[sy][sx] == '#') return dist;
+    const int dy[4] = {-1, 1, 0, 0};
+    const int dx[4] = {0, 0, -1, 1};
+
+    if (sy < 0 || sy >= h || sx < 0 || sx >= w || grid[sy][sx] == '#') return true;
     dist[sy][sx] = 0;
-    q.push({sy, sx});
+    cellQueue.push(sy * w + sx);
 
-    while (!q.empty()) {
-        auto [y, x] = q.front();
-        q.pop();
+    int id;
+    while (cellQueue.pop(id)) {
+        int y = id / w;
+        int x = id % w;
 
         for (int dir = 0; dir < 4; ++dir) {
             int ny = y + dy[dir];
@@ -160,10 +195,10 @@ vector<vector<int>> gridDistance(
             if (dist[ny][nx] != -1) continue;
 
             dist[ny][nx] = dist[y][x] + 1;
-            q.push({ny, nx});
+            cellQueue.push(ny * w + nx);
         }
     }
-    return dist;
+    return true;
 }
 ```
 

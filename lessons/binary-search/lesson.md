@@ -24,12 +24,12 @@ a[i] >= target 이 되는 가장 작은 i
 
 이때 탐색 구간을 반열린 구간 `[left, right)`로 두면 깔끔합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 호출자가 준비한 배열과 길이 `n`을 받습니다. 이 강의의 마지막 예제(`maximizeMinimumDistance`)만 [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `sort` 블록을 먼저 붙이고, 정렬용 임시 배열(`n`칸)을 따로 받습니다. 이 강의의 코드는 상태를 저장하는 전역 배열이 없어 TC 초기화가 필요 없고, 입력 크기 상한은 호출자의 배열이 정합니다(연습 입력은 `n <= 200000`).
 
 ```cpp
-int lowerBound(const vector<int>& a, int target) {
+int lowerBound(const int a[], int n, int target) {
     int left = 0;
-    int right = (int)a.size();
+    int right = n;
 
     while (left < right) {
         int mid = left + (right - left) / 2;
@@ -43,7 +43,7 @@ int lowerBound(const vector<int>& a, int target) {
 }
 ```
 
-반복이 끝나면 `left == right`이고, 그 위치가 답입니다. 모든 원소가 `target`보다 작으면 `a.size()`가 반환됩니다.
+반복이 끝나면 `left == right`이고, 그 위치가 답입니다. 모든 원소가 `target`보다 작으면 `n`이 반환됩니다.
 
 ```text
 a = [1, 3, 3, 7, 9]
@@ -93,25 +93,25 @@ false true false true true
 여러 기계가 있고, 각 기계 `i`는 물건 하나를 만드는 데 `time[i]`가 걸린다고 하겠습니다. 총 `need`개를 만드는 최소 시간을 구하려면 시간 `t` 안에 만들 수 있는 개수를 세면 됩니다.
 
 ```cpp
-bool canMake(const vector<long long>& time, long long need, long long t) {
+bool canMake(const long long time[], int n, long long need, long long t) {
     long long made = 0;
-    for (long long one : time) {
-        made += t / one;
+    for (int i = 0; i < n; ++i) {
+        made += t / time[i];
         if (made >= need) return true;
     }
     return false;
 }
 
-long long minimumTime(const vector<long long>& time, long long need) {
+long long minimumTime(const long long time[], int n, long long need) {
     long long left = 0;
     long long right = 1;
-    while (!canMake(time, need, right)) {
+    while (!canMake(time, n, need, right)) {
         right *= 2;
     }
 
     while (left < right) {
         long long mid = left + (right - left) / 2;
-        if (canMake(time, need, mid)) {
+        if (canMake(time, n, need, mid)) {
             right = mid;
         } else {
             left = mid + 1;
@@ -121,20 +121,20 @@ long long minimumTime(const vector<long long>& time, long long need) {
 }
 ```
 
-기계는 하나 이상이고, 각 처리 시간과 목표 수량은 양수라고 가정합니다. 가능한 상한을 모르면 위처럼 두 배씩 늘릴 수 있습니다. 다만 `right *= 2`와 생산량 누적이 `long long`을 넘지 않는 입력 범위에서 사용해야 합니다.
+기계 수 `n`은 1 이상이고, 각 처리 시간과 목표 수량은 양수라고 가정합니다. 가능한 상한을 모르면 위처럼 두 배씩 늘릴 수 있습니다. 다만 `right *= 2`와 생산량 누적이 `long long`을 넘지 않는 입력 범위에서 사용해야 합니다.
 
 ## 예시: 가능한 최대 거리
 
-정렬된 위치 배열 `pos`에서 물체 `k`개를 놓되, 인접한 물체 사이 최소 거리를 최대화한다고 하겠습니다.
+위치 배열 `pos[0..n)`에서 물체 `k`개를 놓되, 인접한 물체 사이 최소 거리를 최대화한다고 하겠습니다.
 
-`2 <= k <= pos.size()`이고 좌표가 `0..10^9`라고 가정합니다. 거리 `d`가 가능하면 그보다 작은 거리도 가능하므로 마지막 `true`를 찾습니다.
+`2 <= k <= n`이고 좌표가 `0..10^9`라고 가정합니다. 거리 `d`가 가능하면 그보다 작은 거리도 가능하므로 마지막 `true`를 찾습니다. 함수는 먼저 공통 `stableSort`로 `pos`를 **제자리에서 오름차순 정렬**합니다(호출자의 배열이 바뀝니다). `temp`는 `pos`와 겹치지 않는 `n`칸 이상의 배열입니다.
 
 ```cpp
-bool canPlace(const vector<int>& pos, int k, int d) {
+bool canPlace(const int pos[], int n, int k, int d) {
     int count = 1;
     int last = pos[0];
 
-    for (int i = 1; i < (int)pos.size(); ++i) {
+    for (int i = 1; i < n; ++i) {
         if (pos[i] - last >= d) {
             count++;
             last = pos[i];
@@ -144,15 +144,19 @@ bool canPlace(const vector<int>& pos, int k, int d) {
     return false;
 }
 
-int maximizeMinimumDistance(vector<int> pos, int k) {
-    sort(pos.begin(), pos.end());
+bool intBefore(int a, int b) {
+    return a < b;
+}
+
+int maximizeMinimumDistance(int pos[], int temp[], int n, int k) {
+    hc::stableSort(pos, temp, n, intBefore);
 
     int left = 0;
-    int right = pos.back() - pos.front();
+    int right = pos[n - 1] - pos[0];
 
     while (left < right) {
         int mid = left + (right - left + 1) / 2;
-        if (canPlace(pos, k, mid)) {
+        if (canPlace(pos, n, k, mid)) {
             left = mid;
         } else {
             right = mid - 1;
