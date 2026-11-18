@@ -51,7 +51,7 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 ## prefixSum
 
-![prefixSum(13)은 tree[13]의 한 칸, tree[12]의 9부터 12까지 네 칸, tree[8]의 1부터 8까지 여덟 칸을 더합니다. lowbit를 빼며 인덱스 13, 12, 8, 0으로 이동하고 세 구간은 1부터 13까지를 겹침 없이 덮습니다.](lesson-assets/concept-trace.svg)
+![prefixSum(13)은 13번 칸의 한 칸, 12번 칸의 9부터 12까지 네 칸, 8번 칸의 1부터 8까지 여덟 칸을 더합니다. lowbit를 빼며 인덱스 13, 12, 8, 0으로 이동하고 세 구간은 1부터 13까지를 겹침 없이 덮습니다.](lesson-assets/concept-trace.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/fenwick-tree/lesson-assets/concept-trace.svg)
 
@@ -71,7 +71,7 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 `prefixSum`이 아래쪽으로 내려간다면, `add`는 위쪽으로 올라갑니다. `idx += lowbit(idx)`를 반복하면 현재 원소를 포함하는 더 큰 구간으로 이동합니다. `idx = 0`에서는 `lowbit(0) = 0`이라 루프가 끝나지 않으므로, `add`에는 1 이상의 인덱스만 넘깁니다.
 
-![n=16인 Fenwick Tree에서 각 tree[i]가 담당하는 구간을 막대로 그리면, add(5)는 5, 6, 8, 16 순서로 올라가며 a[5]를 포함하는 네 칸 tree[5], tree[6], tree[8], tree[16]을 모두 고칩니다.](lesson-assets/add-path.svg)
+![n=16인 Fenwick Tree에서 각 칸 i가 담당하는 구간을 막대로 그리면, add(5)는 5, 6, 8, 16 순서로 올라가며 5번 원소를 포함하는 네 칸 5, 6, 8, 16을 모두 고칩니다.](lesson-assets/add-path.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/fenwick-tree/lesson-assets/add-path.svg)
 

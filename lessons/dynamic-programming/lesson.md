@@ -64,7 +64,7 @@ for (int x = 1; x <= target; ++x) {
 
 ## 0/1 배낭 DP
 
-![무게 2 가치 3인 물건 하나의 DP 셀 갱신. 역방향은 아직 0인 작은 용량을 읽어 답 3을 얻지만, 정방향은 이번 물건으로 만든 dp[2]=3을 다시 읽어 잘못된 답 6을 만듭니다.](lesson-assets/concept-trace.svg)
+![무게 2 가치 3인 물건 하나의 DP 셀 갱신. 역방향은 아직 0인 작은 용량을 읽어 답 3을 얻지만, 정방향은 이번 물건으로 만든 용량 2 칸의 값 3을 다시 읽어 잘못된 답 6을 만듭니다.](lesson-assets/concept-trace.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/dynamic-programming/lesson-assets/concept-trace.svg)
 
@@ -189,7 +189,7 @@ void dfs(int u, int parent) {
 
 **확인 방법:** 무게 2와 5인 물건을 고르면 가치 10입니다. 한 배열로 갱신할 때 용량을 감소 방향으로 순회해야 같은 물건을 중복 사용하지 않습니다. N <= 20에서는 모든 subset과 비교하고 W=0, 모든 물건이 너무 무거운 경우를 검사합니다.
 
-![용량 7에서 물건 (무게,가치) (3,4), (4,5), (2,3), (5,7)을 차례로 넣을 때 dp 표가 바뀐 칸이 주황색으로 표시되며, 마지막 dp[7]은 무게 2와 5인 물건의 가치 3과 7을 더한 10입니다.](lesson-assets/knapsack-table.svg)
+![용량 7에서 물건(무게, 가치) (3,4), (4,5), (2,3), (5,7)을 차례로 넣을 때 dp 표가 바뀐 칸이 주황색으로 표시되며, 마지막 용량 7 칸은 무게 2와 5인 물건의 가치 3과 7을 더한 10입니다.](lesson-assets/knapsack-table.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/dynamic-programming/lesson-assets/knapsack-table.svg)
 

@@ -50,7 +50,7 @@ blockSum = [15, 21, 11]
 
 위 배열에서 `B = 4`이고 `[2, 9]`를 물으면 `2, 3`은 직접 보고, `[4, 7]` 블록은 저장된 합으로 한 번에 처리하고, `8, 9`는 직접 봅니다.
 
-![같은 배열에서 [2, 9]를 질의하면 위치 2, 3은 7+1을 직접 더하고 블록 1은 저장된 합 21을 쓰며 위치 8, 9는 9+2를 직접 더해 40이 됩니다.](lesson-assets/range-query.svg)
+![같은 배열에서 위치 2부터 9까지 질의하면 위치 2, 3은 7+1을 직접 더하고 블록 1은 저장된 합 21을 쓰며 위치 8, 9는 9+2를 직접 더해 40이 됩니다.](lesson-assets/range-query.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/sqrt-decomposition/lesson-assets/range-query.svg)
 

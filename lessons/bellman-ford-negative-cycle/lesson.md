@@ -130,7 +130,7 @@ after V - 1 relax rounds:
 
 왜냐하면 음수 사이클이 없다면 최단 경로는 최대 `V - 1`개의 간선만 사용합니다. 그런데 그 이후에도 더 줄어든다면, 같은 정점을 다시 지나는 경로가 더 좋아졌다는 뜻이고, 그 사이클의 총 비용은 음수입니다.
 
-![0→1(+2), 1→2(−3), 2→1(+1), 2→3(+4)에서 간선을 순서대로 완화하면 dist가 3회차까지 [0,-4,-5,-1]로 줄고, V=4번째 회차에도 [0,-6,-7,-3]으로 계속 줄어 음수 사이클이 드러납니다.](lesson-assets/round-trace.svg)
+![0→1(+2), 1→2(−3), 2→1(+1), 2→3(+4)에서 간선을 순서대로 완화하면 dist가 3회차까지 0, −4, −5, −1로 줄고, V=4번째 회차에도 0, −6, −7, −3으로 계속 줄어 음수 사이클이 드러납니다.](lesson-assets/round-trace.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/bellman-ford-negative-cycle/lesson-assets/round-trace.svg)
 

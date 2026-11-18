@@ -130,7 +130,7 @@ vector<long long> addRangesToArray(
 
 시간 구간을 `[start, end)`로 표현한다면 종료 표시는 `end + 1`이 아니라 `end`에 둡니다. 모든 업데이트가 끝난 뒤 합 질의만 남는다면 복원한 배열의 누적합을 만들면 됩니다.
 
-![배열 2,-1,3,0,4에 구간 [1,4)에 +2, [0,2)에 -1을 더하면 차분 배열에는 위치 0,1,2,4에만 -1,+2,+1,-2가 표시되고, 누적하면 -1,1,2,2,0이며 원래 배열에 더한 결과는 1,0,5,2,4입니다.](lesson-assets/difference-update.svg)
+![배열 2, −1, 3, 0, 4에 1부터 3까지 +2, 0부터 1까지 −1을 더하면 차분 배열에는 위치 0, 1, 2, 4에만 −1, +2, +1, −2가 표시되고, 누적하면 −1, 1, 2, 2, 0이며 원래 배열에 더한 결과는 1, 0, 5, 2, 4입니다.](lesson-assets/difference-update.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/prefix-sum-difference/lesson-assets/difference-update.svg)
 
@@ -192,7 +192,7 @@ long long rectSum(
 answer = 전체 - 위쪽 - 왼쪽 + 왼쪽 위 중복 영역
 ```
 
-![모든 칸이 1인 4×4 격자에서 2×2 직사각형의 합은 prefix[3][3]=9에서 위쪽 3과 왼쪽 3을 빼고 두 번 빠진 왼쪽 위 1칸을 더해 9-3-3+1=4가 됩니다.](lesson-assets/rect-inclusion-exclusion.svg)
+![모든 칸이 1인 4×4 격자에서 2×2 직사각형의 합은 왼쪽 위 3×3 영역 9칸에서 위쪽 3칸과 왼쪽 3칸을 빼고 두 번 빠진 왼쪽 위 1칸을 더해 9−3−3+1=4가 됩니다.](lesson-assets/rect-inclusion-exclusion.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/prefix-sum-difference/lesson-assets/rect-inclusion-exclusion.svg)
 

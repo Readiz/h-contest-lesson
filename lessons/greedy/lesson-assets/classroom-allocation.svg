@@ -1,44 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="380" viewBox="0 0 920 380" role="img" aria-labelledby="title desc">
-  <title id="title">강의실 배정의 하한 증거</title>
-  <desc id="desc">동시에 진행되는 강의 수가 필요한 강의실 수의 하한이 됨을 보여준다.</desc>
-  <rect width="920" height="380" rx="18" fill="#ffffff"/>
-  <rect x="28" y="28" width="864" height="324" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
-  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
-    <text x="56" y="72" fill="#0f172a" font-size="24" font-weight="800">강의실 배정: 동시에 겹치는 수가 하한</text>
-    <text x="56" y="100" fill="#475569" font-size="15">새 방이 필요한 순간에는 이미 진행 중인 강의 수만큼 방이 반드시 필요하다.</text>
-
-    <line x1="90" y1="286" x2="830" y2="286" stroke="#94a3b8" stroke-width="2"/>
-    <g fill="#64748b" font-size="12" text-anchor="middle">
-      <text x="120" y="310">1</text>
-      <text x="220" y="310">2</text>
-      <text x="320" y="310">3</text>
-      <text x="420" y="310">4</text>
-      <text x="520" y="310">5</text>
-      <text x="620" y="310">6</text>
-      <text x="720" y="310">7</text>
-      <text x="820" y="310">8</text>
-    </g>
-
-    <rect x="302" y="124" width="56" height="150" rx="10" fill="#dbeafe" opacity="0.55"/>
-    <line x1="330" y1="116" x2="330" y2="286" stroke="#2563eb" stroke-width="3" stroke-dasharray="8 7"/>
-    <rect x="258" y="116" width="144" height="38" rx="19" fill="#eff6ff" stroke="#bfdbfe"/>
-    <text x="330" y="141" text-anchor="middle" fill="#1d4ed8" font-size="14" font-weight="800">동시 3개 진행</text>
-
-    <g stroke-width="18" stroke-linecap="round">
-      <line x1="120" y1="174" x2="380" y2="174" stroke="#2563eb"/>
-      <line x1="220" y1="210" x2="520" y2="210" stroke="#10b981"/>
-      <line x1="300" y1="246" x2="620" y2="246" stroke="#f97316"/>
-      <line x1="620" y1="174" x2="780" y2="174" stroke="#94a3b8"/>
-    </g>
-    <g font-size="13" font-weight="800" text-anchor="end">
-      <text x="104" y="179" fill="#1d4ed8">강의 1</text>
-      <text x="204" y="215" fill="#047857">강의 2</text>
-      <text x="284" y="251" fill="#c2410c">강의 3</text>
-      <text x="604" y="179" fill="#475569">강의 4</text>
-    </g>
-
-    <rect x="662" y="208" width="176" height="66" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
-    <text x="750" y="234" text-anchor="middle" fill="#0f172a" font-size="16" font-weight="800">증거</text>
-    <text x="750" y="257" text-anchor="middle" fill="#475569" font-size="14">최소 3개 방 필요</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 594" role="img" aria-labelledby="title desc">
+<title id="title">강의실 배정: 동시에 겹치는 수가 하한</title><desc id="desc">강의 1[1,4), 2[2,5), 3[3,6), 4[6,8)에서 시각 3부터 4 사이에 강의 1, 2, 3이 동시에 진행되므로 방이 최소 3개 필요합니다. 강의 4는 강의 1이 끝난 방 1을 다시 씁니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="592" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#147d69"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">강의실 배정: 동시에 겹치는 수가 하한</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">시작 순서로 보며 끝난 방이 있으면 재사용</text>
+<rect x="20" y="104" width="680" height="380" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="100" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">0</text>
+<line x1="100" y1="150" x2="100" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="172" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">1</text>
+<line x1="172" y1="150" x2="172" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="244" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">2</text>
+<line x1="244" y1="150" x2="244" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="316" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">3</text>
+<line x1="316" y1="150" x2="316" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="388" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">4</text>
+<line x1="388" y1="150" x2="388" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="460" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">5</text>
+<line x1="460" y1="150" x2="460" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="532" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">6</text>
+<line x1="532" y1="150" x2="532" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="604" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">7</text>
+<line x1="604" y1="150" x2="604" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<text x="676" y="452" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">8</text>
+<line x1="676" y1="150" x2="676" y2="428" stroke="#eef2f7" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="316" y="138" width="72" height="290" rx="8" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="352.0" y="172" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">3개</text>
+<text x="352.0" y="196" font-size="20" fill="#147d69" font-weight="700" text-anchor="middle">동시</text>
+<text x="36" y="250" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">방 1</text>
+<text x="36" y="314" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">방 2</text>
+<text x="36" y="378" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">방 3</text>
+<rect x="174" y="224" width="212" height="40" rx="9" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="280.0" y="251" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">강의 1</text>
+<rect x="246" y="288" width="212" height="40" rx="9" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
+<text x="352.0" y="315" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">강의 2</text>
+<rect x="318" y="352" width="212" height="40" rx="9" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="424.0" y="379" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">강의 3</text>
+<rect x="534" y="224" width="140" height="40" rx="9" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="604.0" y="251" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">강의 4</text>
+<text x="36" y="130" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">방 번호별 배치</text>
+<rect x="28" y="500" width="664" height="74" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="532" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">시각 3~4에 강의 1, 2, 3이 동시에 진행 → 최소 3개 방</text>
+<text x="360" y="562" font-size="20" fill="#147d69" font-weight="600" text-anchor="middle">강의 4는 끝난 방 1을 재사용 → 3개로 충분</text>
 </svg>

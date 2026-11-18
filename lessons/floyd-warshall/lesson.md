@@ -32,7 +32,7 @@ dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
 `i -> j`로 바로 가는 기존 최단거리와, `i -> k -> j`로 나눠 가는 경로를 비교합니다. `k`를 바깥 반복문에 두어야 이 DP 의미가 유지됩니다.
 
-![로컬 연습 그래프의 4×4 dist 행렬을 k=0부터 3까지 허용하며 보면 k=0에서 dist[2][1]이 6, k=1에서 dist[0][2]가 10에서 7, k=2에서 dist[1][0]이 3으로 줄고 k=3에서는 바뀌는 칸이 없습니다.](lesson-assets/matrix-steps.svg)
+![로컬 연습 그래프의 4×4 dist 행렬을 k=0부터 3까지 허용하며 보면 k=0에서 2행 1열이 INF에서 6, k=1에서 0행 2열이 10에서 7, k=2에서 1행 0열이 INF에서 3으로 줄고 k=3에서는 바뀌는 칸이 없습니다.](lesson-assets/matrix-steps.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/floyd-warshall/lesson-assets/matrix-steps.svg)
 

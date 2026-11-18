@@ -52,7 +52,7 @@ indegree[v] = v로 들어오는 간선 수 (중복 간선도 각각 센다)
 4. 새로 indegree가 0이 된 정점을 큐에 넣는다.
 ```
 
-![간선 0→2, 1→2, 1→3, 2→4에서 큐 [0,1]로 시작해 정점을 꺼낼 때마다 진입 차수가 줄고, 0이 되는 순간 2, 3, 4가 차례로 큐에 들어가 순서 0 1 2 3 4가 만들어집니다.](lesson-assets/kahn-trace.svg)
+![간선 0→2, 1→2, 1→3, 2→4에서 큐에 0과 1을 넣고 시작해 정점을 꺼낼 때마다 진입 차수가 줄고, 0이 되는 순간 2, 3, 4가 차례로 큐에 들어가 순서 0 1 2 3 4가 만들어집니다.](lesson-assets/kahn-trace.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/topological-sort-dag/lesson-assets/kahn-trace.svg)
 

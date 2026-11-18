@@ -152,7 +152,7 @@ dp[mask][last] = 0번에서 시작해 mask의 정점들을 방문했고,
                  last에서 끝나는 최소 비용
 ```
 
-![mask 7(정점 0,1,2 방문)에서 마지막 정점 2일 때 next 3을 고르면 비트 3이 켜져 mask 15, 마지막 정점 3인 상태가 되고 dp[15][3]을 dp[7][2]+cost[2][3]과 비교해 갱신합니다.](lesson-assets/held-karp-step.svg)
+![mask 7(정점 0, 1, 2 방문)에서 마지막 정점 2일 때 next 3을 고르면 비트 3이 켜져 mask 15, 마지막 정점 3인 상태가 되고, dp 15행 3열 값을 dp 7행 2열 값에 cost 2에서 3을 더한 값과 비교해 갱신합니다.](lesson-assets/held-karp-step.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/tsp-hamiltonian/lesson-assets/held-karp-step.svg)
 

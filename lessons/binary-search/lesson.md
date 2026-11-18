@@ -183,7 +183,7 @@ int maximizeMinimumDistance(vector<int> pos, int k) {
 
 **확인 방법:** 시각 11에는 5+3+1=9개, 12에는 6+4+1=11개입니다. 작은 입력에서 시각을 하나씩 증가시키는 기준 풀이와 대조합니다. 상한은 min(time)*K이며 생산량 합은 K에 도달하면 판정을 끝내 누적 overflow를 피합니다.
 
-![기계 시간 2, 3, 7로 제품 10개를 만드는 최초 시각은 구간 [0,20]에서 mid를 10, 15, 13, 12, 11로 시험하며 불가능이면 lo를, 가능이면 hi를 옮겨 불가능 11과 가능 12의 경계인 12에서 멈춥니다.](lesson-assets/parametric-boundary.svg)
+![기계 시간 2, 3, 7로 제품 10개를 만드는 최초 시각은 구간 0부터 20에서 mid를 10, 15, 13, 12, 11로 시험하며 불가능이면 lo를, 가능이면 hi를 옮겨 불가능 11과 가능 12의 경계인 12에서 멈춥니다.](lesson-assets/parametric-boundary.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/binary-search/lesson-assets/parametric-boundary.svg)
 

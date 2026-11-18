@@ -1,53 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="380" viewBox="0 0 920 380" role="img" aria-labelledby="title desc">
-  <title id="title">마감 과제 선택의 최저 점수 제거</title>
-  <desc id="desc">마감일까지 가능한 개수를 넘으면 선택 집합에서 가장 점수가 작은 과제를 제거한다.</desc>
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8.2" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
-    </marker>
-  </defs>
-  <rect width="920" height="380" rx="18" fill="#ffffff"/>
-  <rect x="28" y="28" width="864" height="324" rx="16" fill="#f8fafc" stroke="#dbe3ee"/>
-  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
-    <text x="56" y="72" fill="#0f172a" font-size="24" font-weight="800">마감 과제 선택: 넘치면 가장 작은 점수를 버린다</text>
-    <text x="56" y="100" fill="#475569" font-size="15">마감일 순서로 후보를 넣고, 가능한 개수를 넘는 순간 손해가 가장 작은 과제를 포기한다.</text>
-
-    <g>
-      <rect x="56" y="138" width="238" height="154" rx="14" fill="#ecfeff" stroke="#67e8f9"/>
-      <text x="175" y="169" text-anchor="middle" fill="#0e7490" font-size="17" font-weight="800">후보에 넣기</text>
-      <rect x="82" y="194" width="56" height="52" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
-      <text x="110" y="215" text-anchor="middle" fill="#1d4ed8" font-size="12" font-weight="800">과제 가</text>
-      <text x="110" y="237" text-anchor="middle" fill="#1d4ed8" font-size="16" font-weight="800">40</text>
-      <rect x="150" y="194" width="56" height="52" rx="12" fill="#fee2e2" stroke="#fca5a5"/>
-      <text x="178" y="215" text-anchor="middle" fill="#b91c1c" font-size="12" font-weight="800">과제 나</text>
-      <text x="178" y="237" text-anchor="middle" fill="#b91c1c" font-size="16" font-weight="800">10</text>
-      <rect x="218" y="194" width="56" height="52" rx="12" fill="#dcfce7" stroke="#86efac"/>
-      <text x="246" y="215" text-anchor="middle" fill="#15803d" font-size="12" font-weight="800">과제 다</text>
-      <text x="246" y="237" text-anchor="middle" fill="#15803d" font-size="16" font-weight="800">70</text>
-    </g>
-
-    <path d="M 312 214 H 362" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
-
-    <g>
-      <rect x="382" y="138" width="174" height="154" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
-      <text x="469" y="169" text-anchor="middle" fill="#c2410c" font-size="17" font-weight="800">제약 확인</text>
-      <text x="469" y="199" text-anchor="middle" fill="#475569" font-size="14">마감 2까지</text>
-      <text x="469" y="221" text-anchor="middle" fill="#475569" font-size="14">최대 2개 가능</text>
-      <rect x="424" y="238" width="90" height="30" rx="15" fill="#fee2e2" stroke="#fca5a5"/>
-      <text x="469" y="258" text-anchor="middle" fill="#b91c1c" font-size="13" font-weight="800">3개라서 초과</text>
-    </g>
-
-    <path d="M 574 214 H 624" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow)"/>
-
-    <g>
-      <rect x="644" y="138" width="220" height="154" rx="14" fill="#ecfdf5" stroke="#86efac"/>
-      <text x="754" y="169" text-anchor="middle" fill="#047857" font-size="17" font-weight="800">가장 작은 점수 제거</text>
-      <rect x="680" y="198" width="56" height="52" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
-      <text x="708" y="230" text-anchor="middle" fill="#1d4ed8" font-size="16" font-weight="800">40</text>
-      <rect x="772" y="198" width="56" height="52" rx="12" fill="#dcfce7" stroke="#86efac"/>
-      <text x="800" y="230" text-anchor="middle" fill="#15803d" font-size="16" font-weight="800">70</text>
-      <rect x="708" y="262" width="92" height="24" rx="12" fill="#fef2f2" stroke="#fecaca"/>
-      <text x="754" y="279" text-anchor="middle" fill="#b91c1c" font-size="12" font-weight="800">10은 포기</text>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 588" role="img" aria-labelledby="title desc">
+<title id="title">마감 과제 선택: 넘치면 가장 작은 점수를 버림</title><desc id="desc">과제 가(마감 1, 점수 40), 나(마감 2, 점수 10), 다(마감 2, 점수 70)를 마감 순서로 후보에 넣습니다. 다를 넣어 후보가 3개가 되면 마감 2를 넘으므로 가장 작은 점수 10을 버려 합 110이 됩니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="586" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#ae5515"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">마감 과제 선택: 넘치면 가장 작은 점수를 버림</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">마감 순서로 후보에 넣고, 개수가 마감을 넘으면 최솟값 제거</text>
+<rect x="20" y="104" width="680" height="396" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="154" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">① 가 (마감 1, 점수 40)</text>
+<rect x="60" y="170" width="84" height="44" rx="9" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="102" y="200" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">40</text>
+<text x="162" y="200" font-size="18" fill="#53657d" font-weight="500" text-anchor="start">← 후보 점수</text>
+<text x="36" y="240" font-size="20" fill="#53657d" font-weight="500" text-anchor="start">후보 1개 ≤ 마감 1 → 유지</text>
+<text x="684" y="154" font-size="22" fill="#147d69" font-weight="750" text-anchor="end">합 40</text>
+<text x="36" y="284" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">② 나 (마감 2, 점수 10)</text>
+<rect x="60" y="300" width="84" height="44" rx="9" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="102" y="330" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">10</text>
+<rect x="156" y="300" width="84" height="44" rx="9" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="198" y="330" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">40</text>
+<text x="258" y="330" font-size="18" fill="#53657d" font-weight="500" text-anchor="start">← 후보 점수</text>
+<text x="36" y="370" font-size="20" fill="#53657d" font-weight="500" text-anchor="start">후보 2개 ≤ 마감 2 → 유지</text>
+<text x="684" y="284" font-size="22" fill="#147d69" font-weight="750" text-anchor="end">합 50</text>
+<text x="36" y="414" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">③ 다 (마감 2, 점수 70)</text>
+<rect x="60" y="430" width="84" height="44" rx="9" fill="#fdeaea" stroke="#b42318" stroke-width="2.5"/>
+<text x="102" y="460" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">10</text>
+<rect x="156" y="430" width="84" height="44" rx="9" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="198" y="460" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">40</text>
+<rect x="252" y="430" width="84" height="44" rx="9" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="294" y="460" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">70</text>
+<text x="354" y="460" font-size="18" fill="#53657d" font-weight="500" text-anchor="start">← 후보 점수</text>
+<text x="36" y="500" font-size="20" fill="#b42318" font-weight="700" text-anchor="start">후보 3개 &gt; 마감 2 → 최솟값 10 제거</text>
+<text x="684" y="414" font-size="22" fill="#147d69" font-weight="750" text-anchor="end">합 110</text>
+<rect x="28" y="514" width="664" height="54" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="548" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">남은 후보 40, 70 → 합 110 · 10은 포기</text>
 </svg>
