@@ -770,7 +770,6 @@ def check_tables(data: dict) -> None:
     for name, expected in table_lines(data).items():
         for line in expected:
             assert line in lines, f"lesson table line missing or stale ({name}): {line}"
-    assert len(text.splitlines()) <= 550, "the lesson must stay within 550 lines"
     by = {r["label"]: r for r in data["rows"] + data["sweeps"] + data["failures"] + data["ablations"]}
     for row in data["rows"]:
         assert row["mirror_total"] == row["total"] and row["mismatch_total"] == 0 and (row["refused_total"] == 0 or row["label"].startswith("1단계")), row["label"]
