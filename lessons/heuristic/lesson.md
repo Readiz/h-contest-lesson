@@ -19,3 +19,4 @@
 7. [채점기 상태를 따라 그리며 행동하기](https://h.readiz.com/learn/observe-and-act): MINEEXPLORE에서 내 호출 기록으로 채점기 상태를 따라 그리고, 계획과 행동을 나눠 이동당 이득으로 목표를 선택.
 8. [배정과 경로가 결합된 문제](https://h.readiz.com/learn/assignment-with-routes): TAXIASSIGN에서 담당자와 삽입 위치를 함께 고르는 이웃과 최대 이동 거리의 차분.
 9. [격자 배치 문제](https://h.readiz.com/learn/placement-search): LANDINGX에서 탐욕, 국소 이동, destroy/repair를 같은 후보 검사 수로 비교.
+10. [특수한 점수식 읽기](https://h.readiz.com/learn/reading-the-score): ENTROPY2D에서 채점식을 내 코드로 재현해 대조하고, 축별 분리에서 O(1) 차분식을 만들어 풀이로 옮김.
