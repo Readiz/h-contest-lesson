@@ -287,6 +287,9 @@ static void sameGrid(const land::Board& bd) {
         score += land::candWeight[c];
     }
     assert(score == bd.score);
+    int have[land::KINDS] = {0};
+    for (int i = 0; i < bd.count; ++i) ++have[land::candKind[bd.picked[i]]];
+    for (int k = 0; k < land::KINDS; ++k) assert(have[k] == bd.have[k] && have[k] <= land::kindLimit[k]);
     for (int y = 0; y < MAP_SIZE; ++y)
         for (int x = 0; x < MAP_SIZE; ++x) assert(fresh[y][x] == bd.owner[y][x]);
     assert(land::consistent(bd));
@@ -314,8 +317,9 @@ static void greedyByWeight() {
 static int improvingMoves() {
     int n = 0;
     for (int x = 0; x < land::candCount; ++x) {
-        land::Move mv;
-        if (board.slot[x] < 0 && land::evaluate(board, x, mv) && mv.delta > 0) ++n;
+        int drop;
+        long long delta;
+        if (board.slot[x] < 0 && land::evaluate(board, x, drop, delta) && delta > 0) ++n;
     }
     return n;
 }
@@ -336,11 +340,12 @@ static void handExample() {
     for (int i = 0; i < board.count; ++i) std::printf("HANDPICK %d\n", board.picked[i]);
     for (int x = 0; x < land::candCount; ++x) {
         if (board.slot[x] >= 0) continue;
-        int own[land::MAX_OWNERS];
+        int own[25];
         int n = land::owners(board, x, own);
-        land::Move mv;
-        bool ok = land::evaluate(board, x, mv);
-        std::printf("HANDMOVE %d %d %d %lld\n", x, n, ok ? 1 : 0, ok ? mv.delta : 0LL);
+        int drop;
+        long long delta = 0;
+        bool ok = land::evaluate(board, x, drop, delta);
+        std::printf("HANDMOVE %d %d %d %lld\n", x, n, ok ? 1 : 0, ok ? delta : 0LL);
     }
     assert(improvingMoves() == 0);
     // Repairing in the same score order gives the same layout back.
@@ -442,12 +447,14 @@ static void stress() {
         long long greedyScore = board.score;
         for (int rep = 0; rep < 6 && land::candCount > 0; ++rep) {
             int x = (int)(rng() % land::candCount);
-            land::Move mv;
-            if (board.slot[x] < 0 && land::evaluate(board, x, mv)) {
+            int drop;
+            long long delta;
+            if (board.slot[x] < 0 && land::evaluate(board, x, drop, delta)) {
                 other = board;
                 long long before = other.score;
-                land::apply(other, mv);
-                assert(other.score == before + mv.delta);
+                if (drop >= 0) land::take(other, drop);
+                land::put(other, x);
+                assert(other.score == before + delta);
                 sameGrid(other);
             }
         }
@@ -455,10 +462,10 @@ static void stress() {
         for (int rep = 0; rep < 4; ++rep) {
             snap = board;
             land::opCount = 0;
-            for (int s = 0; s < 6 && board.count > 0; ++s) land::logTake(board, board.picked[rng() % board.count]);
+            for (int s = 0; s < 6 && board.count > 0; ++s) land::change(board, board.picked[rng() % board.count], false);
             for (int s = 0; s < 12 && land::candCount > 0; ++s) {
                 int x = (int)(rng() % land::candCount);
-                if (land::canAdd(board, x)) land::logPut(board, x);
+                if (land::canAdd(board, x)) land::change(board, x, true);
             }
             sameGrid(board);
             land::undo(board);
@@ -501,7 +508,7 @@ static void stress() {
             land::clear(board);
             greedyByWeight();
             land::DestroyParams prm = {land::REGION, 3, 200};
-            land::destroyRepairRun(board, hr, prm, 2000);
+            for (long long stop = land::evaluations + 2000; land::evaluations < stop;) land::destroyRepair(board, hr, prm);
             assert(board.score <= opt);
             hitDR += board.score == opt;
         }
@@ -524,7 +531,7 @@ static void edges() {
     greedyByWeight();
     land::hillClimb(board, rng, 100);
     land::DestroyParams prm = {land::REGION, 3, 200};
-    land::destroyRepairRun(board, rng, prm, 100);
+    for (long long stop = land::evaluations + 100; land::evaluations < stop;) land::destroyRepair(board, rng, prm);
     assert(board.count == 0 && land::consistent(board));
     submitAndJudge(3);
     // One spaceship, many candidates: never more than one is selected.
@@ -537,7 +544,7 @@ static void edges() {
     land::buildBuckets();
     greedyByWeight();
     land::hillClimb(board, rng, 3000);
-    land::destroyRepairRun(board, rng, prm, 3000);
+    for (long long stop = land::evaluations + 3000; land::evaluations < stop;) land::destroyRepair(board, rng, prm);
     assert(board.count == 1 && board.score == 12);  // 3 * 2 * min(3, 2)
     submitAndJudge(1);
     land::clear(board);
@@ -593,7 +600,7 @@ static double micros(std::chrono::steady_clock::time_point a, std::chrono::stead
 
 void process(int row[], int col[], int dir[]) {
     using namespace land;
-    int greedy = (int)envNumber("GREEDY", 1);   // 0 first-fit, 1 weight, 2 weight + blocked, 3 weight / blocked
+    int greedy = (int)envNumber("GREEDY", 1);   // 0 first-fit, 1 largest weight first, 2 smallest weight first
     int mode = (int)envNumber("MODE", 2);       // 0 greedy only, 1 hill climbing, 2 destroy/repair
     long long budget = (long long)envNumber("BUDGET", 1000000);
     unsigned seed = (unsigned)envNumber("SEED", 20261118);
@@ -611,9 +618,7 @@ void process(int row[], int col[], int dir[]) {
     if (greedy == 0) firstFit(expBoard);
     else {
         for (int c = 0; c < candCount; ++c) {
-            if (greedy == 1) expKey[c] = -(long long)candWeight[c];
-            else if (greedy == 2) expKey[c] = -(long long)candWeight[c] * 100000 + candBlocked[c];
-            else expKey[c] = -(long long)candWeight[c] * 1000000 / (candBlocked[c] + 10);
+            expKey[c] = greedy == 1 ? -(long long)candWeight[c] : (long long)candWeight[c];  // 1: 점수 큰 순, 2: 점수 작은 순
         }
         sweep(expBoard, expKey, expOrder, expTemp);
     }
@@ -633,8 +638,9 @@ void process(int row[], int col[], int dir[]) {
     long long used = evaluations;
     int improving = 0;  // how many improving single moves remain: evaluate every unselected candidate
     for (int x = 0; x < candCount; ++x) {
-        Move mv;
-        if (expBoard.slot[x] < 0 && evaluate(expBoard, x, mv) && mv.delta > 0) ++improving;
+        int drop;
+        long long delta;
+        if (expBoard.slot[x] < 0 && evaluate(expBoard, x, drop, delta) && delta > 0) ++improving;
     }
     fprintf(stderr, "EXP %d %lld %lld %lld %lld %lld %d %d %lld\n", candCount, greedyScore, greedyEval, expBoard.score, removedTotal, iters, expBoard.count, improving, used);
     if (envNumber("CHECK", 0) > 0 && !consistent(expBoard)) fprintf(stderr, "INCONSISTENT\n");
@@ -668,8 +674,9 @@ BUGGY_UNDO_NEW = '''        else {  // 격자 칠하기를 빠뜨린 되돌리�
             bd.picked[bd.count++] = op.cand;
             bd.score += candWeight[op.cand];
         }'''
-BUGGY_LIMIT_OLD = "    if (bd.have[candKind[c]] >= kindLimit[candKind[c]]) return false;\n"
+BUGGY_LIMIT_OLD = "bd.have[candKind[c]] < kindLimit[candKind[c]] && "
 BUGGY_LIMIT_NEW = ""
+BUGGY_LIMIT_FRAGMENT = "    return reason(bd, candRow[c], candCol[c], candH[c], candW[c]) == 0;"
 
 
 def compile_run(code: str, flags: list[str], expect_ok: bool = True, timeout: int = 600):
@@ -723,7 +730,7 @@ def run_checks(values: dict[str, str]) -> dict:
     # Two wrong variants must be caught by the same harness.
     sn = values["blocks"]
     lesson = LESSON.read_text()
-    assert BUGGY_UNDO_NEW in lesson and BUGGY_LIMIT_OLD.strip() in lesson
+    assert BUGGY_UNDO_NEW in lesson and BUGGY_LIMIT_FRAGMENT in lesson
     buggy_undo = mutate(final, BUGGY_UNDO_OLD, BUGGY_UNDO_NEW)
     caught = compile_run(buggy_undo + "\n" + HARNESS, SAN, expect_ok=False)
     assert caught.returncode != 0, "undo without grid restore was not detected"
@@ -815,9 +822,8 @@ def benchmark(values: dict[str, str], judge: Path, output: Path, checks: dict) -
 
         stage_defs = [
             ("first-fit", "기준선: 입력 순서 first-fit", {"GREEDY": "0", "MODE": "0"}),
+            ("ascending", "탐욕: 점수 작은 후보부터", {"GREEDY": "2", "MODE": "0"}),
             ("weight", "탐욕: 점수 큰 후보부터", {"GREEDY": "1", "MODE": "0"}),
-            ("weight-blocked", "탐욕: 점수 큰 순, 같으면 덜 막는 후보", {"GREEDY": "2", "MODE": "0"}),
-            ("ratio", "탐욕: 점수 / 혼잡도 비율 순", {"GREEDY": "3", "MODE": "0"}),
             ("hill", "국소 이동(hill climbing)", {"GREEDY": "1", "MODE": "1"}),
             ("dr", "destroy/repair(한 영역)", {"GREEDY": "1", "MODE": "2"}),
         ]
@@ -847,13 +853,14 @@ def benchmark(values: dict[str, str], judge: Path, output: Path, checks: dict) -
         data["sanitizer_total"] = rs["total"]
 
         def seeds_run(env: dict[str, str]) -> dict:
-            totals, removed, iters = [], [], []
+            totals, removed, iters, ms = [], [], [], []
             for seed in SEEDS:
                 r = run_judge(exp, dict(env, SEED=str(seed)))
                 totals.append(r["total"])
+                ms.append(r["times"][0])
                 removed.append(sum(e["removed"] for e in r["exp"]))
                 iters.append(sum(e["iters"] for e in r["exp"]))
-            return {**spread(totals), "removed": removed, "iters": iters}
+            return {**spread(totals), "removed": removed, "iters": iters, "median_ms": median(ms)}
 
         budgets = []
         for budget in BUDGETS:
@@ -883,11 +890,11 @@ def benchmark(values: dict[str, str], judge: Path, output: Path, checks: dict) -
         # Cost of undo: log undo per iteration vs. copying the whole board twice.
         r = run_judge(exp, {"GREEDY": "1", "MODE": "2", "BUDGET": "200000", "COPYTEST": "1"})
         data["undo_cost"] = {"log_us": median([c[0] for c in r["copy"]]), "copy_us": median([c[1] for c in r["copy"]]),
-                             "board_bytes": 4 * 1000 * 1000 + 4 * 16384 * 2 + 4 * 16 + 16}
+                             "board_bytes": 4 * 1000 * 1000 + 4 * 32768 * 2 + 4 * 16 + 16}
 
         # Inputs not used for choosing parameters: other grader seeds and a flatter height range.
         unseen = []
-        for label, seed, modulus in (("다른 seed 101", 101, 125), ("다른 seed 102", 102, 125), ("다른 seed 103", 103, 125), ("고도 범위 40, seed 101", 101, 40)):
+        for label, seed, modulus in (("다른 seed 101", 101, 125), ("다른 seed 102", 102, 125), ("다른 seed 103", 103, 125), ("고도 범위 0~89, seed 101", 101, 90)):
             exe = build_judge(judge_text, exp_code, folder, f"unseen{seed}x{modulus}", seed=seed, modulus=modulus)
             row = {"label": label, "seed": seed, "modulus": modulus}
             row["first_fit"] = run_judge(exe, {"GREEDY": "0", "MODE": "0"})["total"]
@@ -926,11 +933,13 @@ def stage_table(data: dict) -> str:
 
 def budget_table(data: dict) -> str:
     greedy = next(s for s in data["stages"] if s["key"] == "weight")["total"]
-    lines = ["| 탐욕 뒤 추가 후보 검사(TC당) | 국소 이동 중앙값 | 최소~최대 | destroy/repair 중앙값 | 최소~최대 |", "| ---: | ---: | ---: | ---: | ---: |"]
-    lines.append(f"| 0 (탐욕만) | {greedy} | - | {greedy} | - |")
+    lines = ["| 탐욕 뒤 추가 후보 검사(TC당) | 국소 이동 중앙값 | 최소~최대 | 시간(ms) | destroy/repair 중앙값 | 최소~최대 | 시간(ms) |",
+             "| ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
+    ms = next(s for s in data["stages"] if s["key"] == "weight")["median_ms"]
+    lines.append(f"| 0 (탐욕만) | {greedy} | - | {ms:.0f} | {greedy} | - | {ms:.0f} |")
     for b in data["budgets"]:
         h, d = b["hill"], b["dr"]
-        lines.append(f"| {b['budget']:,} | {num(h['median'])} | {h['min']}~{h['max']} | {num(d['median'])} | {d['min']}~{d['max']} |")
+        lines.append(f"| {b['budget']:,} | {num(h['median'])} | {h['min']}~{h['max']} | {h['median_ms']:.0f} | {num(d['median'])} | {d['min']}~{d['max']} | {d['median_ms']:.0f} |")
     return "\n".join(lines)
 
 
@@ -990,14 +999,22 @@ def check_stored(checks: dict) -> None:
         assert needle in markdown, needle
     small = data["small"]
     assert f"{small[0]}개" in markdown and f"{small[1]}개" in markdown and f"{small[2]}개" in markdown and f"{small[3]}개" in markdown
-    for name, key in (("stuck-and-repair.svg", None), ("budget-curves.svg", None)):
+    for name in ("stuck-and-repair.svg", "budget-curves.svg"):
         assert (ASSETS / name).exists(), name
     figure = (ASSETS / "stuck-and-repair.svg").read_text()
-    for token in ("35", "40", "27", "20"):
-        assert token in figure
+    flat = [v for row in HAND_MAP for v in row]
+    shown = [int(v) for v in re.findall(r'font-size="18" fill="#3f5069" text-anchor="end">(\d+)</text>', figure)]
+    assert shown == flat + flat, "figure heights differ from the hand map"
+    for token in ("35점", "40점", "3×3 27", "2×2 8", "2×5 20"):
+        assert token in figure, token
     curve = (ASSETS / "budget-curves.svg").read_text()
+    labels = {10000: "1만", 30000: "3만", 100000: "10만", 300000: "30만", 1000000: "100만"}
     for b in data["budgets"]:
-        assert f"{b['budget']:,}" in curve or f"{b['budget'] // 1000}k" in curve or f"{b['budget'] // 1000000}M" in curve, b["budget"]
+        assert f">{labels[b['budget']]}<" in curve, b["budget"]
+    last = data["budgets"][-1]
+    greedy = by["weight"]["total"]
+    for number in (data["pass_score"] - greedy, round(data["pass_score"] - last["hill"]["median"]), round(data["pass_score"] - last["dr"]["median"])):
+        assert f"{number:,}" in curve, number
     print("OK: lesson tables match the recomputed hand example and the stored LANDINGX measurement")
 
 
