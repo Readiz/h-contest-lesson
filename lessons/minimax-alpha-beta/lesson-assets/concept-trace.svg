@@ -1,1 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc"><title id="title">Alpha-Beta: 이미 확보한 선택과 비교</title><desc id="desc">왼쪽 MIN 값3을 확보한 MAX는 오른쪽 MIN의 첫 값2를 보고 나머지9를 생략합니다. 오른쪽 값은2 이하입니다.</desc><style>text{font-family:system-ui,sans-serif;fill:#172a46;font-size:21px}.small{font-size:18px}.title{font-size:28px;font-weight:700}.strong{font-weight:700}rect,line,path,circle{vector-effect:non-scaling-stroke}</style><rect width="720" height="500" rx="18" fill="#f5f8fc"/><text x="28" y="44" class="title">Alpha-Beta: 이미 확보한 선택과 비교</text><rect x="295" y="90" width="130" height="55" rx="8" fill="#d1fae5" stroke="#607999"/><text x="307" y="124.5" class="">MAX = 3</text><line x1="310" y1="145" x2="180" y2="205" stroke="#607999" stroke-width="3"/><line x1="410" y1="145" x2="545" y2="205" stroke="#607999" stroke-width="3"/><rect x="100" y="205" width="170" height="55" rx="8" fill="#dbeafe" stroke="#607999"/><text x="112" y="239.5" class="">MIN = 3</text><rect x="460" y="205" width="200" height="55" rx="8" fill="#fde68a" stroke="#607999"/><text x="472" y="239.5" class="">MIN ≤ 2</text><rect x="75" y="330" width="76" height="55" rx="8" fill="#fff" stroke="#607999"/><text x="87" y="364.5" class="">3</text><rect x="235" y="330" width="76" height="55" rx="8" fill="#fff" stroke="#607999"/><text x="247" y="364.5" class="">5</text><rect x="445" y="330" width="76" height="55" rx="8" fill="#fff" stroke="#607999"/><text x="457" y="364.5" class="">2</text><rect x="600" y="330" width="76" height="55" rx="8" fill="#fee2e2" stroke="#607999"/><text x="612" y="364.5" class="">9?</text><line x1="155" y1="260" x2="113" y2="325" stroke="#607999" stroke-width="3"/><line x1="215" y1="260" x2="273" y2="325" stroke="#607999" stroke-width="3"/><line x1="505" y1="260" x2="483" y2="325" stroke="#607999" stroke-width="3"/><line x1="600" y1="260" x2="638" y2="325" stroke="#607999" stroke-width="3"/><line x1="595" y1="322" x2="683" y2="393" stroke="#b91c1c" stroke-width="3"/><text x="28" y="438" class="">alpha = 3 ≥ beta = 2 → 마지막 잎 생략</text><text x="28" y="476" class="small">잘린 MIN 값은 정확한 2가 아니라 상한 2</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc">
+<title id="title">Alpha-Beta: 이미 확보한 선택과 비교</title><desc id="desc">왼쪽 MIN 값 3을 확보한 MAX는 오른쪽 MIN의 첫 값 2를 보고 나머지 9를 생략합니다. 오른쪽 값은 2 이하입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="498" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">Alpha-Beta: 이미 확보한 선택과 비교</text>
+<rect x="28" y="76" width="664" height="316" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="285" y="96" width="150" height="52" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="360" y="129" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">MAX = 3</text>
+<rect x="95" y="196" width="170" height="52" rx="10" fill="#dbeafe" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="180" y="229" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">MIN = 3</text>
+<rect x="455" y="196" width="200" height="52" rx="10" fill="#fef3c7" stroke="#b7791f" stroke-width="1.5"/>
+<text x="555" y="229" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">MIN ≤ 2</text>
+<line x1="330" y1="148" x2="180" y2="196" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="390" y1="148" x2="540" y2="196" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="62" y="308" width="76" height="52" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="100" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<line x1="180" y1="248" x2="100" y2="308" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="222" y="308" width="76" height="52" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="260" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<line x1="180" y1="248" x2="260" y2="308" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="412" y="308" width="76" height="52" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="450" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<line x1="540" y1="248" x2="450" y2="308" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<rect x="572" y="308" width="76" height="52" rx="10" fill="#fee2e2" stroke="#b42318" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="610" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">9?</text>
+<line x1="540" y1="248" x2="610" y2="308" stroke="#b42318" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 5"/>
+<line x1="556" y1="262" x2="596" y2="296" stroke="#b42318" stroke-width="4" stroke-linecap="round"/>
+<line x1="596" y1="262" x2="556" y2="296" stroke="#b42318" stroke-width="4" stroke-linecap="round"/>
+<circle cx="40" cy="432.0" r="4" fill="#2664ce"/>
+<text x="56" y="438" font-size="20" fill="#172b45">alpha = 3 ≥ beta = 2 → 마지막 잎 생략</text>
+<circle cx="40" cy="472.0" r="4" fill="#2664ce"/>
+<text x="56" y="478" font-size="20" fill="#172b45">잘린 MIN 값은 정확한 2가 아니라 상한 2</text>
+</svg>

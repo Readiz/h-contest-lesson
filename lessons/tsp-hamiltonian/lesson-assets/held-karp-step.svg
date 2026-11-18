@@ -12,33 +12,33 @@
 <text x="38" y="138" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">비트 = 정점 번호</text>
 <text x="68" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">3</text>
 <rect x="40" y="184" width="52" height="52" rx="8" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
-<text x="66" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="66" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
 <text x="124" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">2</text>
 <rect x="96" y="184" width="52" height="52" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="122" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="122" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <text x="180" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">1</text>
 <rect x="152" y="184" width="52" height="52" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="178" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="178" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <text x="236" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">0</text>
 <rect x="208" y="184" width="52" height="52" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="234" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="234" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <text x="484" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">3</text>
 <rect x="456" y="184" width="52" height="52" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
-<text x="482" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="482" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <text x="540" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">2</text>
 <rect x="512" y="184" width="52" height="52" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="538" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="538" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <text x="596" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">1</text>
 <rect x="568" y="184" width="52" height="52" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="594" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="594" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <text x="652" y="176" font-size="20" fill="#53657d" font-weight="400" text-anchor="middle">0</text>
 <rect x="624" y="184" width="52" height="52" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
-<text x="650" y="220" font-size="26" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="650" y="220" font-size="24" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <line x1="278" y1="210" x2="442" y2="210" stroke="#ae5515" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-ae5515)"/>
-<text x="360" y="196" font-size="22" fill="#ae5515" font-weight="700" text-anchor="middle">next = 3</text>
-<text x="152" y="268" font-size="21" fill="#172b45" font-weight="700" text-anchor="middle">mask = 7 · last = 2</text>
-<text x="568" y="268" font-size="21" fill="#172b45" font-weight="700" text-anchor="middle">mask = 15 · last = 3</text>
+<text x="360" y="196" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">next = 3</text>
+<text x="152" y="268" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">mask = 7 · last = 2</text>
+<text x="568" y="268" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">mask = 15 · last = 3</text>
 <rect x="20" y="312" width="680" height="112" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="38" y="350" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">nextMask = 7 | (1 &lt;&lt; 3) = 15</text>
-<text x="38" y="388" font-size="21" fill="#2664ce" font-weight="700" text-anchor="start">dp[15][3] = min(dp[15][3], dp[7][2] + cost[2][3])</text>
+<text x="38" y="388" font-size="20" fill="#2664ce" font-weight="700" text-anchor="start">dp[15][3] = min(dp[15][3], dp[7][2] + cost[2][3])</text>
 </svg>

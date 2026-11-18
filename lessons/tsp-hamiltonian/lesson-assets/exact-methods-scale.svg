@@ -4,21 +4,21 @@
 <rect x="1" y="1" width="718" height="440" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="22" width="6" height="30" rx="3" fill="#ae5515"/>
 <text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">입력 크기가 정하는 접근</text>
-<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">정확도 요구와 n 제한을 먼저 보고 구현 방식을 고른다</text>
+<text x="28" y="86" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">정확도 요구와 n 제한을 먼저 보고 구현 방식을 고른다</text>
 <rect x="20" y="110" width="212" height="200" rx="12" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="126" y="152" font-size="22" fill="#2664ce" font-weight="750" text-anchor="middle">n ≤ 10 안팎</text>
+<text x="126" y="152" font-size="20" fill="#2664ce" font-weight="750" text-anchor="middle">n ≤ 10 안팎</text>
 <text x="126" y="204" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">순열 완전탐색</text>
 <text x="126" y="258" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">(n−1)!가지 순서</text>
 <rect x="254" y="110" width="212" height="200" rx="12" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="360" y="152" font-size="22" fill="#147d69" font-weight="750" text-anchor="middle">n ≤ 20 안팎</text>
+<text x="360" y="152" font-size="20" fill="#147d69" font-weight="750" text-anchor="middle">n ≤ 20 안팎</text>
 <text x="360" y="204" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">비트마스크 DP</text>
 <text x="360" y="258" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">O(2ⁿ n²)</text>
 <rect x="488" y="110" width="212" height="200" rx="12" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
-<text x="594" y="152" font-size="22" fill="#ae5515" font-weight="750" text-anchor="middle">n이 수십 이상</text>
+<text x="594" y="152" font-size="20" fill="#ae5515" font-weight="750" text-anchor="middle">n이 수십 이상</text>
 <text x="594" y="204" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">초기해 + 지역 탐색</text>
 <text x="594" y="258" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">최적 보장 없음</text>
-<text x="243" y="222" font-size="30" fill="#53657d" font-weight="700" text-anchor="middle">›</text>
-<text x="477" y="222" font-size="30" fill="#53657d" font-weight="700" text-anchor="middle">›</text>
+<text x="243" y="222" font-size="26" fill="#53657d" font-weight="700" text-anchor="middle">›</text>
+<text x="477" y="222" font-size="26" fill="#53657d" font-weight="700" text-anchor="middle">›</text>
 <rect x="28" y="336" width="664" height="86" rx="12" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="360" y="372" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">왼쪽일수록 정확하지만 n이 늘면 지수적으로 느려짐</text>
 <text x="360" y="404" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">오른쪽은 큰 n에서도 돌지만 최적은 보장하지 않음</text>

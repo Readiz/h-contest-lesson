@@ -8,45 +8,45 @@
 <rect x="1" y="1" width="718" height="678" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
 <text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">크기 기준 합치기: 작은 트리를 큰 트리 밑에</text>
-<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">대표의 size를 비교해 작은 쪽 대표를 큰 쪽 밑에 붙임</text>
+<text x="28" y="86" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">대표의 size를 비교해 작은 쪽 대표를 큰 쪽 밑에 붙임</text>
 <rect x="20" y="104" width="680" height="250" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="36" y="140" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">합치기 전</text>
+<text x="36" y="140" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">합치기 전</text>
 <circle cx="180" cy="190" r="26" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="180" y="198" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
+<text x="180" y="198" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
 <line x1="80" y1="242" x2="180" y2="220" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="80" cy="270" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="80" y="278" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="80" y="278" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <line x1="180" y1="242" x2="180" y2="220" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="180" cy="270" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="180" y="278" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="180" y="278" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
 <line x1="280" y1="242" x2="180" y2="220" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="280" cy="270" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="280" y="278" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
-<text x="180" y="336" font-size="21" fill="#147d69" font-weight="700" text-anchor="middle">size[A] = 4</text>
+<text x="280" y="278" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="180" y="336" font-size="20" fill="#147d69" font-weight="700" text-anchor="middle">size[A] = 4</text>
 <circle cx="540" cy="190" r="26" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
-<text x="540" y="198" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
+<text x="540" y="198" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
 <line x1="540" y1="242" x2="540" y2="220" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="540" cy="270" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="540" y="278" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
-<text x="540" y="336" font-size="21" fill="#ae5515" font-weight="700" text-anchor="middle">size[B] = 2</text>
+<text x="540" y="278" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="540" y="336" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">size[B] = 2</text>
 <rect x="20" y="370" width="680" height="290" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="36" y="406" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">B의 대표를 A 밑으로</text>
+<text x="36" y="406" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">B의 대표를 A 밑으로</text>
 <circle cx="300" cy="440" r="26" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="300" y="448" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
+<text x="300" y="448" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
 <line x1="90" y1="502" x2="300" y2="470" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="90" cy="530" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="90" y="538" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="90" y="538" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <line x1="210" y1="502" x2="300" y2="470" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="210" cy="530" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="210" y="538" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="210" y="538" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
 <line x1="330" y1="502" x2="300" y2="470" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="330" cy="530" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="330" y="538" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="330" y="538" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
 <line x1="470" y1="502" x2="300" y2="470" stroke="#ae5515" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-ae5515)"/>
 <circle cx="470" cy="530" r="26" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
-<text x="470" y="538" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
+<text x="470" y="538" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
 <line x1="470" y1="582" x2="470" y2="560" stroke="#53657d" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-53657d)"/>
 <circle cx="470" cy="610" r="26" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
-<text x="470" y="618" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
-<text x="60" y="640" font-size="21" fill="#147d69" font-weight="750" text-anchor="start">size[A] = 4 + 2 = 6</text>
+<text x="470" y="618" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="60" y="640" font-size="20" fill="#147d69" font-weight="750" text-anchor="start">size[A] = 4 + 2 = 6</text>
 </svg>

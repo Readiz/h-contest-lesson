@@ -4,9 +4,9 @@
 <rect x="1" y="1" width="718" height="1112" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="22" width="6" height="30" rx="3" fill="#147d69"/>
 <text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">Hungarian 손계산: 0을 만들고 배정 찾기</text>
-<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">행 A B C · 열 X Y Z · 초록 칸 = 0</text>
+<text x="28" y="86" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">행 A B C · 열 X Y Z · 초록 칸 = 0</text>
 <rect x="20" y="104" width="330" height="326" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="36" y="138" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">① 원래 비용</text>
+<text x="36" y="138" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">① 원래 비용</text>
 <text x="109.0" y="176" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">X</text>
 <text x="171.0" y="176" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Y</text>
 <text x="233.0" y="176" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Z</text>
@@ -14,26 +14,26 @@
 <text x="56" y="265" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">B</text>
 <text x="56" y="311" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">C</text>
 <rect x="81" y="191" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="109.0" y="219" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<text x="109.0" y="219" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
 <rect x="143" y="191" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="171.0" y="219" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="171.0" y="219" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="205" y="191" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="233.0" y="219" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
+<text x="233.0" y="219" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
 <rect x="81" y="237" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="109.0" y="265" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="109.0" y="265" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="143" y="237" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="171.0" y="265" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="171.0" y="265" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="205" y="237" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="233.0" y="265" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
+<text x="233.0" y="265" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
 <rect x="81" y="283" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="109.0" y="311" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
+<text x="109.0" y="311" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
 <rect x="143" y="283" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="171.0" y="311" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="171.0" y="311" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="205" y="283" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="233.0" y="311" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="233.0" y="311" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <text x="185" y="372" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">row 최솟값: A 1, B 0, C 2</text>
 <rect x="370" y="104" width="330" height="326" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="386" y="138" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">② row 최솟값 빼기</text>
+<text x="386" y="138" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">② row 최솟값 빼기</text>
 <text x="459.0" y="176" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">X</text>
 <text x="521.0" y="176" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Y</text>
 <text x="583.0" y="176" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Z</text>
@@ -41,26 +41,26 @@
 <text x="406" y="265" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">B</text>
 <text x="406" y="311" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">C</text>
 <rect x="431" y="191" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="459.0" y="219" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
+<text x="459.0" y="219" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
 <rect x="493" y="191" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="521.0" y="219" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="219" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="191" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="583.0" y="219" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="583.0" y="219" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="431" y="237" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="459.0" y="265" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="459.0" y="265" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="493" y="237" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="521.0" y="265" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="265" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="237" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="583.0" y="265" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
+<text x="583.0" y="265" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
 <rect x="431" y="283" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="459.0" y="311" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="459.0" y="311" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="493" y="283" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="521.0" y="311" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="311" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="283" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="583.0" y="311" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="583.0" y="311" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <text x="535" y="372" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">A −1 · B −0 · C −2</text>
 <rect x="20" y="444" width="330" height="326" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="36" y="478" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">③ column 최솟값 빼기</text>
+<text x="36" y="478" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">③ column 최솟값 빼기</text>
 <text x="109.0" y="516" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">X</text>
 <text x="171.0" y="516" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Y</text>
 <text x="233.0" y="516" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Z</text>
@@ -68,26 +68,26 @@
 <text x="56" y="605" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">B</text>
 <text x="56" y="651" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">C</text>
 <rect x="81" y="531" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="109.0" y="559" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="109.0" y="559" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="143" y="531" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="171.0" y="559" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="171.0" y="559" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="205" y="531" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="233.0" y="559" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="233.0" y="559" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="81" y="577" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="109.0" y="605" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="109.0" y="605" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="143" y="577" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="171.0" y="605" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="171.0" y="605" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="205" y="577" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="233.0" y="605" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
+<text x="233.0" y="605" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
 <rect x="81" y="623" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="109.0" y="651" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="109.0" y="651" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="143" y="623" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="171.0" y="651" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="171.0" y="651" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="205" y="623" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="233.0" y="651" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="233.0" y="651" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <text x="185" y="712" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">X −1 (Y, Z는 이미 0)</text>
 <rect x="370" y="444" width="330" height="326" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="386" y="478" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">④ 0을 덮는 선 2개</text>
+<text x="386" y="478" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">④ 0을 덮는 선 2개</text>
 <text x="459.0" y="516" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">X</text>
 <text x="521.0" y="516" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Y</text>
 <text x="583.0" y="516" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Z</text>
@@ -95,29 +95,29 @@
 <text x="406" y="605" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">B</text>
 <text x="406" y="651" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">C</text>
 <rect x="431" y="531" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="459.0" y="559" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="459.0" y="559" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="493" y="531" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="521.0" y="559" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="559" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="531" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="583.0" y="559" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="583.0" y="559" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="431" y="577" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="459.0" y="605" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="459.0" y="605" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="493" y="577" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="521.0" y="605" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="605" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="577" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="583.0" y="605" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
+<text x="583.0" y="605" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
 <rect x="431" y="623" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="459.0" y="651" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="459.0" y="651" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="493" y="623" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="521.0" y="651" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="651" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="623" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="583.0" y="651" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="583.0" y="651" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="430" y="637.0" width="182" height="12" rx="6" fill="#2664ce" fill-opacity="0.22"/>
 <rect x="515.0" y="530" width="12" height="134" rx="6" fill="#2664ce" fill-opacity="0.22"/>
 <text x="535" y="712" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">C row + Y column</text>
 <text x="535" y="742" font-size="19" fill="#53657d" font-weight="500" text-anchor="middle">0 matching 2 &lt; 3 → 부족</text>
 <rect x="20" y="784" width="330" height="326" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="36" y="818" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">⑤ delta = 1 조정</text>
+<text x="36" y="818" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">⑤ delta = 1 조정</text>
 <text x="109.0" y="856" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">X</text>
 <text x="171.0" y="856" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Y</text>
 <text x="233.0" y="856" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Z</text>
@@ -125,27 +125,27 @@
 <text x="56" y="945" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">B</text>
 <text x="56" y="991" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">C</text>
 <rect x="81" y="871" width="56" height="40" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.8"/>
-<text x="109.0" y="899" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="109.0" y="899" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="143" y="871" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="171.0" y="899" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="171.0" y="899" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="205" y="871" width="56" height="40" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.8"/>
-<text x="233.0" y="899" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="233.0" y="899" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="81" y="917" width="56" height="40" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.8"/>
-<text x="109.0" y="945" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="109.0" y="945" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="143" y="917" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="171.0" y="945" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="171.0" y="945" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="205" y="917" width="56" height="40" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.8"/>
-<text x="233.0" y="945" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<text x="233.0" y="945" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
 <rect x="81" y="963" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="109.0" y="991" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="109.0" y="991" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="143" y="963" width="56" height="40" rx="7" fill="#fdeaea" stroke="#b42318" stroke-width="2.8"/>
-<text x="171.0" y="991" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="171.0" y="991" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="205" y="963" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="233.0" y="991" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="233.0" y="991" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <text x="185" y="1052" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">덮이지 않은 칸 −1, 교차 칸 +1</text>
 <text x="185" y="1082" font-size="19" fill="#53657d" font-weight="500" text-anchor="middle">새 0: B-X</text>
 <rect x="370" y="784" width="330" height="326" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="386" y="818" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">⑥ 완전 배정</text>
+<text x="386" y="818" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">⑥ 완전 배정</text>
 <text x="459.0" y="856" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">X</text>
 <text x="521.0" y="856" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Y</text>
 <text x="583.0" y="856" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">Z</text>
@@ -153,23 +153,23 @@
 <text x="406" y="945" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">B</text>
 <text x="406" y="991" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">C</text>
 <rect x="431" y="871" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="459.0" y="899" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="459.0" y="899" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="493" y="871" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="3.2"/>
-<text x="521.0" y="899" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="899" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="871" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="583.0" y="899" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="583.0" y="899" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="431" y="917" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="3.2"/>
-<text x="459.0" y="945" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="459.0" y="945" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="493" y="917" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="521.0" y="945" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="521.0" y="945" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="555" y="917" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="583.0" y="945" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<text x="583.0" y="945" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
 <rect x="431" y="963" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="459.0" y="991" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="459.0" y="991" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="493" y="963" width="56" height="40" rx="7" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="521.0" y="991" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="521.0" y="991" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="555" y="963" width="56" height="40" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="3.2"/>
-<text x="583.0" y="991" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="583.0" y="991" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <text x="535" y="1052" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">A–Y, B–X, C–Z</text>
 <text x="535" y="1082" font-size="19" fill="#53657d" font-weight="500" text-anchor="middle">원래 비용 1 + 2 + 2 = 5</text>
 </svg>

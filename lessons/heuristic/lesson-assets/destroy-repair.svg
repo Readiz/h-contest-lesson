@@ -17,11 +17,11 @@
 <rect x="204" y="232" width="76" height="72" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="280" y="232" width="76" height="72" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="131" y="163" width="70" height="138" rx="8" fill="#fff0d8" stroke="#d9a668" stroke-width="1.5"/>
-<text x="166" y="236" font-size="26" fill="#ae5515" font-weight="700" text-anchor="middle">A</text>
+<text x="166" y="236" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">A</text>
 <rect x="207" y="163" width="70" height="138" rx="8" fill="#e9e5fb" stroke="#a299cd" stroke-width="1.5"/>
-<text x="242" y="236" font-size="26" fill="#64518e" font-weight="700" text-anchor="middle">B</text>
+<text x="242" y="236" font-size="20" fill="#64518e" font-weight="700" text-anchor="middle">B</text>
 <text x="400" y="204" font-size="20" fill="#172b45" font-weight="700">점수 3 + 3</text>
-<text x="400" y="246" font-size="26" fill="#172b45" font-weight="700">= 6</text>
+<text x="400" y="246" font-size="24" fill="#172b45" font-weight="700">= 6</text>
 <text x="400" y="284" font-size="20" fill="#53657d">빈칸이 나뉨</text>
 <line x1="210" y1="320" x2="210" y2="352" stroke="#2664ce" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-2664ce)"/>
 <rect x="28" y="360" width="664" height="208" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
@@ -37,11 +37,11 @@
 <rect x="55" y="415" width="146" height="138" rx="8" fill="#e5f4ef" stroke="#a9d2bf" stroke-width="1.5"/>
 <text x="128" y="488" font-size="20" fill="#147d69" font-weight="700" text-anchor="middle">빈 폭 2</text>
 <rect x="207" y="415" width="70" height="138" rx="8" fill="#e9e5fb" stroke="#a299cd" stroke-width="1.5"/>
-<text x="242" y="488" font-size="26" fill="#64518e" font-weight="700" text-anchor="middle">B</text>
+<text x="242" y="488" font-size="20" fill="#64518e" font-weight="700" text-anchor="middle">B</text>
 <rect x="58" y="418" width="216" height="132" rx="8" fill="none" stroke="#ae5515" stroke-width="1.5" stroke-dasharray="7 5"/>
 <path d="M224 514 l 24 24 m 0 -24 l -24 24" fill="none" stroke="#ae5515" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="400" y="456" font-size="20" fill="#ae5515" font-weight="700">C는 폭 3</text>
-<text x="400" y="498" font-size="26" fill="#ae5515" font-weight="700">B와 겹침</text>
+<text x="400" y="498" font-size="24" fill="#ae5515" font-weight="700">B와 겹침</text>
 <text x="400" y="536" font-size="20" fill="#ae5515">배치 불가</text>
 <line x1="210" y1="572" x2="210" y2="604" stroke="#2664ce" stroke-width="3" stroke-linecap="round" marker-end="url(#ar-2664ce)"/>
 <rect x="28" y="612" width="664" height="208" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
@@ -55,10 +55,10 @@
 <rect x="204" y="736" width="76" height="72" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="280" y="736" width="76" height="72" rx="0" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="55" y="667" width="222" height="138" rx="8" fill="#dcf1e7" stroke="#69ae92" stroke-width="1.5"/>
-<text x="166" y="730" font-size="26" fill="#147d69" font-weight="700" text-anchor="middle">C</text>
+<text x="166" y="730" font-size="20" fill="#147d69" font-weight="700" text-anchor="middle">C</text>
 <text x="166" y="766" font-size="20" fill="#147d69" font-weight="600" text-anchor="middle">2 × 3</text>
-<text x="400" y="712" font-size="26" fill="#147d69" font-weight="700">점수 10</text>
-<text x="400" y="754" font-size="26" fill="#147d69" font-weight="700">6 → 10</text>
+<text x="400" y="712" font-size="24" fill="#147d69" font-weight="700">점수 10</text>
+<text x="400" y="754" font-size="24" fill="#147d69" font-weight="700">6 → 10</text>
 <text x="400" y="792" font-size="20" fill="#147d69">4점 개선</text>
 <text x="28" y="860" font-size="20" fill="#172b45" font-weight="700">로컬 상태에서 제거·시험·복구합니다.</text>
 <text x="28" y="898" font-size="20" fill="#53657d">최종 배치를 고른 뒤 place_ad를 호출합니다.</text>

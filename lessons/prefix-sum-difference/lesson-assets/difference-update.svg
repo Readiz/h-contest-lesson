@@ -4,7 +4,7 @@
 <rect x="1" y="1" width="718" height="572" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="22" width="6" height="30" rx="3" fill="#ae5515"/>
 <text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">차분 배열: 시작과 끝만 표시</text>
-<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">갱신 [1,4)에 +2 · 갱신 [0,2)에 −1 (끝은 포함하지 않음)</text>
+<text x="28" y="86" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">갱신 [1,4)에 +2 · 갱신 [0,2)에 −1 (끝은 포함하지 않음)</text>
 <rect x="20" y="104" width="680" height="380" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="232.0" y="142" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">0</text>
 <text x="328.0" y="142" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">1</text>
@@ -12,50 +12,50 @@
 <text x="520.0" y="142" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">3</text>
 <text x="616.0" y="142" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">4</text>
 <text x="36" y="142" font-size="20" fill="#53657d" font-weight="600" text-anchor="start">위치</text>
-<text x="36" y="192" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">a</text>
+<text x="36" y="192" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">a</text>
 <rect x="188" y="160" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="232.0" y="191" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="232.0" y="191" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="284" y="160" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="328.0" y="191" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">−1</text>
+<text x="328.0" y="191" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">−1</text>
 <rect x="380" y="160" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="424.0" y="191" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
+<text x="424.0" y="191" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
 <rect x="476" y="160" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="520.0" y="191" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<text x="520.0" y="191" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
 <rect x="572" y="160" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="616.0" y="191" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
-<text x="36" y="256" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">diff</text>
+<text x="616.0" y="191" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<text x="36" y="256" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">diff</text>
 <rect x="188" y="224" width="88" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="232.0" y="255" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">−1</text>
+<text x="232.0" y="255" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">−1</text>
 <rect x="284" y="224" width="88" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
-<text x="328.0" y="255" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">+2</text>
+<text x="328.0" y="255" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">+2</text>
 <rect x="380" y="224" width="88" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="424.0" y="255" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">+1</text>
+<text x="424.0" y="255" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">+1</text>
 <rect x="476" y="224" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="520.0" y="255" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<text x="520.0" y="255" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
 <rect x="572" y="224" width="88" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
-<text x="616.0" y="255" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">−2</text>
-<text x="36" y="320" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">누적</text>
+<text x="616.0" y="255" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">−2</text>
+<text x="36" y="320" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">누적</text>
 <rect x="188" y="288" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="232.0" y="319" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">−1</text>
+<text x="232.0" y="319" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">−1</text>
 <rect x="284" y="288" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="328.0" y="319" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<text x="328.0" y="319" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
 <rect x="380" y="288" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="424.0" y="319" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="424.0" y="319" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="476" y="288" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="520.0" y="319" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<text x="520.0" y="319" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
 <rect x="572" y="288" width="88" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="616.0" y="319" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
-<text x="36" y="384" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">a + 누적</text>
+<text x="616.0" y="319" font-size="20" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<text x="36" y="384" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">a + 누적</text>
 <rect x="188" y="352" width="88" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="232.0" y="383" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">1</text>
+<text x="232.0" y="383" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">1</text>
 <rect x="284" y="352" width="88" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="328.0" y="383" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
+<text x="328.0" y="383" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">0</text>
 <rect x="380" y="352" width="88" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="424.0" y="383" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">5</text>
+<text x="424.0" y="383" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">5</text>
 <rect x="476" y="352" width="88" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="520.0" y="383" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">2</text>
+<text x="520.0" y="383" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">2</text>
 <rect x="572" y="352" width="88" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.5"/>
-<text x="616.0" y="383" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">4</text>
+<text x="616.0" y="383" font-size="20" fill="#172b45" font-weight="750" text-anchor="middle">4</text>
 <text x="36" y="436" font-size="20" fill="#ae5515" font-weight="700" text-anchor="start">주황 = [1,4)+2의 시작(+2)과 끝(−2)</text>
 <text x="36" y="468" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">초록 = [0,2)−1의 시작(−1)과 끝(+1)</text>
 <rect x="28" y="500" width="664" height="54" rx="12" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>

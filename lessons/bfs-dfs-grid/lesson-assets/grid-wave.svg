@@ -7,48 +7,48 @@
 <text x="28" y="86" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">칸의 숫자 = 처음 큐에 넣을 때 확정된 거리 · # = 벽</text>
 <rect x="20" y="104" width="680" height="362" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="38" y="150" width="52" height="52" rx="6" fill="#e9f0ff" stroke="#ae5515" stroke-width="4"/>
-<text x="64.0" y="184.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="64.0" y="184.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
 <rect x="94" y="150" width="52" height="52" rx="6" fill="#dce7fc" stroke="#2664ce" stroke-width="2"/>
-<text x="120.0" y="184.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="120.0" y="184.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <rect x="150" y="150" width="52" height="52" rx="6" fill="#cfdefa" stroke="#2664ce" stroke-width="2"/>
-<text x="176.0" y="184.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="176.0" y="184.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
 <rect x="206" y="150" width="52" height="52" rx="6" fill="#53657d" stroke="#53657d" stroke-width="1"/>
-<text x="232.0" y="184.0" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
+<text x="232.0" y="184.0" font-size="20" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
 <rect x="262" y="150" width="52" height="52" rx="6" fill="#9bbcf2" stroke="#2664ce" stroke-width="2"/>
-<text x="288.0" y="184.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
+<text x="288.0" y="184.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
 <rect x="38" y="206" width="52" height="52" rx="6" fill="#dce7fc" stroke="#2664ce" stroke-width="2"/>
-<text x="64.0" y="240.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="64.0" y="240.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
 <rect x="94" y="206" width="52" height="52" rx="6" fill="#53657d" stroke="#53657d" stroke-width="1"/>
-<text x="120.0" y="240.0" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
+<text x="120.0" y="240.0" font-size="20" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
 <rect x="150" y="206" width="52" height="52" rx="6" fill="#c2d6f8" stroke="#2664ce" stroke-width="2"/>
-<text x="176.0" y="240.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="176.0" y="240.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
 <rect x="206" y="206" width="52" height="52" rx="6" fill="#b5cdf6" stroke="#2664ce" stroke-width="2"/>
-<text x="232.0" y="240.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="232.0" y="240.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
 <rect x="262" y="206" width="52" height="52" rx="6" fill="#a8c5f4" stroke="#2664ce" stroke-width="2"/>
-<text x="288.0" y="240.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<text x="288.0" y="240.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
 <rect x="38" y="262" width="52" height="52" rx="6" fill="#cfdefa" stroke="#2664ce" stroke-width="2"/>
-<text x="64.0" y="296.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="64.0" y="296.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
 <rect x="94" y="262" width="52" height="52" rx="6" fill="#53657d" stroke="#53657d" stroke-width="1"/>
-<text x="120.0" y="296.0" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
+<text x="120.0" y="296.0" font-size="20" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
 <rect x="150" y="262" width="52" height="52" rx="6" fill="#b5cdf6" stroke="#2664ce" stroke-width="2"/>
-<text x="176.0" y="296.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="176.0" y="296.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
 <rect x="206" y="262" width="52" height="52" rx="6" fill="#53657d" stroke="#53657d" stroke-width="1"/>
-<text x="232.0" y="296.0" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
+<text x="232.0" y="296.0" font-size="20" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
 <rect x="262" y="262" width="52" height="52" rx="6" fill="#9bbcf2" stroke="#2664ce" stroke-width="2"/>
-<text x="288.0" y="296.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
+<text x="288.0" y="296.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
 <rect x="38" y="318" width="52" height="52" rx="6" fill="#c2d6f8" stroke="#2664ce" stroke-width="2"/>
-<text x="64.0" y="352.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="64.0" y="352.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
 <rect x="94" y="318" width="52" height="52" rx="6" fill="#b5cdf6" stroke="#2664ce" stroke-width="2"/>
-<text x="120.0" y="352.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="120.0" y="352.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
 <rect x="150" y="318" width="52" height="52" rx="6" fill="#a8c5f4" stroke="#2664ce" stroke-width="2"/>
-<text x="176.0" y="352.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<text x="176.0" y="352.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
 <rect x="206" y="318" width="52" height="52" rx="6" fill="#53657d" stroke="#53657d" stroke-width="1"/>
-<text x="232.0" y="352.0" font-size="22" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
+<text x="232.0" y="352.0" font-size="20" fill="#ffffff" font-weight="700" text-anchor="middle">#</text>
 <rect x="262" y="318" width="52" height="52" rx="6" fill="#8fb4f0" stroke="#147d69" stroke-width="4"/>
-<text x="288.0" y="352.0" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<text x="288.0" y="352.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
 <text x="36" y="134" font-size="18" fill="#53657d" font-weight="400" text-anchor="start">시작 (0,0) 주황 · 목표 (3,4) 초록</text>
 <text x="36" y="402" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">좌표는 (행, 열)</text>
-<text x="340" y="146" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">큐에 들어간 순서 (거리 층)</text>
+<text x="340" y="146" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">큐에 들어간 순서 (거리 층)</text>
 <rect x="340" y="170" width="44" height="28" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
 <text x="362" y="191" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
 <text x="398" y="191" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">(0,0)</text>
@@ -74,5 +74,5 @@
 <text x="362" y="443" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
 <text x="398" y="443" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">(3,4)</text>
 <rect x="28" y="482" width="664" height="54" rx="12" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="360" y="516" font-size="21" fill="#53657d" font-weight="600" text-anchor="middle">같은 거리 칸이 모두 나간 뒤에 다음 거리 칸이 나옴</text>
+<text x="360" y="516" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">같은 거리 칸이 모두 나간 뒤에 다음 거리 칸이 나옴</text>
 </svg>

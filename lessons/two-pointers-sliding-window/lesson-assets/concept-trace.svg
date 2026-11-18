@@ -1,1 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-labelledby="title desc"><title id="title">투 포인터: 확장과 축소의 역할</title><desc id="desc">양수 배열2,1,3,2에서 합5 이상 구간을 찾습니다. 합이 부족하면 오른쪽을 늘리고 충분하면 왼쪽을 줄입니다.</desc><style>text{font-family:system-ui,sans-serif;fill:#172a46;font-size:21px}.small{font-size:18px}.title{font-size:28px;font-weight:700}.strong{font-weight:700}rect,line,path,circle{vector-effect:non-scaling-stroke}</style><rect width="720" height="500" rx="18" fill="#f5f8fc"/><text x="28" y="44" class="title">투 포인터: 확장과 축소의 역할</text><text x="28" y="90" class="">양수 배열 [2, 1, 3, 2], 목표 합 ≥ 5</text><rect x="28" y="125" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="40" y="157.0" class="">2</text><rect x="96" y="125" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="108" y="157.0" class="">1</text><rect x="164" y="125" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="176" y="157.0" class="">3</text><rect x="232" y="125" width="60" height="50" rx="8" fill="#fff" stroke="#607999"/><text x="244" y="157.0" class="">2</text><text x="320" y="157" class="small">확장 후 합 6: 길이 3 기록</text><rect x="28" y="235" width="60" height="50" rx="8" fill="#fff" stroke="#607999"/><text x="40" y="267.0" class="">2</text><rect x="96" y="235" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="108" y="267.0" class="">1</text><rect x="164" y="235" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="176" y="267.0" class="">3</text><rect x="232" y="235" width="60" height="50" rx="8" fill="#fff" stroke="#607999"/><text x="244" y="267.0" class="">2</text><text x="320" y="267" class="small">왼쪽 2 제거: 합 4 → 확장 필요</text><rect x="28" y="345" width="60" height="50" rx="8" fill="#fff" stroke="#607999"/><text x="40" y="377.0" class="">2</text><rect x="96" y="345" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="108" y="377.0" class="">1</text><rect x="164" y="345" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="176" y="377.0" class="">3</text><rect x="232" y="345" width="60" height="50" rx="8" fill="#d1fae5" stroke="#607999"/><text x="244" y="377.0" class="">2</text><text x="320" y="377" class="small">오른쪽 2 추가: 합 6</text><text x="28" y="453" class="">이어서 왼쪽 1 제거 → [3,2], 합 5, 길이 2</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">투 포인터: 확장과 축소의 역할</title><desc id="desc">양수 배열 2, 1, 3, 2에서 합 5 이상 구간을 찾습니다. 합이 부족하면 오른쪽을 늘리고 충분하면 왼쪽을 줄입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="518" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#147d69"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">투 포인터: 확장과 축소의 역할</text>
+<text x="28" y="86" font-size="22" fill="#53657d" font-weight="400">양수 배열 [2, 1, 3, 2], 목표 합 ≥ 5</text>
+<rect x="28" y="108" width="664" height="330" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="52" y="134" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="85" y="169" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="126" y="134" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="159" y="169" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="200" y="134" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="233" y="169" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="274" y="134" width="66" height="56" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="307" y="169" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="372" y="170" font-size="20" fill="#172b45" font-weight="700">확장 후 합 6: 길이 3 기록</text>
+<rect x="52" y="234" width="66" height="56" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="85" y="269" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="126" y="234" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="159" y="269" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="200" y="234" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="233" y="269" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="274" y="234" width="66" height="56" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="307" y="269" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="372" y="270" font-size="20" fill="#172b45">왼쪽 2 제거: 합 4 → 확장 필요</text>
+<rect x="52" y="334" width="66" height="56" rx="10" fill="#fff" stroke="#9fb0c6" stroke-width="1.5"/>
+<text x="85" y="369" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="126" y="334" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="159" y="369" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="200" y="334" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="233" y="369" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="274" y="334" width="66" height="56" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="307" y="369" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="372" y="370" font-size="20" fill="#172b45">오른쪽 2 추가: 합 6</text>
+<circle cx="40" cy="480.0" r="4" fill="#147d69"/>
+<text x="56" y="486" font-size="20" fill="#172b45">이어서 왼쪽 1 제거 → [3,2], 합 5, 길이 2</text>
+</svg>
