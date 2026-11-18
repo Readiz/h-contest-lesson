@@ -4,7 +4,7 @@
 
 ## 실측: 단계별 점수와 비용 구성
 
-측정일 2026-11-19, Apple M1, macOS, Apple clang 17(`-std=c++17 -O2`)입니다. 공개 채점기 `main.cpp`를 복사해 출력 줄만 더한 로컬 사본으로 측정했고, 채점 로직과 입력은 그대로입니다. 점수는 같은 입력에서 항상 같고 시간은 채점기 전체(100번 실행)의 ms이며, 단계 표의 시간은 5번 실행의 중앙값, 아래 파라미터 표는 1회 측정이라 잡음이 있습니다. 내 비용은 내 코드가 호출마다 쌓은 값이고 채점기 점수와 같아야 합니다. 원본은 [measurements.json](../lesson-assets/measurements.json)입니다.
+측정일 2026-11-19, Apple M1, macOS, Apple clang 17(`-std=c++17 -O2`)입니다. 공개 채점기 `main.cpp`를 복사해 출력 줄만 더한 로컬 사본으로 측정했고, 채점 로직과 입력은 그대로입니다. 점수는 같은 입력에서 항상 같고 시간은 채점기 전체(100번 실행)의 ms이며, 단계 표의 시간은 5번 실행의 중앙값, 아래 파라미터 표는 1회 측정이라 잡음이 있습니다. 내 비용은 내 코드가 호출마다 쌓은 값이고 채점기 점수와 같아야 합니다. 원본은 [measurements.json](https://git.readiz.com/h-contest-lesson/lessons/explore-unknown-map/lesson-assets/measurements.json)입니다.
 
 | 단계 | 점수 합 | 내 비용 합 | 스캔 | 이동 | 막힘 | 회전 | 시간 ms |
 | --- | --- | --- | --- | --- | --- | --- | --- |

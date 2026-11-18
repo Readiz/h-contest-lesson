@@ -6,7 +6,7 @@
 
 `TERRAIN = false`, `CHOOSE_PATH = false`, `PATIENCE = false`로 두면 항상 `z = 99`에서 날고 삽입 정렬만 쓰는 기준선입니다. 모든 TC가 유효하고 `refused`·`mismatch`가 0이지만 점수는 통과 기준의 12배가 넘고, 이 컴퓨터에서 실행 시간도 채점기의 10초 제한을 넘습니다.
 
-측정은 공개 채점기 `main.cpp`를 복사해 호출 종류와 구간별 호출 수를 세는 줄만 더한 로컬 사본에 [위 코드](solution.md)를 붙여 했습니다. 측정일은 2026-11-19, 환경은 Apple M1 계열 arm64·macOS·Apple clang 17(`-std=c++17 -O2`)이고, 점수는 같은 입력에서 항상 같습니다. 시간은 10개 TC 전체를 세 번 실행한 시간(wall clock)의 중앙값입니다. 원본은 [measurements.json](../lesson-assets/measurements.json)에 있습니다.
+측정은 공개 채점기 `main.cpp`를 복사해 호출 종류와 구간별 호출 수를 세는 줄만 더한 로컬 사본에 [위 코드](solution.md)를 붙여 했습니다. 측정일은 2026-11-19, 환경은 Apple M1 계열 arm64·macOS·Apple clang 17(`-std=c++17 -O2`)이고, 점수는 같은 입력에서 항상 같습니다. 시간은 10개 TC 전체를 세 번 실행한 시간(wall clock)의 중앙값입니다. 원본은 [measurements.json](https://git.readiz.com/h-contest-lesson/lessons/remember-and-sort/lesson-assets/measurements.json)에 있습니다.
 
 | 단계 | 바꾼 것 | 점수 합 | 통과 기준 대비 | 시간 s |
 | --- | --- | --- | --- | --- |

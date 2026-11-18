@@ -146,7 +146,7 @@ key(t) = (g(t) + WEIGHT × h(t)) / (d(t) + COST)
 | `WEIGHT` | 추정 `h`를 얼마나 믿는가 | 0이면 `h`를 무시합니다. |
 | `COST` | 목표 하나를 정하는 고정 비용 | 0이면 거리 1짜리 작은 칸의 비율이 폭주합니다. |
 
-측정은 공개 채점기 `main.cpp`를 복사해 출력 몇 줄만 더한 로컬 사본에 위 코드를 붙여 했습니다. 측정일은 2026-11-18, 환경은 Apple M1·macOS·Apple clang 17(`-std=c++17 -O2`)이며, 점수는 같은 입력에서 항상 같고 시간(ms)은 채점기가 출력한 값입니다. 기준선·정책 1·정책 2의 시간은 9번 실행의 중앙값이고, 아래 파라미터 표의 시간은 1회 측정이라 잡음이 있습니다. 원본은 [measurements.json](../lesson-assets/measurements.json)에 있습니다.
+측정은 공개 채점기 `main.cpp`를 복사해 출력 몇 줄만 더한 로컬 사본에 위 코드를 붙여 했습니다. 측정일은 2026-11-18, 환경은 Apple M1·macOS·Apple clang 17(`-std=c++17 -O2`)이며, 점수는 같은 입력에서 항상 같고 시간(ms)은 채점기가 출력한 값입니다. 기준선·정책 1·정책 2의 시간은 9번 실행의 중앙값이고, 아래 파라미터 표의 시간은 1회 측정이라 잡음이 있습니다. 원본은 [measurements.json](https://git.readiz.com/h-contest-lesson/lessons/observe-and-act/lesson-assets/measurements.json)에 있습니다.
 
 | 정책 | 점수 합 | 거울 점수 합 | 거절 요청 | 시간 ms |
 | --- | --- | --- | --- | --- |
