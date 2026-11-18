@@ -959,6 +959,43 @@ def table_after(markdown: str, key: str) -> str:
     return match.group(1).rstrip("\n")
 
 
+def check_claims(data: dict, by: dict, markdown: str) -> None:
+    """The sentences of the lesson that compare ranges, orderings and ratios, asserted on the stored data."""
+    pass_score = data["pass_score"]
+    bud = {b["budget"]: b for b in data["budgets"]}
+    assert str(min(data["candidates_per_tc"])) in markdown and str(max(data["candidates_per_tc"])) in markdown
+    assert 1.145 < data["bound_total"] / pass_score < 1.155, "the lesson says the bound is 15% above the pass score"
+    # budget table: ranges overlap at 10,000 and separate from 30,000; the local search stops by 300,000
+    assert bud[10000]["dr"]["min"] <= bud[10000]["hill"]["max"]
+    for budget in (30000, 100000, 300000, 1000000):
+        assert bud[budget]["dr"]["min"] > bud[budget]["hill"]["max"], budget
+    assert bud[300000]["hill"]["min"] == bud[300000]["hill"]["max"] == bud[1000000]["hill"]["median"] == by["hill"]["total"]
+    assert bud[1000000]["dr"]["median"] == by["dr"]["total"] == pass_score
+    assert abs(bud[100000]["dr"]["median_ms"] - bud[1000000]["hill"]["median_ms"]) < 0.2 * bud[1000000]["hill"]["median_ms"], "similar time claim"
+    assert bud[100000]["dr"]["median"] > bud[1000000]["hill"]["median"]
+    # destroy table
+    row = {(d["mode"], d["size"]): d for d in data["destroy"]}
+    big = row[(0, 16)]
+    assert big["median"] == max(d["median"] for d in data["destroy"]) and abs(big["mean_removed"] - 11.0) < 0.05
+    assert big["min"] > row[(0, 1)]["max"] and all(big["min"] > row[(1, k)]["max"] for k in (1, 4, 16))
+    assert big["min"] <= row[(0, 4)]["max"]
+    others = [d for d in data["destroy"] if d["mode"] != 2 and (d["mode"], d["size"]) != (0, 16)]
+    assert all(a["min"] <= b["max"] and b["min"] <= a["max"] for a in others for b in others), "remaining settings overlap pairwise"
+    assert row[(0, 1)]["mean_removed"] < 1.3
+    assert max(d["max"] for d in data["destroy"] if d["mode"] == 2) < bud[100000]["hill"]["min"]
+    # noise table
+    noise = {n["noise"]: n for n in data["noise"]}
+    assert noise[0]["median"] == noise[0]["min"] == noise[0]["max"] == by["weight"]["total"]
+    assert noise[30]["max"] < noise[200]["min"] and noise[100]["max"] < noise[200]["min"] and noise[400]["min"] <= noise[200]["max"]
+    # unseen inputs: same ordering, separated ranges
+    for u in data["unseen"]:
+        assert u["first_fit"] < u["weight"] < u["hill"]["median"] < u["dr"]["median"] and u["dr"]["min"] > u["hill"]["max"], u["label"]
+    # failures
+    assert data["failures"]["undo"]["total"] == 0 and len(data["failures"]["undo"]["costs"]) == 1
+    assert data["failures"]["limit"]["total"] == by["final"]["total"]
+    assert len(hand_facts()["cands"]) == 7
+
+
 def check_stored(checks: dict) -> None:
     data = json.loads(ASSET.read_text())
     markdown = LESSON.read_text()
@@ -995,6 +1032,7 @@ def check_stored(checks: dict) -> None:
     greedy = by["weight"]["total"]
     for number in (data["pass_score"] - greedy, round(data["pass_score"] - last["hill"]["median"]), round(data["pass_score"] - last["dr"]["median"])):
         assert f"{number:,}" in curve, number
+    check_claims(data, by, markdown)
     print("OK: lesson tables match the recomputed hand example and the stored LANDINGX measurement")
 
 
