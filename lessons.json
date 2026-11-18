@@ -1055,6 +1055,43 @@
       ]
     },
     {
+      "lessonId": "remember-and-sort",
+      "title": "열어 본 상자를 기억해 쌓고 정렬하기",
+      "description": "DRONESORT를 따라 pick으로만 알 수 있는 상자 값과 높이를 거울에 기억하고, 기억으로 비행 고도와 정렬을 계획해 기준선, 지형 따라 날기, 인내 정렬로 호출 수를 줄입니다.",
+      "summary": "관측이 곧 행동인 문제의 거울 설계, 호출 비용 하한, 지형을 따라 나는 고도 계획, 알고 있는 무게로 세우는 인내 정렬, 기억과 실제 상태가 어긋나는 실패 재현",
+      "order": 37,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "state-mirror",
+        "simulation",
+        "sorting",
+        "stack",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "heuristic",
+        "observe-and-act"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "cpp-common-library",
+        "cpp-contest-basics",
+        "reading-the-score"
+      ],
+      "pages": [],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "modeling",
+        "implementation"
+      ]
+    },
+    {
       "lessonId": "reading-the-score",
       "title": "특수한 점수식 읽기: 채점식을 손으로 재현하고 성질을 풀이로 옮기기",
       "description": "ENTROPY2D의 공개 채점 규칙을 내 코드로 옮겨 손계산·내 점수·채점기 점수를 맞추고, 거리 합이 열·행 경계로 갈라지는 성질에서 이동 한 번의 O(1) 차분식을 만들어 탐욕과 빈 칸 경로 재배치로 키웁니다. 쌍을 두 번 세기, int 누적, 차분 off-by-one 실패도 재현합니다.",

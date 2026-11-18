@@ -331,6 +331,9 @@ def check_failures(sn: dict[str, str], tmp: Path) -> dict:
         detected = bool(fail) or res.returncode == 5 or any(t["refused"] or t["mismatch"] or not t["valid"] for t in tcs)
         assert detected, f"failure variant not detected: {name}"
         found[name] = fail.group(0) if fail else f"exit {res.returncode}"
+    expect = {"높이 갱신 누락": "FAIL MIRROR height", "맡긴 칸의 상자 가정": "exit 5",
+              "TC 시작 위치 초기화 누락": "FAIL MIRROR position", "병합에서 가벼운 윗면 먼저": "exit 5"}
+    assert found == expect, found                      # the lesson table says where each one is caught
     print("OK: failure variants detected:", "; ".join(f"{k} -> {v}" for k, v in found.items()))
     # the one that needs more than one TC to show: the position mirror survives only if it is reset per TC
     exe = exes["TC 시작 위치 초기화 누락"]
@@ -535,37 +538,83 @@ def fmt(n: int) -> str:
     return f"{n:,}"
 
 
+def eok_pass() -> int:
+    return 250_000_000
+
+
+CATCH = {"높이 갱신 누락": "첫 호출 직전의 높이 대조", "맡긴 칸의 상자 가정": "최종 상태 검증",
+         "TC 시작 위치 초기화 누락": "TC 2 첫 호출 직전의 위치 대조", "병합에서 가벼운 윗면 먼저": "최종 상태 검증"}
+NAMES = ["높이 재기", "비우기", "정렬"]
+
+
+def derived(data: dict) -> tuple[dict[str, str], list[str]]:
+    """Every number the lesson quotes from the measurements, as the strings the text must contain."""
+    st = {r["label"]: r for r in data["stages"]}
+    exp: dict[str, list[int]] = {}
+    for r in data["experiments"]:
+        exp.setdefault(r["label"], []).append(r["total"])
+    lb = st["2단계"]["lb_total"]
+    p = eok_pass()
+    v = {"LB": fmt(lb), "PASSX": f"{p / lb:.1f}", "DEFERRED": str(st["2단계"]["deferred"]), "DATE": data["date"],
+         "MARGIN": fmt(p - st["2단계"]["total"]), "XLB": f"{st['2단계']['total'] / lb:.1f}",
+         "R01": f"{st['기준선']['total'] / st['1단계']['total']:.1f}", "PERBOX1": f"{st['1단계']['total'] / 1_000_000:.0f}"}
+    for i, lab in enumerate(("기준선", "1단계", "2단계")):
+        r = st[lab]
+        v[f"T{i}"] = fmt(r["total"]); v[f"X{i}"] = f"{r['total'] / p:.2f}"
+        v[f"W{i}"] = f"{statistics.median(r['wall_s']):.2f}"
+    v["SORT_SHARE1"] = f"{100 * sum(st['1단계']['phase'][2]) / st['1단계']['total']:.0f}"
+    v["SHARE_CLEAR"] = f"{100 * st['2단계']['phase'][1][0] / st['2단계']['total']:.0f}"
+    lines = []
+    for lab in ("기준선", "1단계", "2단계"):
+        for s_i, nm in enumerate(NAMES):
+            hz, vt, pk, dr = st[lab]["phase"][s_i]
+            lines.append(f"| {lab} · {nm} | {fmt(hz)} | {fmt(vt)} | {fmt(pk + dr)} | {fmt(hz + vt + pk + dr)} |")
+    spreads = []
+    for lab in ("2단계", "x 먼저만", "임시 칸 4개"):
+        vals = sorted(exp[lab])
+        assert len(vals) == len(SEEDS), lab
+        spreads.append(vals[-1] - vals[0])
+        lines.append(f"| {lab} | {fmt(int(statistics.median(vals)))} | {fmt(vals[0])} | {fmt(vals[-1])} |")
+    v["SPREAD"] = fmt(max(spreads))
+    med = {lab: int(statistics.median(vals)) for lab, vals in exp.items()}
+    for key, lab in (("DCP", "x 먼저만"), ("DDIAG", "임시 칸 4개")):
+        v[key] = f"{fmt(med[lab] - med['2단계'])}({100 * (med[lab] - med['2단계']) / med['2단계']:.1f}%)"
+    for r in data["own"]:
+        lines.append(f"| {r['label']} (직접 만든 입력) | " + " | ".join(fmt(c) for c in r["calls"]) + " |")
+    for r in data["failures"]:
+        if r["outcome"] == "timeout":
+            res = f"timeout: {r['seconds']}초 안에 끝나지 않음"
+        else:
+            res = f"TC {r['first_bad_tc']}에서 10,000,000,000,000점" + ("" if r["first_bad_tc"] == 1 else f" (TC 1은 {fmt(r['scores'][0])})")
+        lines.append(f"| {r['label']} | {res} | {CATCH[r['label']]} |")
+    return v, lines
+
+
 def check_tables(data: dict, hand: dict, ref: dict) -> None:
     text = LESSON.read_text()
-    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in text.splitlines() if line.startswith("|")]
-
-    def present(first: str, *needles: object) -> None:
-        for cells in rows:
-            if cells and cells[0] == first and all(str(n) in cells for n in needles):
-                return
-        raise AssertionError(f"lesson table row missing or stale: {first} {needles}")
-
-    for row in data["stages"]:
-        present(row["label"], fmt(row["total"]))
-    by = {r["label"]: r for r in data["stages"]}
-    # phase table (calls by phase and kind, TC sum) for the final stage and the stage before the sorting change
-    for label in ("3단계", "4단계"):
-        ph = by[label]["phase"]
-        present(label, *(fmt(sum(p)) for p in ph))
-    # per-seed totals and the same-seed comparison
-    for label in ("2단계", "3단계", "4단계", "임시 칸 4개"):
-        vals = sorted(r["total"] for r in data["experiments"] if r["label"] == label)
-        assert len(vals) == len(SEEDS), label
-        present(label, fmt(int(statistics.median(vals))), fmt(vals[0]), fmt(vals[-1]))
-    for failure in data["failures"]:
-        present(failure["label"], failure["outcome"] if failure["outcome"] == "timeout" else f"TC {failure['first_bad_tc']}")
-    for row in data["own"]:
-        present(row["label"] + " (직접 만든 입력)", *(fmt(c) for c in row["calls"]))
-    # lower bound and ratios quoted in the text
-    lb = by["4단계"]["lb_total"]
-    for needle in (data["date"], fmt(lb), f"{by['4단계']['total'] / lb:.1f}"):
-        assert needle in text, f"missing in lesson: {needle}"
-    print(f"OK: lesson tables match {DATA.name}")
+    v, lines = derived(data)
+    for line in lines:
+        assert line in text.splitlines(), f"lesson table row missing or stale: {line}"
+    for key, value in v.items():
+        assert value in text, f"lesson text missing {key}: {value}"
+    for key in ("tcs", "deferred", "fallbacks"):
+        assert str(ref[key]) in text, f"reference-check count {key}={ref[key]} not in lesson"
+    st = {r["label"]: r for r in data["stages"]}
+    # the claims the lesson makes in words
+    base, one, two = (st[k] for k in ("기준선", "1단계", "2단계"))
+    assert base["total"] > 12 * eok_pass() and two["total"] <= eok_pass() < one["total"], "stage ordering/threshold claims"
+    assert all(r["refused"] == 0 and r["mismatch"] == 0 for r in data["stages"] + data["experiments"])
+    assert sum(base["phase"][1][:2]) < sum(base["phase"][2][:2]) and base["phase"][2][1] / base["total"] > 0.7
+    assert statistics.median(base["wall_s"]) > 10, "the lesson says the baseline exceeds the 10 s limit here"
+    assert one["phase"][1] == two["phase"][1] and one["phase"][2] != two["phase"][2], "stage 2 must only change the sorting part"
+    own = {r["label"]: r["calls"] for r in data["own"]}
+    assert all(b < a for a, b in zip(own["1단계"], own["2단계"])), "2단계 must beat 1단계 on each own TC"
+    by = {}
+    for r in data["experiments"]:
+        by.setdefault(r["label"], []).append(r["total"])
+    assert min(by["x 먼저만"]) > max(by["2단계"]) and min(by["임시 칸 4개"]) > max(by["2단계"]), "variants must beat the seed spread"
+    assert two["fallbacks"] > 0 and 80 <= two["deferred"] <= 90
+    print(f"OK: lesson tables and quoted numbers match {DATA.name}")
 
 
 def main() -> None:
