@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 930" role="img" aria-labelledby="title desc">
+<title id="title">옮기며 끼우기와 교환의 전후</title><desc id="desc">승객 3을 기사 0의 경로에 끼울 때 위치에 따라 기사 0의 부하가 41, 39, 43이 되어 최댓값 29보다 모두 나빠집니다. 승객 2와 3을 교환하면 두 기사의 부하가 23과 23이 됩니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="928" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">끼울 자리와 교환</text>
+<text x="28" y="91" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">파랑 = 탑승(승객 번호) · 주황 = 빈 차 · 점선 = 최대 부하</text>
+<rect x="20" y="112" width="680" height="146" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="142" font-size="21" fill="#172b45" font-weight="750" text-anchor="start">0 시작: 결합 탐욕의 답</text>
+<text x="682" y="142" font-size="22" fill="#172b45" font-weight="750" text-anchor="end">최대 29</text>
+<text x="38" y="185" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 0</text>
+<rect x="120.0" y="158" width="20.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="142.4" y="158" width="76.9" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="180.8" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="220.8" y="158" width="76.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="299.2" y="158" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="326.4" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="363.2" y="185" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">21</text>
+<text x="38" y="231" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 1</text>
+<rect x="120.0" y="204" width="54.5" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="176.0" y="204" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="203.2" y="230" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="232.0" y="204" width="88.1" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="321.6" y="204" width="121.7" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="382.5" y="230" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="452.8" y="231" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">29</text>
+<line x1="444.8" y1="152" x2="444.8" y2="246" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="20" y="268" width="680" height="146" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="298" font-size="21" fill="#172b45" font-weight="750" text-anchor="start">1 승객 3 → 기사 0, 맨 앞</text>
+<text x="682" y="298" font-size="22" fill="#172b45" font-weight="750" text-anchor="end">최대 41</text>
+<text x="38" y="341" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 0</text>
+<rect x="120.0" y="314" width="20.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="142.4" y="314" width="121.7" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="203.2" y="340" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="265.6" y="314" width="99.3" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="366.4" y="314" width="76.9" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="404.9" y="340" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="444.8" y="314" width="76.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="523.2" y="314" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="550.5" y="340" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="587.2" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">41</text>
+<text x="38" y="387" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 1</text>
+<rect x="120.0" y="360" width="54.5" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="176.0" y="360" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="203.2" y="386" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="240.0" y="387" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">10</text>
+<line x1="579.2" y1="308" x2="579.2" y2="402" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="20" y="424" width="680" height="146" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="454" font-size="21" fill="#172b45" font-weight="750" text-anchor="start">2 승객 3 → 기사 0, 승객 2 뒤</text>
+<text x="682" y="454" font-size="22" fill="#172b45" font-weight="750" text-anchor="end">최대 39</text>
+<text x="38" y="497" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 0</text>
+<rect x="120.0" y="470" width="20.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="142.4" y="470" width="76.9" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="180.8" y="496" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="220.8" y="470" width="99.3" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="321.6" y="470" width="121.7" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="382.5" y="496" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="444.8" y="470" width="54.5" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="500.8" y="470" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="528.0" y="496" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="564.8" y="497" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">39</text>
+<text x="38" y="543" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 1</text>
+<rect x="120.0" y="516" width="54.5" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="176.0" y="516" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="203.2" y="542" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="240.0" y="543" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">10</text>
+<line x1="556.8" y1="464" x2="556.8" y2="558" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="20" y="580" width="680" height="146" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="610" font-size="21" fill="#172b45" font-weight="750" text-anchor="start">3 승객 3 → 기사 0, 맨 끝</text>
+<text x="682" y="610" font-size="22" fill="#172b45" font-weight="750" text-anchor="end">최대 43</text>
+<text x="38" y="653" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 0</text>
+<rect x="120.0" y="626" width="20.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="142.4" y="626" width="76.9" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="180.8" y="652" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="220.8" y="626" width="76.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="299.2" y="626" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="326.4" y="652" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="355.2" y="626" width="121.7" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="478.4" y="626" width="121.7" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="539.2" y="652" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="609.6" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">43</text>
+<text x="38" y="699" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 1</text>
+<rect x="120.0" y="672" width="54.5" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="176.0" y="672" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="203.2" y="698" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="240.0" y="699" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">10</text>
+<line x1="601.6" y1="620" x2="601.6" y2="714" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+<rect x="20" y="736" width="680" height="146" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="766" font-size="21" fill="#172b45" font-weight="750" text-anchor="start">4 승객 2 ↔ 3 교환</text>
+<text x="682" y="766" font-size="22" fill="#172b45" font-weight="750" text-anchor="end">최대 23</text>
+<text x="38" y="809" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 0</text>
+<rect x="120.0" y="782" width="20.9" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="142.4" y="782" width="121.7" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="203.2" y="808" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="265.6" y="782" width="54.5" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="321.6" y="782" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="348.9" y="808" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="385.6" y="809" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">23</text>
+<text x="38" y="855" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">기사 1</text>
+<rect x="120.0" y="828" width="54.5" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="176.0" y="828" width="54.5" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="203.2" y="854" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="232.0" y="828" width="65.7" height="36" rx="5" fill="#fff1e0" stroke="#ae5515" stroke-width="2"/>
+<rect x="299.2" y="828" width="76.9" height="36" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="337.6" y="854" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="385.6" y="855" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">23</text>
+<line x1="377.6" y1="776" x2="377.6" y2="870" stroke="#ae5515" stroke-width="2" stroke-dasharray="6 5"/>
+</svg>

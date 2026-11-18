@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 840" role="img" aria-labelledby="title desc">
+<title id="title">손계산 예시: 배정만 본 최적과 경로까지 본 최적</title><desc id="desc">기사 2명과 승객 4명의 예시입니다. 배정만 본 최적 {2,3}/{0,1}은 비용 행렬 기준 최대 22이지만 실제 점수는 29입니다. 경로까지 본 최적 {0,3}/{1,2}는 두 기사가 모두 23입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="838" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">같은 4명, 두 가지 배정</text>
+<text x="28" y="91" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">선: 파랑=기사 0, 초록=기사 1 · 점선=빈 차 · 실선=탑승</text>
+<rect x="20" y="112" width="680" height="344" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="145" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">배정만 본 최적</text>
+<text x="682" y="145" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">실제 점수 29</text>
+<rect x="48" y="166" width="264" height="264" fill="#f6f8fc" stroke="#d8e1ed"/>
+<polyline points="213.0,221.0 213.0,221.0 213.0,265.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213.0,265.0 103.0,265.0 103.0,309.0" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="103.0,309.0 191.0,309.0 191.0,199.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="191.0,199.0 103.0,199.0 103.0,353.0" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="103.0,375.0 169.0,375.0 169.0,419.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="169.0,419.0 147.0,419.0 147.0,331.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<polyline points="147.0,331.0 213.0,331.0 213.0,353.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213.0,353.0 301.0,353.0 301.0,331.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<circle cx="213.0" cy="353.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213.0" y="359.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="293.0" y="323.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="169.0" cy="419.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="169.0" y="425.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="139.0" y="323.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="213.0" cy="265.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213.0" y="271.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="95.0" y="301.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="191.0" cy="199.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="191.0" y="205.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="95.0" y="345.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<polygon points="213.0,207.0 227.0,233.0 199.0,233.0" fill="#2664ce"/>
+<text x="229.0" y="213.0" font-size="18" fill="#2664ce" font-weight="750" text-anchor="start">D0</text>
+<polygon points="103.0,361.0 117.0,387.0 89.0,387.0" fill="#1c7a4d"/>
+<text x="119.0" y="367.0" font-size="18" fill="#1c7a4d" font-weight="750" text-anchor="start">D1</text>
+<text x="340" y="192" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">배정만 본 최대 22</text>
+<text x="340" y="224" font-size="21" fill="#2664ce" font-weight="700" text-anchor="start">기사 0: 29 (2→3)</text>
+<text x="340" y="256" font-size="21" fill="#1c7a4d" font-weight="700" text-anchor="start">기사 1: 19 (1→0)</text>
+<text x="340" y="302" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">원 = 출발지(번호)</text>
+<text x="340" y="332" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">네모 = 도착지</text>
+<text x="340" y="362" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">삼각형 = 기사 처음 위치</text>
+<text x="340" y="412" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">실제 29 (최대)</text>
+<rect x="20" y="472" width="680" height="344" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="505" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">경로까지 본 최적</text>
+<text x="682" y="505" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">실제 점수 23</text>
+<rect x="48" y="526" width="264" height="264" fill="#f6f8fc" stroke="#d8e1ed"/>
+<polyline points="213.0,581.0 191.0,581.0 191.0,559.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="191.0,559.0 103.0,559.0 103.0,713.0" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="103.0,713.0 213.0,713.0 213.0,713.0" fill="none" stroke="#2664ce" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213.0,713.0 301.0,713.0 301.0,691.0" fill="none" stroke="#2664ce" stroke-width="4"/>
+<polyline points="103.0,735.0 169.0,735.0 169.0,779.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="169.0,779.0 147.0,779.0 147.0,691.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<polyline points="147.0,691.0 213.0,691.0 213.0,625.0" fill="none" stroke="#1c7a4d" stroke-width="3" stroke-dasharray="6 5"/>
+<polyline points="213.0,625.0 103.0,625.0 103.0,669.0" fill="none" stroke="#1c7a4d" stroke-width="4"/>
+<circle cx="213.0" cy="713.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213.0" y="719.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="293.0" y="683.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="169.0" cy="779.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="169.0" y="785.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="139.0" y="683.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="213.0" cy="625.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="213.0" y="631.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="95.0" y="661.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<circle cx="191.0" cy="559.0" r="11" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="191.0" y="565.0" font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="95.0" y="705.0" width="16" height="16" fill="#172b45" opacity="0.85"/>
+<polygon points="213.0,567.0 227.0,593.0 199.0,593.0" fill="#2664ce"/>
+<text x="229.0" y="573.0" font-size="18" fill="#2664ce" font-weight="750" text-anchor="start">D0</text>
+<polygon points="103.0,721.0 117.0,747.0 89.0,747.0" fill="#1c7a4d"/>
+<text x="119.0" y="727.0" font-size="18" fill="#1c7a4d" font-weight="750" text-anchor="start">D1</text>
+<text x="340" y="552" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">배정만 본 최대 27</text>
+<text x="340" y="584" font-size="21" fill="#2664ce" font-weight="700" text-anchor="start">기사 0: 23 (3→0)</text>
+<text x="340" y="616" font-size="21" fill="#1c7a4d" font-weight="700" text-anchor="start">기사 1: 23 (1→2)</text>
+<text x="340" y="662" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">원 = 출발지(번호)</text>
+<text x="340" y="692" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">네모 = 도착지</text>
+<text x="340" y="722" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">삼각형 = 기사 처음 위치</text>
+<text x="340" y="772" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">실제 23 (최대)</text>
+</svg>
