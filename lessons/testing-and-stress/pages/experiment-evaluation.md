@@ -45,6 +45,10 @@ rough 95% interval = mean +- 2 * stderr
 
 mean±2*stderr는 독립 표본이 충분하고 근사 정규성이 타당할 때의 근사 구간입니다. 적은 표본·heavy tail·반복 후보 선택에는 별도 분석이 필요합니다.
 
+[Paired 비교: 평균 차이와 근사 구간 쌓아 보기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=paired-compare)
+
+입력별 점수 차이를 하나씩 더하며 평균, 표준오차, mean±2·stderr 구간이 변하는 과정을 봅니다. 표본 수를 바꾸고 구간이 0을 포함하는 예제와 포함하지 않는 예제를 비교해 보세요.
+
 ## 평가 코드 골격
 
 아래 코드는 이미 얻은 score 차이 목록에서 평균과 표준오차를 계산하는 최소 골격입니다.

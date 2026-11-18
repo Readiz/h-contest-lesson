@@ -58,6 +58,10 @@ parent[3] = 3
 
 경로 압축은 답을 바꾸지 않습니다. 같은 집합 안에서 루트로 가는 길을 짧게 만드는 것뿐입니다.
 
+[Union-Find: 부모 배열과 경로 압축 비교하기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=union-find)
+
+union과 find를 순서대로 실행하며 부모 배열과 숲이 바뀌는 모습을 봅니다. 경로 압축이 없는 숲과 있는 숲을 나란히 놓아 같은 연산 뒤의 깊이를 비교할 수 있습니다.
+
 ## union: 대표끼리 합치기
 
 두 원소 `a`, `b`를 합칠 때는 반드시 먼저 대표를 찾아야 합니다.
