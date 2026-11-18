@@ -44,6 +44,7 @@ STAGES = {
     2: ("차분 탐욕", COMMON + ("ent-greedy", "ent-entry-greedy")),
     3: ("큰 이득부터", COMMON + ("ent-greedy", "ent-entry-threshold")),
     4: ("빈 칸 경로 재배치", COMMON + ("ent-greedy", "ent-relocate", "ent-entry-final")),
+    5: ("목표 배치 짝짓기", COMMON + ("ent-target", "ent-shift", "ent-fill", "ent-entry-shift")),
 }
 PASS_SCORE = 1917000
 HAND_POINTS = [(0, 0), (0, 4), (3, 0), (3, 4), (1, 2)]
@@ -61,8 +62,8 @@ def snippets() -> dict[str, str]:
     return found
 
 
-def assemble(stage: int, sn: dict[str, str], edits: list[tuple[str, str]] | None = None) -> str:
-    parts = [sn[n] for n in STAGES[stage][1]]
+def assemble(stage: int, sn: dict[str, str], edits: list[tuple[str, str]] | None = None, blocks: tuple[str, ...] | None = None) -> str:
+    parts = [sn[n] for n in (blocks or STAGES[stage][1])]
     for old, new in edits or []:
         for i, part in enumerate(parts):
             if re.search(old, part):
@@ -100,6 +101,7 @@ static bool rg[180][180];
 static int rH, rW;
 static long long rUsed, rLimit, rE0;
 static bool rIn;
+static int rLogN, rLog[64][3];          // successful moves of the current run (first 64), for the traced example
 static unsigned long long rs;
 static unsigned rnd() { rs = rs * 6364136223846793005ULL + 1442695040888963407ULL; return (unsigned)(rs >> 33); }
 
@@ -131,6 +133,8 @@ int moveParticle(int y, int x, int dir) {
     int ny = y + dy[dir], nx = x + dx[dir];
     if (ny < 0 || ny >= rH || nx < 0 || nx >= rW || rg[ny][nx]) return 0;
     rg[y][x] = false; rg[ny][nx] = true;
+    if (rLogN < 64) { rLog[rLogN][0] = y; rLog[rLogN][1] = x; rLog[rLogN][2] = dir; }
+    ++rLogN;
     return 1;
 }
 static long long refScore(long long e0, long long e) {
@@ -147,10 +151,16 @@ static int gTc;
 static void hook(long long s, long long e0, long long e, long long used, int refused, int mismatch) {
     printf("TC %d MIRROR %lld %lld %lld %lld %d %d\n", gTc, s, e0, e, used, refused, mismatch);
 }
+static void dumpGrid(const char* tag, int tc) {
+    printf("TC %d GRID %s %d %d\n", tc, tag, rH, rW);
+    for (int y = 0; y < rH; ++y) { for (int x = 0; x < rW; ++x) putchar(rg[y][x] ? '#' : '.'); putchar('\n'); }
+}
 static void runOne(int tc, int H, int W, int pm, unsigned long long seed) {
     load(H, W, pm, seed); gTc = tc; ent::hook = hook; rIn = true;
+    dumpGrid("I", tc);
     process();
     rIn = false;
+    dumpGrid("F", tc);
 #ifdef LOCAL_OPT
     if (ent::G.used < ent::G.limit)      // the greedy stopped because no legal single move lowers the entropy
         for (int i = 0; i < ent::G.n; ++i) for (int d = 0; d < 4; ++d)
@@ -211,6 +221,43 @@ int main(int argc, char** argv) {
             assert(ent::entropyAxis() == ent::entropyPairs());
         }
         printf("DELTA OK single=%lld relocate=%lld\n", checked, relocated);
+    } else if (mode == "shift") {
+#ifdef HAS_SHIFT
+        long long pairs = 0, moves = 0;
+        for (int t = 0; t < 40; ++t) {
+            int H = 5 + rnd() % 12, W = 5 + rnd() % 12;
+            load(H, W, 150 + rnd() % 650, 300 + t);
+            ent::init();
+            if (ent::G.n == 0 || ent::G.n == H * W) continue;
+            for (int i = 0; i < ent::G.n; ++i) ent::who[ent::G.py[i]][ent::G.px[i]] = i;
+            for (int k = 0; k < 60; ++k) {
+                int ay, ax, by, bx;
+                do { ay = rnd() % H; ax = rnd() % W; } while (!rg[ay][ax]);
+                do { by = rnd() % H; bx = rnd() % W; } while (rg[by][bx]);
+                static bool want[180][180];
+                memcpy(want, rg, sizeof rg);
+                want[ay][ax] = false; want[by][bx] = true;
+                long long used0 = rUsed;
+                rIn = true;
+                bool ok = ent::shiftAlong(ay, ax, by, bx);
+                rIn = false;
+                assert(ok && memcmp(want, rg, sizeof rg) == 0);                       // only a emptied and b filled
+                assert(rUsed - used0 == abs(ay - by) + abs(ax - bx));                  // exactly |a - b| moves
+                assert(ent::G.entropy == refEntropy() && ent::G.mismatch == 0 && ent::G.refused == 0);
+                for (int y = 0; y < H; ++y) for (int x = 0; x < W; ++x) assert(ent::G.occ[y][x] == rg[y][x]);
+                ++pairs; moves += rUsed - used0;
+            }
+        }
+        printf("SHIFT OK pairs=%lld moves=%lld\n", pairs, moves);
+        load(1, 4, 0, 1);                           // the lesson's trace: 1 0 1 0 -> 0 0 1 1
+        rg[0][0] = rg[0][2] = true; rLimit = 160; rUsed = 0; rLogN = 0;
+        ent::init();
+        for (int i = 0; i < ent::G.n; ++i) ent::who[ent::G.py[i]][ent::G.px[i]] = i;
+        bool ok = ent::shiftAlong(0, 0, 0, 3);
+        printf("SHIFT TRACE ok=%d moves=%d", ok, rLogN);
+        for (int i = 0; i < rLogN; ++i) printf(" %d,%d,%d", rLog[i][0], rLog[i][1], rLog[i][2]);
+        printf(" final=%d%d%d%d\n", rg[0][0], rg[0][1], rg[0][2], rg[0][3]);
+#endif
     } else if (mode == "hand") {
         load(4, 5, 0, 1);
         memset(rg, 0, sizeof rg);
@@ -237,7 +284,7 @@ int main(int argc, char** argv) {
 def build_ref(code: str, folder: Path, name: str, extra: list[str]) -> Path:
     src, exe = folder / f"{name}.cpp", folder / name
     src.write_text(code + "\n" + REF)
-    compile_to(exe, [src], extra + (["-DHAS_RELOC"] if "relocateDelta" in code else []))
+    compile_to(exe, [src], extra + (["-DHAS_RELOC"] if "relocateDelta" in code else []) + (["-DHAS_SHIFT"] if "shiftAlong" in code else []))
     return exe
 
 
@@ -261,6 +308,93 @@ FAILURES = {
 }
 
 
+FAILURES5 = {
+    "TC 사이에 개수가 남음": [(r"    for \(int r = 0; r < G\.H; \+\+r\) cntY\[r\] = 0;\n    for \(int c = 0; c < G\.W; \+\+c\) cntX\[c\] = 0;\n    for \(int i",
+                         "    for (int i")],
+}
+
+
+def hungarian(cost: list[list[int]]) -> int:
+    """Minimum assignment cost (e-maxx O(n^3) Hungarian method) for a square matrix."""
+    n, inf = len(cost), 10 ** 18
+    u, v, p, way = [0] * (n + 1), [0] * (n + 1), [0] * (n + 1), [0] * (n + 1)
+    for i in range(1, n + 1):
+        p[0], j0 = i, 0
+        minv, used = [inf] * (n + 1), [False] * (n + 1)
+        while True:
+            used[j0] = True
+            i0, delta, j1 = p[j0], inf, 0
+            for j in range(1, n + 1):
+                if not used[j]:
+                    cur = cost[i0 - 1][j - 1] - u[i0] - v[j]
+                    if cur < minv[j]:
+                        minv[j], way[j] = cur, j0
+                    if minv[j] < delta:
+                        delta, j1 = minv[j], j
+            for j in range(n + 1):
+                if used[j]:
+                    u[p[j]] += delta
+                    v[j] -= delta
+                else:
+                    minv[j] -= delta
+            j0 = j1
+            if p[j0] == 0:
+                break
+        while j0:
+            j1 = way[j0]
+            p[j0] = p[j1]
+            j0 = j1
+    return -v[0]
+
+
+def parse_grids(text: str) -> dict[tuple[int, str], list[tuple[int, int]]]:
+    lines, grids, i = text.splitlines(), {}, 0
+    while i < len(lines):
+        m = re.fullmatch(r"TC (\d+) GRID ([IF]) (\d+) (\d+)", lines[i])
+        if m:
+            h = int(m.group(3))
+            grids[(int(m.group(1)), m.group(2))] = [(y, x) for y, row in enumerate(lines[i + 1:i + 1 + h]) for x, ch in enumerate(row) if ch == "#"]
+            i += h
+        i += 1
+    return grids
+
+
+def pair_sum(pts: list[tuple[int, int]]) -> int:
+    return sum(abs(a[0] - b[0]) + abs(a[1] - b[1]) for i, a in enumerate(pts) for b in pts[i + 1:])
+
+
+def margin_bound(a: list[tuple[int, int]], b: list[tuple[int, int]], h: int, w: int) -> int:
+    """Each move crosses one row or column boundary, so |prefix count difference| summed over boundaries is a lower bound."""
+    total = 0
+    for axis, size in ((0, h), (1, w)):
+        for c in range(size):
+            total += abs(sum(p[axis] <= c for p in a) - sum(p[axis] <= c for p in b))
+    return total
+
+
+def check_plan(exe: Path) -> list[float]:
+    """Stage 5 on small instances, checked independently in Python: entropies, move lower bounds, self-consistent target."""
+    text = run(exe, "run", *SMALL)
+    out, grids, ratios = parse_ref(text), parse_grids(text), []
+    for k, spec in enumerate(SMALL, 1):
+        h, w = map(int, spec.split(":")[:2])
+        a, b = grids[(k, "I")], grids[(k, "F")]
+        m, e0, e, used, _, _ = out["mirror"][k]
+        assert len(a) == len(b) and (e0, e) == (pair_sum(a), pair_sum(b)), (k, e0, e)
+        lb = margin_bound(a, b, h, w)
+        emd = hungarian([[abs(p[0] - q[0]) + abs(p[1] - q[1]) for q in b] for p in a])
+        assert lb <= emd <= used, (k, lb, emd, used)               # no sequence of moves can beat the transport cost
+        # the final layout must be a self-consistent target: its n cells have the smallest F-keys of the layout itself
+        fy = [sum(abs(r - q[0]) for q in b) for r in range(h)]
+        fx = [sum(abs(c - q[1]) for q in b) for c in range(w)]
+        inside = {q for q in b}
+        worst_in = max(fy[q[0]] + fx[q[1]] for q in b)
+        best_out = min(fy[y] + fx[x] for y in range(h) for x in range(w) if (y, x) not in inside)
+        assert worst_in <= best_out, (k, worst_in, best_out)
+        ratios.append(used / emd)
+    return ratios
+
+
 def check_reference(sn: dict[str, str]) -> dict:
     extra: dict = {}
     with tempfile.TemporaryDirectory(prefix="lesson-entropy-") as tmp:
@@ -271,6 +405,8 @@ def check_reference(sn: dict[str, str]) -> dict:
             bad = {name: pool.submit(build_ref, assemble(4, sn, edits), folder, f"bad{k}", ["-O1"])
                    for k, (name, edits) in enumerate(FAILURES.items())}
             bad_san = pool.submit(build_ref, assemble(4, sn, FAILURES["int 누적"]), folder, "badsan", SAN)
+            bad5 = {name: pool.submit(build_ref, assemble(5, sn, edits), folder, f"bad5{k}", SAN)
+                    for k, (name, edits) in enumerate(FAILURES5.items())}
         for s in STAGES:     # the submission-style composition must also be warning free
             done = subprocess.run(["c++", "-std=c++17", "-Wall", "-Wextra", "-Werror", "-fsyntax-only", "-x", "c++", "-"],
                                   input=assemble(s, sn), text=True, capture_output=True)
@@ -291,6 +427,21 @@ def check_reference(sn: dict[str, str]) -> dict:
         out = run(stage4, "delta")
         assert out.strip() == "DELTA OK single=4861 relocate=3049", out
         print("OK:", out.strip(), "(single-step and relocation differences equal full recomputation)")
+        out = run(exes[5], "shift")
+        m = re.search(r"^SHIFT OK pairs=(\d+) moves=(\d+)$", out, re.M)
+        assert m and int(m.group(1)) >= 2000, out
+        assert "SHIFT TRACE ok=1 moves=3 0,2,1 0,0,1 0,1,1 final=0011" in out, out     # the lesson's 1 0 1 0 example
+        print(f"OK: shiftAlong on {m.group(1)} random pairs: only a emptied and b filled, exactly |a - b| moves ({m.group(2)} in all), "
+              "mirror == reference at every call; the 1 0 1 0 trace is 3 moves")
+        ratios = check_plan(exes[5])
+        print("OK: stage 5 on small instances: entropies == pair sums, margin bound <= optimal transport (Hungarian) <= moves used "
+              f"(moves / transport {min(ratios):.2f}~{max(ratios):.2f}), final layout is its own lowest-F-key set")
+        extra["plan_ratio_max"] = max(ratios)
+        for name, fut in bad5.items():     # state left over from the previous test case must be caught by the chained run
+            good = parse_ref(run(exes[5], "run", *CHAIN))["score"]
+            broken = parse_ref(run(fut.result(), "run", *CHAIN))["score"]
+            assert broken[1] != broken[4] or broken != good, name
+            print(f"OK: failure '{name}': chained TC no longer reproduces (correct {good[1]}/{good[4]}, broken {broken[1]}/{broken[4]})")
         out = run(big.result(), "big")
         m = re.fullmatch(r"BIG n=(\d+) mirror=(\d+) pairs=(\d+) ref=(\d+)\n?", out)
         assert m and m.group(2) == m.group(3) == m.group(4) and int(m.group(4)) > 2 ** 31, out
