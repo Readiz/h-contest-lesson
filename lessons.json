@@ -861,14 +861,14 @@
     },
     {
       "lessonId": "observe-and-act",
-      "title": "관측과 행동을 나누는 문제",
+      "title": "채점기 상태를 따라 그리며 행동하기",
       "description": "MINEEXPLORE를 따라 채점기 상태와 내가 기록한 관측, 추정을 구분하고 행동 호출을 한 곳으로 모아 기준선, 가까운 칸 정책, 평가식 정책을 만듭니다.",
       "summary": "채점기 상태·관측 기록·추정의 구분, TC 시작 초기화, BFS 목표 선택, 이동당 이득 평가식, 예측과 실제 점수 기록",
       "order": 27,
       "folderId": "heuristic-notes",
       "tags": [
         "heuristic",
-        "partial-observation",
+        "state-mirror",
         "simulation",
         "policy",
         "bfs",
