@@ -71,6 +71,12 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 `prefixSum`이 아래쪽으로 내려간다면, `add`는 위쪽으로 올라갑니다. `idx += lowbit(idx)`를 반복하면 현재 원소를 포함하는 더 큰 구간으로 이동합니다. `idx = 0`에서는 `lowbit(0) = 0`이라 루프가 끝나지 않으므로, `add`에는 1 이상의 인덱스만 넘깁니다.
 
+![n=16인 Fenwick Tree에서 각 tree[i]가 담당하는 구간을 막대로 그리면, add(5)는 5, 6, 8, 16 순서로 올라가며 a[5]를 포함하는 네 칸 tree[5], tree[6], tree[8], tree[16]을 모두 고칩니다.](lesson-assets/add-path.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/fenwick-tree/lesson-assets/add-path.svg)
+
+막대의 길이가 `lowbit(i)`이고 오른쪽 끝이 `i`입니다. 주황색 막대 네 개가 `a[5]`를 포함하는 칸 전부이며, `prefixSum(13)`이 내려가는 경로는 위의 그림에서 봅니다.
+
 ## 전체 구현
 
 아래 구현은 1-indexed Fenwick Tree입니다. `add`에는 `1..n`, `prefixSum`에는 `0..n`, `rangeSum`에는 `1 <= l <= r <= n`을 전달합니다. 원소별 `add`로 초기화하므로 빌드는 `O(n log n)`, 이후 갱신과 질의는 `O(log n)`입니다.

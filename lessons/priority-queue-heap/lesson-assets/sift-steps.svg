@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1068" role="img" aria-labelledby="title desc">
+<title id="title">힙: 넣을 때 올리고 뺄 때 내림</title><desc id="desc">max-heap 10,7,9,1,3,4에 11을 넣으면 끝에 놓인 11이 부모 9, 10과 차례로 교환되어 루트로 올라갑니다. 루트를 뺄 때는 마지막 값 9를 루트에 두고 더 큰 자식 10과 교환하면 원래 힙 10,7,9,1,3,4로 돌아옵니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="1066" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">힙: 넣을 때 올리고 뺄 때 내림</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">max-heap · 주황 = 지금 움직이는 값 · [ ] = 배열</text>
+<rect x="20" y="104" width="330" height="302" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="136" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">① 끝에 11 넣기</text>
+<line x1="185" y1="188" x2="105" y2="258" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="185" y1="188" x2="265" y2="258" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="105" y1="258" x2="65" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="105" y1="258" x2="145" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="265" y1="258" x2="225" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="265" y1="258" x2="305" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="185" cy="188" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="185" y="195" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">10</text>
+<circle cx="105" cy="258" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="105" y="265" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<circle cx="265" cy="258" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="265" y="265" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">9</text>
+<circle cx="65" cy="328" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="65" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="145" cy="328" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="145" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="225" cy="328" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="225" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<circle cx="305" cy="328" r="21" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="305" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">11</text>
+<text x="185" y="372" font-size="19" fill="#53657d" font-weight="600" text-anchor="middle">[10,7,9,1,3,4,11]</text>
+<text x="185" y="398" font-size="19" fill="#ae5515" font-weight="700" text-anchor="middle">11 &gt; 부모 9 → 올림</text>
+<rect x="370" y="104" width="330" height="302" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="386" y="136" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">② 9와 교환</text>
+<line x1="535" y1="188" x2="455" y2="258" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="535" y1="188" x2="615" y2="258" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="455" y1="258" x2="415" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="455" y1="258" x2="495" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="615" y1="258" x2="575" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="615" y1="258" x2="655" y2="328" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="535" cy="188" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="535" y="195" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">10</text>
+<circle cx="455" cy="258" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="455" y="265" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<circle cx="615" cy="258" r="21" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="615" y="265" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">11</text>
+<circle cx="415" cy="328" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="415" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="495" cy="328" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="495" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="575" cy="328" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="575" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<circle cx="655" cy="328" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="655" y="335" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">9</text>
+<text x="535" y="372" font-size="19" fill="#53657d" font-weight="600" text-anchor="middle">[10,7,11,1,3,4,9]</text>
+<text x="535" y="398" font-size="19" fill="#ae5515" font-weight="700" text-anchor="middle">11 &gt; 부모 10 → 올림</text>
+<rect x="20" y="422" width="330" height="302" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="454" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">③ 10과 교환</text>
+<line x1="185" y1="506" x2="105" y2="576" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="185" y1="506" x2="265" y2="576" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="105" y1="576" x2="65" y2="646" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="105" y1="576" x2="145" y2="646" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="265" y1="576" x2="225" y2="646" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="265" y1="576" x2="305" y2="646" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="185" cy="506" r="21" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="185" y="513" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">11</text>
+<circle cx="105" cy="576" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="105" y="583" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<circle cx="265" cy="576" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="265" y="583" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">10</text>
+<circle cx="65" cy="646" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="65" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="145" cy="646" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="145" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="225" cy="646" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="225" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<circle cx="305" cy="646" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="305" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">9</text>
+<text x="185" y="690" font-size="19" fill="#53657d" font-weight="600" text-anchor="middle">[11,7,10,1,3,4,9]</text>
+<text x="185" y="716" font-size="19" fill="#ae5515" font-weight="700" text-anchor="middle">루트에 도달 → 멈춤</text>
+<rect x="370" y="422" width="330" height="302" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="386" y="454" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">④ 루트 빼기: 9를 루트로</text>
+<line x1="535" y1="506" x2="455" y2="576" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="535" y1="506" x2="615" y2="576" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="455" y1="576" x2="415" y2="646" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="455" y1="576" x2="495" y2="646" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="615" y1="576" x2="575" y2="646" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="535" cy="506" r="21" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="535" y="513" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">9</text>
+<circle cx="455" cy="576" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="455" y="583" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<circle cx="615" cy="576" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="615" y="583" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">10</text>
+<circle cx="415" cy="646" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="415" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="495" cy="646" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="495" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="575" cy="646" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="575" y="653" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="535" y="690" font-size="19" fill="#53657d" font-weight="600" text-anchor="middle">[9,7,10,1,3,4]</text>
+<text x="535" y="716" font-size="19" fill="#ae5515" font-weight="700" text-anchor="middle">자식 7, 10 중 큰 10과 비교</text>
+<rect x="20" y="740" width="330" height="302" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="772" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">⑤ 10과 교환</text>
+<line x1="185" y1="824" x2="105" y2="894" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="185" y1="824" x2="265" y2="894" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="105" y1="894" x2="65" y2="964" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="105" y1="894" x2="145" y2="964" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="265" y1="894" x2="225" y2="964" stroke="#9fb0c6" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="185" cy="824" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="185" y="831" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">10</text>
+<circle cx="105" cy="894" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="105" y="901" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<circle cx="265" cy="894" r="21" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="265" y="901" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">9</text>
+<circle cx="65" cy="964" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="65" y="971" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="145" cy="964" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="145" y="971" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="225" cy="964" r="21" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="225" y="971" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="185" y="1008" font-size="19" fill="#53657d" font-weight="600" text-anchor="middle">[10,7,9,1,3,4]</text>
+<text x="185" y="1034" font-size="19" fill="#ae5515" font-weight="700" text-anchor="middle">자식 4 &lt; 9 → 멈춤</text>
+<rect x="370" y="740" width="330" height="302" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="386" y="774" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">읽는 법</text>
+<text x="386" y="814" font-size="19" fill="#2664ce" font-weight="700" text-anchor="start">①~③ push</text>
+<text x="386" y="842" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">끝에 넣고 부모보다</text>
+<text x="386" y="870" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">크면 교환하며 올림</text>
+<text x="386" y="898" font-size="19" fill="#2664ce" font-weight="700" text-anchor="start">④~⑤ pop</text>
+<text x="386" y="926" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">마지막 값을 루트에 두고</text>
+<text x="386" y="954" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">더 큰 자식과 교환하며</text>
+<text x="386" y="982" font-size="19" fill="#53657d" font-weight="400" text-anchor="start">내림</text>
+<text x="386" y="1010" font-size="19" fill="#ae5515" font-weight="700" text-anchor="start">둘 다 최대 높이만큼 O(log n)</text>
+</svg>

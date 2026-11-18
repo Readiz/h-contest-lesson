@@ -91,3 +91,9 @@ int compress(const vector<int>& values, int x) {
 ```
 
 **확인 방법:** 원본의 같음·대소 관계가 압축값에서도 유지되고 coords[rank[i]]가 a[i]로 복원되는지 확인합니다. 전부 같은 값, 감소 순서, 64비트 값을 검사합니다.
+
+![배열 -10,100,-10,7,100,8을 정렬하고 중복을 제거하면 -10,7,8,100이 되고, 각 원소를 이 배열에서의 위치로 바꾸면 0,3,0,1,3,2가 됩니다. 같은 값은 같은 색입니다.](lesson-assets/compress-steps.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/coordinate-compression/lesson-assets/compress-steps.svg)
+
+위 연습 예시를 단계별로 보인 그림입니다. 같은 원본 값은 같은 순위가 되고, 순위는 대소 관계만 보존할 뿐 값의 간격은 보존하지 않습니다.

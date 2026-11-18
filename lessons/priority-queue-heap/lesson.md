@@ -47,6 +47,12 @@ right(i) = 2 * i + 2
 
 배열로 작성한 전체 구현은 [공통 라이브러리의 최소 힙](https://h.readiz.com/learn/cpp-common-library)에 있습니다. 이 구현은 위 그림과 달리 1-index 배열을 써서 부모가 `i / 2`, 자식이 `2 * i`, `2 * i + 1`입니다. 삽입은 부모와 비교하며 올리고, 루트 삭제는 마지막 원소를 루트에 옮긴 뒤 두 자식 중 더 작은 쪽과 비교하며 내립니다. 같은 key는 ID 오름차순으로 처리합니다.
 
+![max-heap 10,7,9,1,3,4에 11을 넣으면 끝에 놓인 11이 부모 9, 10과 차례로 교환되어 루트로 올라가고, 루트를 뺄 때는 마지막 값 9를 루트에 두고 더 큰 자식 10과 교환해 원래 힙으로 돌아옵니다.](lesson-assets/sift-steps.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/priority-queue-heap/lesson-assets/sift-steps.svg)
+
+①~③이 삽입에서 위로 올리는 과정이고, ④~⑤가 루트 삭제에서 아래로 내리는 과정입니다. 두 과정 모두 최대 트리 높이만큼만 교환합니다.
+
 ## 상위 K개 유지
 
 `0 <= K <= 원소 수`에서 가장 큰 K개만 유지하려면 min-heap을 씁니다. heap 안에는 현재 선택된 K개가 들어 있고, 그중 가장 작은 값이 top입니다.
