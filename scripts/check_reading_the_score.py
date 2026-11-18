@@ -437,17 +437,16 @@ def check_reference(sn: dict[str, str]) -> dict:
         print("OK: stage 5 on small instances: entropies == pair sums, margin bound <= optimal transport (Hungarian) <= moves used "
               f"(moves / transport {min(ratios):.2f}~{max(ratios):.2f}), final layout is its own lowest-F-key set")
         extra["plan_ratio_max"] = max(ratios)
-        for name, fut in bad5.items():     # a stale particle table makes the mirror leave the real state: caught at the next call
-            # Whether one instance trips over the stale entry depends on the layout (and the first
-            # symptom on the platform), so several instances are tried and one detection is enough.
-            detected = 0
-            for instance in ("30:30:400:7", "30:30:400:3", "24:36:350:11", "40:40:700:5", "36:28:420:19", "50:50:1100:2"):
-                try:
-                    run(fut.result(), "run", instance)
-                except subprocess.CalledProcessError:
-                    detected += 1
-            assert detected, f"{name} must be detected"
-            print(f"OK: failure '{name}': the mirror entropy differs from the reference before the next call")
+        for name, fut in bad5.items():
+            # A stale particle table moves the wrong particle, but the mirror records that same move, so the
+            # entropy comparison still passes. The shift test catches it: after shiftAlong(a, b) only a may
+            # be emptied and only b filled. (Running a full TC fails only when the stale index is out of range.)
+            try:
+                run(fut.result(), "shift")
+                raise AssertionError(f"{name} must be detected")
+            except subprocess.CalledProcessError:
+                pass
+            print(f"OK: failure '{name}': shiftAlong no longer empties only a and fills only b")
         out = run(big.result(), "big")
         m = re.fullmatch(r"BIG n=(\d+) mirror=(\d+) pairs=(\d+) ref=(\d+)\n?", out)
         assert m and m.group(2) == m.group(3) == m.group(4) and int(m.group(4)) > 2 ** 31, out
@@ -881,14 +880,7 @@ def main() -> None:
                 assert sum(v[0] for v in r["mirror"].values()) == r["total"] and all((v[4] == 0 or s == 1) and v[5] == 0 for v in r["mirror"].values())
             for s in STAGES:
                 judge_run(src, assemble(s, sn), folder, "san", SAN, timeout=900)
-            for name, edits in FAILURES5.items():
-                try:
-                    judge_run(src, assemble(5, sn, edits), folder, "bad5", ["-O2"])
-                    raise AssertionError(f"{name} should abort on the public grader")
-                except subprocess.CalledProcessError:
-                    pass
-        print("OK: public grader re-run reproduces the stored scores, mirror == grader, ASan/UBSan clean, "
-              "the stale particle table aborts")
+        print("OK: public grader re-run reproduces the stored scores, mirror == grader, ASan/UBSan clean")
     check_svgs()
     check_tables(data)
 
