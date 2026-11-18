@@ -26,8 +26,8 @@ u --1--> w  거리 1 증가
 비용이 `1`이면 다음 거리 그룹이므로 뒤쪽에 넣습니다.
 
 ```text
-cost 0: push_front
-cost 1: push_back
+cost 0: pushFront
+cost 1: pushBack
 ```
 
 이렇게 하면 deque의 앞쪽에는 항상 현재까지 가장 작은 거리 후보가 옵니다.
@@ -40,37 +40,91 @@ cost 1: push_back
 
 ## 기본 구현
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)에는 deque 블록이 없어서 이 강의에 최소형을 둡니다. 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하며, 아래 두 블록을 이어서 사용합니다.
+
+그래프는 간선 번호로 연결하는 `head`/`next` 배열 인접 리스트입니다([BFS/DFS 강의](https://h.readiz.com/learn/bfs-dfs-grid)와 같은 형태에 `cost`를 더함). 상한은 이 강의 연습의 입력 상한인 정점 `MAX_V = 200000`, 간선 `MAX_E = 400000`이며 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 `Graph`와 deque는 전역으로 두고, TC마다 `graph.init(n)`을 호출합니다. deque는 `zeroOneBfs` 안에서 비웁니다.
+
+deque는 고리 배열로 만듭니다. 한 정점은 거리가 줄어들 때마다 들어가고, 아래 설명처럼 같은 정점이 최대 두 번까지만 들어가므로 동시에 들어 있는 항목은 `2 * MAX_V`개 이하입니다. 가득 차서 `pushFront`·`pushBack`이 실패하면 입력 전제(비용이 0 또는 1)가 깨진 것이므로 `false`를 반환합니다.
 
 ```cpp
-struct Edge {
-    int to;
-    int cost; // 0 or 1
+const int MAX_V = 200000; // 정점 수 상한
+const int MAX_E = 400000; // 방향 간선 수 상한
+const int INF = 1000000000;
+
+struct Graph {
+    int head[MAX_V];
+    int next[MAX_E];
+    int to[MAX_E];
+    int cost[MAX_E]; // 0 or 1
+    int edgeCount;
+
+    void init(int n) { // 전제: 0 <= n <= MAX_V
+        for (int i = 0; i < n; ++i) head[i] = -1;
+        edgeCount = 0;
+    }
+    bool addEdge(int u, int v, int c) { // 간선이 가득 차면 false
+        if (edgeCount == MAX_E) return false;
+        to[edgeCount] = v;
+        cost[edgeCount] = c;
+        next[edgeCount] = head[u];
+        head[u] = edgeCount++;
+        return true;
+    }
 };
 
-vector<int> zeroOneBfs(const vector<vector<Edge>>& graph, int start) {
-    const int INF = 1e9;
-    int n = (int)graph.size();
-    vector<int> dist(n, INF);
-    deque<int> dq;
+template<int CAP> struct Deque {
+    int data[CAP];
+    int first, count; // 앞 칸의 위치와 항목 수
+    void clear() { first = count = 0; }
+    bool pushBack(int value) {
+        if (count == CAP) return false;
+        data[(first + count) % CAP] = value;
+        ++count;
+        return true;
+    }
+    bool pushFront(int value) {
+        if (count == CAP) return false;
+        first = (first + CAP - 1) % CAP;
+        data[first] = value;
+        ++count;
+        return true;
+    }
+    bool popFront(int& value) {
+        if (count == 0) return false;
+        value = data[first];
+        first = (first + 1) % CAP;
+        --count;
+        return true;
+    }
+};
+```
+
+`dist[0..n)`은 함수가 채우며, 전제는 `0 <= start < n <= MAX_V`입니다. 범위를 벗어나면 `false`를 반환합니다.
+
+```cpp
+Deque<2 * MAX_V> dq;
+
+bool zeroOneBfs(const Graph& graph, int n, int start, int dist[]) {
+    if (n < 0 || n > MAX_V || start < 0 || start >= n) return false;
+    for (int i = 0; i < n; ++i) dist[i] = INF;
+    dq.clear();
 
     dist[start] = 0;
-    dq.push_back(start);
+    dq.pushBack(start);
 
-    while (!dq.empty()) {
-        int u = dq.front();
-        dq.pop_front();
-
-        for (const Edge& e : graph[u]) {
-            int nd = dist[u] + e.cost;
-            if (nd >= dist[e.to]) continue;
-            dist[e.to] = nd;
-            if (e.cost == 0) dq.push_front(e.to);
-            else dq.push_back(e.to);
+    int u;
+    while (dq.popFront(u)) {
+        for (int k = graph.head[u]; k != -1; k = graph.next[k]) {
+            int to = graph.to[k];
+            int cost = graph.cost[k];
+            int nd = dist[u] + cost;
+            if (nd >= dist[to]) continue;
+            dist[to] = nd;
+            if (!(cost == 0 ? dq.pushFront(to) : dq.pushBack(to))) return false;
         }
     }
 
-    return dist;
+    return true;
 }
 ```
 

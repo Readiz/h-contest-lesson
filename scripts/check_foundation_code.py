@@ -36,6 +36,10 @@ LESSONS = {
     "dijkstra": ["min-heap"],
     "union-find": ["array"],
     "prefix-sum-difference": [],
+    "binary-search": ["sort"],
+    "two-pointers-sliding-window": ["sort"],
+    "coordinate-compression": ["sort"],
+    "zero-one-bfs": [],
 }
 NO_LOCAL_EXERCISE = {"union-find"}  # this lesson has no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))

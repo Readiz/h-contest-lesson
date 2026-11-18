@@ -146,6 +146,8 @@ C++가 있는 본문은 첫 코드 앞에 적용 환경을 표시합니다. 일�
 
 제출 입문 → ORDERING → 검증 → SA 흐름은 STL·표준 헤더·동적 할당 없이 유지합니다. 정렬·그리디·힙까지 전환한 본문은 `scripts/check_submission_examples.py`에서 금지 의존성과 헤더 없는 조합 컴파일, 실제 입력의 기준 답을 검사합니다. 일반 C++ 참고 예제를 일부 바꾼 것만으로 전체 기본 트랙이 전환됐다고 표시하지 않습니다.
 
+기초 알고리즘 강의 중 `bfs-dfs-grid`, `dijkstra`, `union-find`, `prefix-sum-difference`, `binary-search`, `two-pointers-sliding-window`, `coordinate-compression`, `zero-one-bfs`는 STL 없는 제출용 코드로 전환했습니다. `scripts/check_foundation_code.py`가 이 강의들의 본문 `cpp` 블록을 추출해 필요한 공통 블록과 헤더 없이 컴파일하고, `scripts/foundation_code/<lessonId>.cpp` 하네스(표준 헤더는 여기서만 사용)로 독립 기준 구현과의 무작위 대조, 크기가 다른 TC의 연속 실행, 용량 경계·빈 입력, 로컬 연습 예시 입출력을 ASan/UBSan으로 검사합니다. 강의를 추가로 전환하면 `PROTECTED`, `LESSONS`, 하네스를 함께 추가합니다.
+
 ORDERING의 2-opt·난수·SA 블록 조합은 `python3 scripts/check_heuristic_search.py`로 검사합니다. 작은 지역 최적 반례, 모든 구간의 차분, 경계 입력, 최선해 보존과 재현성을 ASan/UBSan으로 확인합니다. 공개 채점기의 `main.cpp`를 보유한 경우 `--judge /path/to/main.cpp --output /tmp/ordering-bench.json`을 붙여 단계별 비용과 시간을 재현할 수 있습니다. 같은 후보 수와 같은 실행 시간은 서로 다른 비교 조건이므로 측정 기록에 구분해서 적습니다.
 
 본문의 조합·경계·차분 사례는 `scripts/review-example-cases.json`에 추가하고 `python3 scripts/check_review_examples.py`로 실행합니다. 수정한 Markdown에서 코드를 직접 추출하며, 작은 독립 풀이와의 비교나 구체적인 실패 입력으로 설명과 구현을 함께 확인합니다. C++ 실행 검증 스크립트는 `-fno-sanitize-recover=all`을 사용하여 sanitizer 오류가 경고만 남기고 성공으로 끝나지 않도록 합니다.

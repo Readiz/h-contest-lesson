@@ -24,13 +24,21 @@ a[l] + a[r] > target 이면 r을 왼쪽으로 이동
 
 정렬되어 있기 때문에 `l`을 오른쪽으로 옮기면 합은 커지고, `r`을 왼쪽으로 옮기면 합은 작아집니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `sort` 블록을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 호출자가 준비한 배열과 길이 `n`을 받습니다. 상한 `MAX_N = 200000`은 이 강의 연습의 입력 상한이며 실제 문제의 제한에 맞춰 바꿉니다. 전역 배열을 쓰는 함수(마지막 예제)는 호출할 때마다 사용할 `[0, n)`을 스스로 초기화하므로 TC마다 따로 비울 필요가 없습니다.
+
+`hasPairWithSum`은 정렬하려고 `a`를 **제자리에서 오름차순 정렬**합니다(호출자의 배열이 바뀝니다). `temp`는 `a`와 겹치지 않는 `n`칸 이상의 배열입니다.
 
 ```cpp
-bool hasPairWithSum(vector<int> a, int target) {
-    sort(a.begin(), a.end());
+const int MAX_N = 200000; // 배열 길이 상한
+
+bool intBefore(int a, int b) {
+    return a < b;
+}
+
+bool hasPairWithSum(int a[], int temp[], int n, int target) {
+    hc::stableSort(a, temp, n, intBefore);
     int l = 0;
-    int r = (int)a.size() - 1;
+    int r = n - 1;
     while (l < r) {
         long long sum = (long long)a[l] + a[r];
         if (sum == target) return true;
@@ -50,8 +58,7 @@ bool hasPairWithSum(vector<int> a, int target) {
 모든 값이 양수라면 오른쪽 끝을 늘릴수록 구간 합은 커지고, 왼쪽 끝을 줄일수록 구간 합은 작아집니다. 이 단조성 덕분에 합이 `target` 이상인 가장 짧은 연속 구간을 `O(n)`에 찾을 수 있습니다.
 
 ```cpp
-int minLengthAtLeastSum(const vector<int>& a, long long target) {
-    int n = (int)a.size();
+int minLengthAtLeastSum(const int a[], int n, long long target) {
     int answer = n + 1;
     int left = 0;
     long long sum = 0;
@@ -59,7 +66,7 @@ int minLengthAtLeastSum(const vector<int>& a, long long target) {
     for (int right = 0; right < n; right++) {
         sum += a[right];
         while (left <= right && sum >= target) {
-            answer = min(answer, right - left + 1);
+            if (right - left + 1 < answer) answer = right - left + 1;
             sum -= a[left];
             left++;
         }
@@ -75,27 +82,50 @@ int minLengthAtLeastSum(const vector<int>& a, long long target) {
 
 구간 안의 서로 다른 값 개수, 최대 빈도, 합의 상한처럼 "오른쪽을 늘리면 조건이 깨질 수 있고, 왼쪽을 줄이면 회복된다"는 형태도 자주 나옵니다.
 
+값의 범위가 크면 값 자체를 배열 인덱스로 쓸 수 없습니다. STL 해시 대신 [좌표 압축](https://h.readiz.com/learn/coordinate-compression)처럼 값을 정렬·중복 제거해 `0..m-1`번호로 바꾼 뒤, 번호별 등장 횟수를 배열로 셉니다. 서로 다른 값의 수는 `distinct`로 직접 유지합니다. 아래 함수는 호출할 때마다 `freq[0..m)`을 0으로 채우고, `n`이 `0..MAX_N` 밖이면 `-1`을 반환합니다. `rankOf`는 `sortedValues`에서 값의 위치를 이분 탐색으로 찾습니다.
+
 ```cpp
-int longestAtMostKDistinct(const vector<int>& a, int k) {
+int sortedValues[MAX_N], sortTemp[MAX_N], rankedA[MAX_N], freq[MAX_N];
+
+int rankOf(int m, int x) { // sortedValues[0..m)에서 x의 위치. 전제: x가 들어 있다.
+    int low = 0;
+    int high = m;
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (sortedValues[mid] < x) low = mid + 1;
+        else high = mid;
+    }
+    return low;
+}
+
+int longestAtMostKDistinct(const int a[], int n, int k) {
+    if (n < 0 || n > MAX_N) return -1; // 전역 작업 배열 상한
     if (k <= 0) return 0;
-    unordered_map<int, int> freq;
+    for (int i = 0; i < n; ++i) sortedValues[i] = a[i];
+    hc::stableSort(sortedValues, sortTemp, n, intBefore);
+    int m = 0;
+    for (int i = 0; i < n; ++i)
+        if (m == 0 || sortedValues[i] != sortedValues[m - 1]) sortedValues[m++] = sortedValues[i];
+    for (int i = 0; i < n; ++i) rankedA[i] = rankOf(m, a[i]);
+    for (int i = 0; i < m; ++i) freq[i] = 0;
+
+    int distinct = 0;
     int left = 0;
     int answer = 0;
 
-    for (int right = 0; right < (int)a.size(); right++) {
-        freq[a[right]]++;
-        while ((int)freq.size() > k) {
-            int value = a[left++];
-            if (--freq[value] == 0) freq.erase(value);
+    for (int right = 0; right < n; right++) {
+        if (freq[rankedA[right]]++ == 0) distinct++;
+        while (distinct > k) {
+            if (--freq[rankedA[left++]] == 0) distinct--;
         }
-        answer = max(answer, right - left + 1);
+        if (right - left + 1 > answer) answer = right - left + 1;
     }
 
     return answer;
 }
 ```
 
-해시 테이블 연산이 평균 `O(1)`이라는 전제에서 전체 평균 시간은 `O(n)`입니다.
+창을 움직이는 부분은 `O(n)`이고, 값을 번호로 바꾸는 정렬과 이분 탐색이 `O(n log n)`이므로 전체는 `O(n log n)`입니다.
 
 `while` 조건에는 "현재 창이 유효하지 않은 동안"을 넣습니다. 유효해진 뒤에 답을 갱신하면 창이 항상 문제 조건을 만족합니다.
 
