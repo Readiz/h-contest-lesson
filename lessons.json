@@ -1121,13 +1121,12 @@
       ],
       "level": "intermediate",
       "estimatedMinutes": 15,
-      "prerequisites": [
-        "testing-and-stress"
-      ],
+      "prerequisites": [],
       "nextLessons": [],
       "relatedLessons": [
         "proof-and-invariants",
-        "heuristic"
+        "heuristic",
+        "testing-and-stress"
       ],
       "pages": [],
       "lessonType": "overview",
