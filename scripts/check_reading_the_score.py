@@ -579,9 +579,25 @@ def patched_judge(judge: Path, folder: Path, hand: bool = False) -> Path:
              "static void logHook(long long s, long long e0, long long e, long long u, int r, int m) {\n"
              "    printf(\"TC %d MIRROR %lld %lld %lld %lld %d %d\\n\", gTcNow, s, e0, e, u, r, m); }")
         once("        process();", "        gTcNow = tc + 1; ent::hook = logHook;\n        process();")
+        # move lower bound from the grader's own grids (measurement only): sum over row/column boundaries of
+        # |particles before the boundary now - at the start|; one move crosses exactly one boundary
+        once("static int sPy[MAX_HW * MAX_HW], sPx[MAX_HW * MAX_HW];",
+             "static int sPy[MAX_HW * MAX_HW], sPx[MAX_HW * MAX_HW];\n"
+             "static long long sLbY0[MAX_HW], sLbX0[MAX_HW];\n"
+             "static void lbCount(long long* ry, long long* rx) {\n"
+             "    for (int i = 0; i < MAX_HW; i++) ry[i] = rx[i] = 0;\n"
+             "    for (int y = 0; y < sH; y++) for (int x = 0; x < sW; x++) if (sUniverse[y][x]) { ry[y]++; rx[x]++; }\n"
+             "    for (int i = 1; i < MAX_HW; i++) { ry[i] += ry[i - 1]; rx[i] += rx[i - 1]; }\n}\n"
+             "static long long lbNow() {\n"
+             "    long long ry[MAX_HW], rx[MAX_HW], s = 0; lbCount(ry, rx);\n"
+             "    for (int i = 0; i < MAX_HW; i++) { s += ry[i] > sLbY0[i] ? ry[i] - sLbY0[i] : sLbY0[i] - ry[i];\n"
+             "                                       s += rx[i] > sLbX0[i] ? rx[i] - sLbX0[i] : sLbX0[i] - rx[i]; }\n"
+             "    return s;\n}")
+        once("    sInitialEntropy = calc_entropy();\n}", "    sInitialEntropy = calc_entropy();\n    lbCount(sLbY0, sLbX0);\n}")
     once("        printf(\"TC %d SCORE: %lld\\n\", tc + 1, score);",
          "        printf(\"TC %d SCORE: %lld\\n\", tc + 1, score);\n"
-         "        printf(\"TC %d INFO %d %d %d %lld %lld %lld\\n\", tc + 1, sH, sW, sParticleCount, sInitialEntropy, sEntropy, sMoveCount);")
+         "        printf(\"TC %d INFO %d %d %d %lld %lld %lld\\n\", tc + 1, sH, sW, sParticleCount, sInitialEntropy, sEntropy, sMoveCount);"
+         + ("" if hand else "\n        printf(\"TC %d LB %lld\\n\", tc + 1, lbNow());"))
     if hand:
         start, stop = text.index("static void init()"), text.index("int getHeight()")
         text = text[:start] + (
@@ -601,9 +617,11 @@ def parse_judge(text: str) -> dict:
         r"^TC (\d+) MIRROR (-?\d+) (-?\d+) (-?\d+) (-?\d+) (\d+) (\d+)$", text, re.M)}
     info = {int(m[0]): tuple(map(int, m[1:])) for m in re.findall(
         r"^TC (\d+) INFO (\d+) (\d+) (\d+) (\d+) (\d+) (\d+)$", text, re.M)}
+    lb = {int(a): int(b) for a, b in re.findall(r"^TC (\d+) LB (\d+)$", text, re.M)}
+    ratio = [int(v) for v in re.findall(r"^RATIO (-?\d+)$", text, re.M)]
     total = re.search(r"^SCORE: (\d+)$", text, re.M)
     ms = re.search(r"^Result : (\d+) ms$", text, re.M)
-    return {"score": score, "mirror": mirror, "info": info,
+    return {"score": score, "mirror": mirror, "info": info, "lb": lb, "ratio": ratio,
             "total": int(total.group(1)) if total else sum(score.values()), "ms": int(ms.group(1)) if ms else None}
 
 
@@ -627,6 +645,7 @@ def row_from(label: str, r: dict) -> dict:
             "mirror_total": sum(m[0] for m in mirror), "refused_total": sum(m[4] for m in mirror),
             "mismatch_total": sum(m[5] for m in mirror),
             "entropy": [m[2] for m in mirror], "used": [m[3] for m in mirror],
+            "lb": [r["lb"][t] for t in tcs], "ratio": r["ratio"],
             "ms": r["ms"], "ms_runs": r["ms_runs"]}
 
 
@@ -644,19 +663,64 @@ def check_hand_judge(judge: Path, sn: dict[str, str]) -> None:
 
 
 SWEEPS = [("KEEP", ["4", "7"]), ("MINPER", ["1", "100", "300"])]
+ARR5 = STAGES[5][1][len(COMMON):]
+BASE5 = f"5단계 {STAGES[5][0]}"
+# edits that turn the stage 5 code into the variants of the on/off table (the lesson text keeps the plain code)
+RASTER_CODE = """    for (int s = 0, h = 0; h < nh; ++h) {          // pair by index order
+        while (!outside[s / G.W][s % G.W]) ++s;
+        outside[s / G.W][s % G.W] = false;
+        shiftAlong(s / G.W, s % G.W, holeY[h], holeX[h]);
+    }
+"""
+GATE_PRE = """double minRatio = 1e18;
+void fillHoles() {
+    int nh = 0;
+    long long eR = 0;
+    for (int pre = 0, r = 0; r + 1 < G.H; ++r) { pre += cntY[r]; eR += (long long)pre * (G.n - pre); }
+    for (int pre = 0, c = 0; c + 1 < G.W; ++c) { pre += cntX[c]; eR += (long long)pre * (G.n - pre); }
+    double mu = 0.01 * G.e0 / (2e6 * (1.0 - (double)eR / G.e0));      // score value of one move in entropy units
+"""
+GATE_SHIFT = """{ int d0 = absv(fy - hy) + absv(fx - hx);
+            double g = gy[fy] + gx[fx] - gy[hy] - gx[hx] + d0;        // entropy decrease of this pair
+            if (g / d0 < minRatio) minRatio = g / d0;
+            if (g >= mu * d0) shiftAlong(fy, fx, hy, hx); }"""
+RELOC_TAIL = """for (bool moved = true; moved && ent::G.used < ent::G.limit; ) {
+        moved = false;
+        for (int i = 0; i < ent::G.n; ++i)
+            if (ent::hasFreeNeighbor(i) && ent::relocate(i)) moved = true;
+    }
+    ent::finish();"""
+
+
+def ablations() -> list[tuple[str, int, tuple[str, ...] | None, list]]:
+    gate = [(r"void fillHoles\(\) \{\n    int nh = 0;\n", lambda m: GATE_PRE), (r"shiftAlong\(fy, fx, hy, hx\);", lambda m: GATE_SHIFT),
+            (r"void process\(\) \{\n    ent::init\(\);", lambda m: "#include <cstdio>\nvoid process() {\n    ent::init();\n    ent::minRatio = 1e18;"),
+            (r"ent::finish\(\);", lambda m: 'ent::finish();\n    printf("RATIO %lld\\n", (long long)ent::minRatio);')]
+    out = [(f"ROUNDS {k}", 5, None, with_const("ROUNDS", str(k))) for k in (1, 2, 3)]
+    out.append(("짝짓기를 번호 순서로", 5, None, [(r"(?s)    for \(int d = 1;.*?        nh = keep;\n    \}\n", lambda m: RASTER_CODE)]))
+    out.append(("3단계를 먼저 실행", 5, COMMON + ("ent-greedy",) + ARR5,
+                [(r"ent::init\(\);", lambda m: "ent::init();\n    ent::thresholdSweeps();")]))
+    out.append(("문턱 켬", 5, None, gate))
+    out.append(("5단계 뒤에 4단계 재배치", 5, COMMON + ("ent-relocate",) + ARR5,
+                [(r"int absv\(int v\) \{[^\n]*\}\nconst int ROUNDS", lambda m: "const int ROUNDS"), (r"ent::finish\(\);", lambda m: RELOC_TAIL)]))
+    for k in (1, 10):
+        out.append((f"4단계 TC별 문턱 ×{k}", 4, None,
+                    [(r"const long long MINPER = 10;", lambda m: "long long MINPER = 10;"),
+                     (r"ent::init\(\);", lambda m, k=k: f"ent::init();\n    ent::MINPER = (long long)({k} * 0.01 * ent::G.e0 / (2e6 * 0.43)) + 1;")]))
+    return out
 
 
 def measure(judge: Path, sn: dict[str, str]) -> dict:
     result = {"date": datetime.date.today().isoformat(), "platform": platform.platform(), "machine": platform.machine(),
               "compiler": subprocess.run(["c++", "--version"], capture_output=True, text=True).stdout.splitlines()[0],
               "flags": "-std=c++17 -O2", "judge_sha256": hashlib.sha256(judge.read_bytes()).hexdigest(),
-              "rows": [], "sweeps": [], "failures": [], "tcs": []}
+              "rows": [], "sweeps": [], "failures": [], "ablations": [], "tcs": []}
     with tempfile.TemporaryDirectory(prefix="lesson-entropy-judge-") as tmp:
         folder = Path(tmp)
         src = patched_judge(judge, folder)
 
-        def record(label: str, stage: int, edits=None, repeat=1, bucket="rows", timeout=400):
-            r = judge_run(src, assemble(stage, sn, edits), folder, "m", ["-O2"], repeat, timeout)
+        def record(label: str, stage: int, edits=None, repeat=1, bucket="rows", timeout=400, blocks=None):
+            r = judge_run(src, assemble(stage, sn, edits, blocks), folder, "m", ["-O2"], repeat, timeout)
             row = row_from(label, r)
             result[bucket].append(row)
             print(json.dumps({k: row[k] for k in ("label", "total", "mirror_total", "mismatch_total", "ms")}, ensure_ascii=False), flush=True)
@@ -672,9 +736,13 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
         record("MINPER 0", 4, with_const("MINPER", "0"), bucket="failures", timeout=600)
         for name in ("int 누적", "위쪽 차분 off-by-one"):    # the doubled pair sum never reaches the score
             record(name, 4, FAILURES[name], bucket="failures", timeout=600)
+        for name, edits in FAILURES5.items():
+            record(name, 5, edits, bucket="failures", timeout=600)
+        for label, stage, blocks, edits in ablations():
+            record(label, stage, edits, bucket="ablations", timeout=600, blocks=blocks)
         for s in STAGES:         # sanitizer pass on the public grader
             judge_run(src, assemble(s, sn), folder, "san", SAN, timeout=900)
-        result["sanitizer"] = "0~4단계가 공개 채점기에서 ASan+UBSan을 통과"
+        result["sanitizer"] = "0~5단계가 공개 채점기에서 ASan+UBSan을 통과"
         for t in result["tcs"]:
             t.update(tc_reference(t))
     return result
@@ -682,22 +750,27 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
 
 def table_lines(data: dict) -> dict[str, list[str]]:
     """The measured tables of the lesson, generated from the stored JSON (the lesson must contain them verbatim)."""
-    by = {r["label"]: r for r in data["rows"] + data["sweeps"] + data["failures"]}
+    by = {r["label"]: r for r in data["rows"] + data["sweeps"] + data["failures"] + data["ablations"]}
     limit_sum = sum(t["limit"] for t in data["tcs"])
-    out: dict[str, list[str]] = {k: [] for k in ("stage_rows", "tc_rows", "ref_rows", "sweep_rows", "fail_rows")}
+    out: dict[str, list[str]] = {k: [] for k in ("stage_rows", "tc_rows", "ref_rows", "sweep_rows", "fail_rows", "abl_rows")}
     for r in data["rows"]:
         out["stage_rows"].append(f"| {r['label']} | {r['total']} | {r['ms']} | {sum(r['used'])} / {limit_sum} |")
         out["tc_rows"].append(f"| {r['label']} | " + " | ".join(map(str, r["tcs"])) + " |")
-    r4 = by["4단계 빈 칸 경로 재배치"]
+    r4, r5 = by["4단계 빈 칸 경로 재배치"], by[BASE5]
     for i, t in enumerate(data["tcs"]):
         e = r4["entropy"][i]
         out["ref_rows"].append(f"| {t['tc']} | {t['H']} × {t['W']} | {t['n']} | {t['e0']} | {e} | {1 - e / t['e0']:.4f} "
-                               f"| {1 - t['disk'] / t['e0']:.4f} | {1 - t['lower'] / t['e0']:.4f} |")
+                               f"| {1 - t['disk'] / t['e0']:.4f} | {1 - t['lower'] / t['e0']:.4f} "
+                               f"| {1 - r5['entropy'][i] / t['e0']:.4f} | {r5['used'][i]} | {r5['lb'][i]} |")
     out["sweep_rows"].append(f"| 기본값 (MINPER 10, KEEP 6) | {r4['total']} | {r4['ms']} |")
     for label in ("MINPER 0", "MINPER 1", "MINPER 100", "MINPER 300", "KEEP 4", "KEEP 7"):
         out["sweep_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['ms']} |")
-    for label in ("int 누적", "위쪽 차분 off-by-one"):
+    for label in ("int 누적", "위쪽 차분 off-by-one", *FAILURES5):
         out["fail_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['mirror_total']} | {by[label]['ms']} |")
+    out["abl_rows"].append(f"| 5단계 전체 | {r5['total']} | {sum(r5['used'])} | {r5['ms']} | |")
+    for r in data["ablations"]:
+        d = paired(by, r["label"], BASE5)
+        out["abl_rows"].append(f"| {r['label']} | {r['total']} | {sum(r['used'])} | {r['ms']} | {d['mean']:.1f} ({d['err']:.1f}) |")
     return out
 
 
