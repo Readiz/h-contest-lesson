@@ -1017,6 +1017,44 @@
       ]
     },
     {
+      "lessonId": "large-input-search",
+      "title": "입력이 클 때: 공간 칸으로 후보를 줄이고 시간 예산 나누기",
+      "description": "COUPANG1의 상한(배송 100만 건)에서 연산 수를 먼저 계산하고, 좌표 칸과 링 확장으로 가까운 후보만 훑는 자료구조, 삭제와 메모리, 손계산·실패 사례, 칸 크기와 탐색 정확도에 따른 점수·시간 맞교환을 실제 채점기로 측정합니다.",
+      "summary": "입력 상한으로 연산 수 예산표를 만들고, 공간 칸(버킷)과 지우기, 센터 선택·운행 단위 풀이, 칸 크기·근사 탐색·개선 횟수의 점수와 시간을 COUPANG1 한 문제로 연결",
+      "order": 31,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "large-input",
+        "spatial-bucket",
+        "budget",
+        "complexity",
+        "incremental-evaluation",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "heuristic",
+        "complexity-input-size"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "sqrt-decomposition",
+        "testing-and-stress",
+        "cpp-common-library",
+        "placement-search"
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "selection"
+      ]
+    },
+    {
       "lessonId": "bellman-ford-negative-cycle",
       "title": "Bellman-Ford와 음수 사이클",
       "description": "음수 간선이 있는 그래프에서 최단거리를 계산하고, 시작점에서 도달 가능한 음수 사이클을 판정하는 Bellman-Ford 알고리즘을 익힙니다.",
@@ -1360,44 +1398,6 @@
       "audience": "advanced-contest",
       "difficultyAxes": [
         "implementation"
-      ]
-    },
-    {
-      "lessonId": "large-input-search",
-      "title": "입력이 클 때: 공간 칸으로 후보를 줄이고 시간 예산 나누기",
-      "description": "COUPANG1의 상한(배송 100만 건)에서 연산 수를 먼저 계산하고, 좌표 칸과 링 확장으로 가까운 후보만 훑는 자료구조, 삭제와 메모리, 손계산·실패 사례, 칸 크기와 탐색 정확도에 따른 점수·시간 맞교환을 실제 채점기로 측정합니다.",
-      "summary": "입력 상한으로 연산 수 예산표를 만들고, 공간 칸(버킷)과 지우기, 센터 선택·운행 단위 풀이, 칸 크기·근사 탐색·개선 횟수의 점수와 시간을 COUPANG1 한 문제로 연결",
-      "order": 31,
-      "folderId": "heuristic-notes",
-      "tags": [
-        "heuristic",
-        "large-input",
-        "spatial-bucket",
-        "budget",
-        "complexity",
-        "incremental-evaluation",
-        "practice"
-      ],
-      "level": "intermediate",
-      "estimatedMinutes": 75,
-      "prerequisites": [
-        "heuristic",
-        "complexity-input-size"
-      ],
-      "nextLessons": [],
-      "relatedLessons": [
-        "sqrt-decomposition",
-        "testing-and-stress",
-        "cpp-common-library",
-        "placement-search"
-      ],
-      "lessonType": "core",
-      "practiceStatus": "linked",
-      "implementationStatus": "full",
-      "audience": "contest-core",
-      "difficultyAxes": [
-        "implementation",
-        "selection"
       ]
     }
   ]

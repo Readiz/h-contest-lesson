@@ -55,8 +55,8 @@ PROBE_CHECK = ("                    if (stock[c][it[j].prod] == 0) continue;\n",
 # Hand example: a 16 x 16 map cut into 4 x 4 cells, one center at (5, 5) holding A x1 and B x2 (no C).
 HAND_CENTER = (5, 5)
 HAND_STOCK = {"A": 1, "B": 2}
-HAND_ITEMS = [(5, 6, "C"), (7, 7, "A"), (5, 8, "B"), (1, 1, "A"), (10, 10, "B"), (11, 2, "A"),
-              (2, 5, "C"), (9, 5, "B"), (0, 8, "B"), (14, 13, "A"), (13, 14, "B"), (3, 14, "B")]
+HAND_ITEMS = [(4, 6, "C"), (7, 7, "A"), (5, 8, "B"), (1, 1, "A"), (10, 10, "B"), (11, 2, "A"),
+              (2, 5, "C"), (9, 5, "B"), (0, 8, "B"), (14, 9, "A"), (13, 14, "B"), (3, 14, "B")]
 HAND_SIDE, HAND_CELL = 16, 4
 
 HARNESS = r'''
@@ -331,8 +331,8 @@ static void handExample() {
     in.n = 1; in.m = 3; in.k = 0;
     in.cpos.push_back(Coordinates(5, 5));
     in.cprod.push_back({Product(0, 1), Product(1, 2)});  // product 0 = A (1 piece), product 1 = B (2 pieces), product 2 = C (none)
-    const int pts[12][3] = {{5, 6, 2}, {7, 7, 0}, {5, 8, 1}, {1, 1, 0}, {10, 10, 1}, {11, 2, 0},
-                            {2, 5, 2}, {9, 5, 1}, {0, 8, 1}, {14, 13, 0}, {13, 14, 1}, {3, 14, 1}};
+    const int pts[12][3] = {{4, 6, 2}, {7, 7, 0}, {5, 8, 1}, {1, 1, 0}, {10, 10, 1}, {11, 2, 0},
+                            {2, 5, 2}, {9, 5, 1}, {0, 8, 1}, {14, 9, 0}, {13, 14, 1}, {3, 14, 1}};
     for (auto& p : pts) { in.dpos.push_back(Coordinates(p[0], p[1])); in.dprod.push_back(p[2]); ++in.k; }
     in.truck = Coordinates(5, 5);
     loadLesson(in);
