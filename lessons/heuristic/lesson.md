@@ -20,3 +20,4 @@
 8. [배정과 경로가 결합된 문제](https://h.readiz.com/learn/assignment-with-routes): TAXIASSIGN에서 담당자와 삽입 위치를 함께 고르는 이웃과 최대 이동 거리의 차분.
 9. [격자 배치 문제](https://h.readiz.com/learn/placement-search): LANDINGX에서 탐욕, 국소 이동, destroy/repair를 같은 후보 검사 수로 비교.
 10. [특수한 점수식 읽기](https://h.readiz.com/learn/reading-the-score): ENTROPY2D에서 채점식을 내 코드로 재현해 대조하고, 축별 분리에서 O(1) 차분식을 만들어 풀이로 옮김.
+11. [입력이 클 때](https://h.readiz.com/learn/large-input-search): COUPANG1에서 연산 수 예산을 먼저 계산하고, 좌표 칸으로 후보를 줄여 남은 시간을 배분.

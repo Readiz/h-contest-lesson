@@ -1017,6 +1017,44 @@
       ]
     },
     {
+      "lessonId": "large-input-search",
+      "title": "입력이 클 때: 공간 칸으로 후보를 줄이고 시간 예산 나누기",
+      "description": "COUPANG1의 상한(배송 100만 건)에서 연산 수를 먼저 계산하고, 좌표 칸과 링 확장으로 가까운 후보만 훑는 자료구조, 삭제와 메모리, 손계산·실패 사례, 칸 크기와 탐색 정확도에 따른 점수·시간 맞교환을 실제 채점기로 측정합니다.",
+      "summary": "입력 상한으로 연산 수 예산표를 만들고, 공간 칸(버킷)과 지우기, 센터 선택·운행 단위 풀이, 칸 크기·근사 탐색·개선 횟수의 점수와 시간을 COUPANG1 한 문제로 연결",
+      "order": 31,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "large-input",
+        "spatial-bucket",
+        "budget",
+        "complexity",
+        "incremental-evaluation",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "heuristic",
+        "complexity-input-size"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "sqrt-decomposition",
+        "testing-and-stress",
+        "cpp-common-library",
+        "placement-search"
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "selection"
+      ]
+    },
+    {
       "lessonId": "reading-the-score",
       "title": "특수한 점수식 읽기: 채점식을 손으로 재현하고 성질을 풀이로 옮기기",
       "description": "ENTROPY2D의 공개 채점 규칙을 내 코드로 옮겨 손계산·내 점수·채점기 점수를 맞추고, 거리 합이 열·행 경계로 갈라지는 성질에서 이동 한 번의 O(1) 차분식을 만들어 탐욕과 빈 칸 경로 재배치로 키웁니다. 쌍을 두 번 세기, int 누적, 차분 off-by-one 실패도 재현합니다.",
