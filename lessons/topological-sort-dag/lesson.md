@@ -52,6 +52,12 @@ indegree[v] = v로 들어오는 간선 수 (중복 간선도 각각 센다)
 4. 새로 indegree가 0이 된 정점을 큐에 넣는다.
 ```
 
+![간선 0→2, 1→2, 1→3, 2→4에서 큐 [0,1]로 시작해 정점을 꺼낼 때마다 진입 차수가 줄고, 0이 되는 순간 2, 3, 4가 차례로 큐에 들어가 순서 0 1 2 3 4가 만들어집니다.](lesson-assets/kahn-trace.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/topological-sort-dag/lesson-assets/kahn-trace.svg)
+
+로컬 연습의 예시 그래프입니다. 정점 2는 0을 꺼낸 뒤에도 진입 차수가 1이라 큐에 들어가지 못하고, 1까지 꺼낸 뒤에야 0이 됩니다.
+
 ## Kahn 알고리즘
 
 아래는 0-indexed 정점 `0`부터 `n - 1`까지를 다루는 구현입니다.

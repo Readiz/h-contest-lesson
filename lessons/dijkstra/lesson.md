@@ -59,6 +59,12 @@ Dijkstra의 핵심 선택은 단순합니다.
 
 `2`번 정점의 처음 거리는 `0 -> 2`로 가는 `5`였습니다. 하지만 `1`을 확정한 뒤 `0 -> 1 -> 2` 경로를 발견하면서 `3`으로 줄어듭니다.
 
+![그래프 0→1(2), 0→2(5), 1→2(1), 1→3(4), 2→3(2)에서 확정 정점이 늘 때마다 dist가 [0,2,5,INF], [0,2,3,6], [0,2,3,5], [0,2,3,5]로 바뀝니다. 2번 정점은 1을 확정할 때 5에서 3으로, 3번 정점은 2를 확정할 때 6에서 5로 줄어듭니다.](lesson-assets/relax-steps.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/dijkstra/lesson-assets/relax-steps.svg)
+
+초록 원이 확정된 정점이고, 주황색 상자가 그 단계에서 갱신된 dist입니다. 주황 화살표는 그 단계에서 확정 정점이 완화한 간선입니다.
+
 ## 우선순위 큐 구현
 
 [Dijkstra: 거리 갱신과 낡은 후보 건너뛰기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=dijkstra)
