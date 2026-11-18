@@ -151,6 +151,11 @@ static void runOne(int tc, int H, int W, int pm, unsigned long long seed) {
     load(H, W, pm, seed); gTc = tc; ent::hook = hook; rIn = true;
     process();
     rIn = false;
+#ifdef LOCAL_OPT
+    if (ent::G.used < ent::G.limit)      // the greedy stopped because no legal single move lowers the entropy
+        for (int i = 0; i < ent::G.n; ++i) for (int d = 0; d < 4; ++d)
+            assert(!(ent::canMove(ent::G.py[i], ent::G.px[i], d) && ent::delta(ent::G.py[i], ent::G.px[i], d) < 0));
+#endif
     long long e = refEntropy();
     printf("TC %d SCORE %lld\n", tc, refScore(rE0, e));
     printf("TC %d REF %lld %lld %lld\n", tc, rE0, e, rUsed);
@@ -261,11 +266,15 @@ def check_reference(sn: dict[str, str]) -> dict:
     with tempfile.TemporaryDirectory(prefix="lesson-entropy-") as tmp:
         folder = Path(tmp)
         with concurrent.futures.ThreadPoolExecutor() as pool:
-            exes = list(pool.map(lambda s: build_ref(assemble(s, sn), folder, f"stage{s}", SAN), STAGES))
+            exes = list(pool.map(lambda s: build_ref(assemble(s, sn), folder, f"stage{s}", SAN + (["-DLOCAL_OPT"] if s in (2, 3) else [])), STAGES))
             big = pool.submit(build_ref, assemble(0, sn), folder, "big", ["-O2"])
             bad = {name: pool.submit(build_ref, assemble(4, sn, edits), folder, f"bad{k}", ["-O1"])
                    for k, (name, edits) in enumerate(FAILURES.items())}
             bad_san = pool.submit(build_ref, assemble(4, sn, FAILURES["int 누적"]), folder, "badsan", SAN)
+        for s in STAGES:     # the submission-style composition must also be warning free
+            done = subprocess.run(["c++", "-std=c++17", "-Wall", "-Wextra", "-Werror", "-fsyntax-only", "-x", "c++", "-"],
+                                  input=assemble(s, sn), text=True, capture_output=True)
+            assert done.returncode == 0, done.stderr[:500]
         for s, exe in zip(STAGES, exes):
             out = parse_ref(run(exe, "run", *SMALL))
             assert len(out["score"]) == len(SMALL)
@@ -275,11 +284,12 @@ def check_reference(sn: dict[str, str]) -> dict:
                 assert (m, e0, e, used) == (real, r_e0, r_e, r_used) and (refused == 0 or s == 1) and mismatch == 0, (s, tc, out["mirror"][tc], real)
             chain = parse_ref(run(exe, "run", *CHAIN))["score"]
             assert chain[1] == chain[4], (s, chain)
-            print(f"OK: stage {s} ({STAGES[s][0]}): mirror == reference grader on {len(SMALL)} instances, "
+            print(f"OK: stage {s} ({STAGES[s][0]}): mirror == reference grader on {len(SMALL)} instances"
+                  f"{', no legal single move lowers the entropy at the end' if s in (2, 3) else ''}, "
                   f"mismatch 0 (refused {'only in the pushing stage' if s == 1 else 0}), chained TC reproduces ({chain[1]})")
         stage4 = exes[4]
         out = run(stage4, "delta")
-        assert out.startswith("DELTA OK"), out
+        assert out.strip() == "DELTA OK single=4861 relocate=3049", out
         print("OK:", out.strip(), "(single-step and relocation differences equal full recomputation)")
         out = run(big.result(), "big")
         m = re.fullmatch(r"BIG n=(\d+) mirror=(\d+) pairs=(\d+) ref=(\d+)\n?", out)
@@ -336,6 +346,8 @@ def check_hand(sn: dict[str, str]) -> dict:
     pts[2] = (2, 0)
     assert pairs(pts) == 38
     ratio = (42 - 38) / 42
+    doubled = ((2 * 42 - 2 * 38) / (2 * 42))
+    assert doubled == ratio or abs(doubled - ratio) < 1e-15    # doubling E0 and E leaves the ratio, hence the score
     assert int(1e6 * ratio * ratio) == 9070 and (800 - 3) // 100 == 7 and round((800 - 3) / 100) == 8
     # per-step differences quoted in the lesson
     n = 5
@@ -408,13 +420,14 @@ def patched_judge(judge: Path, folder: Path, hand: bool = False) -> Path:
         assert text.count(old) == 1, old
         text = text.replace(old, new)
 
-    once("static long long sInitialEntropy, sEntropy, sTotalScore;",
-         "static long long sInitialEntropy, sEntropy, sTotalScore;\n"
-         "namespace ent { extern void (*hook)(long long, long long, long long, long long, int, int); }\n"
-         "static int gTcNow;\n"
-         "static void logHook(long long s, long long e0, long long e, long long u, int r, int m) {\n"
-         "    printf(\"TC %d MIRROR %lld %lld %lld %lld %d %d\\n\", gTcNow, s, e0, e, u, r, m); }")
-    once("        process();", "        gTcNow = tc + 1; ent::hook = logHook;\n        process();")
+    if not hand:     # the hand run uses a three-call process() without the mirror
+        once("static long long sInitialEntropy, sEntropy, sTotalScore;",
+             "static long long sInitialEntropy, sEntropy, sTotalScore;\n"
+             "namespace ent { extern void (*hook)(long long, long long, long long, long long, int, int); }\n"
+             "static int gTcNow;\n"
+             "static void logHook(long long s, long long e0, long long e, long long u, int r, int m) {\n"
+             "    printf(\"TC %d MIRROR %lld %lld %lld %lld %d %d\\n\", gTcNow, s, e0, e, u, r, m); }")
+        once("        process();", "        gTcNow = tc + 1; ent::hook = logHook;\n        process();")
     once("        printf(\"TC %d SCORE: %lld\\n\", tc + 1, score);",
          "        printf(\"TC %d SCORE: %lld\\n\", tc + 1, score);\n"
          "        printf(\"TC %d INFO %d %d %d %lld %lld %lld\\n\", tc + 1, sH, sW, sParticleCount, sInitialEntropy, sEntropy, sMoveCount);")
@@ -479,7 +492,7 @@ def check_hand_judge(judge: Path, sn: dict[str, str]) -> None:
     print("OK: the public grader on the 4x5 hand layout gives 9077 (hand value, myScore, grader all equal)")
 
 
-SWEEPS = [("ORDER", ["0", "1", "2"]), ("MINPER", ["1", "10", "100", "300"])]
+SWEEPS = [("KEEP", ["4", "7"]), ("MINPER", ["1", "100", "300"])]
 
 
 def measure(judge: Path, sn: dict[str, str]) -> dict:
@@ -502,12 +515,9 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
             if s == 0:
                 result["tcs"] = [{"tc": t, "H": r["info"][t][0], "W": r["info"][t][1], "n": r["info"][t][2],
                                   "e0": r["info"][t][3], "limit": r["info"][t][0] * r["info"][t][1] * 40} for t in sorted(r["info"])]
-        record("ORDER 1 (4단계 기본)", 4, with_const("ORDER", "1"))
         for name, values in SWEEPS:
             for v in values:
-                if name == "ORDER" and v == "1":
-                    continue
-                record(f"{name} {v}", 4, with_const(name, v))
+                record(f"{name} {v}", 4, with_const(name, v), bucket="sweeps")
         record("MINPER 0", 4, with_const("MINPER", "0"), bucket="failures", timeout=600)
         for name in ("int 누적", "위쪽 차분 off-by-one"):    # the doubled pair sum never reaches the score
             record(name, 4, FAILURES[name], bucket="failures", timeout=600)
@@ -519,32 +529,74 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
     return result
 
 
+def table_lines(data: dict) -> dict[str, list[str]]:
+    """The measured tables of the lesson, generated from the stored JSON (the lesson must contain them verbatim)."""
+    by = {r["label"]: r for r in data["rows"] + data["sweeps"] + data["failures"]}
+    limit_sum = sum(t["limit"] for t in data["tcs"])
+    out: dict[str, list[str]] = {k: [] for k in ("stage_rows", "tc_rows", "ref_rows", "sweep_rows", "fail_rows")}
+    for r in data["rows"]:
+        out["stage_rows"].append(f"| {r['label']} | {r['total']} | {r['ms']} | {sum(r['used'])} / {limit_sum} |")
+        out["tc_rows"].append(f"| {r['label']} | " + " | ".join(map(str, r["tcs"])) + " |")
+    r4 = by["4단계 빈 칸 경로 재배치"]
+    for i, t in enumerate(data["tcs"]):
+        e = r4["entropy"][i]
+        out["ref_rows"].append(f"| {t['tc']} | {t['H']} × {t['W']} | {t['n']} | {t['e0']} | {e} | {1 - e / t['e0']:.4f} "
+                               f"| {1 - t['disk'] / t['e0']:.4f} | {1 - t['lower'] / t['e0']:.4f} |")
+    out["sweep_rows"].append(f"| 기본값 (MINPER 10, KEEP 6) | {r4['total']} | {r4['ms']} |")
+    for label in ("MINPER 0", "MINPER 1", "MINPER 100", "MINPER 300", "KEEP 4", "KEEP 7"):
+        out["sweep_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['ms']} |")
+    for label in ("int 누적", "위쪽 차분 off-by-one"):
+        out["fail_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['mirror_total']} | {by[label]['ms']} |")
+    return out
+
+
+def paired(by: dict, a: str, b: str) -> dict:
+    diff = [x - y for x, y in zip(by[a]["tcs"], by[b]["tcs"])]
+    mean, err = statistics.mean(diff), statistics.stdev(diff) / len(diff) ** 0.5
+    return {"mean": mean, "err": err, "lo": mean - 2 * err, "hi": mean + 2 * err, "wins": sum(d > 0 for d in diff)}
+
+
 def check_tables(data: dict) -> None:
     text = LESSON.read_text()
-    table = [[c.strip() for c in line.strip().strip("|").split("|")] for line in text.splitlines() if line.startswith("|")]
-    def present(label: str, *needles: object) -> None:
-        for cells in table:
-            if cells and cells[0] == label and all(str(n) in cells for n in needles):
-                return
-        raise AssertionError(f"lesson table row missing or stale: {label} {needles}")
-    for bucket in ("rows", "sweeps", "failures"):
-        for row in data[bucket]:
-            if not row.get("crashed"):
-                present(row["label"], row["total"])
+    lines = set(text.splitlines())
+    for name, expected in table_lines(data).items():
+        for line in expected:
+            assert line in lines, f"lesson table line missing or stale ({name}): {line}"
+    by = {r["label"]: r for r in data["rows"] + data["sweeps"] + data["failures"]}
     for row in data["rows"]:
-        assert row["mirror_total"] == row["total"] and row["mismatch_total"] == 0 and row["refused_total"] == 0, row["label"]
-        present(row["label"], *row["tcs"])
+        assert row["mirror_total"] == row["total"] and row["mismatch_total"] == 0 and (row["refused_total"] == 0 or row["label"].startswith("1단계")), row["label"]
     for t in data["tcs"]:
-        ref = tc_reference(t)
-        assert ref == {"lower": t["lower"], "disk": t["disk"]}, t["tc"]
-        assert t["disk"] is None or t["disk"] >= t["lower"], t["tc"]
-    stage4 = next(r for r in data["rows"] if r["label"].startswith("4단계"))
-    assert stage4["total"] < PASS_SCORE
-    disk = [t["disk"] for t in data["tcs"]]
-    notes = [str(data["date"]), str(PASS_SCORE)]
-    for n in notes:
-        assert n in text, f"missing in lesson: {n}"
-    print(f"OK: lesson tables match {DATA.name} ({sum(len(data[b]) for b in ('rows', 'sweeps', 'failures'))} rows, {len(disk)} references)")
+        assert tc_reference(t) == {"lower": t["lower"], "disk": t["disk"]}, t["tc"]
+        assert t["disk"] >= t["lower"], t["tc"]
+    r2, r3, r4 = (by[k] for k in ("2단계 차분 탐욕", "3단계 큰 이득부터", "4단계 빈 칸 경로 재배치"))
+    base = "4단계 빈 칸 경로 재배치"
+    assert r4["total"] < PASS_SCORE
+    limit_sum = sum(t["limit"] for t in data["tcs"])
+    assert round(100 * sum(r2["used"]) / limit_sum) == round(100 * sum(r3["used"]) / limit_sum) == 26
+    assert sum(t["e0"] > 2 ** 31 - 1 for t in data["tcs"]) == 4 and all(t["e0"] > 2 ** 31 - 1 for t in data["tcs"] if t["tc"] in (4, 5, 9, 10))
+    ratio = [1 - e / t["e0"] for e, t in zip(r4["entropy"], data["tcs"])]
+    thr = [0.01 * t["e0"] / (2e6 * r) for r, t in zip(ratio, data["tcs"])]
+    q = [r4["entropy"][i] / t["disk"] for i, t in enumerate(data["tcs"])]
+    low = [1 - t["lower"] / t["e0"] for t in data["tcs"]]
+    sweeps = [paired(by, a, b) for a, b in (("3단계 큰 이득부터", "2단계 차분 탐욕"), ("4단계 빈 칸 경로 재배치", "3단계 큰 이득부터"))]
+    cmp = {k: paired(by, k, base) for k in ("MINPER 0", "MINPER 1", "MINPER 100", "MINPER 300", "KEEP 4", "KEEP 7")}
+    cmp["300/100"] = paired(by, "MINPER 300", "MINPER 100")
+    assert sweeps[0]["lo"] < 0 < sweeps[0]["hi"] and sweeps[0]["wins"] == 4 and sweeps[1]["wins"] == 10
+    assert cmp["MINPER 0"]["wins"] == cmp["MINPER 1"]["wins"] == 0 and cmp["MINPER 100"]["wins"] == 10
+    assert cmp["300/100"]["lo"] < 0 < cmp["300/100"]["hi"] and cmp["KEEP 7"]["lo"] < 0 < cmp["KEEP 7"]["hi"]
+    assert cmp["KEEP 4"]["hi"] < 0
+    spread = max(abs(by[k]["total"] - r4["total"]) for k in cmp if "/" not in k) / r4["total"]
+    needles = [data["date"], PASS_SCORE, f"{PASS_SCORE - r4['total']}점 부족", sum(r4["used"]), sum(r4["used"]) // 100,
+               f"{min(q):.5f}~{max(q):.5f}", f"{min(low):.3f}~{max(low):.3f}", f"{min(ratio):.2f}~{max(ratio):.2f}",
+               f"약 {thr[0]:.1f}", f"약 {thr[-1]:.1f}", f"{r3['ms'] / r2['ms']:.1f}배", f"{spread * 100:.2f}%"]
+    for key in ("mean", "err", "lo", "hi"):
+        needles += [f"{sweeps[0][key]:.1f}", f"{sweeps[1][key]:.1f}"]
+    for k, v in cmp.items():
+        needles += [f"{v['mean']:.1f}"] + ([f"{v['err']:.1f}"] if k in ("MINPER 100", "MINPER 300", "300/100", "KEEP 4", "KEEP 7") else [])
+    for n in needles:
+        assert str(n) in text, f"number missing or stale in lesson: {n}"
+    print(f"OK: lesson tables and quoted numbers match {DATA.name} "
+          f"({sum(len(v) for v in table_lines(data).values())} table lines, {len(needles)} numbers)")
 
 
 def check_svgs() -> None:
@@ -566,7 +618,13 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--judge", type=Path, help="ENTROPY2D main.cpp (optional)")
     parser.add_argument("--output", type=Path, help="write a fresh measurement (needs --judge)")
+    parser.add_argument("--tables", action="store_true", help="print the lesson tables generated from the stored JSON")
     args = parser.parse_args()
+    if args.tables:
+        for name, rows in table_lines(json.loads(DATA.read_text())).items():
+            print(f"@@{name}@@")
+            print("\n".join(rows))
+        return
     sn = snippets()
     if args.judge and args.output:
         data = measure(args.judge, sn)
@@ -586,7 +644,7 @@ def main() -> None:
                 r = judge_run(src, assemble(s, sn), folder, "m", ["-O2"])
                 row = next(x for x in data["rows"] if x["label"].startswith(f"{s}단계"))
                 assert r["total"] == row["total"] and [r["score"][t] for t in sorted(r["score"])] == row["tcs"], s
-                assert sum(v[0] for v in r["mirror"].values()) == r["total"] and all(v[4] == 0 and v[5] == 0 for v in r["mirror"].values())
+                assert sum(v[0] for v in r["mirror"].values()) == r["total"] and all((v[4] == 0 or s == 1) and v[5] == 0 for v in r["mirror"].values())
             for s in STAGES:
                 judge_run(src, assemble(s, sn), folder, "san", SAN, timeout=900)
         print("OK: public grader re-run reproduces the stored scores, mirror == grader, ASan/UBSan clean")
