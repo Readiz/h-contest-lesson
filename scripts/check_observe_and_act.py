@@ -395,7 +395,7 @@ def check_tables(data: dict, extra: dict) -> None:
         for row in data[bucket]:
             present(row["label"], row["total"])
     for row in data["rows"]:
-        present(row["label"] + " TC별", *row["tcs"])
+        present(row["label"], *row["tcs"])
     # paired comparison of the default against WEIGHT 0.0 (same 10 inputs)
     by = {r["label"]: r for r in data["rows"] + data["sweeps"]}
     diff = [a - b for a, b in zip(by["정책 2"]["tcs"], by["WEIGHT 0.0"]["tcs"])]
@@ -443,7 +443,7 @@ def main() -> None:
             for r in json.loads(DATA.read_text())[bucket]:
                 print(f"| {r['label']} | {r['total']} | {r['mirror_total']} | {r['refused_total']} | {int(r['ms'])} |")
                 if bucket == "rows":
-                    print(f"| {r['label']} TC별 | " + " | ".join(map(str, r['tcs'])) + " |")
+                    print(f"| {r["label"]} | " + " | ".join(map(str, r['tcs'])) + " |")
         return
     if args.judge and args.output:
         data = measure(args.judge, sn)
