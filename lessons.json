@@ -922,10 +922,50 @@
         "heuristic",
         "testing-and-stress"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "assignment-with-routes"
+      ],
       "relatedLessons": [
         "cpp-common-library",
         "greedy",
+        "hungarian-algorithm"
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
+    },
+    {
+      "lessonId": "assignment-with-routes",
+      "title": "배정과 경로가 결합된 문제: 택시 배정",
+      "description": "TAXIASSIGN의 기사별 승객 배정과 처리 순서를 한 상태로 두고, 담당자와 삽입 위치를 함께 고르는 이웃과 기사별 부하 차분, 결합 탐욕 초기해, 손계산·실패 사례·측정으로 이어갑니다.",
+      "summary": "누가 맡는가와 어떤 순서인가가 최대 이동 거리에 들어가는 항을 나누고, 배정만·경로만·번갈아·결합 이웃을 같은 TC로 비교하는 TAXIASSIGN 강의",
+      "order": 29,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "assignment",
+        "routing",
+        "local-search",
+        "load-balancing",
+        "incremental-evaluation",
+        "practice"
+      ],
+      "level": "advanced",
+      "estimatedMinutes": 70,
+      "prerequisites": [
+        "heuristic",
+        "assignment-local-search"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "cpp-common-library",
+        "testing-and-stress",
         "hungarian-algorithm"
       ],
       "lessonType": "core",

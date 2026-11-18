@@ -468,3 +468,5 @@ python3 scripts/check_assignment_search.py \
 4. 새 이웃을 하나 추가합니다(예: 부하가 가장 큰 기계의 작업만 이동 대상으로 고르기). 추가 후에도 `rebuild()`와의 일치, 범위, 같은 seed 재현성이 유지되는지 먼저 검사한 뒤 점수를 비교합니다.
 
 확인 기준: 모든 TC가 유효하고, `Stats.bestMakespan`이 제출한 `assignment[]`에서 다시 계산한 최대 부하와 같으며, 같은 seed에서 같은 점수가 나오고, `best`가 초기해보다 나쁘지 않아야 합니다.
+
+다음: 승객 배정에 방문 순서가 붙어 점수가 달라지는 [배정과 경로가 결합된 문제: 택시 배정](https://h.readiz.com/learn/assignment-with-routes)에서 같은 최댓값 점수에 경로 항을 더합니다.

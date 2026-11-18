@@ -556,6 +556,7 @@ def main() -> None:
     subprocess.run([sys.executable, str(ROOT / "scripts/check_heuristic_search.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_observe_and_act.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_assignment_search.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts/check_assignment_routes.py")], check=True)
 
     subprocess.run([sys.executable, str(ROOT / "scripts/check_review_examples.py")], check=True)
 
