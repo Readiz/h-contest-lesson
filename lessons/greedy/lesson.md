@@ -14,7 +14,9 @@
 - `Certificate argument`(증거 논증): 알고리즘이 만든 값이 피할 수 없는 하한이나 상한과 같다는 증거를 찾아 최적성을 보이는 방식입니다.
 - `Exchange argument`(교환 논증): 어떤 최적해가 그리디 선택을 포함하지 않을 때, 그 선택을 그리디 선택으로 바꿔도 손해가 없음을 보여 최적해를 그리디 형태로 바꾸는 방식입니다.
 
-![그리디 판단 흐름](lesson-assets/greedy-proof-map.svg)
+![그리디는 선택 단위를 정하고, 기준을 세우고, 작은 입력에서 반례를 확인한 뒤, 앞서기·증거·교환 중 정당성 패턴으로 확정해도 되는지 증명하는 순서로 판단합니다.](lesson-assets/greedy-proof-map.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/greedy-proof-map.svg)
 
 ## 그리디가 하는 일
 
@@ -175,7 +177,9 @@ long long maximumScore(Task tasks[], Task temp[], int n) {
 
 ```
 
-![검수 게이트 그리디 선택](lesson-assets/inspection-greedy.svg)
+![시각 3에 처리할 수 있는 요청 A(마감 5)와 B(마감 7)에서, 3에 B 5에 A를 처리하는 배정을 3에 A 5에 B로 바꿔도 둘 다 마감 안이라 처리 개수가 줄지 않습니다.](lesson-assets/inspection-greedy.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/inspection-greedy.svg)
 
 이 선택은 교환 논증으로 설명할 수 있습니다. 현재 시각 `t`에 처리할 수 있는 두 요청 `A`, `B`가 있고 `deadline[A] <= deadline[B]`라고 합시다. 어떤 최적 배정이 `t`에 `B`를 처리하고 나중에 `A`를 처리한다면, 두 요청의 처리 시각을 바꿔도 처리 개수는 줄지 않습니다.
 
