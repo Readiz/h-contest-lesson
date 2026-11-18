@@ -167,6 +167,12 @@ vector<vector<int>> gridDistance(
 }
 ```
 
+![4행 5열 격자에서 (0,0)을 시작점으로 BFS를 돌리면 벽을 피해 거리 0부터 7까지 층으로 퍼지고, 목표 (3,4)의 거리는 7이며 큐에는 같은 거리의 칸이 모두 들어간 뒤에 다음 거리의 칸이 들어갑니다.](lesson-assets/grid-wave.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/bfs-dfs-grid/lesson-assets/grid-wave.svg)
+
+아래 로컬 연습의 예시 격자입니다. 칸의 숫자가 `dist` 값이고 오른쪽 목록이 큐에 들어간 순서입니다.
+
 ## 여러 곳에서 동시에 퍼질 때
 
 위 구현에서 시작점 하나를 넣는 부분만 바꿉니다. 모든 유효한 시작점의 거리를 0으로 두고 큐에 넣은 뒤 같은 반복문을 실행합니다. 같은 좌표가 여러 번 주어지면 처음 한 번만 넣습니다.

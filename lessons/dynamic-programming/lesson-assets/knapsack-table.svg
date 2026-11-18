@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 622" role="img" aria-labelledby="title desc">
+<title id="title">0/1 배낭: 물건마다 dp 표가 채워짐</title><desc id="desc">용량 7, 물건 (무게,가치) (3,4), (4,5), (2,3), (5,7)에서 용량을 7부터 0까지 줄이며 갱신합니다. 처음 모두 0인 dp가 물건마다 바뀌어 마지막에 dp[7]은 10이 되고, 이는 무게 2와 5인 물건의 가치 3과 7의 합입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="620" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#ae5515"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">0/1 배낭: 물건마다 dp 표가 채워짐</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">W = 7 · 물건 (무게, 가치) · 주황 = 바뀐 칸</text>
+<rect x="20" y="104" width="680" height="344" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">용량 c</text>
+<text x="202.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">0</text>
+<text x="266.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">1</text>
+<text x="330.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">2</text>
+<text x="394.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">3</text>
+<text x="458.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">4</text>
+<text x="522.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">5</text>
+<text x="586.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">6</text>
+<text x="650.0" y="140" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">7</text>
+<text x="36" y="188" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">처음</text>
+<rect x="173" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="202.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="237" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="266.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="301" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="365" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="394.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="429" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="458.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="493" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="522.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="557" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="586.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="621" y="156" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="650.0" y="187" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<text x="36" y="246" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">물건 (3,4)</text>
+<rect x="173" y="214" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="202.0" y="245" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="237" y="214" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="266.0" y="245" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="301" y="214" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.0" y="245" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="365" y="214" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="394.0" y="245" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">4</text>
+<rect x="429" y="214" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="458.0" y="245" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">4</text>
+<rect x="493" y="214" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="522.0" y="245" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">4</text>
+<rect x="557" y="214" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="586.0" y="245" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">4</text>
+<rect x="621" y="214" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="650.0" y="245" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">4</text>
+<text x="36" y="304" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">물건 (4,5)</text>
+<rect x="173" y="272" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="202.0" y="303" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="237" y="272" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="266.0" y="303" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="301" y="272" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.0" y="303" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="365" y="272" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="394.0" y="303" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<rect x="429" y="272" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="458.0" y="303" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">5</text>
+<rect x="493" y="272" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="522.0" y="303" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">5</text>
+<rect x="557" y="272" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="586.0" y="303" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">5</text>
+<rect x="621" y="272" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="650.0" y="303" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">9</text>
+<text x="36" y="362" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">물건 (2,3)</text>
+<rect x="173" y="330" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="202.0" y="361" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="237" y="330" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="266.0" y="361" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="301" y="330" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="330.0" y="361" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">3</text>
+<rect x="365" y="330" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="394.0" y="361" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<rect x="429" y="330" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="458.0" y="361" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
+<rect x="493" y="330" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="522.0" y="361" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">7</text>
+<rect x="557" y="330" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="586.0" y="361" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">8</text>
+<rect x="621" y="330" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="650.0" y="361" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">9</text>
+<text x="36" y="420" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">물건 (5,7)</text>
+<rect x="173" y="388" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="202.0" y="419" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="237" y="388" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="266.0" y="419" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="301" y="388" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.0" y="419" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
+<rect x="365" y="388" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="394.0" y="419" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<rect x="429" y="388" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="458.0" y="419" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
+<rect x="493" y="388" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="522.0" y="419" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">7</text>
+<rect x="557" y="388" width="58" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="586.0" y="419" font-size="22" fill="#172b45" font-weight="500" text-anchor="middle">8</text>
+<rect x="621" y="388" width="58" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
+<text x="650.0" y="419" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">10</text>
+<rect x="28" y="466" width="664" height="86" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="500" font-size="23" fill="#147d69" font-weight="750" text-anchor="middle">답 dp[7] = 10</text>
+<text x="360" y="532" font-size="20" fill="#147d69" font-weight="600" text-anchor="middle">무게 2 + 5 = 7 · 가치 3 + 7 = 10</text>
+<text x="28" y="592" font-size="19" fill="#53657d" font-weight="600" text-anchor="start">한 물건 안에서는 c를 큰 쪽부터 읽어 같은 물건을 두 번 쓰지 않음</text>
+</svg>

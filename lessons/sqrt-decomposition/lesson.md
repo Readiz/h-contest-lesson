@@ -11,7 +11,9 @@ Sqrt Decomposition은 긴 배열을 길이 약 `sqrt(n)`인 블록들로 나누�
 
 배열을 매번 전부 훑으면 질의 하나가 `O(n)`입니다. Segment Tree를 쓰면 `O(log n)`까지 줄일 수 있지만, 구현이 부담스럽거나 블록 단위로 쉽게 정리되는 문제가 있습니다. 이때 Sqrt Decomposition은 구현 난이도와 속도 사이에서 좋은 선택지가 됩니다.
 
-![배열을 블록으로 나누는 모습](lesson-assets/block-layout.svg)
+![배열 5 2 7 1 4 6 3 8 9 2를 길이 4 블록으로 나누면 블록 0, 1, 2의 합이 15, 21, 11로 저장됩니다.](lesson-assets/block-layout.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/sqrt-decomposition/lesson-assets/block-layout.svg)
 
 ## 핵심 아이디어
 
@@ -48,7 +50,9 @@ blockSum = [15, 21, 11]
 
 위 배열에서 `B = 4`이고 `[2, 9]`를 물으면 `2, 3`은 직접 보고, `[4, 7]` 블록은 저장된 합으로 한 번에 처리하고, `8, 9`는 직접 봅니다.
 
-![구간 질의가 양 끝과 가운데 블록을 나누는 모습](lesson-assets/range-query.svg)
+![같은 배열에서 위치 2부터 9까지 질의하면 위치 2, 3은 7+1을 직접 더하고 블록 1은 저장된 합 21을 쓰며 위치 8, 9는 9+2를 직접 더해 40이 됩니다.](lesson-assets/range-query.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/sqrt-decomposition/lesson-assets/range-query.svg)
 
 아래 `query`의 세 반복문이 이 세 부분을 처리합니다. 점 하나를 바꾸는 `update`는 해당 블록의 합에 `새 값 - 옛 값`만 더하므로 `O(1)`입니다.
 

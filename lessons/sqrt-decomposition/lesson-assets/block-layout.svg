@@ -1,39 +1,64 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="280" viewBox="0 0 960 280" role="img" aria-labelledby="title desc">
-  <title id="title">Sqrt decomposition block layout</title>
-  <desc id="desc">An array split into four contiguous blocks, each block storing a summary value.</desc>
-  <rect width="960" height="280" fill="#f8fafc"/>
-  <text x="48" y="54" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">배열을 sqrt(n) 크기 블록으로 나누기</text>
-  <text x="48" y="86" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">각 원소는 원본 배열에 남기고, 블록마다 합 같은 요약값을 따로 저장합니다.</text>
-  <g transform="translate(48 120)">
-    <g font-family="Arial, sans-serif" font-size="14" text-anchor="middle">
-      <rect x="0" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-      <rect x="84" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-      <rect x="168" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-      <rect x="252" y="0" width="80" height="54" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-      <rect x="356" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="440" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="524" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="608" y="0" width="80" height="54" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-      <rect x="712" y="0" width="80" height="54" rx="8" fill="#fef3c7" stroke="#d97706"/>
-      <rect x="796" y="0" width="80" height="54" rx="8" fill="#fef3c7" stroke="#d97706"/>
-      <text x="40" y="32" fill="#1e3a8a">a[0]</text>
-      <text x="124" y="32" fill="#1e3a8a">a[1]</text>
-      <text x="208" y="32" fill="#1e3a8a">a[2]</text>
-      <text x="292" y="32" fill="#1e3a8a">a[3]</text>
-      <text x="396" y="32" fill="#14532d">a[4]</text>
-      <text x="480" y="32" fill="#14532d">a[5]</text>
-      <text x="564" y="32" fill="#14532d">a[6]</text>
-      <text x="648" y="32" fill="#14532d">a[7]</text>
-      <text x="752" y="32" fill="#78350f">a[8]</text>
-      <text x="836" y="32" fill="#78350f">a[9]</text>
-    </g>
-    <g font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
-      <path d="M0 78 H332" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
-      <path d="M356 78 H688" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
-      <path d="M712 78 H876" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
-      <text x="166" y="112" fill="#1e3a8a">block 0 summary</text>
-      <text x="522" y="112" fill="#14532d">block 1 summary</text>
-      <text x="794" y="112" fill="#78350f">block 2 summary</text>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 498" role="img" aria-labelledby="title desc">
+<title id="title">Sqrt Decomposition: 길이 4 블록과 블록 합</title><desc id="desc">배열 5 2 7 1 4 6 3 8 9 2를 B=4로 나눈 블록 0(위치 0부터 3), 블록 1(4부터 7), 블록 2(8부터 9)입니다. 각 블록은 합 15, 21, 11을 따로 저장하고 원본 배열은 그대로 둡니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="496" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">Sqrt Decomposition: 길이 4 블록과 블록 합</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">a는 그대로 두고 블록마다 합 하나를 따로 저장</text>
+<rect x="20" y="104" width="680" height="300" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="140" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">위치</text>
+<text x="81.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">0</text>
+<text x="143.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">1</text>
+<text x="205.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">2</text>
+<text x="267.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">3</text>
+<text x="329.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">4</text>
+<text x="391.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">5</text>
+<text x="453.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">6</text>
+<text x="515.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">7</text>
+<text x="577.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">8</text>
+<text x="639.0" y="140" font-size="18" fill="#53657d" font-weight="600" text-anchor="middle">9</text>
+<text x="36" y="178" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">a</text>
+<rect x="53" y="186" width="56" height="46" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="81.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<rect x="115" y="186" width="56" height="46" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="143.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="177" y="186" width="56" height="46" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="205.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<rect x="239" y="186" width="56" height="46" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="267.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="301" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="329.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<rect x="363" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="391.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
+<rect x="425" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="453.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="487" y="186" width="56" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="515.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">8</text>
+<rect x="549" y="186" width="56" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="577.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">9</text>
+<rect x="611" y="186" width="56" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="639.0" y="217" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<line x1="53" y1="248" x2="53" y2="262" stroke="#2664ce" stroke-width="3" stroke-linecap="round"/>
+<line x1="53" y1="262" x2="295" y2="262" stroke="#2664ce" stroke-width="3" stroke-linecap="round"/>
+<line x1="295" y1="262" x2="295" y2="248" stroke="#2664ce" stroke-width="3" stroke-linecap="round"/>
+<rect x="53" y="278" width="242" height="100" rx="10" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.2"/>
+<text x="174.0" y="308" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">블록 0</text>
+<text x="174.0" y="338" font-size="22" fill="#2664ce" font-weight="750" text-anchor="middle">합 15</text>
+<text x="174.0" y="366" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">5+2+7+1</text>
+<line x1="301" y1="248" x2="301" y2="262" stroke="#147d69" stroke-width="3" stroke-linecap="round"/>
+<line x1="301" y1="262" x2="543" y2="262" stroke="#147d69" stroke-width="3" stroke-linecap="round"/>
+<line x1="543" y1="262" x2="543" y2="248" stroke="#147d69" stroke-width="3" stroke-linecap="round"/>
+<rect x="301" y="278" width="242" height="100" rx="10" fill="#e5f4ef" stroke="#147d69" stroke-width="2.2"/>
+<text x="422.0" y="308" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">블록 1</text>
+<text x="422.0" y="338" font-size="22" fill="#147d69" font-weight="750" text-anchor="middle">합 21</text>
+<text x="422.0" y="366" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">4+6+3+8</text>
+<line x1="549" y1="248" x2="549" y2="262" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<line x1="549" y1="262" x2="667" y2="262" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<line x1="667" y1="262" x2="667" y2="248" stroke="#ae5515" stroke-width="3" stroke-linecap="round"/>
+<rect x="549" y="278" width="118" height="100" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.2"/>
+<text x="608.0" y="308" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">블록 2</text>
+<text x="608.0" y="338" font-size="22" fill="#ae5515" font-weight="750" text-anchor="middle">합 11</text>
+<text x="608.0" y="366" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">9+2</text>
+<rect x="28" y="424" width="664" height="54" rx="12" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="360" y="458" font-size="20" fill="#53657d" font-weight="600" text-anchor="middle">blockSum = [15, 21, 11] · 위치 i의 블록은 i / B</text>
 </svg>

@@ -146,6 +146,10 @@ void countingSortIds(const int key[], int id[], int temp[], int n, int k) {
 
 뒤에서 앞으로 배치하면 같은 key를 가진 원소의 현재 ID 순서가 유지됩니다. `key = [2, 1, 2]`, `id = [2, 0, 1]`이면 결과는 `[1, 2, 0]`입니다. ID 오름차순으로 바꾸지 않는다는 점을 확인하세요. 이 안정성이 radix sort의 핵심 재료가 됩니다.
 
+![key 2, 1, 2와 id 2, 0, 1에서 개수 0, 1, 2를 누적해 0, 1, 3을 만들고 id를 뒤에서 앞으로 배치하면 id 1은 위치 0, id 0은 위치 2, id 2는 위치 1에 놓여 결과 1, 2, 0이 됩니다. key가 같은 id 2와 id 0은 입력과 같은 순서입니다.](lesson-assets/counting-sort-stable.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/sorting/lesson-assets/counting-sort-stable.svg)
+
 ## Radix Sort
 
 Radix sort는 값을 여러 조각으로 나누어 낮은 자리부터 안정 정렬하는 방식입니다.

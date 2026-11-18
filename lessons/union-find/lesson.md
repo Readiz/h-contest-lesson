@@ -11,7 +11,9 @@ Union-Find는 여러 원소를 **서로 겹치지 않는 집합들**로 나누�
 
 연결 관계가 계속 추가되고, 중간중간 같은 그룹인지 확인해야 하는 문제라면 Union-Find를 먼저 떠올릴 만합니다. 대표적인 예시는 연결 요소 구하기, 사이클 판정, Kruskal 최소 신장 트리, 모임이나 관계 기록으로 그룹 묶기입니다.
 
-![Union-Find의 핵심 연산](lesson-assets/dsu-operations.svg)
+![숲 0←1←3, 2←4, 5에서 find(3)은 0, find(4)는 2라 서로 다른 집합이고, union(3, 4)는 대표 2를 대표 0 밑으로 붙여 0, 1, 2, 3, 4를 한 집합으로 만듭니다.](lesson-assets/dsu-operations.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/union-find/lesson-assets/dsu-operations.svg)
 
 ## 집합을 숲으로 표현하기
 
@@ -54,7 +56,9 @@ parent[3] = 3
 
 처음 `find(5)`는 여러 노드를 지나갈 수 있습니다. 하지만 그 뒤에는 `5`의 부모가 바로 대표가 되므로 다음 조회가 훨씬 빨라집니다.
 
-![경로 압축 전후](lesson-assets/path-compression.svg)
+![압축 전에는 5에서 4, 3, 2, 1을 거쳐 0까지 한 줄로 이어져 있고, find(5) 뒤에는 1부터 5까지 모두 대표 0을 직접 가리킵니다.](lesson-assets/path-compression.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/union-find/lesson-assets/path-compression.svg)
 
 경로 압축은 답을 바꾸지 않습니다. 같은 집합 안에서 루트로 가는 길을 짧게 만드는 것뿐입니다.
 
@@ -74,7 +78,9 @@ union과 find를 순서대로 실행하며 부모 배열과 숲이 바뀌는 모
 
 이때 `size` 값은 대표에서만 의미가 있습니다. `rootB`가 `rootA` 밑으로 들어간 뒤에는 `size[rootB]`를 참조하면 안 됩니다.
 
-![크기 기준 합치기](lesson-assets/union-by-size.svg)
+![크기 4인 A 집합 밑에 크기 2인 B 집합을 붙이면 B의 대표가 A 밑으로 들어가 크기 6인 집합이 되고, 트리 높이는 늘지 않습니다.](lesson-assets/union-by-size.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/union-find/lesson-assets/union-by-size.svg)
 
 비슷한 최적화로 rank 기준 합치기도 있습니다. rank는 트리 높이의 대략적인 상한을 저장합니다. 실전에서는 크기 기준 합치기가 이해하기 쉽고, 집합 크기까지 같이 필요한 경우가 많아 자주 쓰입니다.
 

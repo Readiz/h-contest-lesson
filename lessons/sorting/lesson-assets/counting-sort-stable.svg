@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 890" role="img" aria-labelledby="title desc">
+<title id="title">Counting Sort: 개수 → 누적 → 뒤에서 배치</title><desc id="desc">key=[2,1,2], id=[2,0,1]에서 key[id[i]]는 2,2,1입니다. 값별 개수 0,1,2를 누적하면 0,1,3이 되고, 뒤에서 앞으로 배치하면 id 1은 위치 0, id 0은 위치 2, id 2는 위치 1로 가서 결과 1,2,0이 됩니다. key가 같은 id 2와 0은 입력과 같은 순서가 유지됩니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="888" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#ae5515"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">Counting Sort: 개수 → 누적 → 뒤에서 배치</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">주황 = key 2 · 초록 = key 1 · 같은 key는 입력 순서 유지</text>
+<rect x="20" y="104" width="680" height="214" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="138" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">① 입력 (id 순서대로 key 읽기)</text>
+<text x="36" y="184" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">i</text>
+<rect x="214" y="152" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="260.0" y="183" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="314" y="152" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="360.0" y="183" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="414" y="152" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="460.0" y="183" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="36" y="238" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">id[i]</text>
+<rect x="214" y="206" width="92" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.2"/>
+<text x="260.0" y="237" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="314" y="206" width="92" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.2"/>
+<text x="360.0" y="237" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="414" y="206" width="92" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.2"/>
+<text x="460.0" y="237" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<text x="36" y="292" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">key[id[i]]</text>
+<rect x="214" y="260" width="92" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.2"/>
+<text x="260.0" y="291" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="314" y="260" width="92" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.2"/>
+<text x="360.0" y="291" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="414" y="260" width="92" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.2"/>
+<text x="460.0" y="291" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="20" y="332" width="680" height="214" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="366" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">② 개수 세고 누적하기 (값 v의 끝 위치)</text>
+<text x="36" y="412" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">값 v</text>
+<rect x="214" y="380" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="260.0" y="411" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="314" y="380" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="360.0" y="411" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="414" y="380" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="460.0" y="411" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="36" y="466" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">count[v]</text>
+<rect x="214" y="434" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="260.0" y="465" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="314" y="434" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="360.0" y="465" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="414" y="434" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="460.0" y="465" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<text x="36" y="520" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">누적</text>
+<rect x="214" y="488" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="260.0" y="519" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<rect x="314" y="488" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="360.0" y="519" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="414" y="488" width="92" height="46" rx="8" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="460.0" y="519" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="20" y="560" width="680" height="320" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="594" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">③ i를 뒤에서 앞으로 · temp[--count[key]] = id</text>
+<text x="36" y="632" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">i=2: id 1 (key 1) → count[1] = 0 → temp[0]</text>
+<text x="36" y="668" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">i=1: id 0 (key 2) → count[2] = 2 → temp[2]</text>
+<text x="36" y="704" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">i=0: id 2 (key 2) → count[2] = 1 → temp[1]</text>
+<text x="36" y="762" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">결과 temp</text>
+<rect x="214" y="730" width="92" height="46" rx="8" fill="#e5f4ef" stroke="#147d69" stroke-width="2.2"/>
+<text x="260.0" y="761" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="314" y="730" width="92" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.2"/>
+<text x="360.0" y="761" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="414" y="730" width="92" height="46" rx="8" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.2"/>
+<text x="460.0" y="761" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<text x="260.0" y="798" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">0</text>
+<text x="360.0" y="798" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">1</text>
+<text x="460.0" y="798" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">2</text>
+<text x="36" y="844" font-size="20" fill="#ae5515" font-weight="700" text-anchor="start">key 2인 id 2와 id 0은 입력과 같은 순서 → 안정</text>
+</svg>

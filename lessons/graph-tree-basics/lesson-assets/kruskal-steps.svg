@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 744" role="img" aria-labelledby="title desc">
+<title id="title">Kruskal: 간선을 고르고 버리는 순서</title><desc id="desc">정점 5개, 간선 0-1(1), 2-3(2), 1-2(3), 0-2(4), 3-4(5), 1-4(6)을 비용순으로 봅니다. 0-1, 2-3, 1-2, 3-4는 서로 다른 집합을 이어 선택하고 0-2와 1-4는 이미 같은 집합이라 버려 비용 합은 11입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="742" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#147d69"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">Kruskal: 간선을 고르고 버리는 순서</text>
+<text x="28" y="86" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">작은 예시 · 비용 오름차순으로 한 간선씩 unite</text>
+<rect x="20" y="104" width="680" height="276" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="91.8706403597904" y1="225.94030262584903" x2="188.1293596402096" y2="164.05969737415097" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<text x="112" y="190" font-size="22" fill="#147d69" font-weight="750" text-anchor="middle">1</text>
+<line x1="236.0" y1="300.0" x2="344.0" y2="300.0" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<text x="290" y="284" font-size="22" fill="#147d69" font-weight="750" text-anchor="middle">2</text>
+<line x1="210.0" y1="176.0" x2="210.0" y2="274.0" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<text x="238" y="232" font-size="22" fill="#147d69" font-weight="750" text-anchor="middle">3</text>
+<line x1="93.8977707804695" y1="250.24190176305837" x2="186.1022292195305" y2="289.75809823694163" stroke="#b42318" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 7"/>
+<text x="110" y="292" font-size="22" fill="#b42318" font-weight="750" text-anchor="middle">4</text>
+<line x1="370.0" y1="274.0" x2="370.0" y2="176.0" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<text x="398" y="232" font-size="22" fill="#147d69" font-weight="750" text-anchor="middle">5</text>
+<line x1="236.0" y1="150.0" x2="344.0" y2="150.0" stroke="#b42318" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 7"/>
+<text x="290" y="134" font-size="22" fill="#b42318" font-weight="750" text-anchor="middle">6</text>
+<circle cx="70" cy="240" r="24" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="70" y="248" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<circle cx="210" cy="150" r="24" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="210" y="158" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="210" cy="300" r="24" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="210" y="308" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<circle cx="370" cy="300" r="24" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="370" y="308" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="370" cy="150" r="24" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="370" y="158" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<line x1="470" y1="150" x2="520" y2="150" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<text x="534" y="157" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">선택</text>
+<line x1="470" y1="190" x2="520" y2="190" stroke="#b42318" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 7"/>
+<text x="534" y="197" font-size="20" fill="#b42318" font-weight="700" text-anchor="start">버림</text>
+<text x="470" y="250" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">선택한 비용</text>
+<text x="470" y="282" font-size="22" fill="#147d69" font-weight="750" text-anchor="start">1+2+3+5 = 11</text>
+<rect x="20" y="398" width="680" height="324" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="40" y="432" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">간선</text>
+<text x="150" y="432" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">비용</text>
+<text x="260" y="432" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">결과</text>
+<rect x="28" y="446" width="664" height="38" rx="8" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.2"/>
+<text x="40" y="472" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">1. 0–1</text>
+<text x="150" y="472" font-size="21" fill="#172b45" font-weight="400" text-anchor="start">비용 1</text>
+<text x="260" y="472" font-size="21" fill="#147d69" font-weight="700" text-anchor="start">unite 성공 → {0,1}</text>
+<rect x="28" y="490" width="664" height="38" rx="8" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.2"/>
+<text x="40" y="516" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">2. 2–3</text>
+<text x="150" y="516" font-size="21" fill="#172b45" font-weight="400" text-anchor="start">비용 2</text>
+<text x="260" y="516" font-size="21" fill="#147d69" font-weight="700" text-anchor="start">unite 성공 → {2,3}</text>
+<rect x="28" y="534" width="664" height="38" rx="8" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.2"/>
+<text x="40" y="560" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">3. 1–2</text>
+<text x="150" y="560" font-size="21" fill="#172b45" font-weight="400" text-anchor="start">비용 3</text>
+<text x="260" y="560" font-size="21" fill="#147d69" font-weight="700" text-anchor="start">unite 성공 → {0,1,2,3}</text>
+<rect x="28" y="578" width="664" height="38" rx="8" fill="#fdeaea" stroke="#f3c1bd" stroke-width="1.2"/>
+<text x="40" y="604" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">4. 0–2</text>
+<text x="150" y="604" font-size="21" fill="#172b45" font-weight="400" text-anchor="start">비용 4</text>
+<text x="260" y="604" font-size="21" fill="#b42318" font-weight="700" text-anchor="start">같은 집합 → 버림</text>
+<rect x="28" y="622" width="664" height="38" rx="8" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.2"/>
+<text x="40" y="648" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">5. 3–4</text>
+<text x="150" y="648" font-size="21" fill="#172b45" font-weight="400" text-anchor="start">비용 5</text>
+<text x="260" y="648" font-size="21" fill="#147d69" font-weight="700" text-anchor="start">unite 성공 → {0,1,2,3,4}</text>
+<rect x="28" y="666" width="664" height="38" rx="8" fill="#fdeaea" stroke="#f3c1bd" stroke-width="1.2"/>
+<text x="40" y="692" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">6. 1–4</text>
+<text x="150" y="692" font-size="21" fill="#172b45" font-weight="400" text-anchor="start">비용 6</text>
+<text x="260" y="692" font-size="21" fill="#b42318" font-weight="700" text-anchor="start">같은 집합 → 버림</text>
+</svg>

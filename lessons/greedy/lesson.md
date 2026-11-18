@@ -14,7 +14,9 @@
 - `Certificate argument`(증거 논증): 알고리즘이 만든 값이 피할 수 없는 하한이나 상한과 같다는 증거를 찾아 최적성을 보이는 방식입니다.
 - `Exchange argument`(교환 논증): 어떤 최적해가 그리디 선택을 포함하지 않을 때, 그 선택을 그리디 선택으로 바꿔도 손해가 없음을 보여 최적해를 그리디 형태로 바꾸는 방식입니다.
 
-![그리디 판단 흐름](lesson-assets/greedy-proof-map.svg)
+![그리디는 선택 단위를 정하고, 기준을 세우고, 작은 입력에서 반례를 확인한 뒤, 앞서기·증거·교환 중 정당성 패턴으로 확정해도 되는지 증명하는 순서로 판단합니다.](lesson-assets/greedy-proof-map.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/greedy-proof-map.svg)
 
 ## 그리디가 하는 일
 
@@ -51,7 +53,9 @@
 최적해: 3 + 3 = 2개
 ```
 
-![동전 그리디 반례](lesson-assets/coin-counterexample.svg)
+![동전 1, 3, 4로 6원을 만들 때 큰 동전부터 고르면 4+1+1로 3개가 되지만 3+3은 2개라서, 4를 고르는 순간 더 좋은 조합이 막힙니다.](lesson-assets/coin-counterexample.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/coin-counterexample.svg)
 
 이 반례에서 중요한 점은 "큰 동전이 항상 좋다"는 교환이 불가능하다는 것입니다. `4`를 고른 순간 `3 + 3`이라는 더 좋은 조합을 막아 버립니다. 그래서 임의의 동전 체계에서 최소 동전 개수 문제는 보통 DP로 풀어야 합니다.
 
@@ -66,7 +70,9 @@
 
 왜 시작 시간이 빠른 회의가 아니라 끝나는 시간이 빠른 회의일까요? 목표가 많은 회의를 고르는 것이므로, 하나를 선택한 뒤 남는 시간을 최대한 넓게 남겨야 합니다. 빨리 끝나는 회의를 고르면 뒤에 붙일 수 있는 회의의 기회가 줄어들지 않습니다.
 
-![회의실 배정 그리디](lesson-assets/interval-scheduling.svg)
+![회의 A(1~4), B(1~3), C(3~5), D(5~7), E(4~8)에서 끝나는 시간순으로 고르면 B, C, D 세 개를 고르고, 가장 긴 회의 E부터 고르면 E와 A 두 개만 고릅니다.](lesson-assets/interval-scheduling.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/interval-scheduling.svg)
 
 이 예시는 블로그 글의 `Greedy stays ahead` 패턴으로 설명하기 좋습니다. 그리디가 고른 `i`번째 회의의 종료 시각을 `g_i`, 어떤 최적해가 고른 `i`번째 회의의 종료 시각을 `o_i`라고 하면, 매 단계에서 `g_i <= o_i`임을 보일 수 있습니다. 즉, 그리디는 같은 개수만큼 회의를 골랐을 때 항상 최적해보다 늦게 끝나지 않습니다. 끝나는 시각에서 계속 앞서 있으므로, 최적해가 고를 수 있는 다음 회의를 그리디도 고를 기회가 있습니다.
 
@@ -105,7 +111,9 @@ int minimumRooms(ClassPeriod classes[], ClassPeriod temp[], int n) {
 }
 ```
 
-![강의실 배정 하한](lesson-assets/classroom-allocation.svg)
+![강의 1(1~4), 2(2~5), 3(3~6), 4(6~8)에서 시각 3부터 4 사이에 강의 세 개가 동시에 진행되어 방이 최소 3개 필요하고, 강의 4는 강의 1이 끝난 방 1을 다시 씁니다.](lesson-assets/classroom-allocation.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/classroom-allocation.svg)
 
 이 문제는 블로그 글의 `Certificate argument`로 설명할 수 있습니다. 어떤 시각에 동시에 진행 중인 강의가 `k`개라면, 강의실은 최소 `k`개 필요합니다. 이것은 어떤 알고리즘도 피할 수 없는 하한입니다.
 
@@ -149,7 +157,9 @@ long long maximumScore(Task tasks[], Task temp[], int n) {
 }
 ```
 
-![마감 과제 선택](lesson-assets/deadline-task-selection.svg)
+![과제 가(마감 1, 점수 40), 나(마감 2, 점수 10), 다(마감 2, 점수 70)를 차례로 후보에 넣다가 다에서 후보가 3개로 마감 2를 넘으면 가장 작은 점수 10을 버려 합 110이 됩니다.](lesson-assets/deadline-task-selection.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/deadline-task-selection.svg)
 
 마감일 `d`까지는 최대 `d`개의 과제만 할 수 있습니다. 그보다 많이 골랐다면 반드시 하나를 버려야 하고, 그 순간에는 점수가 가장 작은 것을 버리는 것이 항상 손해가 가장 작습니다. 이 방식은 "선택 집합을 유지하면서 제약을 넘을 때만 가장 약한 선택을 제거한다"는 그리디 패턴입니다.
 
@@ -167,7 +177,9 @@ long long maximumScore(Task tasks[], Task temp[], int n) {
 
 ```
 
-![검수 게이트 그리디 선택](lesson-assets/inspection-greedy.svg)
+![시각 3에 처리할 수 있는 요청 A(마감 5)와 B(마감 7)에서, 3에 B 5에 A를 처리하는 배정을 3에 A 5에 B로 바꿔도 둘 다 마감 안이라 처리 개수가 줄지 않습니다.](lesson-assets/inspection-greedy.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/greedy/lesson-assets/inspection-greedy.svg)
 
 이 선택은 교환 논증으로 설명할 수 있습니다. 현재 시각 `t`에 처리할 수 있는 두 요청 `A`, `B`가 있고 `deadline[A] <= deadline[B]`라고 합시다. 어떤 최적 배정이 `t`에 `B`를 처리하고 나중에 `A`를 처리한다면, 두 요청의 처리 시각을 바꿔도 처리 개수는 줄지 않습니다.
 

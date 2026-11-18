@@ -32,6 +32,12 @@ cost 1: push_back
 
 이렇게 하면 deque의 앞쪽에는 항상 현재까지 가장 작은 거리 후보가 옵니다.
 
+![로컬 연습 예시 그래프에서 시작점 0의 deque 변화입니다. 비용 0 간선의 정점은 앞에, 비용 1 간선의 정점은 뒤에 들어가며 낡은 후보 1(1)은 건너뛰어 최종 거리가 0 0 0 1 -1이 됩니다.](lesson-assets/deque-trace.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/zero-one-bfs/lesson-assets/deque-trace.svg)
+
+간선은 `0→1:1, 0→2:0, 2→1:0, 1→3:1, 2→3:1, 3→2:0`입니다. 2를 꺼낸 뒤 1의 거리가 1에서 0으로 줄어 앞에 다시 들어가므로 뒤에 남은 `1(1)`은 낡은 후보가 됩니다.
+
 ## 기본 구현
 
 > **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.

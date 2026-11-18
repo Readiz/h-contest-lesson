@@ -1,78 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
-  <title id="title">해밀턴 경로와 TSP의 관계</title>
-  <desc id="desc">해밀턴 경로, 해밀턴 사이클, TSP 순회가 모두 모든 정점을 한 번씩 방문한다는 공통점을 보여주는 그림</desc>
-  <rect width="920" height="360" fill="#f8fafc"/>
-  <g font-family="Pretendard, Apple SD Gothic Neo, Arial, sans-serif">
-    <text x="44" y="54" fill="#0f172a" font-size="25" font-weight="800">모든 정점을 한 번씩 방문한다는 공통 조건</text>
-    <text x="44" y="84" fill="#475569" font-size="15">존재 여부를 묻는 해밀턴 문제와, 비용 최적화를 묻는 TSP는 같은 상태 설계로 이어진다.</text>
-
-    <g transform="translate(52 122)">
-      <rect width="246" height="188" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-      <text x="123" y="34" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="800">해밀턴 경로</text>
-      <text x="123" y="57" text-anchor="middle" fill="#64748b" font-size="13">시작과 끝이 달라도 된다</text>
-      <path d="M48 136 L94 78 L145 118 L198 70" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <g fill="#ffffff" stroke="#2563eb" stroke-width="4">
-        <circle cx="48" cy="136" r="13"/>
-        <circle cx="94" cy="78" r="13"/>
-        <circle cx="145" cy="118" r="13"/>
-        <circle cx="198" cy="70" r="13"/>
-      </g>
-      <g fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">
-        <text x="48" y="141">A</text>
-        <text x="94" y="83">B</text>
-        <text x="145" y="123">C</text>
-        <text x="198" y="75">D</text>
-      </g>
-    </g>
-
-    <g transform="translate(337 122)">
-      <rect width="246" height="188" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-      <text x="123" y="34" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="800">해밀턴 사이클</text>
-      <text x="123" y="57" text-anchor="middle" fill="#64748b" font-size="13">마지막에 시작점으로 복귀</text>
-      <path d="M61 126 L92 75 L162 75 L191 126 L123 154 Z" fill="none" stroke="#16a34a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <g fill="#ffffff" stroke="#16a34a" stroke-width="4">
-        <circle cx="61" cy="126" r="13"/>
-        <circle cx="92" cy="75" r="13"/>
-        <circle cx="162" cy="75" r="13"/>
-        <circle cx="191" cy="126" r="13"/>
-        <circle cx="123" cy="154" r="13"/>
-      </g>
-      <g fill="#166534" font-size="12" font-weight="800" text-anchor="middle">
-        <text x="61" y="131">A</text>
-        <text x="92" y="80">B</text>
-        <text x="162" y="80">C</text>
-        <text x="191" y="131">D</text>
-        <text x="123" y="159">E</text>
-      </g>
-    </g>
-
-    <g transform="translate(622 122)">
-      <rect width="246" height="188" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-      <text x="123" y="34" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="800">TSP</text>
-      <text x="123" y="57" text-anchor="middle" fill="#64748b" font-size="13">가능한 순회 중 비용 최소</text>
-      <path d="M58 126 L95 72 L166 82 L194 134 L122 153 Z" fill="none" stroke="#dc2626" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M58 126 L166 82 M95 72 L194 134 M122 153 L166 82" fill="none" stroke="#cbd5e1" stroke-width="2"/>
-      <g fill="#ffffff" stroke="#dc2626" stroke-width="4">
-        <circle cx="58" cy="126" r="13"/>
-        <circle cx="95" cy="72" r="13"/>
-        <circle cx="166" cy="82" r="13"/>
-        <circle cx="194" cy="134" r="13"/>
-        <circle cx="122" cy="153" r="13"/>
-      </g>
-      <g fill="#991b1b" font-size="12" font-weight="800" text-anchor="middle">
-        <text x="58" y="131">0</text>
-        <text x="95" y="77">1</text>
-        <text x="166" y="87">2</text>
-        <text x="194" y="139">3</text>
-        <text x="122" y="158">4</text>
-      </g>
-      <g fill="#475569" font-size="12" font-weight="700">
-        <text x="76" y="92">8</text>
-        <text x="130" y="70">4</text>
-        <text x="184" y="109">7</text>
-        <text x="157" y="151">6</text>
-        <text x="80" y="151">5</text>
-      </g>
-    </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 808" role="img" aria-labelledby="title desc">
+<title id="title">모든 정점을 한 번씩 방문한다</title><desc id="desc">해밀턴 경로는 시작과 끝이 달라도 되는 A-B-C-D 경로가 있는지 묻고, 해밀턴 사이클은 A부터 E까지 돌아 시작점으로 복귀하는지 묻습니다. TSP는 0부터 4까지 복귀하는 순회 중 비용이 최소인 것을 묻고, 예시 순회 비용은 8+4+7+6+5=30입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="806" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">모든 정점을 한 번씩 방문한다</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">존재 여부를 묻는 문제와 비용 최소를 묻는 문제</text>
+<rect x="20" y="104" width="680" height="190" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330" y="152" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">해밀턴 경로</text>
+<text x="330" y="194" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">시작과 끝이 달라도 된다</text>
+<text x="330" y="230" font-size="20" fill="#2664ce" font-weight="700" text-anchor="start">질문: 이런 경로가 있는가?</text>
+<line x1="70" y1="254" x2="130" y2="184" stroke="#2664ce" stroke-width="4" stroke-linecap="round"/>
+<line x1="130" y1="184" x2="210" y2="234" stroke="#2664ce" stroke-width="4" stroke-linecap="round"/>
+<line x1="210" y1="234" x2="280" y2="170" stroke="#2664ce" stroke-width="4" stroke-linecap="round"/>
+<circle cx="70" cy="254" r="20" fill="#e9f0ff" stroke="#2664ce" stroke-width="3"/>
+<text x="70" y="261" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
+<circle cx="130" cy="184" r="20" fill="#e9f0ff" stroke="#2664ce" stroke-width="3"/>
+<text x="130" y="191" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
+<circle cx="210" cy="234" r="20" fill="#e9f0ff" stroke="#2664ce" stroke-width="3"/>
+<text x="210" y="241" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">C</text>
+<circle cx="280" cy="170" r="20" fill="#e9f0ff" stroke="#2664ce" stroke-width="3"/>
+<text x="280" y="177" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">D</text>
+<rect x="20" y="314" width="680" height="190" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330" y="362" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">해밀턴 사이클</text>
+<text x="330" y="404" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">마지막에 시작점으로 복귀</text>
+<text x="330" y="440" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">질문: 이런 사이클이 있는가?</text>
+<line x1="70" y1="450" x2="110" y2="380" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<line x1="110" y1="380" x2="230" y2="380" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<line x1="230" y1="380" x2="270" y2="450" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<line x1="270" y1="450" x2="170" y2="484" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<line x1="170" y1="484" x2="70" y2="450" stroke="#147d69" stroke-width="4" stroke-linecap="round"/>
+<circle cx="70" cy="450" r="20" fill="#e5f4ef" stroke="#147d69" stroke-width="3"/>
+<text x="70" y="457" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">A</text>
+<circle cx="110" cy="380" r="20" fill="#e5f4ef" stroke="#147d69" stroke-width="3"/>
+<text x="110" y="387" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">B</text>
+<circle cx="230" cy="380" r="20" fill="#e5f4ef" stroke="#147d69" stroke-width="3"/>
+<text x="230" y="387" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">C</text>
+<circle cx="270" cy="450" r="20" fill="#e5f4ef" stroke="#147d69" stroke-width="3"/>
+<text x="270" y="457" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">D</text>
+<circle cx="170" cy="484" r="20" fill="#e5f4ef" stroke="#147d69" stroke-width="3"/>
+<text x="170" y="491" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">E</text>
+<rect x="20" y="524" width="680" height="190" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330" y="572" font-size="23" fill="#172b45" font-weight="750" text-anchor="start">TSP</text>
+<text x="330" y="614" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">복귀하는 순회 중 비용 최소</text>
+<text x="330" y="650" font-size="20" fill="#b42318" font-weight="700" text-anchor="start">예시 순회 비용 8+4+7+6+5 = 30</text>
+<line x1="70" y1="660" x2="110" y2="590" stroke="#b42318" stroke-width="4" stroke-linecap="round"/>
+<line x1="110" y1="590" x2="230" y2="590" stroke="#b42318" stroke-width="4" stroke-linecap="round"/>
+<line x1="230" y1="590" x2="270" y2="660" stroke="#b42318" stroke-width="4" stroke-linecap="round"/>
+<line x1="270" y1="660" x2="170" y2="694" stroke="#b42318" stroke-width="4" stroke-linecap="round"/>
+<line x1="170" y1="694" x2="70" y2="660" stroke="#b42318" stroke-width="4" stroke-linecap="round"/>
+<circle cx="70" cy="660" r="20" fill="#fdeaea" stroke="#b42318" stroke-width="3"/>
+<text x="70" y="667" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<circle cx="110" cy="590" r="20" fill="#fdeaea" stroke="#b42318" stroke-width="3"/>
+<text x="110" y="597" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="230" cy="590" r="20" fill="#fdeaea" stroke="#b42318" stroke-width="3"/>
+<text x="230" y="597" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<circle cx="270" cy="660" r="20" fill="#fdeaea" stroke="#b42318" stroke-width="3"/>
+<text x="270" y="667" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="170" cy="694" r="20" fill="#fdeaea" stroke="#b42318" stroke-width="3"/>
+<text x="170" y="701" font-size="19" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="54" y="612" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">8</text>
+<text x="170" y="580" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<text x="264" y="624" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">7</text>
+<text x="228" y="702" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
+<text x="98" y="702" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<rect x="28" y="734" width="664" height="54" rx="12" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="360" y="768" font-size="21" fill="#53657d" font-weight="600" text-anchor="middle">공통 상태 = (방문한 정점 집합, 마지막 정점)</text>
 </svg>

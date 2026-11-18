@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 594" role="img" aria-labelledby="title desc">
+<title id="title">Fenwick: add(5)가 올라가는 칸</title><desc id="desc">n=16인 Fenwick Tree에서 tree[i]는 길이 lowbit(i)인 구간 a[i-lowbit(i)+1..i]의 합을 담습니다. add(5)는 idx에 lowbit를 더해 5, 6, 8, 16 순서로 올라가며, 이 네 칸이 a[5]를 포함하는 모든 칸입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="592" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#147d69"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">Fenwick: add(5)가 올라가는 칸</text>
+<text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">막대 = tree[i]가 담당하는 구간 · 주황 = add(5)가 고치는 칸</text>
+<rect x="20" y="104" width="680" height="470" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="240" y="124" width="36" height="290" rx="6" fill="#fdf0e3" stroke="#f0d3b6" stroke-width="1.2"/>
+<text x="36" y="351" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">길이 1</text>
+<rect x="98" y="322" width="32" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="114.0" y="348" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<rect x="170" y="322" width="32" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="186.0" y="348" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
+<rect x="242" y="322" width="32" height="38" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="258.0" y="348" font-size="19" fill="#172b45" font-weight="750" text-anchor="middle">5</text>
+<rect x="314" y="322" width="32" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="330.0" y="348" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">7</text>
+<rect x="386" y="322" width="32" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="402.0" y="348" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">9</text>
+<rect x="458" y="322" width="32" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="474.0" y="348" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">11</text>
+<rect x="530" y="322" width="32" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="546.0" y="348" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">13</text>
+<rect x="602" y="322" width="32" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="618.0" y="348" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">15</text>
+<text x="36" y="303" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">길이 2</text>
+<rect x="98" y="274" width="68" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="132.0" y="300" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<rect x="242" y="274" width="68" height="38" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="276.0" y="300" font-size="19" fill="#172b45" font-weight="750" text-anchor="middle">6</text>
+<rect x="386" y="274" width="68" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="420.0" y="300" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">10</text>
+<rect x="530" y="274" width="68" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="564.0" y="300" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">14</text>
+<text x="36" y="255" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">길이 4</text>
+<rect x="98" y="226" width="140" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="168.0" y="252" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<rect x="386" y="226" width="140" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.8"/>
+<text x="456.0" y="252" font-size="19" fill="#172b45" font-weight="500" text-anchor="middle">12</text>
+<text x="36" y="207" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">길이 8</text>
+<rect x="98" y="178" width="284" height="38" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="240.0" y="204" font-size="19" fill="#172b45" font-weight="750" text-anchor="middle">8</text>
+<text x="36" y="159" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">길이 16</text>
+<rect x="98" y="130" width="572" height="38" rx="7" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="384.0" y="156" font-size="19" fill="#172b45" font-weight="750" text-anchor="middle">16</text>
+<text x="36" y="396" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">a 위치</text>
+<text x="114.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">1</text>
+<text x="150.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">2</text>
+<text x="186.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">3</text>
+<text x="222.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">4</text>
+<text x="258.0" y="396" font-size="18" fill="#ae5515" font-weight="750" text-anchor="middle">5</text>
+<text x="294.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">6</text>
+<text x="330.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">7</text>
+<text x="366.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">8</text>
+<text x="402.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">9</text>
+<text x="438.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">10</text>
+<text x="474.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">11</text>
+<text x="510.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">12</text>
+<text x="546.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">13</text>
+<text x="582.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">14</text>
+<text x="618.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">15</text>
+<text x="654.0" y="396" font-size="18" fill="#53657d" font-weight="500" text-anchor="middle">16</text>
+<text x="36" y="448" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">add(5, delta)</text>
+<text x="36" y="482" font-size="21" fill="#ae5515" font-weight="700" text-anchor="start">5 → 5+1 = 6 → 6+2 = 8 → 8+8 = 16</text>
+<text x="36" y="516" font-size="19" fill="#53657d" font-weight="500" text-anchor="start">idx += lowbit(idx) 로 a[5]를 포함하는 더 큰 구간으로 이동</text>
+<text x="36" y="546" font-size="19" fill="#53657d" font-weight="500" text-anchor="start">prefixSum은 반대로 idx -= lowbit(idx) 로 내려감</text>
+</svg>

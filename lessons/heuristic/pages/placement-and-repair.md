@@ -78,6 +78,12 @@ int canPlaceLocal(int bid, int y, int x, int h, int w) {
 }
 ```
 
+![폭 8인 한 행에서 1번과 5번 열이 막혀 occ가 34일 때 폭 3 광고를 x=0, 1, 2에 놓아 보면 mask 7과 14는 막힌 칸과 겹쳐 결과가 2이고, mask 28은 겹치지 않아 결과 0이므로 x=2에 놓을 수 있습니다.](../lesson-assets/row-bitmask.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/row-bitmask.svg)
+
+코드의 `mask`와 `occ[bid][y + r]`를 한 행에서 비교하는 모습입니다. 높이가 `h`이면 같은 비교를 `h`개 행에서 반복합니다.
+
 창문도 처음부터 `occ`에 넣어 두면, 이후 배치 검사는 "이미 막힌 칸과 겹치는가" 하나로 단순해집니다. 단, 광고를 제거해야 하므로 창문 mask와 광고 mask를 분리해서 복구할 수 있게 해야 합니다.
 
 좌표를 평가할 때는 실제 점수만 보면 부족합니다.
