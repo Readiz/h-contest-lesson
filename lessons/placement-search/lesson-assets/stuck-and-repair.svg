@@ -1,126 +1,126 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 760" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 780" role="img" aria-labelledby="title desc">
 <title id="title">손계산 예시: 국소 이동이 멈춘 배치와 두 개를 빼고 다시 채운 배치</title>
 <desc id="desc">4행 6열 지도에 우주선 4척이 있습니다. 점수가 큰 후보부터 놓으면 3×3(27)과 2×2(8)로 35점이고, 남은 후보 5개는 교체해도 7점 줄거나 제안할 수 없어 국소 이동이 멈춥니다. 두 후보를 함께 빼고 2×5 두 개(20+20)를 놓으면 40점입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
-<rect x="1" y="1" width="718" height="758" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="1" y="1" width="718" height="778" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">국소 이동이 멈춘 배치와 다시 채운 배치</text>
-<rect x="20" y="76" width="680" height="320" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="20" y="76" width="680" height="336" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="38" y="110" font-size="22" fill="#172b45" font-weight="700">탐욕 결과, 국소 이동이 멈춤</text>
 <text x="682" y="110" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">35점</text>
-<rect x="48" y="132" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="132" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="132" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="132" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="132" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="132" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="48" y="188" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="188" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="188" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="188" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="188" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="188" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="48" y="244" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="244" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="244" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="244" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="244" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="244" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="48" y="300" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="300" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="300" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="300" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="300" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="300" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="219" y="135" width="162" height="162" rx="6" fill="#fff1e0" fill-opacity="0.7" stroke="#ae5515" stroke-width="3"/>
-<text x="227" y="159" font-size="20" fill="#172b45" font-weight="700">3×3 27</text>
-<rect x="51" y="135" width="106" height="106" rx="6" fill="#e9f0ff" fill-opacity="0.7" stroke="#2664ce" stroke-width="3"/>
-<text x="59" y="159" font-size="20" fill="#172b45" font-weight="700">2×2 8</text>
-<text x="98" y="180" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="154" y="180" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="210" y="180" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="266" y="180" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="322" y="180" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="378" y="180" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="98" y="236" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="154" y="236" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="210" y="236" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="266" y="236" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="322" y="236" font-size="18" fill="#3f5069" text-anchor="end">5</text>
-<text x="378" y="236" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="98" y="292" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="154" y="292" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="210" y="292" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="266" y="292" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="322" y="292" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="378" y="292" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="98" y="348" font-size="18" fill="#3f5069" text-anchor="end">5</text>
-<text x="154" y="348" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="210" y="348" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="266" y="348" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="322" y="348" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="378" y="348" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="414" y="160" font-size="20" fill="#172b45">남은 후보 5개 중</text>
-<text x="414" y="194" font-size="20" fill="#172b45">교체 가능한 것은 1개</text>
-<text x="414" y="228" font-size="20" fill="#172b45">2×5 @(2,0): 20 - 27 = -7</text>
-<text x="414" y="262" font-size="20" fill="#172b45">나머지는 제안할 수 없음</text>
-<rect x="20" y="416" width="680" height="320" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="38" y="450" font-size="22" fill="#172b45" font-weight="700">3×3과 2×2를 함께 빼고 다시 채움</text>
-<text x="682" y="450" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">40점</text>
-<rect x="48" y="472" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="472" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="472" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="472" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="472" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="472" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="48" y="528" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="528" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="528" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="528" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="528" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="528" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="48" y="584" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="584" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="584" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="584" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="584" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="584" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="48" y="640" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="104" y="640" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="160" y="640" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="216" y="640" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="272" y="640" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="328" y="640" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
-<rect x="51" y="475" width="274" height="106" rx="6" fill="#e9f0ff" fill-opacity="0.7" stroke="#2664ce" stroke-width="3"/>
-<text x="59" y="499" font-size="20" fill="#172b45" font-weight="700">2×5 20</text>
-<rect x="51" y="587" width="274" height="106" rx="6" fill="#e9f0ff" fill-opacity="0.7" stroke="#2664ce" stroke-width="3"/>
-<text x="59" y="611" font-size="20" fill="#172b45" font-weight="700">2×5 20</text>
-<text x="98" y="520" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="154" y="520" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="210" y="520" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="266" y="520" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="322" y="520" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="378" y="520" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="98" y="576" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="154" y="576" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="210" y="576" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="266" y="576" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="322" y="576" font-size="18" fill="#3f5069" text-anchor="end">5</text>
-<text x="378" y="576" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="98" y="632" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="154" y="632" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="210" y="632" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="266" y="632" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="322" y="632" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="378" y="632" font-size="18" fill="#3f5069" text-anchor="end">9</text>
-<text x="98" y="688" font-size="18" fill="#3f5069" text-anchor="end">5</text>
-<text x="154" y="688" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="210" y="688" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="266" y="688" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="322" y="688" font-size="18" fill="#3f5069" text-anchor="end">3</text>
-<text x="378" y="688" font-size="18" fill="#3f5069" text-anchor="end">0</text>
-<text x="414" y="500" font-size="20" fill="#172b45">2×5 @(0,0)  20</text>
-<text x="414" y="534" font-size="20" fill="#172b45">2×5 @(2,0)  20</text>
-<text x="414" y="568" font-size="20" fill="#172b45">합계 40</text>
-<text x="414" y="602" font-size="20" fill="#172b45">둘 다 우주선이 2척 있음</text>
+<rect x="48" y="132" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="132" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="132" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="132" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="132" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="132" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="48" y="196" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="196" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="196" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="196" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="196" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="196" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="48" y="260" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="260" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="260" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="260" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="260" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="260" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="48" y="324" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="324" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="324" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="324" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="324" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="324" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="231" y="135" width="174" height="186" rx="6" fill="#fff1e0" fill-opacity="0.7" stroke="#ae5515" stroke-width="3"/>
+<text x="240" y="158" font-size="20" fill="#172b45" font-weight="700">3×3 27</text>
+<rect x="51" y="135" width="114" height="122" rx="6" fill="#e9f0ff" fill-opacity="0.7" stroke="#2664ce" stroke-width="3"/>
+<text x="60" y="158" font-size="20" fill="#172b45" font-weight="700">2×2 8</text>
+<text x="92" y="186" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="152" y="186" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="212" y="186" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="272" y="186" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="332" y="186" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="392" y="186" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="92" y="250" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="152" y="250" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="212" y="250" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="272" y="250" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="332" y="250" font-size="18" fill="#3f5069" text-anchor="end">5</text>
+<text x="392" y="250" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="92" y="314" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="152" y="314" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="212" y="314" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="272" y="314" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="332" y="314" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="392" y="314" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="92" y="378" font-size="18" fill="#3f5069" text-anchor="end">5</text>
+<text x="152" y="378" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="212" y="378" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="272" y="378" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="332" y="378" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="392" y="378" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="436" y="160" font-size="20" fill="#172b45">남은 후보 5개 중</text>
+<text x="436" y="194" font-size="20" fill="#172b45">교체 가능한 것은 1개</text>
+<text x="436" y="228" font-size="20" fill="#172b45">2×5 @(2,0): 20 - 27 = -7</text>
+<text x="436" y="262" font-size="20" fill="#172b45">나머지는 제안할 수 없음</text>
+<rect x="20" y="428" width="680" height="336" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="462" font-size="22" fill="#172b45" font-weight="700">3×3과 2×2를 함께 빼고 다시 채움</text>
+<text x="682" y="462" font-size="23" fill="#172b45" font-weight="750" text-anchor="end">40점</text>
+<rect x="48" y="484" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="484" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="484" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="484" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="484" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="484" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="48" y="548" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="548" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="548" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="548" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="548" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="548" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="48" y="612" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="612" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="612" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="612" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="612" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="612" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="48" y="676" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="108" y="676" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="168" y="676" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="228" y="676" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="288" y="676" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="348" y="676" width="60" height="64" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="51" y="487" width="294" height="122" rx="6" fill="#e9f0ff" fill-opacity="0.7" stroke="#2664ce" stroke-width="3"/>
+<text x="60" y="510" font-size="20" fill="#172b45" font-weight="700">2×5 20</text>
+<rect x="51" y="615" width="294" height="122" rx="6" fill="#e9f0ff" fill-opacity="0.7" stroke="#2664ce" stroke-width="3"/>
+<text x="60" y="638" font-size="20" fill="#172b45" font-weight="700">2×5 20</text>
+<text x="92" y="538" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="152" y="538" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="212" y="538" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="272" y="538" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="332" y="538" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="392" y="538" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="92" y="602" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="152" y="602" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="212" y="602" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="272" y="602" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="332" y="602" font-size="18" fill="#3f5069" text-anchor="end">5</text>
+<text x="392" y="602" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="92" y="666" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="152" y="666" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="212" y="666" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="272" y="666" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="332" y="666" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="392" y="666" font-size="18" fill="#3f5069" text-anchor="end">9</text>
+<text x="92" y="730" font-size="18" fill="#3f5069" text-anchor="end">5</text>
+<text x="152" y="730" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="212" y="730" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="272" y="730" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="332" y="730" font-size="18" fill="#3f5069" text-anchor="end">3</text>
+<text x="392" y="730" font-size="18" fill="#3f5069" text-anchor="end">0</text>
+<text x="436" y="512" font-size="20" fill="#172b45">2×5 @(0,0)  20</text>
+<text x="436" y="546" font-size="20" fill="#172b45">2×5 @(2,0)  20</text>
+<text x="436" y="580" font-size="20" fill="#172b45">합계 40</text>
+<text x="436" y="614" font-size="20" fill="#172b45">둘 다 우주선이 2척 있음</text>
 </svg>
