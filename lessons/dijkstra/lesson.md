@@ -126,6 +126,10 @@ vector<long long> dijkstra(const vector<vector<Edge>>& graph, int start) {
 
 `currentDist != dist[u]`인 항목을 건너뛰는 부분이 중요합니다. 같은 정점의 거리가 여러 번 줄어들면 우선순위 큐 안에 오래된 후보가 남을 수 있습니다. 큐에서 꺼냈을 때 현재 `dist`와 다르면 이미 더 좋은 경로가 발견된 것이므로 버립니다.
 
+![정점 0에서 2로 직접 가는 비용은 5이고 1을 거치면 2+1=3입니다. 큐에 남아 있던 거리 5 후보는 현재 거리 3과 달라 꺼낸 뒤 버립니다.](lesson-assets/concept-trace.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/dijkstra/lesson-assets/concept-trace.svg)
+
 ## 왜 음수 간선이 있으면 안 될까
 
 Dijkstra는 가장 가까운 후보를 꺼내는 순간 그 거리를 확정합니다. 이 말은 "나중에 돌아오는 경로가 이 값을 더 줄일 수 없다"는 뜻입니다.
