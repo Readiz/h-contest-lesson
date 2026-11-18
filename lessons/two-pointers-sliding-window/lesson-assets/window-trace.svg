@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 840" role="img" aria-labelledby="title desc">
+<title id="title">슬라이딩 윈도우: 창이 늘고 줄어듦</title><desc id="desc">배열 2 3 1 2 4 3에서 합 7 이상인 가장 짧은 구간을 찾습니다. 오른쪽을 늘려 합이 7 이상이 되면 길이를 기록하고 왼쪽을 줄이는 열한 단계를 거쳐, 마지막에 4와 3으로 이루어진 길이 2가 최소로 남습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="838" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">슬라이딩 윈도우: 창이 늘고 줄어듦</text>
+<text x="28" y="86" font-size="22" fill="#53657d" font-weight="400" text-anchor="start">S = 7 · 파랑/초록 칸 = 현재 창 [left, right]</text>
+<rect x="20" y="108" width="680" height="644" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="138" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">단계</text>
+<text x="90" y="138" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">배열과 창</text>
+<text x="372" y="138" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">합</text>
+<text x="450" y="138" font-size="18" fill="#53657d" font-weight="700" text-anchor="start">판정</text>
+<text x="36" y="179" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">1</text>
+<rect x="70" y="152" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="91" y="179" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="116" y="152" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="137" y="179" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<rect x="162" y="152" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="183" y="179" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">1</text>
+<rect x="208" y="152" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="229" y="179" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="254" y="152" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="275" y="179" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">4</text>
+<rect x="300" y="152" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="179" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="179" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">2</text>
+<text x="450" y="179" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">늘림 · 7 미만</text>
+<text x="36" y="233" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">2</text>
+<rect x="70" y="206" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="91" y="233" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="116" y="206" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="137" y="233" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="162" y="206" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="183" y="233" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">1</text>
+<rect x="208" y="206" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="229" y="233" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="254" y="206" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="275" y="233" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">4</text>
+<rect x="300" y="206" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="233" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="233" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">5</text>
+<text x="450" y="233" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">늘림 · 7 미만</text>
+<text x="36" y="287" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">3</text>
+<rect x="70" y="260" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="91" y="287" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="116" y="260" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="137" y="287" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="162" y="260" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="183" y="287" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="208" y="260" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="229" y="287" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="254" y="260" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="275" y="287" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">4</text>
+<rect x="300" y="260" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="287" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="287" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">6</text>
+<text x="450" y="287" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">늘림 · 7 미만</text>
+<text x="36" y="341" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">4</text>
+<rect x="70" y="314" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="91" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="116" y="314" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="137" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="162" y="314" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="183" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="208" y="314" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="229" y="341" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="254" y="314" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="275" y="341" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">4</text>
+<rect x="300" y="314" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="341" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="341" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">8</text>
+<text x="450" y="341" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">늘림 · ≥7 · 길이 4</text>
+<text x="36" y="395" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">5</text>
+<rect x="70" y="368" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="91" y="395" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="116" y="368" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="137" y="395" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="162" y="368" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="183" y="395" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="208" y="368" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="229" y="395" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="254" y="368" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="275" y="395" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">4</text>
+<rect x="300" y="368" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="395" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="395" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">6</text>
+<text x="450" y="395" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">줄임 · 7 미만</text>
+<text x="36" y="449" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">6</text>
+<rect x="70" y="422" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="91" y="449" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="116" y="422" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="137" y="449" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<rect x="162" y="422" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="183" y="449" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="208" y="422" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="229" y="449" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="254" y="422" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="275" y="449" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<rect x="300" y="422" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="449" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="449" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">10</text>
+<text x="450" y="449" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">늘림 · ≥7 · 길이 4</text>
+<text x="36" y="503" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">7</text>
+<rect x="70" y="476" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="91" y="503" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="116" y="476" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="137" y="503" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<rect x="162" y="476" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="183" y="503" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<rect x="208" y="476" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="229" y="503" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="254" y="476" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="275" y="503" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<rect x="300" y="476" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="503" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="503" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">7</text>
+<text x="450" y="503" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">줄임 · ≥7 · 길이 3</text>
+<text x="36" y="557" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">8</text>
+<rect x="70" y="530" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="91" y="557" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="116" y="530" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="137" y="557" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<rect x="162" y="530" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="183" y="557" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">1</text>
+<rect x="208" y="530" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="229" y="557" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="254" y="530" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="275" y="557" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<rect x="300" y="530" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="321" y="557" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<text x="372" y="557" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">6</text>
+<text x="450" y="557" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">줄임 · 7 미만</text>
+<text x="36" y="611" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">9</text>
+<rect x="70" y="584" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="91" y="611" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="116" y="584" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="137" y="611" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<rect x="162" y="584" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="183" y="611" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">1</text>
+<rect x="208" y="584" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="229" y="611" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<rect x="254" y="584" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="275" y="611" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<rect x="300" y="584" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="321" y="611" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="372" y="611" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">9</text>
+<text x="450" y="611" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">늘림 · ≥7 · 길이 3</text>
+<text x="36" y="665" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">10</text>
+<rect x="70" y="638" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="91" y="665" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="116" y="638" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="137" y="665" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<rect x="162" y="638" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="183" y="665" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">1</text>
+<rect x="208" y="638" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="229" y="665" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="254" y="638" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="275" y="665" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<rect x="300" y="638" width="42" height="38" rx="7" fill="#e5f4ef" stroke="#147d69" stroke-width="2"/>
+<text x="321" y="665" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="372" y="665" font-size="20" fill="#147d69" font-weight="700" text-anchor="start">7</text>
+<text x="450" y="665" font-size="20" fill="#ae5515" font-weight="700" text-anchor="start">줄임 · ≥7 · 길이 2</text>
+<text x="36" y="719" font-size="20" fill="#53657d" font-weight="700" text-anchor="start">11</text>
+<rect x="70" y="692" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="91" y="719" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="116" y="692" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="137" y="719" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">3</text>
+<rect x="162" y="692" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="183" y="719" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">1</text>
+<rect x="208" y="692" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="229" y="719" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">2</text>
+<rect x="254" y="692" width="42" height="38" rx="7" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.2"/>
+<text x="275" y="719" font-size="20" fill="#9fb0c6" font-weight="400" text-anchor="middle">4</text>
+<rect x="300" y="692" width="42" height="38" rx="7" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="321" y="719" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<text x="372" y="719" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">3</text>
+<text x="450" y="719" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">줄임 · 7 미만</text>
+<rect x="28" y="764" width="664" height="54" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="798" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">기록한 길이 4, 4, 3, 3, 2 중 최소 2 = [4, 3]</text>
+</svg>

@@ -54,7 +54,9 @@ parent[3] = 3
 
 처음 `find(5)`는 여러 노드를 지나갈 수 있습니다. 하지만 그 뒤에는 `5`의 부모가 바로 대표가 되므로 다음 조회가 훨씬 빨라집니다.
 
-![경로 압축 전후](lesson-assets/path-compression.svg)
+![압축 전에는 4에서 3, 2, 1을 거쳐 0까지 한 줄로 이어져 있고, find(4) 뒤에는 1부터 4까지 모두 대표 0을 직접 가리킵니다.](lesson-assets/path-compression.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/union-find/lesson-assets/path-compression.svg)
 
 경로 압축은 답을 바꾸지 않습니다. 같은 집합 안에서 루트로 가는 길을 짧게 만드는 것뿐입니다.
 

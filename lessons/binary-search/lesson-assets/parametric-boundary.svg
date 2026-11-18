@@ -1,0 +1,315 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 876" role="img" aria-labelledby="title desc">
+<title id="title">파라메트릭 서치: 불가능→가능 경계</title><desc id="desc">기계 시간 2,3,7로 제품 10개를 만드는 최초 시각을 찾습니다. 구간 [0,20]에서 mid를 10, 15, 13, 12, 11로 시험하며 불가능이면 lo를 올리고 가능이면 hi를 내려, 불가능이던 11과 가능한 12 사이의 경계인 12에서 멈춥니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="874" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">파라메트릭 서치: 불가능→가능 경계</text>
+<text x="28" y="86" font-size="20" fill="#53657d" font-weight="400" text-anchor="start">기계 시간 2, 3, 7 · 목표 10개 · can(t) = ⌊t/2⌋+⌊t/3⌋+⌊t/7⌋ ≥ 10</text>
+<rect x="20" y="104" width="680" height="150" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="138" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">모든 시각의 판정 (실제 경계)</text>
+<rect x="37" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="51.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">0</text>
+<rect x="68" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="82.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">1</text>
+<rect x="99" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="113.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">2</text>
+<rect x="130" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="144.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">3</text>
+<rect x="161" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="175.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">4</text>
+<rect x="192" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="206.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">5</text>
+<rect x="223" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="237.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">6</text>
+<rect x="254" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="268.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">7</text>
+<rect x="285" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="299.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">8</text>
+<rect x="316" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">9</text>
+<rect x="347" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="361.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">10</text>
+<rect x="378" y="152" width="29" height="34" rx="5" fill="#eef2f7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="392.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">11</text>
+<rect x="409" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="423.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">12</text>
+<rect x="440" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="454.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">13</text>
+<rect x="471" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="485.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">14</text>
+<rect x="502" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="516.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">15</text>
+<rect x="533" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="547.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">16</text>
+<rect x="564" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="578.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">17</text>
+<rect x="595" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="609.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">18</text>
+<rect x="626" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="640.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">19</text>
+<rect x="657" y="152" width="29" height="34" rx="5" fill="#e5f4ef" stroke="#147d69" stroke-width="1.5"/>
+<text x="671.5" y="177" font-size="18" fill="#172b45" font-weight="600" text-anchor="middle">20</text>
+<text x="206.5" y="212" font-size="20" fill="#53657d" font-weight="700" text-anchor="middle">불가능 (t ≤ 11)</text>
+<text x="532" y="212" font-size="20" fill="#147d69" font-weight="700" text-anchor="middle">가능 (t ≥ 12)</text>
+<line x1="408" y1="196" x2="408" y2="222" stroke="#147d69" stroke-width="3" stroke-linecap="round"/>
+<rect x="20" y="270" width="680" height="584" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="36" y="304" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">구간 [lo, hi] 좁히기 (주황 = mid)</text>
+<rect x="37" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="51.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">0</text>
+<rect x="68" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="82.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">1</text>
+<rect x="99" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="113.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">2</text>
+<rect x="130" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="144.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">3</text>
+<rect x="161" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="175.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">4</text>
+<rect x="192" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="206.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">5</text>
+<rect x="223" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="237.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">6</text>
+<rect x="254" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="268.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">7</text>
+<rect x="285" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="299.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">8</text>
+<rect x="316" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="330.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">9</text>
+<rect x="347" y="328" width="29" height="34" rx="5" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="361.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">10</text>
+<rect x="378" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="392.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">11</text>
+<rect x="409" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="423.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">12</text>
+<rect x="440" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="454.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">13</text>
+<rect x="471" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="485.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">14</text>
+<rect x="502" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="516.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">15</text>
+<rect x="533" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="547.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">16</text>
+<rect x="564" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="578.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">17</text>
+<rect x="595" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="609.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">18</text>
+<rect x="626" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="640.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">19</text>
+<rect x="657" y="328" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="671.5" y="353" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">20</text>
+<text x="36" y="390" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">1. mid = 10: 5+3+1 = 9 &lt; 10 불가능 → lo = 11</text>
+<rect x="37" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="51.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">0</text>
+<rect x="68" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="82.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">1</text>
+<rect x="99" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="113.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">2</text>
+<rect x="130" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="144.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">3</text>
+<rect x="161" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="175.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">4</text>
+<rect x="192" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="206.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">5</text>
+<rect x="223" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="237.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">6</text>
+<rect x="254" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="268.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">7</text>
+<rect x="285" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="299.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">8</text>
+<rect x="316" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">9</text>
+<rect x="347" y="416" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="361.5" y="441" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">10</text>
+<rect x="378" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="392.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">11</text>
+<rect x="409" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="423.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">12</text>
+<rect x="440" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="454.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">13</text>
+<rect x="471" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="485.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">14</text>
+<rect x="502" y="416" width="29" height="34" rx="5" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="516.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">15</text>
+<rect x="533" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="547.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">16</text>
+<rect x="564" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="578.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">17</text>
+<rect x="595" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="609.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">18</text>
+<rect x="626" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="640.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">19</text>
+<rect x="657" y="416" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="671.5" y="441" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">20</text>
+<text x="36" y="478" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">2. mid = 15: 7+5+2 = 14 ≥ 10 가능 → hi = 15</text>
+<rect x="37" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="51.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">0</text>
+<rect x="68" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="82.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">1</text>
+<rect x="99" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="113.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">2</text>
+<rect x="130" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="144.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">3</text>
+<rect x="161" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="175.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">4</text>
+<rect x="192" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="206.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">5</text>
+<rect x="223" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="237.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">6</text>
+<rect x="254" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="268.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">7</text>
+<rect x="285" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="299.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">8</text>
+<rect x="316" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">9</text>
+<rect x="347" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="361.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">10</text>
+<rect x="378" y="504" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="392.5" y="529" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">11</text>
+<rect x="409" y="504" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="423.5" y="529" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">12</text>
+<rect x="440" y="504" width="29" height="34" rx="5" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="454.5" y="529" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">13</text>
+<rect x="471" y="504" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="485.5" y="529" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">14</text>
+<rect x="502" y="504" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="516.5" y="529" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">15</text>
+<rect x="533" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="547.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">16</text>
+<rect x="564" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="578.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">17</text>
+<rect x="595" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="609.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">18</text>
+<rect x="626" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="640.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">19</text>
+<rect x="657" y="504" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="671.5" y="529" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">20</text>
+<text x="36" y="566" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">3. mid = 13: 6+4+1 = 11 ≥ 10 가능 → hi = 13</text>
+<rect x="37" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="51.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">0</text>
+<rect x="68" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="82.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">1</text>
+<rect x="99" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="113.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">2</text>
+<rect x="130" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="144.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">3</text>
+<rect x="161" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="175.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">4</text>
+<rect x="192" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="206.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">5</text>
+<rect x="223" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="237.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">6</text>
+<rect x="254" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="268.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">7</text>
+<rect x="285" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="299.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">8</text>
+<rect x="316" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">9</text>
+<rect x="347" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="361.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">10</text>
+<rect x="378" y="592" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="392.5" y="617" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">11</text>
+<rect x="409" y="592" width="29" height="34" rx="5" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="423.5" y="617" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">12</text>
+<rect x="440" y="592" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="454.5" y="617" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">13</text>
+<rect x="471" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="485.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">14</text>
+<rect x="502" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="516.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">15</text>
+<rect x="533" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="547.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">16</text>
+<rect x="564" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="578.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">17</text>
+<rect x="595" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="609.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">18</text>
+<rect x="626" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="640.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">19</text>
+<rect x="657" y="592" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="671.5" y="617" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">20</text>
+<text x="36" y="654" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">4. mid = 12: 6+4+1 = 11 ≥ 10 가능 → hi = 12</text>
+<rect x="37" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="51.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">0</text>
+<rect x="68" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="82.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">1</text>
+<rect x="99" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="113.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">2</text>
+<rect x="130" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="144.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">3</text>
+<rect x="161" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="175.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">4</text>
+<rect x="192" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="206.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">5</text>
+<rect x="223" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="237.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">6</text>
+<rect x="254" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="268.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">7</text>
+<rect x="285" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="299.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">8</text>
+<rect x="316" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">9</text>
+<rect x="347" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="361.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">10</text>
+<rect x="378" y="680" width="29" height="34" rx="5" fill="#fdf0e3" stroke="#ae5515" stroke-width="3"/>
+<text x="392.5" y="705" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">11</text>
+<rect x="409" y="680" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="423.5" y="705" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">12</text>
+<rect x="440" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="454.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">13</text>
+<rect x="471" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="485.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">14</text>
+<rect x="502" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="516.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">15</text>
+<rect x="533" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="547.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">16</text>
+<rect x="564" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="578.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">17</text>
+<rect x="595" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="609.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">18</text>
+<rect x="626" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="640.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">19</text>
+<rect x="657" y="680" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="671.5" y="705" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">20</text>
+<text x="36" y="742" font-size="20" fill="#172b45" font-weight="500" text-anchor="start">5. mid = 11: 5+3+1 = 9 &lt; 10 불가능 → lo = 12</text>
+<rect x="37" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="51.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">0</text>
+<rect x="68" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="82.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">1</text>
+<rect x="99" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="113.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">2</text>
+<rect x="130" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="144.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">3</text>
+<rect x="161" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="175.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">4</text>
+<rect x="192" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="206.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">5</text>
+<rect x="223" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="237.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">6</text>
+<rect x="254" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="268.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">7</text>
+<rect x="285" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="299.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">8</text>
+<rect x="316" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="330.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">9</text>
+<rect x="347" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="361.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">10</text>
+<rect x="378" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="392.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">11</text>
+<rect x="409" y="768" width="29" height="34" rx="5" fill="#e9f0ff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="423.5" y="793" font-size="18" fill="#172b45" font-weight="500" text-anchor="middle">12</text>
+<rect x="440" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="454.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">13</text>
+<rect x="471" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="485.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">14</text>
+<rect x="502" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="516.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">15</text>
+<rect x="533" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="547.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">16</text>
+<rect x="564" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="578.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">17</text>
+<rect x="595" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="609.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">18</text>
+<rect x="626" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="640.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">19</text>
+<rect x="657" y="768" width="29" height="34" rx="5" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="671.5" y="793" font-size="18" fill="#9fb0c6" font-weight="500" text-anchor="middle">20</text>
+<text x="36" y="830" font-size="21" fill="#147d69" font-weight="750" text-anchor="start">lo = hi = 12 → 답 12</text>
+</svg>

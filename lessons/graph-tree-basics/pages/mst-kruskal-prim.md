@@ -62,4 +62,10 @@ bool kruskal(int n, vector<Edge> edges, long long& total) {
 
 Kruskal은 비용이 작은 간선부터 보면서, 이미 같은 컴포넌트 안의 간선은 사이클을 만들기 때문에 버립니다. 서로 다른 컴포넌트를 잇는 간선은 그 순간 두 컴포넌트를 가르는 절단의 싼 후보로 볼 수 있어 안전하게 선택합니다.
 
+![정점 5개와 간선 6개를 비용순으로 보면 0-1, 2-3, 1-2, 3-4는 서로 다른 집합을 이어 선택하고, 0-2와 1-4는 이미 같은 집합이라 버려 비용 합이 1+2+3+5=11입니다.](../lesson-assets/kruskal-steps.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/graph-tree-basics/lesson-assets/kruskal-steps.svg)
+
+본문 설명을 따라가기 위한 작은 예시입니다. 초록 행은 `unite`가 성공해 비용에 더한 간선, 빨간 행은 같은 집합이라 버린 간선입니다.
+
 선택한 간선이 `n - 1`개보다 적으면 입력이 연결되지 않은 것입니다. 비용 합은 `long long`으로 계산합니다. MST는 전체 연결 비용을 최소화하며, 두 정점 사이의 경로가 최단거리라는 보장은 없습니다.

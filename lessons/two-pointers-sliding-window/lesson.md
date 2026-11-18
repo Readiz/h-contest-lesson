@@ -119,3 +119,9 @@ int longestAtMostKDistinct(const vector<int>& a, int k) {
 ```
 
 **확인 방법:** 마지막 [4,3]의 길이가 2입니다. N <= 30에서 모든 구간을 열거해 비교합니다. 한 원소가 바로 S 이상인 경우와 전체 합이 S보다 작은 경우를 검사합니다. 음수 입력으로 바꾼 경우에는 창의 단조성이 유지되지 않습니다.
+
+![배열 2 3 1 2 4 3에서 합 7 이상인 가장 짧은 구간을 찾을 때, 오른쪽을 늘려 합이 7 이상이 되면 길이를 기록하고 왼쪽을 줄이는 열한 단계가 이어지며 기록한 길이 4, 4, 3, 3, 2 가운데 마지막 [4, 3]의 길이 2가 최소입니다.](lesson-assets/window-trace.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/two-pointers-sliding-window/lesson-assets/window-trace.svg)
+
+위의 연습 예시를 단계별로 펼친 그림입니다. 초록 칸은 합이 7 이상인 창이며, 왼쪽을 줄이는 동안에도 합이 다시 7 미만이 되는 순간까지 길이를 기록합니다.

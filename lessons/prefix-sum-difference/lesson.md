@@ -130,6 +130,12 @@ vector<long long> addRangesToArray(
 
 시간 구간을 `[start, end)`로 표현한다면 종료 표시는 `end + 1`이 아니라 `end`에 둡니다. 모든 업데이트가 끝난 뒤 합 질의만 남는다면 복원한 배열의 누적합을 만들면 됩니다.
 
+![배열 2,-1,3,0,4에 구간 [1,4)에 +2, [0,2)에 -1을 더하면 차분 배열에는 위치 0,1,2,4에만 -1,+2,+1,-2가 표시되고, 누적하면 -1,1,2,2,0이며 원래 배열에 더한 결과는 1,0,5,2,4입니다.](lesson-assets/difference-update.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/prefix-sum-difference/lesson-assets/difference-update.svg)
+
+로컬 연습의 예시입니다. 갱신마다 시작 위치와 끝 위치 두 칸만 바뀌고, 누적하는 순간 그 사이 구간 전체에 값이 번집니다.
+
 ## 2차원 누적합
 
 격자에서 직사각형 합을 많이 물어보면 2차원 누적합을 씁니다.
@@ -185,6 +191,12 @@ long long rectSum(
 ```text
 answer = 전체 - 위쪽 - 왼쪽 + 왼쪽 위 중복 영역
 ```
+
+![모든 칸이 1인 4×4 격자에서 2×2 직사각형의 합은 prefix[3][3]=9에서 위쪽 3과 왼쪽 3을 빼고 두 번 빠진 왼쪽 위 1칸을 더해 9-3-3+1=4가 됩니다.](lesson-assets/rect-inclusion-exclusion.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/prefix-sum-difference/lesson-assets/rect-inclusion-exclusion.svg)
+
+`rectSum(prefix, 1, 1, 2, 2)`를 네 항으로 나눈 그림입니다. 초록 테두리가 구하려는 칸이고, ④의 칸은 ②와 ③에서 모두 빠졌기 때문에 한 번 되돌립니다.
 
 2차원 누적합도 질의는 `O(1)`입니다. 전처리는 `O(hw)`입니다.
 
