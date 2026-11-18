@@ -85,6 +85,13 @@ def hand_table() -> str:
     return "\n".join(lines)
 
 
+def hand_time_table() -> str:
+    lines = ["| 작업 | 기계 0에서 | 기계 1에서 |", "| --- | ---: | ---: |"]
+    for job, (a, b) in enumerate(HAND_TIME):
+        lines.append(f"| {job} | {a} | {b} |")
+    return "\n".join(lines)
+
+
 def hand_facts() -> dict:
     start = max(full_loads(HAND_START))
     neighbors = hand_neighbors()
@@ -323,6 +330,7 @@ void schedule_jobs(int job_count, int machine_count, const int processing_time[]
     prm.startTemp = prm.endTemp = 0.0;
     if (mode == 2) {
         double loss = sched::medianLoss(plan, seed ^ 0x5bd1e995u, 2000, weight, swapPercent);
+        fprintf(stderr, "LOSS %d %.3f\n", job_count, loss);
         prm.startTemp = factor * loss;
         prm.endTemp = ratio * prm.startTemp;
     }
@@ -465,7 +473,8 @@ def run_judge(exe: Path, env: dict[str, str], rounds: int = 1) -> dict:
             exp.append({"n": f[0], "greedy": f[1], "best": f[2], "proposed_worse": f[3::2][:SEGMENTS], "accepted_worse": f[4::2][:SEGMENTS]})
     exp = exp[:MAX_TC]
     plateau = [[int(v) for v in line.split()[1:]] for line in r.stderr.splitlines() if line.startswith("PLATEAU ")][:MAX_TC]
-    return {"total": totals[0], "costs": cases[:MAX_TC], "times": times, "exp": exp, "plateau": plateau}
+    loss = [float(line.split()[2]) for line in r.stderr.splitlines() if line.startswith("LOSS ")][:MAX_TC]
+    return {"total": totals[0], "costs": cases[:MAX_TC], "times": times, "exp": exp, "plateau": plateau, "loss": loss}
 
 
 def median(values):
@@ -504,6 +513,8 @@ def benchmark(values: dict[str, str], judge: Path, output: Path) -> None:
             r = run_judge(exe, env, rounds=9)
             row = {"key": key, "label": label, "total": r["total"], "costs": r["costs"],
                    "median_ms": median(r["times"][1:]), "runs_ms": r["times"][1:]}
+            if r["loss"]:
+                row["median_loss"] = r["loss"]
             stages.append(row)
             print(json.dumps({k: row[k] for k in ("key", "total", "median_ms")}), flush=True)
         by = {s["key"]: s for s in stages}
@@ -606,8 +617,20 @@ def own_table(data: dict) -> str:
     return "\n".join(lines)
 
 
+def loss_table(data: dict) -> str:
+    sa = next(s for s in data["stages"] if s["key"] == "sa-2")
+    plateau = data["plateau"]
+    lines = ["| TC | 작업 수 × 기계 수 | 중앙 손해 | 시작 온도 0.1배 | 끝 온도 | 점수가 그대로인 제안 |", "| --- | ---: | ---: | ---: | ---: | ---: |"]
+    shapes = [(200, 6), (400, 8), (800, 10), (1500, 12), (2500, 16), (4000, 20)]
+    for i, ((n, m), loss) in enumerate(zip(shapes, sa["median_loss"]), start=1):
+        assert plateau[i - 1]["n"] == n
+        same = 100 * plateau[i - 1]["same_makespan"] / plateau[i - 1]["proposals"]
+        lines.append(f"| {i} | {n} × {m} | {loss:.1f} | {0.1 * loss:.1f} | {0.1 * loss * 0.02:.2f} | {same:.0f}% |")
+    return "\n".join(lines)
+
+
 def tables(data: dict) -> dict[str, str]:
-    return {"hand": hand_table(), "stages": stage_table(data), "temperatures": temp_table(data),
+    return {"handtime": hand_time_table(), "hand": hand_table(), "stages": stage_table(data), "losses": loss_table(data), "temperatures": temp_table(data),
             "weights": weight_table(data), "own": own_table(data)}
 
 
@@ -625,8 +648,15 @@ def check_stored(facts: dict) -> None:
     greedy = next(s for s in data["stages"] if s["key"] == "greedy")
     final = next(s for s in data["stages"] if s["key"] == "final")
     assert final["costs"] == next(s for s in data["stages"] if s["key"] == "sa-2")["costs"]
-    for needle in (f"{greedy['total']}", f"{final['total']}", f"{data['buggy_max']['total']}", data["judge_sha256"][:12]):
+    for needle in [str(s["total"]) for s in data["stages"]] + [str(data["buggy_max"]["total"]), data["judge_sha256"][:12],
+                                                               data["measured_at"], data["environment"].split(" / ")[0]]:
         assert needle in markdown, needle
+    figure2 = ASSET.parent / "acceptance-by-temperature.svg"
+    if figure2.exists():
+        text = figure2.read_text()
+        for t in data["temperatures"]:
+            if t["factor"] > 0:
+                assert f"{t['median_total']:.0f}" in text and f"×{t['factor']:g} " in text, t["factor"]
     if FIGURE.exists():
         figure = FIGURE.read_text()
         assert all(token in figure for token in ("14", "15", "12", "9"))
