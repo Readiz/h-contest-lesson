@@ -73,54 +73,72 @@ Dijkstra의 핵심 선택은 단순합니다.
 
 매번 아직 확정하지 않은 모든 정점을 훑어 최솟값을 찾으면 `O(V^2)`입니다. 간선이 많지 않은 그래프에서는 우선순위 큐를 써서 더 빠르게 구현합니다.
 
-C++의 `priority_queue`는 기본이 max heap이므로, `greater`를 붙여 min heap처럼 사용합니다. 아래 코드는 방향 그래프이며, 무방향 간선이면 양쪽 인접 리스트에 모두 추가합니다.
+공통 `min-heap` 블록은 `(key, id)` 쌍에서 `key`가 가장 작은 항목부터 꺼냅니다. 거리를 `key`, 정점 번호를 `id`로 넣으면 따로 비교 함수를 붙이지 않아도 최소 힙처럼 쓸 수 있습니다. 아래 코드는 방향 그래프이며, 무방향 간선이면 양쪽 인접 리스트에 모두 추가합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `min-heap` 블록을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하며, 아래 두 블록을 이어서 사용합니다.
+
+그래프는 `head`/`next` 배열 인접 리스트(간선 번호로 연결, [BFS/DFS 강의](https://h.readiz.com/learn/bfs-dfs-grid)와 같은 형태에 `cost`를 더함)입니다. 상한은 이 강의 연습의 입력 상한인 정점 `MAX_V = 200000`, 간선 `MAX_E = 400000`이며, 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 `Graph`와 힙은 전역으로 두고, TC마다 `graph.init(n)`을 호출합니다. 힙은 `dijkstra` 안에서 비웁니다.
 
 ```cpp
-#include <functional>
-#include <queue>
-#include <vector>
-using namespace std;
+const int MAX_V = 200000; // 정점 수 상한
+const int MAX_E = 400000; // 방향 간선 수 상한
+const long long INF = 4000000000000000000LL;
 
-const long long INF = 4e18;
+struct Graph {
+    int head[MAX_V];
+    int next[MAX_E];
+    int to[MAX_E];
+    long long cost[MAX_E];
+    int edgeCount;
 
-struct Edge {
-    int to;
-    long long cost;
+    void init(int n) { // 전제: 0 <= n <= MAX_V
+        for (int i = 0; i < n; ++i) head[i] = -1;
+        edgeCount = 0;
+    }
+    bool addEdge(int u, int v, long long c) { // 간선이 가득 차면 false
+        if (edgeCount == MAX_E) return false;
+        to[edgeCount] = v;
+        cost[edgeCount] = c;
+        next[edgeCount] = head[u];
+        head[u] = edgeCount++;
+        return true;
+    }
 };
+```
 
-vector<long long> dijkstra(const vector<vector<Edge>>& graph, int start) {
-    int n = (int)graph.size();
-    vector<long long> dist(n, INF);
-    priority_queue<
-        pair<long long, int>,
-        vector<pair<long long, int>>,
-        greater<pair<long long, int>>
-    > pq;
+힙에는 거리가 **줄어든 순간마다** 항목이 하나 들어갑니다. 음수 없는 가중치에서는 정점이 한 번만 확장되므로 간선마다 많아야 한 번 완화되어, 시작점을 합쳐도 `MAX_E + 1`칸이면 충분합니다. 힙이 가득 차서 `push`가 실패하면 입력 전제(음수 없는 가중치)가 깨진 것이므로 `false`를 반환합니다. `dist[0..n)`은 함수가 채우며, `0 <= start < n <= MAX_V`가 아니면 `false`입니다.
+
+```cpp
+hc::MinHeap<MAX_E + 1> heap;
+
+bool dijkstra(const Graph& graph, int n, int start, long long dist[]) {
+    if (n < 0 || n > MAX_V || start < 0 || start >= n) return false;
+    for (int i = 0; i < n; ++i) dist[i] = INF;
+    heap.clear();
 
     dist[start] = 0;
-    pq.push({0, start});
+    heap.push(0, start);
 
-    while (!pq.empty()) {
-        auto [currentDist, u] = pq.top();
-        pq.pop();
+    hc::HeapItem top;
+    while (heap.pop(top)) {
+        long long currentDist = top.key;
+        int u = top.id;
 
         if (currentDist != dist[u]) {
             continue;
         }
 
-        for (const Edge& edge : graph[u]) {
-            int v = edge.to;
-            long long nextDist = currentDist + edge.cost;
+        for (int e = graph.head[u]; e != -1; e = graph.next[e]) {
+            int v = graph.to[e];
+            long long nextDist = currentDist + graph.cost[e];
             if (nextDist < dist[v]) {
                 dist[v] = nextDist;
-                pq.push({nextDist, v});
+                if (!heap.push(nextDist, v)) return false;
             }
         }
     }
 
-    return dist;
+    return true;
 }
 ```
 
@@ -144,9 +162,9 @@ Dijkstra는 가장 가까운 후보를 꺼내는 순간 그 거리를 확정합�
 
 시작점이 `0`이면 처음에는 `dist[1] = 2`, `dist[2] = 5`입니다. Dijkstra는 `1`을 먼저 확정하려고 합니다. 하지만 실제로는 `0 -> 2 -> 1` 경로의 비용이 `-5`입니다. 나중에 더 짧아지는 길이 존재하므로, 확정 선택이 안전하지 않습니다.
 
-다만 **위 코드 전체를 이 예시에 실행하면 `dist[1] = -5`를 반환합니다.** 방문한 정점을 막는 배열이 없어서 `1(거리 2) → 2(거리 5) → 1(거리 -5)` 순서로 다시 꺼내기 때문입니다. 이 예시는 현재 코드의 오답 예시가 아니라, 한 번 꺼낸 거리를 확정할 수 없다는 반례입니다. 목표가 `1`이라고 첫 pop에서 종료하면 `2`를 반환하여 틀립니다.
+다만 **위 코드 전체를 이 예시에 실행하면 `dist[1]`에 `-5`가 남습니다.** 방문한 정점을 막는 배열이 없어서 `1(거리 2) → 2(거리 5) → 1(거리 -5)` 순서로 다시 꺼내기 때문입니다. 이 예시는 현재 코드의 오답 예시가 아니라, 한 번 꺼낸 거리를 확정할 수 없다는 반례입니다. 목표가 `1`이라고 첫 pop에서 종료하면 `2`를 반환하여 틀립니다.
 
-재삽입을 허용하면 음수 사이클이 없는 입력에서도 같은 정점을 여러 번 처리할 수 있어 아래의 Dijkstra 시간 보장이 사라집니다. 도달 가능한 음수 사이클이 있으면 거리 감소가 반복되어 종료도 보장되지 않습니다. 음수 간선이 있는 문제에는 Bellman-Ford를, DAG라면 위상 순서에 따른 완화를 사용합니다. 재삽입 구현과 확정 구현의 차이는 [Princeton의 Shortest Paths Q&A](https://algs4.cs.princeton.edu/44sp/)에서도 다룹니다.
+재삽입을 허용하면 음수 사이클이 없는 입력에서도 같은 정점을 여러 번 처리할 수 있어 아래의 Dijkstra 시간 보장과 힙 용량 계산이 사라집니다. 도달 가능한 음수 사이클이 있으면 거리 감소가 반복되어 종료도 보장되지 않습니다. 음수 간선이 있는 문제에는 Bellman-Ford를, DAG라면 위상 순서에 따른 완화를 사용합니다. 재삽입 구현과 확정 구현의 차이는 [Princeton의 Shortest Paths Q&A](https://algs4.cs.princeton.edu/44sp/)에서도 다룹니다.
 
 ## 시간 복잡도
 
@@ -163,7 +181,7 @@ O((V + E) log V)
 
 ## 출발점이나 도착점이 여러 개인 경우
 
-가장 가까운 출발점까지의 거리가 필요하면 모든 출발점의 거리를 0으로 두고 처음부터 힙에 함께 넣습니다. 이후 반복문은 같습니다.
+가장 가까운 출발점까지의 거리가 필요하면 모든 출발점의 거리를 0으로 두고 처음부터 힙에 함께 넣습니다. 이후 반복문은 같습니다. 힙 용량에는 출발점 수를 더합니다.
 
 모든 간선 비용이 비음수라는 전제에서, 목표 하나의 거리만 필요하면 오래된 후보를 거르는 검사 뒤에 `u == target`인지 확인하고 종료할 수 있습니다. 목표를 힙에 **넣은 순간**에는 아직 더 짧은 경로가 나타날 수 있으므로 종료하면 안 됩니다.
 
@@ -177,20 +195,24 @@ O((V + E) log V)
 
 목표 정점 `target`에서 `parent`를 따라 시작점까지 거슬러 올라간 뒤 뒤집으면 경로가 됩니다.
 
-```cpp
-#include <algorithm>
+`path`는 `n`칸 이상의 배열이고, 함수는 경로의 정점 수를 반환합니다. 정점이 한 번만 나오는 경로이므로 길이는 `n`을 넘지 않습니다.
 
-vector<int> restorePath(int target, const vector<int>& parent) {
-    vector<int> path;
+```cpp
+int restorePath(int target, const int parent[], int path[]) {
+    int length = 0;
     for (int v = target; v != -1; v = parent[v]) {
-        path.push_back(v);
+        path[length++] = v;
     }
-    reverse(path.begin(), path.end());
-    return path;
+    for (int i = 0, j = length - 1; i < j; ++i, --j) {
+        int temp = path[i];
+        path[i] = path[j];
+        path[j] = temp;
+    }
+    return length;
 }
 ```
 
-단, `dist[target] == INF`라면 시작점에서 도달할 수 없는 정점입니다. 이 경우에는 경로 복원을 하지 않거나 빈 경로로 처리합니다.
+단, `dist[target] == INF`라면 시작점에서 도달할 수 없는 정점입니다. 이 경우에는 경로 복원을 하지 않거나 빈 경로(길이 0)로 처리합니다.
 
 ## 더 단순한 큐로 충분한 경우
 
@@ -220,7 +242,7 @@ vector<int> restorePath(int target, const vector<int>& parent) {
 0 3 1 4 -1
 ```
 
-**확인 방법:** 0→2→1→3은 비용 4입니다. 작은 입력은 Bellman-Ford와 대조합니다. 큐에서 꺼낸 오래된 거리 후보를 건너뛰고, 모든 거리와 누적 비용은 long long으로 계산합니다. 제출용 전환에서는 고정 인접 리스트와 공통 최소 힙을 사용하되 성공한 완화마다 push할 공간을 확보합니다.
+**확인 방법:** 0→2→1→3은 비용 4입니다. 작은 입력은 Bellman-Ford와 대조합니다. 큐에서 꺼낸 오래된 거리 후보를 건너뛰고, 모든 거리와 누적 비용은 long long으로 계산합니다. 이 강의의 제출용 코드는 고정 인접 리스트와 공통 최소 힙을 사용하며, 성공한 완화마다 push할 공간(`MAX_E + 1`)을 확보합니다.
 
 ## 휴리스틱 풀이에서 쓰는 곳
 
