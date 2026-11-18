@@ -234,6 +234,10 @@ void applySwap(Plan& p, int x, int y, const Change& c) {
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-with-routes/lesson-assets/hand-neighbors.svg)
 
+[경로 삽입 데모: 끼우는 자리와 교환 비교하기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=route-insertion)
+
+승객 3을 기사 0에게 옮길 때 끼우는 자리마다 두 기사의 탑승·빈 차 거리와 최댓값이 어떻게 달라지는지 보고, 교환 한 번으로 23과 23이 되는 과정을 단계별로 확인해 보세요.
+
 ## 1~3단계: 배정만, 경로만, 번갈아
 
 **배정만**은 탑승 거리의 합이 가장 작은 기사에게 번호 순서대로 줍니다. **경로만**은 담당자를 두고 기사 안에서 승객 하나를 다른 자리로 옮겨 부하가 줄면 받아들이기를 반복하며, 승객마다 탑승 방향이 있어서 구간을 뒤집는 2-opt는 쓸 수 없습니다. **번갈아**는 가장 오래 달리는 기사의 승객 하나를 다른 기사의 **맨 끝에** 붙여 최댓값이 줄어드는 첫 이동을 적용하고 두 기사의 경로를 다시 고치기를 반복합니다. 삽입 위치까지 고르지 않는 배정 이동입니다.

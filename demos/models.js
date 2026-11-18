@@ -348,5 +348,250 @@
     }
     return states;
   }
-  return {lowerBoundTrace,bfsExamples,bfsTrace,graph,dijkstraTrace,matrix,prefixTable,prefixTrace,routes,manhattan,pathCost,twoOpt,twoOptTrace,acceptance,annealingPlotMax,annealingTrace,nnExamples,nearestNeighborTrace,optimalOpenRoute,beamExamples,beamSearchTrace,optimalBeamLeaf,drItems,DR_LENGTH,drExamples,drScore,drSlots,drRepair,destroyRepairTrace,pairedExamples,pairedStats,pairedTrace,ufExamples,ufFind,unionFindTrace,segExamples,segArray,segBuild,segmentTrace};
+  // Korean particle chosen by the last character's final consonant (digits are read as Korean numerals).
+  const jo = (word, withFinal, without) => { const text = String(word), c = text.slice(-1), code = c.charCodeAt(0); const final = /[0-9]/.test(c) ? '013678'.includes(c) : code >= 0xac00 && code <= 0xd7a3 ? (code - 0xac00) % 28 !== 0 : /[LMNRlmnr]/.test(c); return text + (final ? withFinal : without); };
+  // ---- assignment moves: one-job moves and two-job swaps on a makespan objective ----
+  const amTime = [[8,9],[1,3],[1,5],[6,9],[1,6]];
+  const amExamples = [{name:'작업 5개 · 기계 2개 · 본문 손계산', time:amTime, start:[0,1,1,0,1]}];
+  const amLoads = (time, assign) => { const load = Array(time[0].length).fill(0); assign.forEach((m, j) => { load[m] += time[j][m]; }); return load; };
+  // Neighbors use differential loads (only the touched machines change), like the lesson's tryMove/trySwap.
+  function amNeighbors(time, assign) {
+    const load = amLoads(time, assign), m = time[0].length, n = assign.length, out = [];
+    const push = (nb, a, b, loadA, loadB) => { const loads = [...load]; loads[a] = loadA; loads[b] = loadB; out.push({...nb, loads, makespan: Math.max(...loads)}); };
+    for (let j = 0; j < n; j++) for (let k = 0; k < m; k++) if (k !== assign[j]) {
+      const from = assign[j], next = [...assign]; next[j] = k;
+      push({kind:'move', label:`작업 ${j} → 기계 ${k}`, assign:next, job:j, to:k, changed:[j]}, from, k, load[from] - time[j][from], load[k] + time[j][k]);
+    }
+    for (let x = 0; x < n; x++) for (let y = x + 1; y < n; y++) if (assign[x] !== assign[y]) {
+      const a = assign[x], b = assign[y], next = [...assign]; next[x] = b; next[y] = a;
+      push({kind:'swap', label:`작업 ${x} ↔ 작업 ${y}`, assign:next, x, y, changed:[x, y]}, a, b, load[a] - time[x][a] + time[y][a], load[b] - time[y][b] + time[x][b]);
+    }
+    return out;
+  }
+  function amOptimum(time) {
+    const n = time.length, m = time[0].length;
+    let best = Infinity, assign = null;
+    for (let code = 0; code < Math.pow(m, n); code++) {
+      const a = []; let c = code; for (let j = 0; j < n; j++) { a.push(c % m); c = Math.floor(c / m); }
+      const value = Math.max(...amLoads(time, a));
+      if (value < best) { best = value; assign = a; }
+    }
+    return {makespan: best, assign};
+  }
+  function assignmentMovesTrace(example, mode, worseJob) {
+    const time = example.time, states = [], optimum = amOptimum(time).makespan;
+    let assign = [...example.start], used = false, changed = [];
+    const peak = a => Math.max(...amLoads(time, a));
+    const snap = (phase, message, extra = {}) => states.push(copy({phase, message, assign, changed, loads: amLoads(time, assign), makespan: peak(assign), optimum, mode, neighbors: [], evaluated: 0, current: null, picked: null, ...extra}));
+    snap('start', `작업 ${assign.length}개를 기계 ${time[0].length}대에 배정한 상태입니다. 점수는 기계별 부하의 최댓값입니다. 이웃(한 작업 이동, 두 작업 교환)을 하나씩 계산해 봅니다.`);
+    for (let round = 1; round <= 40; round++) {
+      const neighbors = amNeighbors(time, assign), now = peak(assign);
+      neighbors.forEach((nb, i) => snap('scan', `이웃 ${i + 1} / ${neighbors.length}: ${nb.label}. 부하 ${nb.loads.join(' · ')}, 최대 ${nb.makespan}${nb.makespan < now ? ` (현재 ${now}보다 낮음)` : nb.makespan === now ? ' (현재와 같음)' : ` (현재 ${now}보다 ${nb.makespan - now} 나쁨)`}.`, {neighbors, evaluated: i + 1, current: i}));
+      let best = 0; neighbors.forEach((nb, i) => { if (nb.makespan < neighbors[best].makespan) best = i; });
+      if (neighbors.length && neighbors[best].makespan < now) {
+        const nb = neighbors[best]; assign = nb.assign; changed = nb.changed;
+        snap('accept', `가장 낮은 이웃은 ${nb.label}로 최대 ${nb.makespan}입니다. 현재 ${now}보다 낮으므로 받아들입니다.`, {neighbors, evaluated: neighbors.length, picked: best});
+      } else if (mode === 'allow' && !used && neighbors.length) {
+        let pick = neighbors.findIndex(nb => nb.kind === 'move' && nb.job === worseJob);
+        if (pick < 0) { pick = 0; neighbors.forEach((nb, i) => { if (nb.makespan < neighbors[pick].makespan) pick = i; }); }
+        const nb = neighbors[pick]; assign = nb.assign; changed = nb.changed; used = true;
+        snap('worsen', `개선하는 이웃이 없습니다. 한 번만 나빠지는 이동을 허용해 ${jo(nb.label, '을', '를')} 받아들입니다. 최대 ${now} → ${nb.makespan}. 이 뒤로는 다시 개선만 받습니다.`, {neighbors, evaluated: neighbors.length, picked: pick});
+      } else {
+        snap('done', `모든 이웃이 현재 ${now}보다 낮지 않아 멈춥니다. 전수 탐색의 최솟값은 ${optimum}이므로 ${now === optimum ? '최적에 닿았습니다.' : `${now - optimum}만큼 모자랍니다.`}`, {neighbors, evaluated: neighbors.length});
+        break;
+      }
+    }
+    return states;
+  }
+  // ---- route insertion: where to put a passenger in another driver's route ----
+  const riDrivers = [[2,7],[9,2]];
+  const riPassengers = [{s:[8,7],e:[7,11]},{s:[11,5],e:[7,4]},{s:[4,7],e:[6,2]},{s:[1,6],e:[8,2]}];
+  const riStart = [[2,0],[1,3]];
+  const riExamples = riPassengers.map((_, i) => ({name:`승객 ${i}을 다른 기사에게 옮기기${i === 3 ? ' · 본문 예시' : ''}`, passenger:i}));
+  function riLoad(driver, route) {
+    const segments = []; let at = riDrivers[driver];
+    for (const p of route) {
+      const q = riPassengers[p];
+      segments.push({kind:'empty', length:manhattan(at, q.s), passenger:p}, {kind:'ride', length:manhattan(q.s, q.e), passenger:p});
+      at = q.e;
+    }
+    const sum = kind => segments.filter(s => s.kind === kind).reduce((a, s) => a + s.length, 0);
+    return {segments, ride: sum('ride'), empty: sum('empty'), total: sum('ride') + sum('empty')};
+  }
+  function routeInsertionTrace(passenger) {
+    const states = [], routes = copy(riStart), owner = routes.findIndex(r => r.includes(passenger)), other = 1 - owner;
+    const maxOf = shown => Math.max(riLoad(0, shown[0]).total, riLoad(1, shown[1]).total), startMax = maxOf(routes);
+    const snap = (phase, message, shown, extra = {}) => states.push(copy({phase, message, routes: shown, loads: shown.map((r, d) => riLoad(d, r)), startMax, passenger, owner, other, candidates: [], candidate: null, ...extra}));
+    snap('start', `기사 0의 경로는 ${routes[0].join(' → ')}, 기사 1의 경로는 ${routes[1].join(' → ')}입니다. 부하는 ${jo(riLoad(0, routes[0]).total, '과', '와')} ${riLoad(1, routes[1]).total}이고 점수는 큰 쪽인 ${startMax}입니다. ${jo('승객 ' + passenger, '을', '를')} 기사 ${other}에게 옮겨 봅니다.`, routes);
+    const removed = copy(routes); removed[owner] = routes[owner].filter(p => p !== passenger);
+    snap('detach', `${jo('승객 ' + passenger, '을', '를')} 기사 ${owner}의 경로에서 빼면 기사 ${owner}의 부하가 ${riLoad(owner, removed[owner]).total}으로 줄어듭니다. 이제 기사 ${other}의 경로 어디에 끼울지 정해야 합니다.`, removed);
+    const candidates = [];
+    for (let pos = 0; pos <= routes[other].length; pos++) {
+      const next = copy(removed); next[other] = [...routes[other].slice(0, pos), passenger, ...routes[other].slice(pos)];
+      const where = pos === 0 ? '맨 앞' : pos === routes[other].length ? '맨 끝' : `승객 ${routes[other][pos - 1]} 뒤`, max = maxOf(next), l = next.map((r, d) => riLoad(d, r).total);
+      candidates.push({kind:'insert', label:`${where}에 끼우기`, routes: next, max});
+      snap('insert', `기사 ${other}의 ${where}에 끼우면 경로는 ${next[other].join(' → ')}, 부하는 ${jo(l[0], '과', '와')} ${l[1]}, 최대 ${max}입니다.`, next, {candidates: copy(candidates), candidate: candidates.length - 1});
+    }
+    const bestInsert = candidates.reduce((a, c) => c.max < a.max ? c : a, candidates[0]);
+    snap('judge', `끼우는 자리 중 가장 좋은 곳은 ${bestInsert.label}로 최대 ${bestInsert.max}입니다. 현재 ${startMax}${bestInsert.max < startMax ? '보다 낮아 받아들일 수 있습니다. 교환도 확인합니다.' : '보다 낮지 않아 옮기기만으로는 벗어나지 못합니다. 교환을 시도합니다.'}`, bestInsert.routes, {candidates: copy(candidates), candidate: candidates.indexOf(bestInsert)});
+    for (const y of routes[other]) {
+      const next = copy(routes);
+      next[owner] = routes[owner].map(p => p === passenger ? y : p);
+      next[other] = routes[other].map(p => p === y ? passenger : p);
+      const max = maxOf(next), l = next.map((r, d) => riLoad(d, r).total);
+      candidates.push({kind:'swap', label:`승객 ${passenger} ↔ 승객 ${y}`, routes: next, max});
+      snap('swap', `승객 ${jo(passenger, '과', '와')} ${jo(y, '을', '를')} 바꾸면 기사 0의 경로는 ${next[0].join(' → ')}, 기사 1의 경로는 ${next[1].join(' → ')}이고 부하는 ${jo(l[0], '과', '와')} ${l[1]}, 최대 ${max}입니다.`, next, {candidates: copy(candidates), candidate: candidates.length - 1});
+    }
+    const best = candidates.reduce((a, c) => c.max < a.max ? c : a, candidates[0]), improved = best.max < startMax;
+    snap('done', improved ? `가장 좋은 이웃은 ${best.label}로 최대 ${best.max}입니다. ${startMax}보다 낮으므로 받아들입니다.` : `모든 이웃의 최대가 현재 ${startMax}보다 낮지 않아 경로를 그대로 둡니다.`, improved ? best.routes : routes, {candidates: copy(candidates), candidate: improved ? candidates.indexOf(best) : null, improved});
+    return states;
+  }
+  // ---- bucket search: widening rings of cells and the stopping rule ----
+  const bkExample = {name:'16×16 지도 · 4×4 칸 · 센터 (5,5)', side:16, cell:4, center:[5,5], stock:{A:1,B:2}, deliveries:[[4,6,'C'],[7,7,'A'],[5,8,'B'],[1,1,'A'],[10,10,'B'],[11,2,'A'],[2,5,'C'],[9,5,'B'],[0,8,'B'],[14,9,'A'],[13,14,'B'],[3,14,'B']], picks:3};
+  function bucketSearchTrace(example, early) {
+    const {side, cell, deliveries} = example, G = side / cell, states = [];
+    const stock = {...example.stock}, alive = new Set(deliveries.map((_, i) => i)), history = [];
+    let at = [...example.center];
+    const cellOf = i => [Math.floor(deliveries[i][0] / cell), Math.floor(deliveries[i][1] / cell)];
+    const dist = (i, p) => Math.abs(deliveries[i][0] - p[0]) + Math.abs(deliveries[i][1] - p[1]);
+    const snap = (phase, message, extra = {}) => states.push(copy({phase, message, early, at, stock, alive: [...alive], history, pick: 0, ring: null, ringCells: [], viewedCells: [], ringItems: [], inspected: 0, remaining: alive.size, best: null, chosen: null, ...extra}));
+    snap('start', `센터 (${at[0]},${at[1]})에 A ${stock.A}개, B ${stock.B}개가 있고 C는 없습니다. 배송은 ${deliveries.length}개이고 칸 한 변은 ${cell}입니다. 종료 조건은 ${early ? '한 겹 일찍 끊는' : '정확한'} 식 bestDist ≤ ${early ? 'r' : '(r − 1)'} × ${cell}입니다. 세 번 고릅니다.`);
+    for (let pick = 1; pick <= example.picks; pick++) {
+      const gy0 = Math.floor(at[0] / cell), gx0 = Math.floor(at[1] / cell), viewed = [], remaining = alive.size;
+      let best = null, inspected = 0, scanned = 0;
+      for (let r = 0; r < G; r++) {
+        const threshold = early ? r * cell : (r - 1) * cell;
+        if (r > 0 && best && best.dist <= threshold) {
+          snap('stop', `${jo('링 ' + r, '을', '를')} 보기 전에 최선 거리 ${jo(best.dist, '이', '가')} ${early ? 'r' : '(r − 1)'} × ${cell} = ${threshold} 이하인지 봅니다. ${best.dist} ≤ ${threshold}이므로 멈춥니다. 검사한 후보 ${inspected} / 남은 배송 ${remaining}.`, {pick, ring: r, viewedCells: copy(viewed), inspected, best: copy(best), remaining});
+          break;
+        }
+        const cells = [];
+        for (let gy = gy0 - r; gy <= gy0 + r; gy++) for (let gx = gx0 - r; gx <= gx0 + r; gx++) {
+          if (gy < 0 || gy >= G || gx < 0 || gx >= G || Math.max(Math.abs(gy - gy0), Math.abs(gx - gx0)) !== r) continue;
+          cells.push([gy, gx]); viewed.push([gy, gx]);
+        }
+        const items = [];
+        for (const [gy, gx] of cells) for (const i of alive) { const [cy, cx] = cellOf(i); if (cy === gy && cx === gx) items.push({id: i, type: deliveries[i][2], y: deliveries[i][0], x: deliveries[i][1], ok: stock[deliveries[i][2]] > 0, dist: dist(i, at)}); }
+        inspected += items.length; scanned = r;
+        for (const it of items) if (it.ok && (!best || it.dist < best.dist)) best = {id: it.id, dist: it.dist};
+        snap('scan', `${r > 0 ? `링 ${r} 앞의 종료 조건은 거짓이라 계속합니다. ` : ''}링 ${r}의 칸 ${cells.length}개에서 후보 ${items.length}개를 검사했습니다(누적 ${inspected} / 남은 배송 ${remaining}). 실을 수 있는 후보 중 최선은 ${best ? `배송 ${best.id}, 거리 ${best.dist}` : '아직 없음'}입니다.`, {pick, ring: r, ringCells: cells, viewedCells: copy(viewed), ringItems: items, inspected, best: best && copy(best), remaining});
+      }
+      let truth = null;
+      for (const i of alive) if (stock[deliveries[i][2]] > 0 && (truth === null || dist(i, at) < dist(truth, at))) truth = i;
+      if (!best) { snap('done', '실을 수 있는 후보가 없어 멈춥니다.', {pick, viewedCells: copy(viewed), inspected, remaining}); return states; }
+      const chosen = best.id, min = dist(truth, at), correct = best.dist === min, from = [...at];
+      history.push({pick, id: chosen, type: deliveries[chosen][2], from, dist: best.dist, min, correct, inspected, remaining});
+      alive.delete(chosen); stock[deliveries[chosen][2]]--; at = [deliveries[chosen][0], deliveries[chosen][1]];
+      snap(pick === example.picks ? 'done' : 'pick', `${pick}번째 고르기: 배송 ${chosen} (${at[0]},${at[1]}) ${deliveries[chosen][2]}, 거리 ${best.dist}. 전수 탐색의 최솟값은 ${min}이므로 ${correct ? '같은 답입니다.' : '틀린 답입니다. 더 가까운 배송을 놓쳤습니다.'} 검사한 후보 ${inspected} / 남은 배송 ${remaining}.`, {pick, ring: scanned, viewedCells: copy(viewed), inspected, best: copy(best), chosen, remaining});
+    }
+    return states;
+  }
+  // ---- boundary delta: entropy as a sum of boundary products ----
+  const bdExample = {name:'4×5 격자 · 입자 5개 · 본문 손계산', H:4, W:5, limit:800, particles:[['A',0,0],['B',0,4],['C',3,0],['D',3,4],['E',1,2]], calls:[['A',1],['B',1],['C',0]]};
+  const bdDirNames = ['위로', '오른쪽으로', '아래로', '왼쪽으로'], bdDY = [-1, 0, 1, 0], bdDX = [0, 1, 0, -1];
+  function bdBoundaries(H, W, ps) {
+    const n = ps.length, col = [], row = [];
+    for (let c = 0; c < W - 1; c++) { const left = ps.filter(p => p[2] <= c).length; col.push({index: c, left, right: n - left, value: left * (n - left)}); }
+    for (let r = 0; r < H - 1; r++) { const up = ps.filter(p => p[1] <= r).length; row.push({index: r, left: up, right: n - up, value: up * (n - up)}); }
+    return {col, row};
+  }
+  const bdPairs = ps => { let e = 0; for (let i = 0; i < ps.length; i++) for (let j = i + 1; j < ps.length; j++) e += Math.abs(ps[i][1] - ps[j][1]) + Math.abs(ps[i][2] - ps[j][2]); return e; };
+  const bdScore = (e0, e, used, limit) => { const r = Math.max(0, e0 - e) / e0; return {ratioPart: Math.floor(1000000 * r * r), bonus: Math.floor((limit - used) / 100), improvement: e0 - e, ratio: r}; };
+  function boundaryDeltaTrace(example, calls) {
+    const {H, W, limit} = example, n = example.particles.length, states = [];
+    let ps = copy(example.particles), used = 0;
+    const e0 = bdPairs(ps), sum = list => list.reduce((a, x) => a + x.value, 0);
+    const snap = (phase, message, extra = {}) => { const b = bdBoundaries(H, W, ps), e = bdPairs(ps); states.push(copy({phase, message, particles: ps, bounds: b, colSum: sum(b.col), rowSum: sum(b.row), boundSum: sum(b.col) + sum(b.row), entropy: e, e0, used, limit, score: bdScore(e0, e, used, limit), H, W, call: null, ...extra})); };
+    snap('start', `격자 ${H}×${W}에 입자 ${n}개가 있습니다. 모든 쌍의 거리 합 E0 = ${e0}는 열 경계 ${W - 1}개와 행 경계 ${H - 1}개의 (한쪽 개수 × 반대쪽 개수) 합과 같습니다. 호출 ${calls.length}번을 차례로 해 봅니다.`);
+    calls.forEach(([name, dir], index) => {
+      const before = bdBoundaries(H, W, ps), p = ps.find(q => q[0] === name), ny = p[1] + bdDY[dir], nx = p[2] + bdDX[dir];
+      used++;
+      const out = ny < 0 || ny >= H || nx < 0 || nx >= W, blocked = !out && ps.some(q => q[1] === ny && q[2] === nx);
+      if (out || blocked) {
+        snap('fail', `호출 ${index + 1}: 입자 ${jo(name, '을', '를')} ${bdDirNames[dir]} 옮깁니다. ${out ? '격자 밖이라' : '이미 입자가 있어'} 실패입니다. 입자와 엔트로피는 그대로이고 사용 횟수만 ${used}로 늘어납니다.`, {call: {name, dir, ok: false, reason: out ? 'out' : 'blocked', index: index + 1}});
+        return;
+      }
+      const horizontal = dir % 2 === 1, forward = dir === 1 || dir === 2, axis = horizontal ? 'col' : 'row', coordinate = horizontal ? p[2] : p[1];
+      const bi = forward ? coordinate : coordinate - 1, pre = before[axis][bi].left, delta = forward ? 2 * pre - 1 - n : n - 1 - 2 * pre, eBefore = bdPairs(ps);
+      ps = ps.map(q => q[0] === name ? [name, ny, nx] : q);
+      const after = bdBoundaries(H, W, ps), eAfter = bdPairs(ps);
+      snap('shift', `호출 ${index + 1}: 입자 ${jo(name, '을', '를')} ${bdDirNames[dir]} 옮깁니다. ${axis === 'col' ? '열' : '행'} 경계 ${bi} 하나만 ${before[axis][bi].left}×${before[axis][bi].right} = ${before[axis][bi].value}에서 ${after[axis][bi].left}×${after[axis][bi].right} = ${after[axis][bi].value}로 바뀌고 E는 ${eBefore} → ${eAfter}입니다.`, {call: {name, dir, ok: true, index: index + 1, axis, boundary: bi, pre, formula: delta, full: eAfter - eBefore, before: before[axis][bi], after: after[axis][bi], eBefore}});
+    });
+    const last = states.at(-1), s = last.score;
+    states.push(copy({...last, phase: 'done', call: null, message: `호출 ${used}번 뒤 E = ${last.entropy}. 줄어든 비율 ${last.e0 - last.entropy}/${last.e0}의 제곱 ${s.ratioPart}점에 남은 횟수 (${limit} − ${used}) ÷ 100의 몫 ${s.bonus}점을 더해 ${s.ratioPart + s.bonus}점입니다.`}));
+    return states;
+  }
+  // ---- mirror policy: nearest valuable cell vs. value per move ----
+  const mpN = 30;
+  const mpExample = {name:'30×30 지도의 왼쪽 위 · 시작 (2,3)', start:[2,3], cells:[[0,0,2],[1,1,3],[2,2,2],[2,5,40],[2,6,60]], rows:3, cols:7};
+  const mpDY = [-1, 0, 1, 0], mpDX = [0, 1, 0, -1], mpOpts = {radius: 3, cost: 1};
+  const fmtKey = k => { const r = Math.round(k * 1000) / 1000; return Number.isInteger(r * 10) ? r.toFixed(1) : String(r); };
+  function mpBfs(value, seen, at, movesLeft) {
+    const grid = () => Array.from({length: mpN}, () => Array(mpN).fill(-1)), dist = grid(), from = grid(), gain = Array.from({length: mpN}, () => Array(mpN).fill(0));
+    const queue = [[at[0], at[1]]]; dist[at[0]][at[1]] = 0;
+    for (let head = 0; head < queue.length; head++) {
+      const [y, x] = queue[head];
+      if (dist[y][x] === movesLeft) continue;
+      for (let d = 0; d < 4; d++) {
+        const ny = y + mpDY[d], nx = x + mpDX[d];
+        if (ny < 0 || ny >= mpN || nx < 0 || nx >= mpN) continue;
+        const g = gain[y][x] + (seen.has(ny * mpN + nx) ? 0 : (value[ny * mpN + nx] || 0));
+        if (dist[ny][nx] < 0) { dist[ny][nx] = dist[y][x] + 1; gain[ny][nx] = g; from[ny][nx] = d; queue.push([ny, nx]); }
+        else if (dist[ny][nx] === dist[y][x] + 1 && g > gain[ny][nx]) { gain[ny][nx] = g; from[ny][nx] = d; }
+      }
+    }
+    return {dist, gain, from};
+  }
+  function mpAround(value, seen, ty, tx, radius) {
+    let sum = 0;
+    for (let y = ty - radius; y <= ty + radius; y++) for (let x = tx - radius; x <= tx + radius; x++) {
+      const d = Math.abs(y - ty) + Math.abs(x - tx);
+      if (d === 0 || d > radius || y < 0 || y >= mpN || x < 0 || x >= mpN || seen.has(y * mpN + x)) continue;
+      sum += value[y * mpN + x] || 0;
+    }
+    return sum;
+  }
+  // One policy's walk: ticks[t] describes the state after t moves, with the target pick made on arrival (if any).
+  function mpRun(example, policy, budget, weight) {
+    const value = {}; example.cells.forEach(([y, x, v]) => { value[y * mpN + x] = v; });
+    const seen = new Set([example.start[0] * mpN + example.start[1]]);
+    let at = [...example.start], left = budget, score = 0;
+    const ticks = [{at: [...at], left, score, got: 0, seen: [...seen], path: [], target: null, pick: null, ended: false}];
+    while (true) {
+      const here = ticks.at(-1), R = left > 0 ? mpBfs(value, seen, at, left) : null, cands = [];
+      if (R) for (let y = 0; y < mpN; y++) for (let x = 0; x < mpN; x++) {
+        if (R.dist[y][x] <= 0 || seen.has(y * mpN + x) || !(value[y * mpN + x] > 0)) continue;
+        const h = mpAround(value, seen, y, x, mpOpts.radius);
+        cands.push({y, x, d: R.dist[y][x], g: R.gain[y][x], h, key: (R.gain[y][x] + weight * h) / (R.dist[y][x] + mpOpts.cost)});
+      }
+      if (!cands.length) { here.ended = true; break; }
+      let target = cands[0];
+      for (const c of cands) if (policy === 1 ? (c.d < target.d || (c.d === target.d && c.g > target.g)) : c.key > target.key) target = c;
+      here.pick = {target: [target.y, target.x], candidates: [...cands].sort((a, b) => a.d - b.d || b.g - a.g || a.y - b.y || a.x - b.x)};
+      const dirs = []; for (let y = target.y, x = target.x; R.dist[y][x] > 0;) { const d = R.from[y][x]; dirs.push(d); y -= mpDY[d]; x -= mpDX[d]; }
+      dirs.reverse();
+      const path = []; { let y = at[0], x = at[1]; for (const d of dirs) { y += mpDY[d]; x += mpDX[d]; path.push([y, x]); } }
+      dirs.forEach((d, i) => {
+        at = [at[0] + mpDY[d], at[1] + mpDX[d]]; left--;
+        const key = at[0] * mpN + at[1], got = seen.has(key) ? 0 : (value[key] || 0);
+        seen.add(key); score += got;
+        ticks.push({at: [...at], left, score, got, seen: [...seen], path: copy(path), pathIndex: i, target: [target.y, target.x], pick: null, ended: false});
+      });
+    }
+    return ticks;
+  }
+  function mirrorPolicyTrace(example, budget, weight) {
+    const runs = [1, 2].map(policy => mpRun(example, policy, budget, weight)), count = Math.max(...runs.map(r => r.length)), states = [];
+    for (let t = 0; t < count; t++) {
+      const policies = runs.map(run => ({...run[Math.min(t, run.length - 1)], idle: t >= run.length, lastPick: [...run.slice(0, Math.min(t, run.length - 1) + 1)].reverse().find(x => x.pick)?.pick || null}));
+      const text = policies.map((v, i) => {
+        const name = `정책 ${i + 1}`, keyText = v.pick && i === 1 ? ` (키 ${fmtKey(v.pick.candidates.find(c => c.y === v.pick.target[0] && c.x === v.pick.target[1]).key)})` : '';
+        const head = t === 0 ? `${name}: 시작 칸 (${v.at[0]},${v.at[1]}), 남은 이동 ${budget}번.` : v.idle ? `${name}: 이미 끝났습니다. 누적 ${v.score}점.` : `${name}: (${v.at[0]},${v.at[1]}) 칸으로 이동${v.got ? `해 ${v.got}점을 얻음` : ''}. 누적 ${v.score}점, 남은 이동 ${v.left}번.`;
+        return `${head}${v.pick ? ` 다음 목표는 (${v.pick.target[0]},${v.pick.target[1]})입니다${keyText}.` : ''}${v.ended && !v.idle ? ' 남은 이동으로 닿는 값 있는 칸이 없어 끝납니다.' : ''}`;
+      }).join(' ');
+      states.push(copy({phase: t === count - 1 ? 'done' : t === 0 ? 'start' : 'visit', message: text, tick: t, count, policies, budget, weight}));
+    }
+    return states;
+  }
+  return {lowerBoundTrace,bfsExamples,bfsTrace,graph,dijkstraTrace,matrix,prefixTable,prefixTrace,routes,manhattan,pathCost,twoOpt,twoOptTrace,acceptance,annealingPlotMax,annealingTrace,nnExamples,nearestNeighborTrace,optimalOpenRoute,beamExamples,beamSearchTrace,optimalBeamLeaf,drItems,DR_LENGTH,drExamples,drScore,drSlots,drRepair,destroyRepairTrace,pairedExamples,pairedStats,pairedTrace,ufExamples,ufFind,unionFindTrace,segExamples,segArray,segBuild,segmentTrace,amTime,amExamples,amLoads,amNeighbors,amOptimum,assignmentMovesTrace,riDrivers,riPassengers,riStart,riExamples,riLoad,routeInsertionTrace,bkExample,bucketSearchTrace,bdExample,bdBoundaries,bdPairs,bdScore,bdDirNames,boundaryDeltaTrace,mpN,mpExample,mpBfs,mpAround,mpRun,mirrorPolicyTrace,fmtKey};
 });

@@ -227,6 +227,10 @@ double energyChange(const Plan& p, const Change& c, double weight) {
 2. 작업 0과 4를 교환합니다. 부하는 8과 12, 최대 12.
 3. 작업 1을 기계 0으로 옮깁니다. 부하는 9와 9, 최대 9.
 
+[이웃을 하나씩 평가하는 데모: 부하 막대와 최대 부하](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=assignment-moves)
+
+위 표의 이웃 11개를 하나씩 계산해 기계별 부하 막대가 어떻게 바뀌는지 봅니다. 개선만 받으면 14에서 멈추고, 한 번 나빠지는 이동을 허용하면 9에 닿는 과정을 전환해 비교해 보세요.
+
 ![작업 5개와 기계 2개의 예시. 시작은 두 기계의 부하가 14와 14입니다. 작업 2를 기계 0으로 옮기면 최대 15, 작업 0과 4를 교환하면 12, 작업 1을 기계 0으로 옮기면 9가 됩니다. 첫 이동만 나빠집니다.](lesson-assets/hand-moves.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-local-search/lesson-assets/hand-moves.svg)

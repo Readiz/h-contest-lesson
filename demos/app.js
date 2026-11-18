@@ -15,13 +15,18 @@
     'destroy-repair':{title:'작은 이동으로 못 고치는 배치를 다시 채우기',subtitle:'배치의 일부를 제거하고 규칙대로 다시 채웁니다. 점수가 오르면 채택하고, 오르지 않으면 제거 전 배치로 되돌립니다.',footnote:'가치가 점수이며 광고는 겹칠 수 없는 1차원 띠 문제입니다. repair는 정해진 순서로 가장 왼쪽의 들어갈 수 있는 빈 구간에 놓습니다.'},
     'paired-compare':{title:'같은 입력에서 A와 B의 차이를 쌓기',subtitle:'입력별 점수 차이를 하나씩 쌓으며 평균, 표준오차와 mean ± 2·stderr 구간이 변하는 모습을 봅니다.',footnote:'d = A − B이며 점수가 클수록 좋습니다. 표준편차는 n − 1로 나눈 표본 표준편차이고, 구간은 독립 표본과 근사 정규성을 가정한 거친 근사입니다.'},
     'union-find':{title:'부모를 따라 올라가 대표 찾기',subtitle:'union과 find를 순서대로 실행하며 parent 배열과 숲이 바뀌는 과정을 봅니다. 경로 압축이 없는 숲과 있는 숲을 나란히 비교합니다.',footnote:'union(a, b)은 a의 대표 밑에 있던 트리를 b의 대표에 연결합니다. 크기 기준 합치기는 쓰지 않아 경로 압축의 효과가 잘 보입니다.'},
-    'segment-tree':{title:'구간 질의가 방문하는 노드',subtitle:'구간 합 질의에서 노드를 완전 포함, 일부 겹침, 무관으로 나누고, 점 갱신에서는 경로의 합이 다시 계산되는 모습을 봅니다.',footnote:'노드 번호는 루트 1, 자식은 2i와 2i+1입니다. 구간은 양 끝을 포함하는 [lo, hi]이고 배열 인덱스는 0부터 시작합니다.'}
+    'segment-tree':{title:'구간 질의가 방문하는 노드',subtitle:'구간 합 질의에서 노드를 완전 포함, 일부 겹침, 무관으로 나누고, 점 갱신에서는 경로의 합이 다시 계산되는 모습을 봅니다.',footnote:'노드 번호는 루트 1, 자식은 2i와 2i+1입니다. 구간은 양 끝을 포함하는 [lo, hi]이고 배열 인덱스는 0부터 시작합니다.'},
+    'assignment-moves':{title:'이웃을 하나씩 평가해 최대 부하 보기',subtitle:'작업을 기계에 배정한 상태에서 한 작업 이동과 두 작업 교환을 모두 계산합니다. 개선만 받을 때와 한 번 나빠지는 이동을 허용할 때를 비교합니다.',footnote:'점수는 기계별 부하의 최댓값이고 낮을수록 좋습니다. 이웃은 이동 5개와 교환 6개이며, 가장 낮은 이웃이 동점이면 표의 앞쪽을 고릅니다. 전수 탐색의 최솟값은 2⁵ = 32개 배정을 모두 계산한 값입니다.'},
+    'route-insertion':{title:'승객을 옮길 자리와 교환 비교하기',subtitle:'기사 2명이 승객 4명을 태우는 예시에서 승객 한 명을 다른 기사 경로의 어디에 끼울지 보고, 옮기기만으로 막힐 때 교환이 해결하는 과정을 봅니다.',footnote:'이동 거리는 맨해튼 거리입니다. 기사는 처음 위치에서 출발해 승객의 출발지, 도착지 순으로 움직이며, 마지막 승객 뒤에 돌아오는 구간은 없습니다. 점수는 두 기사 부하의 최댓값입니다.'},
+    'bucket-search':{title:'칸을 한 겹씩 넓히며 가장 가까운 배송 찾기',subtitle:'지도를 칸으로 나누고 링 0에서 링 1로 넓히며 후보를 검사합니다. 종료 조건을 한 겹 일찍 끊으면 틀린 배송을 고르는 모습도 봅니다.',footnote:'거리는 맨해튼 거리이고 좌표는 (행, 열)입니다. 센터가 가진 상품만 실을 수 있으며 같은 거리면 먼저 만난 후보를 씁니다. 전수 탐색은 남은 배송 전부의 거리를 비교한 값입니다.'},
+    'boundary-delta':{title:'경계 하나만 바뀌는 점수 계산',subtitle:'모든 쌍의 거리 합을 열·행 경계의 (한쪽 개수 × 반대쪽 개수) 합으로 보고, 입자를 옮길 때 차분식과 전체 재계산이 같은 값을 내는지 확인합니다.',footnote:'방향은 위, 오른쪽, 아래, 왼쪽이고 좌표는 (행, 열)입니다. 격자 밖이나 입자가 있는 칸으로의 호출은 실패하지만 사용 횟수는 셉니다. 점수는 내림한 정수입니다.'},
+    'mirror-policy':{title:'가까운 칸 먼저 vs 이동당 이득',subtitle:'같은 지도와 이동 예산에서 두 정책이 고르는 목표와 경로, 누적 점수를 단계마다 나란히 비교합니다. 거울의 seen이 갱신되는 모습도 함께 봅니다.',footnote:'좌표는 (행, 열)이며 실제 지도는 30×30이고 화면에는 왼쪽 위 3×7만 그렸습니다. 정책 2의 RADIUS는 3, COST는 1입니다. 목표 하나마다 BFS로 거리와 경로 이득을 다시 계산합니다.'}
   };
   let id = new URLSearchParams(location.search).get('demo') || 'binary-search';
   if (!config[id]) id = 'binary-search';
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let position=0, states=[], timer=null, context={}, options={target:4,example:0,source:0,rectangle:0,temperature:8,delta:6,width:1,count:12};
-  const phaseNames={start:'준비',compare:'비교',move:'구간 축소',done:'완료',pop:'꺼내기',enqueue:'발견',stale:'오래된 항목',relax:'거리 갱신',skip:'유지',term:'포함배제',remove:'기존 경계',add:'새 경계',candidate:'후보 확인',trial:'수락 판단',scan:'후보 비교',visit:'이동',expand:'후보 생성',prune:'가지치기',destroy:'제거',repair:'다시 채우기',judge:'채택 판단',sample:'표본 추가',find:'find',union:'union',outside:'겹치지 않음',inside:'완전 포함',partial:'일부 겹침',point:'리프 갱신',node:'내려가기',recalc:'재계산'};
+  let position=0, states=[], timer=null, context={}, options={target:4,example:0,source:0,rectangle:0,temperature:8,delta:6,width:1,count:12,mode:1,worse:2,passenger:3,early:0,p1:0,d1:1,p2:1,d2:1,p3:2,d3:0,budget:6,weight:0.1};
+  const phaseNames={start:'준비',compare:'비교',move:'구간 축소',done:'완료',pop:'꺼내기',enqueue:'발견',stale:'오래된 항목',relax:'거리 갱신',skip:'유지',term:'포함배제',remove:'기존 경계',add:'새 경계',candidate:'후보 확인',trial:'수락 판단',scan:'후보 비교',visit:'이동',expand:'후보 생성',prune:'가지치기',destroy:'제거',repair:'다시 채우기',judge:'채택 판단',sample:'표본 추가',find:'find',union:'union',outside:'겹치지 않음',inside:'완전 포함',partial:'일부 겹침',point:'리프 갱신',node:'내려가기',recalc:'재계산',accept:'받아들임',worsen:'나쁜 이동 허용',detach:'경로에서 빼기',insert:'끼워 보기',swap:'교환 시도',stop:'탐색 종료',pick:'고르기',shift:'입자 이동',fail:'실패'};
   const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt=value=>value===null?'∞':value;
   const signed=v=>v>0?`+${v}`:String(v);
@@ -47,6 +52,11 @@
     else if(id==='paired-compare') $('settings').innerHTML=select('example','실험 예제',M.pairedExamples.map((e,i)=>[i,e.name]))+range('count','사용할 입력 수',2,30,1);
     else if(id==='union-find') $('settings').innerHTML=select('example','연산 예제',M.ufExamples.map((e,i)=>[i,e.name]));
     else if(id==='segment-tree') $('settings').innerHTML=select('example','질의 예제',M.segExamples.map((e,i)=>[i,e.name]));
+    else if(id==='assignment-moves'){const ex=M.amExamples[0],now=Math.max(...M.amLoads(ex.time,ex.start)),worse=M.amNeighbors(ex.time,ex.start).filter(n=>n.kind==='move'&&n.makespan>=now);$('settings').innerHTML=select('mode','탐색 방식',[[0,'개선만 받기'],[1,'한 번 나빠지는 이동 허용']])+select('worse','허용할 나쁜 이동',worse.map(n=>[n.job,`${n.label} · 최대 ${n.makespan}`]));}
+    else if(id==='route-insertion') $('settings').innerHTML=select('passenger','옮길 승객',M.riExamples.map((e,i)=>[i,e.name]));
+    else if(id==='bucket-search') $('settings').innerHTML=select('early','종료 조건',[[0,'정확한 조건 · bestDist ≤ (r − 1) × 칸 크기'],[1,'한 겹 일찍 끊기 · bestDist ≤ r × 칸 크기']]);
+    else if(id==='boundary-delta'){const names=M.bdExample.particles.map((p,i)=>[i,`입자 ${p[0]}`]),dirs=[[0,'위'],[1,'오른쪽'],[2,'아래'],[3,'왼쪽']];$('settings').innerHTML=[1,2,3].map(n=>select('p'+n,`호출 ${n} 입자`,names)+select('d'+n,`호출 ${n} 방향`,dirs)).join('');}
+    else if(id==='mirror-policy') $('settings').innerHTML=select('budget','이동 예산',[[3,'3번'],[6,'6번 · 본문 예시'],[9,'9번']])+select('weight','정책 2의 WEIGHT',[[0,'0 · 주변 값 무시'],[0.1,'0.1 · 본문 예시'],[1,'1.0 · 주변 값을 크게 믿음']]);
     else $('settings').innerHTML=range('temperature','시작 온도 T',0,20,0.5)+range('delta','악화 제안 기본 Δ',1,20,1);
     $('settings').querySelectorAll('[data-option]').forEach(input=>input.addEventListener('input',()=>{options[input.dataset.option]=Number(input.value);const out=$('value-'+input.dataset.option);if(out)out.value=input.value;rebuild();}));
     rebuild();
@@ -65,6 +75,11 @@
     if(id==='paired-compare') {const ex=M.pairedExamples[options.example],count=options.count,diffs=ex.a.map((x,i)=>x-ex.b[i]).slice(0,count);states=M.pairedTrace(ex,count);const edge=states.slice(3).flatMap(s=>s.stats.stderr===null?[]:[Math.abs(s.stats.low),Math.abs(s.stats.high)]);context={count,diffs,maxAbs:Math.max(1,...diffs.map(Math.abs)),axis:Math.max(1,...(edge.length?edge:[1]),0)*1.15};}
     if(id==='union-find') {context=M.ufExamples[options.example];states=M.unionFindTrace(context);context={...context,rows:Math.max(...states.map(s=>Math.max(s.plainDepth,s.packedDepth)))+1};}
     if(id==='segment-tree') {context={example:M.segExamples[options.example]};states=M.segmentTrace(M.segArray,context.example);}
+    if(id==='assignment-moves') {context=M.amExamples[0];states=M.assignmentMovesTrace(context,options.mode?'allow':'improve',options.worse);}
+    if(id==='route-insertion') {context={passenger:options.passenger};states=M.routeInsertionTrace(options.passenger);}
+    if(id==='bucket-search') {context=M.bkExample;states=M.bucketSearchTrace(context,!!options.early);}
+    if(id==='boundary-delta') {context=M.bdExample;const names=context.particles.map(p=>p[0]);states=M.boundaryDeltaTrace(context,[1,2,3].map(n=>[names[options['p'+n]],options['d'+n]]));}
+    if(id==='mirror-policy') {context=M.mpExample;states=M.mirrorPolicyTrace(context,options.budget,options.weight);}
     $('timeline').max=states.length-1;render();
   }
   function renderBinary(s) {
@@ -299,7 +314,119 @@
       $('details').innerHTML='<p class="detail-title">갱신 경로 · 위에서 아래</p>'+(path.length?'<ol class="term-list">'+path.map(node=>{const nd=byId[node];return `<li class="${s.current===node?'active':redone.has(node)?'applied':''}"><code>노드 ${node} [${nd.lo}, ${nd.hi}]</code><strong>${redone.has(node)?'합 '+s.tree[node]:'대기'}</strong></li>`;}).join('')+'</ol>':'<p class="empty">아직 내려가기 전</p>')+'<p class="note">리프를 바꾼 뒤 돌아오면서 지나온 노드만 두 자식의 합으로 다시 계산합니다. 경로 밖의 노드는 값이 그대로입니다.</p>';
     }
   }
-  const renderers={'nearest-neighbor':renderNearest,'beam-search':renderBeam,'destroy-repair':renderDestroy,'paired-compare':renderPaired,'union-find':renderUnion,'segment-tree':renderSegment,'binary-search':renderBinary,bfs:renderBfs,dijkstra:renderDijkstra,'prefix-sum':renderPrefix,'two-opt':renderTwoOpt,annealing:renderAnnealing};
+  // ---- five practical-lesson demos: assignment-moves, route-insertion, bucket-search, boundary-delta, mirror-policy ----
+  const rowTable=(head,rows,cls=[])=>`<table class="data-table"><thead><tr>${head.map((h,i)=>`<th class="${i===0?'left':''}">${h}</th>`).join('')}</tr></thead><tbody>${rows.map((r,ri)=>`<tr class="${cls[ri]||''}">${r.map((c,i)=>`<td class="${i===0?'left':''}">${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  function renderAssignment(s) {
+    const time=context.time,m=time[0].length,x0=66,scale=11,rowH=36,barH=26,y0=24;
+    const bars=(assign,loads,top,h,bh,hot)=>{let out='';for(let k=0;k<m;k++){const y=top+k*h;let x=x0;out+=textAt(x0-8,y+bh/2+4,`기계 ${k}`,'end','font-size="11" font-weight="700"');assign.forEach((mm,j)=>{if(mm!==k)return;const w=time[j][k]*scale;out+=`<rect x="${x}" y="${y}" width="${w-1.5}" height="${bh}" rx="3" fill="${hot.includes(j)?C.orangeLight:C.blueLight}" stroke="${hot.includes(j)?C.orange:'#a7b9f0'}"/>`+text(x+(w-1.5)/2,y+bh/2+4,j,'font-size="11" font-weight="800"');x+=w;});out+=textAt(x+4,y+bh/2+4,loads[k],'start','font-size="11" font-weight="800"');}return out;};
+    let content=textAt(8,14,'현재 배정 · 칸 안 숫자 = 작업 번호, 폭 = 처리 시간','start','font-size="11"')+bars(s.assign,s.loads,y0,rowH,barH,s.changed);
+    const yb=y0+m*rowH+10,mx=x0+s.makespan*scale,ox=x0+s.optimum*scale;
+    content+=`<line x1="${mx}" y1="${y0-4}" x2="${mx}" y2="${yb-2}" stroke="${C.orange}" stroke-width="2" stroke-dasharray="4 3"/>`+text(mx,yb+10,`최대 ${s.makespan}`,`font-size="11" font-weight="800" fill="${C.orange}"`);
+    content+=`<line x1="${ox}" y1="${y0-4}" x2="${ox}" y2="${yb+16}" stroke="${C.teal}" stroke-width="1.6" stroke-dasharray="2 3"/>`+text(ox,yb+26,`전수 최적 ${s.optimum}`,`font-size="11" font-weight="700" fill="${C.teal}"`);
+    const nb=s.current===null?null:s.neighbors[s.current];
+    if(nb){const top=yb+56;content+=textAt(8,top-8,`평가 중인 이웃 · ${nb.label}`,'start','font-size="11" font-weight="700"')+bars(nb.assign,nb.loads,top,24,18,nb.changed);}
+    $('visual').innerHTML=title('기계별 부하 막대 · 점선 = 최대 부하')+svg(content,236);
+    $('legend').innerHTML=legend([[C.blueLight,'배정된 작업'],[C.orangeLight,'이동·교환으로 자리가 바뀐 작업'],[C.orange,'현재 최대 부하'],[C.teal,'전수 탐색의 최솟값']]);
+    const now=Math.max(...amLoadsOf(s.assign)),seen=s.neighbors.slice(0,s.evaluated),better=seen.filter(n=>n.makespan<now).length;
+    $('metrics').innerHTML=metric('현재 최대 부하',s.makespan,s.phase==='done'&&s.makespan===s.optimum?'good':'accent')+metric('평가한 이웃',`${s.evaluated} / ${s.neighbors.length||'—'}`)+metric('더 낮은 이웃',seen.length?better:'—',better?'good':'')+metric('전수 최솟값',s.optimum);
+    const rows=s.neighbors.map((n,i)=>i<s.evaluated?[n.label,...n.loads,n.makespan]:[n.label,...n.loads.map(()=>'—'),'—']),cls=s.neighbors.map((n,i)=>i===s.picked?'pick':i===s.current?'hot':i>=s.evaluated?'dim':'');
+    $('details').innerHTML=`<p class="detail-title">이웃 ${s.neighbors.length||11}개의 평가값 · 현재 최대 ${s.makespan}</p>`+(s.neighbors.length?rowTable(['이웃',...time[0].map((_,k)=>`기계 ${k}`),'최대'],rows,cls):'<p class="empty">아직 평가 전</p>')+`<p class="note">이동은 두 기계의 부하만, 교환은 두 기계의 부하만 바뀝니다. 새 최댓값 = max(바뀐 두 기계, 나머지 기계). 모드 · ${s.mode==='allow'?'개선만 받다가 멈추면 한 번 나빠지는 이동을 허용':'개선만 받기'}.</p>`;
+  }
+  const amLoadsOf=assign=>M.amLoads(context.time,assign);
+  function renderRoute(s) {
+    const x0=58,scale=6.6,rowH=66,top=44,barH=26,maxLoad=Math.max(...s.loads.map(l=>l.total));
+    let content=textAt(8,14,'기사별 이동 거리 · 파랑 = 탑승 구간, 주황 = 빈 차 구간','start','font-size="11"');
+    s.routes.forEach((route,d)=>{
+      const y=top+d*rowH,load=s.loads[d];let x=x0;
+      content+=textAt(x0-8,y+barH/2-2,`기사 ${d}`,'end','font-size="11" font-weight="700"')+textAt(x0-8,y+barH/2+13,load.total,'end',`font-size="13" font-weight="800" fill="${load.total===maxLoad?C.orange:C.ink}"`);
+      load.segments.forEach(seg=>{const w=seg.length*scale,ride=seg.kind==='ride',mine=seg.passenger===s.passenger;
+        content+=`<rect x="${x}" y="${y}" width="${Math.max(w-1,1)}" height="${barH}" rx="3" fill="${ride?C.blueLight:C.orangeLight}" stroke="${mine?C.red:ride?'#a7b9f0':C.orange}" stroke-width="${mine?2.2:1}"/>`;
+        if(w>=String(seg.length).length*7+3)content+=text(x+w/2,y+barH/2+4,seg.length,'font-size="11" font-weight="800"');
+        if(ride)content+=text(x+w/2,y-5,`승객 ${seg.passenger}`,`font-size="11" font-weight="700" fill="${mine?C.red:C.muted}"`);
+        x+=w;});
+      content+=textAt(x0+2,y+barH+14,route.length?route.join(' → '):'경로 없음','start','font-size="11"');
+    });
+    const sx=x0+s.startMax*scale,yEnd=top+2*rowH-14;
+    content+=`<line x1="${sx}" y1="${top-6}" x2="${sx}" y2="${yEnd}" stroke="${C.red}" stroke-width="1.6" stroke-dasharray="4 3"/>`+text(Math.min(sx,330),yEnd+14,`처음 최대 ${s.startMax}`,`font-size="11" font-weight="700" fill="${C.red}"`);
+    $('visual').innerHTML=title(`승객 ${s.passenger} · 기사 ${s.owner}에서 기사 ${s.other}로 옮기기`)+svg(content,214);
+    $('legend').innerHTML=legend([[C.blueLight,'탑승 구간(승객을 태운 거리)'],[C.orangeLight,'빈 차 구간(다음 승객에게 가는 거리)'],[C.red,'옮기는 승객 · 처음 최대']]);
+    const mx=Math.max(...s.loads.map(l=>l.total));
+    $('metrics').innerHTML=metric('기사 0 부하',s.loads[0].total)+metric('기사 1 부하',s.loads[1].total)+metric('두 기사의 최대',mx,mx<s.startMax?'good':'accent')+metric('처음 최대',s.startMax);
+    const rows=s.candidates.map(c=>[c.label,c.routes[0].join('→')+' / '+c.routes[1].join('→'),c.max]),cls=s.candidates.map((c,i)=>i===s.candidate?(s.phase==='done'&&s.improved?'pick':'hot'):'');
+    $('details').innerHTML='<p class="detail-title">거리 분해 · 탑승 + 빈 차</p>'+chips(s.loads.map((l,d)=>`기사 ${d}: 탑승 <b>${l.ride}</b> + 빈 차 <b>${l.empty}</b> = <b>${l.total}</b>`))+'<p class="detail-title">시도한 이웃</p>'+(rows.length?rowTable(['이웃','경로 0 / 1','최대'],rows,cls):'<p class="empty">아직 시도 전</p>')+'<p class="note">삽입 위치가 달라지면 빈 차 구간이 바뀌어도 탑승 구간은 담당자와 함께 움직입니다. 승객을 옮겨서 나빠져도 두 승객을 바꾸면 좋아질 수 있습니다.</p>';
+  }
+  function renderBucket(s) {
+    const ex=context,u=20,x0=20,y0=18,side=ex.side,cell=ex.cell,G=side/cell;
+    const viewed=new Set(s.viewedCells.map(c=>c[0]*G+c[1])),ringSet=new Set(s.ringCells.map(c=>c[0]*G+c[1])),aliveSet=new Set(s.alive),pickedIds=new Set(s.history.map(h=>h.id));
+    let content='';
+    for(let gy=0;gy<G;gy++)for(let gx=0;gx<G;gx++){const k=gy*G+gx;content+=`<rect x="${x0+gx*cell*u}" y="${y0+gy*cell*u}" width="${cell*u}" height="${cell*u}" fill="${ringSet.has(k)?C.orangeLight:viewed.has(k)?C.blueLight:'#fff'}" stroke="#9aabc4" stroke-width="1.4"/>`;}
+    for(let i=0;i<=side;i++){const major=i%cell===0;if(!major)content+=`<line x1="${x0+i*u}" y1="${y0}" x2="${x0+i*u}" y2="${y0+side*u}" stroke="#eef1f6"/><line x1="${x0}" y1="${y0+i*u}" x2="${x0+side*u}" y2="${y0+i*u}" stroke="#eef1f6"/>`;}
+    for(let c=0;c<side;c+=2)content+=text(x0+c*u+u/2,y0-5,c,'font-size="11"');
+    for(let r=0;r<side;r+=2)content+=textAt(x0-4,y0+r*u+u/2+4,r,'end','font-size="11"');
+    ex.deliveries.forEach(([y,x,type],i)=>{
+      const cx=x0+x*u+u/2,cy=y0+y*u+u/2,gone=pickedIds.has(i),ok=s.stock[type]>0||gone,best=s.best&&s.best.id===i&&!gone;
+      content+=`<circle cx="${cx}" cy="${cy}" r="8.5" fill="${gone?C.teal:type==='A'?C.tealLight:type==='B'?'#dfe7ff':'#eef1f6'}" stroke="${best?C.orange:gone?C.teal:type==='C'?'#9aa8bd':'#7f93c9'}" stroke-width="${best?3:1.4}" ${type==='C'&&!gone?'stroke-dasharray="3 2"':''}/>`+text(cx,cy+4,i,`font-size="11" font-weight="800" fill="${gone?'#fff':C.ink}"`);
+    });
+    const ax=x0+s.at[1]*u+u/2,ay=y0+s.at[0]*u+u/2;
+    content+=`<path d="M${ax} ${ay-12} l12 12 l-12 12 l-12 -12 z" fill="none" stroke="${C.red}" stroke-width="2.2"/>`;
+    $('visual').innerHTML=title(`${pickText(s)} · 칸 한 변 ${cell} · 다이아몬드 = 출발점 (${s.at[0]},${s.at[1]})`)+svg(content,y0+side*u+8);
+    $('legend').innerHTML=legend([[C.orangeLight,'이번에 본 링'],[C.blueLight,'이미 본 링'],[C.tealLight,'A 배송'],['#dfe7ff','B 배송'],['#eef1f6','C 배송(재고 없음)'],[C.teal,'이미 고른 배송']]);
+    const last=s.history.at(-1);
+    $('metrics').innerHTML=metric('검사한 후보 / 남은 배송',`${s.inspected} / ${s.remaining}`,'accent')+metric('본 링',s.ring===null?'—':s.phase==='stop'?`0–${s.ring-1}`:`0–${s.ring}`)+metric('최선 거리',s.best?s.best.dist:'—')+metric('센터 재고',`A ${s.stock.A} · B ${s.stock.B}`);
+    const rows=s.ringItems.map(it=>[`배송 ${it.id} (${it.y},${it.x}) ${it.type}`,it.ok?'가능':'재고 없음',it.ok?it.dist:'—']),cls=s.ringItems.map(it=>s.best&&it.id===s.best.id?'pick':it.ok?'':'dim');
+    $('details').innerHTML=`<p class="detail-title">${s.ring===null?'링 검사':`링 ${s.ring}에서 검사한 후보`}</p>`+(rows.length?rowTable(['후보','싣기','거리'],rows,cls):`<p class="empty">${s.phase==='stop'||s.phase==='pick'||s.phase==='done'?'이번 단계에서 새로 검사한 후보 없음':'아직 검사 전'}</p>`)+'<p class="detail-title">고른 배송 · 전수 탐색과 대조</p>'+(s.history.length?'<ol class="term-list">'+s.history.map(h=>`<li class="${h.correct?'applied':'active'}"><code>${h.pick}번째 배송 ${h.id} ${h.type}</code><strong>거리 ${h.dist} · 최솟값 ${h.min} ${h.correct?'일치':'불일치'}</strong></li>`).join('')+'</ol>':'<p class="empty">아직 고르기 전</p>')+`<p class="note">종료 조건: ${s.early?'bestDist ≤ r × 칸 크기 (한 겹 일찍)':'bestDist ≤ (r − 1) × 칸 크기'}. 링 r의 칸은 출발 칸에서 칸 거리가 r이며, 그 안의 후보는 모두 (r − 1) × 칸 크기 + 1 이상 떨어져 있습니다.${last&&!last.correct?' 불일치한 고르기는 더 가까운 배송이 아직 보지 않은 링에 있었기 때문입니다.':''}</p>`;
+  }
+  const pickText=s=>s.pick?`${s.pick}번째 고르기`:'시작';
+  const bdDirLabel=['위','오른쪽','아래','왼쪽'];
+  function renderBoundary(s) {
+    const u=52,x0=22,y0=34,W=s.W,H=s.H,ch=s.call&&s.call.ok?s.call:null;
+    let content='';
+    for(let r=0;r<H;r++)for(let c=0;c<W;c++)content+=`<rect x="${x0+c*u}" y="${y0+r*u}" width="${u}" height="${u}" fill="#fff" stroke="#c9d3e3"/>`;
+    for(let c=0;c<W;c++)content+=text(x0+c*u+u/2,y0-18,c,'font-size="10"');
+    for(let r=0;r<H;r++)content+=textAt(x0-6,y0+r*u+u/2+4,r,'end','font-size="10"');
+    s.bounds.col.forEach(b=>{const hot=ch&&ch.axis==='col'&&ch.boundary===b.index,x=x0+(b.index+1)*u;content+=`<line x1="${x}" y1="${y0}" x2="${x}" y2="${y0+H*u}" stroke="${hot?C.orange:'#7f93c9'}" stroke-width="${hot?3:1.4}" stroke-dasharray="${hot?'':'4 3'}"/>`+text(x,y0-5,`${b.left}×${b.right}`,`font-size="11" font-weight="${hot?800:600}" fill="${hot?C.orange:C.blue}"`);});
+    s.bounds.row.forEach(b=>{const hot=ch&&ch.axis==='row'&&ch.boundary===b.index,y=y0+(b.index+1)*u;content+=`<line x1="${x0}" y1="${y}" x2="${x0+W*u}" y2="${y}" stroke="${hot?C.orange:'#7f93c9'}" stroke-width="${hot?3:1.4}" stroke-dasharray="${hot?'':'4 3'}"/>`+textAt(x0+W*u+8,y+4,`${b.left}×${b.right}`,'start',`font-size="11" font-weight="${hot?800:600}" fill="${hot?C.orange:C.blue}"`);});
+    s.particles.forEach(([name,y,x])=>{const cx=x0+x*u+u/2,cy=y0+y*u+u/2,moved=s.call&&s.call.name===name;content+=`<circle cx="${cx}" cy="${cy}" r="15" fill="${moved&&s.call.ok?C.orangeLight:moved?C.redLight:C.blueLight}" stroke="${moved&&s.call.ok?C.orange:moved?C.red:'#a7b9f0'}" stroke-width="${moved?2.6:1.5}"/>`+text(cx,cy+5,name,'font-size="14" font-weight="800"');});
+    if(s.call){
+      const dirs=[[-1,0],[0,1],[1,0],[0,-1]][s.call.dir],p=s.particles.find(q=>q[0]===s.call.name),sy=s.call.ok?p[1]-dirs[0]:p[1],sx=s.call.ok?p[2]-dirs[1]:p[2],fx=x0+sx*u+u/2,fy=y0+sy*u+u/2,tx=fx+dirs[1]*u*.62,ty=fy+dirs[0]*u*.62;
+      content+=`<line x1="${fx+dirs[1]*17}" y1="${fy+dirs[0]*17}" x2="${tx}" y2="${ty}" stroke="${s.call.ok?C.orange:C.red}" stroke-width="3" ${s.call.ok?'':'stroke-dasharray="4 3"'} marker-end="url(#${s.call.ok?'arrow-hot':'arrow'})"/>`;
+      if(!s.call.ok)content+=text(tx+dirs[1]*8,ty+dirs[0]*8+4,'✕',`font-size="14" font-weight="800" fill="${C.red}"`);
+    }
+    $('visual').innerHTML=title('열 경계는 위, 행 경계는 오른쪽에 (한쪽 개수 × 반대쪽 개수)')+svg(content,y0+H*u+10);
+    $('legend').innerHTML=legend([[C.orangeLight,'이번 호출로 옮긴 입자'],[C.redLight,'실패한 호출(횟수만 사용)'],[C.orange,'값이 바뀐 경계'],[C.blue,'그대로인 경계']]);
+    const sc=s.score;
+    $('metrics').innerHTML=metric('엔트로피 E',s.entropy,'accent')+metric('사용 횟수',`${s.used} / ${s.limit}`)+metric('차분식 Δ',ch?signed(ch.formula):'—',ch?'good':'')+metric('점수',sc.ratioPart+sc.bonus);
+    const rows=[...s.bounds.col.map(b=>[`열 경계 c${b.index}`,`${b.left} × ${b.right}`,b.value]),...s.bounds.row.map(b=>[`행 경계 r${b.index}`,`${b.left} × ${b.right}`,b.value])],cls=[...s.bounds.col.map(b=>ch&&ch.axis==='col'&&ch.boundary===b.index?'hot':''),...s.bounds.row.map(b=>ch&&ch.axis==='row'&&ch.boundary===b.index?'hot':'')];
+    rows.push(['합 · 열 + 행',`${s.colSum} + ${s.rowSum}`,s.boundSum]);cls.push('pick');
+    let calc='';
+    if(s.call&&s.call.ok)calc=`<div class="formula">차분식: ${s.call.axis==='col'?'열':'행'} 경계 ${s.call.boundary}의 pre = ${s.call.pre}<br>${s.call.dir===1||s.call.dir===2?`2·${s.call.pre} − 1 − ${s.particles.length}`:`${s.particles.length} − 1 − 2·${s.call.pre}`} = ${signed(s.call.formula)}<br>전체 재계산: ${s.entropy} − ${s.call.eBefore} = ${signed(s.call.full)}${s.call.formula===s.call.full?' (일치)':' (불일치!)'}</div>`;
+    else if(s.call)calc=`<div class="formula">${s.call.reason==='out'?'목적지가 격자 밖':'목적지에 이미 입자'}: 이동 없음<br>E 그대로 ${s.entropy}, 횟수 +1</div>`;
+    $('details').innerHTML='<p class="detail-title">경계별 값 · E = 합</p>'+rowTable(['경계','왼쪽×반대쪽','값'],rows,cls)+calc+`<p class="detail-title">점수식</p><div class="formula">⌊10⁶ × (${sc.improvement}/${s.e0})²⌋ = ${sc.ratioPart}<br>+ ⌊(${s.limit} − ${s.used}) / 100⌋ = ${sc.bonus}<br>= ${sc.ratioPart+sc.bonus}</div><p class="note">입자를 한 칸 옮기면 그 방향의 경계 하나의 값만 바뀝니다. 경계 값의 합은 모든 쌍의 거리 합과 항상 같습니다.</p>`;
+  }
+  function renderMirror(s) {
+    const ex=context,u=40,x0=30,top=20,gh=ex.rows*u,panel=gh+top+34;
+    let content='';
+    s.policies.forEach((v,i)=>{
+      const y0=i*panel+top+8,seen=new Set(v.seen),path=new Set(v.path.map(p=>p[0]*ex.cols+p[1])),vals={};ex.cells.forEach(([y,x,val])=>{vals[y*ex.cols+x]=val;});
+      content+=textAt(8,i*panel+14,`정책 ${i+1} · ${i===0?'가장 가까운 값 있는 칸':'이동당 이득 평가식'} · ${v.score}점 · 남은 이동 ${v.left}`,'start','font-size="11" font-weight="800"');
+      for(let r=0;r<ex.rows;r++)for(let c=0;c<ex.cols;c++){
+        const k=r*ex.cols+c,isAt=v.at[0]===r&&v.at[1]===c,isTarget=v.target&&v.target[0]===r&&v.target[1]===c,val=vals[k];
+        content+=`<rect x="${x0+c*u}" y="${y0+r*u}" width="${u-2}" height="${u-2}" rx="5" fill="${isAt?C.orangeLight:seen.has(r*30+c)?'#e9eef6':'#fff'}" stroke="${isAt?C.orange:isTarget?C.teal:path.has(k)?C.teal:'#d8e0ec'}" stroke-width="${isAt||isTarget?3:path.has(k)?2:1}"/>`;
+        const mark=ex.start[0]===r&&ex.start[1]===c?'S':'';
+        if(val!==undefined)content+=text(x0+c*u+(u-2)/2,y0+r*u+(u-2)/2+4,seen.has(r*30+c)?`✓${val}`:val,`font-size="${String(val).length>1&&seen.has(r*30+c)?11:13}" font-weight="800" ${seen.has(r*30+c)?`fill="${C.muted}"`:''}`);
+        else if(mark)content+=text(x0+c*u+(u-2)/2,y0+r*u+(u-2)/2+4,mark,'font-size="13" font-weight="800"');
+        if(isAt)content+=text(x0+c*u+(u-2)/2,y0+r*u+11,'나',`font-size="10" font-weight="800" fill="${C.orange}"`);
+      }
+      for(let c=0;c<ex.cols;c++)if(i===0)content+=text(x0+c*u+(u-2)/2,top+5,c,'font-size="10"');
+    });
+    $('visual').innerHTML=title('왼쪽 위 3×7 칸 · 숫자 = 광물 가치, ✓ = 거울의 seen, 나 = 현재 위치')+svg(content,panel*2);
+    $('legend').innerHTML=legend([[C.orangeLight,'현재 위치'],['#e9eef6','밟은 칸(seen)'],[C.teal,'목표와 가는 길'],['#f3f5f9','아직 안 밟음']]);
+    const [p1,p2]=s.policies;
+    $('metrics').innerHTML=metric('정책 1 점수',p1.score,p1.score>=p2.score?'good':'')+metric('정책 2 점수',p2.score,p2.score>p1.score?'good':'')+metric('정책 1 남은 이동',p1.left)+metric('정책 2 남은 이동',p2.left);
+    const t2=p2.lastPick,t1=p1.lastPick,sel=(pick,y,x)=>pick&&pick.target[0]===y&&pick.target[1]===x;
+    $('details').innerHTML='<p class="detail-title">정책 2 · 마지막 목표 선택의 키 = (g + '+s.weight+' × h) / (d + 1)</p>'+(t2?rowTable(['후보','d','g','h','키'],t2.candidates.map(c=>[`(${c.y},${c.x})`,c.d,c.g,c.h,M.fmtKey(c.key)]),t2.candidates.map(c=>sel(t2,c.y,c.x)?'pick':'')):'<p class="empty">후보 없음</p>')+'<p class="detail-title">정책 1 · 마지막 목표 선택의 후보</p>'+(t1?rowTable(['후보','d','g'],t1.candidates.map(c=>[`(${c.y},${c.x})`,c.d,c.g]),t1.candidates.map(c=>sel(t1,c.y,c.x)?'pick':'')):'<p class="empty">후보 없음</p>')+'<p class="detail-title">거울 seen · 밟은 순서</p>'+[p1,p2].map((v,i)=>`<p class="note">정책 ${i+1}: ${v.seen.map(k=>`(${Math.floor(k/30)},${k%30})`).join(' ')}</p>`).join('')+'<p class="note">g = 가는 길에서 새로 얻는 점수, h = 목표 주변 반경 3의 안 밟은 칸 가치 합입니다. 초록 행이 고른 목표입니다.</p>';
+  }
+  const renderers={'assignment-moves':renderAssignment,'route-insertion':renderRoute,'bucket-search':renderBucket,'boundary-delta':renderBoundary,'mirror-policy':renderMirror,'nearest-neighbor':renderNearest,'beam-search':renderBeam,'destroy-repair':renderDestroy,'paired-compare':renderPaired,'union-find':renderUnion,'segment-tree':renderSegment,'binary-search':renderBinary,bfs:renderBfs,dijkstra:renderDijkstra,'prefix-sum':renderPrefix,'two-opt':renderTwoOpt,annealing:renderAnnealing};
   function render() {
     const s=states[position];renderers[id](s);
     $('phase').textContent=phaseNames[s.phase]||s.phase;$('message').textContent=s.message;
