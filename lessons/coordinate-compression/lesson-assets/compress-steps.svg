@@ -9,7 +9,7 @@
 <text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">좌표 압축: 정렬 → 중복 제거 → 순위</text>
 <text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">같은 값 = 같은 색 · 압축값은 순위일 뿐 실제 거리가 아님</text>
 <rect x="20" y="104" width="680" height="478" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
-<text x="36" y="146" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">① 원래 배열 a</text>
+<text x="36" y="146" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">원래 배열 a</text>
 <text x="36" y="191" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">a[i]</text>
 <rect x="154" y="158" width="80" height="48" rx="8" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.2"/>
 <text x="194.0" y="191" font-size="22" fill="#172b45" font-weight="700" text-anchor="middle">−10</text>

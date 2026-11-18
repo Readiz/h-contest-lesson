@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 588" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 614" role="img" aria-labelledby="title desc">
 <title id="title">마감 과제 선택: 넘치면 가장 작은 점수를 버림</title><desc id="desc">과제 가(마감 1, 점수 40), 나(마감 2, 점수 10), 다(마감 2, 점수 70)를 마감 순서로 후보에 넣습니다. 다를 넣어 후보가 3개가 되면 마감 2를 넘으므로 가장 작은 점수 10을 버려 합 110이 됩니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
-<rect x="1" y="1" width="718" height="586" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="1" y="1" width="718" height="612" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="22" width="6" height="30" rx="3" fill="#ae5515"/>
 <text x="46" y="47" font-size="27" fill="#172b45" font-weight="750">마감 과제 선택: 넘치면 가장 작은 점수를 버림</text>
 <text x="28" y="86" font-size="21" fill="#53657d" font-weight="400" text-anchor="start">마감 순서로 후보에 넣고, 개수가 마감을 넘으면 최솟값 제거</text>
-<rect x="20" y="104" width="680" height="396" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="20" y="104" width="680" height="412" rx="12" fill="#fff" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="36" y="154" font-size="21" fill="#172b45" font-weight="700" text-anchor="start">① 가 (마감 1, 점수 40)</text>
 <rect x="60" y="170" width="84" height="44" rx="9" fill="#fdf0e3" stroke="#ae5515" stroke-width="2.5"/>
 <text x="102" y="200" font-size="22" fill="#172b45" font-weight="750" text-anchor="middle">40</text>
@@ -30,6 +30,6 @@
 <text x="354" y="460" font-size="18" fill="#53657d" font-weight="500" text-anchor="start">← 후보 점수</text>
 <text x="36" y="500" font-size="20" fill="#b42318" font-weight="700" text-anchor="start">후보 3개 &gt; 마감 2 → 최솟값 10 제거</text>
 <text x="684" y="414" font-size="22" fill="#147d69" font-weight="750" text-anchor="end">합 110</text>
-<rect x="28" y="514" width="664" height="54" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
-<text x="360" y="548" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">남은 후보 40, 70 → 합 110 · 10은 포기</text>
+<rect x="28" y="540" width="664" height="54" rx="12" fill="#e5f4ef" stroke="#c4e5dc" stroke-width="1.5"/>
+<text x="360" y="574" font-size="21" fill="#147d69" font-weight="750" text-anchor="middle">남은 후보 40, 70 → 합 110 · 10은 포기</text>
 </svg>
