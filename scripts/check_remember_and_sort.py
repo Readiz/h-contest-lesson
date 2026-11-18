@@ -525,7 +525,7 @@ def recheck_judge(judge: Path, sn: dict[str, str], data: dict) -> None:
         folder = Path(tmp)
         src = patched_judge(judge, folder, 5)
         for row in data["stages"]:
-            r = judge_run(src, assemble(sn, STAGES[row["label"]]), folder, "m")
+            r = judge_run(src, assemble(sn, STAGES[row["label"]]), folder, "m", ["-O2"])
             assert [r["score"][t] for t in sorted(r["score"])] == row["tcs"] and r["total"] == row["total"], row["label"]
             assert all(v[0] == 0 and v[1] == 0 for v in r["state"].values())
         for label in ("기준선", "2단계"):
@@ -617,6 +617,28 @@ def check_tables(data: dict, hand: dict, ref: dict) -> None:
     print(f"OK: lesson tables and quoted numbers match {DATA.name}")
 
 
+def check_svgs() -> None:
+    text = LESSON.read_text()
+    svgs = sorted((ROOT / "lessons/remember-and-sort/lesson-assets").glob("*.svg"))
+    assert len(svgs) == 2, svgs
+    for svg in svgs:
+        body = svg.read_text()
+        assert 'role="img"' in body and "<title" in body and "<desc" in body and 'viewBox="0 0 720 ' in body, svg.name
+        sizes = [float(x) for x in re.findall(r'font-size="([\d.]+)"', body)]
+        assert sizes and min(sizes) >= 16 and max(sizes) <= 28, (svg.name, min(sizes), max(sizes))
+        desc = re.search(r"<desc[^>]*>(.*?)</desc>", body, re.S).group(1)
+        assert "[" not in desc and "]" not in desc
+        assert f"lesson-assets/{svg.name}" in text and f"https://git.readiz.com/h-contest-lesson/lessons/remember-and-sort/lesson-assets/{svg.name}" in text, svg.name
+    for alt in re.findall(r"!\[([^\]]*)\]\(lesson-assets/", text):
+        assert "[" not in alt and "]" not in alt and len(alt) > 30
+    st = {r["label"]: r["total"] for r in json.loads(DATA.read_text())["stages"]}
+    stage_svg = (ROOT / "lessons/remember-and-sort/lesson-assets/stage-scores.svg").read_text()
+    for label in ("기준선", "1단계", "2단계"):                        # the figure quotes the measured totals in 억/만
+        a, b = divmod(round(st[label] / 10000), 10000)
+        assert f"{a}억 {b}만" in stage_svg, (label, a, b)
+    print("OK: two figures have role/title/desc, width 720, font sizes 16~28, a large-view link, and the measured totals")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--judge", type=Path, help="DRONESORT main.cpp (optional)")
@@ -637,6 +659,7 @@ def main() -> None:
     if args.judge:
         recheck_judge(args.judge, sn, data)
     check_tables(data, hand, ref)
+    check_svgs()
 
 
 if __name__ == "__main__":
