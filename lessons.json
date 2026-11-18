@@ -889,7 +889,29 @@
         "cpp-common-library",
         "cpp-contest-basics"
       ],
-      "pages": [],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 기준선",
+          "description": "MINEEXPLORE의 계약, 채점기 상태와 내 관측 기록의 분리, 거울을 한 곳에서만 갱신하는 코드와 기준선을 다룹니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: 계획과 행동을 나눈 두 정책",
+          "description": "계획과 행동을 나눈 가까운 미확인 칸 정책과 이동당 이득 평가식 정책, 두 정책이 갈라지는 손계산을 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "실패 사례와 예측 대 실제",
+          "description": "mirrorScore가 어긋나는 실수를 재현해 잡고 예측한 평가값과 실제 이득의 차이를 로그로 확인합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
+      ],
       "lessonType": "core",
       "practiceStatus": "linked",
       "implementationStatus": "full",
@@ -930,6 +952,29 @@
         "greedy",
         "hungarian-algorithm"
       ],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 기준선",
+          "description": "SCHEDULX의 제출 계약과 점수식을 작업 → 기계 배정 상태로 옮기고 번호 순 기준선과 탐욕 초기해를 만듭니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: 이웃과 차분 평가, hill climbing과 SA",
+          "description": "최댓값 점수의 이동·교환 차분, hill climbing이 멈추는 손계산, 평균 부하 항을 더한 hill climbing과 SA를 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "실측과 실패 사례",
+          "description": "제출 코드를 공개 채점기로 단계별로 재고 시작 온도·가중치를 실험하며 최댓값 차분 오류의 실패를 재현합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
+      ],
       "lessonType": "core",
       "practiceStatus": "linked",
       "implementationStatus": "full",
@@ -967,6 +1012,29 @@
         "cpp-common-library",
         "testing-and-stress",
         "hungarian-algorithm"
+      ],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 기준선",
+          "description": "TAXIASSIGN의 계약, 부하가 탑승 거리와 빈 차 이동으로 나뉘는 점수식과 하한, 상태 설계와 번호 순 기준선을 다룹니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: 옮겨 끼우기·교환 이웃과 결합 탐욕",
+          "description": "담당자와 삽입 위치를 함께 고르는 이웃의 최대 부하 차분, 손계산, 단계별 확장과 결합 탐욕·탐색을 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "실측과 실패 사례",
+          "description": "단계별·설정별 공개 채점기 측정과 삽입 위치를 틀린 두 변형의 실패를 재현합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
       ],
       "lessonType": "core",
       "practiceStatus": "linked",
@@ -1006,6 +1074,29 @@
         "cpp-common-library",
         "assignment-local-search",
         "greedy"
+      ],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 기준선",
+          "description": "LANDINGX의 계약, 고도 차·겹침·종류별 한도를 한 함수로 검사하는 상태 설계, first-fit 기준선과 점수 큰 순 탐욕을 만듭니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: 국소 이동과 destroy/repair",
+          "description": "추가·교체 국소 이동의 차분 평가, 국소 이동이 멈추는 손계산, destroy/repair와 완성 코드를 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "실측과 실패 사례",
+          "description": "같은 후보 검사 수로 세 방법을 비교하고 destroy 크기·무작위 배율 실험과 되돌리기·종류별 한도 실패를 재현합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
       ],
       "lessonType": "core",
       "practiceStatus": "linked",
