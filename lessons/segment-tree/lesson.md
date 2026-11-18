@@ -51,6 +51,10 @@ node [l, r] = a[l] + a[l + 1] + ... + a[r]
 
 변한 위치를 포함하는 노드만 고치면 되므로 점 업데이트도 `O(log n)`입니다.
 
+[Segment Tree: 구간 질의와 점 갱신 따라가기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=segment-tree)
+
+구간 합 질의에서 방문하는 노드를 완전 포함, 일부 겹침, 무관으로 구분해 단계별로 봅니다. 점 갱신에서는 리프에서 루트까지 다시 계산되는 경로를 확인해 보세요.
+
 ## Top-down 전체 구현
 
 아래 구현은 비어 있지 않은 0-indexed 배열에서 구간 합과 점 업데이트를 처리합니다. 질의는 `0 <= l <= r < n`, 갱신 위치는 `0..n-1` 범위입니다.

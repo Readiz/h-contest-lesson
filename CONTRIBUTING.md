@@ -201,7 +201,7 @@ long long square(int value) {
 [이분 탐색: 답이 남는 구간 따라가기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=binary-search)
 ```
 
-등록 ID는 `binary-search`, `bfs`, `dijkstra`, `prefix-sum`, `two-opt`, `annealing`입니다. 새 ID를 추가하면 앱의 허용 목록도 같은 릴리즈에서 갱신해야 합니다. 공개 링크는 정확한 `https` URL과 `demo` 파라미터 하나만 사용합니다.
+등록 ID는 `binary-search`, `bfs`, `dijkstra`, `prefix-sum`, `two-opt`, `annealing`, `nearest-neighbor`, `beam-search`, `destroy-repair`, `paired-compare`, `union-find`, `segment-tree` 12종입니다. 새 ID를 추가하면 앱의 허용 목록도 같은 릴리즈에서 갱신해야 합니다. 공개 링크는 정확한 `https` URL과 `demo` 파라미터 하나만 사용합니다.
 
 - 이전·다음·재생·처음·진행 위치와 관련 입력/예제를 제공하고 기본 자동재생은 끕니다. 입력 변경·마지막 단계·페이지 비활성화 시 재생을 멈춥니다.
 - 작은 화면에서도 상태 설명과 수치는 HTML 텍스트로 읽을 수 있어야 합니다. 색상만으로 상태를 구분하지 않고 이름·테두리·기호를 함께 씁니다.
