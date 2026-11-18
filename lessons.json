@@ -243,7 +243,8 @@
       ],
       "nextLessons": [
         "testing-and-stress",
-        "tsp-hamiltonian"
+        "tsp-hamiltonian",
+        "assignment-local-search"
       ],
       "relatedLessons": [
         "tsp-hamiltonian",
@@ -896,6 +897,45 @@
       "difficultyAxes": [
         "modeling",
         "implementation"
+      ]
+    },
+    {
+      "lessonId": "assignment-local-search",
+      "title": "배정 문제의 지역 탐색과 SA",
+      "description": "SCHEDULX의 작업→기계 배정으로 상태·이웃·최댓값 차분을 정하고, hill climbing이 멈추는 손계산 예시에서 SA의 시작 온도와 수락률 실험까지 이어갑니다.",
+      "summary": "최대 부하 점수의 차분과 평지 문제, 손해 분포로 정하는 시작 온도, 구간별 수락률과 여러 seed 측정을 SCHEDULX 한 문제로 연결",
+      "order": 28,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "local-search",
+        "simulated-annealing",
+        "assignment",
+        "schedule",
+        "load-balancing",
+        "incremental-evaluation",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "heuristic",
+        "testing-and-stress"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "cpp-common-library",
+        "greedy",
+        "hungarian-algorithm"
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
       ]
     },
     {

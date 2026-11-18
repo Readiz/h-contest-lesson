@@ -15,3 +15,4 @@
 3. [초기해와 지역 탐색](pages/search-strategies.md): 지역 최적 반례에서 출발해 ORDERING에 SA를 붙이고 후보 수·비용·실행 시간을 비교.
 4. [광고판 도시 배치](pages/placement-and-repair.md): bitmask 점유 검사, 위치 평가와 destroy/repair.
 5. [31일 설치 일정 Beam Search](pages/aircontech-beam-search.md): 행동 후보와 경로 후보를 따로 줄이고 실제 수익으로 일정을 선택.
+6. [배정 문제의 지역 탐색과 SA](https://h.readiz.com/learn/assignment-local-search): SCHEDULX의 최대 부하 차분, hill climbing이 멈추는 예, 시작 온도와 수락률 실험.

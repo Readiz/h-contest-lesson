@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+<title id="title">온도 구간별 나쁜 이동 수락률</title><desc id="desc">SCHEDULX 6개 TC에서 시작 온도를 중앙 손해의 0.03, 0.1, 0.3, 1, 3배로 둔 SA의 나쁜 이동 수락률입니다. 세로 눈금은 제곱근 척도이며 solver seed 9개의 중앙값입니다. 시작 온도가 높을수록 수락률이 높고 모든 설정에서 구간 5에는 낮아집니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="598" height="598" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">온도 구간별 나쁜 이동 수락률</text>
+<text x="28" y="91" font-size="21" fill="#53657d">구간 1 = 탐색 시작 · 구간 5 = 끝 · solver seed 9개의 중앙값</text>
+<line x1="252" y1="440.0" x2="522" y2="440.0" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="242" y="447.0" font-size="19" fill="#53657d" text-anchor="end">0%</text>
+<line x1="252" y1="401.3" x2="522" y2="401.3" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="242" y="408.3" font-size="19" fill="#53657d" text-anchor="end">1%</text>
+<line x1="252" y1="353.4" x2="522" y2="353.4" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="242" y="360.4" font-size="19" fill="#53657d" text-anchor="end">5%</text>
+<line x1="252" y1="317.5" x2="522" y2="317.5" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="242" y="324.5" font-size="19" fill="#53657d" text-anchor="end">10%</text>
+<line x1="252" y1="246.4" x2="522" y2="246.4" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="242" y="253.4" font-size="19" fill="#53657d" text-anchor="end">25%</text>
+<line x1="252" y1="166.1" x2="522" y2="166.1" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="242" y="173.1" font-size="19" fill="#53657d" text-anchor="end">50%</text>
+<text x="252.0" y="474" font-size="20" fill="#53657d" text-anchor="middle">1</text>
+<text x="319.5" y="474" font-size="20" fill="#53657d" text-anchor="middle">2</text>
+<text x="387.0" y="474" font-size="20" fill="#53657d" text-anchor="middle">3</text>
+<text x="454.5" y="474" font-size="20" fill="#53657d" text-anchor="middle">4</text>
+<text x="522.0" y="474" font-size="20" fill="#53657d" text-anchor="middle">5</text>
+<text x="387.0" y="506" font-size="20" fill="#53657d" text-anchor="middle">온도 구간 (왼쪽이 뜨거움)</text>
+<polyline points="252.0,408.6 319.5,418.2 387.0,424.5 454.5,430.1 522.0,435.3" fill="none" stroke="#7a8aa3" stroke-width="3.5"/>
+<circle cx="252.0" cy="408.6" r="5.5" fill="#7a8aa3" stroke="#ffffff" stroke-width="2"/>
+<circle cx="319.5" cy="418.2" r="5.5" fill="#7a8aa3" stroke="#ffffff" stroke-width="2"/>
+<circle cx="387.0" cy="424.5" r="5.5" fill="#7a8aa3" stroke="#ffffff" stroke-width="2"/>
+<circle cx="454.5" cy="430.1" r="5.5" fill="#7a8aa3" stroke="#ffffff" stroke-width="2"/>
+<circle cx="522.0" cy="435.3" r="5.5" fill="#7a8aa3" stroke="#ffffff" stroke-width="2"/>
+<polyline points="252.0,373.4 319.5,386.4 387.0,398.2 454.5,411.2 522.0,425.9" fill="none" stroke="#147d69" stroke-width="3.5"/>
+<circle cx="252.0" cy="373.4" r="5.5" fill="#147d69" stroke="#ffffff" stroke-width="2"/>
+<circle cx="319.5" cy="386.4" r="5.5" fill="#147d69" stroke="#ffffff" stroke-width="2"/>
+<circle cx="387.0" cy="398.2" r="5.5" fill="#147d69" stroke="#ffffff" stroke-width="2"/>
+<circle cx="454.5" cy="411.2" r="5.5" fill="#147d69" stroke="#ffffff" stroke-width="2"/>
+<circle cx="522.0" cy="425.9" r="5.5" fill="#147d69" stroke="#ffffff" stroke-width="2"/>
+<polyline points="252.0,311.3 319.5,328.1 387.0,347.9 454.5,372.7 522.0,405.9" fill="none" stroke="#2664ce" stroke-width="3.5"/>
+<circle cx="252.0" cy="311.3" r="5.5" fill="#2664ce" stroke="#ffffff" stroke-width="2"/>
+<circle cx="319.5" cy="328.1" r="5.5" fill="#2664ce" stroke="#ffffff" stroke-width="2"/>
+<circle cx="387.0" cy="347.9" r="5.5" fill="#2664ce" stroke="#ffffff" stroke-width="2"/>
+<circle cx="454.5" cy="372.7" r="5.5" fill="#2664ce" stroke="#ffffff" stroke-width="2"/>
+<circle cx="522.0" cy="405.9" r="5.5" fill="#2664ce" stroke="#ffffff" stroke-width="2"/>
+<polyline points="252.0,223.7 319.5,241.9 387.0,266.6 454.5,302.0 522.0,360.4" fill="none" stroke="#ae5515" stroke-width="3.5"/>
+<circle cx="252.0" cy="223.7" r="5.5" fill="#ae5515" stroke="#ffffff" stroke-width="2"/>
+<circle cx="319.5" cy="241.9" r="5.5" fill="#ae5515" stroke="#ffffff" stroke-width="2"/>
+<circle cx="387.0" cy="266.6" r="5.5" fill="#ae5515" stroke="#ffffff" stroke-width="2"/>
+<circle cx="454.5" cy="302.0" r="5.5" fill="#ae5515" stroke="#ffffff" stroke-width="2"/>
+<circle cx="522.0" cy="360.4" r="5.5" fill="#ae5515" stroke="#ffffff" stroke-width="2"/>
+<polyline points="252.0,147.1 319.5,162.4 387.0,184.7 454.5,221.1 522.0,296.3" fill="none" stroke="#9b2c5b" stroke-width="3.5"/>
+<circle cx="252.0" cy="147.1" r="5.5" fill="#9b2c5b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="319.5" cy="162.4" r="5.5" fill="#9b2c5b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="387.0" cy="184.7" r="5.5" fill="#9b2c5b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="454.5" cy="221.1" r="5.5" fill="#9b2c5b" stroke="#ffffff" stroke-width="2"/>
+<circle cx="522.0" cy="296.3" r="5.5" fill="#9b2c5b" stroke="#ffffff" stroke-width="2"/>
+<text x="28" y="154.1" font-size="19" fill="#9b2c5b" font-weight="700">×3  합 242215</text>
+<text x="28" y="230.7" font-size="19" fill="#ae5515" font-weight="700">×1  합 237510</text>
+<text x="28" y="318.3" font-size="19" fill="#2664ce" font-weight="700">×0.3  합 235291</text>
+<text x="28" y="380.4" font-size="19" fill="#147d69" font-weight="700">×0.1  합 235248</text>
+<text x="28" y="415.6" font-size="19" fill="#7a8aa3" font-weight="700">×0.03  합 235605</text>
+<text x="28" y="550" font-size="20" fill="#53657d">왼쪽 라벨 = 시작 온도 배수와 6개 TC 비용 합의 중앙값</text>
+<text x="28" y="578" font-size="20" fill="#53657d">세로축은 제곱근 눈금이라 낮은 수락률도 구분됩니다.</text>
+<text x="260.0" y="299.3" font-size="18" fill="#2664ce" font-weight="700">11.0%</text>
+<text x="260.0" y="211.7" font-size="18" fill="#ae5515" font-weight="700">31.2%</text>
+<text x="534.0" y="366.4" font-size="18" fill="#ae5515" font-weight="700">4.2%</text>
+<text x="260.0" y="135.1" font-size="18" fill="#9b2c5b" font-weight="700">57.2%</text>
+<text x="534.0" y="302.3" font-size="18" fill="#9b2c5b" font-weight="700">13.8%</text>
+</svg>
