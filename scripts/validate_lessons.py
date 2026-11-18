@@ -558,6 +558,7 @@ def main() -> None:
     subprocess.run([sys.executable, str(ROOT / "scripts/check_placement_search.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_observe_and_act.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_reading_the_score.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts/check_explore_unknown_map.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_assignment_search.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_assignment_routes.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts/check_large_input_search.py")], check=True)

@@ -1162,6 +1162,45 @@
       ]
     },
     {
+      "lessonId": "explore-unknown-map",
+      "title": "보이는 만큼만 아는 문제: 지도를 그려 가며 청소하기",
+      "description": "ROBOTCLEAN에서 지도도 자기 위치도 모르는 로봇의 scan·move·turn 결과를 내 지도와 자세로 옮기고, 가장 단순한 DFS 기준선에서 BFS, (칸, 방향) 최단 비용으로 키웁니다. 스캔 시점과 회전 비용을 파라미터로 실측하고, 좌표 변환 실패를 기준 채점기와의 상태 대조로 잡습니다.",
+      "summary": "세 층의 상태(실제·내 지도·자세 추정), 시작 칸 기준 좌표계와 배열 상한, 회전된 관측 되돌리기, subtask 초기화, DFS·BFS·(칸, 방향) Dijkstra 정책, 스캔 기준과 회전 비용 실측, 홀드아웃 지도 확인과 상태 대조 실패 재현을 ROBOTCLEAN 한 문제로 연결",
+      "order": 35,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "partial-observation",
+        "exploration",
+        "mapping",
+        "state-mirror",
+        "simulation",
+        "bfs",
+        "dijkstra",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 80,
+      "prerequisites": [
+        "observe-and-act",
+        "bfs-dfs-grid"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "dijkstra",
+        "cpp-common-library",
+        "testing-and-stress"
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "modeling",
+        "implementation"
+      ]
+    },
+    {
       "lessonId": "sqrt-decomposition",
       "title": "Sqrt Decomposition",
       "description": "배열을 작은 블록으로 나누어 구간 질의와 업데이트를 균형 있게 처리하는 제곱근 분할을 익힙니다.",

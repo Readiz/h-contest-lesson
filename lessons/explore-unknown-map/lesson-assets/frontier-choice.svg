@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430" role="img" aria-labelledby="title desc">
+<title id="title">손계산 예시: 할 일 칸 고르기와 막힘</title><desc id="desc">손계산 예시의 처음 세 결정입니다. 결정 0은 스캔 뒤 내 지도 63~65행 63~65열에서 왼쪽 64,63과 오른쪽 64,65와 뒤쪽 65,64가 모두 비용 25로 같고 번호가 가장 작은 64,63을 고릅니다. 결정 1은 64,63에서 모르는 칸 64,62로 비용 10에 이동하다가 벽에 막혀 위치가 그대로이고 그 칸이 벽으로 기록됩니다. 결정 2는 앞이 벽이므로 63,63과 65,63이 비용 25로 같아 번호가 작은 63,63을 고릅니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="428" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="22" width="6" height="30" rx="3" fill="#2664ce"/>
+<text x="46" y="47" font-size="27" fill="#172b45" font-weight="750" text-anchor="start">할 일 칸 고르기와 막힌 이동</text>
+<rect x="20" y="76" width="216" height="240" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="34" y="108" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">결정 0</text>
+<text x="34" y="134" font-size="18" fill="#53657d" font-weight="400" text-anchor="start">스캔 직후, 위를 봄</text>
+<text x="55.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">63</text>
+<text x="97.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">64</text>
+<text x="139.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">65</text>
+<rect x="34" y="174" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="76" y="174" width="42" height="42" rx="0" fill="#3b4d66" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="118" y="174" width="42" height="42" rx="0" fill="#3b4d66" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="34" y="216" width="42" height="42" rx="0" fill="#fdeee3" stroke="#c4510c" stroke-width="3"/>
+<text x="55.0" y="244.0" font-size="20" fill="#c4510c" font-weight="700" text-anchor="middle">25</text>
+<rect x="76" y="216" width="42" height="42" rx="0" fill="#eef3fb" stroke="#d8e1ed" stroke-width="1"/>
+<polygon points="97.0,223.0 85.8,246.8 108.2,246.8" fill="#c4510c"/>
+<rect x="118" y="216" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<text x="139.0" y="244.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">25</text>
+<rect x="34" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="76" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<text x="97.0" y="286.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">25</text>
+<rect x="118" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<text x="168" y="201.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">63</text>
+<text x="168" y="243.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">64</text>
+<text x="168" y="285.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">65</text>
+<rect x="252" y="76" width="216" height="240" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="266" y="108" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">결정 1</text>
+<text x="266" y="134" font-size="18" fill="#53657d" font-weight="400" text-anchor="start">왼쪽을 봄, 앞은 모름</text>
+<text x="287.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">62</text>
+<text x="329.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">63</text>
+<text x="371.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">64</text>
+<text x="413.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">65</text>
+<rect x="266" y="174" width="42" height="42" rx="0" fill="#e8edf4" stroke="#d8e1ed" stroke-width="1"/>
+<text x="287.0" y="201.0" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">?</text>
+<rect x="308" y="174" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="350" y="174" width="42" height="42" rx="0" fill="#3b4d66" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="392" y="174" width="42" height="42" rx="0" fill="#3b4d66" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="266" y="216" width="42" height="42" rx="0" fill="#fdeee3" stroke="#c4510c" stroke-width="3"/>
+<text x="287.0" y="244.0" font-size="20" fill="#c4510c" font-weight="700" text-anchor="middle">10</text>
+<rect x="308" y="216" width="42" height="42" rx="0" fill="#eef3fb" stroke="#d8e1ed" stroke-width="1"/>
+<polygon points="315.0,237.0 338.8,225.8 338.8,248.2" fill="#c4510c"/>
+<rect x="350" y="216" width="42" height="42" rx="0" fill="#eef3fb" stroke="#d8e1ed" stroke-width="1"/>
+<circle cx="371.0" cy="237.0" r="5" fill="#2664ce"/>
+<rect x="392" y="216" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="266" y="258" width="42" height="42" rx="0" fill="#e8edf4" stroke="#d8e1ed" stroke-width="1"/>
+<text x="287.0" y="285.0" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">?</text>
+<rect x="308" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="350" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="392" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<text x="442" y="201.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">63</text>
+<text x="442" y="243.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">64</text>
+<text x="442" y="285.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">65</text>
+<rect x="484" y="76" width="216" height="240" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="498" y="108" font-size="20" fill="#172b45" font-weight="700" text-anchor="start">결정 2</text>
+<text x="498" y="134" font-size="18" fill="#53657d" font-weight="400" text-anchor="start">막힘 기록 뒤 다시 계획</text>
+<text x="519.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">62</text>
+<text x="561.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">63</text>
+<text x="603.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">64</text>
+<text x="645.0" y="166" font-size="16" fill="#53657d" font-weight="400" text-anchor="middle">65</text>
+<rect x="498" y="174" width="42" height="42" rx="0" fill="#e8edf4" stroke="#d8e1ed" stroke-width="1"/>
+<text x="519.0" y="201.0" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">?</text>
+<rect x="540" y="174" width="42" height="42" rx="0" fill="#fdeee3" stroke="#c4510c" stroke-width="3"/>
+<text x="561.0" y="202.0" font-size="20" fill="#c4510c" font-weight="700" text-anchor="middle">25</text>
+<rect x="582" y="174" width="42" height="42" rx="0" fill="#3b4d66" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="624" y="174" width="42" height="42" rx="0" fill="#3b4d66" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="498" y="216" width="42" height="42" rx="0" fill="#3b4d66" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="540" y="216" width="42" height="42" rx="0" fill="#eef3fb" stroke="#d8e1ed" stroke-width="1"/>
+<polygon points="547.0,237.0 570.8,225.8 570.8,248.2" fill="#c4510c"/>
+<rect x="582" y="216" width="42" height="42" rx="0" fill="#eef3fb" stroke="#d8e1ed" stroke-width="1"/>
+<circle cx="603.0" cy="237.0" r="5" fill="#2664ce"/>
+<rect x="624" y="216" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="498" y="258" width="42" height="42" rx="0" fill="#e8edf4" stroke="#d8e1ed" stroke-width="1"/>
+<text x="519.0" y="285.0" font-size="18" fill="#9aa8bb" font-weight="400" text-anchor="middle">?</text>
+<rect x="540" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<text x="561.0" y="286.0" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">25</text>
+<rect x="582" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="624" y="258" width="42" height="42" rx="0" fill="#ffffff" stroke="#d8e1ed" stroke-width="1"/>
+<text x="674" y="201.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">63</text>
+<text x="674" y="243.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">64</text>
+<text x="674" y="285.0" font-size="16" fill="#53657d" font-weight="400" text-anchor="start">65</text>
+<text x="36" y="350" font-size="18" fill="#172b45" font-weight="400" text-anchor="start">주황 테두리는 고른 칸입니다. 숫자는 그 칸까지의 최소 비용(회전 15, 이동 10)입니다.</text>
+<text x="36" y="380" font-size="18" fill="#172b45" font-weight="400" text-anchor="start">결정 0과 2는 비용이 같은 후보가 둘 이상이고 상태 번호가 작은 쪽을 고릅니다.</text>
+<text x="36" y="410" font-size="18" fill="#172b45" font-weight="400" text-anchor="start">결정 1은 10에 가 보지만 벽이어서 위치는 그대로이고 비용 10만 씁니다.</text>
+</svg>

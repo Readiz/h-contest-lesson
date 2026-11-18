@@ -23,7 +23,7 @@
 
 2026-11-18에 참고 노트 67개, 이동 안내문만 있던 스텁 디렉터리 78개, `CHANGELOG.md`, `LESSON_REVIEW.md`를 삭제했다. 삭제 전 상태는 git 태그 `archive/pre-prune-20261118`에서 복구한다. 강의 `online-planning-evaluation` 페이지는 `testing-and-stress`의 `experiment-evaluation` 페이지로 옮겼다.
 
-현재 manifest에는 강의 37개와 하위 페이지 8개가 있고 분류는 `heuristic-notes` 하나다. `practiceStatus`는 `linked` 37개다. `status`는 2개 강의에만 `published`로 명시되어 있으며 나머지는 지정하지 않았다. 이는 콘텐츠 공개 상태일 뿐, 추가 연습, 실행 검증의 범위, 교육 효과의 완료 상태와 합치지 않는다.
+현재 manifest에는 강의 38개와 하위 페이지 8개가 있고 분류는 `heuristic-notes` 하나다. `practiceStatus`는 `linked` 38개다. `status`는 2개 강의에만 `published`로 명시되어 있으며 나머지는 지정하지 않았다. 이는 콘텐츠 공개 상태일 뿐, 추가 연습, 실행 검증의 범위, 교육 효과의 완료 상태와 합치지 않는다.
 
 | 구분 | 남은 확인 또는 작업 | 완료 증거 |
 | --- | --- | --- |
@@ -46,4 +46,4 @@ python3 scripts/validate_lessons.py
 
 README의 이 문서 링크는 생성기 `README_HEADER`에서 관리한다. 생성형 README를 직접 수정하지 않는다.
 
-2026-11-18 카탈로그 재생성 및 `--check`, 전체 validator를 통과했다. 강의 37개, 기초 연습 19개, STL 없는 코드 7개, 제출 흐름 72블록, ORDERING 탐색, SCHEDULX 지역 탐색(`check_assignment_search.py`), MINEEXPLORE 상태 거울(`check_observe_and_act.py`), TAXIASSIGN 배정·경로(`check_assignment_routes.py`), LANDINGX 배치 탐색(`check_placement_search.py`), ENTROPY2D 점수식(`check_reading_the_score.py`), COUPANG1 대규모 입력(`check_large_input_search.py`), 본문 조합과 경계 사례 3개, 데모 527,527개 assertion(17종)이 포함됐다. 새 5종은 독립 재계산(전수 배정, 순열 전수, 전수 최근접, O(n²) 쌍 합, 별도 BFS·경로 이득)과 연결 강의 본문의 숫자 대조를 포함한다. 데모 17종은 390px/1280px 브라우저에서 처음·중간·마지막 상태의 가로 넘침과 콘솔 오류가 없음을 확인했다. 운영 배포와 h-contest 앱의 데모 허용 목록 갱신은 수행하지 않았다.
+2026-11-18 카탈로그 재생성 및 `--check`, 전체 validator를 통과했다. 강의 38개, 기초 연습 19개, STL 없는 코드 7개, 제출 흐름 102블록, ORDERING 탐색, SCHEDULX 지역 탐색(`check_assignment_search.py`), MINEEXPLORE 상태 거울(`check_observe_and_act.py`), TAXIASSIGN 배정·경로(`check_assignment_routes.py`), LANDINGX 배치 탐색(`check_placement_search.py`), ENTROPY2D 점수식(`check_reading_the_score.py`), COUPANG1 대규모 입력(`check_large_input_search.py`), ROBOTCLEAN 지도 그리기(`check_explore_unknown_map.py`), 기초 강의 제출용 코드 8개(`check_foundation_code.py`), 본문 조합과 경계 사례 3개, 데모 527,527개 assertion(17종)이 포함됐다. 새 5종은 독립 재계산(전수 배정, 순열 전수, 전수 최근접, O(n²) 쌍 합, 별도 BFS·경로 이득)과 연결 강의 본문의 숫자 대조를 포함한다. 데모 17종은 390px/1280px 브라우저에서 처음·중간·마지막 상태의 가로 넘침과 콘솔 오류가 없음을 확인했다. 운영 배포와 h-contest 앱의 데모 허용 목록 갱신은 수행하지 않았다.
