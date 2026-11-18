@@ -678,14 +678,6 @@ GATE_SHIFT = """{ int d0 = absv(fy - hy) + absv(fx - hx);
             double g = gy[fy] + gx[fx] - gy[hy] - gx[hx] + d0;        // entropy decrease of this pair
             if (g / d0 < minRatio) minRatio = g / d0;
             if (g >= mu * d0) shiftAlong(fy, fx, hy, hx); }"""
-RELOC_TAIL = """for (bool moved = true; moved && ent::G.used < ent::G.limit; ) {
-        moved = false;
-        for (int i = 0; i < ent::G.n; ++i)
-            if (ent::hasFreeNeighbor(i) && ent::relocate(i)) moved = true;
-    }
-    ent::finish();"""
-
-
 def ablations() -> list[tuple[str, int, tuple[str, ...] | None, list]]:
     gate = [(r"void fillHoles\(\) \{\n", lambda m: GATE_PRE), (r"shiftAlong\(fy, fx, hy, hx\);", lambda m: GATE_SHIFT),
             (r"void process\(\) \{\n    ent::init\(\);", lambda m: "#include <cstdio>\nvoid process() {\n    ent::init();\n    ent::minRatio = 1e18;"),
@@ -698,8 +690,6 @@ def ablations() -> list[tuple[str, int, tuple[str, ...] | None, list]]:
            ("빈 칸 순서대로 짝짓기", 5, None, per_hole),
            ("3단계를 먼저 실행", 5, COMMON + ("ent-greedy",) + ARR5, [(r"ent::init\(\);", lambda m: "ent::init();\n    ent::thresholdSweeps();")]),
            ("문턱 켬", 5, None, gate),
-           ("5단계 뒤에 4단계 재배치", 5, COMMON + ("ent-relocate",) + ARR5,
-            [(r"int absv\(int v\) \{[^\n]*\}\nconst int ROUNDS", lambda m: "const int ROUNDS"), (r"ent::finish\(\);", lambda m: RELOC_TAIL)]),
            ("4단계 TC별 문턱 ×10", 4, None,
             [(r"const long long MINPER = 10;", lambda m: "long long MINPER = 10;"),
              (r"ent::init\(\);", lambda m: "ent::init();\n    ent::MINPER = (long long)(10 * 0.01 * ent::G.e0 / (2e6 * 0.43)) + 1;")])]
@@ -757,7 +747,7 @@ def table_lines(data: dict) -> dict[str, list[str]]:
                                f"| {1 - t['disk'] / t['e0']:.4f} | {1 - t['lower'] / t['e0']:.4f} "
                                f"| {r5['used'][i]} | {r5['lb'][i]} |")
     out["sweep_rows"].append(f"| 기본값 (MINPER 10, KEEP 6) | {r4['total']} | {r4['ms']} |")
-    for label in ("MINPER 0", "MINPER 1", "MINPER 100", "MINPER 300", "KEEP 4", "KEEP 7"):
+    for label in ("MINPER 100", "MINPER 300"):
         out["sweep_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['ms']} |")
     for label in ("int 누적", "위쪽 차분 off-by-one"):
         out["fail_rows"].append(f"| {label} | {by[label]['total']} | {by[label]['mirror_total']} | {by[label]['ms']} |")
@@ -780,41 +770,61 @@ def check_tables(data: dict) -> None:
     for name, expected in table_lines(data).items():
         for line in expected:
             assert line in lines, f"lesson table line missing or stale ({name}): {line}"
-    by = {r["label"]: r for r in data["rows"] + data["sweeps"] + data["failures"]}
+    assert len(text.splitlines()) <= 550, "the lesson must stay within 550 lines"
+    by = {r["label"]: r for r in data["rows"] + data["sweeps"] + data["failures"] + data["ablations"]}
     for row in data["rows"]:
         assert row["mirror_total"] == row["total"] and row["mismatch_total"] == 0 and (row["refused_total"] == 0 or row["label"].startswith("1단계")), row["label"]
     for t in data["tcs"]:
         assert tc_reference(t) == {"lower": t["lower"], "disk": t["disk"]}, t["tc"]
         assert t["disk"] >= t["lower"], t["tc"]
-    r2, r3, r4 = (by[k] for k in ("2단계 차분 탐욕", "3단계 큰 이득부터", "4단계 빈 칸 경로 재배치"))
+    r2, r3, r4, r5 = (by[k] for k in ("2단계 차분 탐욕", "3단계 큰 이득부터", "4단계 빈 칸 경로 재배치", BASE5))
     base = "4단계 빈 칸 경로 재배치"
-    assert r4["total"] < PASS_SCORE
+    assert r4["total"] < PASS_SCORE <= r5["total"]
     limit_sum = sum(t["limit"] for t in data["tcs"])
     assert round(100 * sum(r2["used"]) / limit_sum) == round(100 * sum(r3["used"]) / limit_sum) == 26
     assert sum(t["e0"] > 2 ** 31 - 1 for t in data["tcs"]) == 4 and all(t["e0"] > 2 ** 31 - 1 for t in data["tcs"] if t["tc"] in (4, 5, 9, 10))
     ratio = [1 - e / t["e0"] for e, t in zip(r4["entropy"], data["tcs"])]
     thr = [0.01 * t["e0"] / (2e6 * r) for r, t in zip(ratio, data["tcs"])]
+    thr5 = [0.01 * t["e0"] / (2e6 * (1 - e / t["e0"])) for e, t in zip(r5["entropy"], data["tcs"])]
     q = [r4["entropy"][i] / t["disk"] for i, t in enumerate(data["tcs"])]
     low = [1 - t["lower"] / t["e0"] for t in data["tcs"]]
     sweeps = [paired(by, a, b) for a, b in (("3단계 큰 이득부터", "2단계 차분 탐욕"), ("4단계 빈 칸 경로 재배치", "3단계 큰 이득부터"))]
+    s45 = paired(by, BASE5, base)
     cmp = {k: paired(by, k, base) for k in ("MINPER 0", "MINPER 1", "MINPER 100", "MINPER 300", "KEEP 4", "KEEP 7")}
     cmp["300/100"] = paired(by, "MINPER 300", "MINPER 100")
-    assert sweeps[0]["lo"] < 0 < sweeps[0]["hi"] and sweeps[0]["wins"] == 4 and sweeps[1]["wins"] == 10
+    abl = {r["label"]: paired(by, r["label"], BASE5) for r in data["ablations"]}
+    x10 = paired(by, "4단계 TC별 문턱 ×10", base)
+    assert sweeps[0]["lo"] < 0 < sweeps[0]["hi"] and sweeps[0]["wins"] == 4 and sweeps[1]["wins"] == 10 and s45["wins"] == 10 and s45["lo"] > 0
     assert cmp["MINPER 0"]["wins"] == cmp["MINPER 1"]["wins"] == 0 and cmp["MINPER 100"]["wins"] == 10
     assert cmp["300/100"]["lo"] < 0 < cmp["300/100"]["hi"] and cmp["KEEP 7"]["lo"] < 0 < cmp["KEEP 7"]["hi"]
     assert cmp["KEEP 4"]["hi"] < 0
+    assert all(abl[k]["wins"] == 0 and abl[k]["hi"] < 0 for k in ("ROUNDS 1", "빈 칸 순서대로 짝짓기", "3단계를 먼저 실행", "4단계 TC별 문턱 ×10"))
+    gate = by["문턱 켬"]
+    assert gate["tcs"] == r5["tcs"] and gate["used"] == r5["used"] and gate["entropy"] == r5["entropy"]    # no pair is skipped
+    assert x10["wins"] == 10 and r5["total"] - by["4단계 TC별 문턱 ×10"]["total"] > 0
+    e45 = [a / b for a, b in zip(r5["entropy"], r4["entropy"])]
+    lb_ratio = sum(r5["used"]) / sum(r5["lb"])
+    assert all(u >= l for u, l in zip(r5["used"], r5["lb"])) and lb_ratio < 1.002
+    gate_min = min(r / t for r, t in zip(gate["ratio"], thr5))
     spread = max(abs(by[k]["total"] - r4["total"]) for k in cmp if "/" not in k) / r4["total"]
-    needles = [data["date"], PASS_SCORE, f"{PASS_SCORE - r4['total']}점 부족", sum(r4["used"]), sum(r4["used"]) // 100,
+    used = lambda k: sum(by[k]["used"]) - sum(r5["used"])
+    needles = [data["date"], PASS_SCORE, f"{PASS_SCORE - r4['total']}점 부족", f"{r5['total'] - PASS_SCORE}점 넘",
+               sum(r4["used"]), sum(r4["used"]) // 100, sum(r5["used"]), sum(r5["used"]) // 100, sum(r4["used"]) - sum(r5["used"]), sum(r5["lb"]), f"{lb_ratio:.3f}배",
+               f"{min(r5['ms_runs'])}~{max(r5['ms_runs'])} ms", f"{min(e45):.6f}~{max(e45):.6f}배",
                f"{min(q):.5f}~{max(q):.5f}", f"{min(low):.3f}~{max(low):.3f}", f"{min(ratio):.2f}~{max(ratio):.2f}",
-               f"약 {thr[0]:.1f}", f"약 {thr[-1]:.1f}", f"{r3['ms'] / r2['ms']:.1f}배", f"{spread * 100:.2f}%"]
+               f"약 {thr[0]:.1f}", f"약 {thr[-1]:.1f}", f"{r3['ms'] / r2['ms']:.1f}배", f"{spread * 100:.2f}%",
+               f"{min(gate['ratio'])}~{max(gate['ratio'])}로", f"{gate_min:.1f}배 이상",
+               f"{-used('ROUNDS 1')}번 줄지만", f"{used('빈 칸 순서대로 짝짓기')}번 늘어", f"{used('3단계를 먼저 실행')}번 늘어"]
     for key in ("mean", "err", "lo", "hi"):
-        needles += [f"{sweeps[0][key]:.1f}", f"{sweeps[1][key]:.1f}"]
+        needles += [f"{sweeps[0][key]:.1f}", f"{sweeps[1][key]:.1f}", f"{s45[key]:.1f}"]
     for k, v in cmp.items():
         needles += [f"{v['mean']:.1f}"] + ([f"{v['err']:.1f}"] if k in ("MINPER 100", "MINPER 300", "300/100", "KEEP 4", "KEEP 7") else [])
+    for k, v in list(abl.items()) + [("x10/4", x10)]:
+        needles += [f"{v['mean']:.1f}", f"{v['err']:.1f}"]
     for n in needles:
         assert str(n) in text, f"number missing or stale in lesson: {n}"
     print(f"OK: lesson tables and quoted numbers match {DATA.name} "
-          f"({sum(len(v) for v in table_lines(data).values())} table lines, {len(needles)} numbers)")
+          f"({sum(len(v) for v in table_lines(data).values())} table lines, {len(needles)} numbers, {len(text.splitlines())} lines)")
 
 
 def check_svgs() -> None:
@@ -865,7 +875,14 @@ def main() -> None:
                 assert sum(v[0] for v in r["mirror"].values()) == r["total"] and all((v[4] == 0 or s == 1) and v[5] == 0 for v in r["mirror"].values())
             for s in STAGES:
                 judge_run(src, assemble(s, sn), folder, "san", SAN, timeout=900)
-        print("OK: public grader re-run reproduces the stored scores, mirror == grader, ASan/UBSan clean")
+            for name, edits in FAILURES5.items():
+                try:
+                    judge_run(src, assemble(5, sn, edits), folder, "bad5", ["-O2"])
+                    raise AssertionError(f"{name} should abort on the public grader")
+                except subprocess.CalledProcessError:
+                    pass
+        print("OK: public grader re-run reproduces the stored scores, mirror == grader, ASan/UBSan clean, "
+              "the stale particle table aborts")
     check_svgs()
     check_tables(data)
 
