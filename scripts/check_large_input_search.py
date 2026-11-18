@@ -402,7 +402,7 @@ def compose(values: dict, cell: tuple[int, int] | None = None, edits: list | Non
     for old, new in edits or []:
         assert old in program, old
         program = program.replace(old, new, 1)
-    if probes:
+    if probes or entry:
         program = PROBE_DECL + "static long long probeChecks = 0;\n" + program
     return program
 
@@ -500,6 +500,13 @@ def run_checks(values: dict) -> dict:
     compile_run(values["final"] + "\n" + stub, ["-O1", "-Wall", "-Werror"])
     compile_run(values["baseline"] + "\n" + stub, ["-O1", "-Wall", "-Werror", "-Wno-unused-const-variable"])
 
+    # the memory table of the lesson: sizes of the big arrays
+    sizes = ("static_assert(sizeof(ship::stock) == 20000000, \"\");\nstatic_assert(sizeof(ship::slot) == 12000000, \"\");\n"
+             "static_assert(sizeof(ship::where) == 4000000, \"\");\nstatic_assert(sizeof(ship::Item) == 12, \"\");\n"
+             "static_assert(sizeof(ship::stock) + sizeof(ship::slot) + sizeof(ship::where) + 1000000 > 36000000 && sizeof(ship::cellStart) + sizeof(ship::cellLive) + "
+             "sizeof(ship::listCenter) + sizeof(ship::listStart) + sizeof(ship::demand) + sizeof(ship::mass) + sizeof(ship::spacing) < 1000000, \"\");\n")
+    subprocess.run(["c++", "-std=c++17", "-fsyntax-only", "-x", "c++", "-"], input=values["final"] + "\n" + sizes + stub, text=True, check=True)
+
     jobs = {}
     with ThreadPoolExecutor(6) as pool:
         # 2. all tests with the lesson cell size; 3. search tests with other cell sizes (cell 1000 = one cell, cell 1 = one point per cell)
@@ -570,7 +577,8 @@ void solve(Coordinates truckCoordinates) {
     int ty = truckCoordinates.y, tx = truckCoordinates.x;
     const int load = envInt("LOAD", 20), extra = envInt("EXTRA", -1), passes = envInt("PASSES", 3), beta = envInt("BETA", 25);
     if (envInt("BRUTE", 0)) bruteProbe(ty, tx);
-    long long trips = 0;
+    long long trips = 0, cost = 0;
+    int nextMark = ship::deliveryCount - ship::deliveryCount / 10, decile = 1;
     for (int left = ship::deliveryCount; left > 0;) {
         const int c = ship::chooseCenter(ty, tx, beta);
         if (c < 0) { fprintf(stderr, "NOCENTER %d\n", left); break; }
@@ -581,11 +589,48 @@ void solve(Coordinates truckCoordinates) {
         for (int i = 0; i < trip.n; ++i) prods[i] = trip.s[i + 1].prod;
         truckLoading(c, prods, trip.n);
         for (int i = 1; i <= trip.n; ++i) truckMove(trip.s[i].id);
+        cost += 100LL * (ship::absInt(ship::cy[c] - ty) + ship::absInt(ship::cx[c] - tx)) + ship::spanCost(trip, 1, trip.n);  // 센터로 빈 차 이동 + 운행
         ty = trip.s[trip.n].y; tx = trip.s[trip.n].x;
         left -= trip.n; ++trips;
+        while (left <= nextMark && decile < 10) { fprintf(stderr, "DECILE %d %lld\n", decile, cost); ++decile; nextMark -= ship::deliveryCount / 10; }
     }
+    fprintf(stderr, "COST %lld\n", cost);
     fprintf(stderr, "TRIPS %lld\n", trips);
     fprintf(stderr, "PROBES %lld %lld %lld\n", probeChecks, probeItems, probeRings);
+}
+'''
+
+FACTS_PROG = r'''
+#include <stdio.h>
+static long long linesTotal, dupCenters, stockTotal, maxLine, maxStockPair, types[1000], minTypes = 1 << 30, maxTypes;
+static long long perProduct[10000], stockPerProduct[10000];
+void sendCenterList(int N, int M, Coordinates cc[], Product list[][100], int size[]) {
+    for (int c = 0; c < N; ++c) {
+        static int seen[10000];
+        for (int j = 0; j < M; ++j) seen[j] = 0;
+        bool dup = false;
+        int distinct = 0;
+        for (int j = 0; j < size[c]; ++j) {
+            if (seen[list[c][j].id]++) dup = true; else ++distinct;
+            stockTotal += list[c][j].count; stockPerProduct[list[c][j].id] += list[c][j].count;
+            if (list[c][j].count > maxLine) maxLine = list[c][j].count;
+        }
+        linesTotal += size[c]; dupCenters += dup;
+        if (size[c] < minTypes) minTypes = size[c];
+        if (size[c] > maxTypes) maxTypes = size[c];
+    }
+}
+void sendDeliveryList(int K, Coordinates dc[], int dp[]) {
+    for (int i = 0; i < K; ++i) ++perProduct[dp[i]];
+}
+void solve(Coordinates t) {
+    long long minPer = 1 << 30, maxPer = 0, minSlack = 1 << 30, uncovered = 0;
+    for (int p = 0; p < 10000; ++p) {
+        if (perProduct[p] < minPer) minPer = perProduct[p];
+        if (perProduct[p] > maxPer) maxPer = perProduct[p];
+        if (stockPerProduct[p] - perProduct[p] < minSlack) minSlack = stockPerProduct[p] - perProduct[p];
+    }
+    fprintf(stderr, "FACTS %lld %lld %lld %lld %lld %lld %lld %lld %lld\n", minTypes, maxTypes, linesTotal, dupCenters, stockTotal, maxLine, minPer, maxPer, minSlack);
 }
 '''
 
@@ -617,29 +662,38 @@ def run_judge(exe: Path, env: dict[str, str], timeout: int = 900) -> dict:
     r = subprocess.run([str(exe)], capture_output=True, text=True, env=dict(os.environ, **env), timeout=timeout, check=True)
     ms = (time.perf_counter() - start) * 1000
     total = [int(v) for v in re.findall(r"^SCORE: (\d+)$", r.stdout, re.M)]
-    assert len(total) == 1, r.stdout + r.stderr[-500:]
-    out = {"total": total[0], "ms": ms}
+    assert len(total) == 1 or "BRUTE" in env, r.stdout + r.stderr[-500:]
+    out = {"total": total[0] if total else 0, "ms": ms}
     for line in r.stderr.splitlines():
         parts = line.split()
         if parts and parts[0] == "TRIPS":
             out["trips"] = int(parts[1])
         elif parts and parts[0] == "PROBES":
             out["checks"], out["items"], out["rings"] = (int(v) for v in parts[1:4])
+        elif parts and parts[0] == "COST":
+            out["cost"] = int(parts[1])
+        elif parts and parts[0] == "DECILE":
+            out.setdefault("deciles", []).append(int(parts[2]))
+        elif parts and parts[0] == "FACTS":
+            out["facts"] = [float(v) for v in parts[1:]]
         elif parts and parts[0] == "BRUTE":
             out["brute_checks"], out["brute_seconds"] = int(parts[1]), float(parts[2])
     return out
 
 
-def timed(exe: Path, env: dict[str, str], rounds: int = ROUNDS) -> dict:
-    runs = [run_judge(exe, env) for _ in range(rounds)]
+def row_of(runs: list[dict]) -> dict:
     assert len({r["total"] for r in runs}) == 1, "the score must not depend on the run"
-    return {"total": runs[0]["total"], "median_ms": statistics.median(r["ms"] for r in runs), "runs_ms": [round(r["ms"]) for r in runs],
-            "trips": runs[0].get("trips")}
+    row = {"total": runs[0]["total"], "median_ms": statistics.median(r["ms"] for r in runs), "runs_ms": [round(r["ms"]) for r in runs],
+           "trips": runs[0].get("trips")}
+    if "cost" in runs[0]:
+        assert runs[0]["cost"] == runs[0]["total"], "the own cost formula must reproduce the grader score"
+        row["deciles"] = runs[0]["deciles"] + [runs[0]["cost"]]
+    return row
 
 
 def benchmark(values: dict, judge: Path, output: Path) -> None:
-    judge_text = judge.read_text()
     import os
+    judge_text = judge.read_text()
     data: dict = {
         "judge_sha256": hashlib.sha256(judge.read_bytes()).hexdigest(),
         "measured_at": datetime.date.today().isoformat(),
@@ -649,45 +703,74 @@ def benchmark(values: dict, judge: Path, output: Path) -> None:
     }
     with tempfile.TemporaryDirectory(prefix="lesson-coupang-bench-") as folder_name:
         folder = Path(folder_name)
-        exp_prog = lambda **kw: compose(values, entry=EXP_ENTRY, **kw)  # noqa: E731
-        exp = build_judge(judge_text, exp_prog(probes=True), folder, "exp")
+        exp_src = lambda **kw: compose(values, entry=EXP_ENTRY, **kw)  # noqa: E731
+        # timing builds have no probe counters; the counting builds run once per setting
+        exes = {"timing": {}, "probe": {}}
+        for c in CELLS:
+            kw = {} if c == 16 else {"cell": (1000, c)}
+            exes["timing"][c] = build_judge(judge_text, exp_src(**kw), folder, f"exp-cell{c}")
+            exes["probe"][c] = build_judge(judge_text, exp_src(probes=True, **kw), folder, f"expp-cell{c}")
         final = build_judge(judge_text, values["final"], folder, "final")
         base = build_judge(judge_text, values["baseline"], folder, "base")
 
-        stages = []
-        row = timed(base, {})
-        stages.append({"key": "baseline", "label": "번호 순서, 상품을 가진 가까운 센터에서 1개씩", **row})
-        print(json.dumps({k: stages[-1][k] for k in ("key", "total", "median_ms")}), flush=True)
-        for key, label, env in STAGES:
-            row = timed(exp, env)
-            stages.append({"key": key, "label": label, **row})
-            print(json.dumps({k: stages[-1][k] for k in ("key", "total", "median_ms")}), flush=True)
-        row = timed(final, {})
-        stages.append({"key": "final", "label": "본문 제출 코드", **row})
-        assert stages[-1]["total"] == next(s for s in stages if s["key"] == "improve")["total"], "experiment entry differs from the lesson entry"
-        data["stages"] = stages
+        # every setting: key -> (cell size, environment). Settings equal to the final one are measured once under "improve".
+        settings: dict[str, tuple[int, dict]] = {key: (16, env) for key, _, env in STAGES}
+        for c in CELLS:
+            if c != 16: settings[f"cell{c}"] = (c, {})
+        for e in EXTRAS: settings[f"extra{e}"] = (16, {"EXTRA": str(e)})
+        for v in LOADS:
+            if v != 20: settings[f"load{v}"] = (16, {"LOAD": str(v)})
+        for v in BETAS:
+            if v != 25: settings[f"beta{v}"] = (16, {"BETA": str(v)})
+        for v in PASSES:
+            if v not in (0, 3): settings[f"passes{v}"] = (16, {"PASSES": str(v)})
+        order = ["base", "final"] + list(settings)
+        runs: dict[str, list[dict]] = {k: [] for k in order}
+        for round_no in range(ROUNDS):  # interleaved: a slow minute of the machine hits every setting
+            for key in order:
+                if key == "base": r = run_judge(base, {})
+                elif key == "final": r = run_judge(final, {})
+                else: r = run_judge(exes["timing"][settings[key][0]], settings[key][1])
+                runs[key].append(r)
+            print("round", round_no + 1, "of", ROUNDS, flush=True)
+        probes = {key: run_judge(exes["probe"][c], env) for key, (c, env) in settings.items()}
+        for key, r in probes.items():
+            assert r["total"] == runs[key][0]["total"], key
 
-        def sweep(rows: list, make_env, make_build=None):
+        rows = {key: row_of(r) for key, r in runs.items()}
+        rows["choose0"] = rows["choose"]  # passes 0 with the final load/beta is the "choose" stage
+        data["stages"] = [{"key": "baseline", "label": "번호 순서, 상품을 가진 가까운 센터에서 1개씩", **rows["base"]}]
+        data["stages"] += [{"key": key, "label": label, **rows[key]} for key, label, _ in STAGES]
+        data["stages"].append({"key": "final", "label": "본문 제출 코드", **rows["final"]})
+        assert rows["final"]["total"] == rows["improve"]["total"], "experiment entry differs from the lesson entry"
+
+        def with_probe(row: dict, key: str) -> dict:
+            p = probes[key]
+            return {**row, "checks": p["checks"], "items": p["items"], "rings": p["rings"]}
+
+        def pick(key_of, values_: list, same: dict) -> list[dict]:
             out = []
-            for v in rows:
-                env = make_env(v)
-                exe = make_build(v) if make_build else exp
-                t = timed(exe, env)
-                probe = run_judge(exe, env)
-                assert probe["total"] == t["total"]
-                out.append({"value": v, **t, "checks": probe["checks"], "items": probe["items"], "rings": probe["rings"]})
-                print(json.dumps({k: out[-1][k] for k in ("value", "total", "median_ms", "checks")}), flush=True)
+            for v in values_:
+                key = same.get(v, key_of(v))
+                out.append({"value": v, **with_probe(rows[key], key)})
             return out
 
-        cell_exes = {c: build_judge(judge_text, exp_prog(probes=True, cell=(1000, c)), folder, f"exp-cell{c}") for c in CELLS if c != 16}
-        cell_exes[16] = exp
-        data["cells"] = sweep(CELLS, lambda c: {}, lambda c: cell_exes[c])
-        data["extras"] = sweep([-1] + EXTRAS, lambda e: {"EXTRA": str(e)})
-        data["loads"] = sweep(LOADS, lambda v: {"LOAD": str(v)})
-        data["betas"] = sweep(BETAS, lambda v: {"BETA": str(v)})
-        data["passes"] = sweep(PASSES, lambda v: {"PASSES": str(v)})
+        data["cells"] = pick(lambda v: f"cell{v}", CELLS, {16: "improve"})
+        data["extras"] = pick(lambda v: f"extra{v}", [-1] + EXTRAS, {-1: "improve"})
+        data["loads"] = pick(lambda v: f"load{v}", LOADS, {20: "improve"})
+        data["betas"] = pick(lambda v: f"beta{v}", BETAS, {25: "improve"})
+        data["passes"] = pick(lambda v: f"passes{v}", PASSES, {0: "choose", 3: "improve"})
+        for key in ("cells", "extras", "loads", "betas", "passes"):
+            for r in data[key]:
+                print(key, json.dumps({k: r[k] for k in ("value", "total", "median_ms", "checks")}), flush=True)
 
-        brute = [run_judge(exp, {"BRUTE": "1"}) for _ in range(3)]
+        facts_exe = build_judge(judge_text, values["contract"] + FACTS_PROG, folder, "facts")
+        keys = ["min_types", "max_types", "lines", "dup_centers", "stock_total", "max_line", "min_per_product", "max_per_product", "min_slack"]
+        fr = subprocess.run([str(facts_exe)], capture_output=True, text=True, check=True)
+        data["facts"] = dict(zip(keys, (int(float(v)) for v in re.search(r"FACTS (.*)", fr.stderr).group(1).split())))
+        print(data["facts"], flush=True)
+
+        brute = [run_judge(exes["timing"][16], {"BRUTE": "1"}) for _ in range(3)]
         sec = statistics.median(b["brute_seconds"] for b in brute)
         checks = brute[0]["brute_checks"]
         per_check = sec / checks
@@ -712,12 +795,17 @@ def benchmark(values: dict, judge: Path, output: Path) -> None:
         t0 = time.perf_counter()
         r = run_judge(san, {})
         data["sanitizer"] = {"total": r["total"], "seconds": round(time.perf_counter() - t0, 1)}
-        assert data["sanitizer"]["total"] == next(s for s in stages if s["key"] == "final")["total"]
+        assert data["sanitizer"]["total"] == rows["final"]["total"]
         print(data["sanitizer"], flush=True)
     output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
 
 # ---------------------------------------------------------------- tables
+def exp_total(x: float) -> str:
+    """5.0e+11 -> '5.0×10^11' (used in the lesson text)."""
+    return f"{x:.1e}".replace("e+", "×10^").replace("×10^0", "×10^")
+
+
 def fmt_ms(ms: float) -> str:
     return f"{ms / 1000:.1f}"
 
@@ -755,8 +843,9 @@ def extra_table(data: dict) -> str:
 
 def param_table(data: dict) -> str:
     lines = ["| 바꾼 값 | 점수 ↓ | 시간(초) |", "| --- | ---: | ---: |"]
+    shown = {"loads": (10, 20, 30, 50), "betas": (0, 10, 25, 100), "passes": (0, 1, 3, 10)}
     for key, name, unit in (("loads", "적재", "개"), ("betas", "밀도 항 가중치", ""), ("passes", "순서 개선 반복", "회")):
-        for r in data[key]:
+        for r in (r for r in data[key] if r["value"] in shown[key]):
             lines.append(f"| {name} {r['value']}{unit} | {r['total']:,} | {fmt_ms(r['median_ms'])} |")
     return "\n".join(lines)
 
@@ -771,18 +860,20 @@ def table_after(markdown: str, key: str) -> str:
     return match.group(1).rstrip("\n")
 
 
-def check_stored(facts: dict) -> None:
-    data = json.loads(ASSET.read_text())
+def check_stored(facts: dict, stored: Path = ASSET) -> None:
+    data = json.loads(stored.read_text())
     markdown = LESSON.read_text()
     for key, expected in tables(data).items():
         assert table_after(markdown, key) == expected, f"lesson table '{key}' differs from the stored measurement/recomputation"
     by = {s["key"]: s for s in data["stages"]}
     assert by["final"]["total"] == by["improve"]["total"] and by["final"]["total"] <= PASS_LINE, "the submitted code no longer passes"
     assert by["baseline"]["total"] > PASS_LINE, "the baseline is meant to be valid but over the pass line"
-    brute = data["brute"]
+    brute, facts_ = data["brute"], data["facts"]
+    dec = by["improve"]["deciles"]
     needles = [data["judge_sha256"][:12], data["measured_at"], data["environment"].split(" / ")[0],
-               f"{by['baseline']['total']:,}", f"{by['final']['total']:,}", f"{brute['total_checks']:.1e}".replace("e+", "×10^").replace("×10^0", "×10^"),
-               f"{brute['extrapolated_seconds']:.0f}초", f"{data['sanitizer']['seconds']:.0f}초"]
+               f"{by['baseline']['total']:,}", f"{by['final']['total']:,}", exp_total(brute["total_checks"]), exp_total(data["cells"][2]["checks"]),
+               f"{brute['extrapolated_seconds']:.0f}초", f"{data['sanitizer']['seconds']:.0f}초", f"{facts_['lines']:,}", f"{facts_['stock_total']:,}",
+               f"{100 * (dec[9] - dec[8]) / dec[9]:.0f}%"]
     for name in ("cut", "keep"):
         f = data["failures"][name]
         needles.append("10^12" if f["penalty"] else f"{f['total']:,}")
@@ -810,6 +901,8 @@ def main() -> None:
         if not args.output:
             parser.error("--judge requires --output")
         benchmark(values, args.judge, args.output)
+        print(f"wrote {args.output}; copy it to {ASSET.relative_to(ROOT)} and run this script without --judge to compare it with the lesson")
+        return
     stored = args.output or ASSET
     if args.print_tables:
         print(f"<!-- check:hand -->\n{hand_table()}\n")
