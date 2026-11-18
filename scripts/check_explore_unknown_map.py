@@ -350,8 +350,18 @@ def small_cases(count: int, seed: int) -> str:
         lines += [f"{h} {w}", *rows, f"{sy} {sx} {rng.below(4)}"]
         if i % 7 == 3:                      # the same run again right after: leftovers must not matter
             lines[0] = str(int(lines[0]) + 1)
-            lines += [f"{h} {w}", *rows, f"{sy} {sx} {rng.below(4)}"]
+            lines += lines[-(h + 2):]
     return "\n".join(lines) + "\n"
+
+
+def case_blocks(text: str) -> list[str]:
+    lines = text.splitlines()[1:]
+    blocks, i = [], 0
+    while i < len(lines):
+        h = int(lines[i].split()[0])
+        blocks.append("\n".join(lines[i:i + h + 2]))
+        i += h + 2
+    return blocks
 
 
 def run_cases(exe: Path, text: str) -> subprocess.CompletedProcess:
@@ -401,6 +411,9 @@ def check_reference(sn: dict[str, str]) -> dict:
             done = re.search(r"^DONE (\d+) (\d+)$", proc.stdout, re.M)
             assert done and done.group(1) == done.group(2), (label, "my cost differs from reference cost")
             assert all(r["cost"] == 10 * (r["moves"] + r["bumps"]) + 20 * r["scans"] + 15 * r["turns"] for r in rows)
+            blocks = case_blocks(text)
+            pairs = [i for i in range(1, len(blocks)) if blocks[i] == blocks[i - 1]]
+            assert len(pairs) == 10 and all(rows[i]["cost"] == rows[i - 1]["cost"] for i in pairs), (label, "repeated run differs")
             print(f"OK: {label}: {n_runs} runs, map and pose equal the truth after every call, all free cells cleaned, "
                   f"my cost == reference cost ({done.group(1)})")
             info[label] = int(done.group(1))
@@ -657,12 +670,15 @@ def check_hand(sn: dict[str, str], need_text: bool = True) -> dict:
     want = [(0, 0, 0, 0, 0, -1, 1, 25), (1, 0, -1, 1, 0, -2, 1, 10), (2, 0, -1, 1, -1, -1, 1, 25)]
     assert d[:3] == want, d[:3]
     assert res["total"][0] == res["total"][5] and res["total"][:5] == (805, 4, 34, 10, 19), res["total"]
+    assert len(d) == 31 and 20 * 4 + 10 * 34 + 10 * 10 + 15 * 19 == 805
+    # my (63,63) is the true (4,3): one step up and one step left in my frame (up = true west, left = true south)
+    assert (sy - (-1) * DIRS[h0][0] - (-1) * DIRS[(h0 + 1) % 4][0], sx - (-1) * DIRS[h0][1] - (-1) * DIRS[(h0 + 1) % 4][1]) == (4, 3)
     calls = res["calls"]
     assert calls[0].startswith("T SCAN") and calls[1].startswith("T TURN 1") and calls[2].startswith("T MOVE ok")
     assert calls[3].startswith("T MOVE bump") and calls[4].startswith("T TURN 3") and calls[5].startswith("T MOVE ok")
     text = LESSON.read_text()
     if need_text:
-        for needle in ("011000000", "| 25 |", "| 10 |", "805", "(64, 64)", "(64, 63)"):
+        for needle in ("011000000", "805", "(64, 64)", "(64, 63)", "(63, 63)", "(4,3)", "결정 31번"):
             assert needle in text, f"hand example number missing from lesson: {needle}"
     print("OK: hand example (scan 011000000, targets (0,-1) 25, (0,-2) 10 bump, (-1,-1) 25, total 805) recomputed by the lesson code and the oracle")
     return {"total": res["total"][0]}
@@ -888,16 +904,16 @@ def lookup(data: dict) -> dict:
 
 
 COMPARISONS = [
-    ("DFS 대비 정책 1", ("official", "기준선 DFS"), ("official", "정책 1 SCAN_MIN 1")),
-    ("BFS 대 Dijkstra (SCAN_MIN 6)", ("official", "정책 1 SCAN_MIN 6"), ("official", "정책 2 SCAN_MIN 6")),
-    ("SCAN_MIN 6 대 5", ("sweep", "SCAN_MIN 6"), ("sweep", "SCAN_MIN 5")),
-    ("SCAN_MIN 6 대 7", ("sweep", "SCAN_MIN 6"), ("sweep", "SCAN_MIN 7")),
-    ("TURN_W 15 대 5", ("sweep", "TURN_W 15"), ("sweep", "TURN_W 5")),
-    ("UNK_PEN 10 대 0", ("sweep", "UNK_PEN 10"), ("sweep", "UNK_PEN 0")),
-    ("홀드아웃 BFS 대 Dijkstra", ("hold", "정책 1 SCAN_MIN 6"), ("hold", "정책 2 SCAN_MIN 6")),
-    ("홀드아웃 SCAN_MIN 6 대 3", ("holdsweep", "SCAN_MIN 6"), ("holdsweep", "SCAN_MIN 3")),
-    ("홀드아웃 TURN_W 15 대 5", ("holdsweep", "TURN_W 15"), ("holdsweep", "TURN_W 5")),
-    ("BFS 대 Dijkstra (SCAN_MIN 1)", ("official", "정책 1 SCAN_MIN 1"), ("official", "정책 2 SCAN_MIN 1")),
+    ("DFS − 정책 1 (SCAN_MIN 1)", ("official", "기준선 DFS"), ("official", "정책 1 SCAN_MIN 1")),
+    ("정책 1 − 정책 2 (SCAN_MIN 6)", ("official", "정책 1 SCAN_MIN 6"), ("official", "정책 2 SCAN_MIN 6")),
+    ("SCAN_MIN 6 − 5", ("sweep", "SCAN_MIN 6"), ("sweep", "SCAN_MIN 5")),
+    ("SCAN_MIN 6 − 7", ("sweep", "SCAN_MIN 6"), ("sweep", "SCAN_MIN 7")),
+    ("TURN_W 15 − 5", ("sweep", "TURN_W 15"), ("sweep", "TURN_W 5")),
+    ("UNK_PEN 10 − 0", ("sweep", "UNK_PEN 10"), ("sweep", "UNK_PEN 0")),
+    ("홀드아웃 정책 1 − 정책 2 (SCAN_MIN 6)", ("hold", "정책 1 SCAN_MIN 6"), ("hold", "정책 2 SCAN_MIN 6")),
+    ("홀드아웃 SCAN_MIN 6 − 3", ("holdsweep", "SCAN_MIN 6"), ("holdsweep", "SCAN_MIN 3")),
+    ("홀드아웃 TURN_W 15 − 5", ("holdsweep", "TURN_W 15"), ("holdsweep", "TURN_W 5")),
+    ("정책 1 − 정책 2 (SCAN_MIN 1)", ("official", "정책 1 SCAN_MIN 1"), ("official", "정책 2 SCAN_MIN 1")),
 ]
 
 
