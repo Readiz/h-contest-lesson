@@ -438,11 +438,15 @@ def check_reference(sn: dict[str, str]) -> dict:
               f"(moves / transport {min(ratios):.2f}~{max(ratios):.2f}), final layout is its own lowest-F-key set")
         extra["plan_ratio_max"] = max(ratios)
         for name, fut in bad5.items():     # a stale particle table makes the mirror leave the real state: caught at the next call
-            try:
-                run(fut.result(), "run", "30:30:400:7")
-                raise AssertionError(f"{name} must be detected")
-            except subprocess.CalledProcessError:
-                pass
+            # Whether one instance trips over the stale entry depends on the layout (and the first
+            # symptom on the platform), so several instances are tried and one detection is enough.
+            detected = 0
+            for instance in ("30:30:400:7", "30:30:400:3", "24:36:350:11", "40:40:700:5", "36:28:420:19", "50:50:1100:2"):
+                try:
+                    run(fut.result(), "run", instance)
+                except subprocess.CalledProcessError:
+                    detected += 1
+            assert detected, f"{name} must be detected"
             print(f"OK: failure '{name}': the mirror entropy differs from the reference before the next call")
         out = run(big.result(), "big")
         m = re.fullmatch(r"BIG n=(\d+) mirror=(\d+) pairs=(\d+) ref=(\d+)\n?", out)
