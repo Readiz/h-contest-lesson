@@ -509,11 +509,8 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
                     continue
                 record(f"{name} {v}", 4, with_const(name, v))
         record("MINPER 0", 4, with_const("MINPER", "0"), bucket="failures", timeout=600)
-        for name, edits in FAILURES.items():
-            try:
-                record(name, 4, edits, bucket="failures", timeout=600)
-            except subprocess.CalledProcessError as e:
-                result["failures"].append({"label": name, "crashed": True})
+        for name in ("int 누적", "위쪽 차분 off-by-one"):    # the doubled pair sum never reaches the score
+            record(name, 4, FAILURES[name], bucket="failures", timeout=600)
         for s in STAGES:         # sanitizer pass on the public grader
             judge_run(src, assemble(s, sn), folder, "san", SAN, timeout=900)
         result["sanitizer"] = "0~4단계가 공개 채점기에서 ASan+UBSan을 통과"

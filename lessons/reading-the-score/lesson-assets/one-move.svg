@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 716" role="img" aria-labelledby="title desc">
+<title id="title">손계산 예시: 이동 한 번이 바꾸는 경계 항 하나</title>
+<desc id="desc">A를 오른쪽으로 옮기면 열 경계 c0의 값만 2×3=6에서 1×4=4로 바뀌어 엔트로피가 42에서 40이 됩니다. 격자 밖으로 나가는 B의 호출은 실패하지만 횟수 1을 씁니다. C를 위로 옮기면 행 경계 r2의 값만 3×2=6에서 4×1=4로 바뀌어 38이 되고, 호출은 모두 3번입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="714" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">이동 한 번이 바꾸는 경계 항</text>
+<rect x="20" y="76" width="680" height="262" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="110" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">1번째 호출: A를 오른쪽으로</text>
+<rect x="60" y="150" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="150" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="150" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="150" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="150" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="60" y="190" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="190" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="190" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="190" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="190" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="60" y="230" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="230" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="230" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="230" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="230" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="60" y="270" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="270" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="270" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="270" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="270" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="100" y1="146" x2="100" y2="314" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="100" y="336" font-size="18" fill="#c4510c" font-weight="700" text-anchor="middle">c0</text>
+<circle cx="120.0" cy="170.0" r="12.8" fill="#c4510c"/>
+<text x="120.0" y="176.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">A</text>
+<circle cx="240.0" cy="170.0" r="12.8" fill="#2664ce"/>
+<text x="240.0" y="176.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">B</text>
+<circle cx="80.0" cy="290.0" r="12.8" fill="#2664ce"/>
+<text x="80.0" y="296.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">C</text>
+<circle cx="240.0" cy="290.0" r="12.8" fill="#2664ce"/>
+<text x="240.0" y="296.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">D</text>
+<circle cx="160.0" cy="210.0" r="12.8" fill="#2664ce"/>
+<text x="160.0" y="216.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">E</text>
+<text x="296" y="156" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">c0만 바뀐다</text>
+<text x="296" y="190" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">2 × 3 = 6  →  1 × 4 = 4</text>
+<text x="296" y="224" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">차분 2·pre[0] − 1 − n</text>
+<text x="296" y="254" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">= 2·2 − 1 − 5 = −2</text>
+<text x="296" y="292" font-size="22" fill="#172b45" font-weight="750" text-anchor="start">엔트로피 42 → 40</text>
+<rect x="20" y="352" width="680" height="92" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="386" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">2번째 호출: B를 오른쪽으로</text>
+<text x="38" y="420" font-size="19" fill="#172b45" font-weight="400" text-anchor="start">격자 밖이라 실패해 점수는 그대로지만, 사용 횟수는 2가 된다</text>
+<rect x="20" y="458" width="680" height="242" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="492" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">3번째 호출: C를 위로</text>
+<rect x="60" y="520" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="520" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="520" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="520" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="520" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="60" y="560" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="560" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="560" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="560" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="560" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="60" y="600" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="600" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="600" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="600" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="600" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="60" y="640" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="100" y="640" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="140" y="640" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="180" y="640" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="220" y="640" width="40" height="40" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="56" y1="640" x2="264" y2="640" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="28" y="646" font-size="18" fill="#c4510c" font-weight="700" text-anchor="start">r2</text>
+<circle cx="120.0" cy="540.0" r="12.8" fill="#2664ce"/>
+<text x="120.0" y="546.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">A</text>
+<circle cx="240.0" cy="540.0" r="12.8" fill="#2664ce"/>
+<text x="240.0" y="546.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">B</text>
+<circle cx="80.0" cy="620.0" r="12.8" fill="#c4510c"/>
+<text x="80.0" y="626.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">C</text>
+<circle cx="240.0" cy="660.0" r="12.8" fill="#2664ce"/>
+<text x="240.0" y="666.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">D</text>
+<circle cx="160.0" cy="580.0" r="12.8" fill="#2664ce"/>
+<text x="160.0" y="586.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">E</text>
+<text x="296" y="530" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">r2만 바뀐다</text>
+<text x="296" y="564" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">3 × 2 = 6  →  4 × 1 = 4</text>
+<text x="296" y="598" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">차분 n − 1 − 2·pre[2]</text>
+<text x="296" y="628" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">= 5 − 1 − 2·3 = −2</text>
+<text x="296" y="666" font-size="22" fill="#172b45" font-weight="750" text-anchor="start">엔트로피 40 → 38, 호출 3번</text>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+<title id="title">손계산 예시: 엔트로피 42를 열 경계와 행 경계로 나누기</title>
+<desc id="desc">4행 5열 격자에 입자 A(0,0), B(0,4), C(3,0), D(3,4), E(1,2)가 있습니다. 열 경계 4개의 왼쪽 수 곱하기 오른쪽 수가 각각 6, 6, 6, 6으로 합 24이고, 행 경계 3개가 각각 6, 6, 6으로 합 18입니다. 둘을 더한 42가 모든 쌍의 맨해튼 거리 합과 같습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="558" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">엔트로피 42를 경계별로 나누기</text>
+<rect x="20" y="76" width="680" height="460" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="38" y="110" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">입자 5개, 4행 5열</text>
+<rect x="86" y="150" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="142" y="150" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="198" y="150" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="254" y="150" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="310" y="150" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="86" y="206" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="142" y="206" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="198" y="206" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="254" y="206" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="310" y="206" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="86" y="262" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="142" y="262" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="198" y="262" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="254" y="262" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="310" y="262" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="86" y="318" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="142" y="318" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="198" y="318" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="254" y="318" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<rect x="310" y="318" width="56" height="56" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1"/>
+<text x="114.0" y="142" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">0</text>
+<text x="170.0" y="142" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">1</text>
+<text x="226.0" y="142" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">2</text>
+<text x="282.0" y="142" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">3</text>
+<text x="338.0" y="142" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="middle">4</text>
+<text x="76" y="184.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="end">0</text>
+<text x="76" y="240.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="end">1</text>
+<text x="76" y="296.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="end">2</text>
+<text x="76" y="352.0" font-size="18" fill="#4a5d78" font-weight="400" text-anchor="end">3</text>
+<line x1="142" y1="146" x2="142" y2="378" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="142" y="400" font-size="18" fill="#c4510c" font-weight="700" text-anchor="middle">c0</text>
+<line x1="198" y1="146" x2="198" y2="378" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="198" y="400" font-size="18" fill="#c4510c" font-weight="700" text-anchor="middle">c1</text>
+<line x1="254" y1="146" x2="254" y2="378" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="254" y="400" font-size="18" fill="#c4510c" font-weight="700" text-anchor="middle">c2</text>
+<line x1="310" y1="146" x2="310" y2="378" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="310" y="400" font-size="18" fill="#c4510c" font-weight="700" text-anchor="middle">c3</text>
+<line x1="82" y1="206" x2="370" y2="206" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="38" y="212" font-size="18" fill="#c4510c" font-weight="700" text-anchor="start">r0</text>
+<line x1="82" y1="262" x2="370" y2="262" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="38" y="268" font-size="18" fill="#c4510c" font-weight="700" text-anchor="start">r1</text>
+<line x1="82" y1="318" x2="370" y2="318" stroke="#c4510c" stroke-width="2.5" stroke-dasharray="6 4"/>
+<text x="38" y="324" font-size="18" fill="#c4510c" font-weight="700" text-anchor="start">r2</text>
+<circle cx="114.0" cy="178.0" r="17.9" fill="#2664ce"/>
+<text x="114.0" y="184.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">A</text>
+<circle cx="338.0" cy="178.0" r="17.9" fill="#2664ce"/>
+<text x="338.0" y="184.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">B</text>
+<circle cx="114.0" cy="346.0" r="17.9" fill="#2664ce"/>
+<text x="114.0" y="352.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">C</text>
+<circle cx="338.0" cy="346.0" r="17.9" fill="#2664ce"/>
+<text x="338.0" y="352.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">D</text>
+<circle cx="226.0" cy="234.0" r="17.9" fill="#2664ce"/>
+<text x="226.0" y="240.0" font-size="18" fill="#ffffff" font-weight="700" text-anchor="middle">E</text>
+<text x="38" y="440" font-size="19" fill="#172b45" font-weight="400" text-anchor="start">경계마다 (한쪽 개수 × 반대쪽 개수)를</text>
+<text x="38" y="470" font-size="19" fill="#172b45" font-weight="400" text-anchor="start">더하면 모든 쌍의 거리 합입니다.</text>
+<text x="38" y="510" font-size="19" fill="#4a5d78" font-weight="400" text-anchor="start">쌍 10개를 하나씩 더한 값도 42</text>
+<text x="400" y="110" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">열 경계: 왼쪽 × 오른쪽</text>
+<text x="400" y="148" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">c0</text>
+<text x="450" y="148" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">2 × 3 = 6</text>
+<text x="400" y="180" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">c1</text>
+<text x="450" y="180" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">2 × 3 = 6</text>
+<text x="400" y="212" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">c2</text>
+<text x="450" y="212" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">3 × 2 = 6</text>
+<text x="400" y="244" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">c3</text>
+<text x="450" y="244" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">3 × 2 = 6</text>
+<text x="660" y="272" font-size="20" fill="#172b45" font-weight="700" text-anchor="end">합 24</text>
+<text x="400" y="324" font-size="22" fill="#172b45" font-weight="700" text-anchor="start">행 경계: 위 × 아래</text>
+<text x="400" y="362" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">r0</text>
+<text x="450" y="362" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">2 × 3 = 6</text>
+<text x="400" y="394" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">r1</text>
+<text x="450" y="394" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">3 × 2 = 6</text>
+<text x="400" y="426" font-size="20" fill="#c4510c" font-weight="700" text-anchor="start">r2</text>
+<text x="450" y="426" font-size="20" fill="#172b45" font-weight="400" text-anchor="start">3 × 2 = 6</text>
+<text x="660" y="454" font-size="20" fill="#172b45" font-weight="700" text-anchor="end">합 18</text>
+<rect x="392" y="474" width="292" height="44" rx="10" fill="#eaf1fd" stroke="#2664ce" stroke-width="1.5"/>
+<text x="538" y="504" font-size="24" fill="#172b45" font-weight="750" text-anchor="middle">24 + 18 = 42</text>
+</svg>
