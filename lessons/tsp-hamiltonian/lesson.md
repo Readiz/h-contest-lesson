@@ -93,6 +93,10 @@ mask = 지금까지 방문한 정점 집합
 last = 현재 마지막 정점
 ```
 
+![경로 0,1,3,2와 0,3,1,2는 방문 집합 {0,1,2,3}과 마지막 정점 2가 같아서 mask 1111, last 2인 하나의 상태로 합쳐지고, 그 상태에는 최소 비용 하나만 남깁니다.](lesson-assets/state-merge.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/tsp-hamiltonian/lesson-assets/state-merge.svg)
+
 ## 해밀턴 경로 존재 여부 DP
 
 먼저 비용이 없는 존재 여부 문제부터 봅시다.
@@ -143,6 +147,12 @@ TSP에서는 `true/false` 대신 최소 비용을 저장합니다.
 dp[mask][last] = 0번에서 시작해 mask의 정점들을 방문했고,
                  last에서 끝나는 최소 비용
 ```
+
+![mask 7(정점 0,1,2 방문)에서 마지막 정점 2일 때 next 3을 고르면 비트 3이 켜져 mask 15, 마지막 정점 3인 상태가 되고 dp[15][3]을 dp[7][2]+cost[2][3]과 비교해 갱신합니다.](lesson-assets/held-karp-step.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/tsp-hamiltonian/lesson-assets/held-karp-step.svg)
+
+한 번의 전이는 `mask`에 `next` 비트를 켜고 `last`를 `next`로 바꾸는 일입니다.
 
 ```cpp
 const long long INF = 4e18;
