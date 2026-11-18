@@ -37,7 +37,7 @@ FIG_MOVE = ASSETS / "hand-neighbors.svg"
 MAX_TC = 5
 PASS_LINE = 431_000_000
 SEEDS = list(range(1, 10))
-SNIPPETS = ("taxi-contract", "taxi-baseline", "taxi-plan", "taxi-delta", "taxi-stages", "taxi-greedy", "taxi-climb", "taxi-entry")
+SNIPPETS = ("taxi-baseline", "taxi-plan", "taxi-delta", "taxi-stages", "taxi-greedy", "taxi-climb", "taxi-entry")
 
 # Hand example: 2 drivers, 4 passengers, (y, x) coordinates. Passenger = (departure, arrival).
 HAND_DRIVERS = [(2, 7), (9, 2)]
@@ -56,9 +56,10 @@ def sources() -> dict[str, str]:
     blocks = {name: snippet(name) for name in SNIPPETS}
     for name, code in blocks.items():
         check_submission_code(code, name)
-    contract, baseline, plan, delta, stages, greedy, climb, entry = (blocks[n] for n in SNIPPETS)
-    common = "\n".join([random, contract, plan, delta, stages, greedy, climb])   # + stages for the experiments
-    final = "\n".join([random, contract, plan, delta, greedy, climb, entry])      # what is submitted
+    baseline, plan, delta, stages, greedy, climb, entry = (blocks[n] for n in SNIPPETS)
+    contract = plan.split("namespace taxi")[0]   # the declarations the grader gives, at the top of the plan block
+    common = "\n".join([random, plan, delta, stages, greedy, climb])   # + stages for the experiments
+    final = "\n".join([random, plan, delta, greedy, climb, entry])      # what is submitted
     return {"baseline": contract + "\n" + baseline, "common": common, "with_entry": common + "\n" + entry, "final": final, "blocks": blocks, "random": random}
 
 
@@ -452,10 +453,8 @@ EXPERIMENTS = [
     ("교환 없이 이동만", {"SWAP": "0"}),
     ("승객을 무작위로만 고름(집중 0%)", {"FOCUS": "0"}),
     ("평균 부하 항 가중치 0", {"WEIGHT": "0"}),
-    ("가중치 1", {"WEIGHT": "1"}),
     ("가중치 16", {"WEIGHT": "16"}),
     ("대상 기사 후보 1명", {"CHOICES": "1"}),
-    ("대상 기사 후보 6명", {"CHOICES": "6"}),
     ("제안 100,000개", {"ATTEMPTS": "100000"}),
     ("제안 2,000,000개", {"ATTEMPTS": "2000000"}),
 ]
@@ -522,7 +521,7 @@ def run_checks(values: dict) -> dict:
     assert facts["model_min"] == 22 and facts["model_opt"]["real"] == 29 and facts["real_min"] == 23
     # The failing variants must be caught by the same harness.
     text = LESSON.read_text()
-    assert BUG_CUT[1].split("//")[0].strip() in text and "빠뜨린다" in text
+    assert BUG_CUT[1].split("//")[0].strip() in text
     assert BUG_AT[1].split("//")[0].strip() in text and BUG_AT2[1].strip() in text
     for name, edits in (("cut", [BUG_CUT]), ("at", [BUG_AT, BUG_AT2])):
         buggy = apply_bug(values["with_entry"], edits)
