@@ -28,10 +28,11 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/remember-and-sort/lesson.md"
+LESSON_ID = "remember-and-sort"
 DATA = ROOT / "lessons/remember-and-sort/lesson-assets/measurements.json"
 sys.path.insert(0, str(ROOT / "scripts"))
 from cpp_library import check_submission_code  # noqa: E402
+from lesson_text import check_hub_summary, read_lesson_text  # noqa: E402
 
 SNIP_RE = re.compile(r"```cpp[^\n]*\bsnippet=([\w-]+)[^\n]*\n(.*?)\n```", re.S)
 ORDER = ("drone-mirror", "drone-clear", "drone-sort", "drone-entry")
@@ -41,7 +42,7 @@ SEEDS = [5, 101, 202, 303, 404]          # 5 is the public grader's seed
 
 def snippets() -> dict[str, str]:
     found: dict[str, str] = {}
-    for name, code in SNIP_RE.findall(LESSON.read_text()):
+    for name, code in SNIP_RE.findall(read_lesson_text(LESSON_ID)):
         assert name not in found, f"duplicate snippet {name}"
         check_submission_code(code, name)
         found[name] = code
@@ -380,7 +381,7 @@ def check_hand(sn: dict[str, str], tmp: Path, need_text: bool = True) -> dict:
     assert "FLIGHT moves 12 refused 0 pos 3 1 2" in terrain, terrain
     assert "FLIGHT moves 196 refused 0 pos 3 1 2" in fixed, fixed
     if need_text:
-        text = LESSON.read_text()
+        text = read_lesson_text(LESSON_ID)
         for needle in ("14번", str(ins_picks) + "번", "12번", "196번"):
             assert needle in text, f"hand example number missing from lesson: {needle}"
     print(f"OK: hand examples: patience 14 shifts -> {SORT_ORDER}, insertion {ins_picks} shifts, flight 12 moves terrain-following vs 196 at z=99")
@@ -591,7 +592,7 @@ def derived(data: dict) -> tuple[dict[str, str], list[str]]:
 
 
 def check_tables(data: dict, hand: dict, ref: dict) -> None:
-    text = LESSON.read_text()
+    text = read_lesson_text(LESSON_ID)
     v, lines = derived(data)
     for line in lines:
         assert line in text.splitlines(), f"lesson table row missing or stale: {line}"
@@ -614,11 +615,13 @@ def check_tables(data: dict, hand: dict, ref: dict) -> None:
         by.setdefault(r["label"], []).append(r["total"])
     assert min(by["x 먼저만"]) > max(by["2단계"]) and min(by["임시 칸 4개"]) > max(by["2단계"]), "variants must beat the seed spread"
     assert two["fallbacks"] > 0 and 80 <= two["deferred"] <= 90
+    hub_rows = check_hub_summary(LESSON_ID, [(lab, fmt(st[lab]["total"])) for lab in ("기준선", "1단계", "2단계")])
+    print(f"OK: hub summary table matches the stored stage totals ({hub_rows} rows)")
     print(f"OK: lesson tables and quoted numbers match {DATA.name}")
 
 
 def check_svgs() -> None:
-    text = LESSON.read_text()
+    text = read_lesson_text(LESSON_ID)
     svgs = sorted((ROOT / "lessons/remember-and-sort/lesson-assets").glob("*.svg"))
     assert len(svgs) == 2, svgs
     for svg in svgs:
@@ -629,7 +632,7 @@ def check_svgs() -> None:
         desc = re.search(r"<desc[^>]*>(.*?)</desc>", body, re.S).group(1)
         assert "[" not in desc and "]" not in desc
         assert f"lesson-assets/{svg.name}" in text and f"https://git.readiz.com/h-contest-lesson/lessons/remember-and-sort/lesson-assets/{svg.name}" in text, svg.name
-    for alt in re.findall(r"!\[([^\]]*)\]\(lesson-assets/", text):
+    for alt in re.findall(r"!\[([^\]]*)\]\((?:\.\./)?lesson-assets/", text):
         assert "[" not in alt and "]" not in alt and len(alt) > 30
     st = {r["label"]: r["total"] for r in json.loads(DATA.read_text())["stages"]}
     stage_svg = (ROOT / "lessons/remember-and-sort/lesson-assets/stage-scores.svg").read_text()

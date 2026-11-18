@@ -1136,6 +1136,29 @@
         "cpp-common-library",
         "placement-search"
       ],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 연산 수 예산",
+          "description": "COUPANG1의 입력 규모와 계약, 상한에서 연산 수를 먼저 세는 예산표와 번호 순 기준선을 다룹니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: 좌표 칸과 운행 단위",
+          "description": "후보를 줄이는 좌표 칸, 칸 탐색이 전수 탐색과 같은 답을 내는 손계산, 운행 단위의 적재·센터 선택·순서 개선을 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "실측과 실패 사례",
+          "description": "단계별·설정별 공개 채점기 측정, 칸 크기와 시간·점수 교환, 종료 조건과 재고 갱신을 틀린 실패를 재현합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
+      ],
       "lessonType": "core",
       "practiceStatus": "linked",
       "implementationStatus": "full",
@@ -1172,6 +1195,29 @@
         "observe-and-act",
         "placement-search",
         "cpp-common-library"
+      ],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 점수식의 구조",
+          "description": "ENTROPY2D의 계약, 채점식을 내 코드로 재현해 세 값을 맞추는 과정, 상수 항과 축별 분리로 본 점수식의 구조와 하한을 다룹니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: 차분식과 단계별 풀이",
+          "description": "이동 한 번을 O(1)로 구하는 차분식과 기준선부터 빈 칸 경로 재배치, 목표 배치 짝짓기까지의 단계별 풀이를 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "실측과 실패 사례",
+          "description": "단계별 점수와 시간, 하한 대비 위치, 문턱과 줄이는 비율 실험, int 누적과 차분 off-by-one 실패를 재현합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
       ],
       "lessonType": "core",
       "practiceStatus": "linked",
@@ -1282,6 +1328,29 @@
         "cpp-common-library",
         "testing-and-stress"
       ],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 기준선",
+          "description": "ROBOTCLEAN의 계약과 비용, 실제 지도·아는 값·내 지도의 세 층과 관측 되돌리기 좌표 변환, DFS 기준선을 만듭니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: BFS와 회전을 포함한 최단 비용",
+          "description": "BFS로 가장 가까운 할 일 칸을 고르는 정책과 회전을 포함한 (칸, 방향) 최단 비용 정책, 두 정책의 손계산을 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "실측과 실패 사례",
+          "description": "단계별 점수와 비용 구성, 파라미터와 홀드아웃 지도 비교, 좌표 변환·초기화를 틀린 변형의 실패를 재현합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
+      ],
       "lessonType": "core",
       "practiceStatus": "linked",
       "implementationStatus": "full",
@@ -1354,7 +1423,29 @@
         "cpp-contest-basics",
         "reading-the-score"
       ],
-      "pages": [],
+      "pages": [
+        {
+          "pageId": "contract-and-baseline",
+          "title": "문제 계약과 점수 하한",
+          "description": "DRONESORT의 계약과 무효 조건, 호출 네 가지로 본 점수식 구성과 상자당 호출 수 하한을 정리합니다.",
+          "order": 10,
+          "file": "pages/contract-and-baseline.md"
+        },
+        {
+          "pageId": "solution",
+          "title": "풀이: 높이 재기, 비우기, 정렬의 세 구간",
+          "description": "높이 재기·비우기·정렬의 세 구간과 거울로 상자 값과 높이를 기억하는 네 블록의 제출 코드를 구현합니다.",
+          "order": 20,
+          "file": "pages/solution.md"
+        },
+        {
+          "pageId": "experiments-and-failures",
+          "title": "기준선·단계별 실측과 실패 사례",
+          "description": "기준선과 1·2단계의 호출 수, 경로 선택과 임시 칸 수 실험, 거울이 어긋나는 실수의 실패를 재현합니다.",
+          "order": 30,
+          "file": "pages/experiments-and-failures.md"
+        }
+      ],
       "lessonType": "core",
       "practiceStatus": "linked",
       "implementationStatus": "full",

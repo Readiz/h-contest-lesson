@@ -32,10 +32,11 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/explore-unknown-map/lesson.md"
+LESSON_ID = "explore-unknown-map"
 DATA = ROOT / "lessons/explore-unknown-map/lesson-assets/measurements.json"
 sys.path.insert(0, str(ROOT / "scripts"))
 from cpp_library import check_submission_code, read_library_snippets  # noqa: E402
+from lesson_text import check_hub_summary, read_lesson_text  # noqa: E402
 
 SNIP_RE = re.compile(r"```cpp[^\n]*\bsnippet=([\w-]+)[^\n]*\n(.*?)\n```", re.S)
 SAN = ["-fsanitize=address,undefined", "-fno-sanitize-recover=all", "-g", "-O1"]
@@ -44,7 +45,7 @@ NEEDED = ("rc-state", "rc-baseline", "rc-bfs", "rc-dijkstra")
 
 def snippets() -> dict[str, str]:
     found: dict[str, str] = {}
-    for name, code in SNIP_RE.findall(LESSON.read_text()):
+    for name, code in SNIP_RE.findall(read_lesson_text(LESSON_ID)):
         assert name not in found, f"duplicate snippet {name}"
         check_submission_code(code, name)
         found[name] = code
@@ -676,7 +677,7 @@ def check_hand(sn: dict[str, str], need_text: bool = True) -> dict:
     calls = res["calls"]
     assert calls[0].startswith("T SCAN") and calls[1].startswith("T TURN 1") and calls[2].startswith("T MOVE ok")
     assert calls[3].startswith("T MOVE bump") and calls[4].startswith("T TURN 3") and calls[5].startswith("T MOVE ok")
-    text = LESSON.read_text()
+    text = read_lesson_text(LESSON_ID)
     if need_text:
         for needle in ("011000000", "805", "(64, 64)", "(64, 63)", "(63, 63)", "(4,3)", "결정 31번"):
             assert needle in text, f"hand example number missing from lesson: {needle}"
@@ -918,8 +919,10 @@ COMPARISONS = [
 
 
 def check_tables(data: dict, extra: dict) -> None:
-    text = LESSON.read_text()
-    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in text.splitlines() if line.startswith("|")]
+    text = read_lesson_text(LESSON_ID)
+    # Row lookups use the pages only, so the hub summary cannot satisfy a stale page table.
+    page_text = read_lesson_text(LESSON_ID, include_hub=False)
+    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in page_text.splitlines() if line.startswith("|")]
 
     def present(label: str, *needles: object) -> None:
         for cells in rows:
@@ -945,6 +948,8 @@ def check_tables(data: dict, extra: dict) -> None:
         present(label, r["scans"] * 20, r["moves"] * 10, r["bumps"] * 10, r["turns"] * 15, r["total"], data["move_floor"][key])
     for needle in (str(data["date"]), str(extra["heap_peak"]), str(extra["hand_total"])):
         assert needle in text, f"value not in lesson: {needle}"
+    hub_rows = check_hub_summary(LESSON_ID, [(r["label"], r["total"]) for r in data["rows"]])
+    print(f"OK: hub summary table matches the stored stage totals ({hub_rows} rows)")
     print(f"OK: lesson tables match {DATA.name} ({sum(len(data[b]) for b in ('rows', 'sweeps', 'holdout_rows', 'holdout_sweeps', 'failures'))} rows, "
           f"{len(COMPARISONS)} paired comparisons)")
 
