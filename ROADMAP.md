@@ -35,7 +35,9 @@
 
 2026-11-18에 5번의 TAXIASSIGN 연결을 [배정과 경로가 결합된 문제: 택시 배정](lessons/assignment-with-routes/lesson.md)으로 반영했습니다. 기사 부하 항을 승객의 탑승 거리(담당자가 정함)와 빈 차 구간(담당자와 순서가 정함)으로 나누고, 배정만·경로만·번갈아·결합 탐욕·결합 이웃(옮기며 끼우기·자리 바꾸기)을 같은 TC 5개의 점수와 시간으로 비교하며, 기사 2명·승객 4명의 16개 배정 전수 손계산, solver seed 9개의 설정 비교, 차분 오류 두 가지의 재현을 포함합니다. `scripts/check_assignment_routes.py`가 코드 추출·ASan/UBSan·손계산 표·저장된 측정을 대조합니다. MULTIDRONE·COUPANG2 연결(재고·적재 제약), SA 온도 실험, 같은 실행 시간 비교와 숨은 채점 입력에서의 일반화는 남아 있습니다.
 
-5~8번은 후속 문제 단위로 진행합니다. Digit DP, 구간 DP, Implicit Treap은 미완성 골격을 본문에 두지 않고, 실제 문제와 끝까지 동작하는 풀이가 준비될 때 다시 다룹니다.
+6번은 [격자 배치 문제: 유효한 후보, 국소 이동, destroy/repair 비교](lessons/placement-search/lesson.md)로 LANDINGX를 반영했습니다. 후보 선택 집합 상태와 점유 격자의 `put`/`take`(apply/undo), 제안 단계의 무효 거절, 추가·교체 차분, 4×6 지도 손계산(35점에서 멈추고 두 개를 함께 빼면 40점), 같은 후보 검사 수에서 first-fit·정렬 탐욕·국소 이동·destroy/repair를 solver seed 9개로 비교한 예산별·destroy 크기별·무작위 배율별 표, 되돌리기 누락과 종류별 한도 누락 실패 재현을 포함하며 `scripts/check_placement_search.py`가 코드 추출·후보 완전 열거 대조·ASan/UBSan·손계산 표·저장된 측정 대조를 수행합니다. CHIPDESIGN/TENSORALLOC 연결, 같은 시간 예산 비교, 숨은 채점 입력에서의 일반화는 남아 있습니다.
+
+7~8번은 후속 문제 단위로 진행합니다. Digit DP, 구간 DP, Implicit Treap은 미완성 골격을 본문에 두지 않고, 실제 문제와 끝까지 동작하는 풀이가 준비될 때 다시 다룹니다.
 
 ### 목차와 연결도 함께 정리할 항목
 

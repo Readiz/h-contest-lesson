@@ -16,3 +16,6 @@
 4. [광고판 도시 배치](pages/placement-and-repair.md): bitmask 점유 검사, 위치 평가와 destroy/repair.
 5. [31일 설치 일정 Beam Search](pages/aircontech-beam-search.md): 행동 후보와 경로 후보를 따로 줄이고 실제 수익으로 일정을 선택.
 6. [배정 문제의 지역 탐색과 SA](https://h.readiz.com/learn/assignment-local-search): SCHEDULX의 최대 부하 차분, hill climbing이 멈추는 예, 시작 온도와 수락률 실험.
+7. [채점기 상태를 따라 그리며 행동하기](https://h.readiz.com/learn/observe-and-act): MINEEXPLORE에서 내 호출 기록으로 채점기 상태를 따라 그리고, 계획과 행동을 나눠 이동당 이득으로 목표를 선택.
+8. [배정과 경로가 결합된 문제](https://h.readiz.com/learn/assignment-with-routes): TAXIASSIGN에서 담당자와 삽입 위치를 함께 고르는 이웃과 최대 이동 거리의 차분.
+9. [격자 배치 문제](https://h.readiz.com/learn/placement-search): LANDINGX에서 탐욕, 국소 이동, destroy/repair를 같은 후보 검사 수로 비교.
