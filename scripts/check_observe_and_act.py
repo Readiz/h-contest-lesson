@@ -23,11 +23,12 @@ import tempfile
 import datetime
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/observe-and-act/lesson.md"
+LESSON_ID = "observe-and-act"
 DATA = ROOT / "lessons/observe-and-act/lesson-assets/measurements.json"
 import sys
 sys.path.insert(0, str(ROOT / "scripts"))
 from cpp_library import check_submission_code, read_library_snippets  # noqa: E402
+from lesson_text import check_hub_summary, read_lesson_text  # noqa: E402
 
 SNIP_RE = re.compile(r"```cpp[^\n]*\bsnippet=([\w-]+)[^\n]*\n(.*?)\n```", re.S)
 SAN = ["-fsanitize=address,undefined", "-fno-sanitize-recover=all", "-g", "-O1"]
@@ -35,7 +36,7 @@ SAN = ["-fsanitize=address,undefined", "-fno-sanitize-recover=all", "-g", "-O1"]
 
 def snippets() -> dict[str, str]:
     found: dict[str, str] = {}
-    for name, code in SNIP_RE.findall(LESSON.read_text()):
+    for name, code in SNIP_RE.findall(read_lesson_text(LESSON_ID)):
         assert name not in found, f"duplicate snippet {name}"
         check_submission_code(code, name)
         found[name] = code
@@ -289,7 +290,7 @@ def check_hand(sn: dict[str, str], need_text: bool = True) -> dict:
     assert p1 == [(2, 2), (1, 1), (0, 0)] and p2 == [(2, 6)], (p1, p2)
     hands = re.findall(r"^HAND (\d) SCORE (\d+) MIRROR (\d+) USED (\d+) REFUSED (\d+)$", out, re.M)
     assert hands == [("1", "7", "7", "5", "0"), ("2", "100", "100", "3", "0")], hands
-    text = LESSON.read_text()
+    text = read_lesson_text(LESSON_ID)
     for needle in (() if not need_text else ("3.15", "15.4", "26.0", "1.35", "1.217", "| 7 |", "| 100 |")):
         assert needle in text, f"hand example number missing from lesson: {needle}"
     print("OK: hand example (keys, targets 1:(2,2)->(1,1)->(0,0) = 7, 2:(2,6) = 100) recomputed by the lesson code")
@@ -384,8 +385,10 @@ def measure(judge: Path, sn: dict[str, str]) -> dict:
 
 
 def check_tables(data: dict, extra: dict) -> None:
-    text = LESSON.read_text()
-    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in text.splitlines() if line.startswith("|")]
+    text = read_lesson_text(LESSON_ID)
+    # Row lookups use the pages only, so the hub summary cannot satisfy a stale page table.
+    page_text = read_lesson_text(LESSON_ID, include_hub=False)
+    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in page_text.splitlines() if line.startswith("|")]
     def present(label: str, *needles: object) -> None:
         for cells in rows:
             if cells and cells[0] == label and all(str(n) in cells for n in needles):
@@ -410,6 +413,8 @@ def check_tables(data: dict, extra: dict) -> None:
                     str(data["calibration"]["sum_next_gain"]), str(data["date"])]
     for n in text_numbers:
         assert n in text, f"calibration/date not in lesson: {n}"
+    hub_rows = check_hub_summary(LESSON_ID, [(r["label"], r["total"]) for r in data["rows"]])
+    print(f"OK: hub summary table matches the stored policy totals ({hub_rows} rows)")
     print(f"OK: lesson tables match {DATA.name} ({sum(len(data[b]) for b in ('rows', 'sweeps', 'failures'))} rows)")
 
 

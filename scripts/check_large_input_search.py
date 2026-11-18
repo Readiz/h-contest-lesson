@@ -27,9 +27,10 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cpp_library import check_submission_code  # noqa: E402
+from lesson_text import check_hub_summary, read_lesson_text  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/large-input-search/lesson.md"
+LESSON_ID = "large-input-search"
 ASSETS = ROOT / "lessons/large-input-search/lesson-assets"
 ASSET = ASSETS / "coupang1-benchmark.json"
 FIG_HAND = ASSETS / "bucket-walk.svg"
@@ -365,7 +366,7 @@ int main(int argc, char** argv) {
 # ---------------------------------------------------------------- sources
 def snippets() -> dict[str, str]:
     found: dict[str, str] = {}
-    for name, code in SNIP_RE.findall(LESSON.read_text()):
+    for name, code in SNIP_RE.findall(read_lesson_text(LESSON_ID)):
         assert name not in found, f"duplicate snippet {name}"
         check_submission_code(code, name)
         found[name] = code + "\n"
@@ -862,9 +863,11 @@ def table_after(markdown: str, key: str) -> str:
 
 def check_stored(facts: dict, stored: Path = ASSET) -> None:
     data = json.loads(stored.read_text())
-    markdown = LESSON.read_text()
+    markdown = read_lesson_text(LESSON_ID)
     for key, expected in tables(data).items():
         assert table_after(markdown, key) == expected, f"lesson table '{key}' differs from the stored measurement/recomputation"
+    hub_rows = check_hub_summary(LESSON_ID, [(s["label"], f"{s['total']:,}") for s in data["stages"] if s["key"] != "final"])
+    print(f"OK: hub summary table matches the stored stage totals ({hub_rows} rows)")
     by = {s["key"]: s for s in data["stages"]}
     assert by["final"]["total"] == by["improve"]["total"] and by["final"]["total"] <= PASS_LINE, "the submitted code no longer passes"
     assert by["baseline"]["total"] > PASS_LINE, "the baseline is meant to be valid but over the pass line"

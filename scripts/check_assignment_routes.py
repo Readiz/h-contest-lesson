@@ -27,9 +27,10 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cpp_library import check_submission_code, read_library_snippets  # noqa: E402
+from lesson_text import check_hub_summary, read_lesson_text  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/assignment-with-routes/lesson.md"
+LESSON_ID = "assignment-with-routes"
 ASSETS = ROOT / "lessons/assignment-with-routes/lesson-assets"
 ASSET = ASSETS / "taxiassign-benchmark.json"
 FIG_HAND = ASSETS / "hand-two-answers.svg"
@@ -46,7 +47,7 @@ GREEDY_ROUTES = [[2, 0], [1, 3]]
 
 
 def snippet(name: str) -> str:
-    found = re.findall(r"```cpp[^\n]*\bsnippet=" + re.escape(name) + r"\n(.*?)\n```", LESSON.read_text(), re.S)
+    found = re.findall(r"```cpp[^\n]*\bsnippet=" + re.escape(name) + r"\n(.*?)\n```", read_lesson_text(LESSON_ID), re.S)
     assert len(found) == 1, name
     return found[0] + "\n"
 
@@ -520,7 +521,7 @@ def run_checks(values: dict) -> dict:
     assert trap_neighbors([[2, 3], [1, 0]]) >= 29 and trap_neighbors(GREEDY_ROUTES) < 29, "trap state"
     assert facts["model_min"] == 22 and facts["model_opt"]["real"] == 29 and facts["real_min"] == 23
     # The failing variants must be caught by the same harness.
-    text = LESSON.read_text()
+    text = read_lesson_text(LESSON_ID)
     assert BUG_CUT[1].split("//")[0].strip() in text
     assert BUG_AT[1].split("//")[0].strip() in text and BUG_AT2[1].strip() in text
     for name, edits in (("cut", [BUG_CUT]), ("at", [BUG_AT, BUG_AT2])):
@@ -675,9 +676,12 @@ def table_after(markdown: str, key: str) -> str:
 
 def check_stored(facts: dict) -> None:
     data = json.loads(ASSET.read_text())
-    markdown = LESSON.read_text()
+    markdown = read_lesson_text(LESSON_ID)
     for key, expected in tables(data).items():
         assert table_after(markdown, key) == expected, f"lesson table '{key}' differs from the stored measurement/recomputation"
+    hub_rows = check_hub_summary(LESSON_ID, [(s["label"], s["total"]) for s in data["stages"] if s["key"] != "final"]
+                                 + [("하한 참고: 탑승 거리 합 / 기사 수", sum(int(v) for v in next(s for s in data["stages"] if s["key"] == "climb")["rides_per_driver"]))])
+    print(f"OK: hub summary table matches the stored stage totals ({hub_rows} rows)")
     by = {s["key"]: s for s in data["stages"]}
     assert by["final"]["costs"] == by["climb"]["costs"]
     assert by["final"]["total"] <= PASS_LINE, "the submitted code no longer passes"

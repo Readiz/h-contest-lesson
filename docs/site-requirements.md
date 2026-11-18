@@ -23,7 +23,7 @@
 
 2026-11-18에 참고 노트 67개, 이동 안내문만 있던 스텁 디렉터리 78개, `CHANGELOG.md`, `LESSON_REVIEW.md`를 삭제했다. 삭제 전 상태는 git 태그 `archive/pre-prune-20261118`에서 복구한다. 강의 `online-planning-evaluation` 페이지는 `testing-and-stress`의 `experiment-evaluation` 페이지로 옮겼다.
 
-현재 manifest에는 강의 39개와 하위 페이지 8개가 있고 분류는 `heuristic-notes` 하나다. `practiceStatus`는 `linked` 39개다. `status`는 2개 강의에만 `published`로 명시되어 있으며 나머지는 지정하지 않았다. 이는 콘텐츠 공개 상태일 뿐, 추가 연습, 실행 검증의 범위, 교육 효과의 완료 상태와 합치지 않는다.
+현재 manifest에는 강의 39개와 하위 페이지 32개가 있고(실전 강의 8개는 각각 허브와 세 페이지로 나뉘어 있다) 분류는 `heuristic-notes` 하나다. `practiceStatus`는 `linked` 39개다. `status`는 2개 강의에만 `published`로 명시되어 있으며 나머지는 지정하지 않았다. 이는 콘텐츠 공개 상태일 뿐, 추가 연습, 실행 검증의 범위, 교육 효과의 완료 상태와 합치지 않는다.
 
 | 구분 | 남은 확인 또는 작업 | 완료 증거 |
 | --- | --- | --- |

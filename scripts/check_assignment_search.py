@@ -22,9 +22,10 @@ import subprocess
 import tempfile
 
 from cpp_library import check_submission_code, read_library_snippets
+from lesson_text import check_hub_summary, read_lesson_text
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/assignment-local-search/lesson.md"
+LESSON_ID = "assignment-local-search"
 ASSET = ROOT / "lessons/assignment-local-search/lesson-assets/schedulx-benchmark.json"
 FIGURE = ROOT / "lessons/assignment-local-search/lesson-assets/hand-moves.svg"
 MAX_TC = 6
@@ -40,7 +41,7 @@ HAND_PATH = [("move", 2, 0), ("swap", 0, 4), ("move", 1, 0)]
 
 
 def snippet(name: str) -> str:
-    found = re.findall(r"```cpp[^\n]*\bsnippet=" + re.escape(name) + r"\n(.*?)\n```", LESSON.read_text(), re.S)
+    found = re.findall(r"```cpp[^\n]*\bsnippet=" + re.escape(name) + r"\n(.*?)\n```", read_lesson_text(LESSON_ID), re.S)
     assert len(found) == 1, name
     return found[0] + "\n"
 
@@ -427,7 +428,7 @@ def run_checks(values: dict[str, str]) -> dict:
     assert printed == expected, (printed, expected)
     # The wrong max difference must be caught by the same harness.
     finish = function_text(values["final"], "finish")
-    assert BUGGY_FINISH.splitlines()[2] in LESSON.read_text() and "나머지 기계 최댓값 대신" in LESSON.read_text()
+    assert BUGGY_FINISH.splitlines()[2] in read_lesson_text(LESSON_ID) and "나머지 기계 최댓값 대신" in read_lesson_text(LESSON_ID)
     buggy = values["final"].replace(finish, BUGGY_FINISH)
     assert buggy != values["final"]
     caught = compile_run(buggy + "\n" + HARNESS, sanitize, expect_ok=False)
@@ -642,9 +643,11 @@ def table_after(markdown: str, key: str) -> str:
 
 def check_stored(facts: dict) -> None:
     data = json.loads(ASSET.read_text())
-    markdown = LESSON.read_text()
+    markdown = read_lesson_text(LESSON_ID)
     for key, expected in tables(data).items():
         assert table_after(markdown, key) == expected, f"lesson table '{key}' differs from the stored measurement/recomputation"
+    hub_rows = check_hub_summary(LESSON_ID, [(s["label"], s["total"]) for s in data["stages"] if s["key"] != "final"])
+    print(f"OK: hub summary table matches the stored stage totals ({hub_rows} rows)")
     greedy = next(s for s in data["stages"] if s["key"] == "greedy")
     final = next(s for s in data["stages"] if s["key"] == "final")
     assert final["costs"] == next(s for s in data["stages"] if s["key"] == "sa-2")["costs"]

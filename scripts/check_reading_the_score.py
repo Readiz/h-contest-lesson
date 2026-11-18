@@ -30,9 +30,10 @@ import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cpp_library import check_submission_code  # noqa: E402
+from lesson_text import check_hub_summary, read_lesson_text  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/reading-the-score/lesson.md"
+LESSON_ID = "reading-the-score"
 ASSETS = ROOT / "lessons/reading-the-score/lesson-assets"
 DATA = ASSETS / "entropy2d-benchmark.json"
 SNIP_RE = re.compile(r"```cpp[^\n]*\bsnippet=([\w-]+)[^\n]*\n(.*?)\n```", re.S)
@@ -54,7 +55,7 @@ ALL_BLOCKS = {b for _, names in STAGES.values() for b in names} | {"ent-hand"}
 
 def snippets() -> dict[str, str]:
     found: dict[str, str] = {}
-    for name, code in SNIP_RE.findall(LESSON.read_text()):
+    for name, code in SNIP_RE.findall(read_lesson_text(LESSON_ID)):
         assert name not in found, f"duplicate snippet {name}"
         check_submission_code(code, name)
         found[name] = code + "\n"
@@ -765,7 +766,7 @@ def paired(by: dict, a: str, b: str) -> dict:
 
 
 def check_tables(data: dict) -> None:
-    text = LESSON.read_text()
+    text = read_lesson_text(LESSON_ID)
     lines = set(text.splitlines())
     for name, expected in table_lines(data).items():
         for line in expected:
@@ -822,12 +823,14 @@ def check_tables(data: dict) -> None:
         needles += [f"{v['mean']:.1f}", f"{v['err']:.1f}"]
     for n in needles:
         assert str(n) in text, f"number missing or stale in lesson: {n}"
+    hub_rows = check_hub_summary(LESSON_ID, [(r["label"], r["total"]) for r in data["rows"]])
+    print(f"OK: hub summary table matches the stored stage totals ({hub_rows} rows)")
     print(f"OK: lesson tables and quoted numbers match {DATA.name} "
           f"({sum(len(v) for v in table_lines(data).values())} table lines, {len(needles)} numbers, {len(text.splitlines())} lines)")
 
 
 def check_svgs() -> None:
-    text = LESSON.read_text()
+    text = read_lesson_text(LESSON_ID)
     svgs = sorted(ASSETS.glob("*.svg"))
     assert len(svgs) == 2, svgs
     for svg in svgs:
@@ -836,7 +839,7 @@ def check_svgs() -> None:
         sizes = [float(s) for s in re.findall(r'font-size="([\d.]+)"', body)]
         assert sizes and min(sizes) >= 16 and max(sizes) <= 28, (svg.name, min(sizes), max(sizes))
         assert f"lesson-assets/{svg.name}" in text and f"https://git.readiz.com/h-contest-lesson/lessons/reading-the-score/lesson-assets/{svg.name}" in text, svg.name
-    for alt in re.findall(r"!\[([^\]]*)\]\(lesson-assets/", text):
+    for alt in re.findall(r"!\[([^\]]*)\]\((?:\.\./)?lesson-assets/", text):
         assert "[" not in alt and "]" not in alt and len(alt) > 30
     print("OK: two figures have role/title/desc, width 720, font sizes 16~28 and a large-view link")
 

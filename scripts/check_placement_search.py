@@ -25,9 +25,10 @@ import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cpp_library import check_submission_code, read_library_snippets  # noqa: E402
+from lesson_text import check_hub_summary, read_lesson_text  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
-LESSON = ROOT / "lessons/placement-search/lesson.md"
+LESSON_ID = "placement-search"
 ASSETS = ROOT / "lessons/placement-search/lesson-assets"
 ASSET = ASSETS / "landingx-benchmark.json"
 MAX_TC = 10
@@ -53,7 +54,7 @@ HAND_SHIPS = [(2, 5), (2, 2), (3, 3), (2, 5)]
 
 def snippets() -> dict[str, str]:
     found: dict[str, str] = {}
-    for name, code in SNIP_RE.findall(LESSON.read_text()):
+    for name, code in SNIP_RE.findall(read_lesson_text(LESSON_ID)):
         assert name not in found, f"duplicate snippet {name}"
         check_submission_code(code, name)
         found[name] = code + "\n"
@@ -712,7 +713,7 @@ def run_checks(values: dict[str, str]) -> dict:
     assert len(seeds) == 9
     # Two wrong variants must be caught by the same harness.
     sn = values["blocks"]
-    lesson = LESSON.read_text()
+    lesson = read_lesson_text(LESSON_ID)
     assert BUGGY_UNDO_NEW.strip() in lesson and BUGGY_LIMIT_FRAGMENT.strip() in lesson
     buggy_undo = mutate(final, BUGGY_UNDO_OLD, BUGGY_UNDO_NEW)
     caught = compile_run(buggy_undo + "\n" + HARNESS, SAN, expect_ok=False)
@@ -998,9 +999,11 @@ def check_claims(data: dict, by: dict, markdown: str) -> None:
 
 def check_stored(checks: dict) -> None:
     data = json.loads(ASSET.read_text())
-    markdown = LESSON.read_text()
+    markdown = read_lesson_text(LESSON_ID)
     for key, expected in tables(data).items():
         assert table_after(markdown, key) == expected, f"lesson table '{key}' differs from the stored measurement/recomputation"
+    hub_rows = check_hub_summary(LESSON_ID, [(s["label"], s["total"]) for s in data["stages"] if s["key"] != "final"])
+    print(f"OK: hub summary table matches the stored stage totals ({hub_rows} rows)")
     by = {s["key"]: s for s in data["stages"]}
     assert by["final"]["costs"] == by["dr"]["costs"]
     assert data["sanitizer_total"] == by["final"]["total"]

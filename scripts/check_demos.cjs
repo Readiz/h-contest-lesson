@@ -163,7 +163,13 @@ for(const array of [M.segArray,[7],[2,9,4],[1,2,3,4,5,6,7,8,9,10,11]]){
   }
 }
 // ---- Practical-lesson demos: every value is recomputed here by separate code, and the lesson text must contain the same numbers. ----
-const lessonText=name=>fs.readFileSync(path.join(__dirname,'../lessons',name,'lesson.md'),'utf8');
+// A practical lesson is a hub (lesson.md) plus the pages listed in lessons.json, read as one text in manifest order.
+const lessonText=name=>{
+  const entry=JSON.parse(fs.readFileSync(path.join(__dirname,'../lessons.json'),'utf8')).lessons.find(lesson=>lesson.lessonId===name);
+  assert(entry,'missing lesson '+name);
+  const pages=[...(entry.pages||[])].sort((a,b)=>a.order-b.order);
+  return ['lesson.md',...pages.map(page=>page.file)].map(file=>fs.readFileSync(path.join(__dirname,'../lessons',name,file),'utf8')).join('\n');
+};
 const tableAfter=(text,marker)=>{const at=text.indexOf(marker);assert(at>=0,'missing marker '+marker);return text.slice(at).split('\n').slice(1).filter(l=>l.trim()!=='').slice(0,40).filter((l,i,a)=>a.slice(0,i+1).every(x=>x.startsWith('|')));};
 const cells=line=>line.split('|').slice(1,-1).map(c=>c.trim());
 // assignment-moves: a fresh makespan computation for every neighbor, exhaustive optimum, and the lesson's 11-row table.

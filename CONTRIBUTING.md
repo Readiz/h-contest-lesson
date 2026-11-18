@@ -41,6 +41,8 @@ lessons/<lessonId>/pages/<page-id>.md
 - 예제·연습이 앞의 설명을 바로 확인하는 역할이면 그 설명 옆에 둡니다.
 - 서로 다른 문제 모델이나 독립적으로 찾아볼 구현은 별도 페이지로 둘 수 있습니다. 각 페이지는 다른 페이지의 중간 설명을 이어받지 않고 목적과 전제를 밝혀야 합니다.
 
+실전 강의(`assignment-local-search`, `observe-and-act`, `assignment-with-routes`, `placement-search`, `large-input-search`, `reading-the-score`, `explore-unknown-map`, `remember-and-sort`)는 허브 `lesson.md`와 세 페이지(`contract-and-baseline` 계약과 기준선 / `solution` 풀이 / `experiments-and-failures` 실측과 실패 사례)로 씁니다. 허브는 도입, 다루는 것, 단계별 결과 요약 표(`<!-- check:hub-summary -->` 표시), 페이지 목록, 연습만 두고 40~80줄로 유지합니다. 절은 `##` 단위로만 나누고 코드 블록 순서가 페이지 순서와 같게 합니다. 이 강의들의 전용 검사(`scripts/check_<…>.py`)와 `scripts/check_demos.cjs`는 `scripts/lesson_text.py`의 `read_lesson_text`로 허브와 manifest 순서의 페이지를 이어 붙인 텍스트를 읽으므로, 코드·표·마커·그림이 어느 페이지에 있어도 같은 검사를 받습니다. 허브의 요약 표는 저장된 측정 JSON과 대조합니다.
+
 통합할 때는 단순히 이어 붙이지 않고 중복 도입·선택표·결론을 정리합니다. 고유 예시와 구현 조건은 보존하고, manifest·본문 링크·검증 스크립트의 경로를 함께 갱신합니다.
 
 예:
