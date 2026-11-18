@@ -162,6 +162,188 @@ for(const array of [M.segArray,[7],[2,9,4],[1,2,3,4,5,6,7,8,9,10,11]]){
     equal(last.path.every(node=>{const nd=last.nodes.find(x=>x.node===node);return nd.lo<=index&&index<=nd.hi;}),true,'only nodes containing the index are touched');
   }
 }
+// ---- Practical-lesson demos: every value is recomputed here by separate code, and the lesson text must contain the same numbers. ----
+const lessonText=name=>fs.readFileSync(path.join(__dirname,'../lessons',name,'lesson.md'),'utf8');
+const tableAfter=(text,marker)=>{const at=text.indexOf(marker);assert(at>=0,'missing marker '+marker);return text.slice(at).split('\n').slice(1).filter(l=>l.trim()!=='').slice(0,40).filter((l,i,a)=>a.slice(0,i+1).every(x=>x.startsWith('|')));};
+const cells=line=>line.split('|').slice(1,-1).map(c=>c.trim());
+// assignment-moves: a fresh makespan computation for every neighbor, exhaustive optimum, and the lesson's 11-row table.
+{
+  const text=lessonText('assignment-local-search'),T=M.amTime,n=T.length,m=T[0].length;
+  const fresh=assign=>{const load=Array(m).fill(0);for(let j=0;j<n;j++)load[assign[j]]+=T[j][assign[j]];return load;};
+  const neighborsOf=assign=>{const out=[];for(let j=0;j<n;j++)for(let k=0;k<m;k++)if(k!==assign[j]){const a=[...assign];a[j]=k;out.push(a);}for(let x=0;x<n;x++)for(let y=x+1;y<n;y++)if(assign[x]!==assign[y]){const a=[...assign];a[x]=assign[y];a[y]=assign[x];out.push(a);}return out;};
+  let optimum=Infinity;for(let code=0;code<m**n;code++){const a=[];let c=code;for(let j=0;j<n;j++){a.push(c%m);c=Math.floor(c/m);}optimum=Math.min(optimum,Math.max(...fresh(a)));}
+  equal(optimum,9,'brute force optimum of the lesson example');equal(M.amOptimum(T).makespan,9);
+  const handtime=tableAfter(text,'<!-- check:handtime -->').slice(2).map(cells);equal(handtime.map(r=>[Number(r[1]),Number(r[2])]),T,'processing times equal the lesson table');
+  const start=M.amExamples[0].start;equal(start,[0,1,1,0,1]);equal(fresh(start),[14,14]);
+  const first=M.assignmentMovesTrace(M.amExamples[0],'improve',2),startNeighbors=first.find(s=>s.neighbors.length).neighbors;
+  equal(startNeighbors.length,11,'five moves and six swaps');equal(neighborsOf(start).length,11);
+  startNeighbors.forEach((nb,i)=>{const expected=neighborsOf(start)[i];equal(nb.assign,expected,'neighbor order');equal(nb.loads,fresh(expected),'neighbor loads vs full recompute');equal(nb.makespan,Math.max(...fresh(expected)));});
+  const rows=tableAfter(text,'<!-- check:hand -->').slice(2).map(cells);equal(rows.length,12);
+  equal(rows[0].slice(1).map(Number),[14,14,14],'lesson start row');
+  startNeighbors.forEach((nb,i)=>equal(rows[i+1],[nb.label,...nb.loads.map(String),String(nb.makespan)],'demo neighbor equals lesson table row'));
+  assert(first.at(-1).phase==='done'&&first.at(-1).makespan===14&&first.length===13);checks++;
+  assert(startNeighbors.every(nb=>nb.makespan>14),'every neighbor is worse');checks++;
+  const allowed=M.assignmentMovesTrace(M.amExamples[0],'allow',2),keyStates=allowed.filter(s=>['worsen','accept'].includes(s.phase));
+  equal(keyStates.map(s=>s.makespan),[15,12,9],'14 -> 15 -> 12 -> 9');equal(allowed.at(-1).makespan,9);
+  equal(keyStates.map(s=>s.phase),['worsen','accept','accept']);
+  for(const mode of ['improve','allow'])for(const job of [1,2,4]){
+    const trace=M.assignmentMovesTrace(M.amExamples[0],mode,job);
+    for(const s of trace){equal(s.loads,fresh(s.assign),'state loads vs recompute');for(const nb of s.neighbors)equal(nb.loads,fresh(nb.assign));}
+    const last=trace.at(-1);equal(last.phase,'done');assert(neighborsOf(last.assign).every(a=>Math.max(...fresh(a))>=last.makespan),'stopped at a local optimum');checks++;
+  }
+  equal(M.assignmentMovesTrace(M.amExamples[0],'allow',1).at(-1).makespan,14,'a different worsening move can get stuck');
+  // Random instances: neighbors by differential loads equal full recomputation, and the run ends in a local optimum.
+  for(let test=0;test<60;test++){
+    const nn=3+test%5,mm=2+test%3,time=Array.from({length:nn},()=>Array.from({length:mm},()=>1+random()%9)),start2=Array.from({length:nn},()=>random()%mm);
+    const f=a=>{const l=Array(mm).fill(0);a.forEach((k,j)=>{l[k]+=time[j][k];});return l;};
+    const ex={time,start:start2};
+    for(const mode of ['improve','allow']){const trace=M.assignmentMovesTrace(ex,mode,0);
+      for(const s of trace){equal(s.loads,f(s.assign));for(const nb of s.neighbors){equal(nb.loads,f(nb.assign));equal(nb.makespan,Math.max(...f(nb.assign)));}}
+      for(let i=1;i<trace.length;i++)if(trace[i].phase==='accept')assert(trace[i].makespan<trace[i-1].makespan);
+      equal(trace.at(-1).phase,'done');assert(trace.at(-1).makespan>=M.amOptimum(time).makespan);checks+=2;}
+  }
+}
+// route-insertion: permutation enumeration for every assignment, plus the lesson's 21/29, 41/39/43 and 23/23.
+{
+  const text=lessonText('assignment-with-routes'),D=M.riDrivers,P=M.riPassengers;
+  const dist=(a,b)=>Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
+  const driverLoad=(d,order)=>{let at=D[d],sum=0;for(const p of order){sum+=dist(at,P[p].s)+dist(P[p].s,P[p].e);at=P[p].e;}return sum;};
+  let globalBest=Infinity,bestSets=[];
+  for(let mask=0;mask<16;mask++){const sets=[[],[]];for(let p=0;p<4;p++)sets[(mask>>p)&1].push(p);const loads=sets.map((set,d)=>Math.min(...permutations(set).map(o=>driverLoad(d,o))));const value=Math.max(...loads);if(value<globalBest){globalBest=value;bestSets=[mask];}else if(value===globalBest)bestSets.push(mask);}
+  equal(globalBest,23,'permutation-exhaustive optimum');equal(bestSets,[0b0110],'unique optimum: passengers 0 and 3 vs 1 and 2');
+  equal(P.map(p=>dist(p.s,p.e)),[5,5,7,11],'ride distances');
+  equal(M.riStart.map((r,d)=>driverLoad(d,r)),[21,29],'start loads');
+  const trace=M.routeInsertionTrace(3),inserts=trace.filter(s=>s.phase==='insert');
+  equal(inserts.map(s=>Math.max(driverLoad(0,s.routes[0]),driverLoad(1,s.routes[1]))),[41,39,43],'insertion maxima');
+  equal(inserts.map(s=>[driverLoad(0,s.routes[0]),driverLoad(1,s.routes[1])]),[[41,10],[39,10],[43,10]]);
+  const swapStates=trace.filter(s=>s.phase==='swap');equal(swapStates.map(s=>s.candidates.at(-1).max),[23,29]);
+  equal(trace.at(-1).routes.map((r,d)=>driverLoad(d,r)),[23,23],'swap gives 23/23');equal(trace.at(-1).routes,[[3,0],[1,2]]);
+  equal(trace.at(-1).phase,'done');assert(trace.at(-1).improved);checks++;
+  for(let p=0;p<4;p++){const t=M.routeInsertionTrace(p);for(const s of t){s.routes.forEach((r,d)=>{const load=s.loads[d];equal(load.total,driverLoad(d,r),'load vs independent');equal(load.ride+load.empty,load.total);equal(load.ride,r.reduce((a,q)=>a+dist(P[q].s,P[q].e),0));});equal([...s.routes[0],...s.routes[1]].sort(),s.phase==='detach'?[0,1,2,3].filter(q=>q!==p):[0,1,2,3],'every passenger once, except while detached');}}
+  for(const s of M.routeInsertionTrace(1).filter(x=>x.phase==='insert'))assert(s.routes[0].includes(1)||s.routes[1].includes(1));
+  const driverText='기사 0은 (2,7), 기사 1은 (9,2)에서 출발하고',passText=P.map((p,i)=>`승객 ${i} (${p.s[0]},${p.s[1]})→(${p.e[0]},${p.e[1]}) 탑승 ${dist(p.s,p.e)}`).join(', ');
+  assert(text.includes(driverText)&&text.includes(passText),'lesson coordinates equal the demo');checks++;
+  assert(text.includes('부하는 21과 29입니다')&&text.includes('맨 앞은 41, 승객 2 뒤는 39, 맨 끝은 43')&&text.includes('23과 23'),'lesson values');checks++;
+  assert(text.includes('| **{0,3} / {1,2}** | 24 / 27 → 27 | 23 (3→0) / 23 (1→2) | **23** |'),'lesson table optimum row');checks++;
+}
+// bucket-search: exhaustive nearest search, ring counts and the one-ring-early mistake.
+{
+  const text=lessonText('large-input-search'),ex=M.bkExample,list=ex.deliveries;
+  const brute=(alive,stock,at,items)=>{let best=Infinity;for(const i of alive)if(stock[items[i][2]]>0)best=Math.min(best,Math.abs(items[i][0]-at[0])+Math.abs(items[i][1]-at[1]));return best;};
+  const exact=M.bucketSearchTrace(ex,false),early=M.bucketSearchTrace(ex,true);
+  equal(exact.filter(s=>s.phase==='pick'||s.phase==='done').map(s=>s.history.at(-1).dist),[3,3,4],'lesson distances');
+  equal(exact.at(-1).history.map(h=>h.min),[3,3,4]);assert(exact.at(-1).history.every(h=>h.correct));checks++;
+  equal(early.find(s=>s.phase==='pick').history[0].dist,4,'early cut picks distance 4');equal(early.find(s=>s.phase==='pick').history[0].min,3);assert(!early.find(s=>s.phase==='pick').history[0].correct);checks++;
+  const handRows=tableAfter(text,'<!-- check:hand -->').slice(2).map(cells);equal(handRows.length,3);
+  const finals=exact.filter(s=>s.phase==='pick'||s.phase==='done');
+  finals.forEach((s,i)=>{const h=s.history[i],sp=exact.filter(x=>x.pick===i+1);const rings=Math.max(...sp.filter(x=>x.phase==='scan').map(x=>x.ring))+1;
+    equal(handRows[i],[`${i+1}번째`,`(${h.from[0]},${h.from[1]})`,String(rings),`${h.inspected} / ${h.remaining}`,`배송 ${h.id} (${list[h.id][0]},${list[h.id][1]}) ${h.type}`,String(h.dist),String(h.min)],'lesson hand table row');});
+  const listText=list.map((d,i)=>`${i} (${d[0]},${d[1]}) ${d[2]}`).join(', ');assert(text.includes(listText),'delivery list equals the lesson');checks++;
+  assert(text.includes('센터는 (5,5)에 있고 A를 1개, B를 2개 가집니다'));checks++;
+  // Independent ring walk on random instances.
+  for(let test=0;test<120;test++){
+    const side=16,cell=[1,2,4,8][test%4],count=3+random()%14,types=['A','B','C'];
+    const deliveries=Array.from({length:count},()=>[random()%side,random()%side,types[random()%3]]),stock0={A:random()%3,B:random()%3,C:random()%2};
+    const example={side,cell,center:[random()%side,random()%side],stock:stock0,deliveries,picks:Math.min(4,count)};
+    for(const earlyMode of [false,true]){
+      const trace=M.bucketSearchTrace(example,earlyMode),alive=new Set(deliveries.map((_,i)=>i)),stock={...stock0};let at=[...example.center];
+      for(const h of trace.at(-1).history){
+        const truth=brute(alive,stock,at,deliveries);equal(h.min,truth,'reported minimum equals brute force');
+        if(!earlyMode)equal(h.dist,truth,'exact ring search equals exhaustive search');
+        equal(h.dist,Math.abs(deliveries[h.id][0]-at[0])+Math.abs(deliveries[h.id][1]-at[1]),'distance is Manhattan');
+        const scans=trace.filter(s=>s.pick===h.pick&&s.phase==='scan'),last=scans.at(-1);
+        const gy=Math.floor(at[0]/cell),gx=Math.floor(at[1]/cell),ringMax=last.ring;
+        let inspected=0;for(const i of alive){const cy=Math.floor(deliveries[i][0]/cell),cx=Math.floor(deliveries[i][1]/cell);if(Math.max(Math.abs(cy-gy),Math.abs(cx-gx))<=ringMax)inspected++;}
+        equal(h.inspected,inspected,'inspected count equals items in the viewed rings');equal(h.remaining,alive.size);
+        alive.delete(h.id);stock[h.type]--;at=[deliveries[h.id][0],deliveries[h.id][1]];checks++;
+      }
+    }
+  }
+  // The early-cut variant is wrong on at least one random instance, and the exact one never is.
+  let wrong=0;for(let test=0;test<200;test++){const example={side:16,cell:4,center:[random()%16,random()%16],stock:{A:1,B:2},deliveries:Array.from({length:12},()=>[random()%16,random()%16,['A','B','C'][random()%3]]),picks:3};if(M.bucketSearchTrace(example,true).at(-1).history.some(h=>!h.correct))wrong++;assert(M.bucketSearchTrace(example,false).at(-1).history.every(h=>h.correct));}
+  assert(wrong>0,'early cut is detected as wrong');checks+=2;
+}
+// boundary-delta: quadratic pair sums, differential formula and the score formula.
+{
+  const text=lessonText('reading-the-score'),ex=M.bdExample;
+  const pairSum=ps=>{let e=0;for(let i=0;i<ps.length;i++)for(let j=i+1;j<ps.length;j++)e+=Math.abs(ps[i][1]-ps[j][1])+Math.abs(ps[i][2]-ps[j][2]);return e;};
+  const score=(e0,e,used,limit)=>Math.floor(1000000*Math.pow(Math.max(0,e0-e)/e0,2))+Math.floor((limit-used)/100);
+  equal(pairSum(ex.particles),42,'E0 by pairs');
+  const trace=M.boundaryDeltaTrace(ex,ex.calls);
+  equal(trace.map(s=>s.entropy),[42,40,40,38,38],'42 -> 40 -> 38 with a failed call between');
+  equal(trace.map(s=>s.boundSum),trace.map(s=>s.entropy),'boundary sum equals pair sum');
+  equal(trace.map(s=>s.used),[0,1,2,3,3]);equal(trace.at(-1).score.ratioPart+trace.at(-1).score.bonus,score(42,38,3,800));equal(score(42,38,3,800),9077);
+  equal(trace[1].call.formula,-2);equal(trace[1].call.full,-2);equal(trace[3].call.formula,-2);equal(trace[3].call.full,-2);equal(trace[2].call.ok,false);
+  equal([trace[1].call.before.value,trace[1].call.after.value],[6,4]);equal([trace[3].call.before.value,trace[3].call.after.value],[6,4]);
+  const ps=ex.particles.map(p=>`${p[0]}(${p[1]},${p[2]})`).join(' ');assert(text.includes(`입자 5개 \`${ps}\``),'lesson particles equal the demo');checks++;
+  const colText=trace[0].bounds.col.map(b=>`${b.left}×${b.right}`).join(', '),rowText=trace[0].bounds.row.map(b=>`${b.left}×${b.right}`).join(', ');
+  assert(text.includes(`열 경계는 각각 ${colText}로 합 ${trace[0].colSum}, 행 경계는 ${rowText}로 합 ${trace[0].rowSum}`),'boundary split equals the lesson figure text');checks++;
+  assert(text.includes('42 → 40')&&text.includes('40 → 38')&&text.includes('**9077**')&&text.includes('한도는 `4 × 5 × 40 = 800`'));checks++;
+  // Random grids, random (including illegal) calls, compared against an independent quadratic recomputation.
+  for(let test=0;test<120;test++){
+    const H=2+random()%5,W=2+random()%5,all=[];for(let y=0;y<H;y++)for(let x=0;x<W;x++)all.push([y,x]);
+    for(let i=all.length-1;i>0;i--){const j=random()%(i+1);[all[i],all[j]]=[all[j],all[i]];}
+    const count=2+random()%Math.max(1,Math.min(6,H*W-1)),particles=all.slice(0,count).map((p,i)=>['ABCDEFGH'[i],p[0],p[1]]),limit=H*W*40;
+    const calls=Array.from({length:8},()=>[particles[random()%count][0],random()%4]);
+    const result=M.boundaryDeltaTrace({H,W,limit,particles},calls),dy=[-1,0,1,0],dx=[0,1,0,-1];
+    let cur=particles.map(p=>[...p]),used=0;const e0=pairSum(cur);
+    calls.forEach(([name,dir],i)=>{
+      const p=cur.find(q=>q[0]===name),ny=p[1]+dy[dir],nx=p[2]+dx[dir];used++;
+      const legal=ny>=0&&ny<H&&nx>=0&&nx<W&&!cur.some(q=>q[1]===ny&&q[2]===nx),before=pairSum(cur);
+      if(legal)p.splice(1,2,ny,nx);
+      const s=result[i+1];equal(s.call.ok,legal,'legal move');equal(s.entropy,pairSum(cur),'entropy after call');equal(s.boundSum,s.entropy,'boundary sum');equal(s.used,used);
+      equal(s.particles,cur,'particle positions');
+      if(legal){equal(s.call.formula,pairSum(cur)-before,'differential formula equals full recomputation');equal(s.call.full,pairSum(cur)-before);}
+      equal(s.score.ratioPart+s.score.bonus,score(e0,pairSum(cur),used,limit),'score formula');checks++;
+    });
+  }
+}
+// mirror-policy: BFS distance by relaxation, path gain by layered dynamic programming, brute-force targets.
+{
+  const text=lessonText('observe-and-act'),ex=M.mpExample,N=M.mpN;
+  const valueMap=cellsList=>{const v={};cellsList.forEach(([y,x,val])=>{v[y*N+x]=val;});return v;};
+  const independent=(value,seen,at,left)=>{
+    const dist=Array.from({length:N},()=>Array(N).fill(Infinity));dist[at[0]][at[1]]=0;
+    for(let pass=0;pass<N*2;pass++)for(let y=0;y<N;y++)for(let x=0;x<N;x++)for(const[dy,dx]of[[1,0],[-1,0],[0,1],[0,-1]]){const yy=y+dy,xx=x+dx;if(yy>=0&&yy<N&&xx>=0&&xx<N)dist[y][x]=Math.min(dist[y][x],dist[yy][xx]+1);}
+    const gain=Array.from({length:N},()=>Array(N).fill(-Infinity));gain[at[0]][at[1]]=0;
+    const order=[];for(let y=0;y<N;y++)for(let x=0;x<N;x++)if(dist[y][x]>0&&dist[y][x]<=left)order.push([y,x]);order.sort((a,b)=>dist[a[0]][a[1]]-dist[b[0]][b[1]]);
+    for(const[y,x]of order){let g=-Infinity;for(const[dy,dx]of[[1,0],[-1,0],[0,1],[0,-1]]){const yy=y-dy,xx=x-dx;if(yy>=0&&yy<N&&xx>=0&&xx<N&&dist[yy][xx]===dist[y][x]-1)g=Math.max(g,gain[yy][xx]);}gain[y][x]=g+(seen.has(y*N+x)?0:(value[y*N+x]||0));}
+    return {dist,gain};
+  };
+  const aroundOf=(value,seen,ty,tx)=>{let s=0;for(let y=0;y<N;y++)for(let x=0;x<N;x++){const d=Math.abs(y-ty)+Math.abs(x-tx);if(d>=1&&d<=3&&!seen.has(y*N+x))s+=value[y*N+x]||0;}return s;};
+  const verify=(cellsList,start,budget,weight)=>{
+    const value=valueMap(cellsList);
+    [1,2].forEach(policy=>{
+      const run=M.mpRun({start,cells:cellsList},policy,budget,weight);
+      run.forEach(tick=>{
+        if(!tick.pick)return;
+        const seen=new Set(tick.seen),ind=independent(value,seen,tick.at,tick.left),wanted=[];
+        for(let y=0;y<N;y++)for(let x=0;x<N;x++){if(ind.dist[y][x]>0&&ind.dist[y][x]<=tick.left&&!seen.has(y*N+x)&&value[y*N+x]>0)wanted.push({y,x,d:ind.dist[y][x],g:ind.gain[y][x],h:aroundOf(value,seen,y,x),key:(ind.gain[y][x]+weight*aroundOf(value,seen,y,x))/(ind.dist[y][x]+1)});}
+        equal(tick.pick.candidates.length,wanted.length,'candidate count');
+        for(const c of tick.pick.candidates){const w=wanted.find(q=>q.y===c.y&&q.x===c.x);assert(w,'candidate exists');equal([c.d,c.g,c.h],[w.d,w.g,w.h],'d, g, h vs independent');assert(Math.abs(c.key-w.key)<1e-9);checks++;}
+        let target=null;for(const w of wanted){if(target===null||(policy===1?(w.d<target.d||(w.d===target.d&&w.g>target.g)):w.key>target.key))target=w;}
+        equal(tick.pick.target,[target.y,target.x],`policy ${policy} target vs brute-force choice`);
+      });
+      let score=0;const seenWalk=new Set([start[0]*N+start[1]]);run.slice(1).forEach(t=>{const k=t.at[0]*N+t.at[1];if(!seenWalk.has(k))score+=value[k]||0;seenWalk.add(k);equal(t.score,score,'running score');});
+      equal(run.at(-1).left+run.length-1,budget,'moves used + left = budget');
+    });
+  };
+  verify(ex.cells,ex.start,6,0.1);
+  for(const budget of [3,6,9])for(const weight of [0,0.1,1])verify(ex.cells,ex.start,budget,weight);
+  for(let test=0;test<40;test++){const cellsList=Array.from({length:3+random()%6},()=>[random()%8,random()%8,1+random()%30]).filter((c,i,a)=>a.findIndex(d=>d[0]===c[0]&&d[1]===c[1])===i);verify(cellsList,[random()%8,random()%8],4+random()%8,[0,0.1,1][random()%3]);}
+  const trace=M.mirrorPolicyTrace(ex,6,0.1),first=trace[0].policies;
+  const table=first[1].pick.candidates.map(c=>`| (${c.y},${c.x}) | ${c.d} | ${c.g} | ${c.h} | ${M.fmtKey(c.key)} |`);
+  for(const row of table)assert(text.includes(row),'lesson key table row '+row);checks+=table.length;
+  equal(first[1].pick.target,[2,6]);equal(first[0].pick.target,[2,2]);
+  const targets=policy=>M.mpRun(ex,policy,6,0.1).filter(t=>t.pick).map(t=>`(${t.pick.target[0]},${t.pick.target[1]})`).join(', ');
+  equal([targets(1),targets(2)],['(2,2), (1,1), (0,0)','(2,6)']);
+  const last=trace.at(-1).policies;equal([last[0].score,last[1].score],[7,100]);equal([6-last[0].left,6-last[1].left],[5,3]);
+  assert(text.includes('| 1 | (2,2), (1,1), (0,0) | 5 | 7 |')&&text.includes('| 2 | (2,6) | 3 | 100 |'),'lesson summary table');checks++;
+  assert(text.includes('시작은 `(2,3)`이고 남은 이동은 6번')&&text.includes('(100 + 0.1 × 40) / (3 + 1) = 26.0'));checks++;
+  const gridRows=['| 0 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |','| 1 | 0 | 3 | 0 | 0 | 0 | 0 | 0 |','| 2 | 0 | 0 | 2 | S | 0 | 40 | 60 |'];for(const r of gridRows)assert(text.includes(r));checks+=3;
+  equal(ex.cells.map(c=>c[2]).sort((a,b)=>a-b),[2,2,3,40,60],'map values equal the lesson grid');
+  assert(trace.some(s=>s.policies[0].seen.length>1)&&trace.at(-1).policies[0].seen.length===6&&trace.at(-1).policies[1].seen.length===4,'seen grows with each visit');checks++;
+}
 // Static entry must stay usable in opaque-origin sandbox: classic local assets only.
 const entry=fs.readFileSync(path.join(__dirname,'../demos/index.html'),'utf8');
 assert(!entry.includes('type="module"'));assert(!/https?:\/\//.test(entry));
@@ -169,7 +351,7 @@ for(const asset of ['models.js','app.js','styles.css'])assert(entry.includes(ass
 checks+=5;
 // Every published demo link must point to a reviewed, runnable entry.
 const root=path.resolve(__dirname,'..'),manifest=JSON.parse(fs.readFileSync(path.join(root,'lessons.json'),'utf8'));
-const demoIds=new Set(['binary-search','bfs','dijkstra','prefix-sum','two-opt','annealing','nearest-neighbor','beam-search','destroy-repair','paired-compare','union-find','segment-tree']),linked=new Set();
+const demoIds=new Set(['binary-search','bfs','dijkstra','prefix-sum','two-opt','annealing','nearest-neighbor','beam-search','destroy-repair','paired-compare','union-find','segment-tree','assignment-moves','route-insertion','bucket-search','boundary-delta','mirror-policy']),linked=new Set();
 for(const lesson of manifest.lessons){
   for(const file of ['lesson.md',...(lesson.pages||[]).map(page=>page.file)]){
     const body=fs.readFileSync(path.join(root,'lessons',lesson.lessonId,file),'utf8');
@@ -181,4 +363,4 @@ for(const lesson of manifest.lessons){
   }
 }
 equal([...linked].sort(),[...demoIds].sort(),'all reviewed demos have a lesson entry point');
-console.log(`PASS ${checks} checks: lower_bound, BFS, Dijkstra, prefix sums, open-path 2-opt, annealing, nearest neighbor, beam search, destroy/repair, paired comparison, union-find, segment tree, sandbox entry.`);
+console.log(`PASS ${checks} checks: lower_bound, BFS, Dijkstra, prefix sums, open-path 2-opt, annealing, nearest neighbor, beam search, destroy/repair, paired comparison, union-find, segment tree, assignment moves, route insertion, bucket search, boundary delta, mirror policy, sandbox entry.`);
