@@ -22,7 +22,7 @@ Dynamic Segment Tree는 좌표 범위가 매우 크지만 실제로 접근하는
 
 점 하나의 갱신에서는 그 점으로 내려가는 경로만 만듭니다. 그림은 초기값이 0이고 기존 lazy가 없는 경우입니다. 구간 갱신 뒤 lazy를 내리는 질의에서는 양쪽 자식이 새로 생길 수 있습니다.
 
-일반 Segment Tree는 `4N` 배열을 잡지만, Dynamic Segment Tree는 node pool을 두고 child index를 필요할 때 만듭니다.
+일반 Segment Tree는 `4N` 배열을 잡지만, Dynamic Segment Tree는 node pool을 두고 child index를 필요할 때 만듭니다. h-contest 제출 코드에서는 이 pool을 고정 크기 배열과 사용한 개수(`used`)로 두고, 새 node가 필요하면 `pool[used]`를 꺼내 `used`를 하나 늘립니다. 인덱스 0은 "자식 없음"을 뜻하는 빈 node입니다.
 
 ```text
 node {
@@ -39,62 +39,73 @@ node {
 
 아래 구현은 모든 원소의 초기값이 0인 구간에 덧셈과 합 질의를 처리합니다. 생성하지 않은 자식의 합도 0으로 봅니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 크기 node pool로 구현하므로 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록이 없습니다.
 
-```cpp compile-check
-#include <vector>
-using namespace std;
+pool 크기는 `MAX_NODES = 2 + MAX_OPS × 4 × MAX_HEIGHT`로 잡습니다. `MAX_OPS`는 `add`와 `sum` 호출 수의 합(이 사이트 연습은 `Q <= 20000`), `MAX_HEIGHT`는 루트 길이 `C`에 대해 `2^MAX_HEIGHT >= C`인 값(`C = 10^12`이면 40)이며, 둘 다 문제의 제한에 맞춰 바꿉니다. 호출 하나는 높이마다 일부만 겹치는 node를 최대 2개 거치고, 각각이 자식 둘을 새로 만들 수 있기 때문에 새 node는 많아야 `4 × 높이`개입니다. 앞의 2는 빈 node 0번과 루트입니다.
+
+`pool`은 정적 배열이라 이전 TC의 값이 남습니다. 큰 `DynamicSegmentTree`는 전역으로 선언하고, TC가 시작될 때마다 `init(left, right)`를 부릅니다. `init`은 `used = 2`로 되돌리고 루트만 비우며, `newNode`가 꺼내는 node는 그때마다 0으로 채워서 지난 TC가 쓴 칸이 남아도 읽히지 않습니다. 이 상수로 `pool`은 약 320만 칸(칸당 24바이트, 약 77MB)이 되며, 메모리 제한이 작으면 연산 수와 높이를 실제 제한에 맞춰 줄입니다.
+
+```cpp
+const int MAX_OPS = 20000;   // add와 sum 호출 수의 합 상한
+const int MAX_HEIGHT = 40;   // 2^MAX_HEIGHT >= 루트 구간의 길이
+const int MAX_NODES = 2 + MAX_OPS * 4 * MAX_HEIGHT;
+
+struct Node {
+    int leftChild;
+    int rightChild;
+    long long sum;
+    long long lazy;
+};
 
 struct DynamicSegmentTree {
-    struct Node {
-        int leftChild = 0;
-        int rightChild = 0;
-        long long sum = 0;
-        long long lazy = 0;
-    };
-
-    vector<Node> tree;
+    Node pool[MAX_NODES];
+    int used; // 지금까지 꺼낸 node 수(0번과 루트 포함)
     long long rootLeft;
     long long rootRight;
 
-    DynamicSegmentTree(long long left, long long right) : rootLeft(left), rootRight(right) {
-        tree.push_back(Node());
-        tree.push_back(Node());
+    bool init(long long left, long long right) { // left < right가 아니면 false
+        if (left >= right) return false;
+        rootLeft = left;
+        rootRight = right;
+        used = 2;
+        pool[0] = Node{0, 0, 0, 0};
+        pool[1] = Node{0, 0, 0, 0};
+        return true;
     }
 
     int newNode() {
-        tree.push_back(Node());
-        return (int)tree.size() - 1;
+        pool[used] = Node{0, 0, 0, 0};
+        return used++;
     }
 
     void apply(int node, long long left, long long right, long long value) {
-        tree[node].sum += (right - left) * value;
-        tree[node].lazy += value;
+        pool[node].sum += (right - left) * value;
+        pool[node].lazy += value;
     }
 
     void push(int node, long long left, long long right) {
-        if (tree[node].lazy == 0 || right - left <= 1) {
+        if (pool[node].lazy == 0 || right - left <= 1) {
             return;
         }
         long long mid = left + (right - left) / 2;
-        if (tree[node].leftChild == 0) {
-            tree[node].leftChild = newNode();
+        if (pool[node].leftChild == 0) {
+            pool[node].leftChild = newNode();
         }
-        if (tree[node].rightChild == 0) {
-            tree[node].rightChild = newNode();
+        if (pool[node].rightChild == 0) {
+            pool[node].rightChild = newNode();
         }
-        long long value = tree[node].lazy;
-        apply(tree[node].leftChild, left, mid, value);
-        apply(tree[node].rightChild, mid, right, value);
-        tree[node].lazy = 0;
+        long long value = pool[node].lazy;
+        apply(pool[node].leftChild, left, mid, value);
+        apply(pool[node].rightChild, mid, right, value);
+        pool[node].lazy = 0;
     }
 
     long long childSum(int child) const {
-        return child == 0 ? 0 : tree[child].sum;
+        return child == 0 ? 0 : pool[child].sum;
     }
 
     void pull(int node) {
-        tree[node].sum = childSum(tree[node].leftChild) + childSum(tree[node].rightChild);
+        pool[node].sum = childSum(pool[node].leftChild) + childSum(pool[node].rightChild);
     }
 
     void rangeAdd(int node, long long left, long long right, long long ql, long long qr, long long value) {
@@ -108,16 +119,16 @@ struct DynamicSegmentTree {
         push(node, left, right);
         long long mid = left + (right - left) / 2;
         if (ql < mid) {
-            if (tree[node].leftChild == 0) {
-                tree[node].leftChild = newNode();
+            if (pool[node].leftChild == 0) {
+                pool[node].leftChild = newNode();
             }
-            rangeAdd(tree[node].leftChild, left, mid, ql, qr, value);
+            rangeAdd(pool[node].leftChild, left, mid, ql, qr, value);
         }
         if (mid < qr) {
-            if (tree[node].rightChild == 0) {
-                tree[node].rightChild = newNode();
+            if (pool[node].rightChild == 0) {
+                pool[node].rightChild = newNode();
             }
-            rangeAdd(tree[node].rightChild, mid, right, ql, qr, value);
+            rangeAdd(pool[node].rightChild, mid, right, ql, qr, value);
         }
         pull(node);
     }
@@ -127,12 +138,12 @@ struct DynamicSegmentTree {
             return 0;
         }
         if (ql <= left && right <= qr) {
-            return tree[node].sum;
+            return pool[node].sum;
         }
         push(node, left, right);
         long long mid = left + (right - left) / 2;
-        return rangeSum(tree[node].leftChild, left, mid, ql, qr)
-             + rangeSum(tree[node].rightChild, mid, right, ql, qr);
+        return rangeSum(pool[node].leftChild, left, mid, ql, qr)
+             + rangeSum(pool[node].rightChild, mid, right, ql, qr);
     }
 
     void add(long long left, long long right, long long value) {
@@ -143,6 +154,8 @@ struct DynamicSegmentTree {
         return rangeSum(1, rootLeft, rootRight, left, right);
     }
 };
+
+DynamicSegmentTree dynamicTree;
 ```
 
 루트 범위는 문제 조건보다 한 칸 넓은 half-open 범위로 잡습니다. 예를 들어 좌표가 `0 <= x <= 1e9`이면 `[0, 1000000001)`처럼 둡니다.
@@ -167,7 +180,7 @@ struct DynamicSegmentTree {
 node count = O(number_of_operations * log coordinate_range)
 ```
 
-좌표 범위가 `2^60`이어도 깊이는 60입니다. 위 구현은 질의에서도 `push`가 자식을 만들 수 있으므로, 메모리를 계산할 때 업데이트와 질의 수를 모두 포함합니다.
+좌표 범위가 `2^60`이어도 깊이는 60입니다. 위 구현은 질의에서도 `push`가 자식을 만들 수 있으므로, 메모리를 계산할 때 업데이트와 질의 수를 모두 포함합니다. 고정 pool에서는 이 계산이 곧 배열 크기이므로 `MAX_NODES = 2 + (add와 sum 호출 수) × 4 × 높이`로 정하고, 호출 수나 좌표 범위가 늘면 함께 키웁니다.
 
 ## 시간 복잡도
 

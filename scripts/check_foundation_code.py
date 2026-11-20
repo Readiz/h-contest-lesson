@@ -43,6 +43,7 @@ LESSONS = {
     "fenwick-tree": [],
     "segment-tree": [],
     "sqrt-decomposition": [],
+    "dynamic-segment-tree": [],
 }
 NO_LOCAL_EXERCISE = {"union-find", "segment-tree", "sqrt-decomposition"}  # this lesson has no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))
