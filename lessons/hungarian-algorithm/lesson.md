@@ -174,7 +174,7 @@ A-X = 2, A-Z = 2, B-X = 1, B-Z = 5
 
 아래 코드는 `vector`, `pair`, 동적 할당 없이 고정 최대 크기 배열만 사용합니다. `HUNGARIAN_MAX_N`, `HUNGARIAN_MAX_M`은 문제 제한에 맞게 조정합니다. `n <= m`이어야 하고, 반환되는 `assignment[i]`는 row `i`가 배정된 0-indexed column입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열만 쓰며, 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록은 없습니다. 비용 행렬과 `assignment`는 호출자가 준비한 배열을 받고, 작업 배열은 이 코드의 전역 배열입니다.
 
 ```cpp compile-check
 #define HUNGARIAN_MAX_N 1000
@@ -282,7 +282,7 @@ long long hungarian_min_cost(
 
 예제는 유한 비용의 절댓값이 `10^12` 이하인 입력을 전제로 합니다. `N,M <= 1000`에서 potential과 slack 계산에 충분한 여유를 둡니다. `HUNGARIAN_INF`는 가능한 비용 합보다 커야 하며, `cost - u - v`도 `long long` 범위 안에 있어야 합니다. 금지된 배정을 큰 비용으로 표시했다면 반환된 `assignment`에 그 배정이 포함됐는지 별도로 검사합니다.
 
-작은 `N <= 8`에서는 모든 순열의 비용과 비교할 수 있습니다. 최적 배정이 여러 개일 수 있으므로 배열 자체 대신 총 비용과 column 중복 여부를 비교합니다. 이 구현의 작업 배열은 static이어서 동시에 호출할 수 없습니다.
+작은 `N <= 8`에서는 모든 순열의 비용과 비교할 수 있습니다. 최적 배정이 여러 개일 수 있으므로 배열 자체 대신 총 비용과 column 중복 여부를 비교합니다. 이 구현의 작업 배열은 static이어서 동시에 호출할 수 없습니다. 작업 배열은 호출마다 `n`, `m` 범위를 다시 0으로 채우므로 크기가 다른 테스트 케이스를 이어서 불러도 이전 값이 남지 않습니다.
 
 ## 시간 복잡도
 
