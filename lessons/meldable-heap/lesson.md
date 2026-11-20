@@ -55,38 +55,49 @@ b를 a의 한쪽 subtree와 다시 merge
 
 더 작은 2를 루트로 남깁니다. `merge(6,5)`의 결과는 5의 왼쪽에 6이 붙은 힙이고, 마지막에 2의 좌우 자식을 바꾸어 그림의 구조를 얻습니다.
 
-각 컴포넌트의 후보를 최소 힙에 넣고, 컴포넌트가 합쳐질 때 두 힙도 합칩니다. 모든 힙이 같은 `pool`을 공유하며 `-1`을 빈 자식으로 씁니다.
+각 컴포넌트의 후보를 최소 힙에 넣고, 컴포넌트가 합쳐질 때 두 힙도 합칩니다. 모든 힙이 같은 `pool` 배열을 공유합니다. 노드 번호는 `1`부터 쓰고 `0`을 빈 자식(빈 힙)으로 씁니다.
 
 `merge`는 더 작은 루트를 위에 두고 오른쪽 자식과 나머지 힙을 합친 뒤 두 자식을 바꿉니다. `push`는 원소 하나짜리 힙과의 병합, `pop`은 루트의 두 자식 사이의 병합입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `array` 블록(`hc::swap`)을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 고정 배열로 구현합니다.
+
+`MAX_N`(정점 수)과 `MAX_NODES`(한 TC의 총 삽입 횟수)는 이 사이트 연습의 입력 상한이며, 실제 문제에서는 제한에 맞춰 바꿉니다. 배열은 이전 TC의 값이 남으므로 큰 `ComponentHeapDSU`는 전역으로 선언하고, TC가 시작될 때마다 `init(n)`으로 사용할 `[0, n)`과 `poolSize`를 초기화합니다. 노드 풀은 `poolSize = 0`으로 되돌리면 비워지며, 이전 노드의 값은 `newNode`가 덮어씁니다.
 
 ```cpp
-#include <algorithm>
-#include <vector>
-using namespace std;
+const int MAX_N = 200000;     // 정점 수 상한
+const int MAX_NODES = 200000; // 한 TC의 총 push 횟수 상한
 
 struct ComponentHeapDSU {
     struct Node {
         int key;
         int left;
         int right;
-
-        Node(int key) : key(key), left(-1), right(-1) {}
     };
 
-    vector<int> parent;
-    vector<int> size;
-    vector<int> heap;
-    vector<Node> pool;
+    int parent[MAX_N];
+    int size[MAX_N];
+    int heap[MAX_N];         // 대표 정점 -> 힙 루트, 0이면 빈 힙
+    Node pool[MAX_NODES + 1]; // 0번은 쓰지 않는다
+    int poolSize;
 
-    ComponentHeapDSU(int n) : parent(n), size(n, 1), heap(n, -1) {
-        for (int i = 0; i < n; i++) parent[i] = i;
+    bool init(int n) { // 0 <= n <= MAX_N이 아니면 false
+        if (n < 0 || n > MAX_N) return false;
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+            size[i] = 1;
+            heap[i] = 0;
+        }
+        poolSize = 0;
+        return true;
     }
 
-    int newNode(int key) {
-        pool.push_back(Node(key));
-        return (int)pool.size() - 1;
+    int newNode(int key) { // pool이 가득 차면 0
+        if (poolSize >= MAX_NODES) return 0;
+        poolSize++;
+        pool[poolSize].key = key;
+        pool[poolSize].left = 0;
+        pool[poolSize].right = 0;
+        return poolSize;
     }
 
     int find(int x) {
@@ -95,18 +106,21 @@ struct ComponentHeapDSU {
     }
 
     int merge(int a, int b) {
-        if (a == -1) return b;
-        if (b == -1) return a;
-        if (pool[a].key > pool[b].key) swap(a, b);
+        if (a == 0) return b;
+        if (b == 0) return a;
+        if (pool[a].key > pool[b].key) hc::swap(a, b);
 
         pool[a].right = merge(pool[a].right, b);
-        swap(pool[a].left, pool[a].right);
+        hc::swap(pool[a].left, pool[a].right);
         return a;
     }
 
-    void push(int x, int key) {
+    bool push(int x, int key) { // pool이 가득 차면 false
+        int node = newNode(key);
+        if (node == 0) return false;
         int r = find(x);
-        heap[r] = merge(heap[r], newNode(key));
+        heap[r] = merge(heap[r], node);
+        return true;
     }
 
     void unite(int a, int b) {
@@ -114,15 +128,15 @@ struct ComponentHeapDSU {
         int rb = find(b);
         if (ra == rb) return;
 
-        if (size[ra] < size[rb]) swap(ra, rb);
+        if (size[ra] < size[rb]) hc::swap(ra, rb);
         parent[rb] = ra;
         size[ra] += size[rb];
         heap[ra] = merge(heap[ra], heap[rb]);
-        heap[rb] = -1;
+        heap[rb] = 0;
     }
 
     bool empty(int x) {
-        return heap[find(x)] == -1;
+        return heap[find(x)] == 0;
     }
 
     int top(int x) {
@@ -139,7 +153,7 @@ struct ComponentHeapDSU {
 
 예를 들어 그룹 0에 7과 2, 그룹 1에 5를 넣고 합치면 어느 그룹 번호로 조회해도 최솟값은 2입니다. 한 번 꺼내면 다음 값은 5입니다. 이미 같은 컴포넌트를 합칠 때는 힙도 다시 합치지 않아야 합니다.
 
-`top`, `pop` 전에는 `empty`를 확인합니다. 꺼낸 노드는 pool에 남으므로 메모리는 현재 원소 수가 아니라 **총 삽입 횟수**에 비례합니다. 합칠 두 힙은 같은 pool을 사용하되 노드를 공유하면 안 됩니다. 최대 힙이 필요하면 루트의 대소 비교를 뒤집습니다.
+`top`, `pop` 전에는 `empty`를 확인합니다. 꺼낸 노드는 pool에 남으므로 필요한 칸 수는 현재 원소 수가 아니라 **총 삽입 횟수**이고, 이를 `MAX_NODES` 이상으로 잡아야 합니다. 가득 차면 `push`가 `false`를 돌려줍니다. 합칠 두 힙은 같은 pool을 사용하되 노드를 공유하면 안 됩니다. 최대 힙이 필요하면 루트의 대소 비교를 뒤집습니다.
 
 ## 한 번의 병합 시간도 제한해야 한다면
 
