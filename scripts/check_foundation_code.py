@@ -41,6 +41,7 @@ LESSONS = {
     "coordinate-compression": ["sort"],
     "zero-one-bfs": [],
     "meldable-heap": ["array"],
+    "treap": ["random"],
 }
 NO_LOCAL_EXERCISE = {"union-find"}  # this lesson has no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))

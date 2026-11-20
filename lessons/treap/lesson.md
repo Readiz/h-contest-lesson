@@ -32,47 +32,68 @@ BST를 왼쪽 자식, 현재 노드, 오른쪽 자식 순으로 방문하면 key
 
 순위 질의와 k번째 원소를 처리하려면 각 subtree 크기를 저장합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `random` 블록(`hc::Random`)을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 고정 크기 풀 배열로 구현합니다.
+
+포인터 대신 `pool` 배열의 번호를 씁니다. 노드 번호는 `1`부터 쓰고 `0`은 빈 트리(없는 자식)입니다. `MAX_NODES`는 한 TC에서 만드는 노드 수의 상한이며, 이 사이트 연습의 입력 상한입니다. 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 `pool`은 전역으로 두고, TC가 시작될 때마다 `initTreap(seed)`로 `poolSize`를 `0`으로 되돌리고 난수 seed를 다시 정합니다. 이전 TC의 노드 값은 `newNode`가 덮어쓰므로 `pool`을 따로 지울 필요는 없습니다.
 
 ```cpp
+const int MAX_NODES = 200000; // 한 TC에서 만드는 노드 수 상한
+
 struct Node {
     int key;
     unsigned priority;
     int size;
-    Node* left;
-    Node* right;
-
-    Node(int key, unsigned priority)
-        : key(key), priority(priority), size(1), left(nullptr), right(nullptr) {}
+    int left;
+    int right;
 };
 
-int getSize(Node* node) {
-    return node ? node->size : 0;
+Node pool[MAX_NODES + 1]; // 0번은 쓰지 않는다(빈 트리)
+int poolSize;
+hc::Random rng;
+
+void initTreap(unsigned seed) {
+    poolSize = 0;
+    rng.reset(seed);
 }
 
-void pull(Node* node) {
+int newNode(int key) { // pool이 가득 차면 0
+    if (poolSize >= MAX_NODES) return 0;
+    poolSize++;
+    pool[poolSize].key = key;
+    pool[poolSize].priority = rng.next();
+    pool[poolSize].size = 1;
+    pool[poolSize].left = 0;
+    pool[poolSize].right = 0;
+    return poolSize;
+}
+
+int getSize(int node) {
+    return node ? pool[node].size : 0;
+}
+
+void pull(int node) {
     if (!node) return;
-    node->size = 1 + getSize(node->left) + getSize(node->right);
+    pool[node].size = 1 + getSize(pool[node].left) + getSize(pool[node].right);
 }
 ```
 
-자식을 바꾼 뒤에는 항상 `pull(node)`로 `size`를 다시 계산합니다.
+`priority`는 입력 key와 독립적으로 `rng.next()`가 뽑습니다. seed를 고정하면 같은 입력에서 같은 트리가 만들어집니다. 자식을 바꾼 뒤에는 항상 `pull(node)`로 `size`를 다시 계산합니다.
 
 ## Treap merge
 
 `merge(a, b)`는 두 Treap을 하나로 합칩니다. 단, `a`의 모든 key가 `b`의 모든 key보다 작아야 합니다.
 
 ```cpp
-Node* merge(Node* a, Node* b) {
+int merge(int a, int b) {
     if (!a) return b;
     if (!b) return a;
 
-    if (a->priority > b->priority) {
-        a->right = merge(a->right, b);
+    if (pool[a].priority > pool[b].priority) {
+        pool[a].right = merge(pool[a].right, b);
         pull(a);
         return a;
     } else {
-        b->left = merge(a, b->left);
+        pool[b].left = merge(a, pool[b].left);
         pull(b);
         return b;
     }
@@ -97,58 +118,56 @@ b: key 이상인 원소들
 ```
 
 ```cpp
-void split(Node* root, int key, Node*& a, Node*& b) {
+void split(int root, int key, int& a, int& b) {
     if (!root) {
-        a = nullptr;
-        b = nullptr;
+        a = 0;
+        b = 0;
         return;
     }
 
-    if (root->key < key) {
-        split(root->right, key, root->right, b);
+    if (pool[root].key < key) {
+        split(pool[root].right, key, pool[root].right, b);
         a = root;
         pull(a);
     } else {
-        split(root->left, key, a, root->left);
+        split(pool[root].left, key, a, pool[root].left);
         b = root;
         pull(b);
     }
 }
 ```
 
-`root->key < key`이면 root와 왼쪽 subtree는 전부 `a` 쪽에 남을 수 있습니다. 오른쪽 subtree에는 작은 값과 큰 값이 섞여 있을 수 있으므로 오른쪽만 다시 나눕니다.
+`pool[root].key < key`이면 root와 왼쪽 subtree는 전부 `a` 쪽에 남을 수 있습니다. 오른쪽 subtree에는 작은 값과 큰 값이 섞여 있을 수 있으므로 오른쪽만 다시 나눕니다.
 
 ## Treap 삽입과 삭제
 
-삽입은 split 후 가운데에 새 노드를 끼우고 다시 merge합니다. `node`는 `new Node(key, priority)`로 만든 독립 노드이며, 삭제가 `delete`를 사용하므로 배열 pool의 주소를 넘기지 않습니다. TC가 끝나면 남은 노드도 해제합니다.
+삽입은 split 후 가운데에 새 노드를 끼우고 다시 merge합니다. `node`는 `newNode(key)`가 돌려준 독립 노드 번호입니다.
 
 ```cpp
-Node* insert(Node* root, Node* node) {
-    Node* left = nullptr;
-    Node* right = nullptr;
-    split(root, node->key, left, right);
+int insert(int root, int node) {
+    int left = 0;
+    int right = 0;
+    split(root, pool[node].key, left, right);
     return merge(merge(left, node), right);
 }
 ```
 
-이 삽입 함수는 같은 key가 아직 없다는 전제로 호출합니다. 중복이 가능한 입력이면 key를 비교하며 트리를 탐색해 존재 여부를 먼저 확인하거나 `(value, id)`처럼 유일한 키를 사용합니다. `priority`는 입력 key와 독립적으로 뽑습니다. 난수 생성기는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)를 사용할 수 있습니다.
+이 삽입 함수는 같은 key가 아직 없다는 전제로 호출합니다. 중복이 가능한 입력이면 key를 비교하며 트리를 탐색해 존재 여부를 먼저 확인하거나 `(value, id)`처럼 유일한 키를 사용합니다. 중복 검사는 `newNode` 전에 해야 풀 칸을 낭비하지 않습니다.
 
 삭제는 찾은 노드를 제거하고, 그 노드의 왼쪽 subtree와 오른쪽 subtree를 merge합니다.
 
 ```cpp
-Node* erase(Node* root, int key) {
-    if (!root) return nullptr;
+int erase(int root, int key) {
+    if (!root) return 0;
 
-    if (root->key == key) {
-        Node* next = merge(root->left, root->right);
-        delete root;
-        return next;
+    if (pool[root].key == key) {
+        return merge(pool[root].left, pool[root].right);
     }
 
-    if (key < root->key) {
-        root->left = erase(root->left, key);
+    if (key < pool[root].key) {
+        pool[root].left = erase(pool[root].left, key);
     } else {
-        root->right = erase(root->right, key);
+        pool[root].right = erase(pool[root].right, key);
     }
 
     pull(root);
@@ -156,36 +175,36 @@ Node* erase(Node* root, int key) {
 }
 ```
 
-왼쪽 subtree의 모든 key는 삭제된 key보다 작고, 오른쪽 subtree의 모든 key는 더 큽니다. 그래서 `merge(left, right)`의 전제가 맞습니다.
+왼쪽 subtree의 모든 key는 삭제된 key보다 작고, 오른쪽 subtree의 모든 key는 더 큽니다. 그래서 `merge(left, right)`의 전제가 맞습니다. 삭제된 노드는 트리에서만 빠지고 `pool`에 남으므로 `MAX_NODES`는 현재 원소 수가 아니라 한 TC의 **총 삽입 횟수** 이상이어야 합니다.
 
 ## 순위와 k번째 원소
 
 `orderOfKey(x)`는 `x`보다 작은 원소 개수를 반환합니다.
 
 ```cpp
-int orderOfKey(Node* root, int key) {
+int orderOfKey(int root, int key) {
     if (!root) return 0;
 
-    if (key <= root->key) {
-        return orderOfKey(root->left, key);
+    if (key <= pool[root].key) {
+        return orderOfKey(pool[root].left, key);
     }
-    return getSize(root->left) + 1 + orderOfKey(root->right, key);
+    return getSize(pool[root].left) + 1 + orderOfKey(pool[root].right, key);
 }
 ```
 
 `kth(root, k)`는 0-indexed로 k번째 작은 원소를 반환합니다. 호출부에서 `0 <= k < getSize(root)`인지 확인해야 합니다.
 
 ```cpp
-int kth(Node* root, int k) {
-    int leftSize = getSize(root->left);
+int kth(int root, int k) {
+    int leftSize = getSize(pool[root].left);
 
     if (k < leftSize) {
-        return kth(root->left, k);
+        return kth(pool[root].left, k);
     }
     if (k == leftSize) {
-        return root->key;
+        return pool[root].key;
     }
-    return kth(root->right, k - leftSize - 1);
+    return kth(pool[root].right, k - leftSize - 1);
 }
 ```
 
@@ -224,7 +243,7 @@ K 2
 INVALID
 ```
 
-**확인 방법:** 중복 key는 새 노드를 만들기 전에 검사합니다. R은 왼쪽 subtree 크기를 누적하며 탐색합니다. 작은 입력은 정렬된 vector/set 기준 풀이와 대조하고 빈 트리·root 삭제·오름차순 삽입·동일 key 반복을 검사합니다.
+**확인 방법:** 중복 key는 새 노드를 만들기 전에 검사하고, 삽입 횟수가 `MAX_NODES`를 넘지 않는지 확인합니다. R은 왼쪽 subtree 크기를 누적하며 탐색합니다. 작은 입력은 정렬된 vector/set 기준 풀이와 대조하고 빈 트리·root 삭제·오름차순 삽입·동일 key 반복을 검사합니다.
 
 ## 휴리스틱 풀이에서 쓰는 곳
 
