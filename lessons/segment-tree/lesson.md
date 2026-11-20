@@ -31,7 +31,7 @@ node [l, r] = a[l] + a[l + 1] + ... + a[r]
 
 가장 설명하기 쉬운 구현은 재귀로 구간을 내려가는 top-down 방식입니다. `tree[node]`가 `[start, end]` 구간의 값을 저장한다고 합시다.
 
-`node * 2`는 왼쪽 자식, `node * 2 + 1`은 오른쪽 자식입니다. 구현을 단순하게 하기 위해 `tree` 배열 크기는 보통 `4 * n`으로 잡습니다.
+`node * 2`는 왼쪽 자식, `node * 2 + 1`은 오른쪽 자식입니다. 구현을 단순하게 하기 위해 `tree` 배열 크기는 보통 `4 * n`으로 잡고, 고정 배열에서는 `4 * MAX_N`칸을 둡니다.
 
 ## 구간 질의
 
@@ -65,23 +65,25 @@ node [l, r] = a[l] + a[l + 1] + ... + a[r]
 
 아래 구현은 비어 있지 않은 0-indexed 배열에서 구간 합과 점 업데이트를 처리합니다. 질의는 `0 <= l <= r < n`, 갱신 위치는 `0..n-1` 범위입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하므로 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록이 없습니다.
+
+원소 수 상한 `MAX_N = 200000`은 이 사이트 연습의 입력 상한이며, 실제 문제에서는 제한에 맞춰 바꿉니다. `tree`는 `4 * MAX_N`칸의 정적 배열이라 이전 TC의 값이 남습니다. 큰 `SegmentTree`는 전역으로 선언하고, TC가 시작될 때마다 `build`로 트리를 새로 만듭니다. `build`는 이번 `n`에 쓰는 노드를 모두 다시 쓰므로 따로 비울 필요가 없고, 쓰지 않는 칸은 질의가 읽지 않습니다.
 
 ```cpp
-#include <vector>
-using namespace std;
+const int MAX_N = 200000; // 원소 수 상한
 
 struct SegmentTree {
     int n;
-    vector<long long> tree;
+    long long tree[4 * MAX_N];
 
-    SegmentTree(const vector<long long>& values) {
-        n = (int)values.size();
-        tree.assign(4 * n, 0);
+    bool build(const long long values[], int size) { // 1 <= size <= MAX_N이 아니면 false
+        if (size < 1 || size > MAX_N) return false;
+        n = size;
         build(1, 0, n - 1, values);
+        return true;
     }
 
-    void build(int node, int start, int end, const vector<long long>& values) {
+    void build(int node, int start, int end, const long long values[]) {
         if (start == end) {
             tree[node] = values[start];
             return;
@@ -124,6 +126,8 @@ struct SegmentTree {
         tree[node] = tree[node * 2] + tree[node * 2 + 1];
     }
 };
+
+SegmentTree segmentTree;
 ```
 
 입력 구간이 1-indexed라면 `query(l - 1, r - 1)`처럼 바꿔 호출합니다.
@@ -192,25 +196,23 @@ Segment Tree에서 바뀌는 것은 세 가지입니다.
 
 ## Lazy 전체 구현
 
-아래 구현은 0-indexed 배열에서 구간 덧셈과 구간 합 질의를 처리합니다. 합에는 `구간 길이 × 증가량`이 누적되므로 노드 값과 lazy는 `long long`으로 저장합니다.
+아래 구현은 0-indexed 배열에서 구간 덧셈과 구간 합 질의를 처리합니다. 합에는 `구간 길이 × 증가량`이 누적되므로 노드 값과 lazy는 `long long`으로 저장합니다. 위 `SegmentTree`와 같은 파일에 두며 `MAX_N`을 함께 씁니다. `lazy`도 정적 배열이므로 `build`가 이번 트리의 노드마다 `lazy`를 0으로 다시 씁니다.
 
 ```cpp
-#include <vector>
-using namespace std;
-
 struct LazySegmentTree {
     int n;
-    vector<long long> tree;
-    vector<long long> lazy;
+    long long tree[4 * MAX_N];
+    long long lazy[4 * MAX_N];
 
-    LazySegmentTree(const vector<long long>& values) {
-        n = (int)values.size();
-        tree.assign(4 * n, 0);
-        lazy.assign(4 * n, 0);
+    bool build(const long long values[], int size) { // 1 <= size <= MAX_N이 아니면 false
+        if (size < 1 || size > MAX_N) return false;
+        n = size;
         build(1, 0, n - 1, values);
+        return true;
     }
 
-    void build(int node, int start, int end, const vector<long long>& values) {
+    void build(int node, int start, int end, const long long values[]) {
+        lazy[node] = 0;
         if (start == end) {
             tree[node] = values[start];
             return;
@@ -267,6 +269,8 @@ struct LazySegmentTree {
             + query(node * 2 + 1, mid + 1, end, left, right);
     }
 };
+
+LazySegmentTree lazyTree;
 ```
 
 ## 업데이트 순서가 달라지면
@@ -282,7 +286,7 @@ lazy propagation에서는 lazy 값끼리 어떻게 합쳐지는지도 따로 정
 
 구간 덧셈과 구간 대입이 동시에 있으면 "대입 뒤 덧셈"과 "덧셈 뒤 대입"의 순서가 결과를 바꿉니다. 이 경우 lazy 상태를 단일 숫자로 두기보다 `hasAssign`, `assignValue`, `addValue`처럼 의미를 분리해 합성 규칙을 명시하는 편이 안전합니다.
 
-빌드는 `O(n)`, 구간 덧셈과 합 질의는 `O(log n)`, 메모리는 `O(n)`입니다. 위 구현은 생성자에 전달한 비어 있지 않은 배열에서 시작합니다.
+빌드는 `O(n)`, 구간 덧셈과 합 질의는 `O(log n)`, 메모리는 `O(n)`입니다. 위 구현은 `build`에 전달한 비어 있지 않은 배열에서 시작합니다.
 
 ## 구간 갱신 실습
 

@@ -81,24 +81,30 @@ tree[i] = a[i - lowbit(i) + 1] + ... + a[i]
 
 아래 구현은 1-indexed Fenwick Tree입니다. `add`에는 `1..n`, `prefixSum`에는 `0..n`, `rangeSum`에는 `1 <= l <= r <= n`을 전달합니다. 원소별 `add`로 초기화하므로 빌드는 `O(n log n)`, 이후 갱신과 질의는 `O(log n)`입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하므로 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록이 없습니다.
+
+원소 수 상한 `MAX_N = 200000`은 이 사이트 연습의 입력 상한이며, 실제 문제에서는 제한에 맞춰 바꿉니다. `tree`는 정적 배열이라 이전 TC의 값이 남습니다. 큰 `FenwickTree`는 전역으로 선언하고, TC가 시작될 때마다 `init(n)`이나 `build`로 사용할 `[0, n]`을 0으로 비웁니다.
 
 ```cpp
-#include <vector>
-using namespace std;
+const int MAX_N = 200000; // 원소 수 상한
 
 struct FenwickTree {
     int n;
-    vector<long long> tree;
+    long long tree[MAX_N + 1];
 
-    FenwickTree(int n) : n(n), tree(n + 1, 0) {}
+    bool init(int size) { // 0 <= size <= MAX_N이 아니면 false
+        if (size < 0 || size > MAX_N) return false;
+        n = size;
+        for (int i = 0; i <= n; ++i) tree[i] = 0;
+        return true;
+    }
 
-    FenwickTree(const vector<long long>& values) {
-        n = (int)values.size();
-        tree.assign(n + 1, 0);
+    bool build(const long long values[], int size) {
+        if (!init(size)) return false;
         for (int i = 0; i < n; ++i) {
             add(i + 1, values[i]);
         }
+        return true;
     }
 
     void add(int idx, long long delta) {
@@ -125,6 +131,8 @@ struct FenwickTree {
         add(idx, newValue - oldValue);
     }
 };
+
+FenwickTree fenwick;
 ```
 
 `setValue`처럼 값을 대입하는 연산을 만들 때는 기존 값을 알아야 합니다. Fenwick Tree 자체는 "얼마를 더할지"를 받는 구조이므로, 원본 배열을 따로 들고 있으면 더 편합니다.
@@ -133,22 +141,22 @@ struct FenwickTree {
 
 모든 값이 음수가 아니면, Fenwick Tree로 "prefix 합이 처음으로 target 이상이 되는 위치"도 찾을 수 있습니다.
 
-다음 멤버 함수를 위 `FenwickTree` 안에 추가합니다. `target <= 0`은 1, 전체 합보다 큰 target은 `n + 1`을 반환합니다. 값별 빈도를 저장했다면 `lowerBound(k)`로 k번째 원소의 값 인덱스를 찾을 수 있습니다.
+위 `FenwickTree` 뒤에 다음 함수를 둡니다. `target <= 0`은 1, 전체 합보다 큰 target은 `n + 1`을 반환합니다. 값별 빈도를 저장했다면 `lowerBound(fenwick, k)`로 k번째 원소의 값 인덱스를 찾을 수 있습니다.
 
 ```cpp
-int lowerBound(long long target) const {
+int lowerBound(const FenwickTree& f, long long target) {
     if (target <= 0) return 1;
-    if (target > prefixSum(n)) return n + 1;
+    if (target > f.prefixSum(f.n)) return f.n + 1;
 
     int idx = 0;
     int bit = 1;
-    while (bit <= n / 2) bit <<= 1;
+    while (bit <= f.n / 2) bit <<= 1;
 
     for (; bit > 0; bit >>= 1) {
         int next = idx + bit;
-        if (next <= n && tree[next] < target) {
+        if (next <= f.n && f.tree[next] < target) {
             idx = next;
-            target -= tree[next];
+            target -= f.tree[next];
         }
     }
     return idx + 1;
