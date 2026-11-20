@@ -16,25 +16,37 @@ dp[r][c] = (0, 0)에서 (r, c)까지 오는 경로 수
 
 현재 칸에 도착하는 방법은 위에서 내려오거나 왼쪽에서 오는 것뿐입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하며, 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록은 없습니다. 이 강의의 코드 블록은 각자 함수와 전역 배열을 갖고 이름이 겹치지 않아, 한 파일에 모두 붙여도 컴파일됩니다. 배열 상한(`MAX_`로 시작하는 상수)은 이 강의의 연습이나 예시 크기이며, 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 배열은 전역에 두므로 함수를 부를 때마다 사용할 구간을 함수 안에서 다시 채웁니다.
 
 ```cpp
-vector<vector<long long>> dp(h, vector<long long>(w, 0));
-dp[0][0] = 1;
+const int MAX_H = 1000; // 격자 높이 상한
+const int MAX_W = 1000; // 격자 너비 상한
 
-for (int r = 0; r < h; ++r) {
-    for (int c = 0; c < w; ++c) {
-        if (blocked[r][c]) {
-            dp[r][c] = 0;
-            continue;
+bool blocked[MAX_H][MAX_W]; // 호출자가 채운다: true면 장애물
+long long gridDp[MAX_H][MAX_W];
+
+// 전제: 1 <= h <= MAX_H, 1 <= w <= MAX_W. 경로 수를 돌려준다.
+long long countPaths(int h, int w) {
+    for (int r = 0; r < h; ++r) {
+        for (int c = 0; c < w; ++c) {
+            if (blocked[r][c]) {
+                gridDp[r][c] = 0;
+                continue;
+            }
+            if (r == 0 && c == 0) {
+                gridDp[r][c] = 1;
+                continue;
+            }
+            gridDp[r][c] = 0;
+            if (r > 0) gridDp[r][c] += gridDp[r - 1][c];
+            if (c > 0) gridDp[r][c] += gridDp[r][c - 1];
         }
-        if (r > 0) dp[r][c] += dp[r - 1][c];
-        if (c > 0) dp[r][c] += dp[r][c - 1];
     }
+    return gridDp[h - 1][w - 1];
 }
 ```
 
-이 문제에서는 위쪽 행과 왼쪽 칸이 먼저 계산되어야 하므로 `r`을 위에서 아래로, `c`를 왼쪽에서 오른쪽으로 훑습니다. 장애물은 경로 수 0, 출발점은 막혀 있지 않을 때 1입니다. 격자가 커지면 경로 수가 정수 범위를 넘으므로 문제에서 정한 나머지 조건이나 수의 범위를 반영해야 합니다.
+이 문제에서는 위쪽 행과 왼쪽 칸이 먼저 계산되어야 하므로 `r`을 위에서 아래로, `c`를 왼쪽에서 오른쪽으로 훑습니다. 장애물은 경로 수 0, 출발점은 막혀 있지 않을 때 1입니다. 각 칸을 계산할 때 먼저 0으로 되돌리므로 이전 테스트 케이스의 값이 남아 있어도 영향을 주지 않습니다. 격자가 커지면 경로 수가 정수 범위를 넘으므로 문제에서 정한 나머지 조건이나 수의 범위를 반영해야 합니다.
 
 ## 최소 동전 개수: 그리디가 깨질 때
 
@@ -47,20 +59,29 @@ dp[x] = min(dp[x - coin] + 1)
 ```
 
 ```cpp
-const int INF = 1e9;
-vector<int> dp(target + 1, INF);
-dp[0] = 0;
+const int MAX_TARGET = 1000000; // 만들 금액 상한
+const int COIN_INF = 1000000000;
 
-for (int x = 1; x <= target; ++x) {
-    for (int coin : coins) {
-        if (x >= coin) {
-            dp[x] = min(dp[x], dp[x - coin] + 1);
+int coinDp[MAX_TARGET + 1];
+
+// 전제: 동전 단위는 양수, 0 <= target <= MAX_TARGET. 없으면 COIN_INF를 돌려준다.
+int minCoins(const int coins[], int coinCount, int target) {
+    for (int x = 0; x <= target; ++x) coinDp[x] = COIN_INF;
+    coinDp[0] = 0;
+
+    for (int x = 1; x <= target; ++x) {
+        for (int i = 0; i < coinCount; ++i) {
+            int coin = coins[i];
+            if (x >= coin && coinDp[x - coin] + 1 < coinDp[x]) {
+                coinDp[x] = coinDp[x - coin] + 1;
+            }
         }
     }
+    return coinDp[target];
 }
 ```
 
-동전 단위는 양수, `0 <= target < INF`이며 배열이 메모리에 들어가는 크기입니다. 도달할 수 없는 금액은 `INF`로 남습니다. `dp[target] == INF`이면 답이 없는 경우이며, 이를 큰 동전 개수로 출력해서는 안 됩니다. 위 코드는 금액 순서로 모두 계산하지만, 재귀로 필요한 금액만 계산하고 저장하는 메모이제이션도 가능합니다. 두 방식 모두 한 상태를 다시 풀지 않는다는 점은 같습니다.
+동전 단위는 양수, `0 <= target <= MAX_TARGET`입니다. 도달할 수 없는 금액은 `COIN_INF`로 남습니다. 반환값이 `COIN_INF`이면 답이 없는 경우이며, 이를 큰 동전 개수로 출력해서는 안 됩니다. 위 코드는 금액 순서로 모두 계산하지만, 재귀로 필요한 금액만 계산하고 저장하는 메모이제이션도 가능합니다. 두 방식 모두 한 상태를 다시 풀지 않는다는 점은 같습니다.
 
 ## 0/1 배낭 DP
 
@@ -75,14 +96,31 @@ for (int x = 1; x <= target; ++x) {
 이전 행만 필요하므로 배열 하나로 줄일 수 있습니다. 아직 현재 물건이 반영되지 않은 칸을 읽도록 용량을 큰 쪽부터 갱신합니다.
 
 ```cpp
-vector<int> dp(capacity + 1, 0);
+const int MAX_CAPACITY = 10000; // 용량 상한 (연습 입력의 W <= 10000)
 
-for (auto item : items) {
-    for (int w = capacity; w >= item.weight; --w) {
-        dp[w] = max(dp[w], dp[w - item.weight] + item.value);
+struct Item {
+    int weight;
+    long long value;
+};
+
+long long knapsackDp[MAX_CAPACITY + 1];
+
+// 전제: 0 <= capacity <= MAX_CAPACITY, 무게는 양수. 범위를 벗어난 capacity면 -1.
+long long knapsack(const Item items[], int n, int capacity) {
+    if (capacity < 0 || capacity > MAX_CAPACITY) return -1;
+    for (int w = 0; w <= capacity; ++w) knapsackDp[w] = 0;
+
+    for (int i = 0; i < n; ++i) {
+        for (int w = capacity; w >= items[i].weight; --w) {
+            long long taken = knapsackDp[w - items[i].weight] + items[i].value;
+            if (taken > knapsackDp[w]) knapsackDp[w] = taken;
+        }
     }
+    return knapsackDp[capacity];
 }
 ```
+
+가치 합이 `int`를 넘을 수 있으므로(연습 입력은 가치 10^9, 물건 100개) 가치와 `dp`는 `long long`입니다.
 
 무게 2, 가치 3인 물건 하나와 용량 4를 생각해 봅시다. 용량을 올리며 갱신하면 `dp[2] = 3`을 같은 물건에서 다시 읽어 `dp[4] = 6`으로 만듭니다. 이는 같은 물건을 두 번 고른 결과입니다. 내림차순이면 `dp[4]`를 계산할 때 `dp[2]`는 아직 0이어서 답 3을 얻습니다.
 
@@ -101,37 +139,64 @@ dp[i] = i번째 원소를 마지막으로 하는 LIS 길이
 `i`보다 앞에 있고 `a[j] < a[i]`인 원소 뒤에 `a[i]`를 붙일 수 있습니다.
 
 ```cpp
-vector<int> dp(n, 1);
+const int MAX_SEQ = 200000; // 수열 길이 상한
 
-for (int i = 0; i < n; ++i) {
-    for (int j = 0; j < i; ++j) {
-        if (a[j] < a[i]) {
-            dp[i] = max(dp[i], dp[j] + 1);
+int lisDp[MAX_SEQ];
+
+// 전제: 0 <= n <= MAX_SEQ. LIS 길이를 돌려준다.
+int lisQuadratic(const int a[], int n) {
+    int answer = 0;
+
+    for (int i = 0; i < n; ++i) {
+        lisDp[i] = 1;
+        for (int j = 0; j < i; ++j) {
+            if (a[j] < a[i] && lisDp[j] + 1 > lisDp[i]) {
+                lisDp[i] = lisDp[j] + 1;
+            }
         }
+        if (lisDp[i] > answer) answer = lisDp[i];
     }
+    return answer;
 }
-
-int answer = dp.empty() ? 0 : *max_element(dp.begin(), dp.end());
 ```
 
-시간 복잡도는 `O(n^2)`입니다. `n`이 크면 `tails[len - 1] = 길이가 len인 증가 부분수열의 가능한 마지막 값 중 최솟값`을 유지해 `O(n log n)`으로 줄일 수 있습니다.
+`n = 0`이면 답은 0입니다. 시간 복잡도는 `O(n^2)`입니다. `n`이 크면 `tails[len - 1] = 길이가 len인 증가 부분수열의 가능한 마지막 값 중 최솟값`을 유지해 `O(n log n)`으로 줄일 수 있습니다.
+
+`tails` 안에서 `x` 이상인 첫 위치는 [이분 탐색 강의](https://h.readiz.com/learn/binary-search)의 `lowerBound`와 같은 직접 구현으로 찾습니다.
 
 ```cpp
-vector<int> tails;
+int tails[MAX_SEQ];
 
-for (int x : a) {
-    auto it = lower_bound(tails.begin(), tails.end(), x);
-    if (it == tails.end()) {
-        tails.push_back(x);
-    } else {
-        *it = x;
+// a[0..n)에서 target 이상인 첫 위치. 없으면 n.
+int lowerBound(const int a[], int n, int target) {
+    int left = 0;
+    int right = n;
+
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (a[mid] >= target) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
     }
+    return left;
 }
 
-int answer = (int)tails.size();
+// 전제: 0 <= n <= MAX_SEQ. LIS 길이를 돌려준다.
+int lisFast(const int a[], int n) {
+    int length = 0; // tails[0..length)가 현재 쓰는 구간
+
+    for (int i = 0; i < n; ++i) {
+        int pos = lowerBound(tails, length, a[i]);
+        tails[pos] = a[i];
+        if (pos == length) ++length;
+    }
+    return length;
+}
 ```
 
-`tails[len - 1]`은 길이가 `len`인 증가 부분 수열의 가능한 최소 끝값입니다. 각 칸을 만든 부분 수열은 서로 다를 수 있어 `tails` 전체가 실제 LIS인 것은 아닙니다.
+`tails[0..length)`는 항상 오름차순이므로 이분 탐색이 성립합니다. `tails[len - 1]`은 길이가 `len`인 증가 부분 수열의 가능한 최소 끝값입니다. 각 칸을 만든 부분 수열은 서로 다를 수 있어 `tails` 전체가 실제 LIS인 것은 아닙니다.
 
 ## 트리 DP
 
@@ -147,21 +212,52 @@ dp[u][1] = u를 골랐을 때 u의 부분트리 최대값
 `u`를 고르면 자식은 고를 수 없습니다. `u`를 고르지 않으면 자식은 고르거나 고르지 않거나 더 좋은 쪽을 택합니다.
 
 ```cpp
-void dfs(int u, int parent) {
-    dp[u][0] = 0;
-    dp[u][1] = weight[u];
+const int MAX_TREE_V = 50000; // 정점 수 상한
+const int MAX_TREE_E = 2 * (MAX_TREE_V - 1); // 무방향 간선은 양쪽에 하나씩
 
-    for (int v : graph[u]) {
+struct Tree {
+    int head[MAX_TREE_V];
+    int next[MAX_TREE_E];
+    int to[MAX_TREE_E];
+    int edgeCount;
+
+    void init(int n) { // 전제: 0 <= n <= MAX_TREE_V
+        for (int i = 0; i < n; ++i) head[i] = -1;
+        edgeCount = 0;
+    }
+    bool addEdge(int u, int v) { // 무방향: 두 방향을 모두 넣는다. 가득 차면 false
+        if (edgeCount + 2 > MAX_TREE_E) return false;
+        to[edgeCount] = v;
+        next[edgeCount] = head[u];
+        head[u] = edgeCount++;
+        to[edgeCount] = u;
+        next[edgeCount] = head[v];
+        head[v] = edgeCount++;
+        return true;
+    }
+};
+
+Tree tree;
+long long weight[MAX_TREE_V];     // 호출자가 채운다: 정점 가중치
+long long treeDp[MAX_TREE_V][2];
+
+void dfs(int u, int parent) {
+    treeDp[u][0] = 0;
+    treeDp[u][1] = weight[u];
+
+    for (int e = tree.head[u]; e != -1; e = tree.next[e]) {
+        int v = tree.to[e];
         if (v == parent) continue;
         dfs(v, u);
 
-        dp[u][0] += max(dp[v][0], dp[v][1]);
-        dp[u][1] += dp[v][0];
+        long long better = treeDp[v][0] > treeDp[v][1] ? treeDp[v][0] : treeDp[v][1];
+        treeDp[u][0] += better;
+        treeDp[u][1] += treeDp[v][0];
     }
 }
 ```
 
-`graph`는 무방향 트리의 인접 목록, `weight[u]`는 정점 가중치입니다. `dfs(root, -1)` 뒤 답은 `max(dp[root][0], dp[root][1])`입니다. 가중치 합이 클 수 있으면 `dp`를 `long long`으로 둡니다. 일자 트리에서는 재귀 깊이가 정점 수까지 늘어납니다.
+`tree`는 무방향 트리의 `head`/`next` 인접 리스트(테스트 케이스마다 `tree.init(n)`으로 비웁니다), `weight[u]`는 정점 가중치입니다. `dfs(root, -1)` 뒤 답은 `treeDp[root][0]`과 `treeDp[root][1]` 중 큰 값입니다. 가중치 합이 클 수 있어 `treeDp`는 `long long`입니다. 일자 트리에서는 재귀 깊이가 정점 수까지 늘어나므로, 상한을 크게 잡을 때는 실행 환경의 스택 크기를 먼저 확인해야 합니다.
 
 방문한 집합까지 상태에 필요하다면 [TSP의 비트마스크 DP](https://h.readiz.com/learn/tsp-hamiltonian)로 이어집니다.
 
