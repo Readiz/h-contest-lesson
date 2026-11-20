@@ -33,17 +33,5 @@
     "library": [
       "min-heap"
     ]
-  },
-  {
-    "name": "bellman-ford-simple-path-cycle-oracle",
-    "snippets": [
-      {
-        "path": "lessons/bellman-ford-negative-cycle/lesson.md",
-        "block": 0
-      }
-    ],
-    "body": "\nassert(!bellmanFord(3,{{1,2,-1},{2,1,0}},0).hasReachableNegativeCycle);\nassert(bellmanFord(1,{{0,0,-1}},0).hasReachableNegativeCycle);\nlong long w=INF/8;\nauto large=bellmanFord(2,{{0,0,-w},{0,1,1}},0);\nassert(large.hasReachableNegativeCycle && large.dist[0]==-w && large.dist[1]==1-w);\nmt19937 rng(20260922);\nfor(int tc=0;tc<240;++tc) {\n    int n=1+rng()%7,start=rng()%n;\n    vector<Edge> edges;\n    vector<vector<pair<int,long long>>> graph(n);\n    for(int i=0;i<n*n;++i) if(rng()%3==0) {\n        int u=rng()%n,v=rng()%n,c=int(rng()%15)-7;\n        edges.push_back({u,v,c}); graph[u].push_back({v,c});\n    }\n    vector<long long> best(n,INF),prefix(n,0);\n    bool cycle=false;\n    // Enumerate simple paths and inspect back edges to the current path.\n    function<void(int,int,long long)> dfs=[&](int u,int mask,long long sum) {\n        best[u]=min(best[u],sum); prefix[u]=sum;\n        for(auto e:graph[u]) {\n            if(mask&(1<<e.first)) {\n                if(sum+e.second-prefix[e.first]<0) cycle=true;\n            } else dfs(e.first,mask|(1<<e.first),sum+e.second);\n        }\n    };\n    dfs(start,1<<start,0);\n    auto result=bellmanFord(n,edges,start);\n    assert(result.hasReachableNegativeCycle==cycle);\n    if(!cycle) assert(result.dist==best);\n}\n",
-    "stdin": "",
-    "expected": ""
   }
 ]

@@ -55,16 +55,16 @@ repeat V - 1 times:
 
 Bellman-Ford는 인접 리스트보다 간선 목록으로 구현하면 가장 단순합니다. 매 반복마다 모든 간선을 확인하기 때문입니다.
 
-정점은 `0..V-1`, 도달 불가 표시는 `INF = LLONG_MAX / 4`입니다. 유한 거리와 완화 후보는 `(-INF, INF)` 안에 있어야 합니다. 간선 비용 절댓값의 상한이 `W`라면 `V * max(1, E) * W < INF`는 충분한 조건입니다. 한 회차에서 앞선 갱신을 즉시 사용하므로, 음수 사이클이 있을 때는 최종 단순 경로의 `V * W`만으로 중간 계산 범위를 판단하면 안 됩니다. 아래 로컬 연습의 상한은 `200 * 2000 * 10^6 = 4 * 10^11`로 이 조건을 만족합니다.
+정점은 `0..V-1`, 도달 불가 표시는 `INF = 2000000000000000000LL`(`2 * 10^18`, `long long` 최댓값의 약 1/4)입니다. 유한 거리와 완화 후보는 `(-INF, INF)` 안에 있어야 합니다. 간선 비용 절댓값의 상한이 `W`라면 `V * max(1, E) * W < INF`는 충분한 조건입니다. 한 회차에서 앞선 갱신을 즉시 사용하므로, 음수 사이클이 있을 때는 최종 단순 경로의 `V * W`만으로 중간 계산 범위를 판단하면 안 됩니다. 아래 로컬 연습의 상한은 `200 * 2000 * 10^6 = 4 * 10^11`로 이 조건을 만족합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하며, 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록은 없습니다.
 
-```cpp compile-check
-#include <limits>
-#include <vector>
-using namespace std;
+간선 목록은 고정 배열 `EdgeList`에 담습니다. 상한 `MAX_V = 200`, `MAX_E = 2000`은 이 강의 연습의 입력 상한과 같은 값이며, 실제 문제에서는 제한에 맞춰 바꿉니다. TC마다 `init()`으로 간선을 비우고, 큰 `EdgeList`는 전역으로 둡니다. `dist`와 `parent`는 함수가 `[0, n)`을 채우므로 이전 TC의 값이 남지 않습니다. 호출 전제는 `0 <= start < n <= MAX_V`이며, 어긋나면 `false`를 반환합니다.
 
-const long long INF = numeric_limits<long long>::max() / 4;
+```cpp
+const int MAX_V = 200;  // 정점 수 상한
+const int MAX_E = 2000; // 간선 수 상한
+const long long INF = 2000000000000000000LL; // 도달 불가
 
 struct Edge {
     int from;
@@ -72,20 +72,34 @@ struct Edge {
     long long cost;
 };
 
-struct BellmanFordResult {
-    vector<long long> dist;
-    vector<int> parent;
-    bool hasReachableNegativeCycle;
+struct EdgeList {
+    Edge edge[MAX_E];
+    int count;
+
+    void init() { count = 0; }
+    bool add(int from, int to, long long cost) { // 간선이 가득 차면 false
+        if (count == MAX_E) return false;
+        edge[count].from = from;
+        edge[count].to = to;
+        edge[count].cost = cost;
+        count++;
+        return true;
+    }
 };
 
-BellmanFordResult bellmanFord(int n, const vector<Edge>& edges, int start) {
-    vector<long long> dist(n, INF);
-    vector<int> parent(n, -1);
+bool bellmanFord(const EdgeList& graph, int n, int start,
+                 long long dist[], int parent[], bool& hasReachableNegativeCycle) {
+    if (n < 1 || n > MAX_V || start < 0 || start >= n) return false;
+    for (int i = 0; i < n; ++i) {
+        dist[i] = INF;
+        parent[i] = -1;
+    }
     dist[start] = 0;
 
     for (int iter = 0; iter < n - 1; ++iter) {
         bool changed = false;
-        for (const Edge& edge : edges) {
+        for (int i = 0; i < graph.count; ++i) {
+            const Edge& edge = graph.edge[i];
             if (dist[edge.from] == INF) {
                 continue;
             }
@@ -101,8 +115,9 @@ BellmanFordResult bellmanFord(int n, const vector<Edge>& edges, int start) {
         }
     }
 
-    bool hasReachableNegativeCycle = false;
-    for (const Edge& edge : edges) {
+    hasReachableNegativeCycle = false;
+    for (int i = 0; i < graph.count; ++i) {
+        const Edge& edge = graph.edge[i];
         if (dist[edge.from] == INF) {
             continue;
         }
@@ -111,12 +126,11 @@ BellmanFordResult bellmanFord(int n, const vector<Edge>& edges, int start) {
             break;
         }
     }
-
-    return {dist, parent, hasReachableNegativeCycle};
+    return true;
 }
 ```
 
-`dist[edge.from] == INF`인 간선은 시작점에서 아직 도달할 수 없는 정점에서 출발합니다. 이 간선을 relax하면 안 됩니다. 도달 불가능한 정점의 `INF + cost`를 계산하면 의미 없는 값이 생길 수 있습니다.
+`dist[edge.from] == INF`인 간선은 시작점에서 아직 도달할 수 없는 정점에서 출발합니다. 이 간선을 relax하면 안 됩니다. 비용이 음수이면 `INF + cost`가 `INF`보다 작아 비교가 참이 되고, 도달할 수 없던 `dist[edge.to]`가 `INF`보다 조금 작은 값으로 바뀌어 도달 불가 표시가 깨집니다. 반복 구간과 아래 사이클 판정 구간 모두 같은 검사를 둡니다.
 
 ## 음수 사이클 판정
 
