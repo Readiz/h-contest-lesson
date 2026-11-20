@@ -62,46 +62,74 @@ indegree[v] = v로 들어오는 간선 수 (중복 간선도 각각 센다)
 
 아래는 0-indexed 정점 `0`부터 `n - 1`까지를 다루는 구현입니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `queue` 블록을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하며, 아래 코드 블록을 순서대로 이어서 사용합니다.
+
+그래프는 [BFS/DFS 강의](https://h.readiz.com/learn/bfs-dfs-grid)와 같은 head/next 배열 인접 리스트입니다. 상한 `MAX_V = 200000`, `MAX_E = 400000`은 이 강의 연습의 입력 상한과 같은 값이며, 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 `Graph`와 배열은 전역으로 두고 TC마다 `graph.init(n)`을 호출합니다. `indegree`는 함수가 `[0, n)`을 0으로 채우므로 이전 TC의 값이 남지 않습니다.
 
 ```cpp
-#include <queue>
-#include <vector>
-using namespace std;
+const int MAX_V = 200000; // 정점 수 상한
+const int MAX_E = 400000; // 방향 간선 수 상한
 
-vector<int> topologicalSort(int n, const vector<vector<int>>& graph) {
-    vector<int> indegree(n, 0);
+struct Graph {
+    int head[MAX_V];
+    int next[MAX_E];
+    int to[MAX_E];
+    int edgeCount;
+
+    void init(int n) { // 전제: 0 <= n <= MAX_V
+        for (int i = 0; i < n; ++i) head[i] = -1;
+        edgeCount = 0;
+    }
+    bool addEdge(int u, int v) { // 간선이 가득 차면 false
+        if (edgeCount == MAX_E) return false;
+        to[edgeCount] = v;
+        next[edgeCount] = head[u];
+        head[u] = edgeCount++;
+        return true;
+    }
+};
+```
+
+정점은 `indegree`가 0이 되는 순간 한 번만 큐에 들어가므로 누적 push는 `n <= MAX_V`이고 `hc::Queue<MAX_V>`면 충분합니다. 함수는 위상 순서를 `order[0..count)`에 쓰고 `count`를 반환합니다. `n`이 `0..MAX_V` 밖이면 -1입니다. `order`는 `n`칸 이상 준비합니다.
+
+```cpp
+int indegree[MAX_V];
+hc::Queue<MAX_V> readyQueue;
+
+int topologicalSort(const Graph& graph, int n, int order[]) {
+    if (n < 0 || n > MAX_V) return -1;
+    for (int i = 0; i < n; ++i) indegree[i] = 0;
 
     for (int u = 0; u < n; ++u) {
-        for (int v : graph[u]) {
-            indegree[v]++;
+        for (int e = graph.head[u]; e != -1; e = graph.next[e]) {
+            indegree[graph.to[e]]++;
         }
     }
 
-    queue<int> q;
+    readyQueue.clear();
     for (int i = 0; i < n; ++i) {
-        if (indegree[i] == 0) q.push(i);
+        if (indegree[i] == 0) readyQueue.push(i);
     }
 
-    vector<int> order;
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        order.push_back(u);
+    int count = 0;
+    int u;
+    while (readyQueue.pop(u)) {
+        order[count++] = u;
 
-        for (int v : graph[u]) {
+        for (int e = graph.head[u]; e != -1; e = graph.next[e]) {
+            int v = graph.to[e];
             indegree[v]--;
             if (indegree[v] == 0) {
-                q.push(v);
+                readyQueue.push(v);
             }
         }
     }
 
-    return order;
+    return count;
 }
 ```
 
-결과 `order`의 길이가 `n`이면 위상 정렬에 성공한 것입니다.
+반환값 `count`가 `n`이면 위상 정렬에 성공한 것입니다.
 
 ## 사이클 판정
 
@@ -117,7 +145,7 @@ vector<int> topologicalSort(int n, const vector<vector<int>>& graph) {
 
 어떤 정점을 먼저 하려고 해도 다른 정점을 먼저 해야 한다는 조건에 걸립니다.
 
-위상 정렬 문제에서 `order.size() != n` 검사는 거의 필수입니다. 입력이 DAG라고 보장되지 않으면 반드시 확인합니다.
+위상 정렬 문제에서 `count != n` 검사는 거의 필수입니다. 입력이 DAG라고 보장되지 않으면 반드시 확인합니다.
 
 ## 순서가 여러 개일 때
 
@@ -125,25 +153,27 @@ vector<int> topologicalSort(int n, const vector<vector<int>>& graph) {
 
 ## 작업 완료 시간
 
-각 작업에 걸리는 시간이 있고, 모든 선행 작업이 끝나야 시작할 수 있습니다. 동시에 실행할 수 있는 작업 수에는 제한이 없다고 가정합니다. 위상 순서로 처리하면 선행 작업의 완료 시간이 모두 계산된 뒤 현재 작업을 계산할 수 있습니다. 아래 코드는 입력이 DAG임을 확인한 뒤 사용합니다.
+각 작업에 걸리는 시간이 있고, 모든 선행 작업이 끝나야 시작할 수 있습니다. 동시에 실행할 수 있는 작업 수에는 제한이 없다고 가정합니다. 위상 순서로 처리하면 선행 작업의 완료 시간이 모두 계산된 뒤 현재 작업을 계산할 수 있습니다. 아래 코드는 사이클이 있으면 `false`를 반환하고, 완료 시간은 `long long`으로 누적합니다.
 
 ```cpp
-vector<long long> earliestFinish(
-    int n,
-    const vector<int>& duration,
-    const vector<vector<int>>& graph
-) {
-    vector<int> order = topologicalSort(n, graph);
-    vector<long long> finish(n, 0);
+int topoOrder[MAX_V];
 
-    for (int u : order) {
+// 사이클이 있거나 n이 범위 밖이면 false. 성공하면 finish[0..n)를 채운다.
+bool earliestFinish(const Graph& graph, int n, const int duration[], long long finish[]) {
+    int count = topologicalSort(graph, n, topoOrder);
+    if (count != n) return false;
+    for (int i = 0; i < n; ++i) finish[i] = 0;
+
+    for (int i = 0; i < n; ++i) {
+        int u = topoOrder[i];
         finish[u] += duration[u];
 
-        for (int v : graph[u]) {
-            finish[v] = max(finish[v], finish[u]);
+        for (int e = graph.head[u]; e != -1; e = graph.next[e]) {
+            int v = graph.to[e];
+            if (finish[u] > finish[v]) finish[v] = finish[u];
         }
     }
-    return finish;
+    return true;
 }
 ```
 

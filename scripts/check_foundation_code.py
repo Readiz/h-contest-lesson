@@ -41,6 +41,7 @@ LESSONS = {
     "coordinate-compression": ["sort"],
     "zero-one-bfs": [],
     "graph-tree-basics": ["array", "queue", "sort"],
+    "topological-sort-dag": ["queue", "min-heap"],
 }
 # Code the lesson tells the reader to paste in front (lesson id, index of its ```cpp block).
 LESSON_PREFIX = {"graph-tree-basics": [("union-find", 0)]}
