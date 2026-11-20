@@ -41,8 +41,9 @@ LESSONS = {
     "coordinate-compression": ["sort"],
     "zero-one-bfs": [],
     "fenwick-tree": [],
+    "segment-tree": [],
 }
-NO_LOCAL_EXERCISE = {"union-find"}  # this lesson has no standard-input exercise
+NO_LOCAL_EXERCISE = {"union-find", "segment-tree"}  # this lesson has no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))
 SANITIZE = ["-O1", "-g", "-fsanitize=address,undefined", "-fno-sanitize-recover=all",
             "-fno-omit-frame-pointer"]
