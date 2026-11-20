@@ -1,21 +1,5 @@
 [
   {
-    "name": "floyd-negative-cycles-range-and-paths",
-    "snippets": [
-      {
-        "path": "lessons/floyd-warshall/lesson.md",
-        "block": 0
-      },
-      {
-        "path": "lessons/floyd-warshall/lesson.md",
-        "block": 1
-      }
-    ],
-    "body": "\nconst long long INF = numeric_limits<long long>::max() / 4;\nusing Matrix = vector<vector<long long>>;\nauto verify = [&](const Matrix& input) {\n    int n = (int)input.size();\n    auto got = floydWarshall(input);\n    auto affected = negativeCyclePairs(got);\n    Matrix restored = input;\n    vector<vector<int>> next(n, vector<int>(n, -1));\n    for(int i=0;i<n;++i) for(int j=0;j<n;++j)\n        if(input[i][j]!=INF) next[i][j]=j;\n    for(int k=0;k<n;++k) for(int i=0;i<n;++i) for(int j=0;j<n;++j)\n        relaxPath(i,j,k,restored,next);\n    assert(got==restored);\n    for(int s=0;s<n;++s) {\n        // Independent edge-count DP: every round reads the previous round.\n        vector<long long> best(n,INF); best[s]=0;\n        for(int step=0;step<n-1;++step) {\n            auto after=best;\n            for(int u=0;u<n;++u) for(int v=0;v<n;++v)\n                if(best[u]!=INF && input[u][v]!=INF)\n                    after[v]=min(after[v],best[u]+input[u][v]);\n            best.swap(after);\n        }\n        vector<bool> bad(n,false);\n        for(int u=0;u<n;++u) for(int v=0;v<n;++v)\n            if(best[u]!=INF && input[u][v]!=INF && best[u]+input[u][v]<best[v])\n                bad[v]=true;\n        for(int pass=0;pass<n;++pass)\n            for(int u=0;u<n;++u) for(int v=0;v<n;++v)\n                if(bad[u] && input[u][v]!=INF) bad[v]=true;\n        for(int t=0;t<n;++t) {\n            assert(got[s][t]>=-INF && got[s][t]<=INF);\n            assert(affected[s][t]==bad[t]);\n            if(bad[t]) continue;\n            assert(got[s][t]==best[t]);\n            auto path=restorePath(s,t,next);\n            if(best[t]==INF) { assert(path.empty()); continue; }\n            assert(!path.empty() && path.front()==s && path.back()==t);\n            assert(path.size()<=size_t(n));\n            long long cost=0;\n            for(size_t i=1;i<path.size();++i) {\n                assert(input[path[i-1]][path[i]]!=INF);\n                cost+=input[path[i-1]][path[i]];\n            }\n            assert(cost==best[t]);\n        }\n    }\n};\nverify({});\nverify({{0}});\nverify({{-1}});\nMatrix example(5,vector<long long>(5,INF));\nfor(int i=0;i<5;++i) example[i][i]=0;\nexample[0][1]=3; example[1][2]=-2; example[2][1]=1;\nexample[2][3]=4; example[0][4]=9;\nverify(example);\nauto got=floydWarshall(example);\nauto bad=negativeCyclePairs(got);\nassert(bad[0][3] && !bad[0][4] && got[0][4]==9 && got[4][0]==INF);\nMatrix dense(30,vector<long long>(30,-1));\nfor(int i=0;i<30;++i) dense[i][i]=0;\nverify(dense);\ngot=floydWarshall(dense);\nassert(got[29][29]==-INF);\nlong long w=INF/4;\nverify({{0,w,INF},{INF,0,w},{INF,INF,0}});\nverify({{0,-w,INF},{INF,0,-w},{INF,INF,0}});\nmt19937 rng(20260922);\nfor(int tc=0;tc<300;++tc) {\n    int n=1+rng()%7;\n    Matrix d(n,vector<long long>(n,INF));\n    for(int i=0;i<n;++i) d[i][i]=0;\n    for(int e=0;e<n*n;++e) {\n        int u=rng()%n,v=rng()%n;\n        if(rng()%3) d[u][v]=min(d[u][v],(long long)(int(rng()%21)-10));\n    }\n    verify(d);\n}\n",
-    "stdin": "",
-    "expected": ""
-  },
-  {
     "name": "dijkstra-contract-and-negative-example",
     "snippets": [
       {

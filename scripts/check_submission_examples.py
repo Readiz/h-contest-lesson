@@ -20,7 +20,7 @@ PROTECTED = {"cpp-contest-basics", "cpp-common-library", "sorting", "greedy",
              "prefix-sum-difference", "binary-search", "two-pointers-sliding-window",
              "coordinate-compression", "zero-one-bfs", "explore-unknown-map", "remember-and-sort",
              "graph-tree-basics", "topological-sort-dag",
-             "bellman-ford-negative-cycle"}
+             "bellman-ford-negative-cycle", "floyd-warshall"}
 # Local-harness pages that explicitly declare general C++17 (STL allowed).
 GENERAL_CPP_PAGES = {"lessons/testing-and-stress/pages/experiment-evaluation.md"}
 CPP = re.compile(r"```(?:cpp|c\+\+)(?:[^\n]*)\n(.*?)\n```", re.S)

@@ -40,22 +40,33 @@ dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 
 ## 기본 구현
 
-아래 구현은 0-index 정점과 `long long` 거리를 사용합니다. 도달 불가는 코드와 같은 `INF = LLONG_MAX / 4`로 초기화합니다. 간선 비용의 절댓값 상한이 `W`라면 `N * W < INF`인 범위에서 사용합니다. 이 조건은 음수 사이클의 영향을 받지 않는 유한 최단거리를 `(-INF, INF)` 안에 둡니다.
+아래 구현은 0-index 정점과 `long long` 거리를 사용합니다. 도달 불가는 이름 붙인 상수 `INF = 2000000000000000000LL`(`2 * 10^18`, `long long` 최댓값의 약 1/4)로 표시합니다. 간선 비용의 절댓값 상한이 `W`라면 `N * W < INF`인 범위에서 사용합니다. 이 조건은 음수 사이클의 영향을 받지 않는 유한 최단거리를 `(-INF, INF)` 안에 둡니다.
 
-음수 사이클이 있으면 중간 값은 단순 경로 길이보다 훨씬 작아질 수 있습니다. 서로 다른 모든 정점 사이의 비용이 `-1`인 30정점 그래프도 원래 덧셈만 반복하면 `long long`을 넘칩니다. 그래서 각 갱신에서 하한을 `-INF`로 제한합니다. 두 피연산자가 `[-INF, INF)` 안에 있으므로 **하한을 적용하기 전 덧셈도** 정수 범위 안입니다.
+음수 사이클이 있으면 중간 값은 단순 경로 길이보다 훨씬 작아질 수 있습니다. 서로 다른 모든 정점 사이의 비용이 `-1`인 30정점 그래프도 원래 덧셈만 반복하면 `long long`을 넘칩니다. 그래서 각 갱신에서 하한을 `-INF`로 제한합니다. 두 피연산자가 `[-INF, INF)` 안에 있으므로 **하한을 적용하기 전 덧셈도** 정수 범위 안입니다. 두 `INF`는 덧셈에 들어가기 전에 `== INF` 검사로 걸러, 음수 간선이 있어도 `INF + (-3)` 같은 값이 도달 가능한 거리처럼 남지 않습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하며, 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록은 없습니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <limits>
-#include <vector>
-using namespace std;
+거리 행렬은 `dist[MAX_N][MAX_N]` 고정 배열입니다. 정점 상한 `MAX_N = 300`은 이 강의 연습의 입력 상한과 같은 값이며, 실제 문제에서는 제한에 맞춰 바꿉니다(행렬 메모리는 `8 * MAX_N^2` 바이트). 큰 행렬은 전역으로 두고, TC마다 `initDist(n, dist)`로 사용할 `[0, n)`만 초기화합니다. 아래 함수들은 행렬을 그 자리에서 바꾸며, 호출 전제는 `0 <= n <= MAX_N`입니다.
 
-vector<vector<long long>> floydWarshall(vector<vector<long long>> dist) {
-    const long long INF = numeric_limits<long long>::max() / 4;
-    int n = (int)dist.size();
+```cpp
+const int MAX_N = 300; // 정점 수 상한
+const long long INF = 2000000000000000000LL; // 도달 불가
 
+bool initDist(int n, long long dist[][MAX_N]) { // n이 범위 밖이면 false
+    if (n < 0 || n > MAX_N) return false;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) dist[i][j] = (i == j) ? 0 : INF;
+    }
+    return true;
+}
+
+bool addEdge(int n, long long dist[][MAX_N], int u, int v, long long w) {
+    if (u < 0 || u >= n || v < 0 || v >= n) return false;
+    if (w < dist[u][v]) dist[u][v] = w; // 다중 간선은 가장 작은 비용만 남긴다.
+    return true;
+}
+
+void floydWarshall(int n, long long dist[][MAX_N]) {
     for (int k = 0; k < n; ++k) {
         for (int i = 0; i < n; ++i) {
             if (dist[i][k] == INF) {
@@ -65,19 +76,18 @@ vector<vector<long long>> floydWarshall(vector<vector<long long>> dist) {
                 if (dist[k][j] == INF) {
                     continue;
                 }
-                long long through = max(-INF, dist[i][k] + dist[k][j]);
-                dist[i][j] = min(dist[i][j], through);
+                long long through = dist[i][k] + dist[k][j];
+                if (through < -INF) through = -INF;
+                if (through < dist[i][j]) dist[i][j] = through;
             }
         }
     }
-
-    return dist;
 }
 
-vector<vector<bool>> negativeCyclePairs(const vector<vector<long long>>& dist) {
-    const long long INF = numeric_limits<long long>::max() / 4;
-    int n = (int)dist.size();
-    vector<vector<bool>> affected(n, vector<bool>(n, false));
+void negativeCyclePairs(int n, const long long dist[][MAX_N], bool affected[][MAX_N]) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) affected[i][j] = false;
+    }
     for (int v = 0; v < n; ++v) {
         if (dist[v][v] >= 0) continue;
         for (int i = 0; i < n; ++i) {
@@ -87,45 +97,47 @@ vector<vector<bool>> negativeCyclePairs(const vector<vector<long long>>& dist) {
             }
         }
     }
-    return affected;
 }
 ```
 
-초기화는 `dist[i][i] = 0`, 간선 `u -> v`에 대해 `dist[u][v] = min(dist[u][v], w)`입니다. 무방향 그래프면 반대 방향도 같이 넣습니다. 다중 간선은 가장 작은 비용만 남기고, 경로가 없는 `INF` 값은 덧셈에서 제외합니다.
+`initDist`는 `dist[i][i] = 0`, 나머지는 `INF`로 채우고, `addEdge`는 간선 `u -> v`에 대해 `dist[u][v] = min(dist[u][v], w)`를 적용합니다. 무방향 그래프면 반대 방향도 같이 넣습니다. 경로가 없는 `INF` 값은 덧셈에서 제외합니다.
 
 ## 경로 복원
 
-최단거리뿐 아니라 실제 경로가 필요하면 `next[i][j]`를 저장합니다. `next[i][j]`는 `i`에서 `j`로 가는 최단 경로의 첫 다음 정점입니다.
+최단거리뿐 아니라 실제 경로가 필요하면 `next[i][j]`를 저장합니다. `next[i][j]`는 `i`에서 `j`로 가는 최단 경로의 첫 다음 정점입니다. 아래 `nextVertex`도 전역 `MAX_N x MAX_N` 배열이며, `initNext`가 `dist`의 초기 간선 상태(`floydWarshall` 호출 전)에서 `[0, n)`을 채웁니다. `restorePath`는 `path[]`에 경로를 쓰고 정점 수를 반환하며, 경로가 없으면 0입니다. `path`는 `MAX_N`칸이면 충분합니다.
 
-```cpp compile-check
-#include <algorithm>
-#include <limits>
-#include <vector>
-using namespace std;
+```cpp
+void initNext(int n, const long long dist[][MAX_N], int nextVertex[][MAX_N]) {
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) nextVertex[i][j] = (dist[i][j] == INF) ? -1 : j;
+    }
+}
 
-vector<int> restorePath(int start, int target, const vector<vector<int>>& nextVertex) {
+int restorePath(int start, int target, const int nextVertex[][MAX_N], int path[]) {
     if (nextVertex[start][target] == -1) {
-        return {};
+        return 0;
     }
 
-    vector<int> path{start};
+    int length = 0;
+    path[length++] = start;
     while (start != target) {
+        if (length == MAX_N) return 0; // 음수 사이클에 걸린 쌍: 복원하지 않는다.
         start = nextVertex[start][target];
-        path.push_back(start);
+        path[length++] = start;
     }
-    return path;
+    return length;
 }
 
 void relaxPath(
     int i,
     int j,
     int k,
-    vector<vector<long long>>& dist,
-    vector<vector<int>>& nextVertex
+    long long dist[][MAX_N],
+    int nextVertex[][MAX_N]
 ) {
-    const long long INF = numeric_limits<long long>::max() / 4;
     if (dist[i][k] == INF || dist[k][j] == INF) return;
-    long long through = max(-INF, dist[i][k] + dist[k][j]);
+    long long through = dist[i][k] + dist[k][j];
+    if (through < -INF) through = -INF;
     if (through < dist[i][j]) {
         dist[i][j] = through;
         nextVertex[i][j] = nextVertex[i][k];
@@ -133,7 +145,7 @@ void relaxPath(
 }
 ```
 
-`next[i][i] = i`로 두면 자기 자신으로 가는 길도 `[i]`로 복원합니다. 초기에는 간선이 있는 `i -> j`에 대해 `next[i][j] = j`로 둡니다. 경로가 없으면 `-1`입니다. `relaxPath`는 기본 구현과 같은 `k, i, j` 순서에서 거리 갱신을 대신하며, 내부에서 두 `INF` 검사와 하한 처리를 수행합니다. 계산 후 `negativeCyclePairs(dist)[start][target]`이 true인 쌍에는 최단 경로가 없으므로 복원하지 않습니다. 여러 질의를 처리한다면 이 영향 행렬도 한 번만 계산합니다.
+`next[i][i] = i`로 두면 자기 자신으로 가는 길도 `[i]`로 복원합니다. `initNext`는 `dist[i][i] = 0`인 대각에도 `i`를 넣고, 간선이 있는 `i -> j`에는 `j`를, 경로가 없으면 `-1`을 넣습니다. `relaxPath`는 기본 구현과 같은 `k, i, j` 순서에서 거리 갱신을 대신하며, 내부에서 두 `INF` 검사와 하한 처리를 수행합니다. 계산 후 `negativeCyclePairs`의 `affected[start][target]`이 true인 쌍에는 최단 경로가 없으므로 복원하지 않습니다. 여러 질의를 처리한다면 이 영향 행렬도 한 번만 계산합니다.
 
 ## 도달 가능성만 필요할 때
 
