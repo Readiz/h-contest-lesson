@@ -40,6 +40,7 @@ LESSONS = {
     "two-pointers-sliding-window": ["sort"],
     "coordinate-compression": ["sort"],
     "zero-one-bfs": [],
+    "meldable-heap": ["array"],
 }
 NO_LOCAL_EXERCISE = {"union-find"}  # this lesson has no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))
