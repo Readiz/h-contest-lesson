@@ -40,8 +40,11 @@ LESSONS = {
     "two-pointers-sliding-window": ["sort"],
     "coordinate-compression": ["sort"],
     "zero-one-bfs": [],
+    "graph-tree-basics": ["array", "queue", "sort"],
 }
-NO_LOCAL_EXERCISE = {"union-find"}  # this lesson has no standard-input exercise
+# Code the lesson tells the reader to paste in front (lesson id, index of its ```cpp block).
+LESSON_PREFIX = {"graph-tree-basics": [("union-find", 0)]}
+NO_LOCAL_EXERCISE = {"union-find", "graph-tree-basics"}  # no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))
 SANITIZE = ["-O1", "-g", "-fsanitize=address,undefined", "-fno-sanitize-recover=all",
             "-fno-omit-frame-pointer"]
@@ -55,12 +58,18 @@ def run(command: list[str], **kwargs) -> subprocess.CompletedProcess:
 
 
 def check_lesson(lesson_id: str, work: Path) -> str:
-    markdown = (ROOT / "lessons" / lesson_id / "lesson.md").read_text()
+    base = ROOT / "lessons" / lesson_id
+    markdown = (base / "lesson.md").read_text()
     blocks = CPP.findall(markdown)
     assert blocks, lesson_id
+    # Sub-pages of a lesson (pages/*.md) continue the same program after lesson.md.
+    for page in sorted((base / "pages").glob("*.md")):
+        blocks += CPP.findall(page.read_text())
     for number, code in enumerate(blocks):
         check_submission_code(code, f"{lesson_id} block {number}")
-    submission = assemble_library(LESSONS[lesson_id]) + "\n\n".join(blocks) + "\n"
+    prefix = [CPP.findall((ROOT / "lessons" / other / "lesson.md").read_text())[index]
+              for other, index in LESSON_PREFIX.get(lesson_id, [])]
+    submission = assemble_library(LESSONS[lesson_id]) + "\n\n".join(prefix + blocks) + "\n"
     path = work / f"{lesson_id}.cpp"
     path.write_text(submission)
     # No header is visible here: a missing #include would fail this step.

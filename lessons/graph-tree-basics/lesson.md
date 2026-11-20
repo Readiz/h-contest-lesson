@@ -2,9 +2,37 @@
 
 ## 그래프 표현
 
-인접 리스트의 `graph[u]`에는 `u`에서 갈 수 있는 정점을 저장합니다. 무방향 간선 `u-v`는 양쪽 목록에 넣고, 방향 간선 `u→v`는 `u`의 목록에만 넣습니다.
+인접 리스트에서 `u`의 목록에는 `u`에서 갈 수 있는 정점을 저장합니다. 무방향 간선 `u-v`는 양쪽 목록에 넣고, 방향 간선 `u→v`는 `u`의 목록에만 넣습니다.
 
 가중치가 있으면 이웃 정점 번호와 이동 비용을 함께 저장합니다.
+
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `queue` 블록을 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하며, 이 강의의 코드 블록을 순서대로 이어서 사용합니다.
+
+STL 컨테이너 대신 [BFS/DFS 강의](https://h.readiz.com/learn/bfs-dfs-grid), [Dijkstra 강의](https://h.readiz.com/learn/dijkstra)와 같은 head/next 배열 인접 리스트를 씁니다. `head[u]`는 `u`에서 나가는 마지막 간선 번호, `next[e]`는 같은 정점에서 나가는 이전 간선, `to[e]`는 도착 정점입니다. 가중치가 있으면 같은 간선 번호로 읽는 `cost[e]` 배열을 하나 더 둡니다. 정점 상한 `MAX_V = 200000`, 간선 상한 `MAX_E = 400000`은 이 사이트 그래프 연습의 입력 상한과 같은 값이며, 실제 문제에서는 제한에 맞춰 바꿉니다. 큰 `Graph`는 전역으로 선언하고 TC마다 `init(n)`으로 사용할 정점만 비웁니다. 무방향 간선은 `addEdge`를 양쪽으로 두 번 호출하므로 `MAX_E`에서 두 칸을 씁니다.
+
+```cpp
+const int MAX_V = 200000; // 정점 수 상한
+const int MAX_E = 400000; // 방향 간선 수 상한
+
+struct Graph {
+    int head[MAX_V];
+    int next[MAX_E];
+    int to[MAX_E];
+    int edgeCount;
+
+    void init(int n) { // 전제: 0 <= n <= MAX_V
+        for (int i = 0; i < n; ++i) head[i] = -1;
+        edgeCount = 0;
+    }
+    bool addEdge(int u, int v) { // 간선이 가득 차면 false
+        if (edgeCount == MAX_E) return false;
+        to[edgeCount] = v;
+        next[edgeCount] = head[u];
+        head[u] = edgeCount++;
+        return true;
+    }
+};
+```
 
 인접 행렬은 `adj[u][v]`처럼 바로 확인할 수 있어서 편하지만, 메모리가 `O(n^2)`입니다. 정점 수가 크고 간선 수가 적은 일반적인 문제에서는 인접 리스트가 기본입니다.
 
@@ -26,18 +54,19 @@
 
 트리는 원래 루트가 없을 수 있습니다. 하지만 DFS/BFS를 시작할 정점을 하나 잡으면 부모, 깊이, subtree를 정의할 수 있습니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+트리 입력은 간선이 `n - 1`개이므로 무방향으로 넣어도 `2(n - 1)`칸이고, `n = MAX_V`에서도 `MAX_E` 안에 들어갑니다. `depth`와 `subtreeSize`는 호출하는 쪽의 전역 배열 `[0, n)`입니다.
 
 ```cpp
 void buildTree(
     int u,
     int parent,
-    const vector<vector<int>>& tree,
-    vector<int>& depth,
-    vector<int>& subtreeSize
+    const Graph& tree,
+    int depth[],
+    int subtreeSize[]
 ) {
     subtreeSize[u] = 1;
-    for (int v : tree[u]) {
+    for (int e = tree.head[u]; e != -1; e = tree.next[e]) {
+        int v = tree.to[e];
         if (v == parent) continue;
         depth[v] = depth[u] + 1;
         buildTree(v, u, tree, depth, subtreeSize);
@@ -46,7 +75,7 @@ void buildTree(
 }
 ```
 
-`depth[root] = 0`으로 초기화하고 `buildTree(root, -1, ...)`를 호출합니다. 일자 트리는 재귀 깊이가 정점 수까지 늘어납니다. `parent`를 인자로 들고 다니면 방문 배열 없이도 부모로 되돌아가는 간선을 건너뛸 수 있습니다. 단, 입력이 트리가 아니라 일반 그래프라면 방문 배열이 필요합니다.
+`depth[root] = 0`으로 초기화하고 `buildTree(root, -1, ...)`를 호출합니다. 나머지 `depth`와 `subtreeSize`는 이 호출이 도달한 정점마다 새로 채우므로 이전 TC의 값은 남지 않습니다. 일자 트리는 재귀 깊이가 정점 수까지 늘어나며, `MAX_V`에 가까우면 실행 환경의 스택 제한을 넘을 수 있습니다. 그때는 BFS 방문 순서를 거꾸로 훑으며 `subtreeSize`를 부모에게 더하는 반복형으로 바꿉니다. `parent`를 인자로 들고 다니면 방문 배열 없이도 부모로 되돌아가는 간선을 건너뛸 수 있습니다. 단, 입력이 트리가 아니라 일반 그래프라면 방문 배열이 필요합니다.
 
 트리에서 subtree 크기는 많은 문제의 기본 재료입니다.
 
@@ -75,23 +104,26 @@ subtreeSize[u] = u를 루트로 하는 부분트리의 정점 수
 
 트리에서는 경로가 유일하므로, 아무 곳에서 가장 먼 정점은 어떤 지름의 끝점이 됩니다.
 
+공통 `queue` 블록의 `hc::Queue<MAX_V>`를 씁니다. 발견할 때 `dist`를 기록하므로 각 정점은 한 번만 들어가 누적 push가 `n <= MAX_V`입니다. `farthest`는 `dist[0..n)`을 -1로 채우고 가장 먼 정점을 반환하며, 호출 전제는 `0 <= start < n <= MAX_V`입니다. `treeDiameter`는 `n = 0`이면 0, `n`이 범위 밖이면 -1을 반환합니다.
+
 ```cpp
-pair<int, int> farthest(int start, const vector<vector<int>>& tree) {
-    int n = (int)tree.size();
-    vector<int> dist(n, -1);
-    queue<int> q;
+hc::Queue<MAX_V> bfsQueue;
+int diameterDist[MAX_V];
+
+int farthest(int start, const Graph& tree, int n, int dist[]) {
+    for (int i = 0; i < n; ++i) dist[i] = -1;
+    bfsQueue.clear();
 
     dist[start] = 0;
-    q.push(start);
+    bfsQueue.push(start);
 
-    while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-
-        for (int v : tree[u]) {
+    int u;
+    while (bfsQueue.pop(u)) {
+        for (int e = tree.head[u]; e != -1; e = tree.next[e]) {
+            int v = tree.to[e];
             if (dist[v] != -1) continue;
             dist[v] = dist[u] + 1;
-            q.push(v);
+            bfsQueue.push(v);
         }
     }
 
@@ -99,14 +131,15 @@ pair<int, int> farthest(int start, const vector<vector<int>>& tree) {
     for (int i = 0; i < n; ++i) {
         if (dist[i] > dist[best]) best = i;
     }
-    return {best, dist[best]};
+    return best;
 }
 
-int treeDiameter(const vector<vector<int>>& tree) {
-    if (tree.empty()) return 0;
-    auto [x, ignored] = farthest(0, tree);
-    auto [y, diameter] = farthest(x, tree);
-    return diameter;
+int treeDiameter(const Graph& tree, int n) {
+    if (n == 0) return 0;
+    if (n < 0 || n > MAX_V) return -1;
+    int x = farthest(0, tree, n, diameterDist);
+    int y = farthest(x, tree, n, diameterDist);
+    return diameterDist[y];
 }
 ```
 
@@ -138,25 +171,29 @@ c는 트리의 센트로이드다.
 
 트리의 센트로이드는 항상 1개 또는 2개 존재합니다. subtree 크기를 한 번 구하면 모든 정점이 센트로이드인지 확인할 수 있습니다.
 
+호출하기 전에 `centroidCount = 0`으로 두고 `buildTree`로 `subtreeSize`를 채웁니다. 트리의 센트로이드는 최대 2개이므로 `centroids`는 크기 2면 충분합니다.
+
 ```cpp
 void findCentroids(
     int u,
     int parent,
-    const vector<vector<int>>& tree,
-    const vector<int>& subtreeSize,
+    const Graph& tree,
+    const int subtreeSize[],
     int n,
-    vector<int>& centroids
+    int centroids[],
+    int& centroidCount
 ) {
     int largestPart = n - subtreeSize[u];
 
-    for (int v : tree[u]) {
+    for (int e = tree.head[u]; e != -1; e = tree.next[e]) {
+        int v = tree.to[e];
         if (v == parent) continue;
-        largestPart = max(largestPart, subtreeSize[v]);
-        findCentroids(v, u, tree, subtreeSize, n, centroids);
+        if (subtreeSize[v] > largestPart) largestPart = subtreeSize[v];
+        findCentroids(v, u, tree, subtreeSize, n, centroids, centroidCount);
     }
 
     if (largestPart <= n / 2) {
-        centroids.push_back(u);
+        centroids[centroidCount++] = u;
     }
 }
 ```

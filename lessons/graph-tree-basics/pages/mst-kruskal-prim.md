@@ -21,28 +21,37 @@ MST를 생각할 때 조건을 분리하면 실수가 줄어듭니다.
 
 아래 코드는 [Union-Find 강의](https://h.readiz.com/learn/union-find)의 `DSU`를 사용합니다. `unite`가 성공한 간선만 비용에 더합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** [공통 코드](https://h.readiz.com/learn/cpp-common-library)의 `array`(`DSU`가 쓰는 `hc::swap`)와 `sort` 블록, 그리고 Union-Find 강의 "전체 구현"의 `DSU` 코드(`MAX_N = 200000` 포함)를 먼저 붙입니다. 표준 헤더·STL·동적 할당 없이 고정 배열로 구현합니다.
+
+간선은 `Edge` 배열에 담아 공통 `sort` 블록의 `hc::stableSort`로 비용순 정렬합니다. 정렬용 작업 배열 `edgeTemp`는 간선 배열과 같은 크기로 따로 둡니다. 간선 상한 `MAX_EDGES = 400000`은 이 사이트 그래프 연습의 입력 상한과 같은 값이며, 실제 문제에서는 제한에 맞춰 바꿉니다. `edges[0..m)`는 정렬되어 순서가 바뀝니다. `DSU`는 전역으로 두고 호출마다 `init(n)`으로 사용할 `[0, n)`만 초기화합니다. 정점 번호는 `[0, n)`이어야 합니다.
 
 ```cpp
+const int MAX_EDGES = 400000; // 무방향 간선 수 상한
+
 struct Edge {
     int u;
     int v;
     long long cost;
 };
 
-// 반환값은 연결 가능 여부, total은 성공 시 MST 비용. n >= 1.
-bool kruskal(int n, vector<Edge> edges, long long& total) {
-    sort(edges.begin(), edges.end(), [](const Edge& a, const Edge& b) {
+Edge edgeTemp[MAX_EDGES];
+DSU dsu;
+
+// 반환값은 연결 가능 여부, total은 성공 시 MST 비용.
+// 1 <= n <= MAX_N, 0 <= m <= MAX_EDGES가 아니면 false.
+bool kruskal(int n, Edge edges[], int m, long long& total) {
+    if (n < 1 || n > MAX_N || m < 0 || m > MAX_EDGES) return false;
+    hc::stableSort(edges, edgeTemp, m, [](const Edge& a, const Edge& b) {
         return a.cost < b.cost;
     });
 
-    DSU dsu(n);
+    dsu.init(n);
     total = 0;
     int used = 0;
 
-    for (const Edge& edge : edges) {
-        if (!dsu.unite(edge.u, edge.v)) continue;
-        total += edge.cost;
+    for (int i = 0; i < m; ++i) {
+        if (!dsu.unite(edges[i].u, edges[i].v)) continue;
+        total += edges[i].cost;
         used++;
     }
 
