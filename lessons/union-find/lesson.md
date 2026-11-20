@@ -179,7 +179,9 @@ void uniteMeeting(const int people[], int count) {
         dsu.unite(people[0], people[i]);
     }
 }
-``` 모든 모임을 처리한 뒤에는 대표별 `componentSize`를 한 번씩 모으고, 필요한 순서로 정렬하면 됩니다.
+```
+
+모든 모임을 처리한 뒤에는 대표별 `componentSize`를 한 번씩 모으고, 필요한 순서로 정렬하면 됩니다.
 
 주의할 점은 세 가지입니다.
 

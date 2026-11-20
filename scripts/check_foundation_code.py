@@ -44,10 +44,20 @@ LESSONS = {
     "topological-sort-dag": ["queue", "min-heap"],
     "bellman-ford-negative-cycle": [],
     "floyd-warshall": [],
+    "fenwick-tree": [],
+    "segment-tree": [],
+    "sqrt-decomposition": [],
+    "dynamic-segment-tree": [],
+    "dynamic-programming": [],
+    "tsp-hamiltonian": [],
+    "hungarian-algorithm": [],
+    "meldable-heap": ["array"],
+    "treap": ["random"],
 }
 # Code the lesson tells the reader to paste in front (lesson id, index of its ```cpp block).
 LESSON_PREFIX = {"graph-tree-basics": [("union-find", 0)]}
-NO_LOCAL_EXERCISE = {"union-find", "graph-tree-basics"}  # no standard-input exercise
+NO_LOCAL_EXERCISE = {"union-find", "graph-tree-basics", "segment-tree", "sqrt-decomposition",
+                     "tsp-hamiltonian", "hungarian-algorithm"}  # no standard-input exercise
 COMPILER = shlex.split(os.environ.get("CXX", "c++"))
 SANITIZE = ["-O1", "-g", "-fsanitize=address,undefined", "-fno-sanitize-recover=all",
             "-fno-omit-frame-pointer"]
