@@ -60,29 +60,42 @@ blockSum = [15, 21, 11]
 
 아래 구현은 0-indexed 배열에서 점 업데이트와 구간 합 질의를 처리합니다.
 
-> **코드 환경: 일반 C++17 학습용.** 헤더·STL을 허용하는 로컬 예제입니다. h-contest 제출에 옮길 때는 [공통 코드](https://h.readiz.com/learn/cpp-common-library)와 문제의 공개 API에 맞춰 필요한 부분을 바꿉니다.
+> **코드 환경: h-contest 제출용 코드.** 표준 헤더·STL·동적 할당 없이 고정 배열로 구현하므로 앞에 붙일 [공통 코드](https://h.readiz.com/learn/cpp-common-library) 블록이 없습니다. `cmath`의 `sqrt` 대신 정수 반복으로 블록 크기를 구합니다.
+
+원소 수 상한 `MAX_N = 200000`은 이 사이트 연습의 입력 상한이며, 실제 문제에서는 제한에 맞춰 바꿉니다. 블록 크기는 `B * B >= n`인 가장 작은 정수 `B`로 정하는 `ceilSqrt(n)`입니다. 이때 블록 수는 `B` 이하이므로 `blockSum`은 `ceilSqrt(MAX_N)`칸이면 충분합니다. `a`와 `blockSum`은 정적 배열이라 이전 TC의 값이 남습니다. 큰 `SqrtSum`은 전역으로 선언하고, TC가 시작될 때마다 `build`가 사용할 `[0, n)`과 블록 합을 새로 채웁니다.
 
 ```cpp
-#include <cmath>
-#include <vector>
-using namespace std;
+const int MAX_N = 200000; // 원소 수 상한
+
+// B * B >= x인 가장 작은 B(= sqrt(x)의 올림)를 정수 반복으로 구한다.
+constexpr int ceilSqrt(int x) {
+    int r = 1;
+    while (r * r < x) ++r;
+    return r;
+}
+
+const int MAX_BLOCKS = ceilSqrt(MAX_N); // 블록 수의 상한
 
 struct SqrtSum {
     int n;
     int B;
-    vector<long long> a;
-    vector<long long> blockSum;
+    long long a[MAX_N];
+    long long blockSum[MAX_BLOCKS];
 
-    SqrtSum(const vector<long long>& values) {
-        a = values;
-        n = (int)a.size();
-        B = (int)sqrt(n) + 1;
+    bool build(const long long values[], int size) { // 0 <= size <= MAX_N이 아니면 false
+        if (size < 0 || size > MAX_N) return false;
+        n = size;
+        B = ceilSqrt(n);
         int blockCount = (n + B - 1) / B;
-        blockSum.assign(blockCount, 0);
+        for (int block = 0; block < blockCount; ++block) {
+            blockSum[block] = 0;
+        }
 
         for (int i = 0; i < n; ++i) {
+            a[i] = values[i];
             blockSum[i / B] += a[i];
         }
+        return true;
     }
 
     void update(int idx, long long newValue) {
@@ -110,6 +123,8 @@ struct SqrtSum {
         return result;
     }
 };
+
+SqrtSum sqrtSum;
 ```
 
 사용할 때는 입력 구간이 1-indexed라면 `l--`, `r--`로 변환한 뒤 호출합니다.
@@ -143,27 +158,50 @@ struct SqrtSum {
 
 Sqrt Decomposition은 블록 전체에 같은 변경을 적용하는 문제에도 자주 쓰입니다. 예를 들어 구간 `[l, r]`에 `x`를 더하고, 한 위치의 값을 묻는 문제를 생각해 봅시다.
 
-블록 전체가 구간 안에 들어오면 모든 원소를 직접 바꾸지 않고 `lazy[block] += x`만 기록합니다. 양 끝의 잘린 부분만 원소를 직접 바꿉니다. 다음 코드는 앞의 구간 합 자료구조와 별개의 변형으로, `a`에 원래 값을 넣고 블록별 `lazy`는 0으로 초기화합니다. `B`와 인덱스 범위는 앞과 같습니다.
+블록 전체가 구간 안에 들어오면 모든 원소를 직접 바꾸지 않고 `lazy[block] += x`만 기록합니다. 양 끝의 잘린 부분만 원소를 직접 바꿉니다. 다음 코드는 앞의 구간 합 자료구조와 별개의 변형으로, `build`가 `a`에 원래 값을 넣고 블록별 `lazy`를 0으로 초기화합니다. `B`와 인덱스 범위는 앞과 같고, `MAX_N`·`MAX_BLOCKS`·`ceilSqrt`도 앞 코드와 같은 파일에서 씁니다.
 
 ```cpp
-void rangeAdd(int l, int r, long long x) {
-    while (l <= r && l % B != 0) {
-        a[l] += x;
-        l++;
-    }
-    while (l + B - 1 <= r) {
-        lazy[l / B] += x;
-        l += B;
-    }
-    while (l <= r) {
-        a[l] += x;
-        l++;
-    }
-}
+struct SqrtLazy {
+    int n;
+    int B;
+    long long a[MAX_N];
+    long long lazy[MAX_BLOCKS];
 
-long long get(int idx) {
-    return a[idx] + lazy[idx / B];
-}
+    bool build(const long long values[], int size) { // 0 <= size <= MAX_N이 아니면 false
+        if (size < 0 || size > MAX_N) return false;
+        n = size;
+        B = ceilSqrt(n);
+        int blockCount = (n + B - 1) / B;
+        for (int block = 0; block < blockCount; ++block) {
+            lazy[block] = 0;
+        }
+        for (int i = 0; i < n; ++i) {
+            a[i] = values[i];
+        }
+        return true;
+    }
+
+    void rangeAdd(int l, int r, long long x) {
+        while (l <= r && l % B != 0) {
+            a[l] += x;
+            l++;
+        }
+        while (l + B - 1 <= r) {
+            lazy[l / B] += x;
+            l += B;
+        }
+        while (l <= r) {
+            a[l] += x;
+            l++;
+        }
+    }
+
+    long long get(int idx) {
+        return a[idx] + lazy[idx / B];
+    }
+};
+
+SqrtLazy sqrtLazy;
 ```
 
 여기서 `a[i]`는 개별로 직접 바꾼 값이고, `lazy[block]`은 블록 전체에 밀려 있는 증가량입니다. 실제 값은 둘을 더해야 합니다.
@@ -172,7 +210,7 @@ long long get(int idx) {
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/sqrt-decomposition/lesson-assets/lazy-values.svg)
 
-`n=8`, `B=4`, 모든 값이 0인 상태에서 닫힌 구간 `[2,7]`에 3을 더했습니다. 블록 전체 갱신에서는 `a`와 `lazy`를 동시에 증가시키지 않습니다. 둘 다 더하면 조회 때 증가량이 두 번 반영됩니다.
+`n=8`, `B=4`(`B`는 `sqrt(n)` 근처이면 되므로 그림에서는 4로 둡니다), 모든 값이 0인 상태에서 닫힌 구간 `[2,7]`에 3을 더했습니다. 블록 전체 갱신에서는 `a`와 `lazy`를 동시에 증가시키지 않습니다. 둘 다 더하면 조회 때 증가량이 두 번 반영됩니다.
 
 ## 구간 갱신 실습
 
