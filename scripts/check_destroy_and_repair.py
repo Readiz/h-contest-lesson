@@ -317,7 +317,8 @@ def hand_assign() -> dict:
                 pick = todo[0]
             else:
                 pick = max(todo, key=lambda j: (info[j][1] - info[j][0], -info[j][0], -j))
-            rounds.append({"regret": {j: info[j][1] - info[j][0] for j in todo}, "pick": pick, "machine": info[pick][2]})
+            rounds.append({"regret": {j: info[j][1] - info[j][0] for j in todo}, "pick": pick, "machine": info[pick][2],
+                           "best": info[pick][0], "second": info[pick][1]})
             a[pick] = info[pick][2]
             ld[info[pick][2]] += d[pick]
             cn[info[pick][2]] += 1
@@ -325,6 +326,7 @@ def hand_assign() -> dict:
         ldf = [sum(d[i] for i in range(6) if a[i] == j) for j in range(m)]
         return {"as": a, "cost": cost(a), "rounds": rounds, "load": ldf, "sq": sum(x * x for x in ldf), "c": sum(c[i][a[i]] for i in range(6))}
 
+    assert first == repair(0)["as"], "the cheapest-slot repair must give the state after the first swap"
     return {"start": start, "swaps": {"count": len(swaps), "improving": sum(1 for s in swaps if s < 0), "best": min(swaps)},
             "moves": moves, "pool": pool, "cheapest": repair(0), "regret": repair(1), "double": double}
 
@@ -794,6 +796,65 @@ def check_svg(path: Path) -> None:
         assert left >= 8 and right <= 712 and y <= height - 4, f"{path.name}: text may leave the figure: {body!r}"
 
 
+def prose_facts(meas: dict, stuck: dict, hand: dict) -> list[str]:
+    """Sentences (or fragments) of the lesson that quote measured or recomputed numbers; each must appear verbatim."""
+    hr, ha = hand["route"], hand["assign"]
+    br, ba = meas["budget"]["route"], meas["budget"]["assign"]
+    ho = meas["holdout"]
+    g = meas["mistakes"]["greedy-top"]
+    sz_r = {e["size"]: e for e in meas["size"]["route"]["rows"]}
+    sz_a = {e["size"]: e for e in meas["size"]["assign"]["rows"]}
+    kr = {e["name"]: e for e in meas["kinds"]["route"]["rows"]}
+    rs = meas["restore"]
+    d, c, a0 = HAND_D, HAND_C, HAND_AS
+    load = ha["start"]["load"]
+    ch, rg = ha["cheapest"], ha["regret"]
+    r1 = rg["rounds"][0]
+    facts = [
+        # idea page: route example
+        f"합계는 {hr['start']}입니다", f"모든 순서 5,040개를 훑어 구한 최소 비용도 {hr['optimum']}",
+        f"(비용 {hr['steps'][0]['cost']})입니다", f"{hr['start']}보다 {hr['start'] - hr['steps'][2]['cost']}가 줄었습니다",
+        f"비용이 {hr['start']}에서 {hr['alone'][0]['cost']}",
+        # idea page: assignment example
+        f"기계 0이 `{d[3]} + {d[4]} = {load[0]}`, 기계 1이 `{d[0]} + {d[1]} = {load[1]}`, 기계 2가 `{d[2]} + {d[5]} = {load[2]}`",
+        f"`{ha['start']['sq']} / 100 = {ha['start']['sq'] // 100}`",
+        "`" + " + ".join(str(c[i][a0[i]]) for i in range(6)) + f" = {ha['start']['c']}`",
+        f"비용은 `{ha['start']['sq'] // 100} + {ha['start']['c']} = {ha['start']['cost']}`",
+        f"추가 비용의 합만 `{ha['start']['c']}`에서 `{rg['c']}`로 줄어 비용이 {rg['cost']}",
+        f"첫 번째 맞바꿈만 한 해의 비용은 {ha['double']['first']}로, 부하가 {ch['load'][1]}과 {ch['load'][2]}로",
+        f"비용이 {ch['cost']}입니다", f"부하 제곱의 합이 {ch['sq']}({ch['sq'] // 100})로 늘고 추가 비용은 {ch['c']}",
+        f"작업 0이 가장 크고, 작업 0은 기계 {r1['machine']}에 놓입니다(비교 값 {r1['best']} 대 {r1['second']})",
+        f"`as = {rg['as']}`, 비용 {rg['cost']}",
+        # implementation page
+        f"`n + 2m + 2 = {120 + 2 * 8 + 2}`",
+        # practice page: local optima
+        f"비용 중앙값은 순서 틀 {fmt(stuck['localOptimum']['route'])}, 배정 틀 {fmt(stuck['localOptimum']['assign'])}",
+        # budgets
+        f"(예산 {fmt(br[-1]['budget'])}에서 {fmt(br[-1]['dr'])} 대 {fmt(br[-1]['small'])}, 20개 중 {br[-1]['drOnlyWorse']}개 시드가 나쁨)",
+        f"같은 예산에서 {fmt(br[-1]['drIters'])}번밖에 돌지 못합니다",
+        f"(18 / 2와 20 / 0, 중앙값 {fmt(br[1]['hybrid'])}와 {fmt(br[2]['hybrid'])}, 작은 이동만의 {fmt(br[1]['small'])}과 {fmt(br[2]['small'])})",
+        f"예산 {fmt(br[0]['budget'])}에서는 결정하지 못했습니다({br[0]['hybridBetter']} / {br[0]['hybridWorse']})",
+        f"{fmt(br[0]['small'])}에서 {fmt(br[2]['small'])}까지만 내려가며",
+        f"중앙값 {fmt(ba[-1]['small'])}에 머물고 혼합은 예산 {fmt(ba[-1]['budget'])}에서 {fmt(ba[-1]['hybrid'])}(18 / 2, 더 좋음)로 비용의 0.1%도 안 되는 {ba[-1]['small'] - ba[-1]['hybrid']}",
+        f"시작 {fmt(meas['start']['assign'])}에서 {fmt(ba[-1]['small'])}까지 {fmt(meas['start']['assign'] - ba[-1]['small'])}를 내려온",
+        f"{fmt(ba[0]['small'])}에 미치지 못했습니다({fmt(ba[0]['hybrid'])})",
+        f"차이({ho['assign']['small'] - ho['assign']['hybrid']})는 비용의 0.02%",
+        # kinds
+        f"무작위 8개의 {fmt(kr['무작위']['median'])}는 작은 이동만({fmt(br[-1]['small'])})과 같은 수준",
+        f"비용 {fmt(g['tourCost'])}로, 무작위({fmt(g['tourRandomCost'])})보다 {g['tourWorse']}개 시드 모두에서 나빴습니다({g['tourBetter']} / {g['tourWorse']})",
+        # sizes
+        f"(받은 횟수 0, {fmt(sz_r[200]['median'])}가 그대로 남음)", f"반복 수가 순서 틀에서 {fmt(sz_r[1]['iters'])}번에서 {fmt(sz_r[200]['iters'])}번으로 줄고",
+        f"예산 {fmt(br[0]['budget'])}에서 얻은 {fmt(br[0]['small'])}",
+        f"{fmt(sz_a[1]['iters'])}",
+        # restore
+        f"{fmt(rs[0]['writes'])}번으로 늘고, 기록은 떼어 낸 작업만 되돌려 {rs[1]['writes']}번",
+        f"반복당 연산 {fmt(rs[0]['ops'])}대 {fmt(rs[1]['ops'])}", f"({fmt(rs[0]['iters'])}번 대 {fmt(rs[1]['iters'])}번)",
+        f"({fmt(rs[2]['ops'])} 대 {fmt(rs[3]['ops'])}, 반복 {fmt(rs[2]['iters'])}번 대 {fmt(rs[3]['iters'])}번)",
+        f"(반복 {fmt(rs[4]['iters'])}번 대 {fmt(rs[5]['iters'])}번)",
+    ]
+    return facts
+
+
 def check_text(meas: dict, stuck: dict, hand: dict, expo: list[dict]) -> int:
     text = read_lesson_text(LESSON_ID)
     hub = read_hub_text(LESSON_ID)
@@ -806,6 +867,14 @@ def check_text(meas: dict, stuck: dict, hand: dict, expo: list[dict]) -> int:
                 assert row in text, f"lesson table row missing or differs ({name}): {row}"
                 count += 1
     count += check_hub_summary(LESSON_ID, hub_expected(meas))
+    facts = prose_facts(meas, stuck, hand)
+    missing = [f for f in facts if f not in text]
+    assert not missing, "sentences quoting a measured number are missing or differ:\n" + "\n".join(missing)
+    count += len(facts)
+    fig = (LESSON_DIR / "lesson-assets" / "size-spectrum.svg").read_text(encoding="utf-8")
+    rows = {e["size"]: e for e in meas["size"]["route"]["rows"]}
+    for needle in (fmt(rows[1]["iters"]), fmt(rows[200]["iters"]), fmt(ROUTE_BUDGETS[-1])):
+        assert needle in fig, f"size-spectrum.svg must quote {needle}"
     for page in ("pages/idea.md", "pages/implementation.md", "pages/practice.md"):
         assert f"]({page})" in hub, f"hub must link {page}"
     # site problems are named only in the application section of practice.md

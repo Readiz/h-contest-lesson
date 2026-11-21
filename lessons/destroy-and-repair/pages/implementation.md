@@ -37,7 +37,6 @@
 | 4 | 0.0183 | 0.0182 |
 | 8 | 0.0003 | 0.0003 |
 
-
 ```cpp snippet=dr-frame
 // [0, bound) 안의 값. 상위 비트를 쓴다(3번 강의의 pick과 같다).
 int pick(hc::Random& rng, int bound) { return (int)(((unsigned long long)rng.next() * (unsigned)bound) >> 32); }

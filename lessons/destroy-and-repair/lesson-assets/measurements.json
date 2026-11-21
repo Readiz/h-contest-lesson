@@ -1034,7 +1034,9 @@
        "5": 300
       },
       "pick": 0,
-      "machine": 2
+      "machine": 2,
+      "best": 3084,
+      "second": 3684
      },
      {
       "regret": {
@@ -1043,7 +1045,9 @@
        "5": 3060
       },
       "pick": 1,
-      "machine": 1
+      "machine": 1,
+      "best": 3276,
+      "second": 4620
      },
      {
       "regret": {
@@ -1051,14 +1055,18 @@
        "5": 180
       },
       "pick": 2,
-      "machine": 1
+      "machine": 1,
+      "best": 2220,
+      "second": 2616
      },
      {
       "regret": {
        "5": 999999992940
       },
       "pick": 5,
-      "machine": 2
+      "machine": 2,
+      "best": 7060,
+      "second": 1000000000000
      }
     ],
     "load": [
@@ -1088,7 +1096,9 @@
        "5": 300
       },
       "pick": 0,
-      "machine": 2
+      "machine": 2,
+      "best": 3084,
+      "second": 3684
      },
      {
       "regret": {
@@ -1097,7 +1107,9 @@
        "5": 3060
       },
       "pick": 5,
-      "machine": 1
+      "machine": 1,
+      "best": 4000,
+      "second": 7060
      },
      {
       "regret": {
@@ -1105,14 +1117,18 @@
        "2": 468
       },
       "pick": 1,
-      "machine": 2
+      "machine": 2,
+      "best": 4620,
+      "second": 6156
      },
      {
       "regret": {
        "2": 999999996916
       },
       "pick": 2,
-      "machine": 1
+      "machine": 1,
+      "best": 3084,
+      "second": 1000000000000
      }
     ],
     "load": [
