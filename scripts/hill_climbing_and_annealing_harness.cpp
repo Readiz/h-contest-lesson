@@ -393,6 +393,15 @@ static void modeHand() {
         if (cost < best) best = cost;
         printf(" %lld %lld\n", cost, best);
     }
+    // the lesson's anneal with budget 10 and the constant temperature 3 reproduces the same ten steps
+    {
+        loadHand(L);
+        hc::Random rng3; rng3.reset(417);
+        Schedule sc; sc.init(T, T, 10, 0);
+        ll evals = 0, last; Trace tr;
+        const ll best3 = anneal(route, rng3, route.fullCost(), 10, sc, evals, last, tr);
+        printf("hand annealcheck %lld %lld %lld\n", best3, last, refRoute(route));
+    }
     // the mean acceptance of the worsening moves at L for a few temperatures
     loadHand(L);
     {

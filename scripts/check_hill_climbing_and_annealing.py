@@ -445,6 +445,8 @@ def check_hand(rows):
     for got, want in zip(sa, h["sa"]):
         assert want[1] is not None
         assert [int(x) for x in got[2:]] == list(want), (got, want)
+    ac = [int(x) for x in by["annealcheck"][0]]
+    assert ac == [h["sa"][-1][9], h["sa"][-1][8], h["sa"][-1][9]], "the lesson's anneal must reproduce the ten hand steps"
     assert [int(x) for x in by["ups"][0][1:]] == h["ups"]
     for got in by["mean"]:
         assert int(got[1]) == h["mean"][got[0]], got
@@ -781,7 +783,7 @@ def main() -> None:
         n_gen = check_gen(run(san, "gen"))
         diff = run(san, "diff")
         assert diff[0][:2] == ["diff", "route"] and diff[0][3:] == ["0", "0", "0"] and int(diff[0][2]) == 6720, diff
-        assert diff[1][:2] == ["diff", "assign"] and diff[1][3:] == ["0", "0", "0", "0"] and int(diff[1][2]) > 5000, diff
+        assert diff[1][:2] == ["diff", "assign"] and diff[1][3:] == ["0", "0", "0", "0"] and int(diff[1][2]) == 5785, diff
         assert diff[2] == ["diff", "default", "10000", "0", "0"], diff
         worst = check_acc_table(run(san, "acctab"), text)
         freq = check_accept(run(san, "accept"))
@@ -866,7 +868,7 @@ def check_prose(meas: dict, hill: dict, hand: dict, mistakes: dict) -> int:
         f"예산 10,000에서는 {m['schedule-constant']['endTemperature']['10000'] / TS:.1f}(끝 3의 {round(m['schedule-constant']['endTemperature']['10000'] / (3 * TS))}배",
         f"예산 1,000,000에서는 {m['schedule-constant']['endTemperature']['1000000'] / TS:.4f}",
         f"{fmt(m['clean']['routeCost'])}에서 {fmt(m['schedule-constant']['routeCost'])}가 됩니다",
-        f"{m['no-best']['bestMismatch']}개 모두 반환한 best",
+        f"{m['no-best']['bestMismatch']}개 모두 반환한 best", "순서 틀 6,720개, 배정 틀 5,785개",
         f"측정한 최대는 {sci(meas['accuracy']['worstAbsError'])}", "절대 오차 1 × 10⁻⁷ 이내",
     ]
     for phrase in needed:
