@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+<title id="title">온도는 이 문제의 변화량에서 정한다</title>
+<desc id="desc">순서 틀과 배정 틀에서 나쁜 이동의 변화량 분포(10%, 50%, 90%)를 시작 해와 지역 최적에서 로그 눈금으로 보인 그림입니다. 순서 틀의 변화량은 시작 해에서 중앙값 396, 지역 최적에서 1,138이고 정한 온도는 시작 68.9, 끝 3.6입니다. 배정 틀은 82, 70이고 온도는 14.0, 1.2입니다. 두 문제의 변화량 크기가 달라 온도도 다릅니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="558" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">온도는 이 문제의 변화량에서 정한다</text>
+<text x="28" y="84" font-size="20" fill="#53657d">막대는 변화량의 10%~90%, 흰 줄은 중앙값 (로그 눈금)</text>
+<line x1="150.0" y1="116" x2="150.0" y2="528" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="150.0" y="548" font-size="16" fill="#53657d" text-anchor="middle">1</text>
+<line x1="299.9" y1="116" x2="299.9" y2="528" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="299.9" y="548" font-size="16" fill="#53657d" text-anchor="middle">10</text>
+<line x1="449.8" y1="116" x2="449.8" y2="528" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="449.8" y="548" font-size="16" fill="#53657d" text-anchor="middle">100</text>
+<line x1="599.7" y1="116" x2="599.7" y2="528" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="599.7" y="548" font-size="16" fill="#53657d" text-anchor="middle">1,000</text>
+<text x="28" y="144" font-size="20" fill="#172b45" font-weight="700">순서 틀</text>
+<text x="28" y="186" font-size="18" fill="#172b45">시작 해</text>
+<rect x="422.8" y="172" width="180.3" height="16" rx="4" fill="#2664ce" opacity="0.85"/>
+<line x1="539.4" y1="172" x2="539.4" y2="188" stroke="#ffffff" stroke-width="3"/>
+<text x="414.8" y="186" font-size="16" fill="#53657d" text-anchor="end">66 · 396 · 1,052</text>
+<text x="28" y="226" font-size="18" fill="#172b45">지역 최적</text>
+<rect x="534.3" y="212" width="113.1" height="16" rx="4" fill="#9aa8bb" opacity="0.85"/>
+<line x1="608.2" y1="212" x2="608.2" y2="228" stroke="#ffffff" stroke-width="3"/>
+<text x="526.3" y="226" font-size="16" fill="#53657d" text-anchor="end">366 · 1,138 · 2,078</text>
+<text x="28" y="266" font-size="18" fill="#172b45">정한 온도</text>
+<circle cx="234.1" cy="260" r="9" fill="#ae5515"/>
+<text x="248.1" y="266" font-size="18" fill="#ae5515">끝 3.6</text>
+<circle cx="425.6" cy="260" r="9" fill="#2664ce"/>
+<text x="439.6" y="266" font-size="18" fill="#2664ce">시작 68.9</text>
+<text x="28" y="334" font-size="20" fill="#172b45" font-weight="700">배정 틀</text>
+<text x="28" y="376" font-size="18" fill="#172b45">시작 해</text>
+<rect x="321.8" y="362" width="201.5" height="16" rx="4" fill="#2664ce" opacity="0.85"/>
+<line x1="436.9" y1="362" x2="436.9" y2="378" stroke="#ffffff" stroke-width="3"/>
+<text x="313.8" y="376" font-size="16" fill="#53657d" text-anchor="end">14 · 82 · 309</text>
+<text x="28" y="416" font-size="18" fill="#172b45">지역 최적</text>
+<rect x="351.2" y="402" width="134.6" height="16" rx="4" fill="#9aa8bb" opacity="0.85"/>
+<line x1="426.6" y1="402" x2="426.6" y2="418" stroke="#ffffff" stroke-width="3"/>
+<text x="343.2" y="416" font-size="16" fill="#53657d" text-anchor="end">22 · 70 · 174</text>
+<text x="28" y="456" font-size="18" fill="#172b45">정한 온도</text>
+<circle cx="160.5" cy="450" r="9" fill="#ae5515"/>
+<text x="174.5" y="456" font-size="18" fill="#ae5515">끝 1.2</text>
+<circle cx="321.9" cy="450" r="9" fill="#2664ce"/>
+<text x="335.9" y="456" font-size="18" fill="#2664ce">시작 14.0</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+<title id="title">지역 최적에서 멈추는 이유</title>
+<desc id="desc">7개 점 경로의 비용이 번호 순서의 42에서 언덕 오르기로 28까지 내려가 멈춥니다. 28에서는 구간 뒤집기 21개가 모두 비용을 0 이상으로 바꿉니다. 나쁜 이동 하나(위치 1과 6의 뒤집기, +2)를 받아 30이 된 뒤 좋아지는 이동 두 번으로 28을 거쳐 전역 최적 26에 닿습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="468" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">지역 최적에서 멈추는 이유</text>
+<text x="28" y="84" font-size="20" fill="#53657d">7개 점 경로, 번호 순서에서 시작한 첫 개선과 나쁜 이동 하나</text>
+<path d="M 70 150 C 150 150 170 342 250 342" fill="none" stroke="#2664ce" stroke-width="5"/>
+<path d="M 250 342 C 320 342 330 315 400 315" fill="none" stroke="#ae5515" stroke-width="5" stroke-dasharray="10 6"/>
+<path d="M 400 315 C 470 315 490 370 560 370" fill="none" stroke="#2664ce" stroke-width="5"/>
+<line x1="40" y1="410" x2="680" y2="410" stroke="#9aa8bb" stroke-width="1.5"/>
+<circle cx="70" cy="150" r="10" fill="#ffffff" stroke="#172b45" stroke-width="3"/>
+<circle cx="250" cy="342" r="10" fill="#ffffff" stroke="#172b45" stroke-width="3"/>
+<circle cx="400" cy="315" r="10" fill="#ffffff" stroke="#ae5515" stroke-width="3"/>
+<circle cx="560" cy="370" r="10" fill="#ffffff" stroke="#2664ce" stroke-width="3"/>
+<text x="70" y="128" font-size="18" fill="#172b45">번호 순서 · 비용 42</text>
+<text x="250" y="372" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">28 · 지역 최적</text>
+<text x="250" y="396" font-size="18" fill="#172b45" text-anchor="middle">근방 21개가 모두 0 이상</text>
+<text x="400" y="290" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">30</text>
+<text x="580" y="396" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">26 · 전역 최적</text>
+<circle cx="320" cy="150" r="7" fill="#2664ce"/><text x="336" y="156" font-size="18" fill="#172b45">개선 5번(평가 26번)에서 28로 멈춤</text>
+<circle cx="320" cy="186" r="7" fill="#ae5515"/><text x="336" y="192" font-size="18" fill="#172b45">나쁜 이동 하나 +2를 받음</text>
+<circle cx="320" cy="222" r="7" fill="#2664ce"/><text x="336" y="228" font-size="18" fill="#172b45">개선 2번으로 26에 닿음</text>
+<text x="28" y="438" font-size="18" fill="#53657d">실선은 좋아지는 이동, 점선은 나빠지는 이동입니다.</text>
+<text x="28" y="462" font-size="18" fill="#53657d">28에서 근방만 보면 위쪽(30)으로 올라갈 이유가 없습니다.</text>
+</svg>
