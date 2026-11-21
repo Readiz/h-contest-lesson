@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" role="img" aria-labelledby="title desc">
+<title id="title">매개변수 두 개의 상호작용</title>
+<desc id="desc">시작 온도와 끝 온도를 바꾼 네 설정의 2 × 2 칸입니다. 시작 설정(비용 13,950)에서 시작 온도만 두 배로 하면 2 / 18로 나빠지고, 끝 온도만 1/4로 하면 8 / 12로 결정 못 함이며, 둘을 함께 바꾸면 비용 13,673에 17 / 3으로 더 좋아집니다. 한 번에 하나씩 가는 화살표는 대각선 칸에 닿지 못합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="578" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">둘을 함께 바꿀 때만 좋아진다</text>
+<text x="28" y="84" font-size="20" fill="#53657d">시작 온도 t0와 끝 온도 t1</text>
+<text x="245" y="132" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">t0 = 128</text>
+<text x="545" y="132" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">t0 = 256</text>
+<text x="118" y="210" font-size="20" fill="#172b45" text-anchor="end" font-weight="700">t1 = 128</text>
+<text x="118" y="370" font-size="20" fill="#172b45" text-anchor="end" font-weight="700">t1 = 32</text>
+<rect x="130" y="150" width="230" height="110" rx="12" fill="#ffffff" stroke="#53657d" stroke-width="2.5"/>
+<text x="146" y="182" font-size="20" fill="#172b45" font-weight="700">시작(일정 온도)</text>
+<text x="146" y="212" font-size="20" fill="#172b45">13,950</text>
+<rect x="430" y="150" width="230" height="110" rx="12" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="446" y="182" font-size="20" fill="#172b45" font-weight="700">t0만 두 배</text>
+<text x="446" y="212" font-size="20" fill="#172b45">14,304</text>
+<text x="446" y="242" font-size="18" fill="#ae5515" font-weight="700">2 / 18 더 나쁨</text>
+<rect x="130" y="310" width="230" height="110" rx="12" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="146" y="342" font-size="20" fill="#172b45" font-weight="700">t1만 1/4</text>
+<text x="146" y="372" font-size="20" fill="#172b45">13,964</text>
+<text x="146" y="402" font-size="18" fill="#ae5515" font-weight="700">8 / 12 결정 못 함</text>
+<rect x="430" y="310" width="230" height="110" rx="12" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="446" y="342" font-size="20" fill="#172b45" font-weight="700">둘 다</text>
+<text x="446" y="372" font-size="20" fill="#172b45">13,673</text>
+<text x="446" y="402" font-size="18" fill="#2664ce" font-weight="700">17 / 3 더 좋음</text>
+<line x1="362" y1="205" x2="424" y2="205" stroke="#ae5515" stroke-width="3.5"/><path d="M 414 197 L 426 205 L 414 213" fill="none" stroke="#ae5515" stroke-width="3.5"/>
+<line x1="245" y1="262" x2="245" y2="304" stroke="#ae5515" stroke-width="3.5"/><path d="M 237 294 L 245 306 L 253 294" fill="none" stroke="#ae5515" stroke-width="3.5"/>
+<line x1="362" y1="262" x2="424" y2="326" stroke="#2664ce" stroke-width="5"/><path d="M 410 326 L 426 328 L 422 312" fill="none" stroke="#2664ce" stroke-width="5"/>
+<text x="28" y="466" font-size="18" fill="#172b45">한 번에 하나씩(주황 화살표)은 어느 쪽도 15개에 닿지 못하고,</text>
+<text x="28" y="492" font-size="18" fill="#172b45">둘을 함께 바꾸는 칸(파랑)만 17 / 3이다.</text>
+<text x="28" y="526" font-size="18" fill="#53657d">순서 틀 · 평가 300,000 · 시드 1~20</text>
+<text x="28" y="552" font-size="18" fill="#53657d">칸의 값: 비용 중앙값, 시작 설정 대비 나은 / 못한 시드</text>
+</svg>

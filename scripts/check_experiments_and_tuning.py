@@ -294,7 +294,7 @@ def power(p: Fraction, n: int = 20, k: int = WIN) -> Fraction:
 def exact_tables() -> dict:
     out: dict = {}
     out["tails"] = [[k, tail(20, k), dec(Fraction(tail(20, k), 1 << 20)), dec(two_sided(20, k))] for k in range(12, 19)]
-    out["need"] = [[n, need_wins(n, 20), dec(two_sided(n, need_wins(n, 20)))] for n in (10, 15, 18, 19, 20, 25, 30, 40)]
+    out["need"] = [[n, need_wins(n, 20), dec(two_sided(n, need_wins(n, 20)))] for n in (9, 10, 15, 18, 19, 20, 25, 30, 40)]
     out["ties"] = [[f"{t.numerator}/{t.denominator}" if t else "0", dec(false_rate_with_ties(t))]
                    for t in (Fraction(0), Fraction(1, 10), Fraction(1, 4), Fraction(1, 2))]
     out["power"] = [[f"{p.numerator}/{p.denominator}", dec(power(p))] for p in (Fraction(6, 10), Fraction(7, 10), Fraction(8, 10), Fraction(9, 10))]
@@ -453,7 +453,7 @@ def measure(raw: dict) -> dict:
     h = [asg[(0, 100000)][s][0] for s in range(1, 21)]
     c = [asg[(2, 100000)][s][0] for s in range(1, 21)]
     pairing["assign"] = {"paired": cmp3(c, h), "shifts": [{"k": k, "cmp": cmp3(c[k:] + c[:k], h)} for k in (5, 10)],
-                         "inputs": quart(h), "diff": quart([x - y for x, y in zip(c, h)])}
+                         "inputs": quart(h), "diff": quart([x - y for x, y in zip(c, h)]), "hot": h, "c1": c}
     m["pairing"] = pairing
     # ---- x3: 40 identical configurations compared with the same baseline
     X: dict = {}
