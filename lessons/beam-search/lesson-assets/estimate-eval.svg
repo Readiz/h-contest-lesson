@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">같은 얻은 값을 추정이 가른다</title>
+<desc id="desc">3×3 격자에서 칸 0, 1, 4를 밟은 상태에서 이웃한 후보 칸 1, 3, 5, 7을 비교합니다. 평가값은 2×얻은 값에 이웃한 안 밟은 칸의 값 합을 더한 값으로, 칸 7은 28+13=41, 칸 3은 12+9=21, 칸 5는 12+4=16, 칸 1은 12+0=12입니다. 얻은 값이 6으로 같은 칸 1, 3, 5를 추정이 구별합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="518" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">같은 얻은 값을 추정이 가른다</text>
+<text x="28" y="84" font-size="20" fill="#53657d">평가값 = 2 × 얻은 값 + 이웃한 안 밟은 칸의 값 합</text>
+<rect x="28" y="130" width="84" height="84" rx="8" fill="#e3e9f2" stroke="#9aa8bb" stroke-width="2"/>
+<text x="36" y="152" font-size="16" fill="#53657d">칸 0</text>
+<text x="70.0" y="190" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">0</text>
+<rect x="112" y="130" width="84" height="84" rx="8" fill="#e3e9f2" stroke="#ae5515" stroke-width="4"/>
+<text x="120" y="152" font-size="16" fill="#53657d">칸 1</text>
+<text x="154.0" y="190" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">6</text>
+<rect x="196" y="130" width="84" height="84" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="204" y="152" font-size="16" fill="#53657d">칸 2</text>
+<text x="238.0" y="190" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">0</text>
+<rect x="28" y="214" width="84" height="84" rx="8" fill="#ffffff" stroke="#ae5515" stroke-width="4"/>
+<text x="36" y="236" font-size="16" fill="#53657d">칸 3</text>
+<text x="70.0" y="274" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">0</text>
+<rect x="112" y="214" width="84" height="84" rx="8" fill="#e3e9f2" stroke="#2664ce" stroke-width="4"/>
+<text x="120" y="236" font-size="16" fill="#53657d">칸 4</text>
+<text x="154.0" y="274" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">0</text>
+<rect x="196" y="214" width="84" height="84" rx="8" fill="#ffffff" stroke="#ae5515" stroke-width="4"/>
+<text x="204" y="236" font-size="16" fill="#53657d">칸 5</text>
+<text x="238.0" y="274" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">0</text>
+<rect x="28" y="298" width="84" height="84" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="36" y="320" font-size="16" fill="#53657d">칸 6</text>
+<text x="70.0" y="358" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">9</text>
+<rect x="112" y="298" width="84" height="84" rx="8" fill="#ffffff" stroke="#ae5515" stroke-width="4"/>
+<text x="120" y="320" font-size="16" fill="#53657d">칸 7</text>
+<text x="154.0" y="358" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">8</text>
+<rect x="196" y="298" width="84" height="84" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="204" y="320" font-size="16" fill="#53657d">칸 8</text>
+<text x="238.0" y="358" font-size="26" fill="#172b45" text-anchor="middle" font-weight="700">4</text>
+<text x="28" y="410" font-size="18" fill="#172b45">회색: 밟음 · 파란 테두리: 지금 칸</text>
+<text x="28" y="436" font-size="18" fill="#ae5515">주황 테두리: 다음에 갈 후보</text>
+<text x="330" y="148" font-size="18" fill="#172b45" font-weight="700">후보 칸별 평가값</text>
+<text x="330" y="202" font-size="20" fill="#172b45" font-weight="700">칸 7</text>
+<rect x="390" y="176" width="182.0" height="38" fill="#2664ce"/>
+<rect x="572.0" y="176" width="84.5" height="38" fill="#ae5515"/>
+<text x="664.5" y="203" font-size="20" fill="#172b45" font-weight="700">41</text>
+<text x="330" y="260" font-size="20" fill="#172b45" font-weight="700">칸 3</text>
+<rect x="390" y="234" width="78.0" height="38" fill="#2664ce"/>
+<rect x="468.0" y="234" width="58.5" height="38" fill="#ae5515"/>
+<text x="534.5" y="261" font-size="20" fill="#172b45" font-weight="700">21</text>
+<text x="330" y="318" font-size="20" fill="#172b45" font-weight="700">칸 5</text>
+<rect x="390" y="292" width="78.0" height="38" fill="#2664ce"/>
+<rect x="468.0" y="292" width="26.0" height="38" fill="#ae5515"/>
+<text x="502.0" y="319" font-size="20" fill="#172b45" font-weight="700">16</text>
+<text x="330" y="376" font-size="20" fill="#172b45" font-weight="700">칸 1</text>
+<rect x="390" y="350" width="78.0" height="38" fill="#2664ce"/>
+<text x="476.0" y="377" font-size="20" fill="#172b45" font-weight="700">12</text>
+<rect x="330" y="420" width="22" height="22" fill="#2664ce"/><text x="360" y="438" font-size="18" fill="#172b45">2 × 얻은 값</text>
+<rect x="498" y="420" width="22" height="22" fill="#ae5515"/><text x="528" y="438" font-size="18" fill="#172b45">추정</text>
+<text x="28" y="494" font-size="18" fill="#172b45">칸 1, 3, 5는 얻은 값이 모두 6이라 추정이 없으면 같고, 추정이 9, 4, 0으로 가른다.</text>
+</svg>

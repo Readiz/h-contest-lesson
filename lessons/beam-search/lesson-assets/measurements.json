@@ -1,0 +1,2131 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "grid": {
+  "widths": [
+   1,
+   2,
+   4,
+   8,
+   16,
+   64,
+   256,
+   1024
+  ],
+  "est": {
+   "0": {
+    "rows": [
+     {
+      "width": 1,
+      "median": 109,
+      "ops": 178,
+      "evals": 178,
+      "work": 0,
+      "copied": 600,
+      "whole": 6885
+     },
+     {
+      "width": 2,
+      "median": 226,
+      "ops": 436,
+      "evals": 436,
+      "work": 0,
+      "copied": 1200,
+      "whole": 17733
+     },
+     {
+      "width": 4,
+      "median": 233,
+      "ops": 886,
+      "evals": 886,
+      "work": 0,
+      "copied": 2380,
+      "whole": 36516
+     },
+     {
+      "width": 8,
+      "median": 257,
+      "ops": 1786,
+      "evals": 1786,
+      "work": 0,
+      "copied": 4720,
+      "whole": 74650
+     },
+     {
+      "width": 16,
+      "median": 281,
+      "ops": 3538,
+      "evals": 3538,
+      "work": 0,
+      "copied": 9360,
+      "whole": 148552
+     },
+     {
+      "width": 64,
+      "median": 284,
+      "ops": 13812,
+      "evals": 13812,
+      "work": 0,
+      "copied": 36610,
+      "whole": 586909
+     },
+     {
+      "width": 256,
+      "median": 286,
+      "ops": 54239,
+      "evals": 54239,
+      "work": 0,
+      "copied": 142970,
+      "whole": 2345086
+     },
+     {
+      "width": 1024,
+      "median": 288,
+      "ops": 211592,
+      "evals": 211592,
+      "work": 0,
+      "copied": 559040,
+      "whole": 9265130
+     }
+    ],
+    "pairs": [
+     {
+      "from": 1,
+      "to": 2,
+      "better": 20,
+      "worse": 0
+     },
+     {
+      "from": 2,
+      "to": 4,
+      "better": 12,
+      "worse": 8
+     },
+     {
+      "from": 4,
+      "to": 8,
+      "better": 15,
+      "worse": 3
+     },
+     {
+      "from": 8,
+      "to": 16,
+      "better": 13,
+      "worse": 6
+     },
+     {
+      "from": 16,
+      "to": 64,
+      "better": 13,
+      "worse": 3
+     },
+     {
+      "from": 64,
+      "to": 256,
+      "better": 7,
+      "worse": 5
+     },
+     {
+      "from": 256,
+      "to": 1024,
+      "better": 14,
+      "worse": 2
+     }
+    ],
+    "seedsWiderWorse": 19
+   },
+   "1": {
+    "rows": [
+     {
+      "width": 1,
+      "median": 240,
+      "ops": 5329,
+      "evals": 233,
+      "work": 5094,
+      "copied": 600,
+      "whole": 9533
+     },
+     {
+      "width": 2,
+      "median": 263,
+      "ops": 10521,
+      "evals": 462,
+      "work": 10065,
+      "copied": 1200,
+      "whole": 19003
+     },
+     {
+      "width": 4,
+      "median": 277,
+      "ops": 21101,
+      "evals": 916,
+      "work": 20192,
+      "copied": 2380,
+      "whole": 37888
+     },
+     {
+      "width": 8,
+      "median": 272,
+      "ops": 41549,
+      "evals": 1811,
+      "work": 39750,
+      "copied": 4720,
+      "whole": 75499
+     },
+     {
+      "width": 16,
+      "median": 274,
+      "ops": 82106,
+      "evals": 3586,
+      "work": 78516,
+      "copied": 9360,
+      "whole": 150390
+     },
+     {
+      "width": 64,
+      "median": 285,
+      "ops": 324116,
+      "evals": 14010,
+      "work": 310200,
+      "copied": 36610,
+      "whole": 596701
+     },
+     {
+      "width": 256,
+      "median": 289,
+      "ops": 1266112,
+      "evals": 54706,
+      "work": 1211345,
+      "copied": 142970,
+      "whole": 2364417
+     },
+     {
+      "width": 1024,
+      "median": 295,
+      "ops": 4989659,
+      "evals": 214697,
+      "work": 4774765,
+      "copied": 559040,
+      "whole": 9395777
+     }
+    ],
+    "pairs": [
+     {
+      "from": 1,
+      "to": 2,
+      "better": 12,
+      "worse": 2
+     },
+     {
+      "from": 2,
+      "to": 4,
+      "better": 11,
+      "worse": 3
+     },
+     {
+      "from": 4,
+      "to": 8,
+      "better": 12,
+      "worse": 3
+     },
+     {
+      "from": 8,
+      "to": 16,
+      "better": 8,
+      "worse": 8
+     },
+     {
+      "from": 16,
+      "to": 64,
+      "better": 16,
+      "worse": 3
+     },
+     {
+      "from": 64,
+      "to": 256,
+      "better": 13,
+      "worse": 3
+     },
+     {
+      "from": 256,
+      "to": 1024,
+      "better": 9,
+      "worse": 4
+     }
+    ],
+    "seedsWiderWorse": 18
+   },
+   "2": {
+    "rows": [
+     {
+      "width": 1,
+      "median": 220,
+      "ops": 2082,
+      "evals": 222,
+      "work": 1852,
+      "copied": 600,
+      "whole": 9144
+     },
+     {
+      "width": 2,
+      "median": 232,
+      "ops": 4240,
+      "evals": 451,
+      "work": 3780,
+      "copied": 1200,
+      "whole": 18597
+     },
+     {
+      "width": 4,
+      "median": 251,
+      "ops": 8030,
+      "evals": 899,
+      "work": 7131,
+      "copied": 2380,
+      "whole": 37394
+     },
+     {
+      "width": 8,
+      "median": 275,
+      "ops": 15712,
+      "evals": 1788,
+      "work": 13944,
+      "copied": 4720,
+      "whole": 74547
+     },
+     {
+      "width": 16,
+      "median": 280,
+      "ops": 30415,
+      "evals": 3536,
+      "work": 26879,
+      "copied": 9360,
+      "whole": 148346
+     },
+     {
+      "width": 64,
+      "median": 281,
+      "ops": 122578,
+      "evals": 13851,
+      "work": 108676,
+      "copied": 36610,
+      "whole": 590492
+     },
+     {
+      "width": 256,
+      "median": 286,
+      "ops": 463640,
+      "evals": 54263,
+      "work": 409024,
+      "copied": 142970,
+      "whole": 2343497
+     },
+     {
+      "width": 1024,
+      "median": 292,
+      "ops": 1815303,
+      "evals": 211988,
+      "work": 1601330,
+      "copied": 559040,
+      "whole": 9278380
+     }
+    ],
+    "pairs": [
+     {
+      "from": 1,
+      "to": 2,
+      "better": 13,
+      "worse": 6
+     },
+     {
+      "from": 2,
+      "to": 4,
+      "better": 13,
+      "worse": 7
+     },
+     {
+      "from": 4,
+      "to": 8,
+      "better": 13,
+      "worse": 2
+     },
+     {
+      "from": 8,
+      "to": 16,
+      "better": 12,
+      "worse": 5
+     },
+     {
+      "from": 16,
+      "to": 64,
+      "better": 9,
+      "worse": 8
+     },
+     {
+      "from": 64,
+      "to": 256,
+      "better": 14,
+      "worse": 4
+     },
+     {
+      "from": 256,
+      "to": 1024,
+      "better": 14,
+      "worse": 3
+     }
+    ],
+    "seedsWiderWorse": 17
+   }
+  },
+  "equalOps": [
+   {
+    "with": {
+     "est": 1,
+     "width": 1,
+     "median": 240,
+     "ops": 5329
+    },
+    "without": {
+     "est": 0,
+     "width": 16,
+     "median": 281,
+     "ops": 3538
+    },
+    "withoutBetter": 19,
+    "withoutWorse": 1
+   },
+   {
+    "with": {
+     "est": 2,
+     "width": 1,
+     "median": 220,
+     "ops": 2082
+    },
+    "without": {
+     "est": 0,
+     "width": 8,
+     "median": 257,
+     "ops": 1786
+    },
+    "withoutBetter": 18,
+    "withoutWorse": 2
+   },
+   {
+    "with": {
+     "est": 1,
+     "width": 4,
+     "median": 277,
+     "ops": 21101
+    },
+    "without": {
+     "est": 0,
+     "width": 64,
+     "median": 284,
+     "ops": 13812
+    },
+    "withoutBetter": 17,
+    "withoutWorse": 2
+   },
+   {
+    "with": {
+     "est": 1,
+     "width": 16,
+     "median": 274,
+     "ops": 82106
+    },
+    "without": {
+     "est": 0,
+     "width": 256,
+     "median": 286,
+     "ops": 54239
+    },
+    "withoutBetter": 18,
+    "withoutWorse": 2
+   }
+  ]
+ },
+ "gridDistinct": [
+  {
+   "est": 0,
+   "width": 1,
+   "median": 32,
+   "back": 26
+  },
+  {
+   "est": 0,
+   "width": 2,
+   "median": 58,
+   "back": 2
+  },
+  {
+   "est": 1,
+   "width": 1,
+   "median": 58,
+   "back": 2
+  },
+  {
+   "est": 1,
+   "width": 2,
+   "median": 59,
+   "back": 1
+  },
+  {
+   "est": 2,
+   "width": 1,
+   "median": 57,
+   "back": 2
+  },
+  {
+   "est": 2,
+   "width": 2,
+   "median": 58,
+   "back": 1
+  }
+ ],
+ "scale": [
+  {
+   "value": 1,
+   "widths": {
+    "1": 12,
+    "4": 17,
+    "16": 30
+   }
+  },
+  {
+   "value": 2,
+   "widths": {
+    "1": 20,
+    "4": 43,
+    "16": 104
+   }
+  },
+  {
+   "value": 4,
+   "widths": {
+    "1": 118,
+    "4": 242,
+    "16": 260
+   }
+  },
+  {
+   "value": 8,
+   "widths": {
+    "1": 240,
+    "4": 277,
+    "16": 274
+   }
+  },
+  {
+   "value": 16,
+   "widths": {
+    "1": 261,
+    "4": 263,
+    "16": 274
+   }
+  }
+ ],
+ "radius": [
+  {
+   "value": 1,
+   "widths": {
+    "1": 202,
+    "4": 251,
+    "16": 271
+   }
+  },
+  {
+   "value": 2,
+   "widths": {
+    "1": 244,
+    "4": 266,
+    "16": 277
+   }
+  },
+  {
+   "value": 3,
+   "widths": {
+    "1": 240,
+    "4": 277,
+    "16": 274
+   }
+  },
+  {
+   "value": 5,
+   "widths": {
+    "1": 202,
+    "4": 229,
+    "16": 260
+   }
+  }
+ ],
+ "gridDiversity": [
+  {
+   "est": 0,
+   "name": "base",
+   "label": "합침(기준)",
+   "widths": {
+    "16": {
+     "median": 281,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 284,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 0,
+   "name": "nomerge",
+   "label": "합치지 않음",
+   "widths": {
+    "16": {
+     "median": 274,
+     "better": 1,
+     "worse": 6,
+     "distinct": 0.982
+    },
+    "64": {
+     "median": 283,
+     "better": 3,
+     "worse": 5,
+     "distinct": 0.953
+    }
+   }
+  },
+  {
+   "est": 0,
+   "name": "q1",
+   "label": "묶음 상한 1",
+   "widths": {
+    "16": {
+     "median": 286,
+     "better": 12,
+     "worse": 8,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 288,
+     "better": 11,
+     "worse": 7,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 0,
+   "name": "q2",
+   "label": "묶음 상한 2",
+   "widths": {
+    "16": {
+     "median": 282,
+     "better": 9,
+     "worse": 8,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 288,
+     "better": 12,
+     "worse": 6,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 0,
+   "name": "q4",
+   "label": "묶음 상한 4",
+   "widths": {
+    "16": {
+     "median": 270,
+     "better": 4,
+     "worse": 10,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 289,
+     "better": 11,
+     "worse": 8,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 0,
+   "name": "j4",
+   "label": "평가값 흔들기 4",
+   "widths": {
+    "16": {
+     "median": 270,
+     "better": 4,
+     "worse": 16,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 283,
+     "better": 4,
+     "worse": 11,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 0,
+   "name": "j16",
+   "label": "평가값 흔들기 16",
+   "widths": {
+    "16": {
+     "median": 275,
+     "better": 7,
+     "worse": 11,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 288,
+     "better": 8,
+     "worse": 4,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "name": "base",
+   "label": "합침(기준)",
+   "widths": {
+    "16": {
+     "median": 274,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 285,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "name": "nomerge",
+   "label": "합치지 않음",
+   "widths": {
+    "16": {
+     "median": 274,
+     "better": 0,
+     "worse": 2,
+     "distinct": 0.989
+    },
+    "64": {
+     "median": 285,
+     "better": 2,
+     "worse": 1,
+     "distinct": 0.979
+    }
+   }
+  },
+  {
+   "est": 1,
+   "name": "q1",
+   "label": "묶음 상한 1",
+   "widths": {
+    "16": {
+     "median": 288,
+     "better": 18,
+     "worse": 2,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 289,
+     "better": 15,
+     "worse": 3,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "name": "q2",
+   "label": "묶음 상한 2",
+   "widths": {
+    "16": {
+     "median": 286,
+     "better": 17,
+     "worse": 3,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 292,
+     "better": 15,
+     "worse": 3,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "name": "q4",
+   "label": "묶음 상한 4",
+   "widths": {
+    "16": {
+     "median": 284,
+     "better": 13,
+     "worse": 5,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 294,
+     "better": 16,
+     "worse": 2,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "name": "j4",
+   "label": "평가값 흔들기 4",
+   "widths": {
+    "16": {
+     "median": 268,
+     "better": 3,
+     "worse": 2,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 284,
+     "better": 1,
+     "worse": 4,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "name": "j16",
+   "label": "평가값 흔들기 16",
+   "widths": {
+    "16": {
+     "median": 274,
+     "better": 4,
+     "worse": 4,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 285,
+     "better": 1,
+     "worse": 3,
+     "distinct": 1.0
+    }
+   }
+  }
+ ],
+ "route": {
+  "est": {
+   "0": {
+    "rows": [
+     {
+      "width": 1,
+      "median": 15917,
+      "ops": 20100,
+      "evals": 20100,
+      "work": 0,
+      "refined": 0,
+      "copied": 1600,
+      "whole": 1514200
+     },
+     {
+      "width": 2,
+      "median": 17386,
+      "ops": 40000,
+      "evals": 40000,
+      "work": 0,
+      "refined": 0,
+      "copied": 3200,
+      "whole": 3026600
+     },
+     {
+      "width": 4,
+      "median": 17951,
+      "ops": 79800,
+      "evals": 79800,
+      "work": 0,
+      "refined": 0,
+      "copied": 6392,
+      "whole": 6051400
+     },
+     {
+      "width": 8,
+      "median": 17432,
+      "ops": 159400,
+      "evals": 159400,
+      "work": 0,
+      "refined": 0,
+      "copied": 12776,
+      "whole": 12101000
+     },
+     {
+      "width": 16,
+      "median": 17280,
+      "ops": 318600,
+      "evals": 318600,
+      "work": 0,
+      "refined": 0,
+      "copied": 25528,
+      "whole": 24200200
+     },
+     {
+      "width": 64,
+      "median": 16916,
+      "ops": 1273800,
+      "evals": 1273800,
+      "work": 0,
+      "refined": 0,
+      "copied": 101992,
+      "whole": 96795400
+     },
+     {
+      "width": 256,
+      "median": 16526,
+      "ops": 5083374,
+      "evals": 5083374,
+      "work": 0,
+      "refined": 0,
+      "copied": 406616,
+      "whole": 387047704
+     }
+    ],
+    "pairs": [
+     {
+      "from": 1,
+      "to": 2,
+      "better": 3,
+      "worse": 17
+     },
+     {
+      "from": 2,
+      "to": 4,
+      "better": 6,
+      "worse": 14
+     },
+     {
+      "from": 4,
+      "to": 8,
+      "better": 15,
+      "worse": 5
+     },
+     {
+      "from": 8,
+      "to": 16,
+      "better": 12,
+      "worse": 8
+     },
+     {
+      "from": 16,
+      "to": 64,
+      "better": 14,
+      "worse": 6
+     },
+     {
+      "from": 64,
+      "to": 256,
+      "better": 15,
+      "worse": 5
+     }
+    ],
+    "seedsWiderWorse": 20,
+    "vsGreedy": [
+     {
+      "width": 2,
+      "better": 3,
+      "worse": 17
+     },
+     {
+      "width": 4,
+      "better": 0,
+      "worse": 20
+     },
+     {
+      "width": 8,
+      "better": 1,
+      "worse": 19
+     },
+     {
+      "width": 16,
+      "better": 1,
+      "worse": 19
+     },
+     {
+      "width": 64,
+      "better": 2,
+      "worse": 18
+     },
+     {
+      "width": 256,
+      "better": 4,
+      "worse": 16
+     }
+    ]
+   },
+   "1": {
+    "rows": [
+     {
+      "width": 1,
+      "median": 16154,
+      "ops": 20100,
+      "evals": 20100,
+      "work": 0,
+      "refined": 0,
+      "copied": 1600,
+      "whole": 1514200
+     },
+     {
+      "width": 2,
+      "median": 17490,
+      "ops": 40000,
+      "evals": 40000,
+      "work": 0,
+      "refined": 0,
+      "copied": 3200,
+      "whole": 3026600
+     },
+     {
+      "width": 4,
+      "median": 17435,
+      "ops": 79800,
+      "evals": 79800,
+      "work": 0,
+      "refined": 0,
+      "copied": 6392,
+      "whole": 6051400
+     },
+     {
+      "width": 8,
+      "median": 17435,
+      "ops": 159400,
+      "evals": 159400,
+      "work": 0,
+      "refined": 0,
+      "copied": 12776,
+      "whole": 12101000
+     },
+     {
+      "width": 16,
+      "median": 17032,
+      "ops": 318600,
+      "evals": 318600,
+      "work": 0,
+      "refined": 0,
+      "copied": 25536,
+      "whole": 24200200
+     },
+     {
+      "width": 64,
+      "median": 16264,
+      "ops": 1273800,
+      "evals": 1273800,
+      "work": 0,
+      "refined": 0,
+      "copied": 102000,
+      "whole": 96795400
+     },
+     {
+      "width": 256,
+      "median": 15976,
+      "ops": 5083396,
+      "evals": 5083396,
+      "work": 0,
+      "refined": 0,
+      "copied": 406800,
+      "whole": 387052280
+     }
+    ],
+    "pairs": [
+     {
+      "from": 1,
+      "to": 2,
+      "better": 1,
+      "worse": 19
+     },
+     {
+      "from": 2,
+      "to": 4,
+      "better": 8,
+      "worse": 12
+     },
+     {
+      "from": 4,
+      "to": 8,
+      "better": 12,
+      "worse": 8
+     },
+     {
+      "from": 8,
+      "to": 16,
+      "better": 13,
+      "worse": 7
+     },
+     {
+      "from": 16,
+      "to": 64,
+      "better": 16,
+      "worse": 4
+     },
+     {
+      "from": 64,
+      "to": 256,
+      "better": 11,
+      "worse": 9
+     }
+    ],
+    "seedsWiderWorse": 20,
+    "vsGreedy": [
+     {
+      "width": 2,
+      "better": 1,
+      "worse": 19
+     },
+     {
+      "width": 4,
+      "better": 0,
+      "worse": 20
+     },
+     {
+      "width": 8,
+      "better": 0,
+      "worse": 20
+     },
+     {
+      "width": 16,
+      "better": 3,
+      "worse": 17
+     },
+     {
+      "width": 64,
+      "better": 7,
+      "worse": 13
+     },
+     {
+      "width": 256,
+      "better": 8,
+      "worse": 12
+     }
+    ]
+   },
+   "2": {
+    "rows": [
+     {
+      "width": 1,
+      "median": 14390,
+      "ops": 5353295,
+      "evals": 20100,
+      "work": 5333195,
+      "refined": 794,
+      "copied": 1600,
+      "whole": 1514200
+     },
+     {
+      "width": 2,
+      "median": 14193,
+      "ops": 10706351,
+      "evals": 40000,
+      "work": 10666351,
+      "refined": 1583,
+      "copied": 3200,
+      "whole": 3026600
+     },
+     {
+      "width": 4,
+      "median": 14098,
+      "ops": 21412512,
+      "evals": 79800,
+      "work": 21332712,
+      "refined": 3166,
+      "copied": 6392,
+      "whole": 6051400
+     },
+     {
+      "width": 8,
+      "median": 14036,
+      "ops": 42824812,
+      "evals": 159400,
+      "work": 42665412,
+      "refined": 6325,
+      "copied": 12776,
+      "whole": 12101000
+     }
+    ],
+    "pairs": [
+     {
+      "from": 1,
+      "to": 2,
+      "better": 15,
+      "worse": 5
+     },
+     {
+      "from": 2,
+      "to": 4,
+      "better": 16,
+      "worse": 4
+     },
+     {
+      "from": 4,
+      "to": 8,
+      "better": 14,
+      "worse": 6
+     }
+    ],
+    "seedsWiderWorse": 14,
+    "vsGreedy": [
+     {
+      "width": 2,
+      "better": 15,
+      "worse": 5
+     },
+     {
+      "width": 4,
+      "better": 17,
+      "worse": 3
+     },
+     {
+      "width": 8,
+      "better": 18,
+      "worse": 2
+     }
+    ]
+   }
+  },
+  "equalOps": [
+   {
+    "with": {
+     "est": 2,
+     "width": 1,
+     "median": 14390,
+     "ops": 5353295
+    },
+    "without": {
+     "est": 0,
+     "width": 256,
+     "median": 16526,
+     "ops": 5083374
+    },
+    "withBetter": 20,
+    "withWorse": 0
+   },
+   {
+    "with": {
+     "est": 2,
+     "width": 1,
+     "median": 14390,
+     "ops": 5353295
+    },
+    "without": {
+     "est": 1,
+     "width": 256,
+     "median": 15976,
+     "ops": 5083396
+    },
+    "withBetter": 20,
+    "withWorse": 0
+   }
+  ]
+ },
+ "routeDiversity": [
+  {
+   "est": 0,
+   "variant": 0,
+   "label": "합침(기준)",
+   "widths": {
+    "4": {
+     "median": 17951,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    },
+    "16": {
+     "median": 17280,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 16916,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 0,
+   "variant": 1,
+   "label": "합치지 않음",
+   "widths": {
+    "4": {
+     "median": 16907,
+     "better": 15,
+     "worse": 5,
+     "distinct": 0.692
+    },
+    "16": {
+     "median": 16969,
+     "better": 12,
+     "worse": 8,
+     "distinct": 0.405
+    },
+    "64": {
+     "median": 16950,
+     "better": 6,
+     "worse": 14,
+     "distinct": 0.287
+    }
+   }
+  },
+  {
+   "est": 0,
+   "variant": 2,
+   "label": "합침 + 묶음 상한 1",
+   "widths": {
+    "4": {
+     "median": 18402,
+     "better": 6,
+     "worse": 14,
+     "distinct": 1.0
+    },
+    "16": {
+     "median": 17780,
+     "better": 7,
+     "worse": 13,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 17566,
+     "better": 2,
+     "worse": 18,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 0,
+   "variant": 3,
+   "label": "합침 + 묶음 상한 2",
+   "widths": {
+    "4": {
+     "median": 18078,
+     "better": 5,
+     "worse": 7,
+     "distinct": 1.0
+    },
+    "16": {
+     "median": 17239,
+     "better": 11,
+     "worse": 9,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 17125,
+     "better": 7,
+     "worse": 13,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "variant": 0,
+   "label": "합침(기준)",
+   "widths": {
+    "4": {
+     "median": 17435,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    },
+    "16": {
+     "median": 17032,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 16264,
+     "better": 0,
+     "worse": 0,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "variant": 1,
+   "label": "합치지 않음",
+   "widths": {
+    "4": {
+     "median": 16701,
+     "better": 16,
+     "worse": 4,
+     "distinct": 0.774
+    },
+    "16": {
+     "median": 16933,
+     "better": 10,
+     "worse": 10,
+     "distinct": 0.593
+    },
+    "64": {
+     "median": 16566,
+     "better": 3,
+     "worse": 17,
+     "distinct": 0.425
+    }
+   }
+  },
+  {
+   "est": 1,
+   "variant": 2,
+   "label": "합침 + 묶음 상한 1",
+   "widths": {
+    "4": {
+     "median": 17754,
+     "better": 10,
+     "worse": 10,
+     "distinct": 1.0
+    },
+    "16": {
+     "median": 17622,
+     "better": 2,
+     "worse": 18,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 17372,
+     "better": 1,
+     "worse": 19,
+     "distinct": 1.0
+    }
+   }
+  },
+  {
+   "est": 1,
+   "variant": 3,
+   "label": "합침 + 묶음 상한 2",
+   "widths": {
+    "4": {
+     "median": 17663,
+     "better": 3,
+     "worse": 9,
+     "distinct": 1.0
+    },
+    "16": {
+     "median": 16901,
+     "better": 11,
+     "worse": 9,
+     "distinct": 1.0
+    },
+    "64": {
+     "median": 16556,
+     "better": 4,
+     "worse": 16,
+     "distinct": 1.0
+    }
+   }
+  }
+ ],
+ "smallRoute": [
+  {
+   "width": 1,
+   "est0": {
+    "optimal": 1,
+    "gap": 227,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 3,
+    "gap": 165,
+    "noDrop": 0
+   },
+   "est1nomerge": {
+    "optimal": 3,
+    "gap": 165,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 2,
+   "est0": {
+    "optimal": 3,
+    "gap": 136,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 7,
+    "gap": 26,
+    "noDrop": 0
+   },
+   "est1nomerge": {
+    "optimal": 7,
+    "gap": 26,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 4,
+   "est0": {
+    "optimal": 6,
+    "gap": 101,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 8,
+    "gap": 23,
+    "noDrop": 0
+   },
+   "est1nomerge": {
+    "optimal": 8,
+    "gap": 23,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 8,
+   "est0": {
+    "optimal": 6,
+    "gap": 23,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 12,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1nomerge": {
+    "optimal": 10,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 16,
+   "est0": {
+    "optimal": 10,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 18,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1nomerge": {
+    "optimal": 15,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 64,
+   "est0": {
+    "optimal": 18,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 19,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1nomerge": {
+    "optimal": 19,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 256,
+   "est0": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1nomerge": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 1536,
+   "est0": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 20
+   },
+   "est1": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 20
+   },
+   "est1nomerge": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 0
+   }
+  }
+ ],
+ "smallGrid": [
+  {
+   "width": 1,
+   "est0": {
+    "optimal": 1,
+    "gap": 16,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 10,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 2,
+   "est0": {
+    "optimal": 4,
+    "gap": 4,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 12,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 4,
+   "est0": {
+    "optimal": 9,
+    "gap": 2,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 15,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 8,
+   "est0": {
+    "optimal": 11,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 17,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 16,
+   "est0": {
+    "optimal": 16,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 17,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 64,
+   "est0": {
+    "optimal": 19,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 256,
+   "est0": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 20,
+    "gap": 0,
+    "noDrop": 0
+   }
+  }
+ ],
+ "tinyGrid": [
+  {
+   "width": 1,
+   "est0": {
+    "optimal": 3,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 12,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 2,
+   "est0": {
+    "optimal": 13,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 15,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 4,
+   "est0": {
+    "optimal": 14,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 19,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 8,
+   "est0": {
+    "optimal": 15,
+    "noDrop": 0
+   },
+   "est1": {
+    "optimal": 19,
+    "noDrop": 0
+   }
+  },
+  {
+   "width": 8192,
+   "est0": {
+    "optimal": 20,
+    "noDrop": 20
+   },
+   "est1": {
+    "optimal": 20,
+    "noDrop": 20
+   }
+  }
+ ],
+ "schema": 1,
+ "hand": {
+  "hand-grid": [
+   [
+    "1",
+    "1 : 6",
+    "1 : 6, 3 : 0",
+    "1 : 6, 3 : 0"
+   ],
+   [
+    "2",
+    "1 2 : 6",
+    "3 6 : 9, 1 2 : 6",
+    "3 6 : 9, 1 2 : 6, 1 4 : 6"
+   ],
+   [
+    "3",
+    "1 2 5 : 6",
+    "3 6 7 : 17, 3 6 3 : 9",
+    "3 6 7 : 17, 1 4 7 : 14, 3 6 3 : 9"
+   ],
+   [
+    "4",
+    "1 2 5 8 : 10",
+    "3 6 7 8 : 21, 3 6 7 4 : 17",
+    "1 4 7 6 : 23, 3 6 7 8 : 21, 1 4 7 8 : 18"
+   ],
+   [
+    "평가 횟수",
+    "10",
+    "18",
+    "25"
+   ],
+   [
+    "최고 점수",
+    "10",
+    "21",
+    "23"
+   ]
+  ],
+  "hand-estimate": [
+   [
+    "1",
+    "칸 1",
+    "6",
+    "0",
+    "12",
+    "칸 1"
+   ],
+   [
+    "1",
+    "칸 3",
+    "0",
+    "9",
+    "9",
+    ""
+   ],
+   [
+    "2",
+    "칸 2",
+    "6",
+    "0",
+    "12",
+    ""
+   ],
+   [
+    "2",
+    "칸 4",
+    "6",
+    "8",
+    "20",
+    "칸 1 → 4"
+   ],
+   [
+    "2",
+    "칸 0",
+    "6",
+    "0",
+    "12",
+    ""
+   ],
+   [
+    "3",
+    "칸 1",
+    "6",
+    "0",
+    "12",
+    ""
+   ],
+   [
+    "3",
+    "칸 5",
+    "6",
+    "4",
+    "16",
+    ""
+   ],
+   [
+    "3",
+    "칸 7",
+    "14",
+    "13",
+    "41",
+    "칸 1 → 4 → 7"
+   ],
+   [
+    "3",
+    "칸 3",
+    "6",
+    "9",
+    "21",
+    ""
+   ],
+   [
+    "4",
+    "칸 4",
+    "14",
+    "0",
+    "28",
+    ""
+   ],
+   [
+    "4",
+    "칸 8",
+    "18",
+    "0",
+    "36",
+    ""
+   ],
+   [
+    "4",
+    "칸 6",
+    "23",
+    "0",
+    "46",
+    "칸 1 → 4 → 7 → 6"
+   ]
+  ],
+  "hand-route": [
+   [
+    "1",
+    "0 : 0 + 14 = 14, 3 : 0 + 14 = 14"
+   ],
+   [
+    "2",
+    "3 1 : 6 + 12 = 18, 3 4 : 6 + 12 = 18"
+   ],
+   [
+    "3",
+    "3 4 1 : 8 + 10 = 18, 3 1 4 : 8 + 10 = 18"
+   ],
+   [
+    "4",
+    "3 1 4 0 : 17 + 4 = 21, 3 4 1 5 : 13 + 8 = 21"
+   ],
+   [
+    "5",
+    "3 4 1 5 0 : 19 + 2 = 21, 3 4 1 5 2 : 15 + 6 = 21"
+   ],
+   [
+    "6",
+    "3 4 1 5 2 0 : 21 + 0 = 21, 3 4 1 5 0 2 : 25 + 0 = 25"
+   ]
+  ],
+  "hand-merge": [
+   [
+    "3 1 4 0",
+    "{0, 1, 3, 4}",
+    "0",
+    "17",
+    "4",
+    "−21",
+    "남김"
+   ],
+   [
+    "3 1 4 2",
+    "{1, 2, 3, 4}",
+    "2",
+    "17",
+    "8",
+    "−25",
+    "합침"
+   ],
+   [
+    "3 1 4 5",
+    "{1, 3, 4, 5}",
+    "5",
+    "15",
+    "8",
+    "−23",
+    "합침"
+   ],
+   [
+    "3 4 1 0",
+    "{0, 1, 3, 4}",
+    "0",
+    "17",
+    "4",
+    "−21",
+    "합침"
+   ],
+   [
+    "3 4 1 2",
+    "{1, 2, 3, 4}",
+    "2",
+    "15",
+    "8",
+    "−23",
+    "남지만 상위 2개에 못 듦"
+   ],
+   [
+    "3 4 1 5",
+    "{1, 3, 4, 5}",
+    "5",
+    "13",
+    "8",
+    "−21",
+    "남김"
+   ]
+  ],
+  "hand-route-widths": [
+   [
+    "폭 1",
+    "25"
+   ],
+   [
+    "폭 2",
+    "21"
+   ],
+   [
+    "폭 2, 합치지 않음",
+    "25"
+   ],
+   [
+    "폭 3",
+    "23"
+   ],
+   [
+    "폭 1,536(아무것도 버리지 않음)",
+    "21"
+   ]
+  ]
+ },
+ "handFacts": {
+  "gridOptimum": 23,
+  "gridFullEvals": 72,
+  "gridFullScore": 23,
+  "gridEstimateScore": 23,
+  "routeOptimum": 21,
+  "nn": [
+   6,
+   2,
+   2,
+   6,
+   2,
+   2
+  ],
+  "routeEst0W1": 21,
+  "routeEst0W2": 28,
+  "gridPaths": {
+   "1": [
+    1,
+    2,
+    5,
+    8
+   ],
+   "2": [
+    3,
+    6,
+    7,
+    8
+   ],
+   "3": [
+    1,
+    4,
+    7,
+    6
+   ]
+  },
+  "routeW2Path": [
+   3,
+   4,
+   1,
+   5,
+   2,
+   0
+  ],
+  "routeW3Path": [
+   3,
+   1,
+   4,
+   5,
+   2,
+   0
+  ],
+  "depth1DroppedBest": 18,
+  "depth2TiedDropped": [
+   "0 2",
+   "0 5"
+  ]
+ },
+ "mistakes": {
+  "clean": {
+   "diffRuns": 198,
+   "diffBad": 0,
+   "keysBad": 0,
+   "replayGrid": 0,
+   "replayRoute": 0,
+   "optimumEst0": 20,
+   "optimumEst1": 20,
+   "handChecked": 13,
+   "handBad": 0
+  },
+  "key": {
+   "diffRuns": 198,
+   "diffBad": 189,
+   "keysBad": 557,
+   "replayGrid": 0,
+   "replayRoute": 0,
+   "optimumEst0": 5,
+   "optimumEst1": 1,
+   "handChecked": 13,
+   "handBad": 2
+  },
+  "parent": {
+   "diffRuns": 198,
+   "diffBad": 198,
+   "keysBad": 0,
+   "replayGrid": 20,
+   "replayRoute": 20,
+   "optimumEst0": 20,
+   "optimumEst1": 20,
+   "handChecked": 13,
+   "handBad": 13
+  },
+  "inplace": {
+   "diffRuns": 198,
+   "diffBad": 180,
+   "keysBad": 0,
+   "replayGrid": 20,
+   "replayRoute": 20,
+   "optimumEst0": 0,
+   "optimumEst1": 0,
+   "handChecked": 13,
+   "handBad": 7
+  },
+  "keepworse": {
+   "diffRuns": 198,
+   "diffBad": 80,
+   "keysBad": 0,
+   "replayGrid": 0,
+   "replayRoute": 0,
+   "optimumEst0": 0,
+   "optimumEst1": 0,
+   "handChecked": 13,
+   "handBad": 3
+  },
+  "sign": {
+   "diffRuns": 198,
+   "diffBad": 108,
+   "keysBad": 0,
+   "replayGrid": 0,
+   "replayRoute": 0,
+   "optimumEst0": 0,
+   "optimumEst1": 0,
+   "handChecked": 13,
+   "handBad": 7
+  }
+ },
+ "rule": "한쪽이 15 / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
+ "problems": {
+  "grid": "H=W=20, T=60, 값 0..9(60%는 0), 시작 칸 0",
+  "route": "N=200, 좌표 0..999, 맨해튼 거리 합, 시작점 자유"
+ }
+}
