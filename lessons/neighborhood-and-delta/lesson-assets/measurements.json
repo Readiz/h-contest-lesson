@@ -1,0 +1,799 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "start": {
+  "route": 131115,
+  "assign": 47295
+ },
+ "budget": {
+  "route": [
+   {
+    "budget": 20000,
+    "full": 118757,
+    "delta": 63649,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 67,
+    "deltaProposals": 1082
+   },
+   {
+    "budget": 100000,
+    "full": 91001,
+    "delta": 23240,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 318,
+    "deltaProposals": 13593
+   },
+   {
+    "budget": 500000,
+    "full": 55183,
+    "delta": 15091,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 1545,
+    "deltaProposals": 93704
+   },
+   {
+    "budget": 2000000,
+    "full": 31914,
+    "delta": 14726,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 6070,
+    "deltaProposals": 397253
+   }
+  ],
+  "assign": [
+   {
+    "budget": 1000,
+    "full": 46907,
+    "delta": 46079,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 9,
+    "deltaProposals": 137
+   },
+   {
+    "budget": 5000,
+    "full": 46217,
+    "delta": 45154,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 44,
+    "deltaProposals": 697
+   },
+   {
+    "budget": 20000,
+    "full": 46023,
+    "delta": 44509,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 176,
+    "deltaProposals": 2849
+   },
+   {
+    "budget": 100000,
+    "full": 45041,
+    "delta": 44067,
+    "deltaBetter": 20,
+    "deltaWorse": 0,
+    "fullProposals": 888,
+    "deltaProposals": 14348
+   }
+  ]
+ },
+ "neighborhood": {
+  "route": {
+   "reference": 4,
+   "rows": [
+    {
+     "mask": 4,
+     "name": "구간 뒤집기",
+     "median": 14726,
+     "better": 0,
+     "worse": 0,
+     "localOptimum": 20,
+     "counts15": 0
+    },
+    {
+     "mask": 1,
+     "name": "두 점 교환",
+     "median": 29199,
+     "better": 0,
+     "worse": 20,
+     "localOptimum": 11,
+     "counts15": 0
+    },
+    {
+     "mask": 2,
+     "name": "한 점 옮기기",
+     "median": 20467,
+     "better": 0,
+     "worse": 20,
+     "localOptimum": 1,
+     "counts15": 0
+    },
+    {
+     "mask": 8,
+     "name": "이웃한 두 점 교환",
+     "median": 101979,
+     "better": 0,
+     "worse": 20,
+     "localOptimum": 20,
+     "counts15": 0
+    },
+    {
+     "mask": 5,
+     "name": "교환 + 뒤집기",
+     "median": 14848,
+     "better": 5,
+     "worse": 15,
+     "localOptimum": 13,
+     "counts15": 0
+    },
+    {
+     "mask": 6,
+     "name": "옮기기 + 뒤집기",
+     "median": 14245,
+     "better": 16,
+     "worse": 4,
+     "localOptimum": 13,
+     "counts15": 0
+    },
+    {
+     "mask": 7,
+     "name": "교환 + 옮기기 + 뒤집기",
+     "median": 14267,
+     "better": 16,
+     "worse": 4,
+     "localOptimum": 3,
+     "counts15": 0
+    },
+    {
+     "mask": 15,
+     "name": "넷 모두",
+     "median": 14450,
+     "better": 11,
+     "worse": 9,
+     "localOptimum": 0,
+     "counts15": 0
+    }
+   ]
+  },
+  "assign": {
+   "reference": 3,
+   "rows": [
+    {
+     "mask": 3,
+     "name": "옮기기 + 맞바꾸기",
+     "median": 44067,
+     "better": 0,
+     "worse": 0,
+     "localOptimum": 0,
+     "counts15": 0
+    },
+    {
+     "mask": 1,
+     "name": "옮기기만",
+     "median": 44911,
+     "better": 0,
+     "worse": 20,
+     "localOptimum": 20,
+     "counts15": 0
+    },
+    {
+     "mask": 2,
+     "name": "맞바꾸기만",
+     "median": 44062,
+     "better": 12,
+     "worse": 8,
+     "localOptimum": 0,
+     "counts15": 20
+    }
+   ]
+  }
+ },
+ "split": [
+  {
+   "frame": "assign",
+   "mask": 3,
+   "full": 0,
+   "proposals": 5000,
+   "terms": 29786,
+   "writes": 256,
+   "total": 35047
+  },
+  {
+   "frame": "assign",
+   "mask": 3,
+   "full": 1,
+   "proposals": 5000,
+   "terms": 541056,
+   "writes": 12601,
+   "total": 558571
+  },
+  {
+   "frame": "route",
+   "mask": 1,
+   "full": 0,
+   "proposals": 5000,
+   "terms": 39406,
+   "writes": 624,
+   "total": 45044
+  },
+  {
+   "frame": "route",
+   "mask": 1,
+   "full": 1,
+   "proposals": 5000,
+   "terms": 990025,
+   "writes": 19286,
+   "total": 1014255
+  },
+  {
+   "frame": "route",
+   "mask": 4,
+   "full": 0,
+   "proposals": 5000,
+   "terms": 19706,
+   "writes": 26570,
+   "total": 51276
+  },
+  {
+   "frame": "route",
+   "mask": 4,
+   "full": 1,
+   "proposals": 5000,
+   "terms": 990025,
+   "writes": 649548,
+   "total": 1645186
+  }
+ ],
+ "schema": 1,
+ "hand": {
+  "route": {
+   "start": 42,
+   "moves": [
+    {
+     "move": [
+      0,
+      1,
+      4
+     ],
+     "order": [
+      0,
+      4,
+      2,
+      3,
+      1,
+      5,
+      6
+     ],
+     "cost": 36,
+     "delta": -6,
+     "removed": [
+      [
+       [
+        0,
+        1
+       ],
+       8
+      ],
+      [
+       [
+        1,
+        2
+       ],
+       8
+      ],
+      [
+       [
+        3,
+        4
+       ],
+       7
+      ],
+      [
+       [
+        4,
+        5
+       ],
+       7
+      ]
+     ],
+     "added": [
+      [
+       [
+        0,
+        4
+       ],
+       9
+      ],
+      [
+       [
+        1,
+        3
+       ],
+       4
+      ],
+      [
+       [
+        1,
+        5
+       ],
+       6
+      ],
+      [
+       [
+        2,
+        4
+       ],
+       5
+      ]
+     ]
+    },
+    {
+     "move": [
+      1,
+      5,
+      1
+     ],
+     "order": [
+      0,
+      5,
+      1,
+      2,
+      3,
+      4,
+      6
+     ],
+     "cost": 44,
+     "delta": 2,
+     "removed": [
+      [
+       [
+        0,
+        1
+       ],
+       8
+      ],
+      [
+       [
+        4,
+        5
+       ],
+       7
+      ],
+      [
+       [
+        5,
+        6
+       ],
+       6
+      ]
+     ],
+     "added": [
+      [
+       [
+        0,
+        5
+       ],
+       14
+      ],
+      [
+       [
+        1,
+        5
+       ],
+       6
+      ],
+      [
+       [
+        4,
+        6
+       ],
+       3
+      ]
+     ]
+    },
+    {
+     "move": [
+      2,
+      2,
+      4
+     ],
+     "order": [
+      0,
+      1,
+      4,
+      3,
+      2,
+      5,
+      6
+     ],
+     "cost": 48,
+     "delta": 6,
+     "removed": [
+      [
+       [
+        1,
+        2
+       ],
+       8
+      ],
+      [
+       [
+        4,
+        5
+       ],
+       7
+      ]
+     ],
+     "added": [
+      [
+       [
+        1,
+        4
+       ],
+       11
+      ],
+      [
+       [
+        2,
+        5
+       ],
+       10
+      ]
+     ]
+    },
+    {
+     "move": [
+      2,
+      4,
+      6
+     ],
+     "order": [
+      0,
+      1,
+      2,
+      3,
+      6,
+      5,
+      4
+     ],
+     "cost": 41,
+     "delta": -1,
+     "removed": [
+      [
+       [
+        3,
+        4
+       ],
+       7
+      ]
+     ],
+     "added": [
+      [
+       [
+        3,
+        6
+       ],
+       6
+      ]
+     ]
+    },
+    {
+     "move": [
+      0,
+      2,
+      3
+     ],
+     "order": [
+      0,
+      1,
+      3,
+      2,
+      4,
+      5,
+      6
+     ],
+     "cost": 36,
+     "delta": -6,
+     "removed": [
+      [
+       [
+        1,
+        2
+       ],
+       8
+      ],
+      [
+       [
+        3,
+        4
+       ],
+       7
+      ]
+     ],
+     "added": [
+      [
+       [
+        1,
+        3
+       ],
+       4
+      ],
+      [
+       [
+        2,
+        4
+       ],
+       5
+      ]
+     ]
+    }
+   ]
+  },
+  "assign": {
+   "start": [
+    219,
+    [
+     72,
+     90,
+     48
+    ],
+    15588,
+    64
+   ],
+   "moves": [
+    {
+     "move": [
+      0,
+      1,
+      2
+     ],
+     "cost": 216,
+     "delta": -3,
+     "load": [
+      72,
+      62,
+      76
+     ],
+     "sq": 14804,
+     "c": 68
+    },
+    {
+     "move": [
+      1,
+      0,
+      2
+     ],
+     "cost": 228,
+     "delta": 9,
+     "load": [
+      60,
+      90,
+      60
+     ],
+     "sq": 15300,
+     "c": 75
+    },
+    {
+     "move": [
+      0,
+      0,
+      2
+     ],
+     "cost": 243,
+     "delta": 24,
+     "load": [
+      19,
+      90,
+      101
+     ],
+     "sq": 18662,
+     "c": 57
+    }
+   ]
+  },
+  "wrong": {
+   "adjacent_swap_naive": -18,
+   "per_machine_floor_move1": -5,
+   "ds_over_100_move0": 23
+  }
+ },
+ "connectivity": {
+  "python": {
+   "swap": [
+    720,
+    5
+   ],
+   "insert": [
+    720,
+    5
+   ],
+   "reverse": [
+    720,
+    5
+   ],
+   "adjacent": [
+    720,
+    15
+   ],
+   "valid_k2": 90,
+   "reach_k2_kinds1": 1,
+   "reach_k2_kinds2": 90,
+   "reach_k2_kinds3": 90,
+   "valid_k3": 510,
+   "reach_k3_kinds1": 510,
+   "reach_k3_kinds2": 90,
+   "reach_k3_kinds3": 510
+  },
+  "lesson": {
+   "swap": [
+    720,
+    5
+   ],
+   "insert": [
+    720,
+    5
+   ],
+   "reverse": [
+    720,
+    5
+   ],
+   "adjacent": [
+    720,
+    15
+   ],
+   "k2_kinds1": [
+    0,
+    1
+   ],
+   "k2_kinds2": [
+    12,
+    90
+   ],
+   "k2_kinds3": [
+    12,
+    90
+   ],
+   "k3_kinds1": [
+    12,
+    510
+   ],
+   "k3_kinds2": [
+    12,
+    90
+   ],
+   "k3_kinds3": [
+    24,
+    510
+   ]
+  }
+ },
+ "sizes": {
+  "route_swap": [
+   19900,
+   19900
+  ],
+  "route_insert": [
+   39800,
+   39601
+  ],
+  "route_reverse": [
+   19900,
+   19900
+  ],
+  "assign": [
+   840,
+   6300
+  ]
+ },
+ "mistakes": {
+  "clean": {
+   "exhaustiveMoves": 26880,
+   "exhaustiveMismatch": 0,
+   "route200Found": 0,
+   "route200Median": 0,
+   "route8Found": 0,
+   "route8Median": 0,
+   "assign120Found": 0,
+   "assign120Median": 0,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "coverage": 19900
+  },
+  "adjacent": {
+   "exhaustiveMoves": 26880,
+   "exhaustiveMismatch": 1680,
+   "route200Found": 20,
+   "route200Median": 44,
+   "route8Found": 20,
+   "route8Median": 3,
+   "assign120Found": 0,
+   "assign120Median": 0,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "coverage": 19900
+  },
+  "floor": {
+   "exhaustiveMoves": 26880,
+   "exhaustiveMismatch": 0,
+   "route200Found": 0,
+   "route200Median": 0,
+   "route8Found": 0,
+   "route8Median": 0,
+   "assign120Found": 20,
+   "assign120Median": 2,
+   "tightFound": 20,
+   "tightMedian": 4,
+   "coverage": 19900
+  },
+  "capacity": {
+   "exhaustiveMoves": 26880,
+   "exhaustiveMismatch": 0,
+   "route200Found": 0,
+   "route200Median": 0,
+   "route8Found": 0,
+   "route8Median": 0,
+   "assign120Found": 20,
+   "assign120Median": 62,
+   "tightFound": 20,
+   "tightMedian": 1,
+   "coverage": 19900
+  },
+  "undo-cache": {
+   "exhaustiveMoves": 26880,
+   "exhaustiveMismatch": 0,
+   "route200Found": 0,
+   "route200Median": 0,
+   "route8Found": 0,
+   "route8Median": 0,
+   "assign120Found": 20,
+   "assign120Median": 2,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "coverage": 19900
+  },
+  "modulo": {
+   "exhaustiveMoves": 26880,
+   "exhaustiveMismatch": 0,
+   "route200Found": 0,
+   "route200Median": 0,
+   "route8Found": 0,
+   "route8Median": 0,
+   "assign120Found": 0,
+   "assign120Median": 0,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "coverage": 5000
+  }
+ },
+ "rule": "한쪽이 15 / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
+ "problems": {
+  "route": "N=200, 좌표 0..999, 맨해튼 거리 합",
+  "assign": "N=120, M=8, K=18, 부하 제곱합/100 + 추가 비용"
+ }
+}

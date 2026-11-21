@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 620" role="img" aria-labelledby="title desc">
+<title id="title">제안 한 번이 치르는 일</title>
+<desc id="desc">구간 뒤집기 제안 하나를 평가하는 두 방식의 단계입니다. 적용 후 복구는 모든 제안이 구간 뒤집기 적용, 간선 199개 전체 재계산, 나쁘면 되돌리기를 지납니다. 계산만 하기는 간선 4개 이하를 계산해 비교하고 좋아질 때만 적용합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="618" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">제안 한 번이 치르는 일</text>
+<text x="28" y="84" font-size="20" fill="#53657d">구간 뒤집기를 평가하는 두 방식, 점 200개의 경로</text>
+
+<text x="28" y="132" font-size="21" fill="#172b45" font-weight="700">적용 후 복구: 모든 제안이 아래를 지난다</text>
+<rect x="28" y="150" width="664" height="48" rx="10" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="44" y="181" font-size="19" fill="#172b45">1. 구간을 실제로 뒤집는다</text><text x="676" y="181" font-size="18" fill="#ae5515" text-anchor="end">원소 쓰기 = 구간 길이</text>
+<rect x="28" y="208" width="664" height="48" rx="10" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="44" y="239" font-size="19" fill="#172b45">2. 비용을 처음부터 다시 계산한다</text><text x="676" y="239" font-size="18" fill="#ae5515" text-anchor="end">간선 199개</text>
+<rect x="28" y="266" width="664" height="48" rx="10" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="44" y="297" font-size="19" fill="#172b45">3. 좋아졌으면 둔다, 아니면 되돌린다</text><text x="676" y="297" font-size="18" fill="#ae5515" text-anchor="end">되돌릴 때 다시 구간 길이</text>
+
+<text x="28" y="376" font-size="21" fill="#172b45" font-weight="700">계산만 하고 수락 시 적용</text>
+<rect x="28" y="394" width="664" height="48" rx="10" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="44" y="425" font-size="19" fill="#172b45">1. 경계 간선만 계산해 변화량을 구한다</text><text x="676" y="425" font-size="18" fill="#2664ce" text-anchor="end">간선 4개 이하</text>
+<rect x="28" y="452" width="664" height="48" rx="10" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="44" y="483" font-size="19" fill="#172b45">2. 변화량이 음수일 때만 구간을 뒤집는다</text><text x="676" y="483" font-size="18" fill="#2664ce" text-anchor="end">수락된 제안만</text>
+<text x="28" y="548" font-size="18" fill="#172b45">거절된 제안은 해를 건드리지 않으므로 되돌리기가 없다.</text>
+<text x="28" y="576" font-size="18" fill="#53657d">두 방식은 같은 제안을 같은 순서로 받아들이고, 치르는 연산만 다르다.</text>
+</svg>

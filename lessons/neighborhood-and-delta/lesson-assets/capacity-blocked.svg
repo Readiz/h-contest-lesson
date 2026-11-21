@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">기계가 가득 차면 옮기기는 막히고 맞바꾸기만 가능</title>
+<desc id="desc">기계 3대가 각각 작업 2개를 맡아 상한 2에 가득 찬 상태입니다. 기계 0의 작업을 기계 1로 옮기는 화살표는 받는 쪽이 가득 차서 가위표로 막힙니다. 기계 0의 작업 3과 기계 1의 작업 1을 서로 맞바꾸는 화살표는 가능하며 맞바꾼 뒤에도 기계마다 작업은 2개입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="518" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">가득 찬 기계에서 가능한 이동</text>
+<text x="28" y="84" font-size="20" fill="#53657d">작업 6개, 기계 3대, 상한 2: 모든 기계가 2/2</text>
+<g fill="#ffffff" stroke="#9aa8bb" stroke-width="2">
+<rect x="28" y="190" width="200" height="130" rx="12"/><rect x="260" y="190" width="200" height="130" rx="12"/><rect x="492" y="190" width="200" height="130" rx="12"/>
+</g>
+<g font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">
+<text x="128" y="342" dy="22">기계 0 · 2/2</text><text x="360" y="342" dy="22">기계 1 · 2/2</text><text x="592" y="342" dy="22">기계 2 · 2/2</text>
+</g>
+<g fill="#ffffff" stroke="#172b45" stroke-width="2">
+<circle cx="78" cy="262" r="24"/><circle cx="178" cy="262" r="24"/><circle cx="310" cy="262" r="24"/><circle cx="410" cy="262" r="24"/><circle cx="542" cy="262" r="24"/><circle cx="642" cy="262" r="24"/>
+</g>
+<g font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">
+<text x="78" y="269">0</text><text x="178" y="269">3</text><text x="310" y="269">1</text><text x="410" y="269">4</text><text x="542" y="269">2</text><text x="642" y="269">5</text>
+</g>
+<path d="M 78 238 Q 220 130 340 188" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-dasharray="8 6"/>
+<path d="M 330 176 L 340 188 L 326 191" fill="none" stroke="#ae5515" stroke-width="3.5"/>
+<line x1="226" y1="134" x2="254" y2="162" stroke="#ae5515" stroke-width="5"/><line x1="254" y1="134" x2="226" y2="162" stroke="#ae5515" stroke-width="5"/>
+<text x="240" y="120" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">옮기기: 받는 쪽이 가득</text>
+<line x1="206" y1="262" x2="284" y2="262" stroke="#2664ce" stroke-width="3.5"/>
+<path d="M 214 254 L 204 262 L 214 270" fill="none" stroke="#2664ce" stroke-width="3.5"/>
+<path d="M 276 254 L 286 262 L 276 270" fill="none" stroke="#2664ce" stroke-width="3.5"/>
+<text x="360" y="402" font-size="19" fill="#2664ce" text-anchor="middle" font-weight="700">작업 3과 작업 1 맞바꾸기: 가능</text>
+<text x="28" y="450" font-size="18" fill="#172b45">맞바꾼 뒤에도 기계마다 작업은 2개라 상한을 지킨다.</text>
+<text x="28" y="478" font-size="18" fill="#53657d">그래서 옮기기만 쓰면 이 해에서 한 걸음도 못 가고, 맞바꾸기는 개수를 바꾸지 못한다.</text>
+</svg>
