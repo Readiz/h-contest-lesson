@@ -496,7 +496,27 @@ static void testHand() {
     std::printf("HANDBASE %d %lld %lld %lld\n", rep.valid ? 1 : 0, rep.score, rep.bound, rep.ratio1000);
 }
 
+// ---- the grid upper bound against an independent computation (sorted reachable values), many shapes
+static void testBoundRef() {
+    Rng pick(777);
+    int cases = 0, mismatches = 0;
+    for (int trial = 0; trial < 300; ++trial) {
+        const int h = 1 + pick.below(20), w = 1 + pick.below(20), t = pick.below(61);
+        Grid::Case c;
+        genGrid(c, 5000 + trial, h, w, t);
+        std::vector<int> vals;
+        for (int y = 0; y < h; ++y) for (int x = 0; x < w; ++x) if (y + x <= t) vals.push_back(c.v[y][x]);
+        std::sort(vals.rbegin(), vals.rend());
+        long long want = 0;
+        for (size_t i = 0; i < vals.size() && (int)i <= t; ++i) want += vals[i];
+        ++cases;
+        if (Grid::bound(c) != want) ++mismatches;
+    }
+    std::printf("BOUNDREF grid %d %d\n", cases, mismatches);
+}
+
 int main() {
+    testBoundRef();
     testDiff<Route>();
     testDiff<Assign>();
     testDiff<Grid>();
@@ -743,7 +763,9 @@ def summarize_mutant(name: str, lines: list[list[str]]) -> dict:
                 "invalid": sum(1 for r in rows if r[1] == 0)}
     if name == "grid-bound-t":
         rows = pick(lines, "TINY", "grid446") + pick(lines, "TINY", "grid2020x5")
-        return {"boundBelowOptimum": sum(1 for r in rows if r[2] < r[1]), "cases": len(rows)}
+        cases, mism = pick(lines, "BOUNDREF", "grid")[0]
+        return {"boundBelowOptimum": sum(1 for r in rows if r[2] < r[1]), "cases": len(rows),
+                "boundRefCases": cases, "boundRefMismatches": mism}
     if name == "assign-bound-no-division-by-m":
         rows = pick(lines, "TINY", "assign633")
         return {"boundAboveOptimum": sum(1 for r in rows if r[2] > r[1]), "cases": len(rows)}
@@ -753,6 +775,8 @@ def summarize_mutant(name: str, lines: list[list[str]]) -> dict:
 # ---------------------------------------------------------------- checks of the lesson code against the oracle
 def check_harness(lines: list[list[str]], default: dict, tiny: dict, shapes: dict, seq: list, hand: dict) -> dict:
     result = {}
+    cases, mism = pick(lines, "BOUNDREF", "grid")[0]
+    assert mism == 0 and cases == 300, "grid bound differs from the independent computation"
     for name in ("route", "assign", "grid"):
         total, invalid, mismatches = pick(lines, "DIFF", name)[0]
         assert mismatches == 0, f"{name}: my score/valid differs from the reference on {mismatches} answers"
@@ -824,7 +848,7 @@ def check_mutants(found: dict, shapes: dict) -> None:
     assert found["naive-grid-baseline"]["shapes"] == shapes["grid-naive"]
     m = found["no-reset"]
     assert m["differing"] > 0 and m["invalid"] > 0
-    assert found["grid-bound-t"]["boundBelowOptimum"] > 0
+    assert found["grid-bound-t"]["boundRefMismatches"] > 0
     assert found["assign-bound-no-division-by-m"]["boundAboveOptimum"] > 0
 
 
@@ -900,6 +924,12 @@ def expected_tables(data: dict) -> dict[str, list[list[str]]]:
     for ours, naive in zip(sh["grid"], mu["naive-grid-baseline"]["shapes"]):
         rows.append(["격자 수집", f"{ours[0]}×{ours[1]}, T={ours[2]}", "유효" if ours[3] else "무효", "유효" if naive[3] else "무효"])
     tables["baseline-shapes"] = rows
+    ab, gb = mu["assign-bound-no-division-by-m"], mu["grid-bound-t"]
+    tables["bound-mistakes"] = [
+        ["배정 하한에서 기계 수로 나누지 않음", f"작은 입력 {ab['cases']}개 중 한계가 최적을 넘은 입력",
+         f"{ab['boundAboveOptimum']} / {ab['cases']}"],
+        ["격자 상한에서 `T + 1`개를 `T`개로 셈", f"독립 계산과 다른 입력 {gb['boundRefCases']}개 중",
+         f"{gb['boundRefMismatches']} / {gb['boundRefCases']}"]]
     seq = data["sequence"]
     nr = mu["no-reset"]
     tables["reset-sequence"] = [
