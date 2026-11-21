@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+<title id="title">7개 점에서 가장 가까운 점 잇기와 후회 삽입의 경로 비교</title>
+<desc id="desc">왼쪽은 점 0에서 가장 가까운 점을 잇는 방법으로 길이 22이고 4번 점에서 2번 점으로 가는 7칸의 긴 이동이 있습니다. 오른쪽은 후회 삽입으로 길이 18이며 이것이 최단입니다. 경로는 가로 세로로 꺾어 그렸습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="468" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">같은 7개 점, 다른 경로</text>
+<text x="28" y="84" font-size="19" fill="#53657d">맨해튼 거리라서 경로를 가로 세로로 꺾어 그렸습니다 · 주황은 가장 긴 이동</text>
+<rect x="40" y="110" width="276" height="276" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<path d="M 192 234 L 192 178 L 192 178" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 192 178 L 192 122 L 220 122" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 220 122 L 220 290 L 248 290" fill="none" stroke="#ae5515" stroke-width="4" stroke-linejoin="round"/>
+<path d="M 248 290 L 248 318 L 220 318" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 220 318 L 220 374 L 192 374" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 192 374 L 192 290 L 136 290" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="192" cy="234" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="192" y="240" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">0</text>
+<circle cx="136" cy="290" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="136" y="296" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">1</text>
+<circle cx="248" cy="290" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="248" y="296" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">2</text>
+<circle cx="220" cy="318" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="220" y="324" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">3</text>
+<circle cx="220" cy="122" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="220" y="128" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">4</text>
+<circle cx="192" cy="374" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="192" y="380" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">5</text>
+<circle cx="192" cy="178" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="192" y="184" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">6</text>
+<text x="178" y="418" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">가장 가까운 점 잇기 · 길이 22</text>
+<rect x="380" y="110" width="276" height="276" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<path d="M 560 122 L 560 178 L 532 178" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 532 178 L 532 234 L 532 234" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 532 234 L 532 290 L 476 290" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 476 290 L 476 290 L 588 290" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 588 290 L 588 318 L 560 318" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<path d="M 560 318 L 560 374 L 532 374" fill="none" stroke="#2664ce" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="532" cy="234" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="532" y="240" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">0</text>
+<circle cx="476" cy="290" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="476" y="296" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">1</text>
+<circle cx="588" cy="290" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="588" y="296" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">2</text>
+<circle cx="560" cy="318" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="560" y="324" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">3</text>
+<circle cx="560" cy="122" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="560" y="128" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">4</text>
+<circle cx="532" cy="374" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="532" y="380" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">5</text>
+<circle cx="532" cy="178" r="12" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="532" y="184" font-size="16" fill="#172b45" text-anchor="middle" font-weight="700">6</text>
+<text x="518" y="418" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">후회 삽입 · 길이 18</text>
+</svg>

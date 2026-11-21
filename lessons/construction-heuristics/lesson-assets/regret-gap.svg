@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+<title id="title">배정 문제의 후회 값 막대 그림</title>
+<desc id="desc">첫 단계에서 남은 작업 네 개의 기계별 값입니다. 작업 5는 1,125와 5,125로 차이 4,000이 가장 커서 후회 기준이 가장 먼저 고릅니다. 가장 싼 값만 보는 기준은 작업 1과 3의 900을 먼저 봅니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="468" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">후회: 둘째로 싼 자리와의 차이</text>
+<text x="28" y="84" font-size="19" fill="#53657d">첫 단계의 값(100배한 비용). 막대 끝의 차이가 후회입니다</text>
+<rect x="28" y="112" width="14" height="14" fill="#2664ce"/><text x="50" y="125" font-size="18" fill="#172b45">가장 싼 기계</text>
+<rect x="200" y="112" width="14" height="14" fill="#9db6e0"/><text x="222" y="125" font-size="18" fill="#172b45">둘째로 싼 기계</text>
+<text x="28" y="190" font-size="20" fill="#172b45" font-weight="700">작업 1</text>
+<rect x="150" y="160" width="39.5" height="24" fill="#2664ce"/>
+<text x="197.468438538206" y="179" font-size="18" fill="#172b45">900</text>
+<rect x="150" y="188" width="127.2" height="24" fill="#9db6e0"/>
+<text x="285.1760797342193" y="207" font-size="18" fill="#172b45">2,900</text>
+<text x="692" y="190" font-size="19" fill="#53657d" text-anchor="end">후회 2,000</text>
+<text x="28" y="264" font-size="20" fill="#172b45" font-weight="700">작업 2</text>
+<rect x="150" y="234" width="220.4" height="24" fill="#2664ce"/>
+<text x="378.3654485049834" y="253" font-size="18" fill="#172b45">5,025</text>
+<rect x="150" y="262" width="330.0" height="24" fill="#9db6e0"/>
+<text x="488.0" y="281" font-size="18" fill="#172b45">7,525</text>
+<text x="692" y="264" font-size="19" fill="#53657d" text-anchor="end">후회 2,500</text>
+<text x="28" y="338" font-size="20" fill="#172b45" font-weight="700">작업 3</text>
+<rect x="150" y="308" width="39.5" height="24" fill="#2664ce"/>
+<text x="197.468438538206" y="327" font-size="18" fill="#172b45">900</text>
+<rect x="150" y="336" width="193.0" height="24" fill="#9db6e0"/>
+<text x="350.95681063122925" y="355" font-size="18" fill="#172b45">4,400</text>
+<text x="692" y="338" font-size="19" fill="#53657d" text-anchor="end">후회 3,500</text>
+<text x="28" y="412" font-size="20" fill="#ae5515" font-weight="700">작업 5</text>
+<rect x="150" y="382" width="49.3" height="24" fill="#ae5515"/>
+<text x="207.33554817275748" y="401" font-size="18" fill="#172b45">1,125</text>
+<rect x="150" y="410" width="224.8" height="24" fill="#9db6e0"/>
+<text x="382.75083056478405" y="429" font-size="18" fill="#172b45">5,125</text>
+<text x="692" y="412" font-size="19" fill="#ae5515" text-anchor="end" font-weight="700">후회 4,000</text>
+</svg>

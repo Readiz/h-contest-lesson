@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 484" role="img" aria-labelledby="title desc">
+<title id="title">구성법의 공통 틀: 고르기, 자리 정하기, 갱신의 반복</title>
+<desc id="desc">세 단계 상자 고르기, 자리 정하기, 상태 갱신이 화살표로 이어지고 남은 것이 없을 때까지 되돌아가는 반복이며, 아래에 선택 기준 네 가지와 잘 맞는 구조가 적혀 있습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="482" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한 번에 하나씩 정하는 구성법</text>
+<text x="28" y="84" font-size="19" fill="#53657d">남은 것이 없어질 때까지 같은 세 단계를 반복합니다</text>
+<rect x="28" y="104" width="196" height="96" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="126" y="148" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">① 고른다</text>
+<text x="126" y="180" font-size="18" fill="#53657d" text-anchor="middle">남은 것 중 하나</text>
+<rect x="262" y="104" width="196" height="96" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="360" y="148" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">② 자리를 정한다</text>
+<text x="360" y="180" font-size="18" fill="#53657d" text-anchor="middle">어디에 둘지</text>
+<rect x="496" y="104" width="196" height="96" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="594" y="148" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">③ 갱신한다</text>
+<text x="594" y="180" font-size="18" fill="#53657d" text-anchor="middle">상태·합계·개수</text>
+<path d="M 230 152 l 28 0 m -10 -9 l 10 9 l -10 9" fill="none" stroke="#2664ce" stroke-width="3"/>
+<path d="M 464 152 l 28 0 m -10 -9 l 10 9 l -10 9" fill="none" stroke="#2664ce" stroke-width="3"/>
+<path d="M 594 204 v 24 h -468 v -20 m -9 10 l 9 -10 l 9 10" fill="none" stroke="#ae5515" stroke-width="3"/>
+<text x="360" y="256" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">한 번 정한 것은 되돌리지 않습니다</text>
+<text x="28" y="304" font-size="20" fill="#172b45" font-weight="700">고르는 기준</text>
+<text x="330" y="304" font-size="20" fill="#172b45" font-weight="700">잘 맞는 구조</text>
+<line x1="28" y1="318" x2="692" y2="318" stroke="#d8e1ed" stroke-width="1"/>
+<text x="28" y="344" font-size="18" fill="#172b45">가장 가까운 것·싼 것</text>
+<text x="330" y="344" font-size="18" fill="#53657d">값이 이웃에게만 달라짐</text>
+<line x1="28" y1="358" x2="692" y2="358" stroke="#d8e1ed" stroke-width="1"/>
+<text x="28" y="384" font-size="18" fill="#172b45">가장 싸게 끼울 자리</text>
+<text x="330" y="384" font-size="18" fill="#53657d">자리가 서로 영향을 줌</text>
+<line x1="28" y1="398" x2="692" y2="398" stroke="#d8e1ed" stroke-width="1"/>
+<text x="28" y="424" font-size="18" fill="#172b45">후회가 큰 것</text>
+<text x="330" y="424" font-size="18" fill="#53657d">자리를 놓치면 손해가 큼</text>
+<line x1="28" y1="438" x2="692" y2="438" stroke="#d8e1ed" stroke-width="1"/>
+<text x="28" y="464" font-size="18" fill="#172b45">큰 것부터(정렬 기준)</text>
+<text x="330" y="464" font-size="18" fill="#53657d">큰 것이 나중에 안 들어감</text>
+</svg>

@@ -23,7 +23,7 @@ PROTECTED = {"cpp-contest-basics", "cpp-common-library", "sorting", "greedy",
              "bellman-ford-negative-cycle", "floyd-warshall",
              "fenwick-tree", "segment-tree", "sqrt-decomposition", "dynamic-segment-tree",
              "dynamic-programming", "tsp-hamiltonian", "hungarian-algorithm",
-             "meldable-heap", "treap"}
+             "meldable-heap", "treap", "construction-heuristics"}
 # Local-harness pages that explicitly declare general C++17 (STL allowed).
 GENERAL_CPP_PAGES = {"lessons/testing-and-stress/pages/experiment-evaluation.md"}
 CPP = re.compile(r"```(?:cpp|c\+\+)(?:[^\n]*)\n(.*?)\n```", re.S)
