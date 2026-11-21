@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" role="img" aria-labelledby="title desc">
+<title id="title">작업 하나를 옮길 때 건드리는 항</title>
+<desc id="desc">기계 3대의 부하 막대입니다. 이동 전 부하는 기계 0이 72, 기계 1이 90, 기계 2가 48입니다. 길이 28인 작업 1을 기계 1에서 기계 2로 옮기면 기계 1은 62, 기계 2는 76이 됩니다. 건드리는 항은 작업 1의 추가 비용 항(8에서 12), 기계 1의 부하 제곱 항, 기계 2의 부하 제곱 항 셋이고 기계 0의 항은 그대로입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="578" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">작업 하나를 옮길 때 건드리는 항</text>
+<text x="28" y="84" font-size="20" fill="#53657d">작업 1(길이 28)을 기계 1에서 기계 2로 옮김</text>
+<rect x="28" y="108" width="324" height="372" rx="12" fill="#ffffff" stroke="#d8e1ed"/>
+<rect x="368" y="108" width="324" height="372" rx="12" fill="#ffffff" stroke="#d8e1ed"/>
+<text x="190" y="140" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">이동 전</text>
+<text x="530" y="140" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">이동 후</text>
+<line x1="44" y1="420" x2="336" y2="420" stroke="#53657d" stroke-width="2"/>
+<line x1="384" y1="420" x2="676" y2="420" stroke="#53657d" stroke-width="2"/>
+<rect x="60" y="247" width="52" height="173" fill="#9aa8bb"/>
+<rect x="150" y="204" width="52" height="216" fill="#ae5515"/>
+<rect x="240" y="305" width="52" height="115" fill="#ae5515"/>
+<rect x="400" y="247" width="52" height="173" fill="#9aa8bb"/>
+<rect x="490" y="271" width="52" height="149" fill="#2664ce"/>
+<rect x="580" y="238" width="52" height="182" fill="#2664ce"/>
+<g font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">
+<text x="86" y="238">72</text><text x="176" y="195">90</text><text x="266" y="296">48</text>
+<text x="426" y="238">72</text><text x="516" y="262">62</text><text x="606" y="229">76</text>
+</g>
+<g font-size="18" fill="#53657d" text-anchor="middle">
+<text x="86" y="446">기계 0</text><text x="176" y="446">기계 1</text><text x="266" y="446">기계 2</text>
+<text x="426" y="446">기계 0</text><text x="516" y="446">기계 1</text><text x="606" y="446">기계 2</text>
+</g>
+<text x="28" y="516" font-size="19" fill="#172b45" font-weight="700">건드린 항 셋</text>
+<text x="28" y="544" font-size="18" fill="#172b45">작업 1의 항 8 → 12, 기계 1의 90² → 62², 기계 2의 48² → 76²</text>
+<text x="28" y="568" font-size="18" fill="#53657d">기계 0의 항(72²)과 나머지 작업 항 5개는 다시 계산하지 않음</text>
+</svg>
