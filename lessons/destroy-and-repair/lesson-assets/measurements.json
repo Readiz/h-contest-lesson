@@ -1,0 +1,1199 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "start": {
+  "route": 131115,
+  "assign": 47295
+ },
+ "budget": {
+  "route": [
+   {
+    "budget": 1000000,
+    "small": 14504,
+    "dr": 19022,
+    "hybrid": 14449,
+    "hybridBetter": 11,
+    "hybridWorse": 9,
+    "drOnlyBetter": 0,
+    "drOnlyWorse": 20,
+    "drIters": 161,
+    "hybridIters": 123
+   },
+   {
+    "budget": 2000000,
+    "small": 14218,
+    "dr": 15888,
+    "hybrid": 13819,
+    "hybridBetter": 18,
+    "hybridWorse": 2,
+    "drOnlyBetter": 0,
+    "drOnlyWorse": 20,
+    "drIters": 325,
+    "hybridIters": 248
+   },
+   {
+    "budget": 4000000,
+    "small": 14203,
+    "dr": 15040,
+    "hybrid": 13762,
+    "hybridBetter": 20,
+    "hybridWorse": 0,
+    "drOnlyBetter": 2,
+    "drOnlyWorse": 18,
+    "drIters": 654,
+    "hybridIters": 496
+   }
+  ],
+  "assign": [
+   {
+    "budget": 400000,
+    "small": 43990,
+    "dr": 44014,
+    "hybrid": 44042,
+    "hybridBetter": 3,
+    "hybridWorse": 17,
+    "drOnlyBetter": 1,
+    "drOnlyWorse": 19,
+    "drIters": 442,
+    "hybridIters": 334
+   },
+   {
+    "budget": 1000000,
+    "small": 43990,
+    "dr": 43987,
+    "hybrid": 43984,
+    "hybridBetter": 13,
+    "hybridWorse": 5,
+    "drOnlyBetter": 12,
+    "drOnlyWorse": 8,
+    "drIters": 1111,
+    "hybridIters": 849
+   },
+   {
+    "budget": 2000000,
+    "small": 43990,
+    "dr": 43949,
+    "hybrid": 43957,
+    "hybridBetter": 18,
+    "hybridWorse": 2,
+    "drOnlyBetter": 17,
+    "drOnlyWorse": 3,
+    "drIters": 2234,
+    "hybridIters": 1672
+   }
+  ]
+ },
+ "kinds": {
+  "route": {
+   "reference": [
+    0,
+    8
+   ],
+   "rows": [
+    {
+     "kind": 0,
+     "size": 8,
+     "name": "무작위",
+     "median": 14202,
+     "better": 0,
+     "worse": 0,
+     "iters": 512,
+     "accepted": 7
+    },
+    {
+     "kind": 1,
+     "size": 8,
+     "name": "연속 구간",
+     "median": 13788,
+     "better": 20,
+     "worse": 0,
+     "iters": 512,
+     "accepted": 17
+    },
+    {
+     "kind": 2,
+     "size": 8,
+     "name": "가까운 점",
+     "median": 13762,
+     "better": 20,
+     "worse": 0,
+     "iters": 496,
+     "accepted": 20
+    },
+    {
+     "kind": 3,
+     "size": 8,
+     "name": "비용 기여",
+     "median": 14233,
+     "better": 8,
+     "worse": 11,
+     "iters": 505,
+     "accepted": 7
+    }
+   ]
+  },
+  "assign": {
+   "reference": [
+    0,
+    8
+   ],
+   "rows": [
+    {
+     "kind": 0,
+     "size": 8,
+     "name": "무작위 작업 8개",
+     "median": 43957,
+     "better": 0,
+     "worse": 0,
+     "iters": 1672,
+     "accepted": 6
+    },
+    {
+     "kind": 1,
+     "size": 1,
+     "name": "기계 1대의 작업 전부",
+     "median": 43990,
+     "better": 0,
+     "worse": 20,
+     "iters": 509,
+     "accepted": 0
+    },
+    {
+     "kind": 1,
+     "size": 2,
+     "name": "기계 2대의 작업 전부",
+     "median": 43974,
+     "better": 5,
+     "worse": 15,
+     "iters": 134,
+     "accepted": 2
+    },
+    {
+     "kind": 2,
+     "size": 8,
+     "name": "비용 기여 작업 8개",
+     "median": 43967,
+     "better": 11,
+     "worse": 9,
+     "iters": 1564,
+     "accepted": 6
+    }
+   ]
+  }
+ },
+ "repair": {
+  "route": [
+   {
+    "kind": 2,
+    "size": 8,
+    "rule": 0,
+    "median": 13762,
+    "iters": 496,
+    "better": 0,
+    "worse": 0
+   },
+   {
+    "kind": 2,
+    "size": 8,
+    "rule": 1,
+    "median": 13874,
+    "iters": 135,
+    "better": 3,
+    "worse": 17
+   },
+   {
+    "kind": 1,
+    "size": 8,
+    "rule": 0,
+    "median": 13788,
+    "iters": 512,
+    "better": 0,
+    "worse": 0
+   },
+   {
+    "kind": 1,
+    "size": 8,
+    "rule": 1,
+    "median": 13811,
+    "iters": 136,
+    "better": 9,
+    "worse": 11
+   }
+  ],
+  "assign": [
+   {
+    "kind": 0,
+    "size": 8,
+    "rule": 0,
+    "median": 43983,
+    "iters": 6703,
+    "better": 0,
+    "worse": 0
+   },
+   {
+    "kind": 0,
+    "size": 8,
+    "rule": 1,
+    "median": 43957,
+    "iters": 1672,
+    "better": 16,
+    "worse": 3
+   },
+   {
+    "kind": 1,
+    "size": 2,
+    "rule": 0,
+    "median": 43990,
+    "iters": 1786,
+    "better": 0,
+    "worse": 0
+   },
+   {
+    "kind": 1,
+    "size": 2,
+    "rule": 1,
+    "median": 43974,
+    "iters": 134,
+    "better": 17,
+    "worse": 0
+   }
+  ]
+ },
+ "accept": {
+  "route": [
+   {
+    "accept": 0,
+    "t0": 0,
+    "median": 13762,
+    "better": 0,
+    "worse": 0,
+    "accepted": 20
+   },
+   {
+    "accept": 1,
+    "t0": 0,
+    "median": 13686,
+    "better": 5,
+    "worse": 1,
+    "accepted": 246
+   },
+   {
+    "accept": 2,
+    "t0": 30,
+    "median": 13717,
+    "better": 14,
+    "worse": 6,
+    "accepted": 301
+   },
+   {
+    "accept": 2,
+    "t0": 300,
+    "median": 13666,
+    "better": 10,
+    "worse": 10,
+    "accepted": 428
+   },
+   {
+    "accept": 2,
+    "t0": 1000,
+    "median": 13854,
+    "better": 5,
+    "worse": 15,
+    "accepted": 467
+   }
+  ],
+  "assign": [
+   {
+    "accept": 0,
+    "t0": 0,
+    "median": 43957,
+    "better": 0,
+    "worse": 0,
+    "accepted": 6
+   },
+   {
+    "accept": 1,
+    "t0": 0,
+    "median": 43971,
+    "better": 11,
+    "worse": 5,
+    "accepted": 1252
+   },
+   {
+    "accept": 2,
+    "t0": 1,
+    "median": 43950,
+    "better": 14,
+    "worse": 5,
+    "accepted": 1271
+   },
+   {
+    "accept": 2,
+    "t0": 10,
+    "median": 43971,
+    "better": 14,
+    "worse": 6,
+    "accepted": 1274
+   },
+   {
+    "accept": 2,
+    "t0": 100,
+    "median": 43990,
+    "better": 2,
+    "worse": 18,
+    "accepted": 1481
+   }
+  ]
+ },
+ "size": {
+  "route": {
+   "small": 14203,
+   "rows": [
+    {
+     "size": 1,
+     "median": 14336,
+     "iters": 2318,
+     "accepted": 4,
+     "better": 1,
+     "worse": 16
+    },
+    {
+     "size": 2,
+     "median": 14147,
+     "iters": 1511,
+     "accepted": 9,
+     "better": 13,
+     "worse": 7
+    },
+    {
+     "size": 3,
+     "median": 14045,
+     "iters": 1123,
+     "accepted": 14,
+     "better": 19,
+     "worse": 1
+    },
+    {
+     "size": 5,
+     "median": 13966,
+     "iters": 743,
+     "accepted": 18,
+     "better": 20,
+     "worse": 0
+    },
+    {
+     "size": 8,
+     "median": 13762,
+     "iters": 496,
+     "accepted": 20,
+     "better": 20,
+     "worse": 0
+    },
+    {
+     "size": 13,
+     "median": 13662,
+     "iters": 321,
+     "accepted": 23,
+     "better": 20,
+     "worse": 0
+    },
+    {
+     "size": 21,
+     "median": 13716,
+     "iters": 209,
+     "accepted": 17,
+     "better": 20,
+     "worse": 0
+    },
+    {
+     "size": 40,
+     "median": 13816,
+     "iters": 117,
+     "accepted": 7,
+     "better": 18,
+     "worse": 2
+    },
+    {
+     "size": 80,
+     "median": 14285,
+     "iters": 67,
+     "accepted": 2,
+     "better": 8,
+     "worse": 12
+    },
+    {
+     "size": 200,
+     "median": 14504,
+     "iters": 43,
+     "accepted": 0,
+     "better": 0,
+     "worse": 20
+    }
+   ]
+  },
+  "assign": {
+   "small": 43990,
+   "rows": [
+    {
+     "size": 1,
+     "median": 43990,
+     "iters": 51720,
+     "accepted": 0,
+     "better": 0,
+     "worse": 11
+    },
+    {
+     "size": 2,
+     "median": 43990,
+     "iters": 18518,
+     "accepted": 1,
+     "better": 4,
+     "worse": 4
+    },
+    {
+     "size": 4,
+     "median": 43990,
+     "iters": 5837,
+     "accepted": 3,
+     "better": 13,
+     "worse": 2
+    },
+    {
+     "size": 8,
+     "median": 43957,
+     "iters": 1672,
+     "accepted": 6,
+     "better": 18,
+     "worse": 2
+    },
+    {
+     "size": 16,
+     "median": 43973,
+     "iters": 454,
+     "accepted": 7,
+     "better": 19,
+     "worse": 1
+    },
+    {
+     "size": 32,
+     "median": 43990,
+     "iters": 118,
+     "accepted": 0,
+     "better": 4,
+     "worse": 10
+    },
+    {
+     "size": 64,
+     "median": 43990,
+     "iters": 30,
+     "accepted": 0,
+     "better": 2,
+     "worse": 11
+    },
+    {
+     "size": 120,
+     "median": 43990,
+     "iters": 9,
+     "accepted": 0,
+     "better": 0,
+     "worse": 11
+    }
+   ]
+  }
+ },
+ "restore": [
+  {
+   "kind": 0,
+   "size": 8,
+   "rule": 0,
+   "log": 0,
+   "iters": 4202,
+   "writes": 291,
+   "ops": 475,
+   "cost": 44062
+  },
+  {
+   "kind": 0,
+   "size": 8,
+   "rule": 0,
+   "log": 1,
+   "iters": 9087,
+   "writes": 33,
+   "ops": 218,
+   "cost": 43995
+  },
+  {
+   "kind": 0,
+   "size": 8,
+   "rule": 1,
+   "log": 0,
+   "iters": 1737,
+   "writes": 291,
+   "ops": 1149,
+   "cost": 43960
+  },
+  {
+   "kind": 0,
+   "size": 8,
+   "rule": 1,
+   "log": 1,
+   "iters": 2234,
+   "writes": 36,
+   "ops": 890,
+   "cost": 43949
+  },
+  {
+   "kind": 1,
+   "size": 2,
+   "rule": 1,
+   "log": 0,
+   "iters": 178,
+   "writes": 332,
+   "ops": 11158,
+   "cost": 44013
+  },
+  {
+   "kind": 1,
+   "size": 2,
+   "rule": 1,
+   "log": 1,
+   "iters": 181,
+   "writes": 135,
+   "ops": 10983,
+   "cost": 44013
+  }
+ ],
+ "opsplit": {
+  "route": {
+   "ops": 6116,
+   "writes": 1040,
+   "terms": 5075
+  },
+  "assign": {
+   "ops": 890,
+   "writes": 36,
+   "terms": 852
+  }
+ },
+ "schema": 1,
+ "stuck": {
+  "localOptimum": {
+   "route": 14193,
+   "assign": 43974
+  },
+  "route": [
+   {
+    "kind": 0,
+    "size": 1,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 0,
+    "size": 2,
+    "median": 0,
+    "seeds": 1
+   },
+   {
+    "kind": 0,
+    "size": 3,
+    "median": 0,
+    "seeds": 6
+   },
+   {
+    "kind": 0,
+    "size": 5,
+    "median": 1,
+    "seeds": 11
+   },
+   {
+    "kind": 0,
+    "size": 8,
+    "median": 2,
+    "seeds": 20
+   },
+   {
+    "kind": 0,
+    "size": 13,
+    "median": 5,
+    "seeds": 18
+   },
+   {
+    "kind": 0,
+    "size": 21,
+    "median": 12,
+    "seeds": 20
+   },
+   {
+    "kind": 1,
+    "size": 1,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 1,
+    "size": 2,
+    "median": 5,
+    "seeds": 19
+   },
+   {
+    "kind": 1,
+    "size": 3,
+    "median": 15,
+    "seeds": 20
+   },
+   {
+    "kind": 1,
+    "size": 5,
+    "median": 25,
+    "seeds": 20
+   },
+   {
+    "kind": 1,
+    "size": 8,
+    "median": 43,
+    "seeds": 20
+   },
+   {
+    "kind": 1,
+    "size": 13,
+    "median": 40,
+    "seeds": 20
+   },
+   {
+    "kind": 1,
+    "size": 21,
+    "median": 22,
+    "seeds": 20
+   },
+   {
+    "kind": 2,
+    "size": 1,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 2,
+    "size": 2,
+    "median": 5,
+    "seeds": 19
+   },
+   {
+    "kind": 2,
+    "size": 3,
+    "median": 11,
+    "seeds": 20
+   },
+   {
+    "kind": 2,
+    "size": 5,
+    "median": 25,
+    "seeds": 20
+   },
+   {
+    "kind": 2,
+    "size": 8,
+    "median": 36,
+    "seeds": 20
+   },
+   {
+    "kind": 2,
+    "size": 13,
+    "median": 57,
+    "seeds": 20
+   },
+   {
+    "kind": 2,
+    "size": 21,
+    "median": 57,
+    "seeds": 20
+   },
+   {
+    "kind": 3,
+    "size": 1,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 3,
+    "size": 2,
+    "median": 0,
+    "seeds": 2
+   },
+   {
+    "kind": 3,
+    "size": 3,
+    "median": 0,
+    "seeds": 4
+   },
+   {
+    "kind": 3,
+    "size": 5,
+    "median": 1,
+    "seeds": 12
+   },
+   {
+    "kind": 3,
+    "size": 8,
+    "median": 2,
+    "seeds": 16
+   },
+   {
+    "kind": 3,
+    "size": 13,
+    "median": 6,
+    "seeds": 18
+   },
+   {
+    "kind": 3,
+    "size": 21,
+    "median": 14,
+    "seeds": 19
+   }
+  ],
+  "assign": [
+   {
+    "kind": 0,
+    "size": 1,
+    "rule": 0,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 0,
+    "size": 1,
+    "rule": 1,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 0,
+    "size": 2,
+    "rule": 0,
+    "median": 0,
+    "seeds": 1
+   },
+   {
+    "kind": 0,
+    "size": 2,
+    "rule": 1,
+    "median": 0,
+    "seeds": 2
+   },
+   {
+    "kind": 0,
+    "size": 4,
+    "rule": 0,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 0,
+    "size": 4,
+    "rule": 1,
+    "median": 0,
+    "seeds": 4
+   },
+   {
+    "kind": 0,
+    "size": 8,
+    "rule": 0,
+    "median": 0,
+    "seeds": 1
+   },
+   {
+    "kind": 0,
+    "size": 8,
+    "rule": 1,
+    "median": 0,
+    "seeds": 6
+   },
+   {
+    "kind": 0,
+    "size": 15,
+    "rule": 0,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 0,
+    "size": 15,
+    "rule": 1,
+    "median": 1,
+    "seeds": 14
+   },
+   {
+    "kind": 1,
+    "size": 1,
+    "rule": 0,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 1,
+    "size": 1,
+    "rule": 1,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 1,
+    "size": 2,
+    "rule": 0,
+    "median": 0,
+    "seeds": 0
+   },
+   {
+    "kind": 1,
+    "size": 2,
+    "rule": 1,
+    "median": 8,
+    "seeds": 13
+   }
+  ]
+ },
+ "hand": {
+  "route": {
+   "start": 31,
+   "families": {
+    "swap": {
+     "moves": 21,
+     "improving": 0,
+     "best": 2
+    },
+    "insert": {
+     "moves": 42,
+     "improving": 0,
+     "best": 1
+    },
+    "reverse": {
+     "moves": 21,
+     "improving": 0,
+     "best": 2
+    }
+   },
+   "steps": [
+    {
+     "path": [
+      0,
+      1,
+      2,
+      3,
+      6
+     ],
+     "cost": 25,
+     "slots": null,
+     "slot": null
+    },
+    {
+     "path": [
+      0,
+      1,
+      4,
+      2,
+      3,
+      6
+     ],
+     "cost": 27,
+     "slots": [
+      10,
+      12,
+      2,
+      2,
+      6,
+      9
+     ],
+     "slot": 2
+    },
+    {
+     "path": [
+      0,
+      1,
+      5,
+      4,
+      2,
+      3,
+      6
+     ],
+     "cost": 27,
+     "slots": [
+      7,
+      6,
+      0,
+      6,
+      8,
+      6,
+      6
+     ],
+     "slot": 2
+    }
+   ],
+   "optimum": 27
+  },
+  "assign": {
+   "start": {
+    "cost": 182,
+    "load": [
+     49,
+     52,
+     72
+    ],
+    "sq": 10289,
+    "c": 80
+   },
+   "swaps": {
+    "count": 12,
+    "improving": 0,
+    "best": 1
+   },
+   "moves": 0,
+   "pool": [
+    0,
+    1,
+    2,
+    5
+   ],
+   "cheapest": {
+    "as": [
+     2,
+     1,
+     1,
+     0,
+     0,
+     2
+    ],
+    "cost": 185,
+    "rounds": [
+     {
+      "regret": {
+       "0": 600,
+       "1": 0,
+       "2": 300,
+       "5": 300
+      },
+      "pick": 0,
+      "machine": 2
+     },
+     {
+      "regret": {
+       "1": 1344,
+       "2": 972,
+       "5": 3060
+      },
+      "pick": 1,
+      "machine": 1
+     },
+     {
+      "regret": {
+       "2": 396,
+       "5": 180
+      },
+      "pick": 2,
+      "machine": 1
+     },
+     {
+      "regret": {
+       "5": 999999992940
+      },
+      "pick": 5,
+      "machine": 2
+     }
+    ]
+   },
+   "regret": {
+    "as": [
+     2,
+     2,
+     1,
+     0,
+     0,
+     1
+    ],
+    "cost": 176,
+    "rounds": [
+     {
+      "regret": {
+       "0": 600,
+       "1": 0,
+       "2": 300,
+       "5": 300
+      },
+      "pick": 0,
+      "machine": 2
+     },
+     {
+      "regret": {
+       "1": 1344,
+       "2": 972,
+       "5": 3060
+      },
+      "pick": 5,
+      "machine": 1
+     },
+     {
+      "regret": {
+       "1": 1536,
+       "2": 468
+      },
+      "pick": 1,
+      "machine": 2
+     },
+     {
+      "regret": {
+       "2": 999999996916
+      },
+      "pick": 2,
+      "machine": 1
+     }
+    ]
+   }
+  }
+ },
+ "mistakes": {
+  "clean": {
+   "routeFound": 0,
+   "routeMedian": 0,
+   "assignCopyFound": 0,
+   "assignCopyMedian": 0,
+   "assignLogFound": 0,
+   "assignLogMedian": 0,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "bestMismatchRoute": 0,
+   "bestMismatchAssign": 0,
+   "distinctSets": 200
+  },
+  "copy-cache": {
+   "routeFound": 0,
+   "routeMedian": 0,
+   "assignCopyFound": 20,
+   "assignCopyMedian": 1,
+   "assignLogFound": 0,
+   "assignLogMedian": 0,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "bestMismatchRoute": 0,
+   "bestMismatchAssign": 0,
+   "distinctSets": 200
+  },
+  "no-log": {
+   "routeFound": 0,
+   "routeMedian": 0,
+   "assignCopyFound": 0,
+   "assignCopyMedian": 0,
+   "assignLogFound": 20,
+   "assignLogMedian": 1,
+   "tightFound": 20,
+   "tightMedian": 2,
+   "bestMismatchRoute": 0,
+   "bestMismatchAssign": 0,
+   "distinctSets": 200
+  },
+  "capacity": {
+   "routeFound": 0,
+   "routeMedian": 0,
+   "assignCopyFound": 19,
+   "assignCopyMedian": 12,
+   "assignLogFound": 19,
+   "assignLogMedian": 12,
+   "tightFound": 20,
+   "tightMedian": 1,
+   "bestMismatchRoute": 0,
+   "bestMismatchAssign": 0,
+   "distinctSets": 200
+  },
+  "best": {
+   "routeFound": 0,
+   "routeMedian": 0,
+   "assignCopyFound": 0,
+   "assignCopyMedian": 0,
+   "assignLogFound": 0,
+   "assignLogMedian": 0,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "bestMismatchRoute": 0,
+   "bestMismatchAssign": 2,
+   "distinctSets": 200
+  },
+  "greedy-top": {
+   "routeFound": 0,
+   "routeMedian": 0,
+   "assignCopyFound": 0,
+   "assignCopyMedian": 0,
+   "assignLogFound": 0,
+   "assignLogMedian": 0,
+   "tightFound": 0,
+   "tightMedian": 0,
+   "bestMismatchRoute": 0,
+   "bestMismatchAssign": 0,
+   "distinctSets": 1
+  }
+ },
+ "expo": [
+  {
+   "x": 0.0,
+   "approx": 65536
+  },
+  {
+   "x": 0.25,
+   "approx": 51037
+  },
+  {
+   "x": 0.5,
+   "approx": 39744
+  },
+  {
+   "x": 1.0,
+   "approx": 24097
+  },
+  {
+   "x": 2.0,
+   "approx": 8852
+  },
+  {
+   "x": 4.0,
+   "approx": 1190
+  },
+  {
+   "x": 8.0,
+   "approx": 21
+  },
+  {
+   "x": 15.0,
+   "approx": 0
+  },
+  {
+   "x": 15.984375,
+   "approx": 0
+  },
+  {
+   "x": 16.0,
+   "approx": 0
+  }
+ ],
+ "rule": "한쪽이 15 / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
+ "problems": {
+  "route": "N=200, 좌표 0..999, 맨해튼 거리 합",
+  "assign": "N=120, M=8, K=18, 부하 제곱합/100 + 추가 비용"
+ }
+}
