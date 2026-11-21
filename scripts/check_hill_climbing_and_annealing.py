@@ -696,8 +696,11 @@ def hand_rows(h: dict) -> dict[str, list[str]]:
     for a in range(6):
         cells = []
         for b in range(1, 7):
+            if b <= a:
+                cells.append("")
+                continue
             d = nb[(a, b)]["delta"]
-            cells.append(("+%d" % d if d > 0 else str(d)) if b > a else "")
+            cells.append("+%d" % d if d > 0 else str(d))
         rows["grid"].append(f"| {a} | " + " | ".join(cells) + " |")
     rows["after"] = []
     for a in range(6):
