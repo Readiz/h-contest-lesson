@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" role="img" aria-labelledby="title desc">
+<title id="title">앞으로 채워질 부하 수준 아래는 증가분이 0</title>
+<desc id="desc">기계 3대의 부하가 36, 0, 85이고 마지막에 기계 하나가 맡을 부하의 예상이 78일 때 길이 35인 작업을 맡기는 세 가지 경우입니다. 78 아래에 머무는 두 경우는 제곱의 증가분이 0이고 추가 비용만 점수가 되며, 85에서 120으로 넘어가는 경우는 제곱의 증가분이 점수에 들어갑니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="578" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">앞으로 채워질 부하 수준 아래는 증가분이 0</text>
+<text x="28" y="84" font-size="20" fill="#53657d">네 번째 작업(길이 35)이 도착했을 때, 예상 부하 수준 lam = 78</text>
+<rect x="90" y="323.6" width="110" height="86.39999999999999" fill="#d3e2fb" stroke="#2664ce" stroke-width="2"/>
+<rect x="90" y="239.6" width="110" height="84.0" fill="#fbf1e8" stroke="#ae5515" stroke-width="2.5" stroke-dasharray="8 5"/>
+<text x="145.0" y="438" font-size="20" fill="#172b45" text-anchor="middle" font-weight="750">기계 0</text>
+<text x="145.0" y="287.6" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">36 → 71</text>
+<rect x="300" y="326.0" width="110" height="84.0" fill="#fbf1e8" stroke="#ae5515" stroke-width="2.5" stroke-dasharray="8 5"/>
+<text x="355.0" y="438" font-size="20" fill="#172b45" text-anchor="middle" font-weight="750">기계 1</text>
+<text x="355.0" y="374.0" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">0 → 35</text>
+<rect x="510" y="206.0" width="110" height="204.0" fill="#d3e2fb" stroke="#2664ce" stroke-width="2"/>
+<rect x="510" y="122.0" width="110" height="84.0" fill="#fbf1e8" stroke="#ae5515" stroke-width="2.5" stroke-dasharray="8 5"/>
+<text x="565.0" y="438" font-size="20" fill="#172b45" text-anchor="middle" font-weight="750">기계 2</text>
+<text x="565.0" y="170.0" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">85 → 120</text>
+<line x1="40" y1="410" x2="690" y2="410" stroke="#53657d" stroke-width="2"/>
+<line x1="40" y1="222.8" x2="690" y2="222.8" stroke="#172b45" stroke-width="2.5" stroke-dasharray="3 6"/>
+<text x="418" y="214.8" font-size="18" fill="#172b45" font-weight="700">lam = 78</text>
+<text x="145.0" y="468" font-size="18" fill="#2664ce" text-anchor="middle">lam 아래에 머문다</text>
+<text x="145.0" y="492" font-size="18" fill="#2664ce" text-anchor="middle">증가분 0, 비용만</text>
+<text x="145.0" y="516" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">점수 4,000</text>
+<text x="355.0" y="468" font-size="18" fill="#2664ce" text-anchor="middle">lam 아래에 머문다</text>
+<text x="355.0" y="492" font-size="18" fill="#2664ce" text-anchor="middle">증가분 0, 비용만</text>
+<text x="355.0" y="516" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">점수 4,500</text>
+<text x="565.0" y="468" font-size="18" fill="#ae5515" text-anchor="middle">lam을 넘는다</text>
+<text x="565.0" y="492" font-size="18" fill="#ae5515" text-anchor="middle">85² → 120²의 증가분</text>
+<text x="565.0" y="516" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">점수 10,475</text>
+<text x="28" y="560" font-size="18" fill="#53657d">파란 막대는 지금의 부하, 점선 막대는 이 작업을 맡았을 때 늘어나는 부분입니다.</text>
+</svg>

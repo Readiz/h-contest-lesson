@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 570" role="img" aria-labelledby="title desc">
+<title id="title">모르는 칸의 값 E에 따라 바뀌는 4걸음 계획</title>
+<desc id="desc">5 곱하기 5 격자의 시작 직후 지도입니다. 아는 칸만 도는 경로 K는 값이 E와 무관하게 5이고, 오른쪽으로 곧게 가는 경로 U는 3 더하기 2E입니다. E가 1보다 작으면 K, 크면 U가 더 좋은 계획입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="568" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">모르는 칸의 값 E에 따라 바뀌는 계획</text>
+<text x="28" y="84" font-size="20" fill="#53657d">4걸음 경로 K(아는 칸만)와 U(모르는 칸으로)의 값</text>
+<rect x="28" y="118" width="70" height="70" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="88" y="178" font-size="22" fill="#172b45" font-weight="700" text-anchor="end">0</text>
+<rect x="98" y="118" width="70" height="70" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="158" y="178" font-size="22" fill="#172b45" font-weight="700" text-anchor="end">3</text>
+<rect x="168" y="118" width="70" height="70" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="228" y="178" font-size="22" fill="#172b45" font-weight="700" text-anchor="end">0</text>
+<rect x="238" y="118" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="273.0" y="162.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="308" y="118" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="343.0" y="162.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="28" y="188" width="70" height="70" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="88" y="248" font-size="22" fill="#172b45" font-weight="700" text-anchor="end">2</text>
+<rect x="98" y="188" width="70" height="70" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="158" y="248" font-size="22" fill="#172b45" font-weight="700" text-anchor="end">0</text>
+<rect x="168" y="188" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="203.0" y="232.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="238" y="188" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="273.0" y="232.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="308" y="188" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="343.0" y="232.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="28" y="258" width="70" height="70" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="88" y="318" font-size="22" fill="#172b45" font-weight="700" text-anchor="end">0</text>
+<rect x="98" y="258" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="133.0" y="302.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="168" y="258" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="203.0" y="302.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="238" y="258" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="273.0" y="302.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="308" y="258" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="343.0" y="302.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="28" y="328" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="63.0" y="372.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="98" y="328" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="133.0" y="372.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="168" y="328" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="203.0" y="372.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="238" y="328" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="273.0" y="372.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="308" y="328" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="343.0" y="372.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="28" y="398" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="63.0" y="442.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="98" y="398" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="133.0" y="442.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="168" y="398" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="203.0" y="442.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="238" y="398" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="273.0" y="442.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="308" y="398" width="70" height="70" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="343.0" y="442.0" font-size="24" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<polyline points="56.0,146.0 126.0,146.0 126.0,216.0 56.0,216.0 56.0,286.0" fill="none" stroke="#2664ce" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="70.0,160.0 140.0,160.0 210.0,160.0 280.0,160.0 350.0,160.0" fill="none" stroke="#ae5515" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="10 7"/>
+<circle cx="63.0" cy="153.0" r="9" fill="#172b45"/>
+<text x="28" y="498" font-size="18" fill="#2664ce" font-weight="700">K: (0,1)→(1,1)→(1,0)→(2,0)</text>
+<text x="28" y="524" font-size="18" fill="#ae5515" font-weight="700">U: (0,1)→(0,2)→(0,3)→(0,4)</text>
+<line x1="450" y1="380" x2="680" y2="380" stroke="#53657d" stroke-width="2"/>
+<line x1="450" y1="380" x2="450" y2="150" stroke="#53657d" stroke-width="2"/>
+<text x="442" y="386.0" font-size="16" fill="#53657d" text-anchor="end">0</text>
+<text x="442" y="271.0" font-size="16" fill="#53657d" text-anchor="end">5</text>
+<text x="442" y="156.0" font-size="16" fill="#53657d" text-anchor="end">10</text>
+<line x1="450.0" y1="380" x2="450.0" y2="386" stroke="#53657d" stroke-width="2"/>
+<text x="450.0" y="406" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="526.6666666666666" y1="380" x2="526.6666666666666" y2="386" stroke="#53657d" stroke-width="2"/>
+<text x="526.6666666666666" y="406" font-size="16" fill="#53657d" text-anchor="middle">1</text>
+<line x1="603.3333333333334" y1="380" x2="603.3333333333334" y2="386" stroke="#53657d" stroke-width="2"/>
+<text x="603.3333333333334" y="406" font-size="16" fill="#53657d" text-anchor="middle">2</text>
+<line x1="680.0" y1="380" x2="680.0" y2="386" stroke="#53657d" stroke-width="2"/>
+<text x="680.0" y="406" font-size="16" fill="#53657d" text-anchor="middle">3</text>
+<line x1="450.0" y1="265.0" x2="680.0" y2="265.0" stroke="#2664ce" stroke-width="4"/>
+<line x1="450.0" y1="311.0" x2="680.0" y2="173.0" stroke="#ae5515" stroke-width="4" stroke-dasharray="10 7"/>
+<line x1="526.6666666666666" y1="265.0" x2="526.6666666666666" y2="380" stroke="#172b45" stroke-width="2" stroke-dasharray="4 4"/>
+<circle cx="526.6666666666666" cy="265.0" r="6" fill="#172b45"/>
+<text x="536.6666666666666" y="293.0" font-size="18" fill="#172b45" font-weight="700">E = 1</text>
+<text x="565.0" y="436" font-size="18" fill="#172b45" text-anchor="middle">모르는 칸의 값 E</text>
+<text x="440" y="136" font-size="18" fill="#172b45">계획의 값</text>
+<text x="457.6666666666667" y="255.0" font-size="18" fill="#2664ce" font-weight="700">K = 5</text>
+<text x="457.6666666666667" y="186.8" font-size="18" fill="#ae5515" font-weight="700">U = 3 + 2E</text>
+<text x="450" y="462" font-size="18" fill="#53657d">평균 0.83은 K, 낙관 9는 U(= 21)</text>
+</svg>

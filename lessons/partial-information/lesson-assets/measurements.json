@@ -1027,7 +1027,7 @@
   "online-stale-count": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 1,
-   "peekFound": 11,
+   "peekFound": 0,
    "invalidRuns": 1
   },
   "online-double-sum": {

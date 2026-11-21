@@ -227,9 +227,10 @@ bool gridNoPeek(const GridJudge& base, GridMirror& m, GridPolicy& p) {
     static GridJudge a, b;
     static int mvA[GN], mvB[GN];
     a = base; b = base;
-    if (playGrid(a, m, p, mvA, 0) < 0) return false;
+    hc::fill(mvA, GN, -1); hc::fill(mvB, GN, -1);
+    playGrid(a, m, p, mvA, 0);
     for (int c = 0; c < a.h * a.w; ++c) if (!a.shown[c]) b.v[c] = (a.v[c] + 1 + c % 9) % 10;   // 모든 못 본 칸의 값이 달라진다
-    if (playGrid(b, m, p, mvB, 0) < 0) return false;
+    playGrid(b, m, p, mvB, 0);
     for (int t = 0; t < a.T; ++t) if (mvA[t] != mvB[t]) return false;
     return true;
 }
@@ -350,11 +351,9 @@ bool onlineNoPeek(const OnlineJudge& base, OnlineMirror& m, OnlinePolicy& p, int
     static OnlineJudge a, b;
     static int toA[AN], toB[AN];
     a = base; b = base;
-    for (int i = from; i < b.n; ++i) {                     // 아직 도착하지 않은 작업을 전부 가장 짧은 작업으로, 추가 비용은 뒤집은 값으로 바꾼다
-        b.d[i] = 1;
-        for (int q = 0; q < b.m; ++q) b.c[i][q] = 50 - a.c[i][q];
-    }
-    if (playOnline(a, m, p, toA, 0) < 0 || playOnline(b, m, p, toB, 0) < 0) return false;
+    for (int i = from; i < b.n; ++i) b.d[i] = 1;           // 아직 도착하지 않은 작업을 전부 가장 짧은 작업으로 바꾼다
+    hc::fill(toA, AN, -1); hc::fill(toB, AN, -1);
+    playOnline(a, m, p, toA, 0); playOnline(b, m, p, toB, 0);   // 규칙을 어긴 배정이 나오면 거기서 멈춘다. 멈추기 전의 결정만 비교한다
     for (int i = 0; i < from; ++i) if (toA[i] != toB[i]) return false;
     return true;
 }
