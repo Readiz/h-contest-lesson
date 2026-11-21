@@ -47,7 +47,9 @@ struct Plan {
 template <class P>
 bool proposeCand(P& p, hc::Random& rng, int k, Move& mv) {
     if (k <= 0) return p.any(rng, mv);
-    return p.cand(pick(rng, p.items()), pick(rng, k), mv);
+    const int item = pick(rng, p.items());  // 난수 두 개를 한 호출의 인자로 뽑으면 순서가 컴파일러마다 달라진다
+    const int rank = pick(rng, k);
+    return p.cand(item, rank, mv);
 }
 
 // 마무리: 모든 항목의 앞쪽 k개 후보를 차례로 한 번씩 평가하고 좋아지면 받는다.
