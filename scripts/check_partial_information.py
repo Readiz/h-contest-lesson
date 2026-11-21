@@ -207,6 +207,7 @@ def hand_grid():
             val[c] = HAND_GRID[c]
             seen_at[c] = t
 
+    new_cells: list = []
     observe(0, 0)
     out = {"first": {"cells": view(0), "values": [HAND_GRID[c] for c in view(0)], "n": n_seen, "sum": sum_seen,
                      "mean100": 100 * sum_seen // n_seen}}
@@ -252,10 +253,15 @@ def hand_grid():
                          (("K", [1, 6, 5, 10]), ("U", [1, 2, 3, 4]), ("D", [5, 10, 15, 20]))}
     # walk right, right, down
     mir = []
+    stepped = {0}
     for k, c in enumerate([1, 2, 7]):
+        before = {i for i in range(25) if seen_at[i] >= 0}
         observe(c, k + 1)
+        stepped.add(c)
+        fresh = [i for i in view(c) if i not in before]
         mir.append({"step": k + 1, "pos": c, "nSeen": n_seen, "sumSeen": sum_seen, "mean100": 100 * sum_seen // n_seen,
-                    "doubleN": dbl_n, "doubleSum": dbl_sum})
+                    "doubleN": dbl_n, "doubleSum": dbl_sum, "new": [[i // 5, i % 5, HAND_GRID[i]] for i in fresh],
+                    "got": sum(HAND_GRID[i] for i in stepped)})
     out["mirror"] = mir
     out["seenAt"] = list(seen_at)
     return out
@@ -606,6 +612,96 @@ def mistake_rows(m: dict) -> list[str]:
     return rows
 
 
+def quoted(meas: dict, mistakes: dict) -> list[str]:
+    """Sentences of the lesson text that carry numbers taken from the measurements (and the equalities the text claims)."""
+    g, o = meas["grid"], meas["online"]
+    est = {e["est"]: e for e in g["estimate"]}
+    rad = {e["rad"]: e for e in g["radius"]}
+    per = {e["period"]: e for e in g["period"]}
+    hz = {e["horizon"]: e for e in g["horizon"]}
+    c = g["cost"]
+    full6 = g["full"]["6"]
+    l5 = g["lesson5"]
+    dens = {e["zeros"]: e for e in g["density"]}
+    zkey = {"20%": "2", "60%": "6", "90%": "9"}
+    p100 = {e["fut"]: e for e in o["100"]["policies"]}
+    o100 = {e["name"]: e for e in o["100"]["others"]}
+    p20 = {e["fut"]: e for e in o["20"]["policies"]}
+    arrival = o100["전체 정보: 총 길이를 알고 도착 순서대로"]
+    longest = o100["전체 정보: 총 길이를 알고 긴 작업부터"]
+    m = mistakes
+    assert m["grid-unknown-zero"]["scoreMedian"] == est[0]["median"], "the text says unknown-as-zero equals the pessimistic setting"
+    assert m["grid-double-mean"]["scoreMedian"] == m["clean"]["grid"]["scoreMedian"] == est[-1]["median"]
+    assert m["grid-peek"]["scoreMedian"] == rad[99]["median"], "the text says peeking equals seeing everything"
+    assert m["online-peek"]["scoreMedian"] == arrival["median"], "the text says the total-length peek equals the full-information baseline"
+    assert m["online-stale-count"]["scoreMedian"] == m["clean"]["online"]["scoreMedian"]
+    assert g["density"][2]["900"] == g["density"][2]["-1"], "the text says mean and optimistic tie at 90%"
+    diff = {k: v["full"] - v["-1"] for k, v in dens.items()}
+    return [
+        f"비관(0)과 1은 평균보다 못한 시드가 {est[0]['worse']}개, {est[100]['worse']}개",
+        f"끝난 뒤 아는 칸이 {est[900]['known']}칸으로 비관({est[0]['known']}칸)보다 {est[900]['known'] - est[0]['known']}칸 많아",
+        f"거리 0(서 있는 칸만 보임)은 {rad[0]['median']}, 1은 {rad[1]['median']}, 2는 {rad[2]['median']}입니다",
+        f"거리 2와 3({rad[3]['median']})은",
+        f"4 이상부터 {rad[4]['median']}, {rad[5]['median']}, 전체 {rad[99]['median']}으로",
+        f"주기 12(깊이만큼 실행하고 다시 계획)는 20개 시드 모두에서 못합니다({per[12]['median']} 대 {per[1]['median']})",
+        f"({fmt(per[1]['evals'])} → {fmt(per[2]['evals'])} → … → {fmt(per[12]['evals'])})",
+        f"주기 2는 평가가 절반이지만 결정 못 함이고 {per[2]['better']} / {per[2]['worse']}로",
+        f"깊이 2(평가 {fmt(hz[2]['evals'])}번)가 깊이 12(평가 {fmt(hz[12]['evals'])}번)와 결정되지 않았고",
+        f"전체 정보가 부분 정보보다 나은 시드가 {c['fullBetter']}개이고 시드별 차이의 중앙값(10번째로 작은 값)이 {c['loss']}이므로",
+        f"이 강의의 압축판(폭 16)은 {full6['16']['median']}, 폭 64는 {full6['64']['median']}입니다",
+        f"폭 256에서 {l5['256']}이므로",
+        f"부분 정보({c['partial']})와 이 값({l5['256']})의 차이 {l5['256'] - c['partial']}은 정보를 잃은 몫(위의 {c['loss']})",
+        f"중앙값이 {g['full']['6']['bound']}이라 한계로서는 느슨합니다",
+        f"비관이 {dens['90%']['0']}로 평균({dens['90%']['-1']})의 절반에도 못 미칩니다",
+        f"평균과 낙관은 {dens['90%']['900']}로 같습니다",
+        f"20%에서 {diff['20%']}, 60%에서 {diff['60%']}, 90%에서 {diff['90%']}입니다",
+        f"({dens['90%']['full']} 중 {diff['90%']}, {dens['20%']['full']} 중 {diff['20%']})",
+        f"20%에서는 낙관 {dens['20%']['900']} > 평균 {dens['20%']['-1']}, 60%에서는 평균 {dens['60%']['-1']} > 낙관 {dens['60%']['900']}",
+        f"평균 추정({fmt(p100[-1]['median'])})은 앞일을 보지 않는 탐욕({fmt(p100[-2]['median'])})보다 20개 시드 모두에서 낮고",
+        f"(모두 더 나쁨: {p100[0]['better']} / {p100[0]['worse']}, {p100[1]['better']} / {p100[1]['worse']}, {p100[100]['better']} / {p100[100]['worse']})",
+        f"전체 정보 기준선({fmt(arrival['median'])})과는 결정 못 함({arrival['better']} / {arrival['worse']})",
+        f"긴 작업부터 맡기는 기준선({fmt(longest['median'])})은 평균 추정보다 못한 시드가 {longest['worse']}개",
+        f"탐욕({fmt(p20[-2]['median'])})이 평균 추정({fmt(p20[-1]['median'])})보다 낮은 시드가 {p20[-2]['better']}개",
+        f"점수가 {m['grid-unknown-zero']['scoreMedian']}로 떨어져 비관 설정과 같아지지만",
+        f"점수는 기준과 같은 {m['grid-double-mean']['scoreMedian']}여서",
+        f"점수는 {m['grid-stepped']['scoreMedian']}과 {m['grid-no-observe']['scoreMedian']}으로 크게 떨어지지만",
+        f"점수가 오히려 {m['grid-peek']['scoreMedian']}으로 올라 기준({m['clean']['grid']['scoreMedian']})보다 좋아집니다",
+        f"비용이 {fmt(m['online-peek']['scoreMedian'])}로 전체 정보 기준선과 같아지고",
+        f"20개 시드 중 {m['online-stale-count']['invalidRuns']}개만 무효였고",
+        f"비용이 {fmt(m['online-double-sum']['scoreMedian'])}로 오르며",
+        f"점수가 {per[12]['median']}로 내려가지만",
+    ]
+
+
+def trim(x100: int) -> str:
+    text = f"{x100 / 100:.2f}"
+    return text.rstrip("0").rstrip(".") if "." in text else text
+
+
+def hand_rows(meas: dict) -> dict[str, list[str]]:
+    hg, ho = meas["hand"]["grid"], meas["hand"]["online"]
+    mean100 = hg["first"]["mean100"]
+    rows: dict[str, list[str]] = {}
+    cand = hg["candidates"]
+    rows["hand_plan"] = []
+    for name, est in (("비관", 0), ("평균", mean100), ("낙관", 900)):
+        k, u = cand["K"][str(est)], cand["U"][str(est)]
+        best = hg["plans"][str(est)]
+        rows["hand_plan"].append(f"| {name} | {est / 100:g} | {trim(k)} | {trim(u)} | {trim(best)} | {'K' if best == k else 'U'} 계열 |"
+                                 if est != mean100 else f"| {name} | {est / 100:.2f} | {trim(k)} | {trim(u)} | {trim(best)} | {'K' if best == k else 'U'} 계열 |")
+    first = hg["first"]
+    rows["hand_mirror"] = [f"| 0 | `(0,0)` | {first['n']}칸 | {first['n']} | {first['sum']} | {first['mean100'] / 100:.2f} | 0 |"]
+    for m in hg["mirror"]:
+        cells = ", ".join(f"`({y},{x})`={v}" for y, x, v in m["new"])
+        rows["hand_mirror"].append(f"| {m['step']} | `({m['pos'] // 5},{m['pos'] % 5})` | {cells} | {m['nSeen']} | {m['sumSeen']} | {m['mean100'] / 100:.2f} | {m['got']} |")
+    rows["hand_online"] = []
+    for i in range(6):
+        g, mn = ho["greedy"]["rows"][i], ho["mean"]["rows"][i]
+        sc = lambda r: " / ".join(f"{x:,}" for x in r["scores"])
+        rows["hand_online"].append(f"| {i} | {HAND_D[i]} | {sc(g)} | {g['to']} | {mn['lam']} | {sc(mn)} | {mn['to']} |")
+    return rows
+
+
 def check_text_tables(meas: dict, mistakes: dict) -> int:
     text = read_lesson_text(LESSON_ID)
     count = 0
@@ -616,7 +712,14 @@ def check_text_tables(meas: dict, mistakes: dict) -> int:
     for row in mistake_rows(mistakes):
         assert row in text, f"mistake table row missing or differs: {row}"
         count += 1
+    for name, rows in hand_rows(meas).items():
+        for row in rows:
+            assert row in text, f"hand table row missing or differs ({name}): {row}"
+            count += 1
     count += check_hub_summary(LESSON_ID, hub_expected(meas))
+    for frag in quoted(meas, mistakes):
+        assert frag in text, f"quoted number missing or differs in the text: {frag}"
+        count += 1
     return count
 
 
@@ -683,6 +786,9 @@ def main() -> None:
         print(f"wrote {DATA.relative_to(ROOT)}")
     if args.print_tables:
         for name, tr in table_rows(meas).items():
+            print(f"[{name}]")
+            print("\n".join(tr))
+        for name, tr in hand_rows(meas).items():
             print(f"[{name}]")
             print("\n".join(tr))
         print("[mistakes]")
