@@ -1716,7 +1716,9 @@
       "prerequisites": [
         "cpp-contest-basics"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "construction-heuristics"
+      ],
       "relatedLessons": [
         "observe-and-act",
         "reading-the-score",
@@ -1774,10 +1776,13 @@
       "level": "intermediate",
       "estimatedMinutes": 75,
       "prerequisites": [
+        "problem-modeling",
         "heuristic",
         "greedy"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "neighborhood-and-delta"
+      ],
       "relatedLessons": [
         "assignment-with-routes",
         "placement-search",
@@ -1835,6 +1840,8 @@
       "level": "intermediate",
       "estimatedMinutes": 90,
       "prerequisites": [
+        "problem-modeling",
+        "construction-heuristics",
         "heuristic",
         "cpp-common-library"
       ],
