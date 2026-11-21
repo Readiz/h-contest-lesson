@@ -1,0 +1,1115 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "grid": {
+  "estimate": [
+   {
+    "est": 0,
+    "name": "비관: 모르는 칸 = 0",
+    "median": 229,
+    "better": 2,
+    "worse": 18,
+    "known": 138
+   },
+   {
+    "est": 100,
+    "name": "모르는 칸 = 1",
+    "median": 238,
+    "better": 4,
+    "worse": 16,
+    "known": 145
+   },
+   {
+    "est": -1,
+    "name": "평균: 아는 칸의 평균",
+    "median": 259,
+    "better": 0,
+    "worse": 0,
+    "known": 167
+   },
+   {
+    "est": 300,
+    "name": "모르는 칸 = 3",
+    "median": 258,
+    "better": 11,
+    "worse": 9,
+    "known": 179
+   },
+   {
+    "est": 500,
+    "name": "모르는 칸 = 5",
+    "median": 258,
+    "better": 12,
+    "worse": 8,
+    "known": 198
+   },
+   {
+    "est": 900,
+    "name": "낙관: 모르는 칸 = 9(최댓값)",
+    "median": 250,
+    "better": 10,
+    "worse": 9,
+    "known": 212
+   }
+  ],
+  "estimateRad1": [
+   {
+    "est": 0,
+    "name": "비관",
+    "median": 135,
+    "known": 75
+   },
+   {
+    "est": -1,
+    "name": "평균",
+    "median": 224,
+    "known": 122
+   },
+   {
+    "est": 900,
+    "name": "낙관",
+    "median": 232,
+    "known": 141
+   }
+  ],
+  "radius": [
+   {
+    "rad": 0,
+    "median": 122,
+    "known": 61
+   },
+   {
+    "rad": 1,
+    "median": 224,
+    "known": 122
+   },
+   {
+    "rad": 2,
+    "median": 259,
+    "known": 167
+   },
+   {
+    "rad": 3,
+    "median": 258,
+    "known": 205
+   },
+   {
+    "rad": 4,
+    "median": 272,
+    "known": 246
+   },
+   {
+    "rad": 5,
+    "median": 273,
+    "known": 286
+   },
+   {
+    "rad": 99,
+    "median": 280,
+    "known": 400
+   }
+  ],
+  "period": [
+   {
+    "period": 1,
+    "median": 259,
+    "better": 0,
+    "worse": 0,
+    "evals": 34788,
+    "plans": 60
+   },
+   {
+    "period": 2,
+    "median": 241,
+    "better": 5,
+    "worse": 14,
+    "evals": 17511,
+    "plans": 30
+   },
+   {
+    "period": 3,
+    "median": 232,
+    "better": 5,
+    "worse": 15,
+    "evals": 11779,
+    "plans": 20
+   },
+   {
+    "period": 4,
+    "median": 223,
+    "better": 3,
+    "worse": 16,
+    "evals": 8947,
+    "plans": 15
+   },
+   {
+    "period": 6,
+    "median": 227,
+    "better": 2,
+    "worse": 18,
+    "evals": 6097,
+    "plans": 10
+   },
+   {
+    "period": 12,
+    "median": 195,
+    "better": 0,
+    "worse": 20,
+    "evals": 3189,
+    "plans": 5
+   }
+  ],
+  "horizon": [
+   {
+    "horizon": 2,
+    "median": 244,
+    "better": 7,
+    "worse": 13,
+    "evals": 1095
+   },
+   {
+    "horizon": 4,
+    "median": 248,
+    "better": 9,
+    "worse": 11,
+    "evals": 8046
+   },
+   {
+    "horizon": 8,
+    "median": 253,
+    "better": 8,
+    "worse": 4,
+    "evals": 21954
+   },
+   {
+    "horizon": 12,
+    "median": 259,
+    "better": 0,
+    "worse": 0,
+    "evals": 34788
+   },
+   {
+    "horizon": 20,
+    "median": 259,
+    "better": 1,
+    "worse": 0,
+    "evals": 57514
+   }
+  ],
+  "width": [
+   {
+    "width": 1,
+    "median": 250,
+    "better": 9,
+    "worse": 11,
+    "evals": 2596
+   },
+   {
+    "width": 4,
+    "median": 261,
+    "better": 11,
+    "worse": 9,
+    "evals": 9576
+   },
+   {
+    "width": 16,
+    "median": 259,
+    "better": 0,
+    "worse": 0,
+    "evals": 34788
+   },
+   {
+    "width": 64,
+    "median": 251,
+    "better": 6,
+    "worse": 12,
+    "evals": 124250
+   }
+  ],
+  "full": {
+   "2": {
+    "16": {
+     "median": 397,
+     "evals": 3641
+    },
+    "64": {
+     "median": 412,
+     "evals": 14280
+    },
+    "bound": 526
+   },
+   "6": {
+    "16": {
+     "median": 278,
+     "evals": 3590
+    },
+    "64": {
+     "median": 284,
+     "evals": 14028
+    },
+    "bound": 476
+   },
+   "9": {
+    "16": {
+     "median": 110,
+     "evals": 3567
+    },
+    "64": {
+     "median": 109,
+     "evals": 13948
+    },
+    "bound": 217
+   }
+  },
+  "cost": {
+   "partial": 259,
+   "full16": 278,
+   "loss": 20,
+   "partialAtLeastFull": 4,
+   "fullBetter": 16
+  },
+  "density": [
+   {
+    "zeros": "20%",
+    "full": 397,
+    "0": 331,
+    "-1": 379,
+    "900": 384
+   },
+   {
+    "zeros": "60%",
+    "full": 278,
+    "0": 229,
+    "-1": 259,
+    "900": 250
+   },
+   {
+    "zeros": "90%",
+    "full": 110,
+    "0": 37,
+    "-1": 98,
+    "900": 98
+   }
+  ],
+  "lesson5": {
+   "16": 274,
+   "64": 285,
+   "256": 289
+  }
+ },
+ "online": {
+  "100": {
+   "policies": [
+    {
+     "fut": -2,
+     "name": "탐욕: 앞일을 보지 않음",
+     "median": 44874,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "fut": 0,
+     "name": "앞으로 올 작업 길이 = 0",
+     "median": 45822,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "fut": 1,
+     "name": "앞으로 올 작업 길이 = 1",
+     "median": 45449,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "fut": -1,
+     "name": "앞으로 올 작업 길이 = 도착한 작업의 평균",
+     "median": 44141,
+     "better": 0,
+     "worse": 0
+    },
+    {
+     "fut": 100,
+     "name": "앞으로 올 작업 길이 = 100(최댓값)",
+     "median": 45390,
+     "better": 1,
+     "worse": 19
+    }
+   ],
+   "others": [
+    {
+     "name": "라운드 로빈(아무것도 보지 않음)",
+     "median": 47295,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "name": "전체 정보: 총 길이를 알고 도착 순서대로",
+     "median": 44079,
+     "better": 6,
+     "worse": 12
+    },
+    {
+     "name": "전체 정보: 총 길이를 알고 긴 작업부터",
+     "median": 44392,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "name": "하한",
+     "median": 43911,
+     "better": 20,
+     "worse": 0
+    }
+   ]
+  },
+  "20": {
+   "policies": [
+    {
+     "fut": -2,
+     "name": "탐욕: 앞일을 보지 않음",
+     "median": 2725,
+     "better": 19,
+     "worse": 1
+    },
+    {
+     "fut": 0,
+     "name": "앞으로 올 작업 길이 = 0",
+     "median": 2948,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "fut": 1,
+     "name": "앞으로 올 작업 길이 = 1",
+     "median": 2925,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "fut": -1,
+     "name": "앞으로 올 작업 길이 = 도착한 작업의 평균",
+     "median": 2784,
+     "better": 0,
+     "worse": 0
+    },
+    {
+     "fut": 100,
+     "name": "앞으로 올 작업 길이 = 100(최댓값)",
+     "median": 2791,
+     "better": 9,
+     "worse": 11
+    }
+   ],
+   "others": [
+    {
+     "name": "라운드 로빈(아무것도 보지 않음)",
+     "median": 4996,
+     "better": 0,
+     "worse": 20
+    },
+    {
+     "name": "전체 정보: 총 길이를 알고 도착 순서대로",
+     "median": 2758,
+     "better": 11,
+     "worse": 7
+    },
+    {
+     "name": "전체 정보: 총 길이를 알고 긴 작업부터",
+     "median": 2812,
+     "better": 7,
+     "worse": 13
+    },
+    {
+     "name": "하한",
+     "median": 2652,
+     "better": 20,
+     "worse": 0
+    }
+   ]
+  }
+ },
+ "schema": 1,
+ "hand": {
+  "grid": {
+   "first": {
+    "cells": [
+     0,
+     1,
+     2,
+     5,
+     6,
+     10
+    ],
+    "values": [
+     0,
+     3,
+     0,
+     2,
+     0,
+     0
+    ],
+    "n": 6,
+    "sum": 5,
+    "mean100": 83
+   },
+   "walks": 60,
+   "nodes": 86,
+   "plans": {
+    "0": 500,
+    "83": 500,
+    "900": 2100
+   },
+   "bestPaths": {
+    "0": [
+     [
+      1,
+      0,
+      5,
+      0
+     ],
+     [
+      1,
+      0,
+      5,
+      6
+     ],
+     [
+      1,
+      0,
+      5,
+      10
+     ],
+     [
+      1,
+      6,
+      5,
+      0
+     ],
+     [
+      1,
+      6,
+      5,
+      6
+     ],
+     [
+      1,
+      6,
+      5,
+      10
+     ],
+     [
+      5,
+      0,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      1,
+      2
+     ],
+     [
+      5,
+      0,
+      1,
+      6
+     ],
+     [
+      5,
+      6,
+      1,
+      0
+     ],
+     [
+      5,
+      6,
+      1,
+      2
+     ],
+     [
+      5,
+      6,
+      1,
+      6
+     ]
+    ],
+    "83": [
+     [
+      1,
+      0,
+      5,
+      0
+     ],
+     [
+      1,
+      0,
+      5,
+      6
+     ],
+     [
+      1,
+      0,
+      5,
+      10
+     ],
+     [
+      1,
+      6,
+      5,
+      0
+     ],
+     [
+      1,
+      6,
+      5,
+      6
+     ],
+     [
+      1,
+      6,
+      5,
+      10
+     ],
+     [
+      5,
+      0,
+      1,
+      0
+     ],
+     [
+      5,
+      0,
+      1,
+      2
+     ],
+     [
+      5,
+      0,
+      1,
+      6
+     ],
+     [
+      5,
+      6,
+      1,
+      0
+     ],
+     [
+      5,
+      6,
+      1,
+      2
+     ],
+     [
+      5,
+      6,
+      1,
+      6
+     ]
+    ],
+    "900": [
+     [
+      1,
+      2,
+      3,
+      4
+     ],
+     [
+      1,
+      2,
+      3,
+      8
+     ],
+     [
+      1,
+      2,
+      7,
+      8
+     ],
+     [
+      1,
+      2,
+      7,
+      12
+     ],
+     [
+      1,
+      6,
+      7,
+      8
+     ],
+     [
+      1,
+      6,
+      7,
+      12
+     ],
+     [
+      1,
+      6,
+      11,
+      12
+     ],
+     [
+      1,
+      6,
+      11,
+      16
+     ]
+    ]
+   },
+   "candidates": {
+    "K": {
+     "0": 500,
+     "83": 500,
+     "900": 500
+    },
+    "U": {
+     "0": 300,
+     "83": 466,
+     "900": 2100
+    },
+    "D": {
+     "0": 200,
+     "83": 366,
+     "900": 2000
+    }
+   },
+   "mirror": [
+    {
+     "step": 1,
+     "pos": 1,
+     "nSeen": 9,
+     "sumSeen": 10,
+     "mean100": 111,
+     "doubleN": 14,
+     "doubleSum": 15,
+     "new": [
+      [
+       0,
+       3,
+       5
+      ],
+      [
+       1,
+       2,
+       0
+      ],
+      [
+       2,
+       1,
+       0
+      ]
+     ],
+     "got": 3
+    },
+    {
+     "step": 2,
+     "pos": 2,
+     "nSeen": 12,
+     "sumSeen": 16,
+     "mean100": 133,
+     "doubleN": 23,
+     "doubleSum": 29,
+     "new": [
+      [
+       0,
+       4,
+       0
+      ],
+      [
+       1,
+       3,
+       0
+      ],
+      [
+       2,
+       2,
+       6
+      ]
+     ],
+     "got": 3
+    },
+    {
+     "step": 3,
+     "pos": 7,
+     "nSeen": 15,
+     "sumSeen": 17,
+     "mean100": 113,
+     "doubleN": 35,
+     "doubleSum": 46,
+     "new": [
+      [
+       1,
+       4,
+       1
+      ],
+      [
+       2,
+       3,
+       0
+      ],
+      [
+       3,
+       2,
+       0
+      ]
+     ],
+     "got": 3
+    }
+   ],
+   "seenAt": [
+    2,
+    3,
+    3,
+    3,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    0,
+    3,
+    3,
+    3,
+    -1,
+    -1,
+    -1,
+    3,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1,
+    -1
+   ]
+  },
+  "online": {
+   "greedy": {
+    "rows": [
+     {
+      "task": 0,
+      "lam": 0,
+      "load": [
+       0,
+       0,
+       0
+      ],
+      "scores": [
+       1296,
+       5496,
+       5896
+      ],
+      "to": 0
+     },
+     {
+      "task": 1,
+      "lam": 0,
+      "load": [
+       36,
+       0,
+       0
+      ],
+      "scores": [
+       7529,
+       6521,
+       3521
+      ],
+      "to": 2
+     },
+     {
+      "task": 2,
+      "lam": 0,
+      "load": [
+       36,
+       0,
+       39
+      ],
+      "scores": [
+       7428,
+       4716,
+       5704
+      ],
+      "to": 1
+     },
+     {
+      "task": 3,
+      "lam": 0,
+      "load": [
+       36,
+       46,
+       39
+      ],
+      "scores": [
+       7745,
+       8945,
+       7255
+      ],
+      "to": 2
+     },
+     {
+      "task": 4,
+      "lam": 0,
+      "load": [
+       36,
+       46,
+       74
+      ],
+      "scores": [
+       11225,
+       9585,
+       12553
+      ],
+      "to": 1
+     },
+     {
+      "task": 5,
+      "lam": 0,
+      "load": [
+       36,
+       99,
+       74
+      ],
+      "scores": [
+       2485,
+       1115,
+       1965
+      ],
+      "to": 1
+     }
+    ],
+    "cost": 274,
+    "load": [
+     36,
+     104,
+     74
+    ],
+    "assign": [
+     0,
+     2,
+     1,
+     2,
+     1,
+     1
+    ]
+   },
+   "mean": {
+    "rows": [
+     {
+      "task": 0,
+      "lam": 72,
+      "load": [
+       0,
+       0,
+       0
+      ],
+      "scores": [
+       0,
+       4200,
+       4600
+      ],
+      "to": 0
+     },
+     {
+      "task": 1,
+      "lam": 74,
+      "load": [
+       36,
+       0,
+       0
+      ],
+      "scores": [
+       3349,
+       5000,
+       2000
+      ],
+      "to": 2
+     },
+     {
+      "task": 2,
+      "lam": 80,
+      "load": [
+       36,
+       0,
+       39
+      ],
+      "scores": [
+       2324,
+       2600,
+       825
+      ],
+      "to": 2
+     },
+     {
+      "task": 3,
+      "lam": 78,
+      "load": [
+       36,
+       0,
+       85
+      ],
+      "scores": [
+       4000,
+       4500,
+       10475
+      ],
+      "to": 0
+     },
+     {
+      "task": 4,
+      "lam": 83,
+      "load": [
+       71,
+       0,
+       85
+      ],
+      "scores": [
+       13087,
+       1900,
+       13719
+      ],
+      "to": 1
+     },
+     {
+      "task": 5,
+      "lam": 71,
+      "load": [
+       71,
+       53,
+       85
+      ],
+      "scores": [
+       2835,
+       100,
+       2075
+      ],
+      "to": 1
+     }
+    ],
+    "cost": 236,
+    "load": [
+     71,
+     58,
+     85
+    ],
+    "assign": [
+     0,
+     2,
+     2,
+     0,
+     1,
+     1
+    ]
+   },
+   "valid": 510,
+   "optimum": 236,
+   "roundRobin": 282,
+   "lowerBound": 225,
+   "offlineArrival": 236,
+   "offlineLongest": 240
+  }
+ },
+ "mistakes": {
+  "clean": {
+   "grid": {
+    "mirrorFound": 0,
+    "mirrorFirstMedian": 0,
+    "peekFound": 0,
+    "invalidRuns": 0,
+    "scoreMedian": 259
+   },
+   "online": {
+    "mirrorFound": 0,
+    "mirrorFirstMedian": 0,
+    "peekFound": 0,
+    "invalidRuns": 0,
+    "scoreMedian": 44141
+   }
+  },
+  "grid-unknown-zero": {
+   "mirrorFound": 20,
+   "mirrorFirstMedian": 0,
+   "peekFound": 0,
+   "invalidRuns": 0,
+   "scoreMedian": 229
+  },
+  "grid-double-mean": {
+   "mirrorFound": 20,
+   "mirrorFirstMedian": 1,
+   "peekFound": 0,
+   "invalidRuns": 0,
+   "scoreMedian": 259
+  },
+  "grid-stepped": {
+   "mirrorFound": 20,
+   "mirrorFirstMedian": 0,
+   "peekFound": 0,
+   "invalidRuns": 0,
+   "scoreMedian": 18
+  },
+  "grid-no-observe": {
+   "mirrorFound": 20,
+   "mirrorFirstMedian": 1,
+   "peekFound": 0,
+   "invalidRuns": 0,
+   "scoreMedian": 10
+  },
+  "grid-peek": {
+   "mirrorFound": 20,
+   "mirrorFirstMedian": 0,
+   "peekFound": 20,
+   "invalidRuns": 0,
+   "scoreMedian": 280
+  },
+  "online-stale-count": {
+   "mirrorFound": 20,
+   "mirrorFirstMedian": 1,
+   "peekFound": 0,
+   "invalidRuns": 1,
+   "scoreMedian": 44141
+  },
+  "online-double-sum": {
+   "mirrorFound": 20,
+   "mirrorFirstMedian": 1,
+   "peekFound": 0,
+   "invalidRuns": 0,
+   "scoreMedian": 47545
+  },
+  "online-peek": {
+   "mirrorFound": 0,
+   "mirrorFirstMedian": 0,
+   "peekFound": 20,
+   "invalidRuns": 0,
+   "scoreMedian": 44079
+  }
+ },
+ "rule": "한쪽이 15 / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
+ "problems": {
+  "grid": "H=W=20, T=60, 값 0..9(60%는 0), 보이는 거리 2, 시작 칸 0",
+  "online": "N=120, M=8, K=18, 부하 제곱합/100 + 추가 비용, 작업은 번호 순서로 도착"
+ }
+}

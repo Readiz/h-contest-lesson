@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 610" role="img" aria-labelledby="title desc">
+<title id="title">세 걸음 뒤 거울의 세 가지 칸</title>
+<desc id="desc">5 곱하기 5 격자에서 왼쪽 위에서 오른쪽으로 두 걸음, 아래로 한 걸음 걸은 뒤의 거울입니다. 현재 칸에서 거리 2 이내의 칸은 지금 보이고, 그보다 먼저 보았지만 지금은 안 보이는 칸은 값과 마지막으로 본 걸음 번호를 기억하며, 한 번도 못 본 칸은 값을 모르는 칸으로 표시합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="608" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">세 걸음 뒤 거울의 세 가지 칸</text>
+<text x="28" y="84" font-size="20" fill="#53657d">보이는 거리 2, 걸은 경로 (0,0)→(0,1)→(0,2)→(1,2)</text>
+<rect x="28" y="112" width="80" height="80" fill="#e6eaf1" stroke="#9aa8bb" stroke-width="2"/>
+<text x="40" y="142" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="100" y="182" font-size="16" fill="#53657d" text-anchor="end">t=2</text>
+<rect x="108" y="112" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="120" y="142" font-size="24" fill="#172b45" font-weight="700">3</text>
+<text x="180" y="182" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="188" y="112" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="200" y="142" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="260" y="182" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="268" y="112" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="280" y="142" font-size="24" fill="#172b45" font-weight="700">5</text>
+<text x="340" y="182" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="348" y="112" width="80" height="80" fill="#e6eaf1" stroke="#9aa8bb" stroke-width="2"/>
+<text x="360" y="142" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="420" y="182" font-size="16" fill="#53657d" text-anchor="end">t=2</text>
+<rect x="28" y="192" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="40" y="222" font-size="24" fill="#172b45" font-weight="700">2</text>
+<text x="100" y="262" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="108" y="192" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="120" y="222" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="180" y="262" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="188" y="192" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="200" y="222" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="260" y="262" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="268" y="192" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="280" y="222" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="340" y="262" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="348" y="192" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="360" y="222" font-size="24" fill="#172b45" font-weight="700">1</text>
+<text x="420" y="262" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="28" y="272" width="80" height="80" fill="#e6eaf1" stroke="#9aa8bb" stroke-width="2"/>
+<text x="40" y="302" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="100" y="342" font-size="16" fill="#53657d" text-anchor="end">t=0</text>
+<rect x="108" y="272" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="120" y="302" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="180" y="342" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="188" y="272" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="200" y="302" font-size="24" fill="#172b45" font-weight="700">6</text>
+<text x="260" y="342" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="268" y="272" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="280" y="302" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="340" y="342" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="348" y="272" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="388.0" y="321.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="28" y="352" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="68.0" y="401.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="108" y="352" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="148.0" y="401.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="188" y="352" width="80" height="80" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="200" y="382" font-size="24" fill="#172b45" font-weight="700">0</text>
+<text x="260" y="422" font-size="16" fill="#53657d" text-anchor="end">t=3</text>
+<rect x="268" y="352" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="308.0" y="401.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="348" y="352" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="388.0" y="401.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="28" y="432" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="68.0" y="481.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="108" y="432" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="148.0" y="481.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="188" y="432" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="228.0" y="481.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="268" y="432" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="308.0" y="481.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<rect x="348" y="432" width="80" height="80" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="388.0" y="481.0" font-size="26" fill="#9aa8bb" text-anchor="middle" font-weight="700">?</text>
+<polyline points="68.0,152.0 148.0,152.0 228.0,152.0 228.0,232.0" fill="none" stroke="#ae5515" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>
+<circle cx="68.0" cy="152.0" r="7" fill="#ffffff" stroke="#ae5515" stroke-width="4"/>
+<circle cx="148.0" cy="152.0" r="7" fill="#ffffff" stroke="#ae5515" stroke-width="4"/>
+<circle cx="228.0" cy="152.0" r="7" fill="#ffffff" stroke="#ae5515" stroke-width="4"/>
+<circle cx="228.0" cy="232.0" r="7" fill="#ffffff" stroke="#ae5515" stroke-width="4"/>
+<rect x="190" y="194" width="76" height="76" fill="none" stroke="#ae5515" stroke-width="5"/>
+<rect x="458" y="130" width="34" height="34" fill="#d3e2fb" stroke="#9aa8bb" stroke-width="2"/>
+<text x="506" y="154" font-size="18" fill="#172b45" font-weight="700">지금 보이는 칸</text>
+<text x="506" y="176" font-size="18" fill="#172b45">(현재 칸에서 거리 2 이내)</text>
+<rect x="458" y="220" width="34" height="34" fill="#e6eaf1" stroke="#9aa8bb" stroke-width="2"/>
+<text x="506" y="244" font-size="18" fill="#172b45" font-weight="700">기억한 칸</text>
+<text x="506" y="266" font-size="18" fill="#172b45">(본 적은 있으나</text>
+<text x="506" y="288" font-size="18" fill="#172b45">지금은 안 보임)</text>
+<rect x="458" y="332" width="34" height="34" fill="#ffffff" stroke="#9aa8bb" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="506" y="356" font-size="18" fill="#172b45" font-weight="700">모르는 칸</text>
+<text x="506" y="378" font-size="18" fill="#172b45">(한 번도 못 봄: 값 ?)</text>
+<line x1="458" y1="439" x2="492" y2="439" stroke="#ae5515" stroke-width="5"/>
+<text x="506" y="446" font-size="18" fill="#172b45" font-weight="700">걸은 경로</text>
+<text x="506" y="468" font-size="18" fill="#172b45">(굵은 테두리: 현재 칸)</text>
+<text x="28" y="550" font-size="18" fill="#172b45">칸의 숫자는 값, t는 그 칸을 마지막으로 본 걸음 번호입니다.</text>
+<text x="28" y="578" font-size="18" fill="#53657d">지금 보이는 칸은 모두 t=3, 곧 현재 걸음 번호입니다.</text>
+</svg>

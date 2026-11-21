@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+<title id="title">채점기, 거울, 결정의 순환과 두 가지 검사</title>
+<desc id="desc">채점기가 보이는 것만 알려 주면 거울이 그것을 기록하고, 모르는 값은 추정으로 채워 결정하고, 행동을 채점기에 전합니다. 거울 대조는 거울과 채점기를 같은지 비교하고, 엿보기 검사는 한 번도 보여 주지 않은 값을 바꿔도 같은 행동이 나오는지 확인합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="468" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한 걸음의 순환과 두 가지 검사</text>
+<text x="28" y="84" font-size="20" fill="#53657d">보고 → 기록 → 추정해 결정 → 행동 → 다시 본다</text>
+<rect x="28" y="122" width="170" height="130" rx="12" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="113" y="158" font-size="22" fill="#172b45" text-anchor="middle" font-weight="750">채점기</text>
+<text x="113" y="194" font-size="18" fill="#53657d" text-anchor="middle">진짜 상태</text>
+<text x="113" y="220" font-size="18" fill="#53657d" text-anchor="middle">감춰진 값이 있다</text>
+<rect x="275" y="122" width="170" height="130" rx="12" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="360" y="158" font-size="22" fill="#172b45" text-anchor="middle" font-weight="750">내 거울</text>
+<text x="360" y="194" font-size="18" fill="#53657d" text-anchor="middle">규칙, 본 값</text>
+<text x="360" y="220" font-size="18" fill="#53657d" text-anchor="middle">내가 센 점수</text>
+<rect x="522" y="122" width="170" height="130" rx="12" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="607" y="158" font-size="22" fill="#172b45" text-anchor="middle" font-weight="750">추정과 결정</text>
+<text x="607" y="194" font-size="18" fill="#53657d" text-anchor="middle">모르는 값 채우기</text>
+<text x="607" y="220" font-size="18" fill="#53657d" text-anchor="middle">계획 · 행동 고르기</text>
+<line x1="198" y1="172" x2="267" y2="172" stroke="#2664ce" stroke-width="3.5"/>
+<path d="M 257 164 L 269 172 L 257 180" fill="none" stroke="#2664ce" stroke-width="3.5"/>
+<text x="236" y="152" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">관측</text>
+<line x1="445" y1="172" x2="514" y2="172" stroke="#2664ce" stroke-width="3.5"/>
+<path d="M 504 164 L 516 172 L 504 180" fill="none" stroke="#2664ce" stroke-width="3.5"/>
+<text x="483" y="152" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">지도</text>
+<path d="M 607 252 L 607 296 L 113 296 L 113 262" fill="none" stroke="#ae5515" stroke-width="3.5"/>
+<path d="M 105 272 L 113 260 L 121 272" fill="none" stroke="#ae5515" stroke-width="3.5"/>
+<text x="360" y="286" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">행동(걸음, 배정)</text>
+<rect x="28" y="332" width="320" height="104" rx="12" fill="#eef3fc" stroke="#2664ce" stroke-width="2"/>
+<text x="44" y="364" font-size="20" fill="#172b45" font-weight="750">거울 대조</text>
+<text x="44" y="392" font-size="18" fill="#172b45">채점기와 거울이 같은가</text>
+<text x="44" y="418" font-size="18" fill="#53657d">행동할 때마다 비교</text>
+<rect x="372" y="332" width="320" height="104" rx="12" fill="#fbf1e8" stroke="#ae5515" stroke-width="2"/>
+<text x="388" y="364" font-size="20" fill="#172b45" font-weight="750">엿보기 검사</text>
+<text x="388" y="392" font-size="18" fill="#172b45">못 본 값을 바꿔도</text>
+<text x="388" y="418" font-size="18" fill="#53657d">같은 행동이 나오는가</text>
+</svg>
