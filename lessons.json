@@ -1694,6 +1694,66 @@
       "difficultyAxes": [
         "implementation"
       ]
+    },
+    {
+      "lessonId": "problem-modeling",
+      "title": "문제를 상태·행동·점수로 옮기기",
+      "description": "문제 설명(계약)에서 상태·행동·무효 조건·불변식을 표로 뽑고, 유효 판정과 점수를 따로 만들어 참조 채점과 맞추고, 어떤 입력에서도 유효한 기준선과 점수의 하한·상한으로 남은 여지를 가늠하며, TC 사이 상태를 초기화하는 방법을 순서·배정·격자 수집 세 연습용 문제 틀로 익힙니다.",
+      "summary": "계약을 상태·행동·무효·불변식·점수 표로 옮기고 내 점수를 참조 채점과 대조하며, 항상 유효한 기준선과 하한·상한을 구하는 일반 절차",
+      "order": 101,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "method",
+        "modeling",
+        "baseline",
+        "bound",
+        "validation",
+        "practice"
+      ],
+      "level": "beginner",
+      "estimatedMinutes": 60,
+      "prerequisites": [
+        "cpp-contest-basics"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "observe-and-act",
+        "reading-the-score",
+        "testing-and-stress",
+        "cpp-common-library"
+      ],
+      "pages": [
+        {
+          "pageId": "idea",
+          "title": "원리와 손계산",
+          "description": "연습용 문제 틀의 규칙과 계약을 표로 옮기는 다섯 단계, 쓰고 쓰지 않는 기준, 작업 6개·기계 3대 손계산과 TC 사이 상태 초기화 원칙을 다룹니다.",
+          "order": 10,
+          "file": "pages/idea.md"
+        },
+        {
+          "pageId": "implementation",
+          "title": "코드 틀과 세 가지 적용",
+          "description": "문제와 무관한 평가 틀(pm)과 문제마다 채우는 모델(순서·배정·격자 수집)을 제출용 코드로 구현합니다.",
+          "order": 20,
+          "file": "pages/implementation.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "실험과 실수",
+          "description": "참조 채점 대조, 기준선 경계, 한계 검사, 흔한 실수와 잡는 검사, 다른 문제에 옮길 때의 점검 목록과 적용 사례, 로컬 연습을 다룹니다.",
+          "order": 30,
+          "file": "pages/practice.md"
+        }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "modeling",
+        "implementation"
+      ]
     }
   ]
 }
