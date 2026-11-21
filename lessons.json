@@ -1975,7 +1975,9 @@
         "heuristic",
         "cpp-common-library"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "destroy-and-repair"
+      ],
       "relatedLessons": [
         "neighborhood-and-delta",
         "minimax-alpha-beta",
@@ -2045,7 +2047,8 @@
         "assignment-with-routes",
         "assignment-local-search",
         "heuristic",
-        "testing-and-stress"
+        "testing-and-stress",
+        "hill-climbing-and-annealing"
       ],
       "pages": [
         {
