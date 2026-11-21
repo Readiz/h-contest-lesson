@@ -155,10 +155,10 @@ int main(int argc, char** argv) {
             for (int i = 0; i < n; ++i) printf(" %lld %lld", a[i], b[i]);
             printf("\n");
         }
-        const ll ka[3] = {1, 2, 3}, kb[3] = {2, 2, 1};
-        const Tally kt = paired(ka, kb, 3);
+        const ll ka[4] = {1, 2, 3, 4}, kb[4] = {2, 2, 1, 0};
+        const Tally kt = paired(ka, kb, 4);
         printf("known %d %d %d\n", kt.win, kt.lose, kt.tie);
-        printf("known2 %llu %d %d\n", tailCount(20, 15), needWins(20, 20), needWins(20, 20 * 46));
+        printf("known2 %llu %d %d %d\n", tailCount(20, 15), needWins(20, 20), needWins(20, 40), needWins(20, 20 * 46));
         ull pa[3] = {1, 2, 3}, pb[3] = {1, 2, 4};
         printf("known3 %d %d %d %d\n", samePrints(pa, pa, 3), samePrints(pa, pb, 3), disjoint(1, 20, 21, 20), disjoint(1, 20, 20, 20));
     } else if (mode == "x1") {
@@ -197,7 +197,7 @@ int main(int argc, char** argv) {
                 const Cfg before = cur;
                 int bw;
                 const bool moved = stepOnce([&](const Cfg& c, int s) { return runRoute(c, s, s, 200, 0, B_ROUTE); }, cur, 1, 20, need, bw);
-                printf("x5 step %d %d %d %d %d %d %d %d\n", need, step, before.t0, before.t1, before.ins, bw, moved, moved ? cur.t0 * 1000000 + cur.t1 * 100 + cur.ins : 0);
+                printf("x5 step %d %d %d %d %d %d %d %d %d %d\n", need, step, before.t0, before.t1, before.ins, bw, moved, cur.t0, cur.t1, cur.ins);
                 if (!moved) break;
             }
             printf("x5 end %d %d %d %d\n", need, cur.t0, cur.t1, cur.ins);
@@ -240,10 +240,10 @@ int main(int argc, char** argv) {
         printf("smoke %d %d %d %d %d\n", cur.t0, cur.t1, cur.ins, bw, n);
     } else if (mode == "mut") {
         // 실수를 넣은 빌드에서도 안전하게 도는 known-answer 검사만 출력한다.
-        const ll a[3] = {1, 2, 3}, b[3] = {2, 2, 1};
-        const Tally t = paired(a, b, 3);
+        const ll a[4] = {1, 2, 3, 4}, b[4] = {2, 2, 1, 0};
+        const Tally t = paired(a, b, 4);
         ull pa[3] = {1, 2, 3}, pb[3] = {1, 2, 4};
-        printf("mut %d %d %d %llu %d %d %d %d %d\n", t.win, t.lose, t.tie, tailCount(20, 15), needWins(20, 20), needWins(20, 920),
+        printf("mut %d %d %d %llu %d %d %d %d %d %d\n", t.win, t.lose, t.tie, tailCount(20, 15), needWins(20, 20), needWins(20, 40), needWins(20, 920),
                samePrints(pa, pb, 3), disjoint(1, 20, 21, 20), disjoint(1, 20, 20, 20));
     }
     return 0;
