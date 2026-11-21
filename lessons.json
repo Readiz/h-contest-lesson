@@ -2082,6 +2082,71 @@
         "modeling",
         "selection"
       ]
+    },
+    {
+      "lessonId": "partial-information",
+      "title": "정보가 부분적일 때 결정하기",
+      "description": "가까운 곳만 보이거나 작업이 하나씩 도착해서 일부만 아는 문제를 아는 것·기억한 것·모르는 것으로 나눠 거울 상태로 따라 그리고, 모르는 값을 평균·낙관·비관으로 추정해 결정하고, 새 관측마다 다시 계획하는 틀을 격자 수집과 온라인 배정 두 유형으로 익히며, 전체 정보 기준선과 비교해 부분 정보의 비용을 20개 시드로 잽니다.",
+      "summary": "거울 상태와 대조 검사, 모르는 값의 추정(비관·평균·낙관), 탐색과 활용, 재계획 주기와 비용, 엿보기 검사, 전체 정보 기준선과의 차이를 격자 수집(보이는 거리 2)과 온라인 배정에서 측정",
+      "order": 108,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "method",
+        "partial-information",
+        "mirror-state",
+        "replanning",
+        "online-decision",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 100,
+      "prerequisites": [
+        "problem-modeling",
+        "beam-search",
+        "cpp-common-library"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "observe-and-act",
+        "explore-unknown-map",
+        "remember-and-sort",
+        "construction-heuristics",
+        "neighborhood-and-delta",
+        "testing-and-stress"
+      ],
+      "pages": [
+        {
+          "pageId": "idea",
+          "title": "원리와 손으로 따라가는 예",
+          "description": "아는 것·기억한 것·모르는 것의 구분, 거울 상태와 대조, 모르는 값의 추정(비관·평균·낙관)과 탐색·활용, 재계획, 전체 정보 기준선과의 비교를 5×5 격자와 작업 6개의 손계산으로 따라갑니다.",
+          "order": 10,
+          "file": "pages/idea.md"
+        },
+        {
+          "pageId": "implementation",
+          "title": "구현: 거울·추정 지도·계획기와 두 문제 유형",
+          "description": "문제와 무관한 한 판 루프·거울 대조·엿보기 검사와 문제마다 채우는 거울 필드·추정·결정을 격자 수집(추정 지도 위 빔 서치)과 온라인 배정에서 구현합니다.",
+          "order": 20,
+          "file": "pages/implementation.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "실험과 점검",
+          "description": "추정·보이는 거리·재계획 주기·계획 깊이와 폭별 점수와 평가 횟수, 전체 정보 기준선과 부분 정보의 비용, 입력 밀도 변형, 온라인 배정의 추정별 비용, 흔한 실수와 검사, 다른 문제에 옮길 때의 점검 목록과 적용 사례를 다룹니다.",
+          "order": 30,
+          "file": "pages/practice.md"
+        }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     }
   ]
 }
