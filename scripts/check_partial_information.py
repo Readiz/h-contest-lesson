@@ -643,6 +643,7 @@ def quoted(meas: dict, mistakes: dict) -> list[str]:
         f"거리 0(서 있는 칸만 보임)은 {rad[0]['median']}, 1은 {rad[1]['median']}, 2는 {rad[2]['median']}입니다",
         f"거리 2와 3({rad[3]['median']})은",
         f"4 이상부터 {rad[4]['median']}, {rad[5]['median']}, 전체 {rad[99]['median']}으로",
+        f"거리 2와 전체({rad[99]['median']})의 중앙값 차이는 {rad[99]['median'] - rad[2]['median']}이며",
         f"주기 12(깊이만큼 실행하고 다시 계획)는 20개 시드 모두에서 못합니다({per[12]['median']} 대 {per[1]['median']})",
         f"({fmt(per[1]['evals'])} → {fmt(per[2]['evals'])} → … → {fmt(per[12]['evals'])})",
         f"주기 2는 평가가 절반이지만 결정 못 함이고 {per[2]['better']} / {per[2]['worse']}로",
