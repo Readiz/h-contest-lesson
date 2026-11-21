@@ -1,0 +1,1308 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "clockCost": 40,
+ "budgets": {
+  "route": {
+   "2000": 2000000,
+   "10000": 12000000
+  },
+  "assign": 2000000
+ },
+ "start": {
+  "route2000": 64752,
+  "route10000": 144042,
+  "assign": 573677
+ },
+ "build": {
+  "2000": {
+   "cells": 7089,
+   "grid": 185261,
+   "brute": 4328963,
+   "side": 31,
+   "g": 33
+  },
+  "10000": {
+   "cells": 35184,
+   "grid": 956324,
+   "bruteSeed1": 102104248,
+   "side": 14,
+   "g": 72
+  }
+ },
+ "sides": [
+  {
+   "side": 5,
+   "g": 200,
+   "ops": 1354648
+  },
+  {
+   "side": 10,
+   "g": 100,
+   "ops": 891191
+  },
+  {
+   "side": 14,
+   "g": 72,
+   "ops": 991508
+  },
+  {
+   "side": 30,
+   "g": 34,
+   "ops": 1227394
+  },
+  {
+   "side": 60,
+   "g": 17,
+   "ops": 3655521
+  },
+  {
+   "side": 125,
+   "g": 8,
+   "ops": 12870388
+  },
+  {
+   "side": 250,
+   "g": 4,
+   "ops": 40439278
+  }
+ ],
+ "compose": [
+  {
+   "frame": "route",
+   "n": 2000,
+   "k": 8,
+   "ops": 2000002,
+   "built": 192350,
+   "terms": 1730071,
+   "proposals": 426195,
+   "writes": 75235,
+   "perProposal": 405
+  },
+  {
+   "frame": "route",
+   "n": 10000,
+   "k": 8,
+   "ops": 12000001,
+   "built": 991508,
+   "terms": 9745920,
+   "proposals": 2400727,
+   "writes": 1258219,
+   "perProposal": 405
+  },
+  {
+   "frame": "assign",
+   "n": 2000,
+   "k": 4,
+   "ops": 2000002,
+   "built": 902000,
+   "terms": 1095697,
+   "proposals": 190585,
+   "writes": 2303,
+   "perProposal": 574
+  }
+ ],
+ "lists": {
+  "route2000@400000": [
+   {
+    "k": 0,
+    "median": 63963,
+    "better": 0,
+    "worse": 20,
+    "proposals": 78424,
+    "built": 7089
+   },
+   {
+    "k": 2,
+    "median": 50742,
+    "better": 0,
+    "worse": 20,
+    "proposals": 107627,
+    "built": 68315
+   },
+   {
+    "k": 4,
+    "median": 47775,
+    "better": 16,
+    "worse": 4,
+    "proposals": 65380,
+    "built": 109627
+   },
+   {
+    "k": 8,
+    "median": 48297,
+    "better": 0,
+    "worse": 0,
+    "proposals": 35714,
+    "built": 192350
+   },
+   {
+    "k": 16,
+    "median": 58277,
+    "better": 0,
+    "worse": 20,
+    "proposals": 7114,
+    "built": 350860
+   },
+   {
+    "k": 32,
+    "median": 64752,
+    "better": 0,
+    "worse": 20,
+    "proposals": 0,
+    "built": 776045
+   }
+  ],
+  "route2000@2000000": [
+   {
+    "k": 0,
+    "median": 60722,
+    "better": 0,
+    "worse": 20,
+    "proposals": 397324,
+    "built": 7089
+   },
+   {
+    "k": 2,
+    "median": 50742,
+    "better": 0,
+    "worse": 20,
+    "proposals": 737302,
+    "built": 68315
+   },
+   {
+    "k": 4,
+    "median": 47655,
+    "better": 2,
+    "worse": 18,
+    "proposals": 538072,
+    "built": 109627
+   },
+   {
+    "k": 8,
+    "median": 46963,
+    "better": 0,
+    "worse": 0,
+    "proposals": 426195,
+    "built": 192350
+   },
+   {
+    "k": 16,
+    "median": 46746,
+    "better": 14,
+    "worse": 6,
+    "proposals": 349385,
+    "built": 350860
+   },
+   {
+    "k": 32,
+    "median": 46638,
+    "better": 18,
+    "worse": 2,
+    "proposals": 238199,
+    "built": 776045
+   }
+  ],
+  "route10000@3000000": [
+   {
+    "k": 0,
+    "median": 143410,
+    "better": 0,
+    "worse": 20,
+    "proposals": 592485,
+    "built": 35184
+   },
+   {
+    "k": 2,
+    "median": 111900,
+    "better": 0,
+    "worse": 20,
+    "proposals": 692455,
+    "built": 344557
+   },
+   {
+    "k": 4,
+    "median": 106352,
+    "better": 9,
+    "worse": 11,
+    "proposals": 396398,
+    "built": 545250
+   },
+   {
+    "k": 8,
+    "median": 106276,
+    "better": 0,
+    "worse": 0,
+    "proposals": 233607,
+    "built": 991508
+   },
+   {
+    "k": 16,
+    "median": 114785,
+    "better": 0,
+    "worse": 20,
+    "proposals": 105402,
+    "built": 1785203
+   },
+   {
+    "k": 32,
+    "median": 144042,
+    "better": 0,
+    "worse": 20,
+    "proposals": 0,
+    "built": 4000780
+   }
+  ],
+  "route10000@12000000": [
+   {
+    "k": 0,
+    "median": 141626,
+    "better": 0,
+    "worse": 20,
+    "proposals": 2389616,
+    "built": 35184
+   },
+   {
+    "k": 2,
+    "median": 111900,
+    "better": 0,
+    "worse": 20,
+    "proposals": 4210517,
+    "built": 344557
+   },
+   {
+    "k": 4,
+    "median": 106276,
+    "better": 0,
+    "worse": 20,
+    "proposals": 3059835,
+    "built": 545250
+   },
+   {
+    "k": 8,
+    "median": 104534,
+    "better": 0,
+    "worse": 0,
+    "proposals": 2400727,
+    "built": 991508
+   },
+   {
+    "k": 16,
+    "median": 103685,
+    "better": 18,
+    "worse": 2,
+    "proposals": 1969777,
+    "built": 1785203
+   },
+   {
+    "k": 32,
+    "median": 103544,
+    "better": 18,
+    "worse": 2,
+    "proposals": 1398206,
+    "built": 4000780
+   }
+  ],
+  "assign2000@2000000": [
+   {
+    "k": 0,
+    "median": 530225,
+    "better": 0,
+    "worse": 20,
+    "proposals": 294731,
+    "built": 0
+   },
+   {
+    "k": 2,
+    "median": 523800,
+    "better": 1,
+    "worse": 19,
+    "proposals": 240970,
+    "built": 902000
+   },
+   {
+    "k": 4,
+    "median": 521866,
+    "better": 19,
+    "worse": 1,
+    "proposals": 190585,
+    "built": 902000
+   },
+   {
+    "k": 8,
+    "median": 522149,
+    "better": 0,
+    "worse": 0,
+    "proposals": 176884,
+    "built": 902000
+   },
+   {
+    "k": 16,
+    "median": 524121,
+    "better": 1,
+    "worse": 19,
+    "proposals": 170016,
+    "built": 902000
+   },
+   {
+    "k": 32,
+    "median": 525487,
+    "better": 0,
+    "worse": 20,
+    "proposals": 165161,
+    "built": 902000
+   }
+  ]
+ },
+ "bruteLists2000": {
+  "median": 64752,
+  "better": 0,
+  "worse": 20,
+  "built": 4336052,
+  "proposals": 0
+ },
+ "assignBudget": [
+  {
+   "budget": 1000000,
+   "none": 531194,
+   "list": 523417,
+   "listBetter": 20,
+   "listWorse": 0
+  },
+  {
+   "budget": 2000000,
+   "none": 530225,
+   "list": 521866,
+   "listBetter": 20,
+   "listWorse": 0
+  }
+ ],
+ "stages": {
+  "route": [
+   {
+    "name": "고정 8",
+    "median": 46963,
+    "better": 0,
+    "worse": 0
+   },
+   {
+    "name": "고정 16",
+    "median": 46746,
+    "better": 14,
+    "worse": 6
+   },
+   {
+    "name": "넓게 시작 16 → 4",
+    "median": 46424,
+    "better": 17,
+    "worse": 3
+   },
+   {
+    "name": "좁게 시작 4 → 16",
+    "median": 46482,
+    "better": 13,
+    "worse": 7
+   },
+   {
+    "name": "고정 8 + 마무리 10%",
+    "median": 46766,
+    "better": 20,
+    "worse": 0
+   }
+  ],
+  "assign": [
+   {
+    "name": "고정 8",
+    "median": 522149,
+    "better": 0,
+    "worse": 0
+   },
+   {
+    "name": "고정 16",
+    "median": 524121,
+    "better": 1,
+    "worse": 19
+   },
+   {
+    "name": "넓게 시작 16 → 4",
+    "median": 523790,
+    "better": 1,
+    "worse": 19
+   },
+   {
+    "name": "좁게 시작 4 → 16",
+    "median": 523030,
+    "better": 14,
+    "worse": 6
+   },
+   {
+    "name": "고정 8 + 마무리 10%",
+    "median": 522147,
+    "better": 7,
+    "worse": 1
+   }
+  ]
+ },
+ "stagePair": {
+  "route": {
+   "better": 9,
+   "worse": 11
+  },
+  "assign": {
+   "better": 19,
+   "worse": 1
+  }
+ },
+ "doubling": {
+  "assign2000": [
+   {
+    "budget": 1000000,
+    "median": 523417,
+    "drop": null
+   },
+   {
+    "budget": 2000000,
+    "median": 521866,
+    "drop": 1551
+   },
+   {
+    "budget": 4000000,
+    "median": 521866,
+    "drop": 0
+   },
+   {
+    "budget": 8000000,
+    "median": 521866,
+    "drop": 0
+   }
+  ],
+  "route2000": [
+   {
+    "budget": 250000,
+    "median": 55158,
+    "drop": null
+   },
+   {
+    "budget": 500000,
+    "median": 47550,
+    "drop": 7608
+   },
+   {
+    "budget": 1000000,
+    "median": 46963,
+    "drop": 587
+   },
+   {
+    "budget": 2000000,
+    "median": 46963,
+    "drop": 0
+   },
+   {
+    "budget": 4000000,
+    "median": 46963,
+    "drop": 0
+   },
+   {
+    "budget": 8000000,
+    "median": 46963,
+    "drop": 0
+   }
+  ],
+  "route10000": [
+   {
+    "budget": 1500000,
+    "median": 123022,
+    "drop": null
+   },
+   {
+    "budget": 3000000,
+    "median": 106276,
+    "drop": 16746
+   },
+   {
+    "budget": 6000000,
+    "median": 104552,
+    "drop": 1724
+   },
+   {
+    "budget": 12000000,
+    "median": 104534,
+    "drop": 18
+   },
+   {
+    "budget": 24000000,
+    "median": 104534,
+    "drop": 0
+   }
+  ]
+ },
+ "clock": {
+  "route": [
+   {
+    "every": 1,
+    "reads": 39557,
+    "share": 791,
+    "proposals": 39556,
+    "cost": 48169,
+    "overshoot": 598
+   },
+   {
+    "every": 4,
+    "reads": 30777,
+    "share": 615,
+    "proposals": 123104,
+    "cost": 46977,
+    "overshoot": 57
+   },
+   {
+    "every": 16,
+    "reads": 16489,
+    "share": 329,
+    "proposals": 263808,
+    "cost": 46963,
+    "overshoot": 104
+   },
+   {
+    "every": 64,
+    "reads": 5772,
+    "share": 115,
+    "proposals": 369344,
+    "cost": 46963,
+    "overshoot": 300
+   },
+   {
+    "every": 256,
+    "reads": 1605,
+    "share": 32,
+    "proposals": 410624,
+    "cost": 46963,
+    "overshoot": 967
+   },
+   {
+    "every": 1024,
+    "reads": 414,
+    "share": 8,
+    "proposals": 422912,
+    "cost": 46963,
+    "overshoot": 4137
+   },
+   {
+    "every": 4096,
+    "reads": 105,
+    "share": 2,
+    "proposals": 425984,
+    "cost": 46963,
+    "overshoot": 16563
+   }
+  ],
+  "assign": [
+   {
+    "every": 1,
+    "reads": 23853,
+    "share": 477,
+    "proposals": 23852,
+    "cost": 522437,
+    "overshoot": 39
+   },
+   {
+    "every": 4,
+    "reads": 17323,
+    "share": 346,
+    "proposals": 69288,
+    "cost": 521868,
+    "overshoot": 67
+   },
+   {
+    "every": 16,
+    "reads": 8288,
+    "share": 165,
+    "proposals": 132592,
+    "cost": 521866,
+    "overshoot": 120
+   },
+   {
+    "every": 64,
+    "reads": 2687,
+    "share": 53,
+    "proposals": 171904,
+    "cost": 521866,
+    "overshoot": 401
+   },
+   {
+    "every": 256,
+    "reads": 726,
+    "share": 14,
+    "proposals": 185600,
+    "cost": 521866,
+    "overshoot": 1524
+   },
+   {
+    "every": 1024,
+    "reads": 186,
+    "share": 3,
+    "proposals": 189440,
+    "cost": 521866,
+    "overshoot": 5489
+   },
+   {
+    "every": 4096,
+    "reads": 48,
+    "share": 0,
+    "proposals": 192512,
+    "cost": 521866,
+    "overshoot": 23887
+   }
+  ]
+ },
+ "miss": {
+  "route": [
+   {
+    "state": 0,
+    "perK": [
+     {
+      "k": 2,
+      "inside": 10,
+      "permille": 974
+     },
+     {
+      "k": 4,
+      "inside": 15,
+      "permille": 1000
+     },
+     {
+      "k": 8,
+      "inside": 18,
+      "permille": 1000
+     },
+     {
+      "k": 16,
+      "inside": 20,
+      "permille": 1000
+     },
+     {
+      "k": 32,
+      "inside": 20,
+      "permille": 1000
+     }
+    ],
+    "seedsLeft": 20,
+    "improving": 1213,
+    "improvingIn8": 1129,
+    "cost": 64752
+   },
+   {
+    "state": 1,
+    "perK": [
+     {
+      "k": 2,
+      "inside": 0,
+      "permille": 0
+     },
+     {
+      "k": 4,
+      "inside": 0,
+      "permille": 0
+     },
+     {
+      "k": 8,
+      "inside": 0,
+      "permille": 0
+     },
+     {
+      "k": 16,
+      "inside": 15,
+      "permille": 1000
+     },
+     {
+      "k": 32,
+      "inside": 18,
+      "permille": 1000
+     }
+    ],
+    "seedsLeft": 20,
+    "improving": 6,
+    "improvingIn8": 0,
+    "cost": 47091
+   }
+  ],
+  "assign": [
+   {
+    "state": 0,
+    "perK": [
+     {
+      "k": 2,
+      "inside": 1,
+      "permille": 778
+     },
+     {
+      "k": 4,
+      "inside": 1,
+      "permille": 862
+     },
+     {
+      "k": 8,
+      "inside": 2,
+      "permille": 868
+     },
+     {
+      "k": 16,
+      "inside": 7,
+      "permille": 966
+     },
+     {
+      "k": 32,
+      "inside": 9,
+      "permille": 986
+     }
+    ],
+    "seedsLeft": 20,
+    "improving": 140437,
+    "improvingIn8": 7500,
+    "cost": 573677
+   },
+   {
+    "state": 1,
+    "perK": [
+     {
+      "k": 2,
+      "inside": 0,
+      "permille": 0
+     },
+     {
+      "k": 4,
+      "inside": 0,
+      "permille": 0
+     },
+     {
+      "k": 8,
+      "inside": 0,
+      "permille": 0
+     },
+     {
+      "k": 16,
+      "inside": 5,
+      "permille": 1000
+     },
+     {
+      "k": 32,
+      "inside": 5,
+      "permille": 1000
+     }
+    ],
+    "seedsLeft": 5,
+    "improving": 0,
+    "improvingIn8": 0,
+    "cost": 524399
+   }
+  ]
+ },
+ "schema": 1,
+ "hand": {
+  "points": [
+   {
+    "id": 0,
+    "xy": [
+     90,
+     430
+    ],
+    "cell": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": 1,
+    "xy": [
+     390,
+     780
+    ],
+    "cell": [
+     1,
+     3
+    ]
+   },
+   {
+    "id": 2,
+    "xy": [
+     760,
+     10
+    ],
+    "cell": [
+     3,
+     0
+    ]
+   },
+   {
+    "id": 3,
+    "xy": [
+     770,
+     870
+    ],
+    "cell": [
+     3,
+     3
+    ]
+   },
+   {
+    "id": 4,
+    "xy": [
+     910,
+     440
+    ],
+    "cell": [
+     3,
+     1
+    ]
+   },
+   {
+    "id": 5,
+    "xy": [
+     90,
+     400
+    ],
+    "cell": [
+     0,
+     1
+    ]
+   },
+   {
+    "id": 6,
+    "xy": [
+     460,
+     400
+    ],
+    "cell": [
+     1,
+     1
+    ]
+   },
+   {
+    "id": 7,
+    "xy": [
+     620,
+     900
+    ],
+    "cell": [
+     2,
+     3
+    ]
+   }
+  ],
+  "snake": [
+   2,
+   4,
+   6,
+   0,
+   5,
+   3,
+   7,
+   1
+  ],
+  "snakeCost": 3180,
+  "gridOps": 186,
+  "bruteOps": 88,
+  "lists": [
+   [
+    5,
+    6,
+    1
+   ],
+   [
+    7,
+    6,
+    3
+   ],
+   [
+    4,
+    6,
+    3
+   ],
+   [
+    7,
+    1,
+    4
+   ],
+   [
+    6,
+    3,
+    2
+   ],
+   [
+    0,
+    6,
+    1
+   ],
+   [
+    5,
+    0,
+    1
+   ],
+   [
+    3,
+    1,
+    6
+   ]
+  ],
+  "trace": [
+   {
+    "id": 0,
+    "rings": 3,
+    "cells": 16,
+    "distances": 7,
+    "list": [
+     [
+      5,
+      30
+     ],
+     [
+      6,
+      400
+     ],
+     [
+      1,
+      650
+     ]
+    ]
+   },
+   {
+    "id": 1,
+    "rings": 2,
+    "cells": 12,
+    "distances": 6,
+    "list": [
+     [
+      7,
+      350
+     ],
+     [
+      6,
+      450
+     ],
+     [
+      3,
+      470
+     ]
+    ]
+   },
+   {
+    "id": 2,
+    "rings": 3,
+    "cells": 16,
+    "distances": 7,
+    "list": [
+     [
+      4,
+      580
+     ],
+     [
+      6,
+      690
+     ],
+     [
+      3,
+      870
+     ]
+    ]
+   },
+   {
+    "id": 3,
+    "rings": 3,
+    "cells": 16,
+    "distances": 7,
+    "list": [
+     [
+      7,
+      180
+     ],
+     [
+      1,
+      470
+     ],
+     [
+      4,
+      570
+     ]
+    ]
+   },
+   {
+    "id": 4,
+    "rings": 3,
+    "cells": 16,
+    "distances": 7,
+    "list": [
+     [
+      6,
+      490
+     ],
+     [
+      3,
+      570
+     ],
+     [
+      2,
+      580
+     ]
+    ]
+   },
+   {
+    "id": 5,
+    "rings": 3,
+    "cells": 16,
+    "distances": 7,
+    "list": [
+     [
+      0,
+      30
+     ],
+     [
+      6,
+      370
+     ],
+     [
+      1,
+      680
+     ]
+    ]
+   },
+   {
+    "id": 6,
+    "rings": 2,
+    "cells": 16,
+    "distances": 7,
+    "list": [
+     [
+      5,
+      370
+     ],
+     [
+      0,
+      400
+     ],
+     [
+      1,
+      450
+     ]
+    ]
+   },
+   {
+    "id": 7,
+    "rings": 3,
+    "cells": 16,
+    "distances": 7,
+    "list": [
+     [
+      3,
+      180
+     ],
+     [
+      1,
+      350
+     ],
+     [
+      6,
+      660
+     ]
+    ]
+   }
+  ],
+  "revs": {
+   "0,1": [
+    200,
+    255
+   ],
+   "0,2": [
+    690,
+    255
+   ],
+   "0,3": [
+    1030,
+    255
+   ],
+   "0,4": [
+    -280,
+    255
+   ],
+   "0,5": [
+    850,
+    255
+   ],
+   "0,6": [
+    790,
+    255
+   ],
+   "0,7": [
+    0,
+    255
+   ],
+   "1,2": [
+    540,
+    1
+   ],
+   "1,3": [
+    1340,
+    255
+   ],
+   "1,4": [
+    -100,
+    2
+   ],
+   "1,5": [
+    860,
+    2
+   ],
+   "1,6": [
+    960,
+    255
+   ],
+   "1,7": [
+    560,
+    255
+   ],
+   "2,3": [
+    680,
+    1
+   ],
+   "2,4": [
+    0,
+    255
+   ],
+   "2,5": [
+    560,
+    1
+   ],
+   "2,6": [
+    360,
+    1
+   ],
+   "2,7": [
+    370,
+    255
+   ],
+   "3,4": [
+    -60,
+    0
+   ],
+   "3,5": [
+    1200,
+    255
+   ],
+   "3,6": [
+    560,
+    255
+   ],
+   "3,7": [
+    50,
+    2
+   ],
+   "4,5": [
+    1940,
+    255
+   ],
+   "4,6": [
+    1300,
+    255
+   ],
+   "4,7": [
+    620,
+    2
+   ],
+   "5,6": [
+    0,
+    2
+   ],
+   "5,7": [
+    -470,
+    2
+   ],
+   "6,7": [
+    290,
+    1
+   ]
+  },
+  "best": {
+   "move": [
+    5,
+    7
+   ],
+   "delta": -470,
+   "rank": 2
+  },
+  "improving": [
+   [
+    5,
+    7,
+    -470,
+    2
+   ],
+   [
+    0,
+    4,
+    -280,
+    255
+   ],
+   [
+    1,
+    4,
+    -100,
+    2
+   ],
+   [
+    3,
+    4,
+    -60,
+    0
+   ]
+  ]
+ },
+ "mistakes": {
+  "clean": {
+   "listsWrongSeeds": 0,
+   "posWrongSeeds": 0,
+   "earlyMaxK": 15,
+   "lateMaxK": 4
+  },
+  "ring": {
+   "listsWrongSeeds": 20,
+   "posWrongSeeds": 0,
+   "earlyMaxK": 15,
+   "lateMaxK": 4
+  },
+  "pos": {
+   "listsWrongSeeds": 0,
+   "posWrongSeeds": 20,
+   "earlyMaxK": 15,
+   "lateMaxK": 4
+  },
+  "direction": {
+   "listsWrongSeeds": 0,
+   "posWrongSeeds": 0,
+   "earlyMaxK": 4,
+   "lateMaxK": 15
+  }
+ },
+ "rule": "한쪽이 15 / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
+ "problems": {
+  "route": "N=2000·10000, 좌표 0..999, 맨해튼 거리 합",
+  "assign": "N=2000, M=200, K=14, 부하 제곱합/100 + 추가 비용"
+ }
+}
