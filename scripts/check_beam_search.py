@@ -730,7 +730,7 @@ def mistake_rows(m: dict) -> list[str]:
     out = []
     for name, label in labels.items():
         x = m[name]
-        out.append(f"| {label} | {x['replayGrid'] + x['replayRoute']} / 40 | {x['keysBad']} | {x['optimumEst0'] + x['optimumEst1']} / 40 | {x['handBad']} / 13 | {x['diffBad']} / 198 |")
+        out.append(f"| {label} | {x['replayGrid'] + x['replayRoute']} / 40 | {x['keysBad']} | {x['optimumEst0'] + x['optimumEst1']} / 40 | {x['handBad'] if isinstance(x['handBad'], str) else str(x['handBad']) + ' / 13'} | {x['diffBad']} / 198 |")
     return out
 
 
@@ -852,6 +852,9 @@ def main() -> None:
         n_small = check_small(exp_rows)
         meas = measure(exp_rows)
         check_mistakes(mistakes)
+        # 부모 번호를 틀리게 쓰면 복원이 이전 단계 기록 밖을 읽어, 어긋나는 손계산 개수가 컴파일러와
+        # 메모리 배치에 따라 달라진다(macOS 13, Linux 12). 잡혔다는 사실만 기록한다.
+        mistakes["parent"]["handBad"] = "잡힘"
 
     meas.update({"schema": 1, "hand": {k: v for k, v in tables.items() if k != "facts"}, "handFacts": tables["facts"], "mistakes": mistakes,
                  "rule": f"한쪽이 {WIN} / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
@@ -873,7 +876,23 @@ def main() -> None:
                 print("| " + " | ".join(row) + " |")
         return
     stored = json.loads(DATA.read_text(encoding="utf-8"))
-    assert stored == json.loads(json.dumps(meas)), "measurements.json differs from a fresh measurement (run with --output)"
+    fresh = json.loads(json.dumps(meas))
+    if stored != fresh:
+        def diff(x, y, path, out):
+            if len(out) >= 20:
+                return
+            if isinstance(x, dict) and isinstance(y, dict):
+                for k in sorted(set(x) | set(y)):
+                    diff(x.get(k), y.get(k), f"{path}.{k}", out)
+            elif isinstance(x, list) and isinstance(y, list) and len(x) == len(y):
+                for i, (u, v) in enumerate(zip(x, y)):
+                    diff(u, v, f"{path}[{i}]", out)
+            elif x != y:
+                out.append(f"{path}: stored {x!r} fresh {y!r}")
+        out = []
+        diff(stored, fresh, "", out)
+        print("\n".join(out))
+        raise AssertionError("measurements.json differs from a fresh measurement (run with --output)")
     n_rows = check_text_tables(stored, mistakes)
     print(f"beam-search ok (sanitizer battery of 66 runs clean): {len(BLOCKS)} code blocks, {n_gen} generated instances checked against Python, 198 beam runs equal to the reference beam, "
           f"{c['keys'][2]} + {c['keys'][3]} states keyed, {c['lowerbound'][0]} states bounded, {n_small} small optima recomputed, "

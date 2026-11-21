@@ -2087,7 +2087,7 @@
    "optimumEst0": 20,
    "optimumEst1": 20,
    "handChecked": 13,
-   "handBad": 13
+   "handBad": "잡힘"
   },
   "inplace": {
    "diffRuns": 198,
