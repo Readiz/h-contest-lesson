@@ -40,6 +40,12 @@ static int refGridDistinct(const Grid& g, const int* path, int steps) {
     (void)g;
     return (int)cells.size();
 }
+// Number of steps that go back to the cell two steps earlier (A -> B -> A), counting the start as the first position.
+static int refGridBack(const int* path, int steps) {
+    int back = 0;
+    for (int t = 1; t < steps; ++t) back += path[t] == (t >= 2 ? path[t - 2] : 0);
+    return back;
+}
 // Replays an order of points: returns the path length, or -1 if it is not a permutation.
 static ll refRouteReplay(const Route& r, const int* path, int steps) {
     if (steps != r.n) return -1;
@@ -259,7 +265,7 @@ static void setBeam(B& b, int width, int refineK, int quota, int jitter, bool me
     b.width = width; b.refineK = refineK; b.quota = quota; b.jitter = jitter; b.merge = merge;
 }
 // Runs the lesson beam on the instance that is currently set up and compares everything with the reference.
-// Returns the number of differing quantities (0 = identical).
+// Returns 1 if any compared quantity differs, 0 if everything is identical.
 static int diffGrid(unsigned seed, int width, int quota, int jitter, bool merge) {
     setBeam(gridBeam, width, 0, quota, jitter, merge);
     hc::Random rng; rng.reset(seed);
@@ -275,7 +281,7 @@ static int diffGrid(unsigned seed, int width, int quota, int jitter, bool merge)
     if (bad) fprintf(stderr, "grid mismatch seed %u est %d width %d quota %d jitter %d merge %d: score %lld/%lld evals %lld/%lld copied %lld/%lld whole %lld/%lld dropped %lld/%lld distinct %lld/%lld size %lld/%lld\n",
                      seed, grid.est, width, quota, jitter, (int)merge, got, ref.score, gridBeam.evals, ref.evals, gridBeam.copied, ref.copied, gridBeam.copiedWhole, ref.copiedWhole,
                      gridBeam.dropped, ref.dropped, gridBeam.distinctSum, ref.distinctSum, gridBeam.sizeSum, ref.sizeSum);
-    return bad;
+    return bad ? 1 : 0;
 }
 template <class B>
 static int diffRoute(B& beam, unsigned seed, int width, int refineK, int quota, int jitter, bool merge) {
@@ -293,7 +299,7 @@ static int diffRoute(B& beam, unsigned seed, int width, int refineK, int quota, 
     if (bad) fprintf(stderr, "route mismatch seed %u n %d est %d width %d refineK %d quota %d jitter %d merge %d: score %lld/%lld evals %lld/%lld refined %lld/%lld copied %lld/%lld whole %lld/%lld dropped %lld/%lld distinct %lld/%lld size %lld/%lld\n",
                      seed, route.n, route.est, width, refineK, quota, jitter, (int)merge, got, ref.score, beam.evals, ref.evals, beam.refined, ref.refined, beam.copied, ref.copied,
                      beam.copiedWhole, ref.copiedWhole, beam.dropped, ref.dropped, beam.distinctSum, ref.distinctSum, beam.sizeSum, ref.sizeSum);
-    return bad;
+    return bad ? 1 : 0;
 }
 
 // The whole battery of configurations the lesson claims to implement.
@@ -612,7 +618,7 @@ static void modeExp() {
         setBeam(gridBeam, width, 0, 0, 1, true);
         hc::Random rng; rng.reset(s);
         gridBeam.run(grid, rng);
-        printf("G4 %d %d %u %d\n", est, width, s, refGridDistinct(grid, gridBeam.path, grid.steps));
+        printf("G4 %d %d %u %d %d\n", est, width, s, refGridDistinct(grid, gridBeam.path, grid.steps), refGridBack(gridBeam.path, grid.steps));
     }
     // E2: the weight of one point and the radius
     for (int scale : {1, 2, 4, 8, 16}) for (int width : {1, 4, 16}) for (unsigned s = 1; s <= 20; ++s) {

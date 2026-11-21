@@ -435,6 +435,15 @@ long long solveRoute(unsigned long long seed, int est, int width) {
     hc::Random rng; rng.reset((unsigned)seed);
     return -routeBeam.run(route, rng);
 }
+
+// 점 n개(10 이하)의 작은 입력을 폭 width로 푼다. 폭이 상태 수 이상이면 아무것도 버리지 않아 완전 탐색과 같다.
+long long solveRouteSmall(unsigned long long seed, int n, int est, int width) {
+    genRoute(route, seed, n);
+    route.est = est;
+    routeSmallBeam.width = width; routeSmallBeam.refineK = 0; routeSmallBeam.quota = 0; routeSmallBeam.jitter = 1; routeSmallBeam.merge = true;
+    hc::Random rng; rng.reset((unsigned)seed);
+    return -routeSmallBeam.run(route, rng);
+}
 ```
 
 ## 검사 틀을 쓰는 법

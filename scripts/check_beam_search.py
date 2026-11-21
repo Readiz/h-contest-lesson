@@ -454,12 +454,19 @@ def measure(rows) -> dict:
             sc = [g1[(est, w)][s]["score"] for w in GRID_WIDTHS]
             wide_worse += any(sc[j] < sc[i] for i in range(len(sc)) for j in range(i + 1, len(sc)))
         meas["grid"]["est"][str(est)] = {"rows": entries, "pairs": pairs, "seedsWiderWorse": wide_worse}
+    meas["grid"]["equalOps"] = []
+    for (ea, wa), (eb, wb) in (((1, 1), (0, 16)), ((2, 1), (0, 8)), ((1, 4), (0, 64)), ((1, 16), (0, 256))):
+        meas["grid"]["equalOps"].append({
+            "with": {"est": ea, "width": wa, "median": med(v["score"] for v in g1[(ea, wa)].values()), "ops": med(v["ops"] for v in g1[(ea, wa)].values())},
+            "without": {"est": eb, "width": wb, "median": med(v["score"] for v in g1[(eb, wb)].values()), "ops": med(v["ops"] for v in g1[(eb, wb)].values())},
+            "withoutBetter": sum(g1[(eb, wb)][s]["score"] > g1[(ea, wa)][s]["score"] for s in SEEDS),
+            "withoutWorse": sum(g1[(eb, wb)][s]["score"] < g1[(ea, wa)][s]["score"] for s in SEEDS)})
     # distinct cells of the first walks
     g4: dict = {}
     for r in rows:
         if r[0] == "G4":
-            g4.setdefault((int(r[1]), int(r[2])), []).append(int(r[4]))
-    meas["gridDistinct"] = [{"est": e, "width": w, "median": med(v)} for (e, w), v in sorted(g4.items())]
+            g4.setdefault((int(r[1]), int(r[2])), []).append((int(r[4]), int(r[5])))
+    meas["gridDistinct"] = [{"est": e, "width": w, "median": med(x[0] for x in v), "back": med(x[1] for x in v)} for (e, w), v in sorted(g4.items())]
     # weight and radius
     for key in ("scale", "radius"):
         d: dict = {}
@@ -513,7 +520,16 @@ def measure(rows) -> dict:
         for s in SEEDS:
             cs = [r1[(est, w)][s]["cost"] for w in ws]
             wide_worse += any(cs[j] > cs[i] for i in range(len(cs)) for j in range(i + 1, len(cs)))
-        meas["route"]["est"][str(est)] = {"rows": entries, "pairs": pairs, "seedsWiderWorse": wide_worse}
+        vs = [{"width": w, "better": sum(r1[(est, w)][s]["cost"] < r1[(est, 1)][s]["cost"] for s in SEEDS),
+               "worse": sum(r1[(est, w)][s]["cost"] > r1[(est, 1)][s]["cost"] for s in SEEDS)} for w in ws[1:]]
+        meas["route"]["est"][str(est)] = {"rows": entries, "pairs": pairs, "seedsWiderWorse": wide_worse, "vsGreedy": vs}
+    meas["route"]["equalOps"] = []
+    for (ea, wa), (eb, wb) in (((2, 1), (0, 256)), ((2, 1), (1, 256))):
+        meas["route"]["equalOps"].append({
+            "with": {"est": ea, "width": wa, "median": med(v["cost"] for v in r1[(ea, wa)].values()), "ops": med(v["ops"] for v in r1[(ea, wa)].values())},
+            "without": {"est": eb, "width": wb, "median": med(v["cost"] for v in r1[(eb, wb)].values()), "ops": med(v["ops"] for v in r1[(eb, wb)].values())},
+            "withBetter": sum(r1[(ea, wa)][s]["cost"] < r1[(eb, wb)][s]["cost"] for s in SEEDS),
+            "withWorse": sum(r1[(ea, wa)][s]["cost"] > r1[(eb, wb)][s]["cost"] for s in SEEDS)})
     r2: dict = {}
     for r in rows:
         if r[0] == "R2" and len(r) > 5:
@@ -573,11 +589,12 @@ def measure(rows) -> dict:
 
 # ------------------------------------------------------------------ mistakes
 MUTATIONS = {
-    "key": ("c.key = (s.vkey ^ (fresh ? zcell[a] : 0ULL)) ^ zpos[a];", "c.key = s.vkey ^ (fresh ? zcell[a] : 0ULL);"),
-    "parent": ("logParent[d][j] = c.parent;", "logParent[d][j] = pick[j];"),
-    "inplace": ("p.apply(a[c.parent], c.act, b[j]);", "p.apply(a[c.parent], c.act, a[c.parent]); b[j] = a[c.parent];"),
-    "keepworse": ("if (cand[i].eval > o.eval)", "if (cand[i].eval < o.eval)"),
-    "sign": ("c.eval = -((long long)cost + (est >= 1 ? rest : 0));", "c.eval = (long long)cost + (est >= 1 ? rest : 0);"),
+    "key": [("c.key = (s.vkey ^ (fresh ? zcell[a] : 0ULL)) ^ zpos[a];", "c.key = s.vkey ^ (fresh ? zcell[a] : 0ULL);"),
+            ("c.key = (s.vkey ^ zpt[a]) ^ zlast[a];", "c.key = s.vkey ^ zpt[a];")],
+    "parent": [("logParent[d][j] = c.parent;", "logParent[d][j] = pick[j];")],
+    "inplace": [("p.apply(a[c.parent], c.act, b[j]);", "p.apply(a[c.parent], c.act, a[c.parent]); b[j] = a[c.parent];")],
+    "keepworse": [("if (cand[i].eval > o.eval)", "if (cand[i].eval < o.eval)")],
+    "sign": [("c.eval = -((long long)cost + (est >= 1 ? rest : 0));", "c.eval = (long long)cost + (est >= 1 ? rest : 0);")],
 }
 
 
@@ -609,7 +626,7 @@ def detect(rows, tables) -> dict:
 
 def run_mistakes(sn, workdir: Path, tables) -> dict:
     def one(name, edit):
-        exe = build(assemble(sn, [edit] if edit else None), workdir, f"m_{name}", False)
+        exe = build(assemble(sn, edit), workdir, f"m_{name}", False)
         return name, detect(run(exe, "detect"), tables)
 
     jobs = [("clean", None)] + list(MUTATIONS.items())
@@ -621,7 +638,7 @@ def check_mistakes(m: dict) -> None:
     c = m["clean"]
     assert c["diffBad"] == 0 and c["keysBad"] == 0 and c["replayGrid"] == c["replayRoute"] == 0 and c["optimumEst0"] == c["optimumEst1"] == 20 and c["handBad"] == 0, c
     assert c["diffRuns"] == 198 and c["handChecked"] == 13
-    assert m["key"]["keysBad"] > 0 and m["key"]["diffBad"] > 0
+    assert m["key"]["keysBad"] > 0 and m["key"]["diffBad"] > 0 and m["key"]["optimumEst0"] < 20
     assert m["parent"]["replayGrid"] == 20 and m["parent"]["replayRoute"] == 20 and m["parent"]["handBad"] > 0
     assert m["inplace"]["replayGrid"] > 0 and m["inplace"]["replayRoute"] > 0
     assert m["keepworse"]["optimumEst0"] < 20 and m["keepworse"]["optimumEst1"] < 20 and m["keepworse"]["handBad"] > 0
@@ -643,13 +660,19 @@ def table_rows(meas: dict) -> dict[str, list[str]]:
     rows: dict[str, list[str]] = {}
     g = meas["grid"]["est"]
     rows["grid_score"] = [f"| {fmt(w)} | " + " | ".join(fmt(g[str(e)]["rows"][i]["median"]) for e in range(3)) + " |" for i, w in enumerate(GRID_WIDTHS)]
-    rows["grid_ops"] = [f"| {fmt(w)} | " + " | ".join(fmt(g[str(e)]["rows"][i]["ops"]) for e in range(3)) + " |" for i, w in enumerate(GRID_WIDTHS)]
+    rows["grid_ops"] = [f"| {fmt(w)} | " + " | ".join(f"{fmt(g[str(e)]['rows'][i]['evals'])} / {fmt(g[str(e)]['rows'][i]['work'])}" for e in range(3)) + " |"
+                        for i, w in enumerate(GRID_WIDTHS)]
     rows["grid_pairs"] = [f"| {fmt(p['from'])} → {fmt(p['to'])} | " + " | ".join(pair_cell(g[str(e)]["pairs"][i]) for e in range(3)) + " |"
                           for i, p in enumerate(g["0"]["pairs"])]
+    rows["grid_equal_ops"] = []
+    for e in meas["grid"]["equalOps"]:
+        a, b = e["with"], e["without"]
+        rows["grid_equal_ops"].append(f"| {GRID_NAMES[a['est']]}, 폭 {fmt(a['width'])} | {fmt(a['ops'])} | {fmt(a['median'])} | {GRID_NAMES[b['est']]}, 폭 {fmt(b['width'])} | "
+                                      f"{fmt(b['ops'])} | {fmt(b['median'])} | {e['withoutBetter']} / {e['withoutWorse']} {verdict(e['withoutBetter'], e['withoutWorse'])} |")
     rows["grid_wider_worse"] = [f"| {GRID_NAMES[e]} | {g[str(e)]['seedsWiderWorse']} / 20 |" for e in range(3)]
     for key in ("scale", "radius"):
         rows[f"grid_{key}"] = [f"| {e['value']} | " + " | ".join(fmt(e["widths"][str(w)]) for w in (1, 4, 16)) + " |" for e in meas[key]]
-    rows["grid_distinct"] = [f"| {GRID_NAMES[e['est']]} | {e['width']} | {e['median']} |" for e in meas["gridDistinct"]]
+    rows["grid_distinct"] = [f"| {GRID_NAMES[e['est']]} | {e['width']} | {e['median']} | {e['back']} |" for e in meas["gridDistinct"]]
     rows["grid_div"] = []
     for e in meas["gridDiversity"]:
         cells = []
@@ -665,16 +688,21 @@ def table_rows(meas: dict) -> dict[str, list[str]]:
         for e in range(3):
             hit = [x for x in rt[str(e)]["rows"] if x["width"] == w]
             cells.append(fmt(hit[0]["median"]) if hit else "-")
-            opc.append(fmt(hit[0]["ops"]) if hit else "-")
+            opc.append(f"{fmt(hit[0]['evals'])} / {fmt(hit[0]['work'])}" if hit else "-")
         rows["route_score"].append(f"| {fmt(w)} | " + " | ".join(cells) + " |")
         rows["route_ops"].append(f"| {fmt(w)} | " + " | ".join(opc) + " |")
-    rows["route_pairs"] = []
-    for i, (a, b) in enumerate(zip(ROUTE_WIDTHS[0], ROUTE_WIDTHS[0][1:])):
+    rows["route_vs_greedy"] = []
+    for w in ROUTE_WIDTHS[0][1:]:
         cells = []
         for e in range(3):
-            hit = [p for p in rt[str(e)]["pairs"] if p["from"] == a and p["to"] == b]
+            hit = [p for p in rt[str(e)]["vsGreedy"] if p["width"] == w]
             cells.append(pair_cell(hit[0]) if hit else "-")
-        rows["route_pairs"].append(f"| {a} → {b} | " + " | ".join(cells) + " |")
+        rows["route_vs_greedy"].append(f"| {w} | " + " | ".join(cells) + " |")
+    rows["route_equal_ops"] = []
+    for e in meas["route"]["equalOps"]:
+        a, b = e["with"], e["without"]
+        rows["route_equal_ops"].append(f"| {ROUTE_NAMES[a['est']]}, 폭 {fmt(a['width'])} | {fmt(a['ops'])} | {fmt(a['median'])} | {ROUTE_NAMES[b['est']]}, 폭 {fmt(b['width'])} | "
+                                       f"{fmt(b['ops'])} | {fmt(b['median'])} | {e['withBetter']} / {e['withWorse']} {verdict(e['withBetter'], e['withWorse'])} |")
     rows["route_wider_worse"] = [f"| {ROUTE_NAMES[e]} | {rt[str(e)]['seedsWiderWorse']} / 20 |" for e in range(3)]
     rows["route_div"] = []
     for e in meas["routeDiversity"]:
@@ -719,9 +747,52 @@ def hub_expected(meas: dict) -> list[tuple[str, str]]:
             ("순서 틀 · 폭 1, 탐욕 완성 (↓)", fmt(rv(2, 1)["median"]))]
 
 
+def prose_checks(meas: dict, mistakes: dict) -> list[str]:
+    """Numbers quoted in the running text (not in tables) must come from the measurements."""
+    g, r = meas["grid"]["est"], meas["route"]["est"]
+    gv = lambda e, w: next(x for x in g[str(e)]["rows"] if x["width"] == w)
+    rv = lambda e, w: next(x for x in r[str(e)]["rows"] if x["width"] == w)
+    d = {(x["est"], x["width"]): x for x in meas["gridDistinct"]}
+    eq = meas["grid"]["equalOps"]
+    wins = [x["withoutBetter"] for x in eq]
+    div = {(x["est"], x["name"]): x for x in meas["gridDiversity"]}
+    rdiv = {(x["est"], x["variant"]): x for x in meas["routeDiversity"]}
+    sm = {x["width"]: x for x in meas["smallRoute"]}
+    cp_grid = gv(1, 16)["whole"] / gv(1, 16)["copied"]
+    cp_route = rv(1, 16)["whole"] / rv(1, 16)["copied"]
+    scale = {x["value"]: x["widths"] for x in meas["scale"]}
+    radius = {x["value"]: x["widths"] for x in meas["radius"]}
+    out = [
+        f"점수가 {fmt(gv(0, 1)['median'])}로", f"추정이 있는 {fmt(gv(1, 1)['median'])}, {fmt(gv(2, 1)['median'])}",
+        f"61칸 가운데 {d[(0, 1)]['median']}칸만", f"60걸음 중 {60 - (d[(0, 1)]['median'] - 1)}걸음",
+        f"({d[(0, 2)]['median']}칸)", f"되돌아간 걸음은 {d[(0, 1)]['back']}번", f"{d[(1, 1)]['back']}번",
+        f"(첫 줄은 {fmt(gv(1, 1)['evals'])} 대 {fmt(gv(0, 16)['evals'])})",
+        f"20개 중 {min(wins)}~{max(wins)}개 시드",
+        f"폭 4는 {gv(1, 4)['median']}, 폭 8은 {gv(1, 8)['median']}, 폭 16은 {gv(1, 16)['median']}",
+        f"`scale = 1`에서는 폭 1의 점수가 {scale[1]['1']}로, 추정이 없는 폭 1({gv(0, 1)['median']})보다", f"`scale = 1`은 {scale[1]['16']}",
+        f"폭 1에서 같은 {radius[1]['1']}였고, 폭 16에서는 1이 {radius[1]['16']}, 5가 {radius[5]['16']}으로 3({radius[3]['16']})·2({radius[2]['16']})보다",
+        f"({div[(0, 'nomerge')]['widths']['16']['distinct']}, {div[(1, 'nomerge')]['widths']['16']['distinct']})",
+        f"(점수 {gv(1, 16)['median']}에서 {div[(1, 'q1')]['widths']['16']['median']}, {div[(1, 'q2')]['widths']['16']['median']}으로)",
+        f"폭 1({fmt(rv(2, 1)['median'])})이 이미 폭 256의 추정 없음({fmt(rv(0, 256)['median'])})·낙관적 합({fmt(rv(1, 256)['median'])})보다",
+        f"후보 {fmt(rv(2, 1)['evals'])}개 중 {fmt(rv(2, 1)['refined'])}개에만",
+        f"추정 없음 {rdiv[(0, 1)]['widths']['16']['distinct']}, 낙관적 합 {rdiv[(1, 1)]['widths']['16']['distinct']}",
+        f"(폭 16에서 {sm[16]['est1']['optimal']} 대 {sm[16]['est0']['optimal']})",
+        f"({sm[8]['est1']['optimal']}에서 {sm[8]['est1nomerge']['optimal']}, {sm[16]['est1']['optimal']}에서 {sm[16]['est1nomerge']['optimal']})",
+        f"격자에서 {round(cp_grid)}배, 순서 문제에서 약 {round(cp_route, -1):.0f}배",
+        f"(충돌 {mistakes['key']['keysBad']}개)", f"손계산(3 / 13)" if mistakes["keepworse"]["handBad"] == 3 else "손계산(?)",
+        f"손계산({mistakes['sign']['handBad']} / 13)",
+    ]
+    assert sm[1536]["est0"]["optimal"] == sm[1536]["est1"]["optimal"] == 20 and sm[1536]["est0"]["noDrop"] == sm[1536]["est1"]["noDrop"] == 20
+    assert sm[1536]["est1nomerge"]["noDrop"] < 20
+    return out
+
+
 def check_text_tables(meas: dict, mistakes: dict) -> int:
     text = read_lesson_text(LESSON_ID)
     count = 0
+    for frag in prose_checks(meas, mistakes):
+        assert frag in text, f"quoted number missing or differs in the text: {frag}"
+        count += 1
     for name, rows in table_rows(meas).items():
         for row in rows:
             assert row in text, f"lesson table row missing or differs ({name}): {row}"
