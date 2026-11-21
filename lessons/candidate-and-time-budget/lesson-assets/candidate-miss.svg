@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">후보 2개로는 놓치는 이동</title>
+<desc id="desc">점 P5에서 다른 점 7개까지의 거리를 가까운 순서로 막대로 그렸습니다. P0(30)과 P6(370)이 가까운 2개이고, P1(680)은 3번째입니다. 후보를 2개로 줄이면 P5와 P1을 잇는 뒤집기가 후보에서 빠지는데, 이 뒤집기가 변화량 −470으로 가장 좋은 이동입니다. 후보를 3개로 하면 들어옵니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="518" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">후보 2개로는 놓치는 이동</text>
+<text x="28" y="84" font-size="20" fill="#53657d">P5에서 다른 점까지의 거리, 가까운 순서</text>
+
+<rect x="20" y="108" width="470" height="92" rx="10" fill="#2664ce" fill-opacity="0.12"/>
+<rect x="20" y="200" width="470" height="46" rx="10" fill="#ae5515" fill-opacity="0.16"/>
+
+<g font-size="19" fill="#172b45">
+<text x="34" y="140">P0</text><text x="34" y="186">P6</text><text x="34" y="232" font-weight="700" fill="#ae5515">P1</text>
+<text x="34" y="278">P4</text><text x="34" y="324">P7</text><text x="34" y="370">P2</text><text x="34" y="416">P3</text>
+</g>
+<g>
+<rect x="80" y="122" width="9" height="26" fill="#2664ce"/>
+<rect x="80" y="168" width="111" height="26" fill="#2664ce"/>
+<rect x="80" y="214" width="204" height="26" fill="#ae5515"/>
+<rect x="80" y="260" width="258" height="26" fill="#8fa1b8"/>
+<rect x="80" y="306" width="309" height="26" fill="#8fa1b8"/>
+<rect x="80" y="352" width="318" height="26" fill="#8fa1b8"/>
+<rect x="80" y="398" width="345" height="26" fill="#8fa1b8"/>
+</g>
+<g font-size="18" fill="#172b45">
+<text x="98" y="141">30</text><text x="200" y="187">370</text><text x="293" y="233">680</text>
+<text x="347" y="279">860</text><text x="398" y="325">1,030</text><text x="407" y="371">1,060</text><text x="434" y="417">1,150</text>
+</g>
+<line x1="20" y1="200" x2="490" y2="200" stroke="#172b45" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="20" y1="246" x2="490" y2="246" stroke="#172b45" stroke-width="2" stroke-dasharray="7 5"/>
+
+<text x="506" y="136" font-size="19" fill="#172b45" font-weight="700">k = 2 목록</text>
+<text x="506" y="160" font-size="18" fill="#53657d">P0, P6만 들어온다</text>
+<text x="506" y="228" font-size="19" fill="#ae5515" font-weight="700">k = 3에서 들어옴</text>
+<text x="506" y="274" font-size="18" fill="#172b45">P5–P1을 잇는 뒤집기</text>
+<text x="506" y="298" font-size="18" fill="#172b45">[5, 7]의 변화량 −470은</text>
+<text x="506" y="322" font-size="18" fill="#172b45">이 8점에서 가장 좋은</text>
+<text x="506" y="346" font-size="18" fill="#172b45">이동이다</text>
+<text x="28" y="470" font-size="18" fill="#53657d">거리는 맨해튼 거리. 점 위치와 이동은 아래 손계산의 8점과 같다.</text>
+<text x="28" y="496" font-size="18" fill="#53657d">후보를 줄이면 가까운 점 쪽으로 이동이 쏠리고, 먼 쪽의 좋은 이동은 빠진다.</text>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">예산을 세 단계로 나누고 후보 수를 남은 비율에 묶기</title>
+<desc id="desc">연산 상한 limit을 초기해와 후보 목록 만들기, 탐색, 마무리 세 단계로 나눕니다. 초기해와 마무리는 연산 수를 미리 계산해 먼저 빼고, 탐색 단계에서 후보 수는 남은 연산의 비율에 따라 16에서 4까지 줄어듭니다. 탐색 시작 때 남은 연산이 800이면 16, 600이면 13, 400이면 10, 200이면 7, 0이면 4입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="518" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">예산을 세 단계로 나누기</text>
+<text x="28" y="84" font-size="20" fill="#53657d">후보 수는 남은 비율에 묶는다(그림의 칸 폭은 비율이 아님)</text>
+
+<rect x="30" y="112" width="130" height="56" rx="8" fill="#2664ce" fill-opacity="0.18" stroke="#2664ce" stroke-width="2"/>
+<rect x="160" y="112" width="400" height="56" fill="#ffffff" stroke="#53657d" stroke-width="2"/>
+<rect x="560" y="112" width="130" height="56" rx="8" fill="#ae5515" fill-opacity="0.18" stroke="#ae5515" stroke-width="2"/>
+<text x="95" y="146" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">초기해·목록</text>
+<text x="360" y="146" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">탐색 (좋아질 때만 받는다)</text>
+<text x="625" y="146" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">마무리</text>
+<text x="95" y="196" font-size="18" fill="#2664ce" text-anchor="middle">연산 수를 먼저 계산</text>
+<text x="625" y="196" font-size="18" fill="#ae5515" text-anchor="middle">남겨 둘 연산 finish</text>
+<text x="360" y="196" font-size="18" fill="#53657d" text-anchor="middle">나머지 전부: begin → stop</text>
+
+<text x="30" y="246" font-size="20" fill="#172b45" font-weight="700">탐색 단계의 후보 수 k (16에서 4로)</text>
+<g stroke="#d8e1ed" stroke-width="1.5">
+<line x1="110" y1="270" x2="110" y2="430"/><line x1="110" y1="430" x2="660" y2="430"/>
+</g>
+<text x="104" y="296" font-size="18" fill="#53657d" text-anchor="end">16</text>
+<text x="104" y="414" font-size="18" fill="#53657d" text-anchor="end">4</text>
+<polyline points="110,290 247,320 385,350 522,380 660,410" fill="none" stroke="#2664ce" stroke-width="3"/>
+<g fill="#2664ce"><circle cx="110" cy="290" r="5"/><circle cx="247" cy="320" r="5"/><circle cx="385" cy="350" r="5"/><circle cx="522" cy="380" r="5"/><circle cx="660" cy="410" r="5"/></g>
+<g font-size="18" fill="#172b45" text-anchor="middle">
+<text x="122" y="276">16</text><text x="247" y="308">13</text><text x="385" y="338">10</text><text x="522" y="368">7</text><text x="660" y="398">4</text>
+</g>
+<g font-size="18" fill="#53657d" text-anchor="middle">
+<text x="110" y="456">800</text><text x="247" y="456">600</text><text x="385" y="456">400</text><text x="522" y="456">200</text><text x="660" y="456">0</text>
+</g>
+<text x="385" y="486" font-size="18" fill="#53657d" text-anchor="middle">탐색 단계에서 남은 연산 (stop − ops, 처음에 800이라고 하면)</text>
+</svg>

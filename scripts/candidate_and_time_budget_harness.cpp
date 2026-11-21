@@ -205,10 +205,10 @@ static void modeCheck() {
             const bool useCand = (t % 4 != 3);
             bool ok;
             int a = 0, r = 0;
-            if (useCand) { a = pick(rng, route.n); r = pick(rng, 16); ok = route.cand(a, r, mv); }
+            if (useCand) { a = pick(rng, route.items()); r = pick(rng, 16); ok = route.cand(a, r, mv); }
             else ok = route.any(rng, mv);
             if (!ok) continue;
-            const int u = useCand ? route.p[a] : -1, v = useCand ? route.nb[u][r] : -1;
+            const int u = useCand ? route.p[a / 2] : -1, v = useCand ? route.nb[u][r] : -1;
             const ll before = refRoute(route), d = route.delta(mv);
             if (d != refRevDelta(route, mv.a, mv.b)) ++bad;
             int saved[RN]; std::memcpy(saved, route.p, sizeof saved);
@@ -357,8 +357,8 @@ static void modeMiss() {
         for (int l = 0; l < 1999; ++l) for (int r = l + 1; r < 2000; ++r) {
             const ll d = refRevDelta(route, l, r);
             int rank = 255;
-            if (l > 0) rank = std::min<int>(rank, rk[route.p[l - 1]][route.p[r]]);
-            if (r < 1999) rank = std::min<int>(rank, rk[route.p[r + 1]][route.p[l]]);
+            if (l > 0) rank = std::min<int>(rank, std::min(rk[route.p[l - 1]][route.p[r]], rk[route.p[r]][route.p[l - 1]]));
+            if (r < 1999) rank = std::min<int>(rank, std::min(rk[route.p[l]][route.p[r + 1]], rk[route.p[r + 1]][route.p[l]]));
             if (d < bestAll) bestAll = d;
             for (int q = 0; q < 5; ++q) if (rank < kList[q] && d < bestK[q]) bestK[q] = d;
             if (d < 0) { ++improving; if (rank < 8) ++improvingIn8; }
@@ -395,6 +395,43 @@ static void modeMiss() {
 // ---------------------------------------------------------------- the hand examples
 static const int HP[8][2] = {{90, 430}, {390, 780}, {760, 10}, {770, 870}, {910, 440}, {90, 400}, {460, 400}, {620, 900}};
 
+// a stand-in problem whose proposals cost 1 + 4 operations (the loop's 1 and a delta of 4 terms), for the clock-reading hand example
+struct Cheap {
+    ll ops, props, reads;
+    int items() { return 1; }
+    bool cand(int, int, Move& mv) { mv.kind = 0; mv.a = mv.b = mv.old = 0; return true; }
+    bool any(hc::Random&, Move&) { return false; }
+    ll delta(const Move&) { ops += 4; return 0; }
+    void apply(const Move&) {}
+};
+
+static const int HAND_D[6] = {70, 30, 40, 30, 80, 60};
+static const int HAND_C[6][4] = {{10, 10, 10, 40}, {10, 30, 30, 40}, {0, 30, 0, 0}, {0, 0, 40, 20}, {10, 30, 20, 30}, {40, 30, 20, 40}};
+
+static void modeHandMore() {
+    assign.n = 6; assign.m = 4; assign.k = 2;
+    for (int i = 0; i < 6; ++i) { assign.d[i] = HAND_D[i]; for (int j = 0; j < 4; ++j) assign.c[i][j] = HAND_C[i][j]; }
+    assign.init();
+    assign.buildCand(3);
+    printf("hand assign start %lld\n", assign.fullCost());
+    for (int i = 0; i < 6; ++i) printf("hand alist %d %d %d %d\n", i, assign.cl[i][0], assign.cl[i][1], assign.cl[i][2]);
+    for (int i = 0; i < 6; ++i) for (int y = 0; y < 4; ++y) {
+        if (y == assign.as[i] || assign.cnt[y] >= assign.k) continue;
+        Move mv; mv.kind = 0; mv.a = i; mv.b = y; mv.old = assign.as[i];
+        int rank = 255;
+        for (int r = 0; r < 3; ++r) if (assign.cl[i][r] == y) rank = r;
+        printf("hand amove %d %d %lld %d\n", i, y, assign.delta(mv), rank);
+    }
+    for (int every : {1, 4}) {
+        Cheap ch; ch.ops = ch.props = ch.reads = 0;
+        Plan pl = plain(60, 1, every, 4);
+        hc::Random rng; rng.reset(1);
+        climbPlan(ch, rng, 0, pl);
+        printf("hand clock %d %lld %lld %lld\n", every, ch.props, ch.reads, ch.ops);
+    }
+    for (ll rem : {800LL, 600LL, 400LL, 200LL, 0LL}) printf("hand sched %lld %d %d\n", rem, byRemaining(16, 4, rem, 800), byRemaining(4, 16, rem, 800));
+}
+
 static void modeHand() {
     route.n = 8;
     for (int i = 0; i < 8; ++i) { route.px[i] = HP[i][0]; route.py[i] = HP[i][1]; }
@@ -418,7 +455,7 @@ static void modeHand() {
     // every reversal: delta, and whether the generator can produce it with k = 2 and k = 3
     for (int l = 0; l < 7; ++l) for (int r = l + 1; r < 8; ++r) {
         int rank = 255;
-        for (int a = 0; a < 8; ++a) for (int q = 0; q < 3; ++q) {
+        for (int a = 0; a < route.items(); ++a) for (int q = 0; q < 3; ++q) {
             Move mv;
             if (route.cand(a, q, mv) && mv.a == l && mv.b == r) rank = std::min(rank, q);
         }
@@ -485,7 +522,7 @@ int main(int argc, char** argv) {
     else if (mode == "check") modeCheck();
     else if (mode == "exp") modeExp();
     else if (mode == "miss") modeMiss();
-    else if (mode == "hand") modeHand();
+    else if (mode == "hand") { modeHand(); modeHandMore(); }
     else if (mode == "detect") modeDetect();
     else if (mode == "timing") modeTiming();
     else { fprintf(stderr, "unknown mode\n"); return 2; }

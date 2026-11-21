@@ -275,19 +275,42 @@ def hand_python():
         brute_lists.append([v for _, v in best])
     assert grid_lists == brute_lists == knn_lists(px, py, k), "hand lists differ"
     out.update({"gridOps": grid_ops, "bruteOps": ops["n"], "lists": grid_lists, "trace": trace})
+    # ring-by-ring record of one search (point 5, two nearest) for the hand-worked table
+    u, k2 = 5, 2
+    best2: list[tuple[int, int]] = []
+    cx, cy = px[u] // side, py[u] // side
+    rings = []
+    for r in range(g):
+        seen_cells, offered = [], []
+        for y in range(cy - r, cy + r + 1):
+            step = 1 if (y == cy - r or y == cy + r) else 2 * r
+            for x in range(cx - r, cx + r + 1, step):
+                if x < 0 or y < 0 or x >= g or y >= g:
+                    continue
+                seen_cells.append([x, y])
+                for v in cells.get(y * g + x, []):
+                    if v != u:
+                        offered.append([v, dist(px, py, u, v)])
+        for v, d in offered:
+            best2 = sorted(best2 + [(d, v)])[:k2]
+        stop = len(best2) == k2 and best2[-1][0] <= r * side
+        rings.append({"ring": r, "cells": len(seen_cells), "offered": offered, "list": [[v, d] for d, v in best2], "limit": r * side, "stop": stop})
+        if stop:
+            break
+    assert [v for _, v in best2] == [v for _, v in sorted((dist(px, py, u, v), v) for v in range(n) if v != u)[:k2]]
+    out["ringTrace"] = {"point": u, "k": k2, "rings": rings}
     pos = {v: i for i, v in enumerate(order)}
     revs = {}
     base = route_cost(px, py, order)
     rank = {}
-    for a in range(n):
+    for item in range(2 * n):                    # item = (position, direction), as in the lesson's cand()
+        a = item // 2
         for q in range(k):
             b = pos[grid_lists[order[a]][q]]
-            if b >= a + 2:
-                lr = (a + 1, b)
-            elif b <= a - 2:
-                lr = (b, a - 1)
-            else:
+            lo, hi = min(a, b), max(a, b)
+            if hi < lo + 2:
                 continue
+            lr = (lo + 1, hi) if item % 2 == 0 else (lo, hi - 1)
             rank[lr] = min(rank.get(lr, 99), q)
     for l in range(n - 1):
         for r in range(l + 1, n):
@@ -314,7 +337,77 @@ def check_hand(rows):
             dl, rank = h["revs"][f"{r[2]},{r[3]}"]
             assert int(r[4]) == dl and int(r[5]) == rank, (r, dl, rank)
     assert sum(1 for r in rows if r[:2] == ["hand", "rev"]) == 28
+    # assignment: six jobs, four machines, at most two jobs per machine
+    a = hand_assign_python()
+    assert int(next(r for r in rows if r[:3] == ["hand", "assign", "start"])[3]) == a["start"]
+    for r in rows:
+        if r[:2] == ["hand", "alist"]:
+            assert [int(x) for x in r[3:6]] == a["lists"][int(r[2])]
+    got = {(int(r[2]), int(r[3])): (int(r[4]), int(r[5])) for r in rows if r[:2] == ["hand", "amove"]}
+    assert got == {(i, y): v for i, y, v in a["moves"]}, (got, a["moves"])
+    h["assign"] = {"start": a["start"], "lists": a["lists"], "moves": [[i, y, dl, rk] for i, y, (dl, rk) in a["moves"]]}
+    # clock reading: five operations per proposal, one read costs four, limit 60
+    h["clock"] = {}
+    for r in rows:
+        if r[:2] == ["hand", "clock"]:
+            every = int(r[2])
+            sim = clock_sim(60, 4, every, 5)
+            assert [int(x) for x in r[3:6]] == list(sim), (r, sim)
+            h["clock"][str(every)] = {"proposals": sim[0], "reads": sim[1], "ops": sim[2]}
+    assert set(h["clock"]) == {"1", "4"}
+    # remaining-budget schedule: 800 operations of search left at the start
+    h["sched"] = {}
+    for r in rows:
+        if r[:2] == ["hand", "sched"]:
+            rem = int(r[2])
+            want_a, want_b = 4 + 12 * rem // 800, 16 - 12 * rem // 800
+            assert int(r[3]) == want_a and int(r[4]) == want_b, (r, want_a, want_b)
+            h["sched"][str(rem)] = [want_a, want_b]
+    assert len(h["sched"]) == 5
     return h
+
+
+HAND_D = [70, 30, 40, 30, 80, 60]
+HAND_C = [[10, 10, 10, 40], [10, 30, 30, 40], [0, 30, 0, 0], [0, 0, 40, 20], [10, 30, 20, 30], [40, 30, 20, 40]]
+
+
+def hand_assign_python():
+    m, cap = 4, 2
+    start_as = [i % m for i in range(6)]
+
+    def cost(a):
+        load = [0] * m
+        for i, j in enumerate(a):
+            load[j] += HAND_D[i]
+        return sum(x * x for x in load) // 100 + sum(HAND_C[i][j] for i, j in enumerate(a))
+
+    base = cost(start_as)
+    lists = [[j for _, j in sorted((HAND_C[i][j], j) for j in range(m))[:3]] for i in range(6)]
+    moves = []
+    for i in range(6):
+        for y in range(m):
+            if y == start_as[i] or start_as.count(y) >= cap:
+                continue
+            b = start_as[:]
+            b[i] = y
+            moves.append((i, y, (cost(b) - base, lists[i].index(y) if y in lists[i] else 255)))
+    return {"start": base, "lists": lists, "moves": moves}
+
+
+def clock_sim(limit: int, clock_cost: int, every: int, per_proposal: int):
+    ops = props = reads = 0
+    since = every
+    while True:
+        since += 1
+        if since >= every:
+            since = 0
+            ops += clock_cost
+            reads += 1
+            if ops >= limit:
+                break
+        ops += per_proposal
+        props += 1
+    return props, reads, ops
 
 
 # ------------------------------------------------------------------ measurements
@@ -407,10 +500,9 @@ def measure(exp_rows, lists_rows, miss_rows) -> dict:
         for ci, name in enumerate(STAGE_NAMES):
             per = st[(frame, ci)]
             better, worse = compare(per, st[(frame, 0)])
-            entries.append({"name": name, "median": med(per.values()), "better": better, "worse": worse})
+            better16, worse16 = compare(per, st[(frame, 1)])
+            entries.append({"name": name, "median": med(per.values()), "better": better, "worse": worse, "better16": better16, "worse16": worse16})
         meas["stages"][frame] = entries
-        better, worse = compare(st[(frame, 4)], st[(frame, 1)])
-        meas.setdefault("stagePair", {})[frame] = {"better": better, "worse": worse}
     # doubling
     db: dict = {}
     for r in by["T5"]:
@@ -448,7 +540,7 @@ def measure(exp_rows, lists_rows, miss_rows) -> dict:
             left = [x for x in v if x[0] < 0]
             for q, k in enumerate((2, 4, 8, 16, 32)):
                 inside = sum(1 for x in left if x[0] == x[1 + q])
-                ratio = med((x[1 + q] * 1000) // x[0] for x in left)
+                ratio = (sum(x[1 + q] for x in left) * 1000) // sum(x[0] for x in left)      # sum of best gains inside the list / sum of best gains overall
                 per_k.append({"k": k, "inside": inside, "permille": ratio})
             out.append({"state": state, "perK": per_k, "seedsLeft": len(left), "improving": med(x[6] for x in v), "improvingIn8": med(x[7] for x in v),
                         "cost": med(x[8] for x in v)})
@@ -573,8 +665,11 @@ def table_rows(meas: dict) -> dict[str, list[str]]:
                 v, cmp_ = "기준", "-"
             else:
                 v, cmp_ = verdict(e["better"], e["worse"]), f"{e['better']} / {e['worse']}"
-            rows[f"stages_{frame}"].append(f"| {e['name']} | {fmt(e['median'])} | {cmp_} | {v} |")
-    rows["stage_pair"] = [f"| {'순서 틀' if f == 'route' else '배정 틀'} | {e['better']} / {e['worse']} | {verdict(e['better'], e['worse'])} |" for f, e in meas["stagePair"].items()]
+            if i == 1:
+                v16, cmp16 = "기준", "-"
+            else:
+                v16, cmp16 = verdict(e["better16"], e["worse16"]), f"{e['better16']} / {e['worse16']}"
+            rows[f"stages_{frame}"].append(f"| {e['name']} | {fmt(e['median'])} | {cmp_} | {v} | {cmp16} | {v16} |")
     for key, entries in meas["doubling"].items():
         rows[f"doubling_{key}"] = [f"| {fmt(e['budget'])} | {fmt(e['median'])} | {'-' if e['drop'] is None else fmt(e['drop'])} |" for e in entries]
     for frame in ("route", "assign"):
@@ -587,6 +682,79 @@ def table_rows(meas: dict) -> dict[str, list[str]]:
                     continue                       # the 8-candidate local optimum has no improving move inside 8 by construction
                 rows[f"miss_{frame}"].append(f"| {'시작' if st['state'] == 0 else '후보 8개의 지역 최적'} | {e['k']} | {e['inside']} / {st['seedsLeft']} | {e['permille'] / 10:.1f}% |")
         rows[f"miss_left_{frame}"] = [f"| {'시작' if st['state'] == 0 else '후보 8개의 지역 최적'} | {fmt(st['improving'])} | {fmt(st['improvingIn8'])} | {st['seedsLeft']} / 20 |" for st in meas["miss"][frame]]
+    rows.update(budget_rows(meas))
+    rows.update(hand_rows(meas["hand"]))
+    return rows
+
+
+def sgn(d: int) -> str:
+    return f"+{d}" if d > 0 else (f"−{-d}" if d < 0 else "0")
+
+
+def budget_rows(meas: dict) -> dict[str, list[str]]:
+    """Operation counts that are formulas (evaluations x operations per evaluation) next to measured preparation costs."""
+    out = {}
+    n, limit = 10000, ROUTE_N[10000]
+    full, lst = n * (n - 1) // 2, 2 * n * 8
+    b = meas["build"]["10000"]
+    out["budget_route"] = [
+        f"| 전체 근방 한 번 훑기 | 평가 {fmt(full)}회 × 5 | {fmt(full * 5)} | {full * 5 * 100 / limit:,.1f}% |",
+        f"| 이웃 8개 목록으로 한 번 훑기 | 평가 {fmt(lst)}회 × 5 | {fmt(lst * 5)} | {lst * 5 * 100 / limit:,.1f}% |",
+        f"| 이웃 목록 만들기, 전수 | 시드 1 실측 | {fmt(b['bruteSeed1'])} | {b['bruteSeed1'] * 100 / limit:,.1f}% |",
+        f"| 이웃 목록 만들기, 칸 | 중앙값 | {fmt(b['grid'])} | {b['grid'] * 100 / limit:,.1f}% |"]
+    n, m, k, limit = AN, AM, 4, ASSIGN_BUDGET
+    full, lst = n * (m - 1), n * k
+    build = n * (2 * m + 51)
+    out["budget_assign"] = [
+        f"| 전체 근방 한 번 훑기 | 평가 {fmt(full)}회 × 7 | {fmt(full * 7)} | {full * 7 * 100 / limit:,.1f}% |",
+        f"| 싼 기계 4대 목록으로 한 번 훑기 | 평가 {fmt(lst)}회 × 7 | {fmt(lst * 7)} | {lst * 7 * 100 / limit:,.1f}% |",
+        f"| 후보 기계 목록 만들기 | 작업 {fmt(n)}개 × (2 × {m} + 51) | {fmt(build)} | {build * 100 / limit:,.1f}% |"]
+    return out
+
+
+def hand_rows(h: dict) -> dict[str, list[str]]:
+    pts = h["points"]
+    px = [p["xy"][0] for p in pts]
+    py = [p["xy"][1] for p in pts]
+    snake_order = h["snake"]
+    pos = {v: i for i, v in enumerate(snake_order)}
+    lists = h["lists"]
+    rows: dict[str, list[str]] = {}
+    rows["hand_points"] = [f"| P{p['id']} | ({p['xy'][0]}, {p['xy'][1]}) | ({p['cell'][0]}, {p['cell'][1]}) | {pos[p['id']]} |" for p in pts]
+    rows["hand_lists"] = [f"| P{u} | " + " | ".join(f"P{v} ({dist(px, py, u, v)})" for v in lists[u]) + " |" for u in range(len(pts))]
+    rows["hand_trace"] = []
+    for r in h["ringTrace"]["rings"]:
+        offered = ", ".join(f"P{v} ({fmt(d)})" for v, d in r["offered"]) or "없음"
+        kept = ", ".join(f"P{v}" for v, _ in r["list"])
+        if len(r["list"]) < h["ringTrace"]["k"]:
+            test = f"목록 {len(r['list'])}개로 아직 덜 참"
+        else:
+            kth = r["list"][-1][1]
+            test = f"{kth} ≤ {r['limit']}: {'예, 멈춤' if r['stop'] else '아니오'}"
+        rows["hand_trace"].append(f"| {r['ring']} | {r['cells']} | {offered} | {kept} | {test} |")
+
+    def edge_rank(u, v):
+        ranks = [lists[a].index(b) for a, b in ((u, v), (v, u)) if b in lists[a]]
+        return min(ranks) if ranks else None
+
+    rows["hand_moves"] = []
+    for l, r, dl, rank in h["improving"]:
+        edges = []
+        if l > 0:
+            edges.append((snake_order[l - 1], snake_order[r]))
+        if r < len(pts) - 1:
+            edges.append((snake_order[l], snake_order[r + 1]))
+        text = ", ".join(f"P{u}–P{v} ({'목록 밖' if edge_rank(u, v) is None else str(edge_rank(u, v) + 1) + '번째'})" for u, v in edges)
+        ok2 = "예" if rank < 2 else "아니오"
+        ok3 = "예" if rank < 3 else "아니오"
+        rows["hand_moves"].append(f"| [{l}, {r}] | {sgn(dl)} | {text} | {ok2} | {ok3} |")
+    a = h["assign"]
+    rows["hand_assign_jobs"] = [f"| {i} | {HAND_D[i]} | {', '.join(str(x) for x in HAND_C[i])} | {', '.join(str(x) for x in a['lists'][i])} |" for i in range(6)]
+    rows["hand_assign_moves"] = []
+    for i, y, dl, rank in sorted(a["moves"], key=lambda m: (m[2], m[0], m[1])):
+        rows["hand_assign_moves"].append(f"| 작업 {i} → 기계 {y} | {sgn(dl)} | {'목록 밖' if rank == 255 else str(rank + 1) + '번째'} | {'예' if rank < 2 else '아니오'} | {'예' if rank < 3 else '아니오'} |")
+    rows["hand_clock"] = [f"| {e} | {v['proposals']} | {v['reads']} | {v['ops']} | {v['ops'] - 60} |" for e, v in h["clock"].items()]
+    rows["hand_sched"] = [f"| {rem} | {v[0]} | {v[1]} |" for rem, v in h["sched"].items()]
     return rows
 
 
@@ -609,6 +777,106 @@ def check_text_tables(meas: dict, hand: dict) -> int:
             assert row in text, f"lesson table row missing or differs ({name}): {row}"
             count += 1
     count += check_hub_summary(LESSON_ID, hub_expected(meas))
+    count += check_claims(meas, text)
+    return count
+
+
+def check_claims(meas: dict, text: str) -> int:
+    """Sentences of the lesson that quote numbers or verdicts: each must still follow from the measurements."""
+    count = 0
+
+    def need(phrase: str) -> None:
+        nonlocal count
+        assert phrase in text, f"lesson sentence missing or differs: {phrase}"
+        count += 1
+
+    L = meas["lists"]
+    by_k = {key: {e["k"]: e for e in entries} for key, entries in L.items()}
+    cases = [f"route2000@{TIGHT[2000]}", f"route2000@{ROUTE_N[2000]}", f"route10000@{TIGHT[10000]}", f"route10000@{ROUTE_N[10000]}"]
+    for key in cases + ["assign2000@2000000"]:
+        assert by_k[key][0]["better"] == 0 and by_k[key][0]["worse"] >= WIN, key                 # no list: always worse than the reference
+    assert [(by_k[c][2]["better"], by_k[c][2]["worse"]) for c in cases] == [(1, 19), (0, 20), (0, 20), (0, 20)]
+    need("(1 / 19, 0 / 20, 0 / 20, 0 / 20)")
+    tight2000, tight10000, ample2000, ample10000 = by_k[cases[0]], by_k[cases[2]], by_k[cases[1]], by_k[cases[3]]
+    assert (tight2000[4]["better"], tight2000[4]["worse"]) == (20, 0) and (tight10000[4]["better"], tight10000[4]["worse"]) == (15, 5)
+    need("`k = 4`가 `k = 8`보다 좋았고(20 / 0, 15 / 5)")
+    assert tight2000[16]["worse"] == 20 and tight10000[16]["worse"] == 20
+    assert tight2000[32]["median"] == meas["start"]["route2000"] and tight10000[32]["median"] == meas["start"]["route10000"]
+    assert tight2000[32]["built"] == 776045 and tight10000[32]["built"] == 4000780
+    need("(776,045, 4,000,780)")
+    assert [(ample2000[16]["better"], ample2000[16]["worse"]), (ample2000[32]["better"], ample2000[32]["worse"])] == [(17, 3), (16, 4)]
+    assert [(ample10000[16]["better"], ample10000[16]["worse"]), (ample10000[32]["better"], ample10000[32]["worse"])] == [(15, 5), (18, 2)]
+    need("(17 / 3, 16 / 4와 15 / 5, 18 / 2)")
+    assert (ample2000[4]["better"], ample2000[4]["worse"]) == (6, 14) and (ample10000[4]["better"], ample10000[4]["worse"]) == (0, 20)
+    need("결정 못 함(6 / 14), `N = 10,000`에서 더 나쁨(0 / 20)")
+    a = by_k["assign2000@2000000"]
+    assert (a[4]["better"], a[4]["worse"]) == (19, 1) and all(a[k]["worse"] >= WIN for k in (2, 16, 32))
+    need("`k = 4`가 `k = 8`보다 19 / 1로 좋았고")
+    need(f"{fmt(ample10000[0]['proposals'])}개와 `k = 8`의 {fmt(ample10000[8]['proposals'])}개")
+    assert meas["bruteLists2000"]["median"] == meas["start"]["route2000"] and meas["bruteLists2000"]["worse"] >= WIN
+    need(f"연산 {fmt(meas['build']['2000']['brute'])}으로 넉넉한 예산 2,000,000의 {meas['build']['2000']['brute'] / 2000000:.1f}배")
+    for e in meas["assignBudget"]:
+        assert e["listBetter"] == 20
+    # preparation shares
+    comp = {(e["frame"], e["n"]): e for e in meas["compose"]}
+    need(f"목록·초기해가 {pct(comp[('route', 10000)]['built'], comp[('route', 10000)]['ops'])}, 원소 쓰기가 {pct(comp[('route', 10000)]['writes'], comp[('route', 10000)]['ops'])}")
+    need(f"후보 목록이 총 연산의 {pct(comp[('assign', 2000)]['built'], comp[('assign', 2000)]['ops'])}")
+    assert comp[("route", 10000)]["perProposal"] == 405 and comp[("assign", 2000)]["perProposal"] == 574
+    need("4.05연산")
+    need("5.74연산")
+    # cell sizes
+    ops_by_side = {e["side"]: e["ops"] for e in meas["sides"]}
+    assert min(ops_by_side, key=ops_by_side.get) == 10 and sorted(ops_by_side, key=ops_by_side.get)[1] == 14
+    # misses
+    mr, ma = meas["miss"]["route"], meas["miss"]["assign"]
+    assert [e["inside"] for e in mr[0]["perK"]] == [11, 15, 19, 20, 20]
+    need("20개 중 11개, `k = 8`은 19개, `k = 16`부터 20개 모두")
+    assert (mr[0]["improving"], mr[0]["improvingIn8"]) == (1213, 1157)
+    need("중앙값 1,213개이고 후보 8개 안에는 1,157개")
+    assert mr[1]["seedsLeft"] == 19 and mr[1]["improving"] == 3
+    need("20개 시드 중 19개에 전체 근방의 개선 이동이 남아 있었고 중앙값은 3개")
+    assert [e["inside"] for e in ma[0]["perK"]] == [1, 1, 2, 7, 9]
+    need("`k = 2`와 `k = 4`에서 20개 중 1개씩이고, `k = 32`도 9개뿐")
+    assert ma[0]["perK"][1]["permille"] == 863
+    need("`k = 4`에서 86.3%")
+    assert ma[1]["seedsLeft"] == 5 and ma[1]["perK"][3]["inside"] == 5 and ma[1]["perK"][4]["inside"] == 5
+    need("20개 시드 중 5개에만 개선 이동이 남아 있었고")
+    # stages
+    sr, sa = meas["stages"]["route"], meas["stages"]["assign"]
+    assert (sr[1]["better"], sr[1]["worse"]) == (17, 3) and (sr[4]["better"], sr[4]["worse"]) == (17, 0) and (sr[4]["better16"], sr[4]["worse16"]) == (4, 16)
+    need("(17 / 3)")
+    need("(17 / 0)")
+    need("(4 / 16)")
+    assert verdict(sr[2]["better16"], sr[2]["worse16"]) == "결정 못 함" and verdict(sr[3]["better16"], sr[3]["worse16"]) == "결정 못 함"
+    assert (sr[2]["better16"], sr[2]["worse16"]) == (8, 12) and (sr[3]["better16"], sr[3]["worse16"]) == (8, 12)
+    need("`고정 16`과 결정 못 함(8 / 12 두 개)")
+    assert (sa[1]["better"], sa[1]["worse"]) == (1, 19) and (sa[2]["better"], sa[2]["worse"]) == (1, 19)
+    assert (sa[3]["better"], sa[3]["worse"]) == (14, 6) and (sa[4]["better"], sa[4]["worse"]) == (7, 1)
+    need("(1 / 19) `4 → 16`과 마무리를 붙인 계획은 `고정 8`과 결정 못 함(14 / 6, 7 / 1)")
+    # doubling
+    d10, d2 = meas["doubling"]["route10000"], meas["doubling"]["route2000"]
+    assert [e["drop"] for e in d10[1:]] == [16302, 1827, 0, 0] and [e["drop"] for e in d2[1:]] == [7654, 343, 0, 0, 0]
+    need("`N = 10,000`은 16,302, 1,827, 0으로, `N = 2,000`은 7,654, 343, 0으로")
+    # clock
+    cr, ca = meas["clock"]["route"], meas["clock"]["assign"]
+    assert (cr[0]["share"], ca[0]["share"]) == (791, 477) and (cr[0]["proposals"], ca[0]["proposals"]) == (39553, 23852)
+    need("예산의 79.1%(순서 틀)와 47.7%(배정 틀)를 먹어 제안 수가 39,553과 23,852로")
+    assert (cr[3]["share"], ca[3]["share"], cr[4]["share"], ca[4]["share"], cr[5]["share"], ca[5]["share"]) == (115, 53, 32, 14, 8, 3)
+    need("시계 비중이 11.5%와 5.3%가 되고 256에서 3.2%와 1.4%, 1,024에서 0.8%와 0.3%")
+    assert [e["cost"] for e in cr] == [48090] + [47113] * 6 and [e["cost"] for e in ca] == [522437, 521868] + [521866] * 5
+    need("(48,090, 나머지 47,113)")
+    need("(522,437, 521,868, 나머지 521,866)")
+    assert (cr[6]["overshoot"], ca[6]["overshoot"]) == (16575, 23887)
+    need("(순서 틀 4,096에서 16,575, 배정 틀 23,887)")
+    assert abs(cr[6]["overshoot"] / 4096 - 4.0) < 0.1 and abs(ca[6]["overshoot"] / 4096 - 5.8) < 0.1
+    # mistakes
+    m = meas["mistakes"]
+    assert m["ring"]["listsWrongSeeds"] == 20 and m["pos"]["posWrongSeeds"] == 20
+    assert (m["clean"]["earlyMaxK"], m["clean"]["lateMaxK"], m["direction"]["earlyMaxK"], m["direction"]["lateMaxK"]) == (15, 4, 4, 15)
+    need("올바른 코드는 15와 4(초반 5%와 종반 5%), 반대로 쓴 코드는 4와 15")
+    need("순서 틀 20개 시드 중 19개에 개선 이동이 남아 있었습니다")
+    assert 40 / (0.02 * 4.05) > 493 and 40 / (0.02 * 4.05) < 494
+    need("간격은 약 494 이상")
     return count
 
 

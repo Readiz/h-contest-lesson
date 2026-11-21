@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+<title id="title">칸을 한 겹씩 넓히며 가까운 점 찾기</title>
+<desc id="desc">좌표 0..999를 한 변 250인 4×4 칸으로 나눈 지도에 점 8개가 있습니다. 점 P5의 가까운 점 2개를 찾을 때 링 0은 P5가 있는 칸 하나에서 P0(거리 30)을 보고, 링 1은 칸 5개에서 P6(거리 370)을 봅니다. 링 2는 칸 6개에서 P1과 P7을 보지만 목록은 그대로이고, 370이 2 곱하기 250 이하이므로 멈춥니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<defs><clipPath id="g"><rect x="30" y="110" width="360" height="360"/></clipPath></defs>
+<rect x="1" y="1" width="718" height="558" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">칸을 한 겹씩 넓히며 가까운 점 찾기</text>
+<text x="28" y="84" font-size="20" fill="#53657d">점 P5의 가까운 2개: 링 0 → 링 1 → 링 2에서 멈춤</text>
+
+<rect x="30" y="110" width="360" height="360" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<!-- ring 2 (orange): cells (0,3) (1,3) (2,3) (2,0) (2,1) (2,2) -->
+<g fill="#ae5515" fill-opacity="0.16">
+<rect x="30" y="380" width="90" height="90"/><rect x="120" y="380" width="90" height="90"/><rect x="210" y="380" width="90" height="90"/>
+<rect x="210" y="110" width="90" height="90"/><rect x="210" y="200" width="90" height="90"/><rect x="210" y="290" width="90" height="90"/>
+</g>
+<!-- ring 1 (blue, light): cells (0,0) (1,0) (1,1) (0,2) (1,2) -->
+<g fill="#2664ce" fill-opacity="0.16">
+<rect x="30" y="110" width="90" height="90"/><rect x="120" y="110" width="90" height="90"/><rect x="120" y="200" width="90" height="90"/>
+<rect x="30" y="290" width="90" height="90"/><rect x="120" y="290" width="90" height="90"/>
+</g>
+<!-- ring 0 (blue, strong): cell (0,1) -->
+<rect x="30" y="200" width="90" height="90" fill="#2664ce" fill-opacity="0.38"/>
+<g stroke="#d8e1ed" stroke-width="1.5">
+<line x1="120" y1="110" x2="120" y2="470"/><line x1="210" y1="110" x2="210" y2="470"/><line x1="300" y1="110" x2="300" y2="470"/>
+<line x1="30" y1="200" x2="390" y2="200"/><line x1="30" y1="290" x2="390" y2="290"/><line x1="30" y1="380" x2="390" y2="380"/>
+</g>
+<!-- Manhattan radius 370 around P5 (62.4, 254) -->
+<g clip-path="url(#g)"><polygon points="195.6,254 62.4,387.2 -70.8,254 62.4,120.8" fill="none" stroke="#172b45" stroke-width="2" stroke-dasharray="7 5"/></g>
+<!-- points -->
+<g fill="#172b45">
+<circle cx="62.4" cy="264.8" r="5"/><circle cx="195.6" cy="254" r="5"/><circle cx="170.4" cy="390.8" r="5"/><circle cx="253.2" cy="434" r="5"/>
+<circle cx="357.6" cy="268.4" r="5"/><circle cx="303.6" cy="113.6" r="5"/><circle cx="307.2" cy="423.2" r="5"/>
+</g>
+<circle cx="62.4" cy="254" r="7" fill="#ae5515" stroke="#ffffff" stroke-width="2"/>
+<g font-size="18" fill="#172b45">
+<text x="36" y="242" font-weight="700" fill="#ae5515">P5</text><text x="72" y="284">P0</text><text x="204" y="246">P6</text><text x="154" y="418">P1</text>
+<text x="262" y="456">P7</text><text x="338" y="294">P4</text><text x="312" y="108">P2</text><text x="318" y="446">P3</text>
+</g>
+<text x="30" y="496" font-size="18" fill="#53657d">점선: P5에서 거리 370 이내(맨해튼 거리)</text>
+<text x="30" y="522" font-size="18" fill="#53657d">칸 한 변 250, 칸은 (열, 행)으로 센다</text>
+
+<!-- panel -->
+<rect x="420" y="110" width="22" height="22" fill="#2664ce" fill-opacity="0.38" stroke="#2664ce"/>
+<text x="452" y="127" font-size="19" fill="#172b45" font-weight="700">링 0 · 칸 1개</text>
+<text x="452" y="150" font-size="18" fill="#53657d">P0 (거리 30)</text>
+<rect x="420" y="176" width="22" height="22" fill="#2664ce" fill-opacity="0.16" stroke="#2664ce"/>
+<text x="452" y="193" font-size="19" fill="#172b45" font-weight="700">링 1 · 칸 5개</text>
+<text x="452" y="216" font-size="18" fill="#53657d">P6 (거리 370)</text>
+<rect x="420" y="242" width="22" height="22" fill="#ae5515" fill-opacity="0.16" stroke="#ae5515"/>
+<text x="452" y="259" font-size="19" fill="#172b45" font-weight="700">링 2 · 칸 6개</text>
+<text x="452" y="282" font-size="18" fill="#53657d">P1 (680), P7 (1,030)</text>
+<text x="452" y="304" font-size="18" fill="#53657d">목록은 그대로</text>
+<rect x="420" y="338" width="272" height="132" rx="10" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="436" y="366" font-size="19" fill="#172b45" font-weight="700">링 2를 본 뒤 검사</text>
+<text x="436" y="394" font-size="18" fill="#172b45">370 ≤ 2 × 250 = 500</text>
+<text x="436" y="420" font-size="18" fill="#172b45">안 본 칸의 점은 모두</text>
+<text x="436" y="444" font-size="18" fill="#172b45">500보다 멀어서 멈춘다</text>
+</svg>
