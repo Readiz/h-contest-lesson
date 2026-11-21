@@ -2216,6 +2216,72 @@
         "modeling",
         "selection"
       ]
+    },
+    {
+      "lessonId": "experiments-and-tuning",
+      "title": "실험과 튜닝",
+      "description": "점수 비교 실험을 어떻게 설계하고 읽는지를 다룹니다. 무엇을 잴지, 같은 입력·같은 시드로 짝지어 비교하는 이유, 시드 20개 중 15개 규칙이 우연히 나올 확률(이항 분포의 정확한 값), 비교가 여럿일 때와 hold-out, 흔들림의 크기, 매개변수를 하나씩 바꾸는 튜닝과 그 상호작용 함정, 격자·무작위 탐색, 과적합 점검, 실험 기록 형식을 순서 틀의 담금질 튜닝으로 익힙니다.",
+      "summary": "측정 대상 4가지, 짝지은 비교 대 짝짓지 않은 비교, 15/20 규칙의 정확한 확률과 동점·다중 비교, 설정을 고른 시드와 확인 시드 분리, 사분위로 본 흔들림, 한 번에 하나씩 튜닝과 상호작용, 격자 대 무작위 탐색, 다른 크기·분포에서의 재확인을 20개 시드로 측정",
+      "order": 109,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "method",
+        "experiments-and-tuning",
+        "paired-comparison",
+        "hold-out",
+        "tuning",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 100,
+      "prerequisites": [
+        "problem-modeling",
+        "hill-climbing-and-annealing",
+        "cpp-common-library"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "neighborhood-and-delta",
+        "construction-heuristics",
+        "beam-search",
+        "destroy-and-repair",
+        "candidate-and-time-budget",
+        "partial-information",
+        "testing-and-stress"
+      ],
+      "pages": [
+        {
+          "pageId": "idea",
+          "title": "원리와 손으로 따라가는 예",
+          "description": "측정 대상, 같은 입력·같은 시드의 짝지은 비교, 15/20 규칙의 정확한 확률과 동점·다중 비교, hold-out, 흔들림, 매개변수를 하나씩 바꾸는 튜닝과 상호작용, 격자·무작위 탐색, 과적합, 기록 형식을 시드 6개의 손계산으로 따라갑니다.",
+          "order": 10,
+          "file": "pages/idea.md"
+        },
+        {
+          "pageId": "implementation",
+          "title": "구현: 비교·튜닝 틀과 두 문제 유형",
+          "description": "문제와 무관한 통계 도구(순위 값·짝지은 비교·이항 꼬리·판정 기준)와 튜닝 걸음·무작위 뽑기, 문제마다 채우는 담금질 대상(순서 틀·배정 틀)과 입력 지문을 구현합니다.",
+          "order": 20,
+          "file": "pages/implementation.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "실험과 점검",
+          "description": "예산별 곡선과 실패율, 짝지은 비교와 짝짓지 않은 비교, 같은 설정끼리의 우연한 차이, 설정을 고른 시드와 확인 시드, 상호작용, 격자 대 무작위, 다른 크기·분포에서의 재확인, 흔한 실수와 검사, 다른 문제에 옮길 때의 점검 목록과 적용 사례를 다룹니다.",
+          "order": 30,
+          "file": "pages/practice.md"
+        }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     }
   ]
 }
