@@ -1694,6 +1694,68 @@
       "difficultyAxes": [
         "implementation"
       ]
+    },
+    {
+      "lessonId": "construction-heuristics",
+      "title": "초기해 만들기: 탐욕·삽입·무작위화",
+      "description": "해를 한 번에 하나씩 정해 가는 구성법의 공통 틀(고르기 → 자리 정하기 → 상태 갱신)과 선택 기준(가까운 것, 싸게 끼워 넣을 자리, 후회, 큰 것부터), 기준을 조금 흔드는 무작위화와 여러 번 만들기, 기계당 개수 제한을 지키는 방법을 순서 문제와 배정 문제에 적용하고, 20개 시드로 구성 직후와 단순 개선 뒤의 결과를 비교합니다.",
+      "summary": "남은 것 하나를 고르고 자리를 정해 상태를 갱신하는 구성 틀 하나로 최근접·삽입·후회·정렬 기준과 무작위화를 비교하고, 순서·배정 두 틀에서 초기해가 뒤 개선에 미치는 영향을 측정",
+      "order": 102,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "method",
+        "construction",
+        "greedy",
+        "insertion",
+        "regret",
+        "randomization"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 75,
+      "prerequisites": [
+        "heuristic",
+        "greedy"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "assignment-with-routes",
+        "placement-search",
+        "assignment-local-search",
+        "cpp-common-library",
+        "testing-and-stress"
+      ],
+      "pages": [
+        {
+          "pageId": "idea",
+          "title": "원리와 손으로 따라가는 예",
+          "description": "구성 틀의 세 단계와 선택 기준의 종류, 7개 점과 6개 작업의 손계산으로 기준에 따라 결과가 갈라지는 과정을 따라갑니다.",
+          "order": 10,
+          "file": "pages/idea.md"
+        },
+        {
+          "pageId": "implementation",
+          "title": "코드 틀과 두 문제 유형 적용",
+          "description": "문제와 무관한 구성 틀과 문제마다 채우는 함수를 나누고, 순서 틀과 배정 틀에 같은 틀을 적용해 개수 제한을 지키는 후보 만들기와 단순 개선까지 구현합니다.",
+          "order": 20,
+          "file": "pages/implementation.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "실험, 흔한 실수, 옮겨 쓰기",
+          "description": "시드 20개로 구성 기준·무작위화·개수 제한·개선 뒤 결과를 비교하고, 흔한 실수와 검사, 다른 문제에 옮길 때의 점검 목록, 적용 사례 강의를 정리합니다.",
+          "order": 30,
+          "file": "pages/practice.md"
+        }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "selection"
+      ]
     }
   ]
 }
