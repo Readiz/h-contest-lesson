@@ -687,6 +687,22 @@ def quotes(meas: dict) -> list[str]:
            f"{i['both']['all'][0]} / {i['both']['all'][1]}", f"{i['t1d4']['all'][0]} / {i['t1d4']['all'][1]}", f"{i['t0x2']['all'][0]} / {i['t0x2']['all'][1]}",
            ex["multi"][4][1], ex["tails"][3][3], f"{p['paired'][0]} / {p['paired'][1]}",
            f"{fmt(meas['top'][0]['tune'])}", f"{fmt(meas['top'][0]['confirm'])}"]
+    sp = p["spread"]
+    widths = [q3 - q1 for q1, _, q3 in sp["searchSeeds"]]
+    out += [f"{min(widths)}에서 {max(widths)}", f"({sp['inputsC1'][2] - sp['inputsC1'][0]})", f"{sp['diff'][0]}에서 {sp['diff'][2]}",
+            f"{p['assign']['diff'][0]} – {p['assign']['diff'][1]} – {p['assign']['diff'][2]}",
+            f"{p['assign']['shifts'][0]['cmp'][0]} / {p['assign']['shifts'][0]['cmp'][1]}", f"{p['assign']['shifts'][1]['cmp'][0]} / {p['assign']['shifts'][1]['cmp'][1]}"]
+    be = meas["bestOnConfirm"]
+    gr = meas["gridRandom"]
+    out += [fmt(be["confirm"]), fmt(be["tune"]), f"{gr['randomBetter']}번", f"{gr['randomWorse']}번", f"{gr['randomSame']}번",
+            f"중앙값 {gr['randomDistinctT1Median']}가지", fmt(gr["randomConfirmMedian"]), ex["multi"][5][1], ex["multi"][6][1],
+            f"{i['start']['confirmMedian'] - i['start']['tuneMedian']} 올랐고 고른 설정은 {i['both']['confirmMedian'] - i['both']['tuneMedian']}"]
+    s = meas["salt"]
+    out += [f"{len(s['flagged'])}개", f"{s['spreadWins'][0]}에서 {s['spreadWins'][1]}", f"{s['flagged'][0]['confirm'][0]} / {s['flagged'][0]['confirm'][1]}"]
+    pth = meas["paths"]
+    out += [f"{pth['11']['confirm'][0]} / {pth['11']['confirm'][1]}", f"{pth['11']['steps'][0]['bestWins']} / 20", f"{pth['15']['steps'][0]['bestWins']} / 20"]
+    for r in meas["transfer"]:
+        out.append(f"{r['c1VsC0'][0]} / {r['c1VsC0'][1]}")
     return out
 
 
