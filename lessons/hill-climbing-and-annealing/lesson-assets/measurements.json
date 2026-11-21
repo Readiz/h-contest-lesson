@@ -1,0 +1,1173 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20
+ ],
+ "holdoutSeeds": [
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118,
+  119,
+  120
+ ],
+ "start": {
+  "route": 131115,
+  "assign": 47295
+ },
+ "delta": {
+  "route": {
+   "start": {
+    "count": 903,
+    "q10": 66,
+    "q50": 396,
+    "q90": 1052
+   },
+   "optimum": {
+    "count": 1999,
+    "q10": 366,
+    "q50": 1138,
+    "q90": 2078
+   },
+   "t0": 4516943,
+   "t1": 238313
+  },
+  "assign": {
+   "start": {
+    "count": 1160,
+    "q10": 14,
+    "q50": 82,
+    "q90": 309
+   },
+   "optimum": {
+    "count": 2000,
+    "q10": 22,
+    "q50": 70,
+    "q90": 174
+   },
+   "t0": 918977,
+   "t1": 76960
+  }
+ },
+ "methods": {
+  "main": {
+   "route": [
+    {
+     "budget": 100000,
+     "first": 14510,
+     "restarts": 14510,
+     "anneal": 14645,
+     "restartRuns": 1,
+     "firstEvals": 100000,
+     "annealBetterThanRestarts": 5,
+     "annealWorseThanRestarts": 15,
+     "annealBetterThanFirst": 5,
+     "annealWorseThanFirst": 15,
+     "restartsBetterThanFirst": 0,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 100000
+    },
+    {
+     "budget": 300000,
+     "first": 14500,
+     "restarts": 14290,
+     "anneal": 13827,
+     "restartRuns": 3,
+     "firstEvals": 117861,
+     "annealBetterThanRestarts": 20,
+     "annealWorseThanRestarts": 0,
+     "annealBetterThanFirst": 20,
+     "annealWorseThanFirst": 0,
+     "restartsBetterThanFirst": 13,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 300000
+    },
+    {
+     "budget": 1000000,
+     "first": 14500,
+     "restarts": 14027,
+     "anneal": 13524,
+     "restartRuns": 9,
+     "firstEvals": 117861,
+     "annealBetterThanRestarts": 20,
+     "annealWorseThanRestarts": 0,
+     "annealBetterThanFirst": 20,
+     "annealWorseThanFirst": 0,
+     "restartsBetterThanFirst": 17,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 1000000
+    },
+    {
+     "budget": 3000000,
+     "first": 14500,
+     "restarts": 13887,
+     "anneal": 13295,
+     "restartRuns": 25,
+     "firstEvals": 117861,
+     "annealBetterThanRestarts": 20,
+     "annealWorseThanRestarts": 0,
+     "annealBetterThanFirst": 20,
+     "annealWorseThanFirst": 0,
+     "restartsBetterThanFirst": 18,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 3000000
+    }
+   ],
+   "assign": [
+    {
+     "budget": 20000,
+     "first": 44000,
+     "restarts": 44000,
+     "anneal": 44097,
+     "restartRuns": 1,
+     "firstEvals": 20000,
+     "annealBetterThanRestarts": 1,
+     "annealWorseThanRestarts": 19,
+     "annealBetterThanFirst": 1,
+     "annealWorseThanFirst": 19,
+     "restartsBetterThanFirst": 0,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 20000
+    },
+    {
+     "budget": 100000,
+     "first": 43965,
+     "restarts": 43965,
+     "anneal": 43984,
+     "restartRuns": 3,
+     "firstEvals": 32304,
+     "annealBetterThanRestarts": 5,
+     "annealWorseThanRestarts": 15,
+     "annealBetterThanFirst": 11,
+     "annealWorseThanFirst": 9,
+     "restartsBetterThanFirst": 11,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 100000
+    },
+    {
+     "budget": 400000,
+     "first": 43965,
+     "restarts": 43965,
+     "anneal": 43967,
+     "restartRuns": 12,
+     "firstEvals": 32304,
+     "annealBetterThanRestarts": 9,
+     "annealWorseThanRestarts": 8,
+     "annealBetterThanFirst": 17,
+     "annealWorseThanFirst": 2,
+     "restartsBetterThanFirst": 15,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 400000
+    }
+   ]
+  },
+  "holdout": {
+   "route": [
+    {
+     "budget": 1000000,
+     "first": 14439,
+     "restarts": 14183,
+     "anneal": 13491,
+     "restartRuns": 9,
+     "firstEvals": 118320,
+     "annealBetterThanRestarts": 20,
+     "annealWorseThanRestarts": 0,
+     "annealBetterThanFirst": 20,
+     "annealWorseThanFirst": 0,
+     "restartsBetterThanFirst": 16,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 1000000
+    }
+   ],
+   "assign": [
+    {
+     "budget": 100000,
+     "first": 47341,
+     "restarts": 47332,
+     "anneal": 47362,
+     "restartRuns": 3,
+     "firstEvals": 31862,
+     "annealBetterThanRestarts": 8,
+     "annealWorseThanRestarts": 11,
+     "annealBetterThanFirst": 10,
+     "annealWorseThanFirst": 9,
+     "restartsBetterThanFirst": 13,
+     "restartsWorseThanFirst": 0,
+     "annealEvals": 100000
+    }
+   ]
+  }
+ },
+ "sweeps": {
+  "route": {
+   "budget": 1000000,
+   "base": {
+    "tag": "exp",
+    "median": 13524,
+    "better": 0,
+    "worse": 0,
+    "lastWorse": 16,
+    "lastGap": 10,
+    "t0": 4516943,
+    "t1": 238313
+   },
+   "linear": {
+    "tag": "lin",
+    "median": 13592,
+    "better": 9,
+    "worse": 11,
+    "lastWorse": 14,
+    "lastGap": 8,
+    "t0": 4516943,
+    "t1": 238313
+   },
+   "t0": [
+    {
+     "tag": "t0x6",
+     "median": 13943,
+     "better": 2,
+     "worse": 18,
+     "lastWorse": 19,
+     "lastGap": 6,
+     "t0": 271016,
+     "t1": 238313
+    },
+    {
+     "tag": "t0x25",
+     "median": 13641,
+     "better": 11,
+     "worse": 9,
+     "lastWorse": 18,
+     "lastGap": 12,
+     "t0": 1129235,
+     "t1": 238313
+    },
+    {
+     "tag": "exp",
+     "median": 13524,
+     "better": 0,
+     "worse": 0,
+     "lastWorse": 16,
+     "lastGap": 10,
+     "t0": 4516943,
+     "t1": 238313
+    },
+    {
+     "tag": "t0x400",
+     "median": 13578,
+     "better": 6,
+     "worse": 14,
+     "lastWorse": 15,
+     "lastGap": 6,
+     "t0": 18067772,
+     "t1": 238313
+    },
+    {
+     "tag": "t0x1600",
+     "median": 13670,
+     "better": 3,
+     "worse": 17,
+     "lastWorse": 13,
+     "lastGap": 2,
+     "t0": 72271088,
+     "t1": 238313
+    }
+   ],
+   "t1": [
+    {
+     "tag": "t1x6",
+     "median": 13589,
+     "better": 6,
+     "worse": 14,
+     "lastWorse": 1,
+     "lastGap": 0,
+     "t0": 4516943,
+     "t1": 14298
+    },
+    {
+     "tag": "t1x25",
+     "median": 13628,
+     "better": 11,
+     "worse": 9,
+     "lastWorse": 9,
+     "lastGap": 0,
+     "t0": 4516943,
+     "t1": 59578
+    },
+    {
+     "tag": "exp",
+     "median": 13524,
+     "better": 0,
+     "worse": 0,
+     "lastWorse": 16,
+     "lastGap": 10,
+     "t0": 4516943,
+     "t1": 238313
+    },
+    {
+     "tag": "t1x400",
+     "median": 13908,
+     "better": 2,
+     "worse": 18,
+     "lastWorse": 20,
+     "lastGap": 188,
+     "t0": 4516943,
+     "t1": 953252
+    },
+    {
+     "tag": "t1x1600",
+     "median": 21968,
+     "better": 0,
+     "worse": 20,
+     "lastWorse": 20,
+     "lastGap": 2681,
+     "t0": 4516943,
+     "t1": 3813008
+    }
+   ],
+   "rate": [
+    {
+     "tag": "r30",
+     "median": 13687,
+     "better": 6,
+     "worse": 14,
+     "lastWorse": 18,
+     "lastGap": 12,
+     "t0": 1258292,
+     "t1": 238313
+    },
+    {
+     "tag": "exp",
+     "median": 13524,
+     "better": 0,
+     "worse": 0,
+     "lastWorse": 16,
+     "lastGap": 10,
+     "t0": 4516943,
+     "t1": 238313
+    },
+    {
+     "tag": "r300",
+     "median": 13568,
+     "better": 6,
+     "worse": 14,
+     "lastWorse": 17,
+     "lastGap": 6,
+     "t0": 16283769,
+     "t1": 238313
+    },
+    {
+     "tag": "r500",
+     "median": 13628,
+     "better": 5,
+     "worse": 15,
+     "lastWorse": 16,
+     "lastGap": 10,
+     "t0": 35266393,
+     "t1": 238313
+    }
+   ]
+  },
+  "assign": {
+   "budget": 100000,
+   "base": {
+    "tag": "exp",
+    "median": 43984,
+    "better": 0,
+    "worse": 0,
+    "lastWorse": 12,
+    "lastGap": 1,
+    "t0": 918977,
+    "t1": 76960
+   },
+   "linear": {
+    "tag": "lin",
+    "median": 44037,
+    "better": 0,
+    "worse": 20,
+    "lastWorse": 13,
+    "lastGap": 1,
+    "t0": 918977,
+    "t1": 76960
+   },
+   "t0": [
+    {
+     "tag": "t0x6",
+     "median": 43985,
+     "better": 12,
+     "worse": 8,
+     "lastWorse": 14,
+     "lastGap": 2,
+     "t0": 55138,
+     "t1": 55138
+    },
+    {
+     "tag": "t0x25",
+     "median": 43992,
+     "better": 15,
+     "worse": 3,
+     "lastWorse": 16,
+     "lastGap": 3,
+     "t0": 229744,
+     "t1": 76960
+    },
+    {
+     "tag": "exp",
+     "median": 43984,
+     "better": 0,
+     "worse": 0,
+     "lastWorse": 12,
+     "lastGap": 1,
+     "t0": 918977,
+     "t1": 76960
+    },
+    {
+     "tag": "t0x400",
+     "median": 44003,
+     "better": 5,
+     "worse": 15,
+     "lastWorse": 13,
+     "lastGap": 1,
+     "t0": 3675908,
+     "t1": 76960
+    },
+    {
+     "tag": "t0x1600",
+     "median": 44012,
+     "better": 3,
+     "worse": 17,
+     "lastWorse": 14,
+     "lastGap": 3,
+     "t0": 14703632,
+     "t1": 76960
+    }
+   ],
+   "t1": [
+    {
+     "tag": "t1x6",
+     "median": 43951,
+     "better": 17,
+     "worse": 3,
+     "lastWorse": 0,
+     "lastGap": 0,
+     "t0": 918977,
+     "t1": 4617
+    },
+    {
+     "tag": "t1x25",
+     "median": 43950,
+     "better": 13,
+     "worse": 6,
+     "lastWorse": 3,
+     "lastGap": 0,
+     "t0": 918977,
+     "t1": 19240
+    },
+    {
+     "tag": "exp",
+     "median": 43984,
+     "better": 0,
+     "worse": 0,
+     "lastWorse": 12,
+     "lastGap": 1,
+     "t0": 918977,
+     "t1": 76960
+    },
+    {
+     "tag": "t1x400",
+     "median": 44120,
+     "better": 0,
+     "worse": 20,
+     "lastWorse": 20,
+     "lastGap": 52,
+     "t0": 918977,
+     "t1": 307840
+    },
+    {
+     "tag": "t1x1600",
+     "median": 44660,
+     "better": 0,
+     "worse": 20,
+     "lastWorse": 20,
+     "lastGap": 344,
+     "t0": 918977,
+     "t1": 918977
+    }
+   ],
+   "rate": [
+    {
+     "tag": "r30",
+     "median": 43966,
+     "better": 15,
+     "worse": 5,
+     "lastWorse": 16,
+     "lastGap": 3,
+     "t0": 301552,
+     "t1": 76960
+    },
+    {
+     "tag": "exp",
+     "median": 43984,
+     "better": 0,
+     "worse": 0,
+     "lastWorse": 12,
+     "lastGap": 1,
+     "t0": 918977,
+     "t1": 76960
+    },
+    {
+     "tag": "r300",
+     "median": 43994,
+     "better": 5,
+     "worse": 14,
+     "lastWorse": 13,
+     "lastGap": 2,
+     "t0": 3391140,
+     "t1": 76960
+    },
+    {
+     "tag": "r500",
+     "median": 43977,
+     "better": 3,
+     "worse": 17,
+     "lastWorse": 11,
+     "lastGap": 2,
+     "t0": 7997614,
+     "t1": 76960
+    }
+   ]
+  }
+ },
+ "trace": {
+  "route": {
+   "up": [
+    1910503,
+    1977054,
+    1986527,
+    1991947,
+    1995047,
+    1996822,
+    1997934,
+    1998525,
+    1998885,
+    1999070
+   ],
+   "taken": [
+    32296,
+    17694,
+    10094,
+    5796,
+    3415,
+    2077,
+    1332,
+    868,
+    582,
+    389
+   ]
+  },
+  "assign": {
+   "up": [
+    144474,
+    186954,
+    190894,
+    193672,
+    195619,
+    197186,
+    198099,
+    198596,
+    199021,
+    199286
+   ],
+   "taken": [
+    13539,
+    12109,
+    8258,
+    5541,
+    3616,
+    2313,
+    1430,
+    963,
+    605,
+    400
+   ]
+  }
+ },
+ "schema": 1,
+ "hill": {
+  "route": {
+   "first": {
+    "evals": 117861,
+    "applies": 707,
+    "cost": 14500
+   },
+   "best": {
+    "evals": 4477500,
+    "applies": 224,
+    "cost": 14307
+   },
+   "firstBetter": 7,
+   "firstWorse": 13
+  },
+  "assign": {
+   "first": {
+    "evals": 32304,
+    "applies": 224,
+    "cost": 43965
+   },
+   "best": {
+    "evals": 542516,
+    "applies": 75,
+    "cost": 44016
+   },
+   "firstBetter": 10,
+   "firstWorse": 10
+  }
+ },
+ "hand": {
+  "start": 42,
+  "first": {
+   "cost": 28,
+   "evals": 26,
+   "order": [
+    5,
+    3,
+    1,
+    0,
+    2,
+    4,
+    6
+   ],
+   "path": [
+    [
+     0,
+     1,
+     -4,
+     38,
+     [
+      1,
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+     ]
+    ],
+    [
+     0,
+     2,
+     -2,
+     36,
+     [
+      2,
+      0,
+      1,
+      3,
+      4,
+      5,
+      6
+     ]
+    ],
+    [
+     0,
+     3,
+     -2,
+     34,
+     [
+      3,
+      1,
+      0,
+      2,
+      4,
+      5,
+      6
+     ]
+    ],
+    [
+     0,
+     4,
+     -3,
+     31,
+     [
+      4,
+      2,
+      0,
+      1,
+      3,
+      5,
+      6
+     ]
+    ],
+    [
+     0,
+     5,
+     -3,
+     28,
+     [
+      5,
+      3,
+      1,
+      0,
+      2,
+      4,
+      6
+     ]
+    ]
+   ]
+  },
+  "best": {
+   "cost": 26,
+   "evals": 105,
+   "order": [
+    0,
+    2,
+    4,
+    6,
+    5,
+    3,
+    1
+   ]
+  },
+  "L": 28,
+  "neighbors": [
+   {
+    "a": 0,
+    "b": 1,
+    "delta": 2,
+    "after": 28
+   },
+   {
+    "a": 0,
+    "b": 2,
+    "delta": 6,
+    "after": 28
+   },
+   {
+    "a": 0,
+    "b": 3,
+    "delta": 6,
+    "after": 28
+   },
+   {
+    "a": 0,
+    "b": 4,
+    "delta": 2,
+    "after": 28
+   },
+   {
+    "a": 0,
+    "b": 5,
+    "delta": 3,
+    "after": 28
+   },
+   {
+    "a": 0,
+    "b": 6,
+    "delta": 0,
+    "after": 28
+   },
+   {
+    "a": 1,
+    "b": 2,
+    "delta": 4,
+    "after": 28
+   },
+   {
+    "a": 1,
+    "b": 3,
+    "delta": 12,
+    "after": 28
+   },
+   {
+    "a": 1,
+    "b": 4,
+    "delta": 8,
+    "after": 26
+   },
+   {
+    "a": 1,
+    "b": 5,
+    "delta": 6,
+    "after": 26
+   },
+   {
+    "a": 1,
+    "b": 6,
+    "delta": 2,
+    "after": 26
+   },
+   {
+    "a": 2,
+    "b": 3,
+    "delta": 10,
+    "after": 26
+   },
+   {
+    "a": 2,
+    "b": 4,
+    "delta": 8,
+    "after": 32
+   },
+   {
+    "a": 2,
+    "b": 5,
+    "delta": 10,
+    "after": 26
+   },
+   {
+    "a": 2,
+    "b": 6,
+    "delta": 2,
+    "after": 26
+   },
+   {
+    "a": 3,
+    "b": 4,
+    "delta": 4,
+    "after": 26
+   },
+   {
+    "a": 3,
+    "b": 5,
+    "delta": 12,
+    "after": 26
+   },
+   {
+    "a": 3,
+    "b": 6,
+    "delta": 2,
+    "after": 26
+   },
+   {
+    "a": 4,
+    "b": 5,
+    "delta": 10,
+    "after": 29
+   },
+   {
+    "a": 4,
+    "b": 6,
+    "delta": 8,
+    "after": 29
+   },
+   {
+    "a": 5,
+    "b": 6,
+    "delta": 3,
+    "after": 29
+   }
+  ],
+  "ups": [
+   2,
+   6,
+   6,
+   2,
+   3,
+   4,
+   12,
+   8,
+   6,
+   2,
+   10,
+   8,
+   10,
+   2,
+   4,
+   12,
+   2,
+   10,
+   8,
+   3
+  ],
+  "mean": {
+   "1": 44102462,
+   "2": 149561875,
+   "3": 248062413,
+   "4": 329336499,
+   "6": 461376230,
+   "10": 628528412
+  },
+  "rate": {
+   "100": 104423,
+   "300": 254201
+  },
+  "sa": [
+   [
+    1,
+    0,
+    2,
+    6,
+    128,
+    145315125,
+    111337881,
+    1,
+    34,
+    28
+   ],
+   [
+    2,
+    2,
+    6,
+    2,
+    42,
+    557049905,
+    851546713,
+    0,
+    34,
+    28
+   ],
+   [
+    3,
+    1,
+    6,
+    6,
+    128,
+    145315125,
+    161059326,
+    0,
+    34,
+    28
+   ],
+   [
+    4,
+    3,
+    6,
+    -8,
+    0,
+    0,
+    0,
+    1,
+    26,
+    26
+   ],
+   [
+    5,
+    1,
+    3,
+    10,
+    213,
+    38504652,
+    401436314,
+    0,
+    26,
+    26
+   ],
+   [
+    6,
+    0,
+    1,
+    2,
+    42,
+    557049905,
+    747496399,
+    0,
+    26,
+    26
+   ],
+   [
+    7,
+    5,
+    6,
+    4,
+    85,
+    284513234,
+    675289556,
+    0,
+    26,
+    26
+   ],
+   [
+    8,
+    4,
+    5,
+    10,
+    213,
+    38504652,
+    541818911,
+    0,
+    26,
+    26
+   ],
+   [
+    9,
+    2,
+    4,
+    8,
+    170,
+    75388478,
+    1002757980,
+    0,
+    26,
+    26
+   ],
+   [
+    10,
+    1,
+    5,
+    10,
+    213,
+    38504652,
+    821005102,
+    0,
+    26,
+    26
+   ]
+  ]
+ },
+ "mistakes": {
+  "clean": {
+   "certified": 20,
+   "improvingLeft": 0,
+   "frequencyAtOne": 73808,
+   "bestMismatch": 0,
+   "hotRuns": 20,
+   "endTemperature": {
+    "10000": 198556,
+    "100000": 198556,
+    "1000000": 198556
+   },
+   "routeCost": 13524
+  },
+  "early-optimum": {
+   "certified": 20,
+   "improvingLeft": 19,
+   "frequencyAtOne": 73808,
+   "bestMismatch": 0,
+   "hotRuns": 20,
+   "endTemperature": {
+    "10000": 198556,
+    "100000": 198556,
+    "1000000": 198556
+   },
+   "routeCost": 13524
+  },
+  "equal-moves": {
+   "certified": 0,
+   "improvingLeft": 8,
+   "frequencyAtOne": 73808,
+   "bestMismatch": 0,
+   "hotRuns": 20,
+   "endTemperature": {
+    "10000": 198556,
+    "100000": 198556,
+    "1000000": 198556
+   },
+   "routeCost": 13524
+  },
+  "random-bits": {
+   "certified": 20,
+   "improvingLeft": 0,
+   "frequencyAtOne": 37067,
+   "bestMismatch": 0,
+   "hotRuns": 15,
+   "endTemperature": {
+    "10000": 198556,
+    "100000": 198556,
+    "1000000": 198556
+   },
+   "routeCost": 13503
+  },
+  "no-best": {
+   "certified": 20,
+   "improvingLeft": 0,
+   "frequencyAtOne": 73808,
+   "bestMismatch": 20,
+   "hotRuns": 20,
+   "endTemperature": {
+    "10000": 198556,
+    "100000": 198556,
+    "1000000": 198556
+   },
+   "routeCost": 13524
+  },
+  "schedule-constant": {
+   "certified": 20,
+   "improvingLeft": 0,
+   "frequencyAtOne": 73808,
+   "bestMismatch": 0,
+   "hotRuns": 20,
+   "endTemperature": {
+    "10000": 10843573,
+    "100000": 198556,
+    "1000000": 31
+   },
+   "routeCost": 14082
+  }
+ },
+ "accuracy": {
+  "table": "abs error < 1.3e-6 (worst 3.38e-08)",
+  "frequency": [
+   [
+    1,
+    200000
+   ],
+   [
+    25,
+    155952
+   ],
+   [
+    50,
+    121406
+   ],
+   [
+    100,
+    73374
+   ],
+   [
+    200,
+    27040
+   ],
+   [
+    300,
+    9884
+   ],
+   [
+    500,
+    1234
+   ]
+  ]
+ },
+ "rule": "한쪽이 15 / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
+ "problems": {
+  "route": "N=200, 좌표 0..999, 맨해튼 거리 합, 구간 뒤집기",
+  "assign": "N=120, M=8, K=18, 부하 제곱합/100 + 추가 비용, 옮기기+맞바꾸기"
+ },
+ "plan": {
+  "r0": 100,
+  "r1": 5,
+  "sample": 2000,
+  "stage": "1/32"
+ }
+}

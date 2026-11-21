@@ -339,19 +339,20 @@ def hand_first(start):
 
 
 def hand_best(start):
-    order, cost, evals = tuple(start), hand_cost(start), 0
+    order, cost, evals, path = tuple(start), hand_cost(start), 0, []
     while True:
-        best_d, best_q = 0, None
+        best_d, best_q, best_ab = 0, None, None
         for a in range(7):
             for b in range(a + 1, 7):
                 evals += 1
                 q = rev(order, a, b)
                 d = hand_cost(q) - cost
                 if d < best_d:
-                    best_d, best_q = d, q
+                    best_d, best_q, best_ab = d, q, (a, b)
         if best_q is None:
-            return order, cost, evals
+            return order, cost, evals, path
         order, cost = best_q, cost + best_d
+        path.append((best_ab[0], best_ab[1], best_d, cost, order))
 
 
 def hand_sa(seed: int, steps: int, t: int):
@@ -393,7 +394,7 @@ HAND_SA_SEED, HAND_SA_STEPS, HAND_SA_T = 417, 10, 3
 
 def hand_data():
     first_order, first_cost, first_evals, first_path = hand_first(range(7))
-    best_order, best_cost, best_evals = hand_best(range(7))
+    best_order, best_cost, best_evals, best_path = hand_best(range(7))
     nb = []
     for a in range(7):
         for b in range(a + 1, 7):
@@ -401,9 +402,13 @@ def hand_data():
             d = hand_cost(q) - hand_cost(HAND_L)
             nb.append({"a": a, "b": b, "delta": d, "after": hand_first(q)[1]})
     ups = [e["delta"] for e in nb if e["delta"] > 0]
-    return {"start": hand_cost(range(7)), "first": {"cost": first_cost, "evals": first_evals, "order": list(first_order),
-            "path": [[a, b, d, c, list(o)] for a, b, d, c, o in first_path]},
-            "best": {"cost": best_cost, "evals": best_evals, "order": list(best_order)},
+    via_start = rev(HAND_L, 1, 6)
+    via_order, via_cost, via_evals, via_path = hand_first(via_start)
+    pack = lambda path: [[a, b, d, c, list(o)] for a, b, d, c, o in path]
+    return {"start": hand_cost(range(7)),
+            "first": {"cost": first_cost, "evals": first_evals, "order": list(first_order), "path": pack(first_path)},
+            "best": {"cost": best_cost, "evals": best_evals, "order": list(best_order), "path": pack(best_path)},
+            "via": {"start": hand_cost(via_start), "cost": via_cost, "evals": via_evals, "path": pack(via_path)},
             "L": hand_cost(HAND_L), "neighbors": nb, "ups": ups,
             "mean": {str(t): py_mean_accept(ups, t * TS) for t in (1, 2, 3, 4, 6, 10)},
             "rate": {str(r): py_temp_for_rate(ups, r) for r in (100, 300)},
@@ -416,14 +421,17 @@ def check_hand(rows):
     for r in rows:
         by[r[1]].append(r[2:])
     assert int(by["start"][0][0]) == h["start"] == 42
-    for got, want in zip(by["first"], h["first"]["path"]):
-        assert [int(x) for x in got[:4]] == want[:4] and [int(x) for x in got[4:]] == want[4], (got, want)
-    assert len(by["first"]) == len(h["first"]["path"])
-    assert [int(x) for x in by["firstend"][0]] == [h["first"]["cost"], h["first"]["evals"]]
-    cf = [int(x) for x in by["climbFirst"][0]]
-    assert cf[:3] == [h["first"]["cost"], h["first"]["evals"], 1] and cf[3:] == h["first"]["order"], "lesson climbFirst vs the Python port"
-    cb = [int(x) for x in by["climbBest"][0]]
-    assert cb[:3] == [h["best"]["cost"], h["best"]["evals"], 1] and cb[3:] == h["best"]["order"], "lesson climbBest vs the Python port"
+    for tag in ("first", "best", "via"):
+        got_path = by[tag]
+        want_path = h[tag]["path"]
+        assert len(got_path) == len(want_path), (tag, got_path, want_path)
+        for got, want in zip(got_path, want_path):
+            assert [int(x) for x in got[:3]] == [want[0], want[1], want[3]] and [int(x) for x in got[3:]] == want[4], (tag, got, want)
+    for tag in ("first", "best"):
+        end = [int(x) for x in by[tag + "end"][0]]
+        assert end == [h[tag]["cost"], h[tag]["evals"], 1], (tag, end)
+    assert int(by["viastart"][0][0]) == h["via"]["start"]
+    assert [int(x) for x in by["viaend"][0]] == [h["via"]["cost"], h["via"]["evals"], 1]
     assert [int(x) for x in by["L"][0]] == [h["L"], 0], "L must have no improving move"
     for got, want in zip(by["nb"], h["neighbors"]):
         assert [int(x) for x in got] == [want["a"], want["b"], want["delta"], want["after"]], (got, want)
@@ -688,7 +696,8 @@ def hand_rows(h: dict) -> dict[str, list[str]]:
     for a in range(6):
         cells = []
         for b in range(1, 7):
-            cells.append(f"{nb[(a, b)]['delta']:+d}" if b > a else "")
+            d = nb[(a, b)]["delta"]
+            cells.append(("+%d" % d if d > 0 else str(d)) if b > a else "")
         rows["grid"].append(f"| {a} | " + " | ".join(cells) + " |")
     rows["after"] = []
     for a in range(6):
@@ -703,6 +712,9 @@ def hand_rows(h: dict) -> dict[str, list[str]]:
             rows["sa"].append(f"| {ev} | ({a}, {b}) | +{d} | {d / HAND_SA_T:.2f} | {q} | {tab / ONE:.3f} | {rnd / ONE:.3f} | {'받음' if take else '거절'} | {cost} | {best} |")
         else:
             rows["sa"].append(f"| {ev} | ({a}, {b}) | {d} | - | - | - | - | 받음 | {cost} | {best} |")
+    for tag in ("first", "best", "via"):
+        rows[f"path_{tag}"] = [f"| {i + 1} | ({a}, {b}) | {d} | {cost} | {' '.join(map(str, order))} |"
+                               for i, (a, b, d, cost, order) in enumerate(h[tag]["path"])]
     rows["mean"] = [f"| {t} | {h['mean'][str(t)] / ONE * 100:.1f}% |" for t in (1, 2, 3, 4, 6, 10)]
     return rows
 

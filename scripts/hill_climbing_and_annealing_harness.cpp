@@ -315,37 +315,47 @@ static void loadHand(const int* order) {
     route.n = 7;
     for (int i = 0; i < 7; ++i) { route.px[i] = pts[i][0]; route.py[i] = pts[i][1]; route.p[i] = order[i]; }
 }
+// logs every applied move of the 7-point examples
+struct HRoute : Route {
+    const char* tag;
+    void apply(const Move& mv) {
+        Route::apply(mv);
+        if (tag) printf("hand %s %d %d %lld %d %d %d %d %d %d %d\n", tag, mv.a, mv.b, fullCost(), p[0], p[1], p[2], p[3], p[4], p[5], p[6]);
+    }
+};
+static HRoute hroute;
 static void modeHand() {
     buildAcc();
     const int id[7] = {0, 1, 2, 3, 4, 5, 6};
     const int L[7] = {5, 3, 1, 0, 2, 4, 6};
     loadHand(id);
     printf("hand start %lld\n", route.fullCost());
-    // first improvement from the number order, step by step
+    // the lesson's own climbs from the number order, logged move by move through a wrapper that sees every apply
     {
-        const ll total = moveCount(route);
-        ll idx = 0, quiet = 0, cost = route.fullCost(), evals = 0;
-        while (quiet < total) {
-            Move mv;
-            if (nthMove(route, idx, mv)) {
-                ++evals;
-                const ll d = route.delta(mv);
-                if (d < 0) { route.apply(mv); cost += d; quiet = -1; printf("hand first %d %d %lld %lld %d %d %d %d %d %d %d\n", mv.a, mv.b, d, cost, route.p[0], route.p[1], route.p[2], route.p[3], route.p[4], route.p[5], route.p[6]); }
-            }
-            ++quiet;
-            if (++idx == total) idx = 0;
+        for (int method = 0; method <= 1; ++method) {
+            const int* base = id;
+            hroute.n = 7;
+            for (int i = 0; i < 7; ++i) { hroute.px[i] = route.px[i]; hroute.py[i] = route.py[i]; hroute.p[i] = base[i]; }
+            hroute.tag = method == 0 ? "first" : "best";
+            ll evals = 0; bool opt;
+            const ll c = method == 0 ? climbFirst(hroute, hroute.fullCost(), 1000000, evals, opt) : climbBest(hroute, hroute.fullCost(), 1000000, evals, opt);
+            printf("hand %send %lld %lld %d\n", hroute.tag, c, evals, (int)opt);
         }
-        printf("hand firstend %lld %lld\n", cost, evals);
+        hroute.tag = nullptr;
     }
-    loadHand(id);
-    {   // the lesson's own loops end at the same place
+    // where the first improvement goes from the solution one worsening move away from L (the path of the move (1, 6))
+    {
+        loadHand(L);
+        hroute.n = 7;
+        for (int i = 0; i < 7; ++i) { hroute.px[i] = route.px[i]; hroute.py[i] = route.py[i]; hroute.p[i] = L[i]; }
+        Move m; m.kind = 0; m.a = 1; m.b = 6; m.old = 0;
+        hroute.Route::apply(m);
+        hroute.tag = "via";
         ll evals = 0; bool opt;
-        const ll c1 = climbFirst(route, route.fullCost(), 1000000, evals, opt);
-        printf("hand climbFirst %lld %lld %d %d %d %d %d %d %d %d\n", c1, evals, (int)opt, route.p[0], route.p[1], route.p[2], route.p[3], route.p[4], route.p[5], route.p[6]);
-        loadHand(id);
-        ll e2 = 0;
-        const ll c2 = climbBest(route, route.fullCost(), 1000000, e2, opt);
-        printf("hand climbBest %lld %lld %d %d %d %d %d %d %d %d\n", c2, e2, (int)opt, route.p[0], route.p[1], route.p[2], route.p[3], route.p[4], route.p[5], route.p[6]);
+        printf("hand viastart %lld\n", hroute.fullCost());
+        const ll c = climbFirst(hroute, hroute.fullCost(), 1000000, evals, opt);
+        printf("hand viaend %lld %lld %d\n", c, evals, (int)opt);
+        hroute.tag = nullptr;
     }
     // the neighbourhood of the first-improvement local optimum L and where each worsening move leads under first improvement
     loadHand(L);
