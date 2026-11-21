@@ -985,62 +985,72 @@
     "mirrorFound": 0,
     "mirrorFirstMedian": 0,
     "peekFound": 0,
-    "invalidRuns": 0
+    "invalidRuns": 0,
+    "scoreMedian": 259
    },
    "online": {
     "mirrorFound": 0,
     "mirrorFirstMedian": 0,
     "peekFound": 0,
-    "invalidRuns": 0
+    "invalidRuns": 0,
+    "scoreMedian": 44141
    }
   },
   "grid-unknown-zero": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 0,
    "peekFound": 0,
-   "invalidRuns": 0
+   "invalidRuns": 0,
+   "scoreMedian": 229
   },
   "grid-double-mean": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 1,
    "peekFound": 0,
-   "invalidRuns": 0
+   "invalidRuns": 0,
+   "scoreMedian": 259
   },
   "grid-stepped": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 0,
    "peekFound": 0,
-   "invalidRuns": 0
+   "invalidRuns": 0,
+   "scoreMedian": 18
   },
   "grid-no-observe": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 1,
    "peekFound": 0,
-   "invalidRuns": 0
+   "invalidRuns": 0,
+   "scoreMedian": 10
   },
   "grid-peek": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 0,
    "peekFound": 20,
-   "invalidRuns": 0
+   "invalidRuns": 0,
+   "scoreMedian": 280
   },
   "online-stale-count": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 1,
    "peekFound": 0,
-   "invalidRuns": 1
+   "invalidRuns": 1,
+   "scoreMedian": 44141
   },
   "online-double-sum": {
    "mirrorFound": 20,
    "mirrorFirstMedian": 1,
    "peekFound": 0,
-   "invalidRuns": 0
+   "invalidRuns": 0,
+   "scoreMedian": 47545
   },
   "online-peek": {
    "mirrorFound": 0,
    "mirrorFirstMedian": 0,
    "peekFound": 20,
-   "invalidRuns": 0
+   "invalidRuns": 0,
+   "scoreMedian": 44079
   }
  },
  "rule": "한쪽이 15 / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",

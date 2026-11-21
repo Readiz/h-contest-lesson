@@ -94,7 +94,7 @@ static void modeRef() {
         const int rad = cfg == 0 ? 2 : cfg == 1 ? 1 : cfg == 2 ? 99 : 0;
         for (int s = 1; s <= 20; ++s) {
             genGrid(gridJ, s, 20, 20, 60, rad, 6);
-            gridP.est100 = cfg == 3 ? 0 : -1; gridP.horizon = 12; gridP.period = cfg == 1 ? 3 : 1; gridP.width = 16;
+            gridP.est100 = cfg == 3 ? 0 : -1; gridP.horizon = 12; gridP.period = cfg == 1 ? 12 : 1; gridP.width = 16;
             int bad = -2;
             const ll score = playGrid(gridJ, gridM, gridP, mv, &bad);
             const ll ref = refGridScore(gridJ, mv);

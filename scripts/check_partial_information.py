@@ -500,8 +500,9 @@ def detect(rows) -> dict:
         found = sorted(b for b in bad if b >= 0)
         peek_fail = sum(r[4] == "0" and int(r[5]) >= 0 for r in sel)   # an invalid run has no decisions to compare
         invalid = sum(int(r[5]) < 0 for r in sel)
+        scores = [int(r[5]) for r in sel if int(r[5]) >= 0]
         out[which] = {"mirrorFound": len(found), "mirrorFirstMedian": med(found) if found else 0,
-                      "peekFound": peek_fail, "invalidRuns": invalid}
+                      "peekFound": peek_fail, "invalidRuns": invalid, "scoreMedian": med(scores) if scores else 0}
     return out
 
 
@@ -516,7 +517,7 @@ def run_mistakes(sn, workdir: Path) -> dict:
 def check_mistakes(m: dict) -> None:
     for which in ("grid", "online"):
         c = m["clean"][which]
-        assert c == {"mirrorFound": 0, "mirrorFirstMedian": 0, "peekFound": 0, "invalidRuns": 0}, (which, c)
+        assert {k: v for k, v in c.items() if k != "scoreMedian"} == {"mirrorFound": 0, "mirrorFirstMedian": 0, "peekFound": 0, "invalidRuns": 0}, (which, c)
     for name in ("grid-double-mean", "grid-stepped", "grid-no-observe", "online-stale-count", "online-double-sum"):
         assert m[name]["mirrorFound"] == 20, (name, m[name])
     assert m["grid-unknown-zero"]["mirrorFound"] >= 18, m["grid-unknown-zero"]
@@ -559,7 +560,8 @@ def table_rows(meas: dict) -> dict[str, list[str]]:
     c = g["cost"]
     rows["cost"] = [f"| 부분 정보(보이는 거리 2, 평균 추정) | {fmt(c['partial'])} |",
                     f"| 전체 정보 기준선(`planFull`, 폭 16) | {fmt(c['full16'])} |",
-                    f"| 전체 정보 − 부분 정보의 시드별 차이(10번째로 작은 값) | {fmt(c['loss'])} |"]
+                    f"| 전체 정보 − 부분 정보의 시드별 차이(10번째로 작은 값) | {fmt(c['loss'])} |",
+                    f"| 전체 정보가 더 나은 시드 / 부분 정보가 같거나 나은 시드 | {c['fullBetter']} / {c['partialAtLeastFull']} |"]
     rows["lesson5"] = [f"| 5번 강의의 `Beam`(합치기 포함), 폭 {w} | {fmt(v)} |" for w, v in g["lesson5"].items()]
     rows["density"] = []
     for e in g["density"]:
@@ -591,15 +593,16 @@ def hub_expected(meas: dict) -> list[tuple[str, str]]:
 
 
 def mistake_rows(m: dict) -> list[str]:
-    names = [("grid-unknown-zero", "격자: 모르는 칸을 0으로 읽음"), ("grid-double-mean", "격자: 다시 보인 칸을 평균에 또 더함"),
-             ("grid-stepped", "격자: 밟은 칸 표시를 빠뜨림"), ("grid-no-observe", "격자: 움직인 뒤 보기를 빠뜨림"),
-             ("grid-peek", "격자: 못 본 칸의 진짜 값을 읽음"), ("online-stale-count", "배정: 기계별 작업 수 갱신을 빠뜨림"),
+    names = [("clean-grid", "격자: 실수 없음(기준)"), ("grid-unknown-zero", "격자: 모르는 칸을 0으로 읽음"),
+             ("grid-double-mean", "격자: 다시 보인 칸을 평균에 또 더함"), ("grid-stepped", "격자: 밟은 칸 표시를 빠뜨림"),
+             ("grid-no-observe", "격자: 움직인 뒤 보기를 빠뜨림"), ("grid-peek", "격자: 못 본 칸의 진짜 값을 읽음"),
+             ("clean-online", "배정: 실수 없음(기준)"), ("online-stale-count", "배정: 기계별 작업 수 갱신을 빠뜨림"),
              ("online-double-sum", "배정: 도착한 길이를 두 번 더함"), ("online-peek", "배정: 앞으로 올 작업의 진짜 총 길이를 읽음")]
     rows = []
     for key, label in names:
-        e = m[key]
+        e = m["clean"]["grid"] if key == "clean-grid" else m["clean"]["online"] if key == "clean-online" else m[key]
         first = f"{e['mirrorFound']} / 20" + (f"(첫 어긋남 {e['mirrorFirstMedian']}번째)" if e["mirrorFound"] else "")
-        rows.append(f"| {label} | {first} | {e['peekFound']} / 20 | {e['invalidRuns']} / 20 |")
+        rows.append(f"| {label} | {first} | {e['peekFound']} / 20 | {e['invalidRuns']} / 20 | {fmt(e['scoreMedian'])} |")
     return rows
 
 
