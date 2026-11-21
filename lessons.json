@@ -2041,7 +2041,9 @@
         "neighborhood-and-delta",
         "cpp-common-library"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "candidate-and-time-budget"
+      ],
       "relatedLessons": [
         "placement-search",
         "assignment-with-routes",
@@ -2107,7 +2109,9 @@
         "complexity-input-size",
         "cpp-common-library"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "partial-information"
+      ],
       "relatedLessons": [
         "hill-climbing-and-annealing",
         "large-input-search",
