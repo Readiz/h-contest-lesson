@@ -4,10 +4,11 @@ returned paths, optima on small inputs, hand examples, common mistakes, measurem
 What runs:
   * every code block is extracted, rejected if it uses a header / STL / dynamic allocation, assembled with the
     `random`, `min-heap` and `sort` library blocks and compiled header-free with -Wall -Wextra -Werror -fsyntax-only;
-  * a harness (standard headers allowed there) including the lesson code runs under ASan/UBSan: 198 beam runs are
-    compared with a reference beam written for this check (plain vectors, exact state comparison, full copies),
-    `mergeBySort` against `mergeSame`, the state keys against exact state identity on small inputs, the lower bound
-    `sum of nn` against the best completion, and the lesson's replay functions against independent ones;
+  * a harness (standard headers allowed there) includes the lesson code: 198 beam runs are compared with a
+    reference beam written for this check (plain vectors, exact state comparison, full copies, so also the real
+    copy counts), `mergeBySort` against `mergeSame`, the state keys against exact state identity on small inputs,
+    the lower bound `sum of nn` against the best completion, and the lesson's replay functions against independent
+    ones; a smaller battery of the same paths runs under ASan/UBSan;
   * the instance generators, the optima of the small inputs and the hand examples are recomputed in Python,
     independently of the lesson code;
   * the common mistakes are injected into the lesson code and must be detected;
@@ -297,7 +298,7 @@ def hand_tables() -> dict:
     rows.append(["평가 횟수"] + [str(res[w][2]) for w in (1, 2, 3)])
     rows.append(["최고 점수"] + [str(res[w][0]) for w in (1, 2, 3)])
     out["hand-grid"] = rows
-    full = grid_beam(HAND_GRID, 3, 3, 4, 100)
+    full = grid_beam(HAND_GRID, 3, 3, 4, 100)   # wide enough that nothing is dropped: the full search
     est = grid_beam(HAND_GRID, 3, 3, 4, 1, est=1, scale=2, radius=1)
     rows = []
     for d, (beam, cands, top) in enumerate(est[3]):
@@ -315,7 +316,6 @@ def hand_tables() -> dict:
         rows.append([str(d + 1), ", ".join(f"{pstr(cands[i]['path'])} : {cands[i]['cost']} + {cands[i]['rest']} = {-cands[i]['eval']}" for i in top)])
     out["hand-route"] = rows
     _, cands, top = r[2][3][3]
-    names = {}
     rows = []
     for i, c in enumerate(cands):
         if c["dead"]:
@@ -725,7 +725,7 @@ def table_rows(meas: dict) -> dict[str, list[str]]:
 
 
 def mistake_rows(m: dict) -> list[str]:
-    labels = {"key": "키에서 현재 칸 빠뜨림", "parent": "부모 번호 자리에 후보 번호 기록", "inplace": "부모 상태를 직접 고쳐 씀",
+    labels = {"key": "키에서 현재 칸·마지막 점 빠뜨림", "parent": "부모 번호 자리에 후보 번호 기록", "inplace": "부모 상태를 직접 고쳐 씀",
               "keepworse": "합칠 때 나쁜 쪽을 남김", "sign": "최소화 문제의 평가값 부호"}
     out = []
     for name, label in labels.items():
@@ -826,10 +826,12 @@ def main() -> None:
             san, fast = f_san.result(), f_fast.result()
             with ThreadPoolExecutor(max_workers=3) as runs:
                 r_gen = runs.submit(run, san, "gen")
-                r_correct = runs.submit(run, san, "correct")
+                r_memory = runs.submit(run, san, "memory")
+                r_correct = runs.submit(run, fast, "correct")
                 r_exp = runs.submit(run, fast, "exp")
                 r_hand = runs.submit(run, fast, "hand")
                 gen_rows, correct, exp_rows, hand_rows = r_gen.result(), r_correct.result(), r_exp.result(), r_hand.result()
+                memory = r_memory.result()
             mistakes = f_mut.result()
         n_gen = check_gen(gen_rows)
         c = {r[0]: [int(x) for x in r[1:]] for r in correct}
@@ -838,6 +840,7 @@ def main() -> None:
         assert c["merges"][1] == 0 and c["merges"][0] == 10 and c["merges"][2] > 10000, "mergeBySort must kill the same candidates as mergeSame"
         assert c["keys"][:2] == [0, 0] and c["keys"][2] > 100 and c["keys"][3] > 100, "state keys must match exact state identity"
         assert c["lowerbound"][1] == 0 and c["lowerbound"][2] > 0 and c["lowerbound"][0] == 20480, "the nn lower bound must not exceed the best completion"
+        assert memory == [["memory", "66", "0", "0", "0"]], f"the sanitizer build must run a clean battery: {memory}"
         n_hand = check_hand(hand_rows, tables)
         n_hand_text = check_hand_text(tables)
         facts = tables["facts"]
@@ -871,7 +874,7 @@ def main() -> None:
     stored = json.loads(DATA.read_text(encoding="utf-8"))
     assert stored == json.loads(json.dumps(meas)), "measurements.json differs from a fresh measurement (run with --output)"
     n_rows = check_text_tables(stored, mistakes)
-    print(f"beam-search ok: {len(BLOCKS)} code blocks, {n_gen} generated instances checked against Python, 198 beam runs equal to the reference beam, "
+    print(f"beam-search ok (sanitizer battery of 66 runs clean): {len(BLOCKS)} code blocks, {n_gen} generated instances checked against Python, 198 beam runs equal to the reference beam, "
           f"{c['keys'][2]} + {c['keys'][3]} states keyed, {c['lowerbound'][0]} states bounded, {n_small} small optima recomputed, "
           f"{n_hand} hand results + {n_hand_text} hand-table rows matched, 5 injected mistakes detected, {n_rows} table rows matched the measurements")
 

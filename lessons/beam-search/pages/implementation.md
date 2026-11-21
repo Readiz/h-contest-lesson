@@ -24,7 +24,7 @@
 
 | 이름 | 뜻 |
 | --- | --- |
-| `width` | 폭 `W` |
+| `width` | 폭 `W`. `WMAX` 이하여야 한다 |
 | `refineK` | 2단계 평가에 올릴 후보 수. `width`보다 크면 쓰고, 아니면 쓰지 않는다. `WMAX` 이하여야 한다 |
 | `quota` | 묶음(예: 후보가 가는 칸)마다 남길 후보의 상한. 0이면 쓰지 않는다. `QMAX = 8` 이하 |
 | `jitter` | 평가값에 `0 .. jitter − 1`의 무작위 값을 섞는다(평가값은 `jitter`배 해서 비교). 1이면 쓰지 않는다 |
@@ -409,7 +409,7 @@ void genRoute(Route& rt, unsigned long long seed, int n) {
 }
 ```
 
-실행 함수는 같은 시드를 입력 시드와 탐색 시드로 함께 씁니다. `Beam`은 크기가 큰 배열을 가지므로 전역 또는 정적 변수로 둡니다. `routeBeam`은 점 200개용이고, `routeSmallBeam`은 점 10개 이하의 작은 입력에서 폭을 상태 수(최대 약 1,260) 이상으로 줄 때 씁니다.
+실행 함수는 같은 시드를 입력 시드와 탐색 시드로 함께 씁니다. `Beam`은 크기가 큰 배열을 가지고 합치기 표(`hstamp`, `gstamp`)가 0으로 시작해야 하므로 전역 또는 정적 변수로 둡니다. `routeBeam`은 점 200개용이고, `routeSmallBeam`은 점 10개 이하의 작은 입력에서 폭을 상태 수(최대 약 1,260) 이상으로 줄 때 씁니다.
 
 ```cpp snippet=bs-run
 static Grid grid;

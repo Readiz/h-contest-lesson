@@ -303,10 +303,10 @@ static int diffRoute(B& beam, unsigned seed, int width, int refineK, int quota, 
 }
 
 // The whole battery of configurations the lesson claims to implement.
-static int diffBattery(int* runs) {
+static int diffBattery(int* runs, unsigned maxSeed) {
     int bad = 0;
     *runs = 0;
-    for (unsigned s = 1; s <= 3; ++s) {
+    for (unsigned s = 1; s <= maxSeed; ++s) {
         for (int est = 0; est <= 2; ++est) for (int width : {1, 3, 8}) {
             setGrid(s, 20, 20, 60, est, 8, 3);
             bad += diffGrid(s, width, 0, 1, true); ++*runs;
@@ -324,7 +324,7 @@ static int diffBattery(int* runs) {
         setGrid(s, 5, 5, 8, 2, 5, 4); bad += diffGrid(s, 1000, 0, 1, true); ++*runs;
         setGrid(s, 3, 3, 12, 1, 8, 1); bad += diffGrid(s, 5, 0, 1, true); ++*runs;
     }
-    for (unsigned s = 1; s <= 3; ++s) {
+    for (unsigned s = 1; s <= maxSeed; ++s) {
         for (int est = 0; est <= 1; ++est) {
             genRoute(route, s, 200); route.est = est;
             for (int width : {1, 3}) { bad += diffRoute(routeBeam, s, width, 0, 0, 1, true); ++*runs; }
@@ -522,10 +522,25 @@ static void modeMerges() {
     printf("merges %d %d %lld\n", sets, mismatch, dup);
 }
 
+// The same code paths on a smaller battery, for the sanitizer build (ASan/UBSan are slow).
+static void modeMemory() {
+    int runs = 0, sets = 0, mismatch = 0;
+    const int bad = diffBattery(&runs, 1);
+    ll gs, rs;
+    const int keys = keyCheckGrid(3, 3, 6, &gs) + keyCheckRoute(6, &rs);
+    ll dup = 0;
+    genRoute(route, 1, 200); route.est = 0; route.steps = 30;
+    setBeam(routeBeam, 64, 0, 0, 1, false);
+    hc::Random rng; rng.reset(1);
+    routeBeam.run(route, rng);
+    compareMerges(routeBeam, &sets, &mismatch, &dup);
+    printf("memory %d %d %d %d\n", runs, bad, keys, mismatch);
+}
+
 static void modeCorrect() {
     modeMerges();
     int runs = 0;
-    const int bad = diffBattery(&runs);
+    const int bad = diffBattery(&runs, 3);
     printf("diff %d %d\n", runs, bad);
     int replayBad = 0, replays = 0;                         // the lesson's own replay functions against the references written here
     for (unsigned s = 1; s <= 5; ++s) {
@@ -595,7 +610,7 @@ static int optimumHitsRoute(int est, bool merge) {      // N = 10, a beam wider 
 static void modeDetect() {
     int runs = 0;
     ll gs, rs;
-    const int bad = diffBattery(&runs);
+    const int bad = diffBattery(&runs, 3);
     const int keys = keyCheckGrid(3, 3, 6, &gs) + keyCheckRoute(6, &rs);
     printf("D diff %d %d\n", runs, bad);
     printf("D keys %d\n", keys);
@@ -696,6 +711,7 @@ int main(int argc, char** argv) {
     else if (mode == "correct") modeCorrect();
     else if (mode == "detect") modeDetect();
     else if (mode == "hand") modeHand();
+    else if (mode == "memory") modeMemory();
     else if (mode == "exp") modeExp();
     else { fprintf(stderr, "unknown mode\n"); return 1; }
     return 0;
