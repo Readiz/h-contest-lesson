@@ -1884,6 +1884,68 @@
         "modeling",
         "selection"
       ]
+    },
+    {
+      "lessonId": "hill-climbing-and-annealing",
+      "title": "언덕 오르기와 담금질",
+      "description": "좋아지는 이동만 받는 언덕 오르기(첫 개선과 최고 개선의 평가 횟수, 지역 최적), 나쁜 이동을 확률 exp(-Δ/T)로 받는 담금질, 시작·끝 온도를 이 문제의 변화량에서 정하는 절차, 온도 일정과 예산 묶기, 같은 평가 횟수에서의 재시작 비교, 최고해 보관, 표준 수학 함수 없이 구현한 수락 판정을 순서 문제와 배정 문제 두 유형으로 익힙니다.",
+      "summary": "첫 개선·최고 개선과 지역 최적, 정수 표로 구현한 수락 판정 exp(-Δ/T), 변화량 표본에서 온도 정하기, 지수·선형 일정, 재시작 대 담금질, 최고해 보관을 연습용 순서·배정 문제로 실험",
+      "order": 104,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "method",
+        "hill-climbing",
+        "simulated-annealing",
+        "local-search",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 100,
+      "prerequisites": [
+        "problem-modeling",
+        "construction-heuristics",
+        "neighborhood-and-delta",
+        "cpp-common-library"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "heuristic",
+        "assignment-local-search",
+        "testing-and-stress"
+      ],
+      "pages": [
+        {
+          "pageId": "idea",
+          "title": "원리와 손으로 따라가는 예",
+          "description": "지역 최적을 7개 점의 근방 전수로 보이고, 나쁜 이동을 받는 확률 exp(-Δ/T)의 움직임과 온도를 변화량에서 정하는 절차, 일정·재시작·최고해 보관을 손으로 따라갑니다.",
+          "order": 10,
+          "file": "pages/idea.md"
+        },
+        {
+          "pageId": "implementation",
+          "title": "구현: 탐색 틀과 두 문제 유형",
+          "description": "이동 번호 매기기, 첫 개선·최고 개선, 정수 표 수락 판정, 온도 일정, 담금질, 재시작, 온도 정하기를 문제와 무관한 틀로 두고 순서 틀과 배정 틀에서 채웁니다.",
+          "order": 20,
+          "file": "pages/implementation.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "실험과 점검",
+          "description": "첫 개선 대 최고 개선, 변화량 분포와 온도, 같은 평가 횟수에서의 언덕 오르기·재시작·담금질, 온도 범위와 일정 실험, 흔한 실수와 검사, 다른 문제에 옮길 때의 점검 목록과 적용 사례를 다룹니다.",
+          "order": 30,
+          "file": "pages/practice.md"
+        }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     }
   ]
 }
