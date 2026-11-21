@@ -402,6 +402,8 @@ def hand_data():
             d = hand_cost(q) - hand_cost(HAND_L)
             nb.append({"a": a, "b": b, "delta": d, "after": hand_first(q)[1]})
     ups = [e["delta"] for e in nb if e["delta"] > 0]
+    import itertools
+    optimum = min(hand_cost(o) for o in itertools.permutations(range(7)))
     via_start = rev(HAND_L, 1, 6)
     via_order, via_cost, via_evals, via_path = hand_first(via_start)
     pack = lambda path: [[a, b, d, c, list(o)] for a, b, d, c, o in path]
@@ -409,7 +411,7 @@ def hand_data():
             "first": {"cost": first_cost, "evals": first_evals, "order": list(first_order), "path": pack(first_path)},
             "best": {"cost": best_cost, "evals": best_evals, "order": list(best_order), "path": pack(best_path)},
             "via": {"start": hand_cost(via_start), "cost": via_cost, "evals": via_evals, "path": pack(via_path)},
-            "L": hand_cost(HAND_L), "neighbors": nb, "ups": ups,
+            "L": hand_cost(HAND_L), "optimum": optimum, "neighbors": nb, "ups": ups,
             "mean": {str(t): py_mean_accept(ups, t * TS) for t in (1, 2, 3, 4, 6, 10)},
             "rate": {str(r): py_temp_for_rate(ups, r) for r in (100, 300)},
             "sa": [list(r) for r in hand_sa(HAND_SA_SEED, HAND_SA_STEPS, HAND_SA_T * TS)]}
@@ -433,6 +435,9 @@ def check_hand(rows):
     assert int(by["viastart"][0][0]) == h["via"]["start"]
     assert [int(x) for x in by["viaend"][0]] == [h["via"]["cost"], h["via"]["evals"], 1]
     assert [int(x) for x in by["L"][0]] == [h["L"], 0], "L must have no improving move"
+    assert h["optimum"] == 26 and h["L"] == 28 and h["first"]["cost"] == 28 and h["best"]["cost"] == 26
+    assert h["neighbors"] and all(e["delta"] >= 0 for e in h["neighbors"]) and len(h["neighbors"]) == 21
+    assert collections.Counter(e["after"] for e in h["neighbors"]) == {28: 8, 26: 9, 29: 3, 32: 1}
     for got, want in zip(by["nb"], h["neighbors"]):
         assert [int(x) for x in got] == [want["a"], want["b"], want["delta"], want["after"]], (got, want)
     sa = [r for r in rows if r[:2] == ["hand", "sa"]]
@@ -681,6 +686,11 @@ def table_rows(meas: dict, hill: dict) -> dict[str, list[str]]:
             e = meas["sweeps"][f]["t1"][i]
             parts.append(f"{e['lastWorse']} / 20 | {fmt(e['lastGap'])}")
         rows["lastbest"].append(f"| {lab}%" + (" (기본)" if lab == 100 else "") + " | " + " | ".join(parts) + " |")
+    rows["accept"] = []
+    for x, taken in meas["accuracy"]["frequency"]:
+        q = x * XS * TS // (100 * TS)
+        exact = float(exp_neg_rational(Fraction(x, 100)))
+        rows["accept"].append(f"| {x / 100:g} | {ACC_TAB[q] / ONE:.3f} | {exact:.3f} | {fmt(taken)} |")
     rows["trace"] = []
     for f in FRAMES:
         t = meas["trace"][f]
@@ -718,6 +728,9 @@ def hand_rows(h: dict) -> dict[str, list[str]]:
     for tag in ("first", "best", "via"):
         rows[f"path_{tag}"] = [f"| {i + 1} | ({a}, {b}) | {d} | {cost} | {' '.join(map(str, order))} |"
                                for i, (a, b, d, cost, order) in enumerate(h[tag]["path"])]
+    rows["xtab"] = []
+    for label, x in (("0.1", Fraction(1, 10)), ("0.25", Fraction(1, 4)), ("0.5", Fraction(1, 2)), ("1", Fraction(1)), ("2", Fraction(2)), ("3", Fraction(3)), ("5", Fraction(5))):
+        rows["xtab"].append(f"| {label} | {float(exp_neg_rational(x)):.3f} |")
     rows["mean"] = [f"| {t} | {h['mean'][str(t)] / ONE * 100:.1f}% |" for t in (1, 2, 3, 4, 6, 10)]
     return rows
 
@@ -810,10 +823,49 @@ def main() -> None:
     assert stored == json.loads(json.dumps(meas)), "measurements.json differs from a fresh measurement (run with --output)"
     n_rows = check_text_tables(stored, stored["hill"], stored["hand"])
     check_figures(stored)
+    n_prose = check_prose(stored, stored["hill"], stored["hand"], stored["mistakes"])
     print(f"hill-climbing-and-annealing ok: {len(BLOCKS)} code blocks, {n_gen} generated instances checked against Python, "
           f"{diff[0][2]} + {diff[1][2]} exhaustive moves, {n_hill} local optima certified, {n_anneal} anneal runs against the reference loop, "
           f"{n_restarts} restart runs, {n_sched} schedules, {n_temp} temperature searches, acceptance table error {worst:.2g}, "
-          f"5 injected mistakes detected, {n_rows} table rows matched the measurements")
+          f"5 injected mistakes detected, {n_rows} table rows and {n_prose} quoted values matched the measurements")
+
+
+def check_prose(meas: dict, hill: dict, hand: dict, mistakes: dict) -> int:
+    """Numbers quoted in sentences (not in tables) must be the measured ones."""
+    text = read_lesson_text(LESSON_ID)
+    d = meas["delta"]
+    fr, fa = hill["route"], hill["assign"]
+    ratio = lambda f: round(f["best"]["evals"] / f["first"]["evals"])
+    tr = {f: meas["trace"][f] for f in FRAMES}
+    first_pct = lambda f: f"{100 * tr[f]['taken'][0] / tr[f]['up'][0]:.1f}%"
+    sw = meas["sweeps"]
+    m = mistakes
+    exp_hits = 200000 * ACC_TAB[64] // ONE
+    needed = [
+        f"순서 틀에서 약 {ratio(fr)}배, 배정 틀에서 약 {ratio(fa)}배",
+        f"({fmt(fr['first']['applies'])} 대 {fmt(fr['best']['applies'])})" if False else f"{fmt(fr['first']['applies'])} 대 {fmt(fr['best']['applies'])}",
+        f"평가 약 {round(fr['first']['evals'] / 10000)}만 번",
+        f"{fmt(d['route']['start']['q50'])} → {fmt(d['route']['optimum']['q50'])}",
+        f"중앙값 {fmt(d['route']['start']['q50'])} 대 {fmt(d['assign']['start']['q50'])}",
+        f"시작 온도가 순서 틀 {tfmt(d['route']['t0'])}, 배정 틀 {tfmt(d['assign']['t0'])}으로 약 {round(d['route']['t0'] / d['assign']['t0'])}배 다르고, 끝 온도도 {tfmt(d['route']['t1'])}과 {tfmt(d['assign']['t1'])}",
+        f"수락률 10%는 온도 약 {hand['rate']['100'] / TS:.1f}, 30%는 약 {hand['rate']['300'] / TS:.1f}",
+        f"(순서 틀 {first_pct('route')}, 배정 틀 {first_pct('assign')})",
+        f"순서 틀 20개 중 {sw['route']['base']['lastWorse']}개, 배정 틀 {sw['assign']['base']['lastWorse']}개이고 차이의 중앙값은 각각 {sw['route']['base']['lastGap']}, {sw['assign']['base']['lastGap']}",
+        f"중앙값 {fmt(sw['route']['t1'][4]['lastGap'])}(비용 약 {round(sw['route']['t1'][4]['median'], -3):,}", f"배정 틀에서 {sw['assign']['t1'][4]['lastGap']}만큼",
+        f"21개 중 9개가 26에 닿고, 8개는 28로 돌아오고, 3개는 29, 1개는 32입니다",
+        f"비용 {hand['first']['cost']}, 변화량을 계산한 횟수는 {hand['first']['evals']}번",
+        f"비용 {hand['best']['cost']}, 평가는 21 × 5번 = {hand['best']['evals']}번",
+        f"약 4배({hand['first']['evals']}번 대 {hand['best']['evals']}번)",
+        f"{m['early-optimum']['improvingLeft']}개 시드의 끝난 해에 좋아지는 이동이 남아 있습니다",
+        f"{fmt(m['random-bits']['frequencyAtOne'])}번만 받습니다", f"{fmt(m['clean']['frequencyAtOne'])}번 받던", f"기댓값 {fmt(exp_hits + 1 if False else exp_hits)}",
+        f"예산 10,000에서는 {m['schedule-constant']['endTemperature']['10000'] / TS:.1f}(끝 3의 {round(m['schedule-constant']['endTemperature']['10000'] / (3 * TS))}배",
+        f"예산 1,000,000에서는 {m['schedule-constant']['endTemperature']['1000000'] / TS:.4f}",
+        f"{fmt(m['clean']['routeCost'])}에서 {fmt(m['schedule-constant']['routeCost'])}가 됩니다",
+        f"{m['no-best']['bestMismatch']}개 모두 반환한 best",
+    ]
+    for phrase in needed:
+        assert phrase in text, f"the lesson text must quote the measured value: {phrase}"
+    return len(needed)
 
 
 def check_figures(meas: dict) -> None:
@@ -824,6 +876,20 @@ def check_figures(meas: dict) -> None:
         assert 'role="img"' in svg and "<title" in svg and "<desc" in svg and 'viewBox="0 0 720 ' in svg, path.name
         for size in re.findall(r'font-size="(\d+)"', svg):
             assert 16 <= int(size) <= 28, (path.name, size)
+    d = meas["delta"]
+    svg = {p.name: p.read_text(encoding="utf-8") for p in fig.glob("*.svg")}
+    first = next(e for e in meas["methods"]["main"]["route"] if e["budget"] == 1000000)
+    t0, t1 = d["route"]["t0"] / TS, d["route"]["t1"] / TS
+    expected = {
+        "temperature-from-deltas.svg": [fmt(d[f][s][k]) for f in FRAMES for s in ("start", "optimum") for k in ("q10", "q50", "q90")]
+                                       + [tfmt(d[f][t]) for f in FRAMES for t in ("t0", "t1")],
+        "schedule-shapes.svg": [f"{t0:.1f}", f"{t1:.1f}", f"{math.sqrt(t0 * t1):.1f}", f"{(t0 + t1) / 2:.1f}"],
+        "budget-split.svg": [fmt(first["firstEvals"]), f"{first['restartRuns']}번"],
+        "local-optimum.svg": ["42", "28", "30", "26", "21개", "+2", "5번", "26번"],
+    }
+    for name, items in expected.items():
+        for item in items:
+            assert item in svg[name], f"{name} must show the measured value {item}"
 
 
 if __name__ == "__main__":
