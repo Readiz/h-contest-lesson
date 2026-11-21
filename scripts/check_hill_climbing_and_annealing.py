@@ -213,7 +213,7 @@ def check_acc_table(rows, text):
     for q in range(XMAX + 1):
         exact = float(exp_neg_rational(Fraction(q, 64)))
         worst = max(worst, abs(ACC_TAB[q] / ONE - exact))
-    assert worst < 1.3e-6, worst
+    assert worst < 1e-7, worst
     assert ACC_TAB[XMAX] <= 2 and ACC_TAB[XMAX] / ONE < 2.1e-9
     return worst
 
@@ -807,7 +807,7 @@ def main() -> None:
         assert e["firstEvals"] < HEADLINE[f]
 
     meas.update({"schema": 1, "hill": hill, "hand": hand, "mistakes": mistakes,
-                 "accuracy": {"table": f"abs error < 1.3e-6 (worst {worst:.3g})", "frequency": freq},
+                 "accuracy": {"worstAbsError": float(f"{worst:.2g}"), "frequency": freq},
                  "rule": f"한쪽이 {WIN} / 20 시드 이상 나으면 차이가 있다고 보고, 아니면 결정 못 함",
                  "problems": {"route": "N=200, 좌표 0..999, 맨해튼 거리 합, 구간 뒤집기", "assign": "N=120, M=8, K=18, 부하 제곱합/100 + 추가 비용, 옮기기+맞바꾸기"},
                  "plan": {"r0": 100, "r1": 5, "sample": 2000, "stage": "1/32"}})
@@ -830,6 +830,11 @@ def main() -> None:
           f"5 injected mistakes detected, {n_rows} table rows and {n_prose} quoted values matched the measurements")
 
 
+def sci(x: float) -> str:
+    mant, exp = f"{x:.1e}".split("e")
+    return f"{mant} × 10" + str(int(exp)).translate(str.maketrans("-0123456789", "⁻⁰¹²³⁴⁵⁶⁷⁸⁹"))
+
+
 def check_prose(meas: dict, hill: dict, hand: dict, mistakes: dict) -> int:
     """Numbers quoted in sentences (not in tables) must be the measured ones."""
     text = read_lesson_text(LESSON_ID)
@@ -840,10 +845,10 @@ def check_prose(meas: dict, hill: dict, hand: dict, mistakes: dict) -> int:
     first_pct = lambda f: f"{100 * tr[f]['taken'][0] / tr[f]['up'][0]:.1f}%"
     sw = meas["sweeps"]
     m = mistakes
-    exp_hits = 200000 * ACC_TAB[64] // ONE
+    exp_hits = round(200000 * ACC_TAB[64] / ONE)
     needed = [
         f"순서 틀에서 약 {ratio(fr)}배, 배정 틀에서 약 {ratio(fa)}배",
-        f"({fmt(fr['first']['applies'])} 대 {fmt(fr['best']['applies'])})" if False else f"{fmt(fr['first']['applies'])} 대 {fmt(fr['best']['applies'])}",
+        f"{fmt(fr['first']['applies'])} 대 {fmt(fr['best']['applies'])}",
         f"평가 약 {round(fr['first']['evals'] / 10000)}만 번",
         f"{fmt(d['route']['start']['q50'])} → {fmt(d['route']['optimum']['q50'])}",
         f"중앙값 {fmt(d['route']['start']['q50'])} 대 {fmt(d['assign']['start']['q50'])}",
@@ -857,11 +862,12 @@ def check_prose(meas: dict, hill: dict, hand: dict, mistakes: dict) -> int:
         f"비용 {hand['best']['cost']}, 평가는 21 × 5번 = {hand['best']['evals']}번",
         f"약 4배({hand['first']['evals']}번 대 {hand['best']['evals']}번)",
         f"{m['early-optimum']['improvingLeft']}개 시드의 끝난 해에 좋아지는 이동이 남아 있습니다",
-        f"{fmt(m['random-bits']['frequencyAtOne'])}번만 받습니다", f"{fmt(m['clean']['frequencyAtOne'])}번 받던", f"기댓값 {fmt(exp_hits + 1 if False else exp_hits)}",
+        f"{fmt(m['random-bits']['frequencyAtOne'])}번만 받습니다", f"{fmt(m['clean']['frequencyAtOne'])}번 받던", f"기댓값 {fmt(exp_hits)}",
         f"예산 10,000에서는 {m['schedule-constant']['endTemperature']['10000'] / TS:.1f}(끝 3의 {round(m['schedule-constant']['endTemperature']['10000'] / (3 * TS))}배",
         f"예산 1,000,000에서는 {m['schedule-constant']['endTemperature']['1000000'] / TS:.4f}",
         f"{fmt(m['clean']['routeCost'])}에서 {fmt(m['schedule-constant']['routeCost'])}가 됩니다",
         f"{m['no-best']['bestMismatch']}개 모두 반환한 best",
+        f"측정한 최대는 {sci(meas['accuracy']['worstAbsError'])}", "절대 오차 1 × 10⁻⁷ 이내",
     ]
     for phrase in needed:
         assert phrase in text, f"the lesson text must quote the measured value: {phrase}"
