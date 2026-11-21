@@ -779,6 +779,7 @@ def prose_checks(meas: dict, mistakes: dict) -> list[str]:
         f"(폭 16에서 {sm[16]['est1']['optimal']} 대 {sm[16]['est0']['optimal']})",
         f"({sm[8]['est1']['optimal']}에서 {sm[8]['est1nomerge']['optimal']}, {sm[16]['est1']['optimal']}에서 {sm[16]['est1nomerge']['optimal']})",
         f"격자에서 {round(cp_grid)}배, 순서 문제에서 약 {round(cp_route, -1):.0f}배",
+        f"(추정 없음 {gv(0, 1)['median']}에서 {gv(0, 1024)['median']}, 가까운 값의 합 {gv(1, 1)['median']}에서 {gv(1, 1024)['median']})",
         f"(충돌 {mistakes['key']['keysBad']}개)", f"손계산(3 / 13)" if mistakes["keepworse"]["handBad"] == 3 else "손계산(?)",
         f"손계산({mistakes['sign']['handBad']} / 13)",
     ]
