@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="title desc">
+<title id="title">작은 이동으로 못 나가는 경로와 두 점을 함께 옮긴 경로</title>
+<desc id="desc">점 7개의 열린 경로입니다. 왼쪽 경로의 비용은 31이고, 4번과 5번 점은 서로 가깝지만 3번 점과 6번 점 사이에 있습니다. 한 점 교환·한 점 옮기기·구간 뒤집기 어느 것으로도 31보다 낮아지지 않고, 가장 좋은 한 점 옮기기도 1 늘어납니다. 4번과 5번 점을 함께 떼어 내 가장 싼 자리에 다시 끼우면 1번 점과 2번 점 사이로 들어가 비용이 27이 됩니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="538" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">작은 이동으로 못 나가는 경로</text>
+<text x="28" y="84" font-size="20" fill="#53657d">점 7개: 두 점을 함께 옮겨야 좋아집니다</text>
+<text x="22" y="114" font-size="20" fill="#172b45" font-weight="700">지금: 비용 31</text>
+<line x1="172" y1="140" x2="36" y2="200" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="36" y1="200" x2="70" y2="410" stroke="#ae5515" stroke-width="5"/>
+<line x1="70" y1="410" x2="206" y2="410" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="206" y1="410" x2="104" y2="380" stroke="#ae5515" stroke-width="5"/>
+<line x1="104" y1="380" x2="104" y2="290" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="104" y1="290" x2="308" y2="290" stroke="#ae5515" stroke-width="5"/>
+<circle cx="172" cy="140" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="172" y="146" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<circle cx="36" cy="200" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="36" y="206" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="70" cy="410" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="70" y="416" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<circle cx="206" cy="410" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="206" y="416" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="104" cy="380" r="14" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="104" y="386" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<circle cx="104" cy="290" r="14" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="104" y="296" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<circle cx="308" cy="290" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="308" y="296" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
+<text x="390" y="114" font-size="20" fill="#172b45" font-weight="700">두 점을 함께 옮긴 뒤: 비용 27</text>
+<line x1="540" y1="140" x2="404" y2="200" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="404" y1="200" x2="472" y2="290" stroke="#2664ce" stroke-width="5"/>
+<line x1="472" y1="290" x2="472" y2="380" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="472" y1="380" x2="438" y2="410" stroke="#2664ce" stroke-width="5"/>
+<line x1="438" y1="410" x2="574" y2="410" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="574" y1="410" x2="676" y2="290" stroke="#2664ce" stroke-width="5"/>
+<circle cx="540" cy="140" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="540" y="146" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">0</text>
+<circle cx="404" cy="200" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="404" y="206" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">1</text>
+<circle cx="438" cy="410" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="438" y="416" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">2</text>
+<circle cx="574" cy="410" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="574" y="416" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">3</text>
+<circle cx="472" cy="380" r="14" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="472" y="386" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">4</text>
+<circle cx="472" cy="290" r="14" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="472" y="296" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">5</text>
+<circle cx="676" cy="290" r="14" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="676" y="296" font-size="17" fill="#172b45" font-weight="700" text-anchor="middle">6</text>
+<path d="M 332 280 L 382 280" stroke="#172b45" stroke-width="3" fill="none"/><path d="M 382 280 L 372 273 M 382 280 L 372 287" stroke="#172b45" stroke-width="3" fill="none"/>
+<line x1="34" y1="456" x2="74" y2="456" stroke="#ae5515" stroke-width="5"/>
+<text x="82" y="462" font-size="18" fill="#172b45">사라지는 간선</text>
+<line x1="244" y1="456" x2="284" y2="456" stroke="#2664ce" stroke-width="5"/>
+<text x="292" y="462" font-size="18" fill="#172b45">생기는 간선</text>
+<line x1="444" y1="456" x2="484" y2="456" stroke="#9aa8bb" stroke-width="3"/>
+<text x="492" y="462" font-size="18" fill="#172b45">그대로인 간선</text>
+<text x="28" y="500" font-size="18" fill="#172b45">작은 이동 전부에서 31 이상: 한 점 옮기기 +1, 교환·뒤집기 +2</text>
+<text x="28" y="528" font-size="18" fill="#172b45">4, 5번 점을 함께 떼어 가장 싼 자리에 다시 끼우면 27</text>
+</svg>

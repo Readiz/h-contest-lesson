@@ -273,7 +273,12 @@ def hand_route() -> dict:
         path = path[:best] + [x] + path[best:]
         steps.append({"path": path[:], "cost": cost(path), "slots": slots, "slot": best})
     optimum = min(cost(list(p)) for p in itertools.permutations(range(n)))
-    return {"start": start, "families": summary, "steps": steps, "optimum": optimum}
+    alone = []
+    for x in (4, 5):                                  # moving only one of the two points to the same place
+        q = [v for v in order if v != x]
+        q.insert(2, x)
+        alone.append({"point": x, "path": q, "cost": cost(q)})
+    return {"start": start, "families": summary, "steps": steps, "optimum": optimum, "alone": alone}
 
 
 def hand_assign() -> dict:
@@ -290,6 +295,11 @@ def hand_assign() -> dict:
                 swaps.append(cost(b) - start["cost"])
     moves = sum(1 for i in range(6) for y in range(m) if y != a0[i] and sum(1 for t in a0 if t == y) < k)
     pool = [i for i in range(6) if a0[i] in (1, 2)]
+    first = a0[:]                                     # the two swaps (0 <-> 2, then 1 <-> 5) that make the same change
+    first[0], first[2] = first[2], first[0]
+    both = first[:]
+    both[1], both[5] = both[5], both[1]
+    double = {"first": cost(first), "both": cost(both), "asBoth": both}
 
     def repair(rule: int):
         a = [-1 if i in pool else a0[i] for i in range(6)]
@@ -312,10 +322,11 @@ def hand_assign() -> dict:
             ld[info[pick][2]] += d[pick]
             cn[info[pick][2]] += 1
             todo.remove(pick)
-        return {"as": a, "cost": cost(a), "rounds": rounds}
+        ldf = [sum(d[i] for i in range(6) if a[i] == j) for j in range(m)]
+        return {"as": a, "cost": cost(a), "rounds": rounds, "load": ldf, "sq": sum(x * x for x in ldf), "c": sum(c[i][a[i]] for i in range(6))}
 
     return {"start": start, "swaps": {"count": len(swaps), "improving": sum(1 for s in swaps if s < 0), "best": min(swaps)},
-            "moves": moves, "pool": pool, "cheapest": repair(0), "regret": repair(1)}
+            "moves": moves, "pool": pool, "cheapest": repair(0), "regret": repair(1), "double": double}
 
 
 def check_hand(rows) -> dict:
@@ -448,6 +459,15 @@ def summarise_exp(rows) -> dict:
             entries.append({"size": size, "median": med(series(g).values()), "iters": med(series(g, 1).values()),
                             "accepted": med(series(g, 2).values()), "better": better, "worse": worse})
         meas["size"][frame] = {"small": med(small.values()), "rows": entries}
+    # H: seeds that were not used to choose the settings
+    meas["holdout"] = {}
+    for frame in ("route", "assign"):
+        h = collect(rows, "H", frame, 1)
+        small, hyb = {s - 20: v for s, v in series(h[("0",)]).items()}, {s - 20: v for s, v in series(h[("1",)]).items()}
+        for s in range(21, 41):
+            assert h[("0",)][s][0] == h[("0",)][s][3] and h[("1",)][s][0] == h[("1",)][s][3]
+        better, worse = wins(hyb, small)
+        meas["holdout"][frame] = {"small": med(small.values()), "hybrid": med(hyb.values()), "better": better, "worse": worse}
     # L: restore methods; O: where one iteration's work goes
     l = {}
     for r in rows:
@@ -597,6 +617,18 @@ def run_mistakes(sn, workdir: Path, clean_exe: Path) -> dict:
             exes[name] = fut.result()
     for name in MUTATIONS:
         out[name] = detect(run(exes[name], "detect"))
+    # the effect of picking the largest contributions deterministically, on the same settings and seeds as the kinds table
+    tours = {}
+    for label, exe in (("clean", clean_exe), ("greedy-top", exes["greedy-top"])):
+        t = {0: {}, 3: {}}
+        for r in run(exe, "tour"):
+            assert r[0] == "T" and r[3] == r[4]
+            t[int(r[1])][int(r[2])] = int(r[3])
+        tours[label] = t
+    assert tours["clean"][0] == tours["greedy-top"][0], "the random kind must not change under the mutation"
+    better, worse = wins(tours["greedy-top"][3], tours["clean"][0])
+    out["greedy-top"].update({"tourCost": med(tours["greedy-top"][3].values()), "tourRandomCost": med(tours["clean"][0].values()),
+                              "tourBetter": better, "tourWorse": worse, "tourCleanCost": med(tours["clean"][3].values())})
     return out
 
 
@@ -629,6 +661,7 @@ def hand_rows(hand: dict) -> dict[str, list[str]]:
     rows: dict[str, list[str]] = {}
     names = {"swap": "두 점 교환", "insert": "한 점 옮기기", "reverse": "구간 뒤집기"}
     rows["hand_route_moves"] = [f"| {names[k]} | {v['moves']} | {v['improving']} | {signed(v['best'])} |" for k, v in hr["families"].items()]
+    rows["hand_route_alone"] = [f"| P{a['point']}만 자리 2로 | {path_text(a['path'])} | {a['cost']} | {signed(a['cost'] - hr['start'])} |" for a in hr["alone"]]
     st = hr["steps"]
     rows["hand_route_steps"] = [
         f"| 떼어 낸 뒤 | {path_text(st[0]['path'])} | {st[0]['cost']} | | |",
@@ -709,8 +742,17 @@ def table_rows(meas: dict, stuck: dict, expo: list[dict]) -> dict[str, list[str]
     o = meas["opsplit"]
     rows["opsplit"] = [f"| 순서 틀 | {fmt(o['route']['ops'])} | {fmt(o['route']['terms'])} | {fmt(o['route']['writes'])} |",
                        f"| 배정 틀 | {fmt(o['assign']['ops'])} | {fmt(o['assign']['terms'])} | {fmt(o['assign']['writes'])} |"]
+    m = meas["mistakes"]
+    rows["mistakes"] = [
+        f"| 복사 방식에서 캐시 복원 누락 | {m['copy-cache']['assignCopyFound']} / 20 | {m['copy-cache']['assignCopyMedian']} |",
+        f"| 기록 방식에서 떼어 낸 작업의 기록 누락 | {m['no-log']['assignLogFound']} / 20 | {m['no-log']['assignLogMedian']} |",
+        f"| 다시 놓을 때 기계의 여유 확인 누락(모든 기계가 가득 찬 입력) | {m['capacity']['tightFound']} / 20 | {m['capacity']['tightMedian']} |",
+        f"| 최고해를 따로 보관하지 않음(받는 기준이 나쁜 해를 받는 설정) | 순서 틀 {m['best']['bestMismatchRoute']} / 20, 배정 틀 {m['best']['bestMismatchAssign']} / 20 | - |",
+        f"| 비용 기여가 큰 점을 결정적으로 고름 | 서로 다른 부분 {m['greedy-top']['distinctSets']}개 / 200번 | - |"]
+    rows["holdout"] = [f"| {'순서 틀' if f == 'route' else '배정 틀'} | {fmt(meas['holdout'][f]['small'])} | {fmt(meas['holdout'][f]['hybrid'])} | {meas['holdout'][f]['better']} / {meas['holdout'][f]['worse']} | {verdict(meas['holdout'][f]['better'], meas['holdout'][f]['worse'])} |"
+                       for f in ("route", "assign")]
     # exp table (implementation page)
-    pick = {0.25: None, 0.5: None, 1.0: None, 2.0: None, 4.0: None, 8.0: None, 15.0: None, 16.0: None}
+    pick = {0.25: None, 0.5: None, 1.0: None, 2.0: None, 4.0: None, 8.0: None}
     rows["expo"] = []
     for e in expo:
         if e["x"] in pick:

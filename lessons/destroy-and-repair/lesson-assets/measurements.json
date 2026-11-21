@@ -521,6 +521,20 @@
    ]
   }
  },
+ "holdout": {
+  "route": {
+   "small": 14209,
+   "hybrid": 13841,
+   "better": 20,
+   "worse": 0
+  },
+  "assign": {
+   "small": 45605,
+   "hybrid": 45596,
+   "better": 17,
+   "worse": 2
+  }
+ },
  "restore": [
   {
    "kind": 0,
@@ -948,7 +962,35 @@
      "slot": 2
     }
    ],
-   "optimum": 27
+   "optimum": 27,
+   "alone": [
+    {
+     "point": 4,
+     "path": [
+      0,
+      1,
+      4,
+      2,
+      3,
+      5,
+      6
+     ],
+     "cost": 33
+    },
+    {
+     "point": 5,
+     "path": [
+      0,
+      1,
+      5,
+      2,
+      3,
+      4,
+      6
+     ],
+     "cost": 33
+    }
+   ]
   },
   "assign": {
    "start": {
@@ -1018,7 +1060,14 @@
       "pick": 5,
       "machine": 2
      }
-    ]
+    ],
+    "load": [
+     49,
+     36,
+     88
+    ],
+    "sq": 11441,
+    "c": 71
    },
    "regret": {
     "as": [
@@ -1065,6 +1114,25 @@
       "pick": 2,
       "machine": 1
      }
+    ],
+    "load": [
+     49,
+     72,
+     52
+    ],
+    "sq": 10289,
+    "c": 74
+   },
+   "double": {
+    "first": 185,
+    "both": 176,
+    "asBoth": [
+     2,
+     2,
+     1,
+     0,
+     0,
+     1
     ]
    }
   }
@@ -1131,8 +1199,8 @@
    "assignLogMedian": 0,
    "tightFound": 0,
    "tightMedian": 0,
-   "bestMismatchRoute": 0,
-   "bestMismatchAssign": 2,
+   "bestMismatchRoute": 7,
+   "bestMismatchAssign": 19,
    "distinctSets": 200
   },
   "greedy-top": {
@@ -1146,7 +1214,12 @@
    "tightMedian": 0,
    "bestMismatchRoute": 0,
    "bestMismatchAssign": 0,
-   "distinctSets": 1
+   "distinctSets": 1,
+   "tourCost": 14388,
+   "tourRandomCost": 14202,
+   "tourBetter": 0,
+   "tourWorse": 20,
+   "tourCleanCost": 14233
   }
  },
  "expo": [

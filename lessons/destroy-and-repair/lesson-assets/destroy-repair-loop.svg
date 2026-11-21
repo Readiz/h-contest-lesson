@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 570" role="img" aria-labelledby="title desc">
+<title id="title">부수고 다시 짓는 반복의 한 바퀴</title>
+<desc id="desc">지금 해에서 되돌릴 기준을 잡고, 해의 일부를 떼어 내고(부수기), 구성법으로 떼어 낸 것을 다시 놓은 뒤(다시 짓기), 새 비용을 지금 비용과 비교해 받으면 새 해가 지금 해가 되고 거절하면 부수기 전 해로 되돌립니다. 각 단계 옆에 그 단계에서 정할 것을 적었습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="568" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">부수고 다시 짓는 반복</text>
+<text x="28" y="84" font-size="20" fill="#53657d">한 바퀴에 지금 해를 한 번 부수고 다시 짓습니다</text>
+<rect x="44" y="112" width="370" height="62" rx="10" fill="#ffffff" stroke="#2664ce" stroke-width="2"/>
+<text x="62" y="139" font-size="20" fill="#172b45" font-weight="700">1. 기준 잡기</text>
+<text x="62" y="163" font-size="18" fill="#53657d">되돌릴 방법을 준비</text>
+<rect x="440" y="120" width="250" height="46" rx="10" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="456" y="150" font-size="18" fill="#172b45">정할 것: 되돌리는 방법</text>
+<line x1="414" y1="143" x2="440" y2="143" stroke="#ae5515" stroke-width="2"/>
+<path d="M 229 174 L 229 196" stroke="#172b45" stroke-width="3" fill="none"/><path d="M 229 196 L 222 186 M 229 196 L 236 186" stroke="#172b45" stroke-width="3" fill="none"/>
+<rect x="44" y="196" width="370" height="62" rx="10" fill="#ffffff" stroke="#2664ce" stroke-width="2"/>
+<text x="62" y="223" font-size="20" fill="#172b45" font-weight="700">2. 부수기</text>
+<text x="62" y="247" font-size="18" fill="#53657d">일부 k개를 떼어 낸다</text>
+<rect x="440" y="204" width="250" height="46" rx="10" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="456" y="234" font-size="18" fill="#172b45">정할 것: 무엇을 몇 개</text>
+<line x1="414" y1="227" x2="440" y2="227" stroke="#ae5515" stroke-width="2"/>
+<path d="M 229 258 L 229 280" stroke="#172b45" stroke-width="3" fill="none"/><path d="M 229 280 L 222 270 M 229 280 L 236 270" stroke="#172b45" stroke-width="3" fill="none"/>
+<rect x="44" y="280" width="370" height="62" rx="10" fill="#ffffff" stroke="#2664ce" stroke-width="2"/>
+<text x="62" y="307" font-size="20" fill="#172b45" font-weight="700">3. 다시 짓기</text>
+<text x="62" y="331" font-size="18" fill="#53657d">구성법으로 다시 채운다</text>
+<rect x="440" y="288" width="250" height="46" rx="10" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="456" y="318" font-size="18" fill="#172b45">정할 것: 어떤 구성법</text>
+<line x1="414" y1="311" x2="440" y2="311" stroke="#ae5515" stroke-width="2"/>
+<path d="M 229 342 L 229 364" stroke="#172b45" stroke-width="3" fill="none"/><path d="M 229 364 L 222 354 M 229 364 L 236 354" stroke="#172b45" stroke-width="3" fill="none"/>
+<rect x="44" y="364" width="370" height="62" rx="10" fill="#ffffff" stroke="#2664ce" stroke-width="2"/>
+<text x="62" y="391" font-size="20" fill="#172b45" font-weight="700">4. 받을까</text>
+<text x="62" y="415" font-size="18" fill="#53657d">새 비용과 지금 비용 비교</text>
+<rect x="440" y="372" width="250" height="46" rx="10" fill="#fbe7d6" stroke="#ae5515" stroke-width="2"/>
+<text x="456" y="402" font-size="18" fill="#172b45">정할 것: 받는 기준</text>
+<line x1="414" y1="395" x2="440" y2="395" stroke="#ae5515" stroke-width="2"/>
+<path d="M 129 426 L 129 456" stroke="#172b45" stroke-width="3" fill="none"/><path d="M 129 456 L 122 446 M 129 456 L 136 446" stroke="#172b45" stroke-width="3" fill="none"/>
+<path d="M 329 426 L 329 456" stroke="#172b45" stroke-width="3" fill="none"/><path d="M 329 456 L 322 446 M 329 456 L 336 446" stroke="#172b45" stroke-width="3" fill="none"/>
+<rect x="44" y="456" width="170" height="76" rx="10" fill="#dce8fb" stroke="#2664ce" stroke-width="2"/>
+<text x="58" y="484" font-size="20" fill="#172b45" font-weight="700">받음</text>
+<text x="58" y="510" font-size="18" fill="#172b45">새 해가 지금 해</text>
+<rect x="244" y="456" width="170" height="76" rx="10" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="258" y="484" font-size="20" fill="#172b45" font-weight="700">거절</text>
+<text x="258" y="510" font-size="18" fill="#172b45">부수기 전으로</text>
+<text x="440" y="488" font-size="18" fill="#172b45">새 최고 비용이면</text>
+<text x="440" y="514" font-size="18" fill="#172b45">최고해를 따로 보관</text>
+<path d="M 329 532 L 329 546 L 22 546 L 22 143 L 38 143" stroke="#2664ce" stroke-width="3" fill="none" stroke-dasharray="7 6"/>
+<path d="M 129 532 L 129 546" stroke="#2664ce" stroke-width="3" fill="none" stroke-dasharray="7 6"/>
+<path d="M 42 143 L 31 136 M 42 143 L 31 150" stroke="#2664ce" stroke-width="3" fill="none"/>
+</svg>

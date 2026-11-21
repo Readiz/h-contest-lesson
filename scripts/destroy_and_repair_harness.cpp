@@ -350,6 +350,12 @@ static void modeExp() {
     const int rsz[] = {1, 2, 3, 5, 8, 13, 21, 40, 80, 200}, asz[] = {1, 2, 4, 8, 16, 32, 64, 120};
     for (int size : rsz) for (int s = 1; s <= 20; ++s) { Cfg c = RC; c.size = size; snprintf(ex, sizeof ex, "%d", size); rr("S", c, RB / 4, RB, s, ex); }
     for (int size : asz) for (int s = 1; s <= 20; ++s) { Cfg c = AC; c.size = size; snprintf(ex, sizeof ex, "%d", size); ra("S", c, 1, AB / 4, AB, s, ex); }
+    // H: 설정을 고르는 데 쓰지 않은 시드 21~40에서 작은 이동만과 작은 이동 1/4 + 부수고 다시 짓기(기본 설정)
+    for (int method = 0; method < 2; ++method) for (int s = 21; s <= 40; ++s) {
+        snprintf(ex, sizeof ex, "%d", method);
+        rr("H", RC, method == 0 ? RB : RB / 4, RB, s, ex);
+        ra("H", AC, 1, method == 0 ? AB : AB / 4, AB, s, ex);
+    }
     // L: 복사 방식과 기록 방식(배정 틀), O: 반복 한 번이 쓰는 연산(작은 이동 없이)
     struct LK { int kind, size, rule; };
     const LK lks[] = {{0, 8, 0}, {0, 8, 1}, {1, 2, 1}};
@@ -480,12 +486,16 @@ static void modeDetect() {
         troute.minSeen = troute.cost();
         hc::Random rng; rng.reset((unsigned)s);
         troute.ops = 0;
-        const ll best = runDR(troute, rng, Cfg{2, 8, 0, 2, 300}, 1000000);
+        runSmall(troute, rng, 250000);
+        troute.minSeen = troute.cost();
+        const ll best = runDR(troute, rng, Cfg{2, 8, 0, 2, 1000}, 1000000);
         genAssign(tassign, s, 120, 8, 18, 1);
         tassign.minSeen = tassign.cost();
         hc::Random rng2; rng2.reset((unsigned)s);
         tassign.ops = 0;
-        const ll best2 = runDR(tassign, rng2, Cfg{0, 8, 1, 2, 10}, 400000);
+        runSmall(tassign, rng2, 100000);
+        tassign.minSeen = tassign.cost();
+        const ll best2 = runDR(tassign, rng2, Cfg{0, 8, 1, 2, 100}, 400000);
         printf("D2 %d %lld %lld %lld %lld %lld %lld\n", s, best, troute.minSeen, refRoute(troute, troute.bestSol, 200), best2, tassign.minSeen, refAssign(tassign, tassign.bestSol));
     }
     // 비용 기여로 부수는 방법이 같은 해에서 부를 때마다 다른 부분을 고르는지
@@ -504,6 +514,14 @@ static void modeDetect() {
     printf("D3 %zu\n", sets.size());
 }
 
+// 비용 기여로 떼어 내는 방법(3)과 무작위(0)의 결과: 결정적으로 고르는 변형과 비교하려고 변형된 코드에서도 돌린다.
+static void modeTour() {
+    for (int kind = 0; kind <= 3; kind += 3) for (int s = 1; s <= 20; ++s) {
+        const ll r = runRoute(s, Cfg{kind, 8, 0, 0, 0}, RB / 4, RB);
+        printf("T %d %d %lld %lld\n", kind, s, r, refRoute(route, route.bestSol, 200));
+    }
+}
+
 int main(int argc, char** argv) {
     const std::string mode = argc > 1 ? argv[1] : "";
     if (mode == "gen") modeGen();
@@ -515,6 +533,7 @@ int main(int argc, char** argv) {
     else if (mode == "exp") modeExp();
     else if (mode == "stuck") modeStuck();
     else if (mode == "detect") modeDetect();
+    else if (mode == "tour") modeTour();
     else return 1;
     return 0;
 }
