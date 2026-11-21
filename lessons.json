@@ -1884,6 +1884,71 @@
         "modeling",
         "selection"
       ]
+    },
+    {
+      "lessonId": "beam-search",
+      "title": "빔 서치와 평가 함수",
+      "description": "답이 행동의 열인 순차 결정 문제에서 한 단계마다 상태를 W개만 남기는 빔 서치의 틀(평가, 같은 상태 합치기, 상위 W개 추리기, 부모 번호 기록과 경로 복원)과 중간 상태를 비교하는 평가 함수(지금까지 + 앞으로의 추정)의 설계, 다양성 유지와 상태 복사 비용을 격자 수집과 순서 문제 두 유형으로 익히고, 폭과 추정과 합치기의 효과를 20개 시드로 비교합니다.",
+      "summary": "순차 결정의 빔 서치 틀 하나로 폭 1(탐욕)에서 완전 탐색 사이의 평가 횟수와 품질, 추정(가까운 값의 합·거리 벌점·낙관적 하한·탐욕 완성), 같은 상태 합치기, 묶음 상한, 복사 비용을 격자·순서 틀에서 측정",
+      "order": 105,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "method",
+        "beam-search",
+        "evaluation-function",
+        "sequential-decision",
+        "state-merging",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 100,
+      "prerequisites": [
+        "problem-modeling",
+        "construction-heuristics",
+        "heuristic",
+        "cpp-common-library"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "neighborhood-and-delta",
+        "minimax-alpha-beta",
+        "priority-queue-heap",
+        "sorting",
+        "testing-and-stress"
+      ],
+      "pages": [
+        {
+          "pageId": "idea",
+          "title": "원리와 손으로 따라가는 예",
+          "description": "순차 결정 문제의 구조, 한 단계의 평가·합치기·추리기·상태 만들기, 폭 1과 폭 무제한 사이, 평가 함수(지금까지 + 앞으로의 추정)와 같은 상태 합치기를 격자 수집과 6점 순서 예의 손계산으로 따라갑니다.",
+          "order": 10,
+          "file": "pages/idea.md"
+        },
+        {
+          "pageId": "implementation",
+          "title": "구현: 빔 서치 틀과 두 문제 유형",
+          "description": "문제와 무관한 Beam(평가, 해시 합치기, 힙으로 상위 W개, 부모·행동 기록, 경로 복원)과 문제마다 채우는 Grid·Route(상태, 행동, 평가값, 키, 추정)를 구현하고 경로 재생·키 대조·작은 입력의 최적 검사를 붙입니다.",
+          "order": 20,
+          "file": "pages/implementation.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "실험과 점검",
+          "description": "폭과 추정과 연산 수, 점수와 추정의 단위, 합치기와 다양성, 작은 입력에서 최적과의 차이, 복사 비용, 흔한 실수와 검사, 다른 문제에 옮길 때의 점검 목록과 적용 사례를 다룹니다.",
+          "order": 30,
+          "file": "pages/practice.md"
+        }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     }
   ]
 }
