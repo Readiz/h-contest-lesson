@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+<title id="title">나눗셈 위치에 따라 점수가 1 달라진다</title>
+<desc id="desc">부하가 67, 69, 0인 후보 A의 점수 계산입니다. 왼쪽은 제곱을 모두 더한 9250을 100으로 한 번 나눠 92를 얻고 추가 비용 74를 더해 166입니다. 오른쪽은 기계마다 나눠 44, 47, 0을 더한 91에 74를 더해 165입니다. 채점기가 166을 주므로 왼쪽이 맞는 해석입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="468" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">나눗셈 위치가 점수를 1 바꿉니다</text>
+<text x="28" y="84" font-size="19" fill="#53657d">같은 답(후보 A), 같은 부하 67 · 69 · 0, 추가 비용 합 74</text>
+<rect x="28" y="110" width="320" height="270" rx="12" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="188" y="142" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">합에 대해 한 번 나눔</text>
+<text x="48" y="188" font-size="18" fill="#172b45">제곱  4489 + 4761 + 0</text>
+<text x="48" y="222" font-size="18" fill="#172b45">= 9250</text>
+<text x="48" y="256" font-size="18" fill="#172b45">9250 / 100 의 몫 = 92</text>
+<text x="48" y="290" font-size="18" fill="#172b45">92 + 74</text>
+<text x="188" y="350" font-size="28" fill="#2664ce" font-weight="750" text-anchor="middle">166</text>
+<rect x="372" y="110" width="320" height="270" rx="12" fill="#fff1e0" stroke="#ae5515" stroke-width="2.5" stroke-dasharray="9 6"/>
+<text x="532" y="142" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">기계마다 나눔</text>
+<text x="392" y="188" font-size="18" fill="#172b45">4489/100 + 4761/100 + 0</text>
+<text x="392" y="222" font-size="18" fill="#172b45">= 44 + 47 + 0 = 91</text>
+<text x="392" y="256" font-size="18" fill="#172b45">(몫을 먼저 버림)</text>
+<text x="392" y="290" font-size="18" fill="#172b45">91 + 74</text>
+<text x="532" y="350" font-size="28" fill="#ae5515" font-weight="750" text-anchor="middle">165</text>
+<text x="360" y="418" font-size="20" fill="#172b45" text-anchor="middle">채점기가 166을 주면 왼쪽이 맞는 해석입니다</text>
+<text x="360" y="446" font-size="18" fill="#53657d" text-anchor="middle">두 값의 차이는 최대 기계 수 − 1입니다</text>
+</svg>

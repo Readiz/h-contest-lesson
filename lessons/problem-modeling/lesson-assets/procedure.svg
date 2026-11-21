@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" role="img" aria-labelledby="title desc">
+<title id="title">계약을 코드로 옮기는 다섯 단계</title>
+<desc id="desc">1단계 계약을 표로, 2단계 valid와 score 함수, 3단계 채점과 맞추기, 4단계 유효한 기준선, 5단계 점수의 한계 구하기가 위에서 아래로 이어집니다. 3단계에서 점수가 어긋나거나 4단계에서 기준선이 무효이면 1단계의 표로 되돌아갑니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ae5515"/></marker></defs>
+<rect x="1" y="1" width="718" height="558" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">계약을 코드로 옮기는 다섯 단계</text>
+<text x="28" y="84" font-size="19" fill="#53657d">어긋나면 풀이가 아니라 1단계의 표를 고칩니다</text>
+<rect x="28" y="110" width="590" height="68" rx="12" fill="#e9f0ff" stroke="#2664ce" stroke-width="2"/>
+<text x="46" y="140" font-size="20" fill="#172b45" font-weight="700">1  계약을 표 한 장으로</text>
+<text x="46" y="166" font-size="18" fill="#53657d">입력 · 답 · 상태 · 무효 조건 · 불변식 · 점수</text>
+<rect x="28" y="200" width="590" height="68" rx="12" fill="#ffffff" stroke="#b7c4d6" stroke-width="2"/>
+<text x="46" y="230" font-size="20" fill="#172b45" font-weight="700">2  valid와 score를 따로</text>
+<text x="46" y="256" font-size="18" fill="#53657d">score는 처음부터 다시 계산 (정답지)</text>
+<rect x="28" y="290" width="590" height="68" rx="12" fill="#ffffff" stroke="#b7c4d6" stroke-width="2"/>
+<text x="46" y="320" font-size="20" fill="#172b45" font-weight="700">3  채점과 맞추기</text>
+<text x="46" y="346" font-size="18" fill="#53657d">유효 여부와 점수를 손계산·임의의 답으로 대조</text>
+<rect x="28" y="380" width="590" height="68" rx="12" fill="#ffffff" stroke="#b7c4d6" stroke-width="2"/>
+<text x="46" y="410" font-size="20" fill="#172b45" font-weight="700">4  어떤 입력에서도 유효한 기준선</text>
+<text x="46" y="436" font-size="18" fill="#53657d">허용되는 첫 행동을 반복, 경계 입력으로 시험</text>
+<rect x="28" y="470" width="590" height="68" rx="12" fill="#ffffff" stroke="#b7c4d6" stroke-width="2"/>
+<text x="46" y="500" font-size="20" fill="#172b45" font-weight="700">5  점수의 한계로 여지 가늠</text>
+<text x="46" y="526" font-size="18" fill="#53657d">조건을 풀어 준 하한·상한, 작은 입력의 최적과 대조</text>
+<line x1="323" y1="178" x2="323" y2="198" stroke="#2664ce" stroke-width="2.5"/>
+<line x1="323" y1="268" x2="323" y2="288" stroke="#2664ce" stroke-width="2.5"/>
+<line x1="323" y1="358" x2="323" y2="378" stroke="#2664ce" stroke-width="2.5"/>
+<line x1="323" y1="448" x2="323" y2="468" stroke="#2664ce" stroke-width="2.5"/>
+<path d="M618,324 L650,324 L650,150 L620,150" fill="none" stroke="#ae5515" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arr)"/>
+<path d="M618,414 L684,414 L684,136 L620,136" fill="none" stroke="#ae5515" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arr)"/>
+</svg>

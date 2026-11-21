@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430" role="img" aria-labelledby="title desc">
+<title id="title">한계는 최적이 아니다</title>
+<desc id="desc">점수 수직선 위에 하한 99, 최적 104, 기준선 166이 놓여 있습니다. 한계와 최적의 간격은 5이고 최적과 기준선의 간격은 62입니다. 한계에서 기준선까지 67이 더 좋아질 수 있는 폭의 위쪽 경계입니다. 점수가 작을수록 좋습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="428" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한계는 최적이 아닙니다</text>
+<text x="28" y="84" font-size="19" fill="#53657d">작을수록 좋은 점수 · 손계산 입력의 세 값</text>
+<line x1="60" y1="230" x2="680" y2="230" stroke="#53657d" stroke-width="3"/>
+<line x1="100" y1="220" x2="100" y2="240" stroke="#53657d" stroke-width="2"/>
+<line x1="130" y1="220" x2="130" y2="240" stroke="#53657d" stroke-width="2"/>
+<line x1="500" y1="220" x2="500" y2="240" stroke="#53657d" stroke-width="2"/>
+<circle cx="100" cy="230" r="9" fill="#2664ce"/>
+<circle cx="130" cy="230" r="9" fill="#172b45"/>
+<circle cx="500" cy="230" r="9" fill="#ae5515"/>
+<text x="100" y="268" font-size="20" fill="#2664ce" font-weight="700" text-anchor="middle">하한 99</text>
+<text x="190" y="304" font-size="20" fill="#172b45" font-weight="700" text-anchor="middle">최적 104</text>
+<line x1="130" y1="240" x2="160" y2="286" stroke="#172b45" stroke-width="1.5"/>
+<text x="500" y="268" font-size="20" fill="#ae5515" font-weight="700" text-anchor="middle">기준선 166</text>
+<path d="M100,196 L100,176 L500,176 L500,196" fill="none" stroke="#2664ce" stroke-width="2.5"/>
+<text x="300" y="162" font-size="20" fill="#2664ce" font-weight="700" text-anchor="middle">67 : 한계에서 기준선까지</text>
+<path d="M130,210 L130,196 L500,196" fill="none" stroke="#172b45" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="315" y="215" font-size="18" fill="#172b45" text-anchor="middle">62 : 최적에서 기준선까지</text>
+<text x="360" y="348" font-size="18" fill="#53657d" text-anchor="middle">한계와 최적 사이 5는 풀어 준 조건의 값입니다</text>
+<text x="360" y="378" font-size="18" fill="#53657d" text-anchor="middle">한계가 최적보다 크면 한계 계산이 틀린 것입니다</text>
+</svg>

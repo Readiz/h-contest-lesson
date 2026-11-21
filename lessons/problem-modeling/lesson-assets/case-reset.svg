@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">TC 시작에서 상태를 비우는 이유</title>
+<desc id="desc">첫 TC가 끝났을 때 기계별 맡은 수는 3, 3, 0입니다. 두 번째 TC는 작업 3개, 기계 3대, 용량 1입니다. 비우지 않으면 기계 0과 1이 가득 찬 것으로 보여 세 작업이 모두 기계 2로 가서 무효입니다. TC 시작에서 0, 0, 0으로 비우면 작업이 기계 0, 1, 2로 가서 유효합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="518" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">TC 시작에서 상태를 비웁니다</text>
+<text x="28" y="84" font-size="19" fill="#53657d">기계마다 맡은 수 used · 두 번째 TC는 작업 3개, 기계 3대, 용량 1</text>
+<text x="28" y="126" font-size="20" fill="#172b45" font-weight="700">첫 TC가 끝났을 때</text>
+<rect x="260" y="104" width="60" height="40" fill="#ffffff" stroke="#53657d" stroke-width="2"/>
+<rect x="320" y="104" width="60" height="40" fill="#ffffff" stroke="#53657d" stroke-width="2"/>
+<rect x="380" y="104" width="60" height="40" fill="#ffffff" stroke="#53657d" stroke-width="2"/>
+<text x="290" y="132" font-size="20" fill="#172b45" text-anchor="middle">3</text>
+<text x="350" y="132" font-size="20" fill="#172b45" text-anchor="middle">3</text>
+<text x="410" y="132" font-size="20" fill="#172b45" text-anchor="middle">0</text>
+<rect x="28" y="180" width="664" height="140" rx="12" fill="#fff1e0" stroke="#ae5515" stroke-width="2.5" stroke-dasharray="9 6"/>
+<text x="46" y="212" font-size="20" fill="#172b45" font-weight="700">reset 없음</text>
+<text x="46" y="246" font-size="18" fill="#172b45">시작할 때 used</text>
+<rect x="260" y="226" width="60" height="40" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<rect x="320" y="226" width="60" height="40" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<rect x="380" y="226" width="60" height="40" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<text x="290" y="254" font-size="20" fill="#172b45" text-anchor="middle">3</text>
+<text x="350" y="254" font-size="20" fill="#172b45" text-anchor="middle">3</text>
+<text x="410" y="254" font-size="20" fill="#172b45" text-anchor="middle">0</text>
+<text x="470" y="254" font-size="18" fill="#172b45">기계 0, 1은 가득 참</text>
+<text x="46" y="296" font-size="18" fill="#172b45">기준선의 답 [2, 2, 2]  →  기계 2에 3개 &gt; 용량 1  →  무효</text>
+<rect x="28" y="344" width="664" height="140" rx="12" fill="#e9f0ff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="46" y="376" font-size="20" fill="#172b45" font-weight="700">TC 시작에서 reset</text>
+<text x="46" y="410" font-size="18" fill="#172b45">시작할 때 used</text>
+<rect x="260" y="390" width="60" height="40" fill="#ffffff" stroke="#2664ce" stroke-width="2"/>
+<rect x="320" y="390" width="60" height="40" fill="#ffffff" stroke="#2664ce" stroke-width="2"/>
+<rect x="380" y="390" width="60" height="40" fill="#ffffff" stroke="#2664ce" stroke-width="2"/>
+<text x="290" y="418" font-size="20" fill="#172b45" text-anchor="middle">0</text>
+<text x="350" y="418" font-size="20" fill="#172b45" text-anchor="middle">0</text>
+<text x="410" y="418" font-size="20" fill="#172b45" text-anchor="middle">0</text>
+<text x="46" y="460" font-size="18" fill="#172b45">기준선의 답 [0, 1, 2]  →  기계마다 1개  →  유효</text>
+</svg>
