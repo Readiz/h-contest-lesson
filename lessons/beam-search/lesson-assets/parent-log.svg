@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" role="img" aria-labelledby="title desc">
+<title id="title">(부모 번호, 행동) 기록으로 경로를 복원한다</title>
+<desc id="desc">6점 순서 예의 폭 2 빔의 기록입니다. 단계 1부터 6까지 칸 두 개씩 (부모 번호, 점 번호)가 적혀 있습니다. 단계 6의 칸 1(비용 21)에서 시작해 부모 번호를 따라 거슬러 올라가면 점 0, 2, 5, 1, 4, 3이 읽히고 이를 뒤집은 경로 3 4 1 5 2 0이 복원됩니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="468" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">(부모 번호, 행동) 기록으로 경로를 복원</text>
+<text x="28" y="84" font-size="20" fill="#53657d">6점 순서 예, 폭 2 · 칸마다 (부모 번호, 점 번호)</text>
+<text x="28" y="152" font-size="18" fill="#53657d">단계</text>
+<text x="140" y="152" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">1</text>
+<text x="240" y="152" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">2</text>
+<text x="340" y="152" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">3</text>
+<text x="440" y="152" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">4</text>
+<text x="540" y="152" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">5</text>
+<text x="640" y="152" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">6</text>
+<text x="28" y="213" font-size="18" fill="#53657d">칸 0</text>
+<text x="28" y="283" font-size="18" fill="#53657d">칸 1</text>
+<line x1="200" y1="202" x2="180" y2="202" stroke="#ae5515" stroke-width="3.5"/>
+<line x1="200" y1="272" x2="180" y2="202" stroke="#c7d0de" stroke-width="1.6"/>
+<line x1="300" y1="202" x2="280" y2="272" stroke="#c7d0de" stroke-width="1.6"/>
+<line x1="300" y1="272" x2="280" y2="202" stroke="#ae5515" stroke-width="3.5"/>
+<line x1="400" y1="202" x2="380" y2="272" stroke="#ae5515" stroke-width="3.5"/>
+<line x1="400" y1="272" x2="380" y2="202" stroke="#c7d0de" stroke-width="1.6"/>
+<line x1="500" y1="202" x2="480" y2="202" stroke="#ae5515" stroke-width="3.5"/>
+<line x1="500" y1="272" x2="480" y2="202" stroke="#c7d0de" stroke-width="1.6"/>
+<line x1="600" y1="202" x2="580" y2="272" stroke="#c7d0de" stroke-width="1.6"/>
+<line x1="600" y1="272" x2="580" y2="202" stroke="#ae5515" stroke-width="3.5"/>
+<rect x="100" y="180" width="80" height="44" rx="8" fill="#fff3e8" stroke="#ae5515" stroke-width="3"/>
+<text x="140" y="209" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 3)</text>
+<rect x="100" y="250" width="80" height="44" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="140" y="279" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 0)</text>
+<rect x="200" y="180" width="80" height="44" rx="8" fill="#fff3e8" stroke="#ae5515" stroke-width="3"/>
+<text x="240" y="209" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 4)</text>
+<rect x="200" y="250" width="80" height="44" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="240" y="279" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 1)</text>
+<rect x="300" y="180" width="80" height="44" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="340" y="209" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(1, 4)</text>
+<rect x="300" y="250" width="80" height="44" rx="8" fill="#fff3e8" stroke="#ae5515" stroke-width="3"/>
+<text x="340" y="279" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 1)</text>
+<rect x="400" y="180" width="80" height="44" rx="8" fill="#fff3e8" stroke="#ae5515" stroke-width="3"/>
+<text x="440" y="209" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(1, 5)</text>
+<rect x="400" y="250" width="80" height="44" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="440" y="279" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 0)</text>
+<rect x="500" y="180" width="80" height="44" rx="8" fill="#fff3e8" stroke="#ae5515" stroke-width="3"/>
+<text x="540" y="209" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 2)</text>
+<rect x="500" y="250" width="80" height="44" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="540" y="279" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 0)</text>
+<rect x="600" y="180" width="80" height="44" rx="8" fill="#ffffff" stroke="#9aa8bb" stroke-width="2"/>
+<text x="640" y="209" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(1, 2)</text>
+<rect x="600" y="250" width="80" height="44" rx="8" fill="#fff3e8" stroke="#ae5515" stroke-width="3"/>
+<text x="640" y="279" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">(0, 0)</text>
+<text x="100" y="340" font-size="18" fill="#53657d">단계 1의 부모 0은 시작 상태입니다.</text>
+<text x="28" y="372" font-size="18" fill="#172b45">단계 6의 칸 1(비용 21)에서 시작해 부모 번호를 따라 거슬러 올라가며 행동을 읽는다.</text>
+<text x="28" y="402" font-size="20" fill="#ae5515" font-weight="700">읽은 행동: 0, 2, 5, 1, 4, 3 → 뒤집어 경로 3 4 1 5 2 0</text>
+<text x="28" y="436" font-size="18" fill="#53657d">부모 번호는 이전 단계 빔 안의 번호다. 이번 단계의 후보 번호와 섞으면 경로가 어긋난다.</text>
+</svg>

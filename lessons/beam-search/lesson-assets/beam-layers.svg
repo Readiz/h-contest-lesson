@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 548" role="img" aria-labelledby="title desc">
+<title id="title">한 단계: 평가하고 상위 W개만 남긴다</title>
+<desc id="desc">폭 3인 빔의 상태 세 개 1 4(값 6), 1 2(값 6), 3 6(값 9)에서 후보 여덟 개가 만들어집니다. 후보의 평가값은 위에서부터 6, 6, 14, 6, 6, 6, 9, 17입니다. 평가값이 큰 17, 14, 9인 후보 세 개만 새 빔의 상태가 되고 나머지 다섯 개는 버려집니다. 버려진 후보의 최고 평가값은 6입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="546" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한 단계: 평가하고 상위 W개만 남긴다</text>
+<text x="28" y="84" font-size="20" fill="#53657d">폭 3, 평가값 = 얻은 값 (3×3 격자 예의 깊이 3)</text>
+<g font-size="18" fill="#172b45" font-weight="700" text-anchor="middle">
+<text x="108" y="128">① 빔의 상태 3개</text><text x="357" y="128">② 후보 8개의 평가값</text><text x="626" y="128">③ 남은 상태 3개</text>
+</g>
+<g stroke="#9aa8bb" stroke-width="1.6" fill="none">
+<path d="M188 236 L272 176"/><path d="M188 236 L272 216"/><path d="M188 236 L272 256"/><path d="M188 236 L272 296"/>
+<path d="M188 356 L272 336"/><path d="M188 356 L272 376"/>
+<path d="M188 436 L272 416"/><path d="M188 436 L272 456"/>
+</g>
+<g fill="#ffffff" stroke="#172b45" stroke-width="2">
+<rect x="28" y="211" width="160" height="50" rx="10"/><rect x="28" y="331" width="160" height="50" rx="10"/><rect x="28" y="411" width="160" height="50" rx="10"/>
+</g>
+<g font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">
+<text x="108" y="242">1→4 : 6</text><text x="108" y="362">1→2 : 6</text><text x="108" y="442">3→6 : 9</text>
+</g>
+<g fill="#ffffff" stroke="#9aa8bb" stroke-width="2">
+<rect x="272" y="160" width="170" height="32" rx="8"/><rect x="272" y="200" width="170" height="32" rx="8"/><rect x="272" y="280" width="170" height="32" rx="8"/>
+<rect x="272" y="320" width="170" height="32" rx="8"/><rect x="272" y="360" width="170" height="32" rx="8"/>
+</g>
+<g fill="#eaf1ff" stroke="#2664ce" stroke-width="3">
+<rect x="272" y="240" width="170" height="32" rx="8"/><rect x="272" y="400" width="170" height="32" rx="8"/><rect x="272" y="440" width="170" height="32" rx="8"/>
+</g>
+<g font-size="18" text-anchor="middle">
+<g fill="#53657d">
+<text x="357" y="183">1→4→1 : 6</text><text x="357" y="223">1→4→5 : 6</text><text x="357" y="303">1→4→3 : 6</text><text x="357" y="343">1→2→5 : 6</text><text x="357" y="383">1→2→1 : 6</text>
+</g>
+<g fill="#172b45" font-weight="700">
+<text x="357" y="263">1→4→7 : 14</text><text x="357" y="423">3→6→3 : 9</text><text x="357" y="463">3→6→7 : 17</text>
+</g>
+</g>
+<g font-size="22" fill="#ae5515" text-anchor="middle" font-weight="700">
+<text x="466" y="184">×</text><text x="466" y="224">×</text><text x="466" y="304">×</text><text x="466" y="344">×</text><text x="466" y="384">×</text>
+</g>
+<g stroke="#2664ce" stroke-width="3" fill="none">
+<line x1="442" y1="256" x2="552" y2="256"/><path d="M542 248 L552 256 L542 264"/>
+<line x1="442" y1="416" x2="552" y2="416"/><path d="M542 408 L552 416 L542 424"/>
+<line x1="442" y1="456" x2="552" y2="456"/><path d="M542 448 L552 456 L542 464"/>
+</g>
+<g fill="#eaf1ff" stroke="#2664ce" stroke-width="3">
+<rect x="560" y="240" width="132" height="32" rx="8"/><rect x="560" y="400" width="132" height="32" rx="8"/><rect x="560" y="440" width="132" height="32" rx="8"/>
+</g>
+<g font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">
+<text x="626" y="263">1→4→7 : 14</text><text x="626" y="423">3→6→3 : 9</text><text x="626" y="463">3→6→7 : 17</text>
+</g>
+<text x="28" y="504" font-size="18" fill="#172b45">파란 칸 3개가 새 빔이 되고 ×가 붙은 5개는 버려집니다.</text>
+<text x="28" y="530" font-size="18" fill="#53657d">버려진 후보의 최고 평가값은 6, 남은 후보의 최저는 9입니다.</text>
+</svg>
