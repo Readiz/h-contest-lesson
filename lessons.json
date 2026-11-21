@@ -1845,7 +1845,9 @@
         "heuristic",
         "cpp-common-library"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "hill-climbing-and-annealing"
+      ],
       "relatedLessons": [
         "testing-and-stress",
         "assignment-local-search",
@@ -1908,7 +1910,9 @@
         "neighborhood-and-delta",
         "cpp-common-library"
       ],
-      "nextLessons": [],
+      "nextLessons": [
+        "beam-search"
+      ],
       "relatedLessons": [
         "heuristic",
         "assignment-local-search",
