@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 410" role="img" aria-labelledby="title desc">
+<title id="title">64번 구성한 경로 길이의 점 분포</title>
+<desc id="desc">입력 시드 1에서 첫 점을 무작위로 바꾼 가장 가까운 점 잇기 64번의 길이 분포입니다. 최솟값은 4번 중 14,809, 16번 중 14,593, 64번 중 14,517이고 결정적인 후회 삽입 한 번은 13,827로 모두보다 짧습니다. 첫 점 0에서 시작한 한 번은 15,683입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="408" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">여러 번 만들면 어디까지 내려가는가</text>
+<text x="28" y="84" font-size="19" fill="#53657d">입력 시드 1 하나에서 본 분포입니다(일반 법칙이 아님)</text>
+<line x1="40" y1="330" x2="680" y2="330" stroke="#53657d" stroke-width="1.5"/>
+<line x1="115.3" y1="330" x2="115.3" y2="338" stroke="#53657d" stroke-width="1.5"/>
+<text x="115.3" y="362" font-size="18" fill="#53657d" text-anchor="middle">14,000</text>
+<line x1="303.5" y1="330" x2="303.5" y2="338" stroke="#53657d" stroke-width="1.5"/>
+<text x="303.5" y="362" font-size="18" fill="#53657d" text-anchor="middle">15,000</text>
+<line x1="491.8" y1="330" x2="491.8" y2="338" stroke="#53657d" stroke-width="1.5"/>
+<text x="491.8" y="362" font-size="18" fill="#53657d" text-anchor="middle">16,000</text>
+<line x1="680.0" y1="330" x2="680.0" y2="338" stroke="#53657d" stroke-width="1.5"/>
+<text x="680.0" y="362" font-size="18" fill="#53657d" text-anchor="middle">17,000</text>
+<text x="360" y="394" font-size="19" fill="#172b45" text-anchor="middle">경로 길이 ↓ (작을수록 좋음)</text>
+<circle cx="407.1" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="275.3" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="520.0" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="275.3" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="331.8" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="407.1" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="350.6" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="482.4" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="463.5" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="538.8" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="294.1" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="275.3" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="256.5" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="237.6" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="350.6" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="218.8" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="425.9" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="256.5" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="538.8" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="388.2" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="256.5" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="557.6" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="463.5" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="425.9" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="463.5" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="350.6" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="444.7" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="520.0" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="482.4" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="444.7" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="538.8" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="482.4" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="294.1" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="350.6" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="444.7" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="275.3" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="482.4" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="482.4" cy="260" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="538.8" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="388.2" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="501.2" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="463.5" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="538.8" cy="260" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="651.8" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="444.7" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="501.2" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="444.7" cy="260" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="557.6" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="557.6" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="463.5" cy="260" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="218.8" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="595.3" cy="320" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="388.2" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="425.9" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="463.5" cy="245" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="425.9" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="218.8" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="294.1" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="520.0" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="256.5" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="331.8" cy="305" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="407.1" cy="290" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="350.6" cy="260" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<circle cx="388.2" cy="275" r="6.5" fill="#2664ce" fill-opacity="0.75"/>
+<line x1="212.6" y1="148" x2="212.6" y2="330" stroke="#53657d" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="220.6" y="146" font-size="18" fill="#172b45">64번 중 최소 14,517</text>
+<line x1="226.9" y1="180" x2="226.9" y2="330" stroke="#53657d" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="234.9" y="178" font-size="18" fill="#172b45">16번 중 14,593</text>
+<line x1="267.6" y1="212" x2="267.6" y2="330" stroke="#53657d" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="275.6" y="210" font-size="18" fill="#172b45">4번 중 14,809</text>
+<line x1="82.7" y1="110" x2="82.7" y2="330" stroke="#ae5515" stroke-width="3"/>
+<text x="90.7" y="122" font-size="18" fill="#ae5515" font-weight="700">후회 삽입 1번 13,827</text>
+<line x1="432.1" y1="212" x2="432.1" y2="330" stroke="#172b45" stroke-width="2.5"/>
+<text x="440.1" y="226" font-size="18" fill="#172b45">첫 점 0의 한 번 15,683</text>
+</svg>
