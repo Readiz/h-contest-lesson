@@ -112,7 +112,7 @@ static void modeRef() {
             int bad = -2;
             const ll cost = playOnline(onJ, onM, onP, to, &bad);
             const ll ref = refOnlineCost(onJ, to);
-            const int peek = onlineNoPeek(onJ, onM, onP, 60) ? 1 : 0;
+            const int peek = onlineNoPeek(onJ, onM, onP, 100) ? 1 : 0;
             printf("ref online %d %d %lld %lld %d %d\n", cfg, s, cost, ref, bad, peek);
         }
     }
@@ -285,7 +285,7 @@ static void modeDetect() {
         onP.fut = FUT_MEAN;
         int bad = -2;
         const ll cost = playOnline(onJ, onM, onP, 0, &bad);
-        const int peek = onlineNoPeek(onJ, onM, onP, 60) ? 1 : 0;
+        const int peek = onlineNoPeek(onJ, onM, onP, 100) ? 1 : 0;
         printf("D online %d %d %d %lld\n", s, bad, peek, cost);
     }
 }

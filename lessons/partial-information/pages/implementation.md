@@ -69,7 +69,7 @@ struct GridMirror {                        // 내 쪽의 거울: 규칙(아는 �
     void begin(const GridJudge& j) {       // 규칙만 읽고 나머지는 비운다
         h = j.h; w = j.w; T = j.T;
         hc::fill(seenAt, GN, -1); hc::fill(val, GN, 0); hc::fill(stepped, GN, false);
-        pos = 0; t = 0; nSeen = 0; sumSeen = 0;
+        pos = 0; t = 0; got = 0; nSeen = 0; sumSeen = 0;
     }
     void observe(GridJudge& j) {           // 보인 칸을 기록한다. 이미 아는 칸은 시점만 고친다
         int cell[GN], v[GN];
@@ -79,12 +79,9 @@ struct GridMirror {                        // 내 쪽의 거울: 규칙(아는 �
             if (seenAt[c] < 0) { ++nSeen; sumSeen += v[k]; }   // 처음 본 칸만 평균에 넣는다
             val[c] = v[k]; seenAt[c] = t;
         }
-        if (t == 0) { stepped[0] = true; got = val[0]; }       // 시작 칸은 처음부터 밟은 것으로 센다
+        if (!stepped[pos]) { stepped[pos] = true; got += val[pos]; }   // 서 있는 칸의 값은 보인다. 처음 밟는 칸이면 채점기에 묻지 않고 기억한 값으로 센다
     }
-    void step(int c) {                     // 내가 움직인 것을 적는다. 채점기에 묻지 않고 기억한 값으로 센다
-        pos = c; ++t;
-        if (!stepped[c]) { stepped[c] = true; got += val[c]; }
-    }
+    void step(int c) { pos = c; ++t; }     // 내가 움직인 것을 적는다. 도착한 칸의 값은 도착한 뒤 observe에서 센다
 };
 ```
 
@@ -353,9 +350,9 @@ bool onlineNoPeek(const OnlineJudge& base, OnlineMirror& m, OnlinePolicy& p, int
     static OnlineJudge a, b;
     static int toA[AN], toB[AN];
     a = base; b = base;
-    for (int i = from; i < b.n; ++i) {
-        b.d[i] = 1 + (a.d[i] + 37) % 100;
-        for (int q = 0; q < b.m; ++q) b.c[i][q] = (a.c[i][q] + 11 + q) % 51;
+    for (int i = from; i < b.n; ++i) {                     // 아직 도착하지 않은 작업을 전부 가장 짧은 작업으로, 추가 비용은 뒤집은 값으로 바꾼다
+        b.d[i] = 1;
+        for (int q = 0; q < b.m; ++q) b.c[i][q] = 50 - a.c[i][q];
     }
     if (playOnline(a, m, p, toA, 0) < 0 || playOnline(b, m, p, toB, 0) < 0) return false;
     for (int i = 0; i < from; ++i) if (toA[i] != toB[i]) return false;
