@@ -2015,6 +2015,70 @@
         "modeling",
         "selection"
       ]
+    },
+    {
+      "lessonId": "destroy-and-repair",
+      "title": "크게 부수고 다시 짓기",
+      "description": "작은 이동으로는 빠져나오지 못하는 구조가 무엇인지 손계산으로 보이고, 해의 일부를 떼어 내고(부수기) 구성법으로 다시 채우는(다시 짓기) 반복의 틀, 부술 부분을 고르는 방법(무작위·연속 구간·가까운 것·비용 기여), 다시 짓는 구성법, 새 해를 받는 기준, 부수는 크기, 부수기 전 상태로 되돌리는 방법을 순서 문제와 배정 문제 두 유형에 적용하고 같은 연산 예산에서 작은 이동만 쓰는 탐색과 비교합니다.",
+      "summary": "작은 이동의 지역 최적을 부수고 다시 짓기로 빠져나오는 틀(고르기·구성법·받는 기준·되돌리기)과 부수는 크기를, 연습용 순서·배정 문제에서 시드 20개로 같은 연산 예산의 작은 이동 탐색과 비교",
+      "order": 106,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "method",
+        "destroy-repair",
+        "large-neighborhood",
+        "local-search",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 90,
+      "prerequisites": [
+        "problem-modeling",
+        "construction-heuristics",
+        "neighborhood-and-delta",
+        "cpp-common-library"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "placement-search",
+        "assignment-with-routes",
+        "assignment-local-search",
+        "heuristic",
+        "testing-and-stress"
+      ],
+      "pages": [
+        {
+          "pageId": "idea",
+          "title": "원리와 손으로 따라가는 예",
+          "description": "작은 이동으로 못 나가는 구조를 순서·배정 두 유형의 손계산으로 보이고, 부수고 다시 짓는 반복의 구성 요소(무엇을 떼어 낼지, 어떻게 채울지, 받을지, 얼마나 크게, 어떻게 되돌릴지)를 설명합니다.",
+          "order": 10,
+          "file": "pages/idea.md"
+        },
+        {
+          "pageId": "implementation",
+          "title": "구현: 부수기·다시 짓기 틀과 두 문제 유형",
+          "description": "문제와 무관한 반복·받는 기준·검사와 문제마다 채우는 부수기·다시 짓기·되돌리기를 순서 틀과 배정 틀에서 구현합니다.",
+          "order": 20,
+          "file": "pages/implementation.md"
+        },
+        {
+          "pageId": "practice",
+          "title": "실험과 점검",
+          "description": "작은 이동의 지역 최적에서의 시도, 같은 예산에서 작은 이동만 쓰는 탐색과의 비교, 부술 부분·구성법·받는 기준·크기·되돌리기 방식별 실측, 흔한 실수와 검사, 다른 문제에 옮길 때의 점검 목록과 적용 사례를 다룹니다.",
+          "order": 30,
+          "file": "pages/practice.md"
+        }
+      ],
+      "lessonType": "core",
+      "practiceStatus": "linked",
+      "implementationStatus": "full",
+      "audience": "contest-core",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
     }
   ]
 }

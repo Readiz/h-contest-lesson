@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" role="img" aria-labelledby="title desc">
+<title id="title">부술 부분을 고르는 세 방법</title>
+<desc id="desc">같은 경로 위의 점 11개에서 세 방법이 떼어 내는 점 3개를 주황색으로 표시했습니다. 무작위는 경로 위에 흩어진 점을, 가까운 점은 한 점과 그 이웃을, 비용 기여는 빼면 경로 길이가 많이 줄어드는 돌출된 점과 끝점을 고릅니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<rect x="1" y="1" width="718" height="438" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">부술 부분을 고르는 세 방법</text>
+<text x="28" y="84" font-size="20" fill="#53657d">같은 경로에서 떼어 낼 점 3개를 고르는 방식</text>
+<text x="20" y="118" font-size="20" fill="#172b45" font-weight="700">무작위</text>
+<rect x="14" y="132" width="214" height="206" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="35" y1="246" x2="35" y2="208" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="35" y1="208" x2="42" y2="180" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="42" y1="180" x2="58" y2="196" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="58" y1="196" x2="80" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="80" y1="246" x2="86" y2="168" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="86" y1="168" x2="120" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="120" y1="246" x2="160" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="160" y1="246" x2="160" y2="314" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="160" y1="314" x2="200" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="200" y1="246" x2="192" y2="184" stroke="#9aa8bb" stroke-width="3"/>
+<circle cx="35" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="35" cy="208" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="42" cy="180" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<circle cx="58" cy="196" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="80" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="86" cy="168" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="120" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="160" cy="246" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<circle cx="160" cy="314" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="200" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="192" cy="184" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<text x="20" y="368" font-size="18" fill="#172b45">흩어진 점 3개</text>
+<text x="255" y="118" font-size="20" fill="#172b45" font-weight="700">가까운 점</text>
+<rect x="249" y="132" width="214" height="206" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="270" y1="246" x2="270" y2="208" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="270" y1="208" x2="277" y2="180" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="277" y1="180" x2="293" y2="196" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="293" y1="196" x2="315" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="315" y1="246" x2="321" y2="168" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="321" y1="168" x2="355" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="355" y1="246" x2="395" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="395" y1="246" x2="395" y2="314" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="395" y1="314" x2="435" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="435" y1="246" x2="427" y2="184" stroke="#9aa8bb" stroke-width="3"/>
+<circle cx="270" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="270" cy="208" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<circle cx="277" cy="180" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<circle cx="293" cy="196" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<circle cx="315" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="321" cy="168" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="355" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="395" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="395" cy="314" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="435" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="427" cy="184" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<text x="255" y="368" font-size="18" fill="#172b45">한 점과 가까운 이웃</text>
+<text x="490" y="118" font-size="20" fill="#172b45" font-weight="700">비용 기여</text>
+<rect x="484" y="132" width="214" height="206" rx="12" fill="#ffffff" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="505" y1="246" x2="505" y2="208" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="505" y1="208" x2="512" y2="180" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="512" y1="180" x2="528" y2="196" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="528" y1="196" x2="550" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="550" y1="246" x2="556" y2="168" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="556" y1="168" x2="590" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="590" y1="246" x2="630" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="630" y1="246" x2="630" y2="314" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="630" y1="314" x2="670" y2="246" stroke="#9aa8bb" stroke-width="3"/>
+<line x1="670" y1="246" x2="662" y2="184" stroke="#9aa8bb" stroke-width="3"/>
+<circle cx="505" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="505" cy="208" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="512" cy="180" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="528" cy="196" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="550" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="556" cy="168" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<circle cx="590" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="630" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="630" cy="314" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<circle cx="670" cy="246" r="7" fill="#ffffff" stroke="#172b45" stroke-width="2"/>
+<circle cx="662" cy="184" r="10" fill="#ae5515" stroke="#ae5515" stroke-width="2"/>
+<text x="490" y="368" font-size="18" fill="#172b45">빼면 길이가</text>
+<text x="490" y="392" font-size="18" fill="#172b45">많이 줄어드는 점</text>
+<text x="28" y="424" font-size="18" fill="#53657d">주황 점이 떼어 낼 점입니다.</text>
+</svg>
