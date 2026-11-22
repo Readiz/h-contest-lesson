@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 365" role="img" aria-labelledby="title desc">
 <title id="title">기준선과 한계의 비 (기본 크기)</title>
-<desc id="desc">기본 크기에서 시드 10개마다 기준선과 한계의 비입니다. 순서: 기준선 ÷ 하한는 10.83배에서 11.73배까지였고 배정: 기준선 ÷ 하한는 1.21배에서 1.27배까지였고 격자 수집: 상한 ÷ 기준선는 4.28배에서 13.60배까지였고 순서와 배정은 시드마다 비슷하고 격자 수집은 시드마다 크게 흔들립니다.</desc>
+<desc id="desc">기본 크기에서 시드 10개마다 기준선과 한계의 비입니다. 순서: 기준선 ÷ 하한는 10.82배에서 11.72배까지였고 배정: 기준선 ÷ 하한는 1.20배에서 1.26배까지였고 격자 수집: 상한 ÷ 기준선는 4.28배에서 13.60배까지였고 순서와 배정은 시드마다 비슷하고 격자 수집은 시드마다 크게 흔들립니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="363" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <line x1="275.7" y1="167" x2="275.7" y2="299" stroke="#d8e1ed" stroke-width="1.5"/>

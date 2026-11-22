@@ -17,7 +17,8 @@ def charts(m: dict) -> dict[str, str]:
     d = m["default"]
     names = [("route", "순서: 기준선 ÷ 하한"), ("assign", "배정: 기준선 ÷ 하한"), ("grid", "격자 수집: 상한 ÷ 기준선")]
     rows = [{"label": lab, "values": [v / 1000.0 for v in d[k]["ratio1000"]], "color": "hi" if k == "grid" else "base"} for k, lab in names]
-    lo_hi = {k: (min(d[k]["ratio1000"]) / 1000.0, max(d[k]["ratio1000"]) / 1000.0) for k, _ in names}
+    # 본문·허브와 같게 소수 둘째 자리 아래는 버린다(반올림하지 않는다).
+    lo_hi = {k: ((min(d[k]["ratio1000"]) // 10) / 100.0, (max(d[k]["ratio1000"]) // 10) / 100.0) for k, _ in names}
     desc = (f"기본 크기에서 시드 {seeds}개마다 기준선과 한계의 비입니다. " + " ".join(
         f"{lab}는 {lo_hi[k][0]:.2f}배에서 {lo_hi[k][1]:.2f}배까지였고" for k, lab in names)
         + " 순서와 배정은 시드마다 비슷하고 격자 수집은 시드마다 크게 흔들립니다.")
