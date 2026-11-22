@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 527" role="img" aria-labelledby="title desc">
+<title id="title">폭을 늘릴 때의 비용 (순서 문제)</title>
+<desc id="desc">순서 문제에서 폭(로그 눈금)을 늘릴 때 시드 20개 중 10번째로 작은 비용입니다. 추정 없음은 폭 1의 15,917에서 폭 256의 16,526으로, 낙관적 합은 16,154에서 15,976으로 오르내리다 조금 줄고, 탐욕 완성은 폭 1에서 8까지 14,390에서 14,036로 줄어 모든 폭에서 가장 낮습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="525" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">폭을 늘릴 때의 비용 (순서 문제)</text>
+<text x="28" y="84" font-size="19" fill="#53657d">N=200, 시드 20개 중 10번째로 작은 비용. 작을수록 좋습니다. 탐욕</text>
+<text x="28" y="109" font-size="19" fill="#53657d">완성은 폭 8까지</text>
+<line x1="28" y1="132" x2="48" y2="132" stroke="#9db6e0" stroke-width="3.5"/>
+<circle cx="38" cy="132" r="4.5" fill="#9db6e0"/>
+<text x="56" y="137" font-size="18" fill="#172b45">추정 없음</text>
+<line x1="171.9" y1="132" x2="191.9" y2="132" stroke="#2664ce" stroke-width="3.5"/>
+<circle cx="181.9" cy="132" r="4.5" fill="#2664ce"/>
+<text x="199.9" y="137" font-size="18" fill="#172b45">낙관적 합</text>
+<line x1="315.8" y1="132" x2="335.8" y2="132" stroke="#ae5515" stroke-width="3.5"/>
+<circle cx="325.8" cy="132" r="4.5" fill="#ae5515"/>
+<text x="343.8" y="137" font-size="18" fill="#172b45">탐욕 완성</text>
+<text x="28" y="163" font-size="17" fill="#53657d">비용 ↓ (작을수록 좋음)</text>
+<line x1="92.8" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="462" font-size="16" fill="#53657d" text-anchor="end">14,000</text>
+<line x1="92.8" y1="387" x2="680" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="392" font-size="16" fill="#53657d" text-anchor="end">15,000</text>
+<line x1="92.8" y1="317" x2="680" y2="317" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="322" font-size="16" fill="#53657d" text-anchor="end">16,000</text>
+<line x1="92.8" y1="247" x2="680" y2="247" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="252" font-size="16" fill="#53657d" text-anchor="end">17,000</text>
+<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="182" font-size="16" fill="#53657d" text-anchor="end">18,000</text>
+<line x1="130.8" y1="177" x2="130.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="130.8" y="481" font-size="16" fill="#53657d" text-anchor="middle">1</text>
+<line x1="194.7" y1="177" x2="194.7" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="194.7" y="481" font-size="16" fill="#53657d" text-anchor="middle">2</text>
+<line x1="258.6" y1="177" x2="258.6" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="258.6" y="481" font-size="16" fill="#53657d" text-anchor="middle">4</text>
+<line x1="322.5" y1="177" x2="322.5" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="322.5" y="481" font-size="16" fill="#53657d" text-anchor="middle">8</text>
+<line x1="386.4" y1="177" x2="386.4" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="386.4" y="481" font-size="16" fill="#53657d" text-anchor="middle">16</text>
+<line x1="514.2" y1="177" x2="514.2" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="514.2" y="481" font-size="16" fill="#53657d" text-anchor="middle">64</text>
+<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="642" y="481" font-size="16" fill="#53657d" text-anchor="middle">256</text>
+<line x1="92.8" y1="457" x2="680" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<line x1="92.8" y1="177" x2="92.8" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<polyline points="130.8,322.8 194.7,220 258.6,180.4 322.5,216.8 386.4,227.4 514.2,252.9 642,280.2" fill="none" stroke="#9db6e0" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="130.8" cy="322.8" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="194.7" cy="220" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="258.6" cy="180.4" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="322.5" cy="216.8" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="386.4" cy="227.4" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="514.2" cy="252.9" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="280.2" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<text x="642" y="267.2" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">16,526</text>
+<polyline points="130.8,306.2 194.7,212.7 258.6,216.5 322.5,216.5 386.4,244.8 514.2,298.5 642,318.7" fill="none" stroke="#2664ce" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="130.8" cy="306.2" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="194.7" cy="212.7" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="258.6" cy="216.5" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="322.5" cy="216.5" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="386.4" cy="244.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="514.2" cy="298.5" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="318.7" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<text x="642" y="305.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">15,976</text>
+<polyline points="130.8,429.7 194.7,443.5 258.6,450.1 322.5,454.5" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="130.8" cy="429.7" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="194.7" cy="443.5" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="258.6" cy="450.1" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="322.5" cy="454.5" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<text x="130.8" y="416.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">14,390</text>
+<text x="322.5" y="441.5" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">14,036</text>
+<text x="360" y="511" font-size="17" fill="#53657d" text-anchor="middle">빔 폭 (로그 눈금)</text>
+</svg>

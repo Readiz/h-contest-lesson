@@ -34,6 +34,10 @@
 | `dropped` | 폭 때문에 버린 후보 수(합치기·묶음 상한으로 버린 것은 제외) |
 | `distinctSum`, `sizeSum` | 단계마다 빔 안의 서로 다른 상태 수의 합, 빔 크기의 합 |
 
+![Beam::run의 한 단계. 빔의 상태마다 p.evalChild로 후보를 평가하고, mergeSame과 capGroups로 같은 상태와 묶음 상한을 거른 뒤 pickBest가 평가값 상위 width개를 남깁니다(refineK가 크면 p.refine을 거칩니다). 남은 후보만 p.apply로 상태를 만들고 부모 번호와 행동을 기록하며, 단계가 끝나면 p.score가 큰 상태에서 거꾸로 경로를 복원합니다.](../lesson-assets/step-flow.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/beam-search/lesson-assets/step-flow.svg)
+
 ```cpp snippet=bs-frame
 struct Cand {
     long long eval;                    // 클수록 좋다(최소화 문제는 음수로 둔다)

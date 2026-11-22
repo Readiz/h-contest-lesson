@@ -788,9 +788,26 @@ def prose_checks(meas: dict, mistakes: dict) -> list[str]:
     return out
 
 
+STATIC_FIGURES = ("step-flow.svg",)
+
+
+def check_static_figures(text: str) -> int:
+    """손으로 쓴 구조 그림: 규격(폭 720, 글자 16~28, 제목 27, role/title/desc)과 본문 삽입(대체 텍스트 + 크게 보기 줄)."""
+    for name in STATIC_FIGURES:
+        svg = (ROOT / "lessons" / LESSON_ID / "lesson-assets" / name).read_text(encoding="utf-8")
+        assert re.search(r'viewBox="0 0 720 \d+"', svg), f"{name}: viewBox width must be 720"
+        assert 'role="img"' in svg and "<title" in svg and "<desc" in svg, f"{name}: role/title/desc"
+        sizes = [int(v) for v in re.findall(r'font-size="(\d+)"', svg)]
+        assert sizes and min(sizes) >= 16 and max(sizes) <= 28 and 27 in sizes, f"{name}: font sizes {sorted(set(sizes))}"
+        base = f"https://git.readiz.com/h-contest-lesson/lessons/{LESSON_ID}/lesson-assets/{name}"
+        pattern = r"!\[[^\]\[]+\]\(\.\./lesson-assets/" + re.escape(name) + r"\)\n\n\[그림 크게 보기\]\(" + re.escape(base) + r"\)"
+        assert re.search(pattern, text), f"{name} is not embedded with its enlarge link"
+    return len(STATIC_FIGURES)
+
+
 def check_text_tables(meas: dict, mistakes: dict) -> int:
     text = read_lesson_text(LESSON_ID)
-    count = 0
+    count = check_static_figures(text)
     for frag in prose_checks(meas, mistakes):
         assert frag in text, f"quoted number missing or differs in the text: {frag}"
         count += 1
