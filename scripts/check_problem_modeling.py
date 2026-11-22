@@ -966,7 +966,7 @@ SITE_PROBLEMS = ("ORDERING", "SCHEDULX", "MINEEXPLORE", "AIRCONTECH", "TAXIASSIG
                  "ALLOCATE", "CLUSTERX", "CHIPDESIGN", "TENSORALLOC", "ROBOTCLEAN", "DRONESORT", "FRIEGHTFIX",
                  "ANTENNAS", "TELEVISION", "GERMMATCH", "ENTROPY2D", "CITYSUM2D", "FUNCSUM1", "SORTTEST")
 EXPECTED_PAGES = ("pages/idea.md", "pages/implementation.md", "pages/practice.md")
-FIGURES = ("procedure.svg", "two-ways-to-score.svg", "bounds-gap.svg", "case-reset.svg")
+FIGURES = ("procedure.svg", "two-ways-to-score.svg", "bounds-gap.svg", "case-reset.svg", "baseline-call-order.svg")
 
 
 def check_text(data: dict) -> None:

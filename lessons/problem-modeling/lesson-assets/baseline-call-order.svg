@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 767" role="img" aria-labelledby="title desc">
+<title id="title">기준선 검사 한 번의 순서</title>
+<desc id="desc">pm 틀의 runBaseline이 TC 하나에서 부르는 순서입니다. 틀이 reset으로 상태를 비우고, baseline으로 기준 답을 만들고, valid가 참이면 score를 부르고, bound를 계산해 Report로 돌려줍니다. valid가 거짓이면 score를 건너뛰고 bound로 가며 ratio1000은 -1입니다. reset, baseline, valid, score, bound는 문제마다 채우는 함수입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="765" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">기준선 검사 한 번의 순서</text>
+<text x="28" y="84" font-size="19" fill="#53657d">틀은 TC마다 위에서 아래로 한 바퀴 돕니다. 파란 상자는 틀,</text>
+<text x="28" y="109" font-size="19" fill="#53657d">주황 상자는 문제가 채우는 함수입니다</text>
+<rect x="28" y="150" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="162" font-size="18" fill="#172b45">문제와 무관한 고정 부분</text>
+<rect x="293.7" y="150" width="14" height="14" fill="#ae5515"/>
+<text x="315.7" y="162" font-size="18" fill="#172b45">문제마다 채우는 함수</text>
+<rect x="28" y="178" width="400" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="203" font-size="19" fill="#172b45" font-weight="700">pm::runBaseline&lt;P&gt;(c)</text>
+<text x="42" y="226" font-size="16" fill="#53657d">TC 하나의 기준선 검사를 한 번에</text>
+<line x1="228" y1="245" x2="228" y2="255" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222,253 234,253 228,262" fill="#53657d"/>
+<rect x="28" y="262" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="287" font-size="19" fill="#172b45" font-weight="700">P::reset(c)</text>
+<text x="42" y="310" font-size="16" fill="#53657d">이번 TC가 쓰는 상태를 비운다</text>
+<line x1="228" y1="329" x2="228" y2="339" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222,337 234,337 228,346" fill="#53657d"/>
+<rect x="28" y="346" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="371" font-size="19" fill="#172b45" font-weight="700">P::baseline(c, a)</text>
+<text x="42" y="394" font-size="16" fill="#53657d">어떤 입력에도 유효한 단순한 답</text>
+<line x1="228" y1="413" x2="228" y2="423" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222,421 234,421 228,430" fill="#53657d"/>
+<rect x="28" y="430" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="455" font-size="19" fill="#172b45" font-weight="700">P::valid(c, a)</text>
+<text x="42" y="478" font-size="16" fill="#53657d">무효 조건을 전부 검사한다</text>
+<line x1="228" y1="497" x2="228" y2="507" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222,505 234,505 228,514" fill="#53657d"/>
+<rect x="28" y="514" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="539" font-size="19" fill="#172b45" font-weight="700">P::score(c, a)</text>
+<text x="42" y="562" font-size="16" fill="#53657d">참일 때만, 처음부터 다시 계산</text>
+<line x1="228" y1="581" x2="228" y2="591" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222,589 234,589 228,598" fill="#53657d"/>
+<rect x="28" y="598" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="623" font-size="19" fill="#172b45" font-weight="700">P::bound(c)</text>
+<text x="42" y="646" font-size="16" fill="#53657d">최소화면 하한, 최대화면 상한</text>
+<line x1="228" y1="665" x2="228" y2="675" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222,673 234,673 228,682" fill="#53657d"/>
+<rect x="28" y="682" width="400" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="707" font-size="19" fill="#172b45" font-weight="700">Report</text>
+<text x="42" y="730" font-size="16" fill="#53657d">valid, score, bound, ratio1000</text>
+<line x1="428" y1="463" x2="468" y2="463" stroke="#53657d" stroke-width="2.5"/>
+<line x1="468" y1="463" x2="468" y2="631" stroke="#53657d" stroke-width="2.5"/>
+<line x1="468" y1="631" x2="429" y2="631" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="438,625 438,637 429,631" fill="#53657d"/>
+<text x="484" y="490" font-size="17" fill="#172b45" font-weight="700">거짓이면</text>
+<text x="484" y="512" font-size="17" fill="#172b45" font-weight="700">score를 건너뛴다</text>
+<text x="484" y="538" font-size="16" fill="#53657d">(무효인 답의 점수를</text>
+<text x="484" y="558" font-size="16" fill="#53657d">0으로 두지 않는다)</text>
+</svg>

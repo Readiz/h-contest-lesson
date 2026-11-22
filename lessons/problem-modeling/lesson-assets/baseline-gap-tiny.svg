@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 409" role="img" aria-labelledby="title desc">
+<title id="title">기준선은 최적에서 얼마나 떨어져 있나</title>
+<desc id="desc">같은 작은 입력에서 시드 10개마다 기준선이 최적과 몇 퍼센트 다른지 점으로 찍은 그림입니다. 순서 N=7는 13.7%에서 215.6%이고 배정 N=6, M=3, K=3는 42.6%에서 65.0%이고 격자 4×4, T=6는 0.0%에서 100.0%이고 격자 20×20, T=5는 45.0%에서 100.0%이고 기준선은 대부분의 시드에서 최적과 멀어 개선할 여지가 큽니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="407" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">기준선은 최적에서 얼마나 떨어져 있나</text>
+<text x="28" y="84" font-size="19" fill="#53657d">작은 입력 4종, 시드 10개. 점은 시드 하나, 눈금은 중앙값입니다.</text>
+<text x="28" y="109" font-size="19" fill="#53657d">한계의 간격(앞 그림)보다 대체로 훨씬 큽니다</text>
+<circle cx="35" cy="132" r="6" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">시드 하나</text>
+<line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
+<circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
+<text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
+<line x1="226.3" y1="167" x2="226.3" y2="343" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="226.3" y="365" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="362" y1="167" x2="362" y2="343" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="362" y="365" font-size="16" fill="#53657d" text-anchor="middle">100</text>
+<line x1="497.6" y1="167" x2="497.6" y2="343" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="497.6" y="365" font-size="16" fill="#53657d" text-anchor="middle">200</text>
+<line x1="633.2" y1="167" x2="633.2" y2="343" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="633.2" y="365" font-size="16" fill="#53657d" text-anchor="middle">300</text>
+<text x="28" y="195" font-size="19" fill="#172b45">순서 N=7</text>
+<circle cx="312.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="244.9" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="419.1" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="315.2" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="361" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="411.6" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="518.7" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="297.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="415.9" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="390.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="375.6" y1="174" x2="375.6" y2="204" stroke="#172b45" stroke-width="3.5"/>
+<text x="645.2" y="195" font-size="17" fill="#172b45">110.1</text>
+<text x="28" y="239" font-size="19" fill="#172b45">배정 N=6, M=3, K=3</text>
+<circle cx="286.9" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="314.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="285.9" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="286.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="289.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="284.1" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="313.9" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="314.2" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="309.2" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="311.8" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="299.2" y1="218" x2="299.2" y2="248" stroke="#172b45" stroke-width="3.5"/>
+<text x="645.2" y="239" font-size="17" fill="#172b45">53.8</text>
+<text x="28" y="283" font-size="19" fill="#172b45">격자 4×4, T=6</text>
+<circle cx="226.3" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="265.1" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="287.6" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="310.5" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="325" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="251" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="268.7" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="226.3" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="362" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="298.4" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<line x1="278.1" y1="262" x2="278.1" y2="292" stroke="#172b45" stroke-width="3.5"/>
+<text x="645.2" y="283" font-size="17" fill="#172b45">38.2</text>
+<text x="28" y="327" font-size="19" fill="#172b45">격자 20×20, T=5</text>
+<circle cx="328" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="289.6" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="316.7" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="332.3" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="362" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="294.1" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="287.3" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="323.2" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="346.3" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="325" cy="321" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<line x1="324.1" y1="306" x2="324.1" y2="336" stroke="#172b45" stroke-width="3.5"/>
+<text x="645.2" y="327" font-size="17" fill="#172b45">72.1</text>
+<line x1="226.3" y1="167" x2="226.3" y2="343" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="393" font-size="17" fill="#53657d" text-anchor="middle">기준선과 최적의 간격 (%)</text>
+</svg>

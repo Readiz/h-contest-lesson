@@ -18,6 +18,10 @@
 
 틀의 `evaluate`는 `valid`를 먼저 부르고 참일 때만 `score`를 부릅니다. 무효한 답의 점수를 `0`으로 돌려주면 최소화 문제에서 가장 좋은 점수처럼 보이므로, 점수와 유효 여부를 **같이** 돌려주는 것이 틀의 약속입니다. `agrees`는 내 판정과 점수가 채점기(또는 참조 채점)와 같은지 한 번에 묻고, `runBaseline`은 TC 시작의 `reset`, 기준선 생성, 평가, 한계 계산을 한 번에 합니다.
 
+![runBaseline이 TC 하나에서 부르는 순서. 틀이 reset으로 상태를 비우고 baseline으로 기준 답을 만든 뒤 valid를 부르고, 참일 때만 score를 부르며, bound를 계산해 Report로 돌려줍니다. 거짓이면 score를 건너뛰고 bound로 가며 ratio1000은 -1입니다.](../lesson-assets/baseline-call-order.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/problem-modeling/lesson-assets/baseline-call-order.svg)
+
 ```cpp snippet=pm-frame
 namespace pm {
 struct Result { bool valid; long long score; };
