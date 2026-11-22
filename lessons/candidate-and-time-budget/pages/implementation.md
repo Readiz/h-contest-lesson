@@ -36,7 +36,7 @@
 ```cpp snippet=tb-frame
 struct Move { int kind, a, b, old; };
 
-// [0, bound) 안의 값. 상위 비트를 쓴다(3번 강의의 `pick`과 같다).
+// [0, bound) 안의 값. 상위 비트를 쓴다(근방 설계 강의의 `pick`과 같다).
 int pick(hc::Random& rng, int bound) { return (int)(((unsigned long long)rng.next() * (unsigned)bound) >> 32); }
 
 // 남은 연산이 total이면 hi, 0이면 lo가 되도록 정수로 선형으로 잇는다. 크기·후보 수를 남은 비율에 묶는 틀.

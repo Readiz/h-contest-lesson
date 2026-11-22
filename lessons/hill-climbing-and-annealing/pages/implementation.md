@@ -29,7 +29,7 @@
 ```cpp snippet=ha-hill
 struct Move { int kind, a, b, old; };
 
-// [0, bound) 안의 값. 상위 비트를 쓴다(3번 강의의 pick과 같다).
+// [0, bound) 안의 값. 상위 비트를 쓴다(근방 설계 강의의 pick과 같다).
 int pick(hc::Random& rng, int bound) { return (int)(((unsigned long long)rng.next() * (unsigned)bound) >> 32); }
 
 // 근방의 이동은 (kind, a, b) 세 수로 번호를 매긴다. 문제가 kinds(), sizeA(kind), sizeB(kind), make()를 채운다.

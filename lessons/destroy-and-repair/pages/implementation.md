@@ -44,7 +44,7 @@
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/destroy-and-repair/lesson-assets/iteration-flow.svg)
 
 ```cpp snippet=dr-frame
-// [0, bound) 안의 값. 상위 비트를 쓴다(3번 강의의 pick과 같다).
+// [0, bound) 안의 값. 상위 비트를 쓴다(근방 설계 강의의 pick과 같다).
 int pick(hc::Random& rng, int bound) { return (int)(((unsigned long long)rng.next() * (unsigned)bound) >> 32); }
 
 const long long BIG = 1000000000000LL;     // "자리가 없음"을 뜻하는 비용
@@ -101,7 +101,7 @@ long long runDR(P& p, hc::Random& rng, const Cfg& c, long long budget) {
     return best;
 }
 
-// 비교용: 작은 이동(3번 강의)만 쓰는 탐색. smallStep은 이동 하나를 제안해 좋아질 때만 적용한다.
+// 비교용: 작은 이동(근방 설계 강의)만 쓰는 탐색. smallStep은 이동 하나를 제안해 좋아질 때만 적용한다.
 template <class P>
 long long runSmall(P& p, hc::Random& rng, long long budget) {
     while (p.ops < budget) { ++p.ops; p.smallStep(rng); }
@@ -292,7 +292,7 @@ struct Route {
         }
     }
 
-    // ---- 비교용 작은 이동: 구간 뒤집기와 한 점 옮기기(3번 강의), 좋아질 때만 적용
+    // ---- 비교용 작은 이동: 구간 뒤집기와 한 점 옮기기(근방 설계 강의), 좋아질 때만 적용
     int at(int k) { return (k < 0 || k >= n) ? -1 : buf[c][k]; }
     void smallStep(hc::Random& rng) {
         int* p = buf[c];
@@ -512,7 +512,7 @@ struct Assign {
         }
     }
 
-    // ---- 비교용 작은 이동: 한 작업 옮기기와 두 작업 맞바꾸기(3번 강의), 좋아질 때만 적용
+    // ---- 비교용 작은 이동: 한 작업 옮기기와 두 작업 맞바꾸기(근방 설계 강의), 좋아질 때만 적용
     void smallStep(hc::Random& rng) {
         const int mode = pick(rng, 2), i = pick(rng, n);
         const long long before = sq / 100;
