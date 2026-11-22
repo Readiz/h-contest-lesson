@@ -267,8 +267,10 @@ struct Jobs {
 void makeJobs(Jobs& q, int n, int m, int k, unsigned long long seed) {
     Gen g; g.reset(seed);
     q.n = n; q.m = m; q.k = k; q.evals = 0;
-    for (int j = 0; j < n; ++j) q.d[j] = 1 + g.next(100);
-    for (int j = 0; j < n; ++j) for (int i = 0; i < m; ++i) q.c[j][i] = g.next(51);
+    for (int j = 0; j < n; ++j) {
+        q.d[j] = 1 + g.next(100);
+        for (int i = 0; i < m; ++i) q.c[j][i] = g.next(51);
+    }
 }
 }
 ```
