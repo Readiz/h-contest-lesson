@@ -9,7 +9,7 @@
 1. [제출 계약과 상태 초기화](pages/submission-and-state.md)에서 호출 순서·배열 상한·점수 방향을 확인합니다.
 2. [ORDERING 기준선 실행과 검증](pages/practice.md)에서 유효한 답을 만들고 실제 채점기의 비용을 기록합니다.
 3. [배송 순서 개선](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement)에서 nearest neighbor와 2-opt를 추가합니다.
-4. [차분·복구 검증](https://h.readiz.com/learn/testing-and-stress)을 거쳐 [지역 탐색과 SA](https://h.readiz.com/learn/heuristic-case-studies/search-strategies)로 진행합니다.
+4. [차분·복구 검증](https://h.readiz.com/learn/testing-and-stress)을 거쳐 [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing)로 진행합니다.
 
 배열·난수·정렬·큐·힙은 별도 [STL 없는 공통 라이브러리](https://h.readiz.com/learn/cpp-common-library)에서 찾아 씁니다. 필요한 블록만 풀이 앞에 붙입니다. 라이브러리 전체를 선행 학습하거나 문제마다 다시 구현할 필요는 없습니다.
 
