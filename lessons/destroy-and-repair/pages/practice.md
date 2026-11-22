@@ -267,7 +267,7 @@
 이 강의의 틀이 이 사이트의 문제에서 쓰인 곳입니다. 각 강의는 해당 문제 하나를 끝까지 푸는 방식이라 이 강의와 설명의 순서가 다릅니다.
 
 - [격자 배치 문제(LANDINGX)](https://h.readiz.com/learn/placement-search): 점유 격자의 `put`/`take`로 만드는 되돌리기, 한 영역을 제거하고 무작위 배율로 다시 채우는 destroy/repair, 같은 후보 검사 수로 국소 이동과 비교한 실험.
-- [광고판 도시 배치](https://h.readiz.com/learn/heuristic/placement-and-repair): 한 개를 옮기는 작은 이동으로 못 고치는 배치를 큰 제거 뒤 다시 채우는 서술과 손계산.
+- [광고판 도시 배치](https://h.readiz.com/learn/heuristic-case-studies/placement-and-repair): 한 개를 옮기는 작은 이동으로 못 고치는 배치를 큰 제거 뒤 다시 채우는 서술과 손계산.
 - [배정과 경로가 결합된 문제(TAXIASSIGN)](https://h.readiz.com/learn/assignment-with-routes): 승객을 다른 기사 경로의 어느 자리에 끼울지 비교하는 삽입 이동과 자리 바꾸기. 다시 짓는 구성법의 삽입 비용에 해당합니다.
 - [배정 문제의 지역 탐색과 SA(SCHEDULX)](https://h.readiz.com/learn/assignment-local-search): 작업 옮기기와 맞바꾸기만으로 멈추는 구조와 부하 캐시 유지. 이 강의의 배정 틀이 같은 이동을 비교 기준으로 씁니다.
 

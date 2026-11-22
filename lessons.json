@@ -216,79 +216,49 @@
     },
     {
       "lessonId": "heuristic",
-      "title": "휴리스틱 알고리즘",
-      "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 세 가지 실전 사례와 함께 익힙니다.",
-      "summary": "ORDERING의 열린 경로 개선에서 시작해 지역 탐색과 SA, BILLCITY의 배치·복구, AIRCONTECH의 빔 탐색을 연결",
+      "title": "휴리스틱 방법론 지도",
+      "description": "처음 보는 휴리스틱 문제를 받았을 때 문제를 옮기고 초기해, 근방, 탐색, 후보와 시간 예산, 실험까지 어떤 순서로 무엇을 판단하는지와, 문제의 모양에 따라 먼저 쓸 탐색 방법을 방법론 강의 9개에 연결하는 지도입니다.",
+      "summary": "상태·행동·점수 → 초기해 → 근방과 차분 → 탐색 고르기 → 후보·시간 예산 → 실험의 흐름, 문제 모양별 탐색 방법 표, 공통 원칙",
       "order": 10,
       "folderId": "heuristic-notes",
       "tags": [
         "heuristic",
         "optimization",
-        "local-search",
-        "simulated-annealing",
-        "placement",
-        "case-study",
-        "destroy-repair",
-        "bitmask",
-        "route",
-        "two-opt",
-        "beam-search",
-        "schedule",
+        "overview",
+        "method-map",
         "practice"
       ],
       "level": "intermediate",
-      "estimatedMinutes": 140,
+      "estimatedMinutes": 15,
       "prerequisites": [
         "cpp-contest-basics"
       ],
       "nextLessons": [
-        "testing-and-stress",
-        "tsp-hamiltonian",
-        "assignment-local-search"
+        "problem-modeling",
+        "heuristic-case-studies"
       ],
       "relatedLessons": [
+        "construction-heuristics",
+        "neighborhood-and-delta",
+        "hill-climbing-and-annealing",
+        "beam-search",
+        "destroy-and-repair",
+        "candidate-and-time-budget",
+        "partial-information",
+        "experiments-and-tuning",
+        "testing-and-stress",
         "tsp-hamiltonian",
         "greedy",
         "dynamic-programming",
         "cpp-common-library",
         "observe-and-act"
       ],
-      "pages": [
-        {
-          "pageId": "ordering-route-improvement",
-          "title": "실전 예시: 배송 순서 개선",
-          "description": "ORDERING을 따라가며 열린 경로 점수, nearest neighbor 초기해, 2-opt 차분 계산, insertion과 작은 입력 exact 탐색을 연결합니다.",
-          "order": 10,
-          "file": "pages/ordering-route-improvement.md"
-        },
-        {
-          "pageId": "search-strategies",
-          "title": "초기해와 지역 탐색",
-          "description": "ORDERING의 개선 연산에서 지역 최적, SA의 수락 확률, 재시도와 예산 비교로 이어집니다.",
-          "order": 20,
-          "file": "pages/search-strategies.md"
-        },
-        {
-          "pageId": "placement-and-repair",
-          "title": "실전 예시: 광고판 도시 배치",
-          "description": "BILLCITY를 따라가며 bitmask 상태 표현, 위치 평가식, 큰 destroy/repair, 부분 exact repair가 한 풀이 안에서 연결되는 흐름을 봅니다.",
-          "order": 30,
-          "file": "pages/placement-and-repair.md"
-        },
-        {
-          "pageId": "aircontech-beam-search",
-          "title": "실전 예시: 31일 설치 일정 Beam Search",
-          "description": "AIRCONTECH를 따라가며 다음 행동 상위 8개와 경로 상태 상위 32개를 남기는 두 단계 가지치기, 실제 점수와 탐색 평가값의 분리를 연결합니다.",
-          "order": 40,
-          "file": "pages/aircontech-beam-search.md"
-        }
-      ],
+      "pages": [],
       "lessonType": "overview",
-      "practiceStatus": "linked",
-      "implementationStatus": "partial",
+      "practiceStatus": "none",
+      "implementationStatus": "concept-only",
       "audience": "advanced-contest",
       "difficultyAxes": [
-        "implementation",
         "modeling",
         "selection"
       ]
@@ -1456,6 +1426,85 @@
       ]
     },
     {
+      "lessonId": "heuristic-case-studies",
+      "title": "적용 사례 모음: 경로 개선·SA·배치 수리·일정 빔",
+      "description": "방법론 강의의 기법을 문제 하나에 적용한 예 4개입니다. 배송 순서의 초기해와 2-opt 차분, 같은 문제의 SA와 후보 수 비교, 광고판 배치의 bitmask 점유 검사와 부수고 다시 채우기, 설치 일정의 두 단계 빔 서치를 공개 채점기의 값과 함께 따라갑니다.",
+      "summary": "ORDERING의 열린 경로 개선과 SA, BILLCITY의 배치·복구, AIRCONTECH의 빔 탐색을 방법론 강의의 기법별 적용 예로 연결",
+      "order": 38,
+      "folderId": "heuristic-notes",
+      "tags": [
+        "heuristic",
+        "optimization",
+        "local-search",
+        "simulated-annealing",
+        "placement",
+        "case-study",
+        "destroy-repair",
+        "bitmask",
+        "route",
+        "two-opt",
+        "beam-search",
+        "schedule",
+        "practice"
+      ],
+      "level": "intermediate",
+      "estimatedMinutes": 140,
+      "prerequisites": [
+        "heuristic"
+      ],
+      "nextLessons": [],
+      "relatedLessons": [
+        "construction-heuristics",
+        "neighborhood-and-delta",
+        "hill-climbing-and-annealing",
+        "beam-search",
+        "destroy-and-repair",
+        "testing-and-stress",
+        "tsp-hamiltonian",
+        "cpp-common-library",
+        "observe-and-act"
+      ],
+      "pages": [
+        {
+          "pageId": "ordering-route-improvement",
+          "title": "실전 예시: 배송 순서 개선",
+          "description": "ORDERING을 따라가며 열린 경로 점수, nearest neighbor 초기해, 2-opt 차분 계산, insertion과 작은 입력 exact 탐색을 연결합니다.",
+          "order": 10,
+          "file": "pages/ordering-route-improvement.md"
+        },
+        {
+          "pageId": "search-strategies",
+          "title": "초기해와 지역 탐색",
+          "description": "ORDERING의 개선 연산에서 지역 최적, SA의 수락 확률, 재시도와 예산 비교로 이어집니다.",
+          "order": 20,
+          "file": "pages/search-strategies.md"
+        },
+        {
+          "pageId": "placement-and-repair",
+          "title": "실전 예시: 광고판 도시 배치",
+          "description": "BILLCITY를 따라가며 bitmask 상태 표현, 위치 평가식, 큰 destroy/repair, 부분 exact repair가 한 풀이 안에서 연결되는 흐름을 봅니다.",
+          "order": 30,
+          "file": "pages/placement-and-repair.md"
+        },
+        {
+          "pageId": "aircontech-beam-search",
+          "title": "실전 예시: 31일 설치 일정 Beam Search",
+          "description": "AIRCONTECH를 따라가며 다음 행동 상위 8개와 경로 상태 상위 32개를 남기는 두 단계 가지치기, 실제 점수와 탐색 평가값의 분리를 연결합니다.",
+          "order": 40,
+          "file": "pages/aircontech-beam-search.md"
+        }
+      ],
+      "lessonType": "overview",
+      "practiceStatus": "linked",
+      "implementationStatus": "partial",
+      "audience": "advanced-contest",
+      "difficultyAxes": [
+        "implementation",
+        "modeling",
+        "selection"
+      ]
+    },
+    {
       "lessonId": "fenwick-tree",
       "title": "Fenwick Tree",
       "description": "배열의 prefix 합을 빠르게 관리하는 Fenwick Tree의 원리와 구간 합, 점 업데이트 구현을 익힙니다.",
@@ -1788,7 +1837,8 @@
         "placement-search",
         "assignment-local-search",
         "cpp-common-library",
-        "testing-and-stress"
+        "testing-and-stress",
+        "heuristic-case-studies"
       ],
       "pages": [
         {
@@ -1852,7 +1902,8 @@
         "testing-and-stress",
         "assignment-local-search",
         "reading-the-score",
-        "placement-search"
+        "placement-search",
+        "heuristic-case-studies"
       ],
       "pages": [
         {
@@ -1916,7 +1967,8 @@
       "relatedLessons": [
         "heuristic",
         "assignment-local-search",
-        "testing-and-stress"
+        "testing-and-stress",
+        "heuristic-case-studies"
       ],
       "pages": [
         {
@@ -1983,7 +2035,8 @@
         "minimax-alpha-beta",
         "priority-queue-heap",
         "sorting",
-        "testing-and-stress"
+        "testing-and-stress",
+        "heuristic-case-studies"
       ],
       "pages": [
         {
@@ -2050,7 +2103,8 @@
         "assignment-local-search",
         "heuristic",
         "testing-and-stress",
-        "hill-climbing-and-annealing"
+        "hill-climbing-and-annealing",
+        "heuristic-case-studies"
       ],
       "pages": [
         {

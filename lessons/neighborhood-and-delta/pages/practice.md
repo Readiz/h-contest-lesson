@@ -123,7 +123,7 @@
 
 이 강의의 틀이 이 사이트의 문제에서 쓰인 곳입니다. 각 강의는 해당 문제 하나를 끝까지 푸는 방식이라 이 강의와 설명의 순서가 다릅니다.
 
-- [배송 순서 개선(ORDERING)](https://h.readiz.com/learn/heuristic/ordering-route-improvement): 열린 경로에서 구간 뒤집기(2-opt)의 경계 간선 차분과 끝점 처리.
+- [배송 순서 개선(ORDERING)](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement): 열린 경로에서 구간 뒤집기(2-opt)의 경계 간선 차분과 끝점 처리.
 - [배정 문제의 지역 탐색과 SA(SCHEDULX)](https://h.readiz.com/learn/assignment-local-search): 작업 옮기기·맞바꾸기와 기계별 부하 `load[]` 유지. 점수가 최댓값이라 합과 달리 최댓값을 다시 구해야 하는 차분입니다.
 - [특수한 점수식 읽기(ENTROPY2D)](https://h.readiz.com/learn/reading-the-score): 거리 합이 열·행 경계의 곱으로 갈라지는 성질에서 유도하는 O(1) 차분.
 - [배정과 경로가 결합된 문제(TAXIASSIGN)](https://h.readiz.com/learn/assignment-with-routes): 배정과 순서를 함께 바꾸는 이동(옮기며 끼우기, 자리 바꾸기)의 차분.

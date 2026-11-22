@@ -128,7 +128,7 @@ NN을 첫 점만 바꿔 가며 만들면 횟수가 늘수록 낮아지지만 점
 
 이 사이트의 문제별 강의는 이 강의의 틀을 특정 문제에 붙인 사례입니다. 본문 수치는 이 문제들의 채점 결과와 무관합니다.
 
-- [배송 순서 개선](https://h.readiz.com/learn/heuristic/ordering-route-improvement): ORDERING에서 번호 순서와 가장 가까운 점 잇기를 초기해로 쓰고 2-opt로 개선합니다. 순서 틀의 구성 기준 비교에 해당합니다.
+- [배송 순서 개선](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement): ORDERING에서 번호 순서와 가장 가까운 점 잇기를 초기해로 쓰고 2-opt로 개선합니다. 순서 틀의 구성 기준 비교에 해당합니다.
 - [배정 문제의 지역 탐색과 SA](https://h.readiz.com/learn/assignment-local-search): SCHEDULX의 탐욕 초기해와 개선을 다룹니다.
 - [택시 배정](https://h.readiz.com/learn/assignment-with-routes): TAXIASSIGN에서 담당 기사와 끼울 위치를 함께 고르는 결합 탐욕 초기해를 만듭니다. 항목마다 자리를 요약하는 틀과 같습니다.
 - [격자 배치 문제](https://h.readiz.com/learn/placement-search): LANDINGX에서 first-fit과 정렬 탐욕으로 유효한 초기해를 만들고 destroy/repair로 개선합니다.

@@ -21,4 +21,4 @@ c++ -std=c++17 -O2 main.cpp user.cpp -o ordering-baseline
 | 다음 TC | 이전 배열의 남은 값에 의존하지 않음 |
 | 평가 | TC별 원래 비용, 총 비용, 실행 시간을 기록 |
 
-첫 개선은 [ORDERING 경로 개선 사례](https://h.readiz.com/learn/heuristic/ordering-route-improvement)의 nearest neighbor입니다. 번호 순서 → 가까운 곳부터 선택 → 2-opt 순서로 한 번에 한 요소만 바꾸고 같은 TC에서 비교합니다. 난수 셔플이나 SA는 이 비교가 가능해진 다음에 추가합니다.
+첫 개선은 [ORDERING 경로 개선 사례](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement)의 nearest neighbor입니다. 번호 순서 → 가까운 곳부터 선택 → 2-opt 순서로 한 번에 한 요소만 바꾸고 같은 TC에서 비교합니다. 난수 셔플이나 SA는 이 비교가 가능해진 다음에 추가합니다.

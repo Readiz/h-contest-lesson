@@ -1,4 +1,4 @@
-# 휴리스틱 알고리즘: 실전 예시 - 배송 순서 개선
+# 적용 사례: 실전 예시 - 배송 순서 개선
 
 ## 문제 계약을 상태로 옮기기
 
@@ -132,7 +132,7 @@ after  += dist(b, d)
 
 ![같은 x축 위에서 꼬리 B-C-D를 뒤집으면 방문 순서가 0-A-D-C-B가 됩니다. 내부 거리는 그대로이고 A에서 꼬리로 이어지는 거리만 8에서 1로 줄어 총비용이 16에서 9가 됩니다.](../lesson-assets/open-tail.svg)
 
-[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/open-tail.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic-case-studies/lesson-assets/open-tail.svg)
 
 위아래 그림의 점은 같은 x좌표에 고정되어 있습니다. 곡선 화살표는 방문 순서를 나타내며, 비용은 곡선 길이가 아니라 두 점의 x좌표 차이입니다. 초록색 내부 간선은 방향만 바뀌어 비용 `1 + 6`이 그대로이고, 주황색 경계 간선의 비용만 `8 → 1`로 바뀝니다.
 

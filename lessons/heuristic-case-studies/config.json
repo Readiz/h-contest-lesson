@@ -1,0 +1,14 @@
+{
+  "lessonId": "heuristic-case-studies",
+  "title": "적용 사례 모음: 경로 개선·SA·배치 수리·일정 빔",
+  "description": "방법론 강의의 기법을 문제 하나에 적용한 예 4개입니다.",
+  "summary": "ORDERING의 열린 경로 개선과 SA, BILLCITY의 배치·복구, AIRCONTECH의 빔 탐색을 방법론 강의의 기법별 적용 예로 연결",
+  "order": 38,
+  "tags": [
+    "heuristic",
+    "case-study",
+    "practice"
+  ],
+  "contentFile": "lesson.md",
+  "assetsDir": "lesson-assets"
+}

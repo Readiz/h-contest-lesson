@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 846" role="img" aria-labelledby="title desc">
+<title id="title">휴리스틱 방법론 지도: 처음 보는 문제를 받았을 때의 순서와 탐색 방법의 갈림길</title>
+<desc id="desc">문제 옮기기, 초기해, 근방과 차분의 세 상자가 차례로 이어지고, 이어서 문제의 모양에 따라 다섯 갈래로 나뉩니다. 완성된 해를 고치는 문제는 언덕 오르기와 담금질, 행동을 차례로 정하는 문제는 빔 서치, 작은 이동으로 못 나가는 구조는 부수고 다시 짓기, 입력이 커서 근방을 다 못 보면 가까운 후보만 보기, 정보가 일부만 보이면 기억하고 다시 계획하기입니다. 그 뒤 후보와 시간 예산, 실험으로 확인이 이어지고 결과가 나쁘면 근방이나 탐색 고르기로 돌아갑니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="844" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">휴리스틱 방법론 지도</text>
+<text x="28" y="84" font-size="19" fill="#53657d">처음 보는 문제를 받았을 때의 순서와 갈림길</text>
+<rect x="28" y="104" width="196" height="96" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="126" y="148" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">① 문제 옮기기</text>
+<text x="126" y="180" font-size="18" fill="#53657d" text-anchor="middle">상태·행동·점수</text>
+<rect x="262" y="104" width="196" height="96" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="360" y="148" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">② 초기해 만들기</text>
+<text x="360" y="180" font-size="18" fill="#53657d" text-anchor="middle">하나씩 정하기</text>
+<rect x="496" y="104" width="196" height="96" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="594" y="148" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">③ 근방과 차분</text>
+<text x="594" y="180" font-size="18" fill="#53657d" text-anchor="middle">점수 변화만 계산</text>
+<path d="M 230 152 l 28 0 m -10 -9 l 10 9 l -10 9" fill="none" stroke="#2664ce" stroke-width="3"/>
+<path d="M 464 152 l 28 0 m -10 -9 l 10 9 l -10 9" fill="none" stroke="#2664ce" stroke-width="3"/>
+<path d="M 594 204 v 22 m -9 -10 l 9 10 l 9 -10" fill="none" stroke="#2664ce" stroke-width="3"/>
+<rect x="28" y="232" width="620" height="56" rx="14" fill="#ffffff" stroke="#ae5515" stroke-width="2.5"/>
+<text x="338" y="267" font-size="20" fill="#ae5515" text-anchor="middle" font-weight="700">④ 문제의 모양을 보고 탐색을 고른다</text>
+<path d="M 40 288 V 580" fill="none" stroke="#ae5515" stroke-width="3"/>
+<path d="M 40 340 h 10 m -8 -8 l 8 8 l -8 8" fill="none" stroke="#ae5515" stroke-width="3"/>
+<rect x="56" y="316" width="276" height="48" rx="12" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<text x="194" y="347" font-size="18" fill="#172b45" text-anchor="middle">완성된 해를 고쳐 간다</text>
+<path d="M 336 340 h 22 m -9 -8 l 9 8 l -9 8" fill="none" stroke="#2664ce" stroke-width="3"/>
+<rect x="364" y="316" width="284" height="48" rx="12" fill="#e8f0fc" stroke="#2664ce" stroke-width="2"/>
+<text x="506" y="347" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">언덕 오르기 → 담금질</text>
+<path d="M 40 400 h 10 m -8 -8 l 8 8 l -8 8" fill="none" stroke="#ae5515" stroke-width="3"/>
+<rect x="56" y="376" width="276" height="48" rx="12" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<text x="194" y="407" font-size="18" fill="#172b45" text-anchor="middle">행동을 차례로 정한다</text>
+<path d="M 336 400 h 22 m -9 -8 l 9 8 l -9 8" fill="none" stroke="#2664ce" stroke-width="3"/>
+<rect x="364" y="376" width="284" height="48" rx="12" fill="#e8f0fc" stroke="#2664ce" stroke-width="2"/>
+<text x="506" y="407" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">빔 서치</text>
+<path d="M 40 460 h 10 m -8 -8 l 8 8 l -8 8" fill="none" stroke="#ae5515" stroke-width="3"/>
+<rect x="56" y="436" width="276" height="48" rx="12" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<text x="194" y="467" font-size="18" fill="#172b45" text-anchor="middle">작은 이동으로 못 나간다</text>
+<path d="M 336 460 h 22 m -9 -8 l 9 8 l -9 8" fill="none" stroke="#2664ce" stroke-width="3"/>
+<rect x="364" y="436" width="284" height="48" rx="12" fill="#e8f0fc" stroke="#2664ce" stroke-width="2"/>
+<text x="506" y="467" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">부수고 다시 짓기</text>
+<path d="M 40 520 h 10 m -8 -8 l 8 8 l -8 8" fill="none" stroke="#ae5515" stroke-width="3"/>
+<rect x="56" y="496" width="276" height="48" rx="12" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<text x="194" y="527" font-size="18" fill="#172b45" text-anchor="middle">입력이 커서 다 못 본다</text>
+<path d="M 336 520 h 22 m -9 -8 l 9 8 l -9 8" fill="none" stroke="#2664ce" stroke-width="3"/>
+<rect x="364" y="496" width="284" height="48" rx="12" fill="#e8f0fc" stroke="#2664ce" stroke-width="2"/>
+<text x="506" y="527" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">가까운 후보만 보기</text>
+<path d="M 40 580 h 10 m -8 -8 l 8 8 l -8 8" fill="none" stroke="#ae5515" stroke-width="3"/>
+<rect x="56" y="556" width="276" height="48" rx="12" fill="#ffffff" stroke="#ae5515" stroke-width="2"/>
+<text x="194" y="587" font-size="18" fill="#172b45" text-anchor="middle">정보가 일부만 보인다</text>
+<path d="M 336 580 h 22 m -9 -8 l 9 8 l -9 8" fill="none" stroke="#2664ce" stroke-width="3"/>
+<rect x="364" y="556" width="284" height="48" rx="12" fill="#e8f0fc" stroke="#2664ce" stroke-width="2"/>
+<text x="506" y="587" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">기억하고 다시 계획하기</text>
+<path d="M 338 608 v 20 m -9 -10 l 9 10 l 9 -10" fill="none" stroke="#2664ce" stroke-width="3"/>
+<rect x="28" y="634" width="620" height="64" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="338" y="662" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">⑤ 후보와 시간 예산</text>
+<text x="338" y="686" font-size="18" fill="#53657d" text-anchor="middle">연산 수를 세고 반복 횟수와 품질을 맞춘다</text>
+<rect x="28" y="730" width="620" height="64" rx="14" fill="#ffffff" stroke="#2664ce" stroke-width="2.5"/>
+<text x="338" y="758" font-size="20" fill="#172b45" text-anchor="middle" font-weight="700">⑥ 실험으로 확인</text>
+<text x="338" y="782" font-size="18" fill="#53657d" text-anchor="middle">같은 입력, 여러 시드, 짝지은 비교</text>
+<path d="M 338 702 v 22 m -9 -10 l 9 10 l 9 -10" fill="none" stroke="#2664ce" stroke-width="3"/>
+<path d="M 648 762 h 36 V 260 h -30 m 10 -9 l -10 9 l 10 9" fill="none" stroke="#ae5515" stroke-width="3"/>
+<text x="338" y="826" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">결과가 나쁘면 ③과 ④로 돌아갑니다</text>
+</svg>

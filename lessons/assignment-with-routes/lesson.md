@@ -1,6 +1,6 @@
 # 배정과 경로가 결합된 문제: 택시 배정
 
-[TAXIASSIGN](/practice/TAXIASSIGN)은 승객을 기사에게 나누는 **배정**과 각 기사가 승객을 도는 **순서**를 함께 제출하는 문제입니다. [SCHEDULX](https://h.readiz.com/learn/assignment-local-search)에서는 작업을 기계에 나누면 끝났지만, 여기서는 같은 배정도 순서에 따라 점수가 크게 달라집니다. [배송 순서 개선](https://h.readiz.com/learn/heuristic/ordering-route-improvement)의 이동과 차분 평가를 "누가 맡는가"와 합쳐, 점수가 **최댓값**인 문제에서 쓰는 방법을 실제 점수로 확인합니다.
+[TAXIASSIGN](/practice/TAXIASSIGN)은 승객을 기사에게 나누는 **배정**과 각 기사가 승객을 도는 **순서**를 함께 제출하는 문제입니다. [SCHEDULX](https://h.readiz.com/learn/assignment-local-search)에서는 작업을 기계에 나누면 끝났지만, 여기서는 같은 배정도 순서에 따라 점수가 크게 달라집니다. [배송 순서 개선](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement)의 이동과 차분 평가를 "누가 맡는가"와 합쳐, 점수가 **최댓값**인 문제에서 쓰는 방법을 실제 점수로 확인합니다.
 
 앞의 두 강의와 [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)를 읽었다고 가정합니다. 난수는 [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다. 승객과 기사를 1:1로 정확히 짝지어야 하는 문제라면 [Hungarian 알고리즘](https://h.readiz.com/learn/hungarian-algorithm)을 선택할 수 있지만, 여기서는 기사 한 명이 여러 승객을 순서대로 맡습니다.
 

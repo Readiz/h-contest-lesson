@@ -10,7 +10,7 @@
 
 ## ORDERING의 차분 계산을 검증하기
 
-[열린 경로 2-opt](https://h.readiz.com/learn/heuristic/ordering-route-improvement)는 뒤집는 구간의 경계 간선만 비교합니다. 이 계산에는 전체 경로를 더하는 `get_path_dist`라는 별도의 기준이 있습니다.
+[열린 경로 2-opt](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement)는 뒤집는 구간의 경계 간선만 비교합니다. 이 계산에는 전체 경로를 더하는 `get_path_dist`라는 별도의 기준이 있습니다.
 
 1. 유효한 `order[]`를 복사해 두고 전체 비용 `before`를 구합니다.
 2. 모든 `1 <= left < right < n`에서 경계 간선의 비용 변화 `delta`를 계산합니다.
@@ -21,7 +21,7 @@
 
 ### 잘못된 차분식이 드러나는 입력
 
-x축 좌표가 `0=0, A=1, B=9, C=8, D=2`이고 순서가 `0,A,B,C,D`라면 꼬리 `B,C,D`를 뒤집어 봅니다. 전체 비용은 `16 → 9`라서 차분은 `−7`이어야 합니다. [열린 경로 그림](https://h.readiz.com/learn/heuristic/ordering-route-improvement)과 같은 입력입니다.
+x축 좌표가 `0=0, A=1, B=9, C=8, D=2`이고 순서가 `0,A,B,C,D`라면 꼬리 `B,C,D`를 뒤집어 봅니다. 전체 비용은 `16 → 9`라서 차분은 `−7`이어야 합니다. [열린 경로 그림](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement)과 같은 입력입니다.
 
 그런데 사이클 공식을 잘못 가져오면 없는 복귀 간선까지 계산합니다. 제거 비용은 `A-B + D-0 = 8+2=10`, 추가 비용은 `A-D + B-0 = 1+9=10`이어서 잘못된 차분 0이 나옵니다. 이 한 입력으로 차분식과 전체 재계산의 불일치를 재현할 수 있습니다. 실제 뒤집기 뒤 다시 뒤집었을 때는 원래 순열과 비용 16이 돌아와야 합니다.
 

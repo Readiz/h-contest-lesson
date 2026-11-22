@@ -306,7 +306,7 @@
 
 ## 적용 사례
 
-- [31일 설치 일정 Beam Search(AIRCONTECH)](https://h.readiz.com/learn/heuristic/aircontech-beam-search): 다음 주택 후보를 평가값 상위 8개로 줄이는 단계와, 경로 상태 32개를 남기는 단계를 서로 다른 시간 벌점으로 나누고, 상태를 살리는 평가값과 실제 점수를 따로 두어 최고 점수 상태를 별도로 갱신합니다.
+- [31일 설치 일정 Beam Search(AIRCONTECH)](https://h.readiz.com/learn/heuristic-case-studies/aircontech-beam-search): 다음 주택 후보를 평가값 상위 8개로 줄이는 단계와, 경로 상태 32개를 남기는 단계를 서로 다른 시간 벌점으로 나누고, 상태를 살리는 평가값과 실제 점수를 따로 두어 최고 점수 상태를 별도로 갱신합니다.
 - [채점기 상태를 따라 그리며 행동하기](https://h.readiz.com/learn/observe-and-act): 상태가 채점기 안에 있어 직접 읽을 수 없을 때 내가 호출한 행동의 기록으로 상태를 쌓는 방법입니다. 빔 서치의 상태를 만드는 데 필요한 관측을 다룹니다.
 
 게임 트리는 [미니맥스와 알파-베타](https://h.readiz.com/learn/minimax-alpha-beta), 정보가 가려진 문제는 [정보가 부분적일 때 결정하기](https://h.readiz.com/learn/partial-information), 후보를 줄이는 자료구조는 [후보 줄이기와 시간 예산](https://h.readiz.com/learn/candidate-and-time-budget), 시드 여러 개로 설정을 비교하는 방법은 [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)에서 이어집니다.

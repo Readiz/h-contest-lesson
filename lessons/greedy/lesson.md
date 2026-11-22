@@ -193,7 +193,7 @@ long long maximumScore(Task tasks[], Task temp[], int n) {
 
 회의마다 보상이 다르면 가장 빨리 끝나는 회의를 고르는 증명은 더 이상 보상 합을 보장하지 않습니다. 예를 들어 `[0, 2)`의 보상이 1, `[0, 3)`의 보상이 100이면 종료 시각 기준은 첫 회의를 골라 실패합니다.
 
-최적화 문제에서는 이런 기준을 초기해로 쓴 뒤 선택을 바꾸며 점수를 높일 수 있습니다. [ORDERING 사례](https://h.readiz.com/learn/heuristic/ordering-route-improvement)에서는 가까운 점부터 잇는 초기 경로에서 시작해, 두 간선의 연결을 바꾸어 길이를 줄입니다.
+최적화 문제에서는 이런 기준을 초기해로 쓴 뒤 선택을 바꾸며 점수를 높일 수 있습니다. [ORDERING 사례](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement)에서는 가까운 점부터 잇는 초기 경로에서 시작해, 두 간선의 연결을 바꾸어 길이를 줄입니다.
 
 ## 시간 복잡도
 

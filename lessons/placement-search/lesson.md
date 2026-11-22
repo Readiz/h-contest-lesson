@@ -1,6 +1,6 @@
 # 격자 배치 문제: 유효한 후보, 국소 이동, destroy/repair 비교
 
-[우주선 착륙](/practice/LANDINGX)은 `1000 x 1000` 고도 지도에 직사각형 우주선 10000척을 놓는 문제입니다. 지도 안에 있어야 하고, 겹치면 안 되고, 네 꼭짓점의 고도 차가 6 이하여야 합니다. [광고판 도시 배치](https://h.readiz.com/learn/heuristic/placement-and-repair)는 destroy/repair를 서술로 다뤘습니다. 이 강의는 한 문제에서 **탐욕, 국소 이동, destroy/repair를 같은 후보 검사 수로 실제 비교**하고, 무효 후보를 어디서 걸러야 하는지 실패를 재현해 확인합니다. [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)와 [초기해와 지역 탐색](https://h.readiz.com/learn/heuristic/search-strategies)을 읽었다고 가정하며, 난수와 정렬은 [공통 코드의 `random`, `sort` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다.
+[우주선 착륙](/practice/LANDINGX)은 `1000 x 1000` 고도 지도에 직사각형 우주선 10000척을 놓는 문제입니다. 지도 안에 있어야 하고, 겹치면 안 되고, 네 꼭짓점의 고도 차가 6 이하여야 합니다. [광고판 도시 배치](https://h.readiz.com/learn/heuristic-case-studies/placement-and-repair)는 destroy/repair를 서술로 다뤘습니다. 이 강의는 한 문제에서 **탐욕, 국소 이동, destroy/repair를 같은 후보 검사 수로 실제 비교**하고, 무효 후보를 어디서 걸러야 하는지 실패를 재현해 확인합니다. [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)와 [초기해와 지역 탐색](https://h.readiz.com/learn/heuristic-case-studies/search-strategies)을 읽었다고 가정하며, 난수와 정렬은 [공통 코드의 `random`, `sort` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다.
 
 ## 이 강의에서 다루는 것
 
@@ -36,6 +36,6 @@ LANDINGX 공개 TC 10개의 점수 합입니다(클수록 좋고 통과 기준�
 3. destroy/repair의 `size`, `noise`, 제거 방식을 바꿔 solver seed 5개 이상의 중앙값으로 비교합니다. 한 번의 점수로 고르지 않습니다.
 4. 새 이웃을 하나 추가합니다(예: 빈 칸이 많은 구역에서 시작하는 영역). 추가 후에도 점유 격자 재구성 대조, 되돌린 뒤의 상태 동일, 제출 직전의 규칙 검사를 먼저 통과시킨 뒤 점수를 비교합니다.
 
-확인 기준: 모든 TC가 유효하고, 같은 seed에서 같은 점수가 나오고, 반환한 `row/col/dir`을 처음부터 다시 검증한 점수가 탐색 중의 `score`와 같아야 합니다. 같은 방법을 서술로 다룬 [광고판 도시 배치](https://h.readiz.com/learn/heuristic/placement-and-repair)와 아래 단계별 데모도 함께 봅니다.
+확인 기준: 모든 TC가 유효하고, 같은 seed에서 같은 점수가 나오고, 반환한 `row/col/dir`을 처음부터 다시 검증한 점수가 탐색 중의 `score`와 같아야 합니다. 같은 방법을 서술로 다룬 [광고판 도시 배치](https://h.readiz.com/learn/heuristic-case-studies/placement-and-repair)와 아래 단계별 데모도 함께 봅니다.
 
 [Destroy/Repair: 제거하고 다시 채워 점수 비교하기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=destroy-repair)

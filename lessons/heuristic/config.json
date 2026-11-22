@@ -1,14 +1,14 @@
 {
   "lessonId": "heuristic",
-  "title": "휴리스틱 알고리즘",
-  "description": "최적해를 증명하기 어려운 문제에서 제한 시간 안에 좋은 해를 만드는 휴리스틱 설계 방법을 익힙니다.",
-  "summary": "점수 함수, 초기해, 지역 탐색, 담금질 기법, 시간 관리와 실험 로그까지 이어지는 휴리스틱 입문",
-  "order": 16,
+  "title": "휴리스틱 방법론 지도",
+  "description": "처음 보는 휴리스틱 문제에서 문제 옮기기부터 실험까지의 흐름과 문제 모양별 탐색 방법을 방법론 강의 9개에 연결하는 지도입니다.",
+  "summary": "상태·행동·점수 → 초기해 → 근방과 차분 → 탐색 고르기 → 후보·시간 예산 → 실험의 흐름, 문제 모양별 탐색 방법 표, 공통 원칙",
+  "order": 10,
   "tags": [
     "heuristic",
     "optimization",
-    "local-search",
-    "simulated-annealing",
+    "overview",
+    "method-map",
     "practice"
   ],
   "contentFile": "lesson.md",

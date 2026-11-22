@@ -14,7 +14,7 @@ from cpp_library import assemble_library, check_submission_code
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTECTED = {"cpp-contest-basics", "cpp-common-library", "sorting", "greedy",
-             "priority-queue-heap", "heuristic", "testing-and-stress", "observe-and-act", "assignment-local-search",
+             "priority-queue-heap", "heuristic", "heuristic-case-studies", "testing-and-stress", "observe-and-act", "assignment-local-search",
              "assignment-with-routes", "placement-search", "reading-the-score",
              "large-input-search", "bfs-dfs-grid", "dijkstra", "union-find",
              "prefix-sum-difference", "binary-search", "two-pointers-sliding-window",

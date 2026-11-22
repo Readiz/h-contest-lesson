@@ -139,7 +139,7 @@ double energyChange(const Plan& p, const Change& c, double weight) {
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-local-search/lesson-assets/hand-moves.svg)
 
-막대의 폭이 처리 시간이고 주황 칸이 그 단계에서 자리가 바뀐 작업입니다. 첫 이동의 손해는 1이라서, 온도가 1이면 약 37%(`e^-1`), 0.3이면 약 4%로 받아들입니다. **손해가 1인 문제의 온도를 수천으로 두면** 이 구조 자체가 사라집니다. 온도는 이동 한 번의 점수 차이에 맞춰야 한다는 [앞 강의](https://h.readiz.com/learn/heuristic/search-strategies)의 기준을 이 예시가 보여 줍니다. 이 표와 이동열은 검사 스크립트가 같은 11개 이웃을 독립적으로 다시 계산해 대조합니다.
+막대의 폭이 처리 시간이고 주황 칸이 그 단계에서 자리가 바뀐 작업입니다. 첫 이동의 손해는 1이라서, 온도가 1이면 약 37%(`e^-1`), 0.3이면 약 4%로 받아들입니다. **손해가 1인 문제의 온도를 수천으로 두면** 이 구조 자체가 사라집니다. 온도는 이동 한 번의 점수 차이에 맞춰야 한다는 [앞 강의](https://h.readiz.com/learn/heuristic-case-studies/search-strategies)의 기준을 이 예시가 보여 줍니다. 이 표와 이동열은 검사 스크립트가 같은 11개 이웃을 독립적으로 다시 계산해 대조합니다.
 
 ## 3단계: hill climbing과 SA를 한 코드로
 

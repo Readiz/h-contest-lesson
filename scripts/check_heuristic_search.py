@@ -26,8 +26,8 @@ def snippet(path: str, name: str) -> str:
 
 def sources() -> dict[str, str]:
     basics = "lessons/cpp-contest-basics/pages/"
-    search = "lessons/heuristic/pages/search-strategies.md"
-    route = blocks("lessons/heuristic/pages/ordering-route-improvement.md")[-1]
+    search = "lessons/heuristic-case-studies/pages/search-strategies.md"
+    route = blocks("lessons/heuristic-case-studies/pages/ordering-route-improvement.md")[-1]
     assert route.count("void build_path(") == 1
     initial = route.replace("void build_path(", "void build_initial_path(")
     random = snippet("lessons/cpp-common-library/lesson.md", "random")

@@ -1,4 +1,4 @@
-# 휴리스틱 알고리즘: 실전 예시 - 광고판 도시 배치
+# 적용 사례: 실전 예시 - 광고판 도시 배치
 
 ## 문제 구조 요약
 
@@ -80,7 +80,7 @@ int canPlaceLocal(int bid, int y, int x, int h, int w) {
 
 ![폭 8인 한 행에서 1번과 5번 열이 막혀 occ가 34일 때 폭 3 광고를 x=0, 1, 2에 놓아 보면 mask 7과 14는 막힌 칸과 겹쳐 결과가 2이고, mask 28은 겹치지 않아 결과 0이므로 x=2에 놓을 수 있습니다.](../lesson-assets/row-bitmask.svg)
 
-[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/row-bitmask.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic-case-studies/lesson-assets/row-bitmask.svg)
 
 코드의 `mask`와 `occ[bid][y + r]`를 한 행에서 비교하는 모습입니다. 높이가 `h`이면 같은 비교를 `h`개 행에서 반복합니다.
 
@@ -113,7 +113,7 @@ contact가 높으면 광고가 구석이나 기존 물체에 붙어 빈 공간�
 
 ![2행 4열 보드에서 A와 B가 가운데 두 열을 차지합니다. A만 제거하면 빈 폭이 2라서 폭 3인 C가 B와 겹칩니다. A와 B를 함께 제거하고 C를 넣으면 점수가 6에서 10으로 개선됩니다.](../lesson-assets/destroy-repair.svg)
 
-[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic/lesson-assets/destroy-repair.svg)
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/heuristic-case-studies/lesson-assets/destroy-repair.svg)
 
 배치 원리만 떼어 낸 작은 예시입니다. 건물 배율은 1로 두고, A·B는 각각 `2×1`, C는 `2×3`입니다. A 또는 B만 제거하면 연속 빈 폭은 2라서 C가 들어가지 않습니다. 둘을 함께 제거해야 폭 3을 확보합니다.
 
