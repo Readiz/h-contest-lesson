@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 743" role="img" aria-labelledby="title desc">
+<title id="title">담금질 한 번의 반복</title>
+<desc id="desc">담금질의 한 번 반복입니다. 온도 일정에서 온도를 얻고, 이동 번호를 뽑아 make로 유효한 이동을 만들고, delta로 변화량을 계산합니다. 변화량이 양수이면 acceptWorse가 확률로 받을지 정하며 받지 않으면 다음 평가로 갑니다. 받으면 최고해를 떠나기 직전에만 save하고 apply하며 비용과 최고 비용을 갱신합니다. make, delta, save, apply는 문제마다 채우는 함수입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="741" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">담금질 한 번의 반복</text>
+<text x="28" y="84" font-size="19" fill="#53657d">평가 한 번(제안 하나)마다 위에서 아래로 한 바퀴 돕니다. 파란 상자는</text>
+<text x="28" y="109" font-size="19" fill="#53657d">틀, 주황 상자는 문제가 채우는 함수입니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">문제와 무관한 고정 부분</text>
+<rect x="293.7" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="315.7" y="137" font-size="18" fill="#172b45">문제마다 채우는 함수</text>
+<rect x="28" y="165.0" width="400" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="190" font-size="19" fill="#172b45" font-weight="700">sc.at(evals)</text>
+<text x="42" y="213" font-size="16" fill="#53657d">쓴 평가 수 비율로 지금 온도 T를 정한다</text>
+<line x1="228" y1="232" x2="228" y2="246" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222.0,237.0 234.0,237.0 228.0,246.0" fill="#53657d"/>
+<rect x="28" y="247.0" width="400" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="272" font-size="19" fill="#172b45" font-weight="700">propose(p, rng, mv)</text>
+<text x="42" y="295" font-size="16" fill="#53657d">이동 번호 (kind, a, b)를 뽑는다</text>
+<line x1="228" y1="314" x2="228" y2="328" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222.0,319.0 234.0,319.0 228.0,328.0" fill="#53657d"/>
+<rect x="28" y="329.0" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="354" font-size="19" fill="#172b45" font-weight="700">p.make(kind, a, b, mv)</text>
+<text x="42" y="377" font-size="16" fill="#53657d">유효한 이동이면 mv를 채운다</text>
+<line x1="228" y1="396" x2="228" y2="410" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222.0,401.0 234.0,401.0 228.0,410.0" fill="#53657d"/>
+<rect x="28" y="411.0" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="436" font-size="19" fill="#172b45" font-weight="700">p.delta(mv)</text>
+<text x="42" y="459" font-size="16" fill="#53657d">해를 바꾸지 않고 변화량 d를 계산한다</text>
+<line x1="228" y1="478" x2="228" y2="492" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222.0,483.0 234.0,483.0 228.0,492.0" fill="#53657d"/>
+<rect x="28" y="493.0" width="400" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="518" font-size="19" fill="#172b45" font-weight="700">d &gt; 0 이면 acceptWorse(d, T)</text>
+<text x="42" y="541" font-size="16" fill="#53657d">d ≤ 0은 바로 받고 d &gt; 0은 확률로 받는다</text>
+<line x1="228" y1="560" x2="228" y2="574" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222.0,565.0 234.0,565.0 228.0,574.0" fill="#53657d"/>
+<rect x="28" y="575.0" width="400" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="600" font-size="19" fill="#172b45" font-weight="700">p.save() → p.apply(mv)</text>
+<text x="42" y="623" font-size="16" fill="#53657d">best에서 떠나기 직전에만 보관하고 적용한다</text>
+<line x1="228" y1="642" x2="228" y2="656" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="222.0,647.0 234.0,647.0 228.0,656.0" fill="#53657d"/>
+<rect x="28" y="657.0" width="400" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="682" font-size="19" fill="#172b45" font-weight="700">cost += d, cost &lt; best ?</text>
+<text x="42" y="705" font-size="16" fill="#53657d">best를 갱신한다. 끝나면 보관본을 loadBest()</text>
+<line x1="428" y1="526" x2="468" y2="526" stroke="#53657d" stroke-width="2.5"/>
+<line x1="468" y1="526" x2="468" y2="198" stroke="#53657d" stroke-width="2.5"/>
+<line x1="468" y1="198" x2="429" y2="198" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="438,192.0 438,204.0 429,198.0" fill="#53657d"/>
+<text x="484" y="437" font-size="17" fill="#172b45" font-weight="700">받지 않으면</text>
+<text x="484" y="459" font-size="17" fill="#172b45" font-weight="700">다음 평가로</text>
+<text x="484" y="485" font-size="16" fill="#53657d">(난수는 하나</text>
+<text x="484" y="505" font-size="16" fill="#53657d">쓴다)</text>
+</svg>

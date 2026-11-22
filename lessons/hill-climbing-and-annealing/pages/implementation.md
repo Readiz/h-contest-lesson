@@ -146,6 +146,10 @@ bool acceptWorse(long long d, long long t, hc::Random& rng) {
 
 **재시작(`restarts`)** 은 무작위 시작 해에서 첫 개선 언덕 오르기를 지역 최적까지 돌리고, 예산이 남으면 새 시작 해에서 반복해 가장 좋은 해를 보관합니다.
 
+![담금질 한 번 반복의 단계. 온도 일정에서 온도를 얻고 이동 번호를 뽑아 make로 이동을 만들고 delta로 변화량을 계산합니다. 변화량이 양수이면 acceptWorse로 확률 판정을 하고 받지 않으면 다음 평가로 갑니다. 받으면 최고해를 떠나기 직전에만 save한 뒤 apply하고 비용과 최고 비용을 갱신합니다.](../lesson-assets/anneal-step.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/hill-climbing-and-annealing/lesson-assets/anneal-step.svg)
+
 ```cpp snippet=ha-anneal
 // 온도 일정. 온도는 쓴 평가 수 used와 예산 budget의 비율로 정한다(남은 예산에 묶는다).
 // 지수: 구간마다 3.125%(= 1/32)씩 줄여 t1 이하가 될 때까지의 구간 수를 세고, 예산을 그 구간 수로 똑같이 나눈다.
