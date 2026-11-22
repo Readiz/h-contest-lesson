@@ -105,7 +105,7 @@ struct GridMirror {                        // 내 쪽의 거울: 규칙(아는 �
 
 ```cpp snippet=pi-plan
 // 계획기: 값 지도 val100[](x100)와 밟은 칸 stepped[] 위에서 pos에서 출발하는 depth걸음 경로를 빔 서치로 찾는다.
-// 5번 강의의 Beam에서 같은 상태 합치기와 부모 기록을 뺀 압축판이다. 지도가 진짜 값이면 전체 정보 기준선, 거울 위의 추정 지도이면 부분 정보의 계획이다.
+// 빔 서치 강의의 Beam에서 같은 상태 합치기와 부모 기록을 뺀 압축판이다. 지도가 진짜 값이면 전체 정보 기준선, 거울 위의 추정 지도이면 부분 정보의 계획이다.
 const int BW = 128, BD = 64;               // 폭과 깊이의 상한
 struct BeamState { unsigned long long vis[7]; int pos, gain; unsigned short path[BD]; };   // 밟은 칸 비트, 위치, 얻은 값(x100), 지금까지의 경로
 
@@ -133,7 +133,7 @@ long long planBeam(const int val100[], const bool stepped[], int h, int w, int p
                 const int a = nb[q];
                 const bool fresh = !((st.vis[a >> 6] >> (a & 63)) & 1ULL);
                 const int gain = st.gain + (fresh ? val100[a] : 0);
-                long long near = 0;                                   // 5번 강의의 추정 1: 거리 3 이내 안 밟은 칸의 값 x (4 - 거리)
+                long long near = 0;                                   // 빔 서치 강의의 추정 1: 거리 3 이내 안 밟은 칸의 값 x (4 - 거리)
                 const int ay = a / w, ax = a % w;
                 for (int dy = -3; dy <= 3; ++dy) for (int dx = -3; dx <= 3; ++dx) {
                     const int d = (dy < 0 ? -dy : dy) + (dx < 0 ? -dx : dx);
