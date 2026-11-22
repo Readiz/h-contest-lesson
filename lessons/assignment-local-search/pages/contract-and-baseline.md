@@ -27,6 +27,10 @@ void schedule_jobs(
 
 문제 설명은 처리 시간의 상한을 주지 않으므로 부하 합은 `long long`으로 둡니다. 제출할 상태는 `assignment[]` 하나이고, 기계별 부하·부하의 합·최댓값은 이 배열에서 다시 계산할 수 있는 **보조 값**입니다. 탐색 중에는 보조 값을 갱신하며 가고, 검사에서는 항상 처음부터 다시 계산한 값과 대조합니다.
 
+![작업 6개를 기계 3개에 배정한 예입니다. 상태는 작업마다 기계 번호를 적은 배열 assignment이고, 기계별 부하는 배정된 작업 시간의 합으로 기계 0 12, 기계 1 7, 기계 2 6입니다. 점수는 부하의 최댓값 12이며 낮을수록 좋습니다.](../lesson-assets/contract-score.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-local-search/lesson-assets/contract-score.svg)
+
 ## 0단계: 유효한 기준선
 
 가장 단순한 유효 답은 작업 번호를 기계 수로 나눈 나머지입니다.
