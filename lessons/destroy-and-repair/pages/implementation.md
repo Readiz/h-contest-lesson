@@ -37,6 +37,10 @@
 | 4 | 0.0183 | 0.0182 |
 | 8 | 0.0003 | 0.0003 |
 
+![runDR의 반복 한 번. 예산이 남은 동안 mark로 기준을 잡고 destroy로 떼어 내고 repair로 다시 놓은 뒤, accepts가 받으면 keep으로 확정하고 새 최고면 saveBest를 부르고, 받지 않으면 rollback으로 부수기 전으로 되돌립니다.](../lesson-assets/iteration-flow.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/destroy-and-repair/lesson-assets/iteration-flow.svg)
+
 ```cpp snippet=dr-frame
 // [0, bound) 안의 값. 상위 비트를 쓴다(3번 강의의 pick과 같다).
 int pick(hc::Random& rng, int bound) { return (int)(((unsigned long long)rng.next() * (unsigned)bound) >> 32); }

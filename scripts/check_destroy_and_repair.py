@@ -40,7 +40,7 @@ DATA = LESSON_DIR / "lesson-assets" / "measurements.json"
 HARNESS = ROOT / "scripts" / "destroy_and_repair_harness.cpp"
 SNIP_RE = re.compile(r"```cpp[^\n]*\bsnippet=([\w-]+)[^\n]*\n(.*?)\n```", re.S)
 BLOCKS = ("dr-frame", "dr-route", "dr-assign", "dr-run")
-FIGURES = ("stuck-and-rebuild.svg", "destroy-repair-loop.svg", "destroy-kinds.svg", "size-spectrum.svg")
+FIGURES = ("stuck-and-rebuild.svg", "destroy-repair-loop.svg", "destroy-kinds.svg", "size-spectrum.svg", "iteration-flow.svg")
 SITE_PROBLEMS = ("ORDERING", "SCHEDULX", "MINEEXPLORE", "AIRCONTECH", "TAXIASSIGN", "MULTIDRONE", "COUPANG", "LANDINGX",
                  "ALLOCATE", "CLUSTERX", "CHIPDESIGN", "TENSORALLOC", "ROBOTCLEAN", "DRONESORT", "FRIEGHTFIX",
                  "ANTENNAS", "TELEVISION", "GERMMATCH", "ENTROPY2D", "CITYSUM2D", "FUNCSUM1", "SORTTEST")

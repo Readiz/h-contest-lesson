@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 507" role="img" aria-labelledby="title desc">
+<title id="title">떼어 내는 크기별 비용 (순서 틀)</title>
+<desc id="desc">순서 틀에서 떼어 내는 점 수(로그 눈금)를 바꿨을 때 시드 20개 중 10번째로 작은 비용입니다. 점 1개에서 14,336이고 점 13개에서 가장 낮은 13,662이며, 200개(전체)에서는 14,504로 다시 나빠집니다. 점선은 같은 예산의 작은 이동만(14,203)입니다. 점 2개에서 40개까지의 중앙값이 점선 아래입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="505" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">떼어 내는 크기별 비용 (순서 틀)</text>
+<text x="28" y="84" font-size="19" fill="#53657d">예산 4,000,000, 시드 20개 중 10번째로 작은 비용. 작을수록 좋습니다.</text>
+<text x="28" y="109" font-size="19" fill="#53657d">가운데 크기가 이깁니다</text>
+<line x1="28" y1="132" x2="48" y2="132" stroke="#2664ce" stroke-width="3.5"/>
+<circle cx="38" cy="132" r="4.5" fill="#2664ce"/>
+<text x="56" y="137" font-size="18" fill="#172b45">혼합 (가까운 점 부수기)</text>
+<line x1="301.5" y1="132" x2="321.5" y2="132" stroke="#ae5515" stroke-width="3.5"/>
+<circle cx="311.5" cy="132" r="4.5" fill="#ae5515"/>
+<text x="329.5" y="137" font-size="18" fill="#172b45">작은 이동만 14,203 (같은 예산)</text>
+<text x="28" y="163" font-size="17" fill="#53657d">최종 비용 ↓ (작을수록 좋음)</text>
+<line x1="92.8" y1="437" x2="680" y2="437" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="442" font-size="16" fill="#53657d" text-anchor="end">13,500</text>
+<line x1="92.8" y1="307" x2="680" y2="307" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="312" font-size="16" fill="#53657d" text-anchor="end">14,000</text>
+<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="182" font-size="16" fill="#53657d" text-anchor="end">14,500</text>
+<line x1="130.8" y1="177" x2="130.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="130.8" y="461" font-size="16" fill="#53657d" text-anchor="middle">1</text>
+<line x1="236.8" y1="177" x2="236.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="236.8" y="461" font-size="16" fill="#53657d" text-anchor="middle">3</text>
+<line x1="331.4" y1="177" x2="331.4" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="331.4" y="461" font-size="16" fill="#53657d" text-anchor="middle">8</text>
+<line x1="424.5" y1="177" x2="424.5" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="424.5" y="461" font-size="16" fill="#53657d" text-anchor="middle">21</text>
+<line x1="553.6" y1="177" x2="553.6" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="553.6" y="461" font-size="16" fill="#53657d" text-anchor="middle">80</text>
+<line x1="642" y1="177" x2="642" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="642" y="461" font-size="16" fill="#53657d" text-anchor="middle">200</text>
+<line x1="92.8" y1="437" x2="680" y2="437" stroke="#53657d" stroke-width="1.5"/>
+<line x1="92.8" y1="177" x2="92.8" y2="437" stroke="#53657d" stroke-width="1.5"/>
+<polyline points="130.8,219.6 197.7,268.8 236.8,295.3 286.1,315.8 331.4,368.9 378.3,394.9 424.5,380.8 486.7,354.8 553.6,232.9 642,176" fill="none" stroke="#2664ce" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="130.8" cy="219.6" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="197.7" cy="268.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="236.8" cy="295.3" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="286.1" cy="315.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="331.4" cy="368.9" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="378.3" cy="394.9" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="424.5" cy="380.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="486.7" cy="354.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="553.6" cy="232.9" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="176" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<text x="378.3" y="420.9" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">13,662</text>
+<text x="642" y="202" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">14,504</text>
+<polyline points="130.8,254.2 642,254.2" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 6"/>
+<circle cx="130.8" cy="254.2" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="254.2" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<text x="360" y="491" font-size="17" fill="#53657d" text-anchor="middle">떼어 내는 점 수 (로그 눈금, 200 = 해 전체)</text>
+</svg>
