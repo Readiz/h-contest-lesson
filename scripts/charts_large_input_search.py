@@ -6,6 +6,8 @@ import math
 import charts as ch
 
 
+SOURCE = "coupang1-benchmark.json"
+
 def _ops_figure() -> str:
     """연산 수 예산표(본문 표)를 로그 눈금 막대로: 5×10^9 선 아래만 쓸 수 있다. 숫자는 본문 표의 값이다."""
     title = "방법별 연산 수와 예산"

@@ -4,6 +4,8 @@ from __future__ import annotations
 import charts as ch
 
 
+SOURCE = "landingx-benchmark.json"
+
 def _contract_figure(m: dict) -> str:
     """후보는 서로 겹친다: 작은 격자 예시와, 겹침을 무시한 상한 대 통과 기준(측정값)."""
     title = "후보는 겹치고, 그래서 상한에 못 미친다"

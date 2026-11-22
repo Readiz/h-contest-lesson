@@ -4,6 +4,8 @@ from __future__ import annotations
 import charts as ch
 
 
+SOURCE = "schedulx-benchmark.json"
+
 def _contract_figure() -> str:
     """상태(assignment[]) -> 보조 값(기계별 부하) -> 점수(부하의 최댓값). 개념 그림이라 숫자는 예시다."""
     times = [4, 3, 5, 6, 4, 3]       # 작업 j를 배정된 기계에서 처리하는 시간

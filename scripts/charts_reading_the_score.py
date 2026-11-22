@@ -6,6 +6,8 @@ import charts as ch
 PASS_LINE = 1_917_000  # 본문 계약 표의 통과 기준
 
 
+SOURCE = "entropy2d-benchmark.json"
+
 def charts(m: dict) -> dict[str, str]:
     out: dict[str, str] = {}
     rows_m = m["rows"]

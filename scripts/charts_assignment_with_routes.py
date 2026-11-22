@@ -4,6 +4,8 @@ from __future__ import annotations
 import charts as ch
 
 
+SOURCE = "taxiassign-benchmark.json"
+
 def _contract_figure(lower: int, base: int, final: int) -> str:
     """위: 한 기사의 부하를 이루는 두 종류의 구간. 아래: 점수가 하한 위에 얼마나 얹혀 있는지(측정값)."""
     title = "기사 한 명의 부하와 점수의 하한"
