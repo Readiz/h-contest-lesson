@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 527" role="img" aria-labelledby="title desc">
+<title id="title">평가 횟수를 늘릴 때의 비용</title>
+<desc id="desc">순서 틀에서 평가 횟수(로그 눈금)를 늘릴 때 시드 20개 중앙값 비용입니다. 언덕 오르기 한 번은 모든 예산에서 14,500 근처에서 멈추고, 재시작은 14,510, 14,290, 14,027, 13,887로 천천히 줄며, 담금질은 14,645, 13,827, 13,524, 13,295로 가장 많이 줄어 평가 3,000,000번에서 13,295입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="525" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">평가 횟수를 늘릴 때의 비용</text>
+<text x="28" y="84" font-size="19" fill="#53657d">순서 틀(점 200개), 시드 20개의 중앙값. 평가 횟수가 같을 때 세</text>
+<text x="28" y="109" font-size="19" fill="#53657d">방법을 비교합니다</text>
+<line x1="28" y1="132" x2="48" y2="132" stroke="#9db6e0" stroke-width="3.5"/>
+<circle cx="38" cy="132" r="4.5" fill="#9db6e0"/>
+<text x="56" y="137" font-size="18" fill="#172b45">언덕 오르기 한 번</text>
+<line x1="245.7" y1="132" x2="265.7" y2="132" stroke="#ae5515" stroke-width="3.5"/>
+<circle cx="255.7" cy="132" r="4.5" fill="#ae5515"/>
+<text x="273.7" y="137" font-size="18" fill="#172b45">재시작</text>
+<line x1="361.7" y1="132" x2="381.7" y2="132" stroke="#2664ce" stroke-width="3.5"/>
+<circle cx="371.7" cy="132" r="4.5" fill="#2664ce"/>
+<text x="389.7" y="137" font-size="18" fill="#172b45">담금질</text>
+<text x="28" y="163" font-size="17" fill="#53657d">최종 비용 중앙값 ↓ (작을수록 좋음)</text>
+<line x1="92.8" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="462" font-size="16" fill="#53657d" text-anchor="end">13,000</text>
+<line x1="92.8" y1="387" x2="680" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="392" font-size="16" fill="#53657d" text-anchor="end">13,500</text>
+<line x1="92.8" y1="317" x2="680" y2="317" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="322" font-size="16" fill="#53657d" text-anchor="end">14,000</text>
+<line x1="92.8" y1="247" x2="680" y2="247" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="252" font-size="16" fill="#53657d" text-anchor="end">14,500</text>
+<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="182" font-size="16" fill="#53657d" text-anchor="end">15,000</text>
+<line x1="130.8" y1="177" x2="130.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="130.8" y="481" font-size="16" fill="#53657d" text-anchor="middle">100,000</text>
+<line x1="295.9" y1="177" x2="295.9" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="295.9" y="481" font-size="16" fill="#53657d" text-anchor="middle">300,000</text>
+<line x1="476.9" y1="177" x2="476.9" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="476.9" y="481" font-size="16" fill="#53657d" text-anchor="middle">1,000,000</text>
+<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="642" y="481" font-size="16" fill="#53657d" text-anchor="middle">3,000,000</text>
+<line x1="92.8" y1="457" x2="680" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<line x1="92.8" y1="177" x2="92.8" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<polyline points="130.8,245.6 295.9,247 476.9,247 642,247" fill="none" stroke="#9db6e0" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="130.8" cy="245.6" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="295.9" cy="247" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="476.9" cy="247" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="247" r="5" fill="#9db6e0" stroke="#f6f8fc" stroke-width="2"/>
+<text x="642" y="234" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">14,500</text>
+<polyline points="130.8,245.6 295.9,276.4 476.9,313.2 642,332.8" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="130.8" cy="245.6" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="295.9" cy="276.4" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="476.9" cy="313.2" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="332.8" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<text x="642" y="319.8" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">13,887</text>
+<polyline points="130.8,226.7 295.9,341.2 476.9,383.6 642,415.7" fill="none" stroke="#2664ce" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="130.8" cy="226.7" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="295.9" cy="341.2" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="476.9" cy="383.6" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="415.7" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<text x="642" y="441.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">13,295</text>
+<text x="360" y="511" font-size="17" fill="#53657d" text-anchor="middle">평가 횟수 (로그 눈금)</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 809" role="img" aria-labelledby="title desc">
+<title id="title">고정 틀과 채우는 함수</title>
+<desc id="desc">구성 틀의 고정 부분은 construct, pick, place 호출의 반복과 Cand, better, bestOf입니다. 채우는 함수는 begin, candidates, place, score 넷이며 순서 틀은 경로에 점을 끼우고 길이를 세고, 배정 틀은 기계에 작업을 넣고 부하와 개수를 갱신합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="807" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">고정 틀과 채우는 함수</text>
+<text x="28" y="84" font-size="19" fill="#53657d">구성 틀은 채우는 함수를 이름으로만 부릅니다. 같은 틀에 두 문제</text>
+<text x="28" y="109" font-size="19" fill="#53657d">유형이 각자 함수를 채웁니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">문제와 무관한 고정 부분</text>
+<rect x="293.7" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="315.7" y="137" font-size="18" fill="#172b45">문제마다 채우는 함수</text>
+<rect x="28" y="163.0" width="664" height="150" rx="12" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="44" y="193" font-size="19" fill="#172b45" font-weight="700">고정 부분 (cons-core)</text>
+<text x="44" y="223" font-size="17" fill="#53657d">construct: begin 뒤 remaining &gt; 0인 동안 아래 셋을 되풀이</text>
+<rect x="44" y="239.0" width="164.9" height="34" rx="17" fill="#ffffff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="58" y="262" font-size="17" fill="#172b45">candidates 호출</text>
+<line x1="210.9" y1="256" x2="228.9" y2="256" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="219.85000000000002,250.0 219.85000000000002,262.0 228.85000000000002,256.0" fill="#53657d"/>
+<rect x="230.85000000000002" y="239.0" width="238.8" height="34" rx="17" fill="#ffffff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="244.9" y="262" font-size="17" fill="#172b45">pick: 선택 기준과 흔들기</text>
+<line x1="471.7" y1="256" x2="489.7" y2="256" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="480.65000000000003,250.0 480.65000000000003,262.0 489.65000000000003,256.0" fill="#53657d"/>
+<rect x="491.65000000000003" y="239.0" width="118.1" height="34" rx="17" fill="#ffffff" stroke="#2664ce" stroke-width="1.5"/>
+<text x="505.7" y="262" font-size="17" fill="#172b45">place 호출</text>
+<text x="44" y="298" font-size="17" fill="#53657d">그 밖에 Cand(후보 요약), better(동률 규칙), bestOf(여러 번 만들기)</text>
+<line x1="360" y1="329" x2="360" y2="361" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="354,352.0 366,352.0 360,361.0" fill="#53657d"/>
+<text x="376" y="353" font-size="17" fill="#53657d">채우는 함수 호출</text>
+<text x="305" y="391" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">순서 틀 (cons-path)</text>
+<text x="567" y="391" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">배정 틀 (cons-jobs)</text>
+<rect x="28" y="403.0" width="140" height="70" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="40" y="444" font-size="18" fill="#172b45" font-weight="700">begin</text>
+<rect x="180" y="403.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="194" y="432" font-size="16" fill="#172b45">경로를 비우고 첫 점을</text>
+<text x="194" y="452" font-size="16" fill="#172b45">놓는다</text>
+<rect x="442.0" y="403.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="456" y="432" font-size="16" fill="#172b45">부하와 개수를 0으로 둔다</text>
+<rect x="28" y="483.0" width="140" height="70" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="40" y="524" font-size="18" fill="#172b45" font-weight="700">remaining</text>
+<rect x="180" y="483.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="194" y="512" font-size="16" fill="#172b45">아직 놓지 않은 점의 수</text>
+<rect x="442.0" y="483.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="456" y="512" font-size="16" fill="#172b45">아직 배정하지 않은 작업의</text>
+<text x="456" y="532" font-size="16" fill="#172b45">수</text>
+<rect x="28" y="563.0" width="140" height="70" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="40" y="604" font-size="18" fill="#172b45" font-weight="700">candidates</text>
+<rect x="180" y="563.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="194" y="592" font-size="16" fill="#172b45">점마다 자리별 길이 증가를</text>
+<text x="194" y="612" font-size="16" fill="#172b45">센다</text>
+<rect x="442.0" y="563.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="456" y="592" font-size="16" fill="#172b45">작업마다 기계별 비용 증가를</text>
+<text x="456" y="612" font-size="16" fill="#172b45">센다(가득 찬 기계 제외)</text>
+<rect x="28" y="643.0" width="140" height="70" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="40" y="684" font-size="18" fill="#172b45" font-weight="700">place</text>
+<rect x="180" y="643.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="194" y="672" font-size="16" fill="#172b45">고른 자리에 끼우고 길이를</text>
+<text x="194" y="692" font-size="16" fill="#172b45">갱신</text>
+<rect x="442.0" y="643.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="456" y="672" font-size="16" fill="#172b45">고른 기계에 넣고</text>
+<text x="456" y="692" font-size="16" fill="#172b45">부하·개수를 갱신</text>
+<rect x="28" y="723.0" width="140" height="70" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="40" y="764" font-size="18" fill="#172b45" font-weight="700">score</text>
+<rect x="180" y="723.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="194" y="752" font-size="16" fill="#172b45">경로 길이</text>
+<rect x="442.0" y="723.0" width="250.0" height="70" rx="10" fill="#ffffff" stroke="#d8e1ed" stroke-width="2"/>
+<text x="456" y="752" font-size="16" fill="#172b45">부하 제곱합 / 100 + 추가</text>
+<text x="456" y="772" font-size="16" fill="#172b45">비용</text>
+</svg>

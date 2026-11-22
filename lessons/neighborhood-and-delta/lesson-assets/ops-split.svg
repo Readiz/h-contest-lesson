@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 465" role="img" aria-labelledby="title desc">
+<title id="title">제안 5,000번에 드는 연산</title>
+<desc id="desc">제안 5,000번을 처리하는 데 든 연산 합계입니다. 배정 틀: 옮기기·맞바꾸기은 차분 35,047, 적용 후 복구 558,571이고. 순서 틀: 두 점 교환은 차분 45,044, 적용 후 복구 1,014,255이고. 순서 틀: 구간 뒤집기은 차분 51,276, 적용 후 복구 1,645,186이고. 적용 후 복구가 열여섯 배에서 서른두 배 많습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="463" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">제안 5,000번에 드는 연산</text>
+<text x="28" y="84" font-size="19" fill="#53657d">같은 제안을 같은 순서로 받는 두 루프의 연산 합계입니다. 괄호는 차분</text>
+<text x="28" y="109" font-size="19" fill="#53657d">대비 배수입니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">차분 (계산만)</text>
+<rect x="203.7" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="225.7" y="137" font-size="18" fill="#172b45">적용 후 복구 (전체 재계산)</text>
+<text x="28" y="201" font-size="19" fill="#172b45" font-weight="700">배정 틀: 옮기기·맞바꾸기</text>
+<rect x="273.8" y="171" width="4.7" height="24" fill="#2664ce"/>
+<text x="286.5" y="190" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">35,047</text>
+<rect x="273.8" y="199" width="74.8" height="24" fill="#ae5515"/>
+<text x="356.6" y="218" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">558,571 (×16)</text>
+<text x="28" y="279" font-size="19" fill="#172b45" font-weight="700">순서 틀: 두 점 교환</text>
+<rect x="273.8" y="249" width="6" height="24" fill="#2664ce"/>
+<text x="287.8" y="268" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">45,044</text>
+<rect x="273.8" y="277" width="135.9" height="24" fill="#ae5515"/>
+<text x="417.7" y="296" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1,014,255 (×23)</text>
+<text x="28" y="357" font-size="19" fill="#172b45" font-weight="700">순서 틀: 구간 뒤집기</text>
+<rect x="273.8" y="327" width="6.9" height="24" fill="#2664ce"/>
+<text x="288.7" y="346" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">51,276</text>
+<rect x="273.8" y="355" width="220.4" height="24" fill="#ae5515"/>
+<text x="502.2" y="374" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1,645,186 (×32)</text>
+<line x1="273.8" y1="165" x2="273.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="273.8" y="421" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="340.8" y1="165" x2="340.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="407.8" y1="165" x2="407.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="407.8" y="421" font-size="16" fill="#53657d" text-anchor="middle">1,000,000</text>
+<line x1="474.8" y1="165" x2="474.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="541.8" y1="165" x2="541.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="541.8" y="421" font-size="16" fill="#53657d" text-anchor="middle">2,000,000</text>
+<line x1="273.8" y1="165" x2="273.8" y2="399" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="449" font-size="17" fill="#53657d" text-anchor="middle">연산 합계 ↓ (작을수록 좋음)</text>
+</svg>

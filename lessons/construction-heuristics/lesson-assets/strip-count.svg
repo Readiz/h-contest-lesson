@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 511" role="img" aria-labelledby="title desc">
+<title id="title">세로 띠 수에 따른 경로 길이</title>
+<desc id="desc">세로 띠 수 2, 4, 6, 8, 10, 12, 16, 24개에서 경로 길이의 중앙값입니다. 값은 35,396, 21,230, 16,909, 16,396, 16,637, 17,322, 19,374, 24,478.5이고 띠 8개에서 가장 짧습니다. 띠가 너무 적거나 많으면 길어집니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="509" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">세로 띠 수에 따른 경로 길이</text>
+<text x="28" y="84" font-size="19" fill="#53657d">띠 수를 바꾼 정렬 기준 구성, 시드 20개의 중앙값. 가장 짧은 띠 수를</text>
+<text x="28" y="109" font-size="19" fill="#53657d">강조했습니다</text>
+<line x1="92.8" y1="441" x2="692" y2="441" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="446" font-size="16" fill="#53657d" text-anchor="end">0</text>
+<line x1="92.8" y1="371" x2="692" y2="371" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="376" font-size="16" fill="#53657d" text-anchor="end">10,000</text>
+<line x1="92.8" y1="301" x2="692" y2="301" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="306" font-size="16" fill="#53657d" text-anchor="end">20,000</text>
+<line x1="92.8" y1="231" x2="692" y2="231" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="236" font-size="16" fill="#53657d" text-anchor="end">30,000</text>
+<line x1="92.8" y1="161" x2="692" y2="161" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="84.8" y="166" font-size="16" fill="#53657d" text-anchor="end">40,000</text>
+<rect x="107" y="193.2" width="46.4" height="247.8" fill="#2664ce"/>
+<text x="130.2" y="185.2" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">35,396</text>
+<text x="130.2" y="465" font-size="18" fill="#172b45" text-anchor="middle">2</text>
+<rect x="181.9" y="292.4" width="46.4" height="148.6" fill="#2664ce"/>
+<text x="205.2" y="284.4" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">21,230</text>
+<text x="205.2" y="465" font-size="18" fill="#172b45" text-anchor="middle">4</text>
+<rect x="256.8" y="322.6" width="46.4" height="118.4" fill="#2664ce"/>
+<text x="280.1" y="314.6" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">16,909</text>
+<text x="280.1" y="465" font-size="18" fill="#172b45" text-anchor="middle">6</text>
+<rect x="331.7" y="326.2" width="46.4" height="114.8" fill="#ae5515"/>
+<text x="355" y="318.2" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">16,396</text>
+<text x="355" y="465" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">8</text>
+<rect x="406.6" y="324.5" width="46.4" height="116.5" fill="#2664ce"/>
+<text x="429.9" y="316.5" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">16,637</text>
+<text x="429.9" y="465" font-size="18" fill="#172b45" text-anchor="middle">10</text>
+<rect x="481.5" y="319.7" width="46.4" height="121.3" fill="#2664ce"/>
+<text x="504.8" y="311.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">17,322</text>
+<text x="504.8" y="465" font-size="18" fill="#172b45" text-anchor="middle">12</text>
+<rect x="556.4" y="305.4" width="46.4" height="135.6" fill="#2664ce"/>
+<text x="579.7" y="297.4" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">19,374</text>
+<text x="579.7" y="465" font-size="18" fill="#172b45" text-anchor="middle">16</text>
+<rect x="631.3" y="269.7" width="46.4" height="171.3" fill="#2664ce"/>
+<text x="654.5" y="261.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">24,478.5</text>
+<text x="654.5" y="465" font-size="18" fill="#172b45" text-anchor="middle">24</text>
+<line x1="92.8" y1="441" x2="692" y2="441" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="495" font-size="17" fill="#53657d" text-anchor="middle">세로 띠 수 (개), 막대 높이는 경로 길이 중앙값 ↓</text>
+</svg>

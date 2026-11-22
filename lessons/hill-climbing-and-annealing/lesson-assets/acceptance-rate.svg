@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 507" role="img" aria-labelledby="title desc">
+<title id="title">구간별로 받은 나쁜 이동의 비율</title>
+<desc id="desc">예산을 10등분한 구간마다 나쁜 이동을 제안했을 때 받은 비율입니다. 순서 틀은 첫 구간 1.7%에서 마지막 구간 0.0%로, 배정 틀은 9.4%에서 0.2%로 온도가 내려가며 단조롭게 줄어듭니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="505" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">구간별로 받은 나쁜 이동의 비율</text>
+<text x="28" y="84" font-size="19" fill="#53657d">예산을 10등분해 구간마다 (받은 수 / 제안한 수)를 셌습니다. 온도가</text>
+<text x="28" y="109" font-size="19" fill="#53657d">내려가며 줄어야 합니다</text>
+<line x1="28" y1="132" x2="48" y2="132" stroke="#2664ce" stroke-width="3.5"/>
+<circle cx="38" cy="132" r="4.5" fill="#2664ce"/>
+<text x="56" y="137" font-size="18" fill="#172b45">순서 틀</text>
+<line x1="153.9" y1="132" x2="173.9" y2="132" stroke="#ae5515" stroke-width="3.5"/>
+<circle cx="163.9" cy="132" r="4.5" fill="#ae5515"/>
+<text x="181.9" y="137" font-size="18" fill="#172b45">배정 틀</text>
+<text x="28" y="163" font-size="17" fill="#53657d">나쁜 이동을 받은 비율</text>
+<line x1="66.4" y1="437" x2="680" y2="437" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="58.4" y="442" font-size="16" fill="#53657d" text-anchor="end">0%</text>
+<line x1="66.4" y1="385" x2="680" y2="385" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="58.4" y="390" font-size="16" fill="#53657d" text-anchor="end">2%</text>
+<line x1="66.4" y1="333" x2="680" y2="333" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="58.4" y="338" font-size="16" fill="#53657d" text-anchor="end">4%</text>
+<line x1="66.4" y1="281" x2="680" y2="281" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="58.4" y="286" font-size="16" fill="#53657d" text-anchor="end">6%</text>
+<line x1="66.4" y1="229" x2="680" y2="229" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="58.4" y="234" font-size="16" fill="#53657d" text-anchor="end">8%</text>
+<line x1="66.4" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="58.4" y="182" font-size="16" fill="#53657d" text-anchor="end">10%</text>
+<line x1="104.4" y1="177" x2="104.4" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="104.4" y="461" font-size="16" fill="#53657d" text-anchor="middle">1</text>
+<line x1="164.1" y1="177" x2="164.1" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="164.1" y="461" font-size="16" fill="#53657d" text-anchor="middle">2</text>
+<line x1="223.9" y1="177" x2="223.9" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="223.9" y="461" font-size="16" fill="#53657d" text-anchor="middle">3</text>
+<line x1="283.6" y1="177" x2="283.6" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="283.6" y="461" font-size="16" fill="#53657d" text-anchor="middle">4</text>
+<line x1="343.3" y1="177" x2="343.3" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="343.3" y="461" font-size="16" fill="#53657d" text-anchor="middle">5</text>
+<line x1="403.1" y1="177" x2="403.1" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="403.1" y="461" font-size="16" fill="#53657d" text-anchor="middle">6</text>
+<line x1="462.8" y1="177" x2="462.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="462.8" y="461" font-size="16" fill="#53657d" text-anchor="middle">7</text>
+<line x1="522.5" y1="177" x2="522.5" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="522.5" y="461" font-size="16" fill="#53657d" text-anchor="middle">8</text>
+<line x1="582.3" y1="177" x2="582.3" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="582.3" y="461" font-size="16" fill="#53657d" text-anchor="middle">9</text>
+<line x1="642" y1="177" x2="642" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<text x="642" y="461" font-size="16" fill="#53657d" text-anchor="middle">10</text>
+<line x1="66.4" y1="437" x2="680" y2="437" stroke="#53657d" stroke-width="1.5"/>
+<line x1="66.4" y1="177" x2="66.4" y2="437" stroke="#53657d" stroke-width="1.5"/>
+<polyline points="104.4,393 164.1,413.7 223.9,423.8 283.6,429.4 343.3,432.5 403.1,434.3 462.8,435.3 522.5,435.9 582.3,436.2 642,436.5" fill="none" stroke="#2664ce" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="104.4" cy="393" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="164.1" cy="413.7" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="223.9" cy="423.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="283.6" cy="429.4" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="343.3" cy="432.5" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="403.1" cy="434.3" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="462.8" cy="435.3" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="522.5" cy="435.9" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="582.3" cy="436.2" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="436.5" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<text x="104.4" y="380" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1.7%</text>
+<text x="283.6" y="416.4" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">0.3%</text>
+<polyline points="104.4,193.3 164.1,268.6 223.9,324.5 283.6,362.6 343.3,388.9 403.1,406.5 462.8,418.2 522.5,424.4 582.3,429.1 642,431.8" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="104.4" cy="193.3" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="164.1" cy="268.6" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="223.9" cy="324.5" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="283.6" cy="362.6" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="343.3" cy="388.9" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="403.1" cy="406.5" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="462.8" cy="418.2" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="522.5" cy="424.4" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="582.3" cy="429.1" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="431.8" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<text x="104.4" y="180.3" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9.4%</text>
+<text x="283.6" y="349.6" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">2.9%</text>
+<text x="360" y="491" font-size="17" fill="#53657d" text-anchor="middle">예산의 구간 (1 = 처음, 10 = 끝)</text>
+</svg>

@@ -441,6 +441,11 @@ def validate_lesson_references(lessons: list[dict], lesson_ids: set[str]) -> Non
 
 def validate_generated_files() -> None:
     subprocess.run(
+        [sys.executable, "scripts/generate_charts.py", "--check"],
+        cwd=ROOT,
+        check=True,
+    )
+    subprocess.run(
         [sys.executable, "scripts/generate_catalog.py", "--check"],
         cwd=ROOT,
         check=True,

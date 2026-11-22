@@ -14,6 +14,10 @@
 
 `construct`는 `begin(first)`, `remaining()`, `candidates(cand, rule)`, `place(item, slot)`만 부릅니다. `candidates`는 남은 항목마다 가장 싼 자리와 그 비용, 두 번째로 싼 자리의 비용, 항목의 "큰 정도"(`weight`)를 채웁니다. 선택은 `pick`이 `Plan`에 따라 합니다. `Plan`의 `width`와 `percent`가 흔드는 정도이고 `width == 1`이면 난수를 쓰지 않으므로 같은 입력에서 같은 해가 나옵니다. 동률은 항상 같은 순서로 풀어야 결과를 재현할 수 있어서 `better`가 키, `best`, 항목 번호 순으로 정합니다.
 
+![구성 틀의 고정 부분(construct의 반복, pick, Cand, better, bestOf)과 문제마다 채우는 함수 begin, remaining, candidates, place, score가 순서 틀과 배정 틀에서 각각 무엇을 하는지 보인 표 모양의 그림.](../lesson-assets/construction-frame.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/construction-heuristics/lesson-assets/construction-frame.svg)
+
 ```cpp snippet=cons-core
 namespace cons {
 const long long BIG = 1000000000000LL;   // "자리가 없음"을 뜻하는 비용
