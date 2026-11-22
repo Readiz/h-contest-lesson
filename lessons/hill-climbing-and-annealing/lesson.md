@@ -1,8 +1,8 @@
 # 언덕 오르기와 담금질
 
-해 하나와 그것을 조금 바꾸는 이동이 있을 때, 좋아지는 이동만 받으면 지역 최적에서 멈추고, 나빠지는 이동도 확률로 받으면 지역 최적을 지나갈 수 있습니다. 이 강의는 두 방식의 차이와 쓰는 조건을 같은 평가 횟수 예산에서 비교하고, 담금질의 매개변수인 온도를 이 문제에서 실제로 나오는 변화량에서 정하는 절차와 표준 수학 함수 없이 구현한 수락 판정을 문제에 상관없이 쓸 수 있는 형태로 다룹니다. 예시는 순서를 정하는 문제와 작업을 기계에 배정하는 문제, 두 가지 연습용 입력입니다.
+해 하나와 그것을 조금 바꾸는 이동이 있을 때, 좋아지는 이동만 받으면 지역 최적에서 멈추고, 나빠지는 이동도 확률로 받으면 지역 최적을 지나갈 수 있습니다. 이 강의는 두 방식을 같은 평가 횟수 예산에서 비교하고, 담금질의 온도를 그 문제의 변화량에서 정하는 절차와 표준 수학 함수 없이 구현한 수락 판정을 문제와 무관한 코드로 다룹니다. 예시는 순서를 정하는 문제와 작업을 기계에 배정하는 문제, 두 가지 연습용 입력입니다.
 
-[문제를 상태·행동·점수로 옮기기](https://h.readiz.com/learn/problem-modeling), [초기해 만들기](https://h.readiz.com/learn/construction-heuristics), [근방 설계와 차분 평가](https://h.readiz.com/learn/neighborhood-and-delta)를 읽었다고 가정합니다. 이동과 차분은 3번 강의의 것을 그대로 씁니다. 크게 부수는 이동은 [크게 부수고 다시 짓기](https://h.readiz.com/learn/destroy-and-repair), 매개변수를 한 번에 하나씩 바꾸는 튜닝은 [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)에서 다룹니다.
+[문제를 상태·행동·점수로 옮기기](https://h.readiz.com/learn/problem-modeling), [초기해 만들기](https://h.readiz.com/learn/construction-heuristics), [근방 설계와 차분 평가](https://h.readiz.com/learn/neighborhood-and-delta)를 읽었다고 가정합니다. 이동과 차분은 세 번째 강의(근방 설계와 차분 평가, 이하 3번 강의)의 것을 그대로 씁니다. 크게 부수는 이동은 [크게 부수고 다시 짓기](https://h.readiz.com/learn/destroy-and-repair), 매개변수를 한 번에 하나씩 바꾸는 튜닝은 [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)에서 다룹니다.
 
 ## 이 강의에서 다루는 것
 
@@ -24,7 +24,7 @@
 
 ## 대표 실험
 
-시드 20개의 최종 비용 중 10번째로 작은 값입니다(작을수록 좋음). 세 방법의 평가 횟수가 같습니다. 예산별 비교와 온도·일정 실험은 [실험과 점검](pages/practice.md)에 있습니다.
+시드 20개의 최종 비용 중 10번째로 작은 값입니다(작을수록 좋음). 재시작과 담금질의 평가 횟수는 같고, 언덕 오르기 한 번은 지역 최적에서 멈춥니다. 예산별 비교와 온도·일정 실험은 [실험과 점검](pages/practice.md)에 있습니다.
 
 <!-- check:hub-summary -->
 | 설정 | 비용 ↓ |
