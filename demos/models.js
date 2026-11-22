@@ -593,5 +593,94 @@
     }
     return states;
   }
-  return {lowerBoundTrace,bfsExamples,bfsTrace,graph,dijkstraTrace,matrix,prefixTable,prefixTrace,routes,manhattan,pathCost,twoOpt,twoOptTrace,acceptance,annealingPlotMax,annealingTrace,nnExamples,nearestNeighborTrace,optimalOpenRoute,beamExamples,beamSearchTrace,optimalBeamLeaf,drItems,DR_LENGTH,drExamples,drScore,drSlots,drRepair,destroyRepairTrace,pairedExamples,pairedStats,pairedTrace,ufExamples,ufFind,unionFindTrace,segExamples,segArray,segBuild,segmentTrace,amTime,amExamples,amLoads,amNeighbors,amOptimum,assignmentMovesTrace,riDrivers,riPassengers,riStart,riExamples,riLoad,routeInsertionTrace,bkExample,bucketSearchTrace,bdExample,bdBoundaries,bdPairs,bdScore,bdDirNames,boundaryDeltaTrace,mpN,mpExample,mpBfs,mpAround,mpRun,mirrorPolicyTrace,fmtKey};
+  // ---- score check: the problem-modeling lesson's assignment hand example ----
+  const scExample = {name:'작업 6개 · 기계 3대 · 기계당 3개 · 본문 손계산', M:3, K:3, d:[31,26,10,35,13,21], c:[[10,16,19],[11,29,4],[10,8,29],[22,17,2],[9,21,10],[9,5,25]], baseline:[0,0,0,1,1,1], hand:[0,2,1,2,0,1]};
+  // assign[j] is a machine number or null (not chosen yet). The score exists only for a complete, valid assignment.
+  function scEvaluate(ex, assign) {
+    const loads = Array(ex.M).fill(0), counts = Array(ex.M).fill(0), jobs = Array.from({length: ex.M}, () => []), missing = [];
+    let extra = 0;
+    assign.forEach((m, j) => { if (m === null || m === undefined) { missing.push(j); return; } loads[m] += ex.d[j]; counts[m]++; jobs[m].push(j); extra += ex.c[j][m]; });
+    const over = counts.map((n, m) => n > ex.K ? m : -1).filter(m => m >= 0), sumSq = loads.reduce((a, l) => a + l * l, 0), quotient = Math.floor(sumSq / 100);
+    const valid = !over.length && !missing.length;
+    return {loads, counts, jobs, extra, missing, over, sumSq, quotient, valid, score: valid ? quotient + extra : null};
+  }
+  function scLowerBound(ex) {
+    const cheapest = ex.c.reduce((a, row) => a + Math.min(...row), 0), total = ex.d.reduce((a, v) => a + v, 0), balanced = Math.floor(total * total / (100 * ex.M));
+    return {cheapest, total, balanced, bound: cheapest + balanced};
+  }
+  function scOptimum(ex) {
+    const n = ex.d.length; let best = Infinity, assign = null, valid = 0;
+    for (let code = 0; code < Math.pow(ex.M, n); code++) {
+      const a = []; let q = code; for (let j = 0; j < n; j++) { a.push(q % ex.M); q = Math.floor(q / ex.M); }
+      const r = scEvaluate(ex, a); if (!r.valid) continue;
+      valid++; if (r.score < best) { best = r.score; assign = a; }
+    }
+    return {score: best, assign, valid, total: Math.pow(ex.M, n)};
+  }
+  // ---- construction steps: the construction-heuristics lesson's seven-point hand example ----
+  const csExample = {name:'점 7개 · 본문 손계산', points:[[5,5],[3,3],[7,3],[6,2],[6,9],[5,0],[5,7]]};
+  const csRuleNames = [['nn','가장 가까운 점 잇기'],['cheapest','가장 싼 삽입'],['farthest','가장 먼 점 삽입'],['regret','후회 삽입']];
+  function csSlots(points, order, p, anySlot) {
+    const len = order.length, out = [], d = (a, b) => manhattan(points[a], points[b]);
+    for (let s = anySlot ? 0 : len; s <= len; s++) {
+      let cost;
+      if (s === 0) cost = d(p, order[0]);
+      else if (s === len) cost = d(order[len - 1], p);
+      else cost = d(order[s - 1], p) + d(p, order[s]) - d(order[s - 1], order[s]);
+      out.push({slot: s, cost});
+    }
+    return out;
+  }
+  // Every remaining point with its cheapest slot (earliest on ties), second cheapest cost, regret, and distance to the path.
+  function csCandidates(points, order, rule) {
+    const used = new Set(order), list = [];
+    for (let p = 0; p < points.length; p++) {
+      if (used.has(p)) continue;
+      const slots = csSlots(points, order, p, rule !== 'nn'), best = slots.reduce((a, b) => b.cost < a.cost ? b : a), costs = slots.map(x => x.cost).sort((a, b) => a - b);
+      const second = costs.length > 1 ? costs[1] : null;
+      list.push({p, slot: best.slot, best: best.cost, second, regret: second === null ? null : second - best.cost, near: Math.min(...order.map(q => manhattan(points[p], points[q])))});
+    }
+    return list;
+  }
+  const csPrimary = (c, rule) => rule === 'farthest' ? -c.near : rule === 'regret' ? -c.regret : c.best;
+  function csPick(list, rule) {
+    let chosen = list[0];
+    for (const c of list) {
+      const a = [csPrimary(c, rule), c.best, c.p], b = [csPrimary(chosen, rule), chosen.best, chosen.p];
+      for (let i = 0; i < 3; i++) { if (a[i] !== b[i]) { if (a[i] < b[i]) chosen = c; break; } }
+    }
+    return chosen;
+  }
+  const csOptimumCache = {};
+  function csOptimum(points) {
+    const key = JSON.stringify(points);
+    if (csOptimumCache[key]) return csOptimumCache[key];
+    let best = {cost: Infinity, order: null};
+    const walk = (order, left) => {
+      if (!left.length) { const c = pathCost(points, order); if (c < best.cost) best = {cost: c, order: [...order]}; return; }
+      left.forEach((v, i) => walk([...order, v], [...left.slice(0, i), ...left.slice(i + 1)]));
+    };
+    walk([], points.map((_, i) => i));
+    return (csOptimumCache[key] = best);
+  }
+  function constructionTrace(points, rule) {
+    const n = points.length, order = [0], states = [], name = csRuleNames.find(r => r[0] === rule)[1];
+    let cost = 0;
+    states.push(copy({phase: 'start', rule, step: 0, total: n - 1, order, cost, candidates: [], chosen: null, message: `${name}: 점 0에서 시작합니다. 동률이면 번호가 작은 점, 자리 번호가 작은 쪽을 먼저 고릅니다. "한 단계"를 누르면 다음 점과 끼울 자리를 정합니다.`}));
+    while (order.length < n) {
+      const cands = csCandidates(points, order, rule), pick = csPick(cands, rule), tied = cands.filter(c => csPrimary(c, rule) === csPrimary(pick, rule)).length;
+      const before = [...order]; order.splice(pick.slot, 0, pick.p); cost += pick.best;
+      const step = order.length - 1, last = order.length === n;
+      const tie = tied > 1 ? ` 같은 값이 ${tied}개라 번호가 작은 점을 고릅니다.` : '';
+      let why;
+      if (rule === 'nn') why = `점 ${before[before.length - 1]}에서 가장 가까운 점은 ${pick.p}번으로 거리 ${pick.best}입니다.${tie} 경로 끝에 붙입니다.`;
+      else if (rule === 'cheapest') why = `모든 (점, 자리) 쌍 중 늘어나는 길이가 가장 작은 쌍은 점 ${pick.p}, 자리 ${pick.slot}이고 ${pick.best}입니다.${tie}`;
+      else if (rule === 'farthest') why = `경로의 가장 가까운 점까지의 거리가 가장 큰 점은 ${pick.p}번(${pick.near})입니다.${tie} 가장 싼 자리 ${pick.slot}에 끼웁니다.`;
+      else why = `가장 싼 자리와 두 번째로 싼 자리의 비용 차(후회)가 가장 큰 점은 ${pick.p}번(후회 ${pick.regret})입니다.${tie} 가장 싼 자리 ${pick.slot}에 끼웁니다.`;
+      const opt = last ? csOptimum(points) : null;
+      states.push(copy({phase: last ? 'done' : 'step', rule, step, total: n - 1, order, cost, candidates: cands, chosen: pick.p, slot: pick.slot, added: pick.best, before, optimum: opt, message: `${step}단계: ${why} 늘어난 길이 +${pick.best}. 경로 ${order.join(' → ')}, 비용 ${cost}.${last ? ` 모든 점을 지났습니다. 5,040개 순열을 모두 계산한 최단 길이는 ${opt.cost}이므로 ${cost === opt.cost ? '이 경로는 최적과 같습니다.' : `이 경로는 최적보다 ${cost - opt.cost} 깁니다.`}` : ''}`}));
+    }
+    return states;
+  }
+  return {lowerBoundTrace,bfsExamples,bfsTrace,graph,dijkstraTrace,matrix,prefixTable,prefixTrace,routes,manhattan,pathCost,twoOpt,twoOptTrace,acceptance,annealingPlotMax,annealingTrace,nnExamples,nearestNeighborTrace,optimalOpenRoute,beamExamples,beamSearchTrace,optimalBeamLeaf,drItems,DR_LENGTH,drExamples,drScore,drSlots,drRepair,destroyRepairTrace,pairedExamples,pairedStats,pairedTrace,ufExamples,ufFind,unionFindTrace,segExamples,segArray,segBuild,segmentTrace,amTime,amExamples,amLoads,amNeighbors,amOptimum,assignmentMovesTrace,riDrivers,riPassengers,riStart,riExamples,riLoad,routeInsertionTrace,bkExample,bucketSearchTrace,bdExample,bdBoundaries,bdPairs,bdScore,bdDirNames,boundaryDeltaTrace,mpN,mpExample,mpBfs,mpAround,mpRun,mirrorPolicyTrace,fmtKey,scExample,scEvaluate,scLowerBound,scOptimum,csExample,csRuleNames,csSlots,csCandidates,csPick,csOptimum,constructionTrace};
 });

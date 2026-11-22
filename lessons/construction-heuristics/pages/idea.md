@@ -91,6 +91,8 @@
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/construction-heuristics/lesson-assets/hand-path.svg)
 
+[선택 기준에 따라 경로를 한 점씩 만들기](https://git.readiz.com/h-contest-lesson/demos/index.html?demo=construction-steps)
+
 ## 손으로 따라가기 2: 배정 틀, 작업 6개
 
 작업 6개를 기계 2대에 맡기고 한 기계에는 3개까지만 맡길 수 있습니다(`K = 3`이라 6개를 놓으면 빈 자리가 없습니다). 비용은 `(기계별 부하의 제곱 합) / 100 + (추가 비용의 합)`이고 합에 대해 정수 나눗셈을 한 번 합니다.

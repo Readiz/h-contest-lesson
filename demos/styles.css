@@ -8,3 +8,22 @@
 
 /* Tables used by the five practical-lesson demos. */
 .data-table th.left,.data-table td.left{text-align:left;padding-left:7px;white-space:nowrap}.data-table tr.hot td{background:#e2eaff;color:#284ebd;font-weight:800}.data-table tr.pick td{background:#e5f4ee;color:#0b806f;font-weight:800}.data-table tr.dim td{opacity:.45}
+
+/* Hand-example demos (score-check, construction-steps): their own compact buttons, no step navigation. */
+.controls[hidden]{display:none}
+.actions{display:flex;flex-wrap:wrap;gap:6px}
+button.mini{min-height:32px;padding:5px 11px;font-size:13px}
+button.mini.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+button.mini.primary:hover:not(:disabled){background:#284bbb}
+button.mini[aria-pressed=true]{background:#e2eaff;border-color:#7c95e6;color:#284ebd}
+.pick-table td.cellwrap{background:none;padding:0}
+button.cell{width:100%;min-height:30px;padding:3px 0;font-size:13px;font-variant-numeric:tabular-nums;font-weight:600;border-radius:6px}
+button.cell[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+button.cell.bad[aria-pressed=true]{background:var(--red);border-color:var(--red)}
+.pick-table tr.unset td.left{background:#fff0f2;color:#b94458;font-weight:700}
+.pick-table tr.sum td{background:none;font-weight:700;color:#455876}
+.pick-table td.over{color:#b94458;background:#fff0f2}
+.reason{font-size:12px;line-height:1.6;margin:7px 0 0;color:#455876}
+details.fold{margin-top:12px}
+details.fold summary{font-size:12px;font-weight:700;color:#536681;cursor:pointer;padding:4px 0}
+@media(max-width:680px){.settings{gap:8px 14px}}

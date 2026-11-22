@@ -350,6 +350,120 @@ const cells=line=>line.split('|').slice(1,-1).map(c=>c.trim());
   equal(ex.cells.map(c=>c[2]).sort((a,b)=>a-b),[2,2,3,40,60],'map values equal the lesson grid');
   assert(trace.some(s=>s.policies[0].seen.length>1)&&trace.at(-1).policies[0].seen.length===6&&trace.at(-1).policies[1].seen.length===4,'seen grows with each visit');checks++;
 }
+// ---- score-check and construction-steps: reproduce the hand-calculation tables of lessons 1 and 2 from the lesson text ----
+{
+  const lessonText=name=>fs.readFileSync(path.join(__dirname,'..','lessons',name,'pages','idea.md'),'utf8');
+  const cells=line=>line.split('|').slice(1,-1).map(c=>c.trim());
+  // Rows of the first table whose header line starts with `header`, after the separator line.
+  const tableAfter=(text,header)=>{const lines=text.split('\n'),at=lines.findIndex(l=>l.startsWith(header));assert(at>=0,'table header '+header);const rows=[];for(let i=at+2;i<lines.length&&lines[i].startsWith('|');i++)rows.push(cells(lines[i]));checks++;return rows;};
+  const nums=s=>s.match(/-?\d+/g).map(Number);
+  const pm=lessonText('problem-modeling'),ex=M.scExample;
+  const inputRows=tableAfter(pm,'| 작업 | 길이 `d`');
+  equal(inputRows.map(r=>Number(r[1])),ex.d,'score-check lengths equal the lesson table');
+  equal(inputRows.map(r=>r.slice(2).map(Number)),ex.c,'score-check extra costs equal the lesson table');
+  assert(pm.includes('`N = 6, M = 3, K = 3`'));checks++;
+  equal([ex.d.length,ex.M,ex.K],[6,3,3],'score-check sizes');
+  const hand=pm.slice(pm.indexOf('<!-- check:hand-candidates -->'));
+  const candRows=tableAfter(hand,'| 후보 |');
+  equal(candRows.length,4,'four hand candidates');
+  for(const r of candRows){
+    const assign=r[0].match(/`([^`]+)`/)[1].split(' ').map(Number),ev=M.scEvaluate(ex,assign);
+    equal(r[1].split('/').map(v=>Number(v.trim())),ev.loads,'candidate loads '+r[0]);
+    if(r[5]==='무효'){equal(ev.valid,false,'candidate invalid '+r[0]);equal(ev.over,[0],'overfull machine');equal(ev.score,null);}
+    else{equal(ev.valid,true);equal(Number(r[2].replace(/,/g,'')),ev.sumSq,'sum of squares '+r[0]);equal(Number(r[3]),ev.quotient,'quotient '+r[0]);equal(Number(r[4]),ev.extra,'extra cost '+r[0]);equal(Number(r[5]),ev.score,'score '+r[0]);}
+  }
+  const assignOf=row=>row[0].match(/`([^`]+)`/)[1].split(' ').map(Number);
+  equal(assignOf(candRows[0]),ex.baseline,'baseline button is candidate A');equal(assignOf(candRows[2]),ex.hand,'hand answer is candidate C');
+  const lb=M.scLowerBound(ex),opt=M.scOptimum(ex);
+  equal([lb.cheapest,lb.balanced,lb.bound],[38,61,99],'lower bound 38 + 61 = 99');
+  equal([opt.score,opt.valid,opt.total],[104,510,729],'optimum 104, 510 of 729 valid');
+  equal(M.scEvaluate(ex,ex.hand).score,opt.score,'hand answer is optimal');equal(M.scEvaluate(ex,ex.baseline).score,166,'baseline 166');
+  const perMachine=M.scEvaluate(ex,ex.baseline).loads.reduce((a,l)=>a+Math.floor(l*l/100),0);equal(perMachine,91,'per-machine division gives 91');
+  for(const phrase of ['`3^6 = 729`가지 중 유효한 것은 510가지','점수의 최솟값은 후보 C의 104','하한은 `38 + 61 = 99`','`136² / (100 × 3) = 18496 / 300`의 몫 61','`166 - 99 = 67`','`166 - 104 = 62`','`44 + 47 + 0 = 91`','점수는 165입니다'])assert(pm.includes(phrase),'lesson phrase '+phrase),checks++;
+  // Random instances against an independent per-job computation (including unchosen jobs).
+  const seen={valid:0,invalid:0,partial:0};
+  for(let test=0;test<300;test++){
+    const n=1+random()%7,m=2+random()%3,k=1+random()%4,d=Array.from({length:n},()=>1+random()%100),c=d.map(()=>Array.from({length:m},()=>random()%51)),e={M:m,K:k,d,c};
+    const assign=d.map(()=>random()%6===0?null:random()%m),ev=M.scEvaluate(e,assign);
+    let sq=0,extra=0;const over=[];
+    for(let q=0;q<m;q++){let load=0,count=0;for(let j=0;j<n;j++)if(assign[j]===q){load+=d[j];count++;extra+=c[j][q];}sq+=load*load;if(count>k)over.push(q);equal([ev.loads[q],ev.counts[q]],[load,count],'machine load and count');}
+    const complete=assign.every(v=>v!==null),valid=complete&&over.length===0;
+    equal([ev.sumSq,ev.quotient,ev.extra,ev.over,ev.valid],[sq,Math.floor(sq/100),extra,over,valid],'score parts vs independent loop');
+    equal(ev.score,valid?Math.floor(sq/100)+extra:null,'score only for complete valid assignments');
+    equal(ev.missing,assign.flatMap((v,j)=>v===null?[j]:[]),'missing jobs');
+    seen[valid?'valid':complete?'invalid':'partial']++;
+  }
+  assert(seen.valid>20&&seen.invalid>20&&seen.partial>20,'random cases cover valid, overfull and partial');checks++;
+  // Exhaustive optimum against a depth-first search that respects capacity while assigning.
+  for(let test=0;test<12;test++){
+    const n=2+random()%5,m=2+random()%2,k=Math.ceil(n/m)+random()%2,d=Array.from({length:n},()=>1+random()%100),c=d.map(()=>Array.from({length:m},()=>random()%51)),e={M:m,K:k,d,c};
+    let best=Infinity;const load=Array(m).fill(0),cnt=Array(m).fill(0);
+    const dfs=(j,extra)=>{if(j===n){best=Math.min(best,Math.floor(load.reduce((a,l)=>a+l*l,0)/100)+extra);return;}for(let q=0;q<m;q++){if(cnt[q]===k)continue;cnt[q]++;load[q]+=d[j];dfs(j+1,extra+c[j][q]);cnt[q]--;load[q]-=d[j];}};
+    dfs(0,0);equal(M.scOptimum(e).score,best,'optimum vs capacity-pruned search');
+    const lbound=M.scLowerBound(e);assert(lbound.bound<=best,'lower bound does not exceed the optimum');checks++;
+  }
+}
+{
+  const ch=fs.readFileSync(path.join(__dirname,'..','lessons','construction-heuristics','pages','idea.md'),'utf8'),cells=line=>line.split('|').slice(1,-1).map(c=>c.trim());
+  const tableAfter=(header)=>{const lines=ch.split('\n'),at=lines.findIndex(l=>l.startsWith(header));assert(at>=0,'table header '+header);const rows=[];for(let i=at+2;i<lines.length&&lines[i].startsWith('|');i++)rows.push(cells(lines[i]));checks++;return rows;};
+  const pts=M.csExample.points,pointRow=cells(ch.split('\n').find(l=>l.startsWith('| (x, y) |')));
+  equal(pointRow.slice(1).map(c=>c.match(/-?\d+/g).map(Number)),pts,'construction-steps points equal the lesson table');
+  const run=rule=>M.constructionTrace(pts,rule),traces=Object.fromEntries(M.csRuleNames.map(([k])=>[k,run(k)]));
+  // Final table: path and cost of each rule.
+  const finals=tableAfter('| 구성법 | 경로 | 길이 |'),names={nn:'가장 가까운 점 잇기',cheapest:'가장 싼 삽입',farthest:'가장 먼 점 삽입',regret:'후회 삽입'};
+  equal(finals.length,4);
+  for(const r of finals){const rule=Object.keys(names).find(k=>names[k]===r[0]),last=traces[rule].at(-1);equal(last.order.join(' → '),r[1],'final path '+r[0]);equal(last.cost,Number(r[2]),'final cost '+r[0]);}
+  equal(M.csRuleNames.map(([k])=>traces[k].at(-1).cost),[22,19,20,18],'22 / 19 / 20 / 18');
+  // Step tables.
+  const nnRows=tableAfter('| 단계 | 지금 끝 |');
+  equal(nnRows.length,6);
+  nnRows.forEach((r,i)=>{const before=traces.nn[i],after=traces.nn[i+1];equal(`점 ${before.order.at(-1)}`,r[1],'NN end');equal(after.candidates.map(c=>`${c.p}: ${c.best}`).join(', '),r[2],'NN candidate distances');equal(`점 ${after.chosen}`,r[3],'NN pick');});
+  const insRows=tableAfter('| 단계 | 끼우기 전 경로 |');
+  equal(insRows.length,6);
+  insRows.forEach((r,i)=>{const after=traces.cheapest[i+1];equal([after.before.join(' '),`점 ${after.chosen}`,after.slot,after.added,after.order.join(' ')],[r[1],r[2],Number(r[3]),Number(r[4]),r[5]],'cheapest insertion step '+(i+1));});
+  const regretRows=tableAfter('| 남은 점 | 가장 싼 자리 |'),third=traces.cheapest[2].order;
+  equal(third,[4,6,0],'cheapest insertion path after step 2');
+  equal(M.csCandidates(pts,third,'regret').map(c=>[`점 ${c.p}`,String(c.slot),String(c.best),String(c.second),String(c.regret)]),regretRows,'regret table at step 3');
+  const r3=traces.regret[3];equal([r3.chosen,r3.slot,r3.added],[5,3,5],'regret picks point 5, slot 3 at step 3');
+  assert(ch.includes('후회가 가장 큰 점 5(후회 5)를 자리 3에 먼저 끼웁니다'));checks++;
+  const perms=[],permute=(a,k)=>{if(k===a.length){perms.push([...a]);return;}for(let i=k;i<a.length;i++){[a[k],a[i]]=[a[i],a[k]];permute(a,k+1);[a[k],a[i]]=[a[i],a[k]];}};permute([0,1,2,3,4,5,6],0);
+  equal(perms.length,5040,'7! permutations');equal(Math.min(...perms.map(p=>M.pathCost(pts,p))),18,'exhaustive optimum 18');equal(M.csOptimum(pts).cost,18);
+  assert(ch.includes('7! = 5,040개 순열을 모두 계산한 최단 길이는 18'));checks++;
+  // Random instances (small coordinate range to force ties): each rule vs an independent implementation that builds every candidate path and re-measures it.
+  const fullCost=(p,o)=>o.slice(1).reduce((a,v,i)=>a+Math.abs(p[o[i]][0]-p[v][0])+Math.abs(p[o[i]][1]-p[v][1]),0);
+  const lexLess=(a,b)=>{for(let i=0;i<a.length;i++)if(a[i]!==b[i])return a[i]<b[i];return false;};
+  const independent=(p,rule)=>{
+    const order=[0],costs=[0];
+    while(order.length<p.length){
+      let pick=null;
+      for(let q=0;q<p.length;q++){
+        if(order.includes(q))continue;
+        const slots=rule==='nn'?[order.length]:order.map((_,i)=>i).concat(order.length),deltas=slots.map(s=>{const next=[...order];next.splice(s,0,q);return {s,delta:fullCost(p,next)-fullCost(p,order)};});
+        deltas.sort((a,b)=>a.delta-b.delta||a.s-b.s);
+        const near=Math.min(...order.map(o=>Math.abs(p[o][0]-p[q][0])+Math.abs(p[o][1]-p[q][1]))),regret=deltas.length>1?deltas[1].delta-deltas[0].delta:0;
+        const key=[rule==='farthest'?-near:rule==='regret'?-regret:deltas[0].delta,deltas[0].delta,q];
+        if(!pick||lexLess(key,pick.key))pick={key,q,s:deltas[0].s,delta:deltas[0].delta};
+      }
+      order.splice(pick.s,0,pick.q);costs.push(costs.at(-1)+pick.delta);
+    }
+    return {order,costs};
+  };
+  let tieCases=0;
+  for(let test=0;test<150;test++){
+    const n=3+random()%6,p=Array.from({length:n},()=>[random()%7,random()%7]);
+    for(const [rule] of M.csRuleNames){
+      const trace=M.constructionTrace(p,rule),ind=independent(p,rule),last=trace.at(-1);
+      equal(last.order,ind.order,`construction ${rule} vs independent`);
+      equal([...last.order].sort((a,b)=>a-b),p.map((_,i)=>i),'path is a permutation');
+      equal(last.cost,fullCost(p,last.order),'incremental cost equals full recomputation');
+      equal(trace.map(s=>s.cost),ind.costs,'step costs');equal(trace.length,n,'one state per point');
+      trace.forEach(s=>equal(s.cost,fullCost(p,s.order),'every step cost recomputed'));
+      if(rule==='nn')equal(last.order[0],0,'nearest neighbor starts at point 0');
+      tieCases+=trace.some(s=>s.candidates.length>1&&s.candidates.filter(c=>c.best===s.candidates.find(q=>q.p===s.chosen).best).length>1)?1:0;
+    }
+  }
+  assert(tieCases>50,'random cases include ties');checks++;
+}
 // Static entry must stay usable in opaque-origin sandbox: classic local assets only.
 const entry=fs.readFileSync(path.join(__dirname,'../demos/index.html'),'utf8');
 assert(!entry.includes('type="module"'));assert(!/https?:\/\//.test(entry));
@@ -357,7 +471,7 @@ for(const asset of ['models.js','app.js','styles.css'])assert(entry.includes(ass
 checks+=5;
 // Every published demo link must point to a reviewed, runnable entry.
 const root=path.resolve(__dirname,'..'),manifest=JSON.parse(fs.readFileSync(path.join(root,'lessons.json'),'utf8'));
-const demoIds=new Set(['binary-search','bfs','dijkstra','prefix-sum','two-opt','annealing','nearest-neighbor','beam-search','destroy-repair','paired-compare','union-find','segment-tree','assignment-moves','route-insertion','bucket-search','boundary-delta','mirror-policy']),linked=new Set();
+const demoIds=new Set(['binary-search','bfs','dijkstra','prefix-sum','two-opt','annealing','nearest-neighbor','beam-search','destroy-repair','paired-compare','union-find','segment-tree','assignment-moves','route-insertion','bucket-search','boundary-delta','mirror-policy','score-check','construction-steps']),linked=new Set();
 for(const lesson of manifest.lessons){
   for(const file of ['lesson.md',...(lesson.pages||[]).map(page=>page.file)]){
     const body=fs.readFileSync(path.join(root,'lessons',lesson.lessonId,file),'utf8');
@@ -369,4 +483,4 @@ for(const lesson of manifest.lessons){
   }
 }
 equal([...linked].sort(),[...demoIds].sort(),'all reviewed demos have a lesson entry point');
-console.log(`PASS ${checks} checks: lower_bound, BFS, Dijkstra, prefix sums, open-path 2-opt, annealing, nearest neighbor, beam search, destroy/repair, paired comparison, union-find, segment tree, assignment moves, route insertion, bucket search, boundary delta, mirror policy, sandbox entry.`);
+console.log(`PASS ${checks} checks: lower_bound, BFS, Dijkstra, prefix sums, open-path 2-opt, annealing, nearest neighbor, beam search, destroy/repair, paired comparison, union-find, segment tree, assignment moves, route insertion, bucket search, boundary delta, mirror policy, score check, construction steps, sandbox entry.`);

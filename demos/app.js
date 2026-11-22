@@ -21,12 +21,15 @@
     'bucket-search':{title:'칸을 한 겹씩 넓히며 가장 가까운 배송 찾기',subtitle:'지도를 칸으로 나누고 링 0에서 링 1로 넓히며 후보를 검사합니다. 종료 조건을 한 겹 일찍 끊으면 틀린 배송을 고르는 모습도 봅니다.',footnote:'거리는 맨해튼 거리이고 좌표는 (행, 열)입니다. 센터가 가진 상품만 실을 수 있으며 같은 거리면 먼저 만난 후보를 씁니다. 전수 탐색은 남은 배송 전부의 거리를 비교한 값입니다.'},
     'boundary-delta':{title:'경계 하나만 바뀌는 점수 계산',subtitle:'모든 쌍의 거리 합을 열·행 경계의 (한쪽 개수 × 반대쪽 개수) 합으로 보고, 입자를 옮길 때 차분식과 전체 재계산이 같은 값을 내는지 확인합니다.',footnote:'방향은 위, 오른쪽, 아래, 왼쪽이고 좌표는 (행, 열)입니다. 격자 밖이나 입자가 있는 칸으로의 호출은 실패하지만 사용 횟수는 셉니다. 점수는 내림한 정수입니다.'},
     'mirror-policy':{title:'가까운 칸 먼저 vs 이동당 이득',subtitle:'같은 지도와 이동 예산에서 두 정책이 고르는 목표와 경로, 누적 점수를 단계마다 나란히 비교합니다. 거울의 seen이 갱신되는 모습도 함께 봅니다.',footnote:'좌표는 (행, 열)이며 실제 지도는 30×30이고 화면에는 왼쪽 위 3×7만 그렸습니다. 정책 2의 RADIUS는 3, COST는 1입니다. 목표 하나마다 BFS로 거리와 경로 이득을 다시 계산합니다.'}
+    ,'score-check':{title:'배정 답을 골라 유효 판정과 점수 확인',subtitle:'작업마다 기계를 눌러 고르면 유효 여부, 점수 분해, 하한과의 차이가 바로 계산됩니다. 기준선과 최적 답으로도 바꿔 봅니다.',footnote:'칸 안 숫자는 추가 비용 c입니다. 점수 = ⌊Σ load² / 100⌋ + Σ c이고 나눗셈은 합에 대해 한 번만 합니다. 한 기계에는 3개까지, 모든 작업에 기계가 있어야 유효합니다. 하한 = 작업별 최소 추가 비용의 합 + ⌊D² / (100 × M)⌋입니다.'},
+    'construction-steps':{title:'선택 기준에 따라 경로를 한 점씩 만들기',subtitle:'점 7개로 가장 가까운 점 잇기, 가장 싼 삽입, 가장 먼 점 삽입, 후회 삽입이 매 단계 무엇을 고르는지 후보 표와 함께 따라갑니다.',footnote:'맨해튼 거리이고 점 0에서 시작하며 돌아오지 않습니다. 자리 s는 경로의 s번째 점 앞이고 끝에 붙이면 자리는 경로 길이입니다. 동률이면 번호가 작은 점, 그다음 자리 번호가 작은 쪽을 고릅니다. 전수 최적은 7! = 5,040개 순열을 모두 계산한 값입니다.'}
   };
   let id = new URLSearchParams(location.search).get('demo') || 'binary-search';
   if (!config[id]) id = 'binary-search';
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   let position=0, states=[], timer=null, context={}, options={target:4,example:0,source:0,rectangle:0,temperature:8,delta:6,width:1,count:12,mode:1,worse:2,passenger:3,early:0,p1:0,d1:1,p2:1,d2:1,p3:2,d3:0,budget:6,weight:0.1};
-  const phaseNames={start:'준비',compare:'비교',move:'구간 축소',done:'완료',pop:'꺼내기',enqueue:'발견',stale:'오래된 항목',relax:'거리 갱신',skip:'유지',term:'포함배제',remove:'기존 경계',add:'새 경계',candidate:'후보 확인',trial:'수락 판단',scan:'후보 비교',visit:'이동',expand:'후보 생성',prune:'가지치기',destroy:'제거',repair:'다시 채우기',judge:'채택 판단',sample:'표본 추가',find:'find',union:'union',outside:'겹치지 않음',inside:'완전 포함',partial:'일부 겹침',point:'리프 갱신',node:'내려가기',recalc:'재계산',accept:'받아들임',worsen:'나쁜 이동 허용',detach:'경로에서 빼기',insert:'끼워 보기',swap:'교환 시도',stop:'탐색 종료',pick:'고르기',shift:'입자 이동',fail:'실패'};
+  let scAssign=[],scNote='',scFocus=null,csRule='nn';
+  const phaseNames={valid:'유효',invalid:'무효',incomplete:'미완성',step:'한 단계',start:'준비',compare:'비교',move:'구간 축소',done:'완료',pop:'꺼내기',enqueue:'발견',stale:'오래된 항목',relax:'거리 갱신',skip:'유지',term:'포함배제',remove:'기존 경계',add:'새 경계',candidate:'후보 확인',trial:'수락 판단',scan:'후보 비교',visit:'이동',expand:'후보 생성',prune:'가지치기',destroy:'제거',repair:'다시 채우기',judge:'채택 판단',sample:'표본 추가',find:'find',union:'union',outside:'겹치지 않음',inside:'완전 포함',partial:'일부 겹침',point:'리프 갱신',node:'내려가기',recalc:'재계산',accept:'받아들임',worsen:'나쁜 이동 허용',detach:'경로에서 빼기',insert:'끼워 보기',swap:'교환 시도',stop:'탐색 종료',pick:'고르기',shift:'입자 이동',fail:'실패'};
   const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt=value=>value===null?'∞':value;
   const signed=v=>v>0?`+${v}`:String(v);
@@ -57,6 +60,8 @@
     else if(id==='bucket-search') $('settings').innerHTML=select('early','종료 조건',[[0,'정확한 조건 · bestDist ≤ (r − 1) × 칸 크기'],[1,'한 겹 일찍 끊기 · bestDist ≤ r × 칸 크기']]);
     else if(id==='boundary-delta'){const names=M.bdExample.particles.map((p,i)=>[i,`입자 ${p[0]}`]),dirs=[[0,'위'],[1,'오른쪽'],[2,'아래'],[3,'왼쪽']];$('settings').innerHTML=[1,2,3].map(n=>select('p'+n,`호출 ${n} 입자`,names)+select('d'+n,`호출 ${n} 방향`,dirs)).join('');}
     else if(id==='mirror-policy') $('settings').innerHTML=select('budget','이동 예산',[[3,'3번'],[6,'6번 · 본문 예시'],[9,'9번']])+select('weight','정책 2의 WEIGHT',[[0,'0 · 주변 값 무시'],[0.1,'0.1 · 본문 예시'],[1,'1.0 · 주변 값을 크게 믿음']]);
+    else if(id==='score-check') setupScoreCheck();
+    else if(id==='construction-steps') setupConstruction();
     else $('settings').innerHTML=range('temperature','시작 온도 T',0,20,0.5)+range('delta','악화 제안 기본 Δ',1,20,1);
     $('settings').querySelectorAll('[data-option]').forEach(input=>input.addEventListener('input',()=>{options[input.dataset.option]=Number(input.value);const out=$('value-'+input.dataset.option);if(out)out.value=input.value;rebuild();}));
     rebuild();
@@ -80,6 +85,8 @@
     if(id==='bucket-search') {context=M.bkExample;states=M.bucketSearchTrace(context,!!options.early);}
     if(id==='boundary-delta') {context=M.bdExample;const names=context.particles.map(p=>p[0]);states=M.boundaryDeltaTrace(context,[1,2,3].map(n=>[names[options['p'+n]],options['d'+n]]));}
     if(id==='mirror-policy') {context=M.mpExample;states=M.mirrorPolicyTrace(context,options.budget,options.weight);}
+    if(id==='score-check') {context=M.scExample;states=[scState()];}
+    if(id==='construction-steps') {context=M.csExample;states=M.constructionTrace(context.points,csRule);}
     $('timeline').max=states.length-1;render();
   }
   function renderBinary(s) {
@@ -426,7 +433,80 @@
     const t2=p2.lastPick,t1=p1.lastPick,sel=(pick,y,x)=>pick&&pick.target[0]===y&&pick.target[1]===x;
     $('details').innerHTML='<p class="detail-title">정책 2 · 마지막 목표 선택의 키 = (g + '+s.weight+' × h) / (d + 1)</p>'+(t2?rowTable(['후보','d','g','h','키'],t2.candidates.map(c=>[`(${c.y},${c.x})`,c.d,c.g,c.h,M.fmtKey(c.key)]),t2.candidates.map(c=>sel(t2,c.y,c.x)?'pick':'')):'<p class="empty">후보 없음</p>')+'<p class="detail-title">정책 1 · 마지막 목표 선택의 후보</p>'+(t1?rowTable(['후보','d','g'],t1.candidates.map(c=>[`(${c.y},${c.x})`,c.d,c.g]),t1.candidates.map(c=>sel(t1,c.y,c.x)?'pick':'')):'<p class="empty">후보 없음</p>')+'<p class="detail-title">거울 seen · 밟은 순서</p>'+[p1,p2].map((v,i)=>`<p class="note">정책 ${i+1}: ${v.seen.map(k=>`(${Math.floor(k/30)},${k%30})`).join(' ')}</p>`).join('')+'<p class="note">g = 가는 길에서 새로 얻는 점수, h = 목표 주변 반경 3의 안 밟은 칸 가치 합입니다. 초록 행이 고른 목표입니다.</p>';
   }
-  const renderers={'assignment-moves':renderAssignment,'route-insertion':renderRoute,'bucket-search':renderBucket,'boundary-delta':renderBoundary,'mirror-policy':renderMirror,'nearest-neighbor':renderNearest,'beam-search':renderBeam,'destroy-repair':renderDestroy,'paired-compare':renderPaired,'union-find':renderUnion,'segment-tree':renderSegment,'binary-search':renderBinary,bfs:renderBfs,dijkstra:renderDijkstra,'prefix-sum':renderPrefix,'two-opt':renderTwoOpt,annealing:renderAnnealing};
+  // ---- score-check and construction-steps: hand examples of the first two method lessons, driven by their own buttons ----
+  const hideStepNav=()=>{document.querySelector('.controls').hidden=true;};
+  const fold=(summary,body)=>`<details class="fold"><summary>${summary}</summary>${body}</details>`;
+  function scState() {
+    const ex=M.scExample,ev=M.scEvaluate(ex,scAssign),phase=ev.valid?'valid':ev.over.length?'invalid':'incomplete';
+    return {phase,message:scNote||'칸을 눌러 작업마다 기계를 고르세요. 선택한 칸을 다시 누르면 비웁니다.',ev};
+  }
+  function scApply(assign,note) {scAssign=assign.map(v=>v);scNote=note;states=[scState()];render();}
+  function setupScoreCheck() {
+    hideStepNav();
+    const ex=M.scExample,opt=M.scOptimum(ex);
+    scAssign=Array(ex.d.length).fill(null);scNote='';
+    $('settings').innerHTML='<div class="actions"><button type="button" class="mini" data-act="baseline">기준선</button><button type="button" class="mini" data-act="optimum">최적</button><button type="button" class="mini" data-act="clear">비우기</button></div>';
+    $('settings').addEventListener('click',e=>{
+      const b=e.target.closest('[data-act]');if(!b)return;
+      if(b.dataset.act==='baseline')scApply(ex.baseline,`기준선 ${ex.baseline.join(' ')}: 가득 차지 않은 첫 기계에 차례로 맡깁니다.`);
+      else if(b.dataset.act==='optimum')scApply(opt.assign,`최적 ${opt.assign.join(' ')}: 유효한 ${opt.valid}가지 중 점수가 가장 낮은 답입니다.`);
+      else scApply(Array(ex.d.length).fill(null),'모두 비웠습니다.');
+    });
+    $('visual').addEventListener('click',e=>{
+      const b=e.target.closest('[data-job]');if(!b)return;
+      const j=Number(b.dataset.job),m=Number(b.dataset.m),next=[...scAssign];
+      next[j]=next[j]===m?null:m;scFocus=`${j}-${m}`;
+      scApply(next,next[j]===null?`작업 ${j}의 선택을 비웠습니다.`:`작업 ${j}: 기계 ${m}에 맡겼습니다.`);
+    });
+  }
+  function renderScore(s) {
+    const ex=context,ev=s.ev,lb=M.scLowerBound(ex),opt=M.scOptimum(ex),bad=new Set(ev.over);
+    const head='<tr><th class="left">작업</th><th>길이</th>'+ex.c[0].map((_,m)=>`<th>기계 ${m}</th>`).join('')+'</tr>';
+    const body=ex.d.map((d,j)=>`<tr class="${scAssign[j]===null?'unset':''}"><td class="left">작업 ${j}</td><td>${d}</td>`+ex.c[j].map((c,m)=>`<td class="cellwrap"><button type="button" class="cell ${bad.has(m)?'bad':''}" data-job="${j}" data-m="${m}" aria-pressed="${scAssign[j]===m}" aria-label="작업 ${j}을 기계 ${m}에 맡기기, 추가 비용 ${c}">${c}</button></td>`).join('')+'</tr>').join('');
+    const foot=`<tr class="sum"><td class="left">맡은 수</td><td></td>`+ev.counts.map((n,m)=>`<td class="${bad.has(m)?'over':''}">${n} / ${ex.K}</td>`).join('')+'</tr><tr class="sum"><td class="left">길이 합</td><td></td>'+ev.loads.map(l=>`<td>${l}</td>`).join('')+'</tr>';
+    $('visual').innerHTML=title('작업마다 기계 칸 하나를 누르세요 · 칸 안 숫자 = 추가 비용 c')+`<table class="data-table pick-table"><thead>${head}</thead><tbody>${body}${foot}</tbody></table>`;
+    $('legend').innerHTML=legend([[C.blue,'고른 기계'],[C.red,'3개를 넘은 기계 · 고르지 않은 작업']]);
+    const gap=ev.valid?ev.score-lb.bound:null;
+    $('metrics').innerHTML=metric('현재 점수',ev.valid?ev.score:'—',ev.valid?'accent':'')+metric(`하한`,lb.bound)+metric('하한과의 차이',gap===null?'—':gap)+metric('최적',opt.score,ev.valid&&ev.score===opt.score?'good':'');
+    const reason=ev.valid?`유효합니다. 모든 작업에 기계가 있고 어느 기계도 ${ex.K}개 이하입니다.`:[ev.over.length?`기계 ${ev.over.join(', ')}에 ${ex.K}개를 넘게 맡겼습니다(${ev.over.map(m=>`${ev.counts[m]}개`).join(', ')}).`:'',ev.missing.length?`작업 ${ev.missing.join(', ')}에 기계를 고르지 않았습니다.`:''].filter(Boolean).join(' ');
+    const rows=ev.loads.map((l,m)=>[`기계 ${m}`,ev.jobs[m].length?ev.jobs[m].join(', '):'—',l,l*l]);
+    const sumExtra=ev.jobs.flatMap((js,m)=>js.map(j=>ex.c[j][m])),joinPlus=a=>a.length?a.join(' + '):'0';
+    $('details').innerHTML=`<p class="detail-title">유효 여부</p><span class="outcome ${ev.valid?'':'reject'}">${ev.valid?'유효':ev.over.length?'무효':'미완성'}</span><p class="reason">${reason}</p><p class="detail-title">점수 분해</p>`+rowTable(['기계','맡은 작업','길이 합','제곱'],rows,ev.loads.map((_,m)=>bad.has(m)?'hot':''))+`<div class="formula">Σ load² = ${ev.loads.map(l=>l*l).join(' + ')} = ${ev.sumSq}<br>/ 100 (합에 한 번 내림) = ${ev.quotient}<br>Σ c = ${joinPlus(sumExtra)} = ${ev.extra}<br>합계 = ${ev.quotient} + ${ev.extra} = ${ev.valid?`<b>${ev.score}</b>`:'점수 없음'}</div><p class="detail-title">하한과의 차이</p><div class="formula">하한 = ${lb.cheapest} + ⌊${lb.total}² / 300⌋ = ${lb.cheapest} + ${lb.balanced} = ${lb.bound}<br>${ev.valid?`현재 ${ev.score} − 하한 ${lb.bound} = ${gap}<br>최적 ${opt.score}까지 ${ev.score-opt.score}`:'유효한 답이 되면 계산합니다'}</div>`+fold('유효한 답이 되는 조건',`<p class="note">무효 조건은 둘입니다. 어느 기계에든 ${ex.K}개를 넘게 맡기거나, 기계를 정하지 않은 작업이 있으면 점수를 내지 않습니다. 전수 탐색은 ${opt.total}가지 중 유효한 ${opt.valid}가지를 비교한 값입니다.</p>`);
+    const focus=scFocus&&$('visual').querySelector(`[data-job="${scFocus.split('-')[0]}"][data-m="${scFocus.split('-')[1]}"]`);
+    if(focus)focus.focus();
+  }
+  function setupConstruction() {
+    hideStepNav();
+    $('settings').innerHTML='<div class="actions" role="group" aria-label="선택 기준">'+M.csRuleNames.map(([k,n])=>`<button type="button" class="mini rule" data-rule="${k}" aria-pressed="${k===csRule}">${n}</button>`).join('')+'</div><div class="actions"><button type="button" class="mini primary" data-act="step">한 단계</button><button type="button" class="mini" data-act="end">끝까지</button><button type="button" class="mini" data-act="first">처음으로</button></div>';
+    $('settings').addEventListener('click',e=>{
+      const b=e.target.closest('button');if(!b)return;
+      if(b.dataset.rule){csRule=b.dataset.rule;$('settings').querySelectorAll('[data-rule]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.rule===csRule)));rebuild();}
+      else if(b.dataset.act==='step')seek(position+1);
+      else if(b.dataset.act==='end')seek(states.length-1);
+      else if(b.dataset.act==='first')seek(0);
+    });
+  }
+  function renderConstruction(s) {
+    const pts=context.points,sc=27,X=x=>180+(x-5)*sc,Y=y=>275-y*sc,xy=pts.map(([x,y])=>[X(x),Y(y)]),placed=new Set(s.order),cand=new Map(s.candidates.map(c=>[c.p,c]));
+    let content='';
+    for(let x=2;x<=8;x++)content+=`<line x1="${X(x)}" y1="${Y(0)+8}" x2="${X(x)}" y2="${Y(9)-8}" stroke="#eef1f6"/>`+text(X(x),Y(0)+20,x,'font-size="9"');
+    for(let y=0;y<=9;y++)content+=`<line x1="${X(2)-8}" y1="${Y(y)}" x2="${X(8)+8}" y2="${Y(y)}" stroke="#eef1f6"/>`+textAt(X(2)-12,Y(y)+3,y,'end','font-size="9"');
+    const at=s.chosen===null?-1:s.order.indexOf(s.chosen);
+    for(let i=1;i<s.order.length;i++){const fresh=at>=0&&(i===at||i-1===at);content+=`<path d="${lPath(xy[s.order[i-1]],xy[s.order[i]])}" fill="none" stroke="${fresh?C.orange:'#9aa9c0'}" stroke-width="${fresh?3.4:2.2}"/>`;}
+    pts.forEach(([x,y],i)=>{const done=placed.has(i),pick=i===s.chosen,isCand=cand.has(i)&&!done;
+      content+=`<circle cx="${xy[i][0]}" cy="${xy[i][1]}" r="12" fill="${pick?C.tealLight:done?(i===0?C.ink:C.tealLight):isCand?C.blueLight:'#fff'}" stroke="${pick?C.orange:done?C.teal:isCand?C.blue:'#9aabc4'}" stroke-width="${pick?3:1.5}"/>`+text(xy[i][0],xy[i][1]+5,i,`font-size="13" font-weight="750" style="fill:${i===0&&!pick?'#fff':C.ink}"`)+textAt(xy[i][0]+16,xy[i][1]+4,`(${x},${y})`,'start','font-size="10" stroke="#fff" stroke-width="5" stroke-linejoin="round" paint-order="stroke"');});
+    $('visual').innerHTML=title(`${M.csRuleNames.find(r=>r[0]===s.rule)[1]} · 단계 ${s.step} / ${s.total} · 선은 가로 후 세로로 이동한 길`)+svg(content,300);
+    $('legend').innerHTML=legend([[C.ink,'시작점 0'],[C.tealLight,'경로에 놓은 점'],[C.blueLight,'남은 점(후보)'],[C.orange,'이번에 고른 점과 새 간선']]);
+    const opt=M.csOptimum(pts);
+    $('metrics').innerHTML=metric('경로 비용',s.cost,s.phase==='done'?(s.cost===opt.cost?'good':'accent'):'accent')+metric('놓은 점',`${s.order.length} / ${pts.length}`)+metric('이번 늘어난 길이',s.chosen===null?'—':`+${s.added}`)+metric('전수 최적',opt.cost);
+    const r=s.rule,heads={nn:['점','거리'],cheapest:['점','최선 자리','늘어나는 길이'],farthest:['점','경로까지 거리','최선 자리','늘어나는 길이'],regret:['점','최선 자리','최선 비용','둘째 비용','후회']}[r];
+    const rowOf=c=>({nn:[c.p,c.best],cheapest:[c.p,c.slot,c.best],farthest:[c.p,c.near,c.slot,c.best],regret:[c.p,c.slot,c.best,c.second,c.regret]}[r]);
+    const lastLabel=s.step===0?'':`${s.step}단계에서 비교한 후보`;
+    $('details').innerHTML=`<p class="detail-title">${s.step===0?'후보 표 · 한 단계를 누르면 표시':lastLabel}</p>`+(s.candidates.length?rowTable(heads.map(h=>h),s.candidates.map(rowOf),s.candidates.map(c=>c.p===s.chosen?'pick':'')):'<p class="empty">아직 후보 없음</p>')+'<p class="detail-title">지금까지 만든 경로</p>'+chips(s.order.map(v=>String(v)),'current')+(s.phase==='done'?`<span class="outcome ${s.cost===opt.cost?'':'reject'}">${s.cost===opt.cost?`최적과 같음 · ${s.cost}`:`최적 ${opt.cost}보다 ${s.cost-opt.cost} 김`}</span>`:'')+fold('고르는 규칙',`<p class="note">${{nn:'경로 끝에서 가장 가까운 남은 점을 끝에 붙입니다.',cheapest:'모든 (남은 점, 자리) 쌍 중 늘어나는 길이가 가장 작은 쌍을 고릅니다. 늘어나는 길이는 d(앞, p) + d(p, 뒤) − d(앞, 뒤)이고, 맨 앞이나 맨 뒤는 이웃 하나와의 거리입니다.',farthest:'경로의 가장 가까운 점까지의 거리가 가장 큰 남은 점을 고르고, 그 점의 가장 싼 자리에 끼웁니다.',regret:'점마다 가장 싼 자리와 두 번째로 싼 자리의 비용 차를 구해, 차가 가장 큰 점을 가장 싼 자리에 끼웁니다.'}[r]} 경로가 점 하나뿐이면 자리 0과 1의 비용이 같아 작은 쪽을 씁니다.</p>`);
+    const [step,end,first]=['step','end','first'].map(a=>$('settings').querySelector(`[data-act="${a}"]`));
+    if(step){step.disabled=position===states.length-1;end.disabled=position===states.length-1;first.disabled=position===0;}
+  }
+  const renderers={'score-check':renderScore,'construction-steps':renderConstruction,'assignment-moves':renderAssignment,'route-insertion':renderRoute,'bucket-search':renderBucket,'boundary-delta':renderBoundary,'mirror-policy':renderMirror,'nearest-neighbor':renderNearest,'beam-search':renderBeam,'destroy-repair':renderDestroy,'paired-compare':renderPaired,'union-find':renderUnion,'segment-tree':renderSegment,'binary-search':renderBinary,bfs:renderBfs,dijkstra:renderDijkstra,'prefix-sum':renderPrefix,'two-opt':renderTwoOpt,annealing:renderAnnealing};
   function render() {
     const s=states[position];renderers[id](s);
     $('phase').textContent=phaseNames[s.phase]||s.phase;$('message').textContent=s.message;
