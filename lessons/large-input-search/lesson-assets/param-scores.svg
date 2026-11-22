@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 713" role="img" aria-labelledby="title desc">
+<title id="title">한 값씩 바꿨을 때의 점수</title>
+<desc id="desc">한 번에 한 값씩 바꿔 얻은 점수입니다(나머지는 적재 20, 가중치 25, 개선 3회, 정확한 탐색). 적재 10개 10,598,486,430 (+13.9%), 적재 20개 9,306,067,620, 적재 30개 9,504,889,620 (+2.1%), 적재 50개 10,762,331,820 (+15.6%), 밀도 가중치 0 10,242,347,070 (+10.1%), 밀도 가중치 10 9,285,607,570 (-0.2%), 밀도 가중치 25 9,306,067,620, 밀도 가중치 100 9,377,977,200 (+0.8%), 순서 개선 0회 9,412,006,660 (+1.1%), 순서 개선 1회 9,317,765,440 (+0.1%), 순서 개선 3회 9,306,067,620, 순서 개선 10회 9,313,973,200 (+0.1%)입니다. 적재 10개와 50개, 가중치 0이 눈에 띄게 높고 나머지는 9.3억에서 9.5억대로 모여 있으며, 본문 설정 세 값은 같은 점수 9,306,067,620입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="711" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한 값씩 바꿨을 때의 점수</text>
+<text x="28" y="84" font-size="19" fill="#53657d">입력 1개, 점수는 결정적입니다. 주황은 본문이 쓰는 값(세 설정이 같은</text>
+<text x="28" y="109" font-size="19" fill="#53657d">점수)이고, 괄호는 본문 점수 대비 차이입니다. 막대는 0에서 시작합니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">적재 수</text>
+<rect x="147.9" y="125" width="14" height="14" fill="#9db6e0"/>
+<text x="169.9" y="137" font-size="18" fill="#172b45">밀도 가중치</text>
+<rect x="303.8" y="125" width="14" height="14" fill="#c3cddb"/>
+<text x="325.8" y="137" font-size="18" fill="#172b45">순서 개선 반복</text>
+<rect x="487.6" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="509.6" y="137" font-size="18" fill="#172b45">본문 설정</text>
+<text x="28" y="193" font-size="19" fill="#172b45">적재 10개</text>
+<rect x="189.2" y="173" width="196.2" height="26" fill="#2664ce"/>
+<text x="393.5" y="193" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">10,598,486,430 (+13.9%)</text>
+<text x="28" y="233" font-size="19" fill="#172b45" font-weight="700">적재 20개</text>
+<rect x="189.2" y="213" width="172.3" height="26" fill="#ae5515"/>
+<text x="369.5" y="233" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,306,067,620</text>
+<text x="28" y="273" font-size="19" fill="#172b45">적재 30개</text>
+<rect x="189.2" y="253" width="176" height="26" fill="#2664ce"/>
+<text x="373.2" y="273" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,504,889,620 (+2.1%)</text>
+<text x="28" y="313" font-size="19" fill="#172b45">적재 50개</text>
+<rect x="189.2" y="293" width="199.2" height="26" fill="#2664ce"/>
+<text x="396.5" y="313" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">10,762,331,820 (+15.6%)</text>
+<text x="28" y="353" font-size="19" fill="#172b45">밀도 가중치 0</text>
+<rect x="189.2" y="333" width="189.6" height="26" fill="#9db6e0"/>
+<text x="386.9" y="353" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">10,242,347,070 (+10.1%)</text>
+<text x="28" y="393" font-size="19" fill="#172b45">밀도 가중치 10</text>
+<rect x="189.2" y="373" width="171.9" height="26" fill="#9db6e0"/>
+<text x="369.2" y="393" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,285,607,570 (-0.2%)</text>
+<text x="28" y="433" font-size="19" fill="#172b45" font-weight="700">밀도 가중치 25</text>
+<rect x="189.2" y="413" width="172.3" height="26" fill="#ae5515"/>
+<text x="369.5" y="433" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,306,067,620</text>
+<text x="28" y="473" font-size="19" fill="#172b45">밀도 가중치 100</text>
+<rect x="189.2" y="453" width="173.6" height="26" fill="#9db6e0"/>
+<text x="370.9" y="473" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,377,977,200 (+0.8%)</text>
+<text x="28" y="513" font-size="19" fill="#172b45">순서 개선 0회</text>
+<rect x="189.2" y="493" width="174.2" height="26" fill="#c3cddb"/>
+<text x="371.5" y="513" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,412,006,660 (+1.1%)</text>
+<text x="28" y="553" font-size="19" fill="#172b45">순서 개선 1회</text>
+<rect x="189.2" y="533" width="172.5" height="26" fill="#c3cddb"/>
+<text x="369.8" y="553" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,317,765,440 (+0.1%)</text>
+<text x="28" y="593" font-size="19" fill="#172b45" font-weight="700">순서 개선 3회</text>
+<rect x="189.2" y="573" width="172.3" height="26" fill="#ae5515"/>
+<text x="369.5" y="593" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,306,067,620</text>
+<text x="28" y="633" font-size="19" fill="#172b45">순서 개선 10회</text>
+<rect x="189.2" y="613" width="172.4" height="26" fill="#c3cddb"/>
+<text x="369.7" y="633" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">9,313,973,200 (+0.1%)</text>
+<line x1="189.2" y1="167" x2="189.2" y2="647" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="189.2" y="669" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="281.8" y1="167" x2="281.8" y2="647" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="374.4" y1="167" x2="374.4" y2="647" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="374.4" y="669" font-size="16" fill="#53657d" text-anchor="middle">10,000,000,000</text>
+<line x1="466.9" y1="167" x2="466.9" y2="647" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="189.2" y1="167" x2="189.2" y2="647" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="697" font-size="17" fill="#53657d" text-anchor="middle">점수 ↓ (작을수록 좋음)</text>
+</svg>

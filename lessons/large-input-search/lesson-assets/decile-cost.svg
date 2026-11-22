@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 511" role="img" aria-labelledby="title desc">
+<title id="title">처리한 배송 10% 구간별 비용 비중</title>
+<desc id="desc">본문 제출 코드가 쓴 비용을 처리한 배송 수 10% 구간마다 나눈 비중입니다. 비중은 3.4%, 4.8%, 5.8%, 6.7%, 7.6%, 8.7%, 10.2%, 12.3%, 15.6%, 24.9%이며 마지막 10% 구간이 전체의 24.9%를 써 가장 큽니다. 남은 배송이 드물어져 배송 간격이 넓어지기 때문입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="509" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">처리한 배송 10% 구간별 비용 비중</text>
+<text x="28" y="84" font-size="19" fill="#53657d">본문 제출 코드(적재 20, 밀도 가중치 25, 순서 개선 3회)의 총 비용</text>
+<text x="28" y="109" font-size="19" fill="#53657d">9,306,067,620을 구간별로 나눴습니다. 마지막 구간을 강조했습니다</text>
+<line x1="57.6" y1="441" x2="692" y2="441" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="49.6" y="446" font-size="16" fill="#53657d" text-anchor="end">0</text>
+<line x1="57.6" y1="347.7" x2="692" y2="347.7" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="49.6" y="352.7" font-size="16" fill="#53657d" text-anchor="end">10</text>
+<line x1="57.6" y1="254.3" x2="692" y2="254.3" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="49.6" y="259.3" font-size="16" fill="#53657d" text-anchor="end">20</text>
+<line x1="57.6" y1="161" x2="692" y2="161" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="49.6" y="166" font-size="16" fill="#53657d" text-anchor="end">30</text>
+<rect x="69.7" y="408.9" width="39.3" height="32.1" fill="#2664ce"/>
+<text x="89.3" y="400.9" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">3.4</text>
+<text x="89.3" y="465" font-size="18" fill="#172b45" text-anchor="middle">10%</text>
+<rect x="133.1" y="395.8" width="39.3" height="45.2" fill="#2664ce"/>
+<text x="152.8" y="387.8" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">4.8</text>
+<text x="152.8" y="465" font-size="18" fill="#172b45" text-anchor="middle">20%</text>
+<rect x="196.5" y="387" width="39.3" height="54" fill="#2664ce"/>
+<text x="216.2" y="379" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">5.8</text>
+<text x="216.2" y="465" font-size="18" fill="#172b45" text-anchor="middle">30%</text>
+<rect x="260" y="378.7" width="39.3" height="62.3" fill="#2664ce"/>
+<text x="279.6" y="370.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">6.7</text>
+<text x="279.6" y="465" font-size="18" fill="#172b45" text-anchor="middle">40%</text>
+<rect x="323.4" y="370.5" width="39.3" height="70.5" fill="#2664ce"/>
+<text x="343.1" y="362.5" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">7.6</text>
+<text x="343.1" y="465" font-size="18" fill="#172b45" text-anchor="middle">50%</text>
+<rect x="386.9" y="359.7" width="39.3" height="81.3" fill="#2664ce"/>
+<text x="406.5" y="351.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">8.7</text>
+<text x="406.5" y="465" font-size="18" fill="#172b45" text-anchor="middle">60%</text>
+<rect x="450.3" y="345.8" width="39.3" height="95.2" fill="#2664ce"/>
+<text x="470" y="337.8" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">10.2</text>
+<text x="470" y="465" font-size="18" fill="#172b45" text-anchor="middle">70%</text>
+<rect x="513.7" y="326.2" width="39.3" height="114.8" fill="#2664ce"/>
+<text x="533.4" y="318.2" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">12.3</text>
+<text x="533.4" y="465" font-size="18" fill="#172b45" text-anchor="middle">80%</text>
+<rect x="577.2" y="295.1" width="39.3" height="145.9" fill="#2664ce"/>
+<text x="596.8" y="287.1" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">15.6</text>
+<text x="596.8" y="465" font-size="18" fill="#172b45" text-anchor="middle">90%</text>
+<rect x="640.6" y="209" width="39.3" height="232" fill="#ae5515"/>
+<text x="660.3" y="201" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">24.9</text>
+<text x="660.3" y="465" font-size="18" fill="#172b45" text-anchor="middle" font-weight="700">100%</text>
+<line x1="57.6" y1="441" x2="692" y2="441" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="495" font-size="17" fill="#53657d" text-anchor="middle">총 비용 중 비중 (%), 가로는 누적 처리 배송 비율</text>
+</svg>
