@@ -17,12 +17,14 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
+import re
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import importlib  # noqa: E402
+import charts as ch  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -40,6 +42,36 @@ def discover() -> dict:
     return out
 
 
+def check_spec(lesson_id: str, name: str, svg: str) -> list[str]:
+    """그림 규격(폭 720, 글자 16~28 정수, 제목 27, role·title·desc)과 본문 삽입(대체 텍스트 + 크게 보기 줄)을 확인한다."""
+    errs = []
+    if not re.search(r'viewBox="0 0 720 \d+"', svg):
+        errs.append("viewBox")
+    if 'role="img"' not in svg or "<title" not in svg or "<desc" not in svg:
+        errs.append("role/title/desc")
+    sizes = [int(v) for v in re.findall(r'font-size="(\d+)"', svg)]
+    if not sizes or min(sizes) < 16 or max(sizes) > 28 or 27 not in sizes:
+        errs.append(f"font sizes {sorted(set(sizes))}")
+    height = int(re.search(r'viewBox="0 0 720 (\d+)"', svg).group(1))
+    for m in re.finditer(r'<text x="([\d.]+)" y="([\d.]+)" font-size="(\d+)"([^>]*)>([^<]*)</text>', svg):
+        x, y, size, attrs, body = float(m.group(1)), float(m.group(2)), int(m.group(3)), m.group(4), m.group(5)
+        width = ch.tw(body, size)
+        if 'text-anchor="end"' in attrs:
+            left, right = x - width, x
+        elif 'text-anchor="middle"' in attrs:
+            left, right = x - width / 2, x + width / 2
+        else:
+            left, right = x, x + width
+        if left < 8 or right > 712 or y > height - 4:
+            errs.append(f"text leaves the figure: {body!r}")
+    pages = "\n".join(p.read_text(encoding="utf-8") for p in (ROOT / "lessons" / lesson_id / "pages").glob("*.md"))
+    base = "https://git.readiz.com/h-contest-lesson/lessons/" + lesson_id + "/lesson-assets/" + name
+    pattern = r"!\[[^\]\[]+\]\(\.\./lesson-assets/" + re.escape(name) + r"\)\n\n\[그림 크게 보기\]\(" + re.escape(base) + r"\)"
+    if not re.search(pattern, pages):
+        errs.append("본문에 대체 텍스트 그림과 '그림 크게 보기' 줄이 없음")
+    return errs
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="저장된 SVG와 바이트 비교만 한다")
@@ -53,6 +85,7 @@ def main() -> None:
             if args.check:
                 if not path.exists() or path.read_bytes() != svg.encode("utf-8"):
                     bad.append(f"{lesson_id}/{name}")
+                bad += [f"{lesson_id}/{name}: {e}" for e in check_spec(lesson_id, name, svg)]
             else:
                 path.write_bytes(svg.encode("utf-8"))
     if bad:
