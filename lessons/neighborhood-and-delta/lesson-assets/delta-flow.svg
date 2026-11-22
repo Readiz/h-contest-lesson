@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 657" role="img" aria-labelledby="title desc">
+<title id="title">한 번의 제안이 거치는 함수</title>
+<desc id="desc">제안 하나를 처리하는 두 루프의 단계입니다. 계산만 하는 climbDelta는 propose, delta, d가 0보다 작은지 비교, 좋아질 때만 apply를 거칩니다. 적용 후 복구인 climbFull은 propose, apply, fullCost, 비용 비교를 거치고 나빠졌으면 undo로 되돌립니다. propose와 비교는 루프의 고정 부분이고 delta, apply, fullCost, undo는 문제마다 채우는 함수입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="655" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">한 번의 제안이 거치는 함수</text>
+<text x="28" y="84" font-size="19" fill="#53657d">같은 제안을 두 루프가 어떻게 처리하는지 위에서 아래로 따라갑니다.</text>
+<text x="28" y="109" font-size="19" fill="#53657d">루프는 고정이고 함수는 P가 채웁니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">문제와 무관한 고정 부분</text>
+<rect x="293.7" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="315.7" y="137" font-size="18" fill="#172b45">문제마다 채우는 함수</text>
+<text x="28" y="187" font-size="19" fill="#172b45" font-weight="700">climbDelta: 계산만</text>
+<text x="28" y="211" font-size="16" fill="#53657d">delta 한 번 = 간선 4개 이하</text>
+<text x="368" y="187" font-size="19" fill="#172b45" font-weight="700">climbFull: 적용 후 복구</text>
+<text x="368" y="211" font-size="16" fill="#53657d">fullCost 한 번 = 간선 199개</text>
+<rect x="28" y="227.0" width="324" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="252" font-size="19" fill="#172b45" font-weight="700">propose(rng, mv)</text>
+<text x="42" y="275" font-size="16" fill="#53657d">이동 하나를 고른다</text>
+<line x1="190" y1="294" x2="190" y2="312" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="184.0,303.0 196.0,303.0 190.0,312.0" fill="#53657d"/>
+<rect x="28" y="313.0" width="324" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="338" font-size="19" fill="#172b45" font-weight="700">delta(mv)</text>
+<text x="42" y="361" font-size="16" fill="#53657d">해를 바꾸지 않고 변화량 d만 계산</text>
+<line x1="190" y1="380" x2="190" y2="398" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="184.0,389.0 196.0,389.0 190.0,398.0" fill="#53657d"/>
+<rect x="28" y="399.0" width="324" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="424" font-size="19" fill="#172b45" font-weight="700">d &lt; 0 ?</text>
+<text x="42" y="447" font-size="16" fill="#53657d">좋아질 때만 다음으로, 아니면 버린다</text>
+<line x1="190" y1="466" x2="190" y2="484" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="184.0,475.0 196.0,475.0 190.0,484.0" fill="#53657d"/>
+<rect x="28" y="485.0" width="324" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="42" y="510" font-size="19" fill="#172b45" font-weight="700">apply(mv)</text>
+<text x="42" y="533" font-size="16" fill="#53657d">해와 캐시를 바꾼다</text>
+<rect x="368" y="227.0" width="324" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="382" y="252" font-size="19" fill="#172b45" font-weight="700">propose(rng, mv)</text>
+<text x="382" y="275" font-size="16" fill="#53657d">이동 하나를 고른다</text>
+<line x1="530" y1="294" x2="530" y2="312" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="524.0,303.0 536.0,303.0 530.0,312.0" fill="#53657d"/>
+<rect x="368" y="313.0" width="324" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="382" y="338" font-size="19" fill="#172b45" font-weight="700">apply(mv)</text>
+<text x="382" y="361" font-size="16" fill="#53657d">먼저 해와 캐시를 바꾼다</text>
+<line x1="530" y1="380" x2="530" y2="398" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="524.0,389.0 536.0,389.0 530.0,398.0" fill="#53657d"/>
+<rect x="368" y="399.0" width="324" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="382" y="424" font-size="19" fill="#172b45" font-weight="700">fullCost()</text>
+<text x="382" y="447" font-size="16" fill="#53657d">처음부터 전체 비용을 다시 계산</text>
+<line x1="530" y1="466" x2="530" y2="484" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="524.0,475.0 536.0,475.0 530.0,484.0" fill="#53657d"/>
+<rect x="368" y="485.0" width="324" height="66" rx="10" fill="#e3ecfa" stroke="#2664ce" stroke-width="2"/>
+<text x="382" y="510" font-size="19" fill="#172b45" font-weight="700">now &lt; cost ?</text>
+<text x="382" y="533" font-size="16" fill="#53657d">좋아졌으면 받고, 아니면 아래로</text>
+<line x1="530" y1="552" x2="530" y2="570" stroke="#53657d" stroke-width="2.5"/>
+<polygon points="524.0,561.0 536.0,561.0 530.0,570.0" fill="#53657d"/>
+<rect x="368" y="571.0" width="324" height="66" rx="10" fill="#fdf0e3" stroke="#ae5515" stroke-width="2"/>
+<text x="382" y="596" font-size="19" fill="#172b45" font-weight="700">undo(mv)</text>
+<text x="382" y="619" font-size="16" fill="#53657d">apply를 정확히 되돌린다</text>
+</svg>

@@ -22,6 +22,10 @@
 
 난수에서 범위 안의 수를 뽑는 `pick`은 `next() % bound`가 아니라 상위 비트를 씁니다. 공통 블록의 LCG(`state * 1664525 + 1013904223`을 2^32로 나눈 나머지)는 낮은 비트의 주기가 짧습니다. 낮은 3비트는 8번마다 같은 순서로 돌아서, `% 200`으로 두 수를 연달아 뽑으면 `(a, b)` 쌍의 일부는 영영 나오지 않습니다. 이 결과는 [실험과 점검](practice.md)의 '흔한 실수와 잡는 검사'에서 쌍의 수로 보입니다.
 
+![제안 하나를 처리하는 두 루프의 단계. 계산만 하는 방식은 propose, delta, d가 0보다 작은지 비교, 좋아질 때만 apply를 거치고, 적용 후 복구 방식은 propose, apply, fullCost, 비용 비교를 거쳐 나빠졌으면 undo로 되돌립니다. propose와 비교는 고정 부분이고 delta, apply, fullCost, undo는 문제마다 채웁니다.](../lesson-assets/delta-flow.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/neighborhood-and-delta/lesson-assets/delta-flow.svg)
+
 ```cpp snippet=nd-frame
 struct Move { int kind, a, b, old; };
 

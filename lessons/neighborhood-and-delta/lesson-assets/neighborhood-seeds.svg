@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 515" role="img" aria-labelledby="title desc">
+<title id="title">이동 구성별 승패 (기준: 구간 뒤집기)</title>
+<desc id="desc">순서 틀에서 이동의 구성을 바꿨을 때 기준(구간 뒤집기만)과 같은 시드끼리 비교한 결과입니다. 기준보다 나은 시드와 못한 시드의 수는 두 점 교환 0 대 20, 한 점 옮기기 0 대 20, 이웃한 두 점 교환 0 대 20, 교환 + 뒤집기 5 대 15, 옮기기 + 뒤집기 16 대 4, 교환 + 옮기기 + 뒤집기 16 대 4, 넷 모두 11 대 9입니다. 옮기기와 뒤집기를 함께 쓰면 20개 중 16개에서 낫고 두 점 교환이나 이웃한 두 점 교환만 쓰면 모두 못합니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="513" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">이동 구성별 승패 (기준: 구간 뒤집기)</text>
+<text x="28" y="84" font-size="19" fill="#53657d">순서 틀, 시드 20개를 기준과 짝지어 비교했습니다. 오른쪽 비용은 시드</text>
+<text x="28" y="109" font-size="19" fill="#53657d">20개 중 10번째로 작은 값입니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">기준보다 나은 시드</text>
+<rect x="247.8" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="269.8" y="137" font-size="18" fill="#172b45">기준보다 못한 시드</text>
+<text x="28" y="193" font-size="19" fill="#172b45">구간 뒤집기</text>
+<rect x="256.7" y="174" width="316.5" height="24" fill="#d8e1ed"/>
+<text x="415" y="193" font-size="17" fill="#53657d" text-anchor="middle">기준</text>
+<text x="585.2" y="193" font-size="17" fill="#172b45">비용 14,726</text>
+<text x="28" y="231" font-size="19" fill="#172b45">두 점 교환</text>
+<rect x="256.7" y="212" width="316.5" height="24" fill="#ae5515"/>
+<text x="415" y="231" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">20</text>
+<text x="585.2" y="231" font-size="17" fill="#172b45">비용 29,199</text>
+<text x="28" y="269" font-size="19" fill="#172b45">한 점 옮기기</text>
+<rect x="256.7" y="250" width="316.5" height="24" fill="#ae5515"/>
+<text x="415" y="269" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">20</text>
+<text x="585.2" y="269" font-size="17" fill="#172b45">비용 20,467</text>
+<text x="28" y="307" font-size="19" fill="#172b45">이웃한 두 점 교환</text>
+<rect x="256.7" y="288" width="316.5" height="24" fill="#ae5515"/>
+<text x="415" y="307" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">20</text>
+<text x="585.2" y="307" font-size="17" fill="#172b45">비용 101,979</text>
+<text x="28" y="345" font-size="19" fill="#172b45">교환 + 뒤집기</text>
+<rect x="256.7" y="326" width="79.1" height="24" fill="#2664ce"/>
+<text x="296.3" y="345" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">5</text>
+<rect x="335.8" y="326" width="237.4" height="24" fill="#ae5515"/>
+<text x="454.5" y="345" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">15</text>
+<line x1="335.8" y1="326" x2="335.8" y2="350" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="335.8" y1="326" x2="335.8" y2="350" stroke="#f6f8fc" stroke-width="2"/>
+<text x="585.2" y="345" font-size="17" fill="#172b45">비용 14,848</text>
+<text x="28" y="383" font-size="19" fill="#172b45">옮기기 + 뒤집기</text>
+<rect x="256.7" y="364" width="253.2" height="24" fill="#2664ce"/>
+<text x="383.3" y="383" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">16</text>
+<rect x="509.9" y="364" width="63.3" height="24" fill="#ae5515"/>
+<text x="541.6" y="383" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">4</text>
+<line x1="509.9" y1="364" x2="509.9" y2="388" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="509.9" y1="364" x2="509.9" y2="388" stroke="#f6f8fc" stroke-width="2"/>
+<text x="585.2" y="383" font-size="17" fill="#172b45">비용 14,245</text>
+<text x="28" y="421" font-size="19" fill="#172b45">교환 + 옮기기 + 뒤집기</text>
+<rect x="256.7" y="402" width="253.2" height="24" fill="#2664ce"/>
+<text x="383.3" y="421" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">16</text>
+<rect x="509.9" y="402" width="63.3" height="24" fill="#ae5515"/>
+<text x="541.6" y="421" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">4</text>
+<line x1="509.9" y1="402" x2="509.9" y2="426" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="509.9" y1="402" x2="509.9" y2="426" stroke="#f6f8fc" stroke-width="2"/>
+<text x="585.2" y="421" font-size="17" fill="#172b45">비용 14,267</text>
+<text x="28" y="459" font-size="19" fill="#172b45">넷 모두</text>
+<rect x="256.7" y="440" width="174.1" height="24" fill="#2664ce"/>
+<text x="343.7" y="459" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">11</text>
+<rect x="430.8" y="440" width="142.4" height="24" fill="#ae5515"/>
+<text x="502" y="459" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">9</text>
+<line x1="430.8" y1="440" x2="430.8" y2="464" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="430.8" y1="440" x2="430.8" y2="464" stroke="#f6f8fc" stroke-width="2"/>
+<text x="585.2" y="459" font-size="17" fill="#172b45">비용 14,450</text>
+<line x1="256.7" y1="167" x2="256.7" y2="471" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="499" font-size="17" fill="#53657d" text-anchor="middle">시드 20개 중 나은 시드와 못한 시드의 수</text>
+</svg>

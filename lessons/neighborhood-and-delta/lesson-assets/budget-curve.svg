@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 527" role="img" aria-labelledby="title desc">
+<title id="title">같은 예산에서 얻은 비용</title>
+<desc id="desc">순서 틀에서 같은 연산 예산(로그 눈금)으로 얻은 비용의 비교입니다. 전체 재계산은 예산 20,000, 100,000, 500,000, 2,000,000에서 118,757, 91,001, 55,183, 31,914이고 차분은 63,649, 23,240, 15,091, 14,726입니다. 차분이 예산 100,000에서 낸 비용(23,240)을 전체 재계산은 예산 2,000,000에서도 내지 못합니다(31,914).</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="525" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">같은 예산에서 얻은 비용</text>
+<text x="28" y="84" font-size="19" fill="#53657d">순서 틀(점 200개), 구간 뒤집기, 시드 20개. 둘 다 좋아질 때만 받는</text>
+<text x="28" y="109" font-size="19" fill="#53657d">탐색입니다</text>
+<line x1="28" y1="132" x2="48" y2="132" stroke="#ae5515" stroke-width="3.5"/>
+<circle cx="38" cy="132" r="4.5" fill="#ae5515"/>
+<text x="56" y="137" font-size="18" fill="#172b45">전체 재계산 (적용 후 복구)</text>
+<line x1="329.4" y1="132" x2="349.4" y2="132" stroke="#2664ce" stroke-width="3.5"/>
+<circle cx="339.4" cy="132" r="4.5" fill="#2664ce"/>
+<text x="357.4" y="137" font-size="18" fill="#172b45">차분 (계산만)</text>
+<text x="28" y="163" font-size="17" fill="#53657d">최종 비용 ↓ (로그 눈금, 작을수록 좋음)</text>
+<line x1="101.6" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="462" font-size="16" fill="#53657d" text-anchor="end">10,000</text>
+<line x1="101.6" y1="392.2" x2="680" y2="392.2" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="397.2" font-size="16" fill="#53657d" text-anchor="end">20,000</text>
+<line x1="101.6" y1="306.6" x2="680" y2="306.6" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="311.6" font-size="16" fill="#53657d" text-anchor="end">50,000</text>
+<line x1="101.6" y1="241.8" x2="680" y2="241.8" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="246.8" font-size="16" fill="#53657d" text-anchor="end">100,000</text>
+<line x1="101.6" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="182" font-size="16" fill="#53657d" text-anchor="end">200,000</text>
+<line x1="139.6" y1="177" x2="139.6" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="139.6" y="481" font-size="16" fill="#53657d" text-anchor="middle">20,000</text>
+<line x1="315.2" y1="177" x2="315.2" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="315.2" y="481" font-size="16" fill="#53657d" text-anchor="middle">100,000</text>
+<line x1="490.8" y1="177" x2="490.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="490.8" y="481" font-size="16" fill="#53657d" text-anchor="middle">500,000</text>
+<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="642" y="481" font-size="16" fill="#53657d" text-anchor="middle">2,000,000</text>
+<line x1="101.6" y1="457" x2="680" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<line x1="101.6" y1="177" x2="101.6" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<polyline points="139.6,225.7 315.2,250.6 490.8,297.4 642,348.5" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="139.6" cy="225.7" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="315.2" cy="250.6" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="490.8" cy="297.4" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="348.5" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<text x="139.6" y="212.7" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">118,757</text>
+<text x="315.2" y="237.6" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">91,001</text>
+<text x="490.8" y="284.4" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">55,183</text>
+<text x="642" y="335.5" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">31,914</text>
+<polyline points="139.6,284 315.2,378.2 490.8,418.5 642,420.8" fill="none" stroke="#2664ce" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="139.6" cy="284" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="315.2" cy="378.2" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="490.8" cy="418.5" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="420.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<text x="139.6" y="310" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">63,649</text>
+<text x="315.2" y="404.2" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">23,240</text>
+<text x="490.8" y="444.5" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">15,091</text>
+<text x="642" y="446.8" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">14,726</text>
+<text x="360" y="511" font-size="17" fill="#53657d" text-anchor="middle">연산 예산 (로그 눈금)</text>
+</svg>
