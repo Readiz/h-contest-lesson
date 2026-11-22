@@ -31,7 +31,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LESSON_ID = "construction-heuristics"
 LESSON_DIR = ROOT / "lessons" / LESSON_ID
 ASSET = LESSON_DIR / "lesson-assets" / "measurements.json"
-FIGURES = ["construction-loop.svg", "hand-path.svg", "regret-gap.svg", "restart-spread.svg"]
+FIGURES = ["construction-loop.svg", "hand-path.svg", "regret-gap.svg", "restart-spread.svg",
+           "construction-cost.svg", "strip-count.svg", "restart-budget.svg", "construction-frame.svg"]
 SEEDS = list(range(1, 21))
 BLOCKS = ("cons-core", "cons-path", "cons-jobs", "cons-improve", "cons-entry")
 SITE_PROBLEMS = ("ORDERING", "SCHEDULX", "TAXIASSIGN", "LANDINGX", "COUPANG", "MINEEXPLORE", "AIRCONTECH",

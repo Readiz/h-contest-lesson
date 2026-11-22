@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 453" role="img" aria-labelledby="title desc">
+<title id="title">구성법별 구성 직후 경로 길이</title>
+<desc id="desc">순서 틀에서 구성법마다 입력 시드 20개의 구성 직후 경로 길이를 점으로 찍고 중앙값을 세로 눈금으로 보인 그림입니다. 세로 띠 8개 16,396, 가장 가까운 점(NN) 16,051, 가장 싼 삽입 15,366.5, 가장 먼 점 삽입 14,766.5, 후회 삽입 14,302.5이며 후회 삽입이 가장 짧고 분포도 다른 구성법과 거의 겹치지 않습니다. 번호 순서(중앙값 131,664)는 눈금 밖이라 그리지 않았습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="451" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">구성법별 구성 직후 경로 길이</text>
+<text x="28" y="84" font-size="19" fill="#53657d">순서 틀(점 200개), 시드 20개. 점은 시드 하나, 눈금은 중앙값입니다.</text>
+<text x="28" y="109" font-size="19" fill="#53657d">짧을수록 좋습니다. 번호 순서는 눈금 밖이라 뺐습니다</text>
+<circle cx="35" cy="132" r="6" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">시드 하나</text>
+<line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
+<circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
+<text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
+<line x1="218.7" y1="167" x2="218.7" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="218.7" y="409" font-size="16" fill="#53657d" text-anchor="middle">12,000</text>
+<line x1="347.5" y1="167" x2="347.5" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="347.5" y="409" font-size="16" fill="#53657d" text-anchor="middle">14,000</text>
+<line x1="476.4" y1="167" x2="476.4" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="476.4" y="409" font-size="16" fill="#53657d" text-anchor="middle">16,000</text>
+<line x1="605.2" y1="167" x2="605.2" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="605.2" y="409" font-size="16" fill="#53657d" text-anchor="middle">18,000</text>
+<text x="28" y="195" font-size="19" fill="#172b45">세로 띠 8개</text>
+<circle cx="544.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="544.8" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="555.1" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="543.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="470" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="462.6" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="500.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="472.4" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="503" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="441.8" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="529.7" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="520.6" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="487.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="505.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="530" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="496" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="495.9" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="500.8" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="519.8" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="496.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="501.9" y1="174" x2="501.9" y2="204" stroke="#172b45" stroke-width="3.5"/>
+<text x="617.2" y="195" font-size="17" fill="#172b45">16,396</text>
+<text x="28" y="239" font-size="19" fill="#172b45">가장 가까운 점(NN)</text>
+<circle cx="455.9" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="520.4" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="421.9" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="500.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="415.9" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="527.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="446.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="412.2" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="494.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="585.2" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="503.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="466" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="497" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="471" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="488.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="520.4" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="429.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="432" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="557.1" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="467.7" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="479.7" y1="218" x2="479.7" y2="248" stroke="#172b45" stroke-width="3.5"/>
+<text x="617.2" y="239" font-size="17" fill="#172b45">16,051</text>
+<text x="28" y="283" font-size="19" fill="#172b45">가장 싼 삽입</text>
+<circle cx="371" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="437.8" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="407.8" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="423.1" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="425.1" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="440.1" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="433.3" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="419" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="431.1" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="473.2" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="466.9" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="470.8" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="430.4" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="455.9" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="427.1" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="454.3" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="405.4" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="469.7" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="470.4" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="455.8" cy="277" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="435.6" y1="262" x2="435.6" y2="292" stroke="#172b45" stroke-width="3.5"/>
+<text x="617.2" y="283" font-size="17" fill="#172b45">15,366.5</text>
+<text x="28" y="327" font-size="19" fill="#172b45">가장 먼 점 삽입</text>
+<circle cx="386.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="457.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="367.7" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="402.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="385.9" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="377.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="376.2" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="403.3" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="435.1" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="409.6" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="409.1" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="379.4" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="381.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="393.3" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="406.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="421.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="370.1" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="391.9" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="424.3" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="400.5" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="396.9" y1="306" x2="396.9" y2="336" stroke="#172b45" stroke-width="3.5"/>
+<text x="617.2" y="327" font-size="17" fill="#172b45">14,766.5</text>
+<text x="28" y="371" font-size="19" fill="#172b45">후회 삽입</text>
+<circle cx="336.4" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="373" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="367.8" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="386.9" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="349.9" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="320.7" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="382.4" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="363.7" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="378.8" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="366.3" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="362.3" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="359.7" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="384.8" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="398.9" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="379.4" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="374.9" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="332.7" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="353.6" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="420.5" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="351" cy="365" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<line x1="367" y1="350" x2="367" y2="380" stroke="#172b45" stroke-width="3.5"/>
+<text x="617.2" y="371" font-size="17" fill="#172b45">14,302.5</text>
+<line x1="218.7" y1="167" x2="218.7" y2="387" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="437" font-size="17" fill="#53657d" text-anchor="middle">구성 직후 경로 길이 ↓ (작을수록 좋음)</text>
+</svg>
