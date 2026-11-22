@@ -834,7 +834,7 @@ def check_tables(data: dict) -> None:
 
 def check_svgs() -> None:
     text = read_lesson_text(LESSON_ID)
-    svgs = sorted(ASSETS.glob("*.svg"))
+    svgs = sorted(p for p in ASSETS.glob("*.svg") if p.name in ("axis-split.svg", "one-move.svg"))  # 손으로 쓴 그림. 차트는 generate_charts.py --check가 검사
     assert len(svgs) == 2, svgs
     for svg in svgs:
         body = svg.read_text()
