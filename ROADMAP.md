@@ -22,6 +22,8 @@
 
 2026-11-22에 목차의 9개 강의가 모두 들어갔습니다(`problem-modeling`부터 `experiments-and-tuning`까지, 각 허브 + 3쪽과 검사 스크립트). 앱의 `/learn`은 이 9개와 기존 `heuristic`을 `휴리스틱 방법론` 묶음으로, 문제별 강의 8개를 `적용 사례` 묶음으로 보여 줍니다.
 
+2026-11-22 정리: 방법론 강의와 겹치던 `testing-and-stress`의 실험 평가 쪽을 지우고(신뢰구간 문단만 `experiments-and-tuning`으로 옮김), `heuristic-case-studies/search-strategies`는 ORDERING에 SA를 붙인 구현과 측정만 남겼습니다. 배정 틀 입력 생성 순서를 작업 단위로 통일했고(1·2번 강의 재측정), 1·2번 강의에 데모 `score-check`, `construction-steps`를 넣었습니다.
+
 ### 방법론 강의의 공통 기준
 
 - **문제에 묶이지 않는다.** 설명은 아래 세 가지 연습용 문제 틀과 작은 손계산 예로 한다. 이 사이트의 문제는 마지막 "적용 사례" 절에서 링크와 한두 문장으로만 가리킨다. 본문 수치가 사이트 문제의 채점 결과에 의존하지 않는다.
