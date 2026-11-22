@@ -849,7 +849,9 @@
       ],
       "relatedLessons": [
         "cpp-common-library",
-        "cpp-contest-basics"
+        "cpp-contest-basics",
+        "partial-information",
+        "problem-modeling"
       ],
       "pages": [
         {
@@ -912,7 +914,9 @@
       "relatedLessons": [
         "cpp-common-library",
         "greedy",
-        "hungarian-algorithm"
+        "hungarian-algorithm",
+        "neighborhood-and-delta",
+        "hill-climbing-and-annealing"
       ],
       "pages": [
         {
@@ -973,7 +977,9 @@
       "relatedLessons": [
         "cpp-common-library",
         "testing-and-stress",
-        "hungarian-algorithm"
+        "hungarian-algorithm",
+        "neighborhood-and-delta",
+        "construction-heuristics"
       ],
       "pages": [
         {
@@ -1035,7 +1041,9 @@
       "relatedLessons": [
         "cpp-common-library",
         "assignment-local-search",
-        "greedy"
+        "greedy",
+        "destroy-and-repair",
+        "experiments-and-tuning"
       ],
       "pages": [
         {
@@ -1096,7 +1104,9 @@
         "sqrt-decomposition",
         "testing-and-stress",
         "cpp-common-library",
-        "placement-search"
+        "placement-search",
+        "candidate-and-time-budget",
+        "experiments-and-tuning"
       ],
       "pages": [
         {
@@ -1156,7 +1166,9 @@
       "relatedLessons": [
         "observe-and-act",
         "placement-search",
-        "cpp-common-library"
+        "cpp-common-library",
+        "problem-modeling",
+        "neighborhood-and-delta"
       ],
       "pages": [
         {
@@ -1288,7 +1300,9 @@
       "relatedLessons": [
         "dijkstra",
         "cpp-common-library",
-        "testing-and-stress"
+        "testing-and-stress",
+        "partial-information",
+        "experiments-and-tuning"
       ],
       "pages": [
         {
@@ -1383,7 +1397,8 @@
       "relatedLessons": [
         "cpp-common-library",
         "cpp-contest-basics",
-        "reading-the-score"
+        "reading-the-score",
+        "partial-information"
       ],
       "pages": [
         {

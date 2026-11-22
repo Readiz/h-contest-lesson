@@ -2,6 +2,8 @@
 
 [ROBOTCLEAN](/practice/ROBOTCLEAN)은 64×64 집의 모든 빈 칸을 밟아야 하는 문제인데, 로봇은 **지도도 자기 위치도 모릅니다.** [광산 탐사](https://h.readiz.com/learn/observe-and-act)는 지도가 인자로 주어졌고 채점기 안의 상태만 따라 그리면 됐지만, 여기서는 지도 자체를 `scan`과 `move`의 결과로 **조금씩 알아 가야** 합니다. 이 강의는 (1) 호출 결과를 내 지도와 자세로 옮기는 좌표 변환을 만들고, (2) 가장 단순한 유효 풀이에서 (3) BFS, (4) (칸, 방향) 최단 비용으로 키우며, 각 단계의 비용이 어디서 줄어드는지 실측합니다. 코드는 모두 h-contest 제출용입니다. 표준 헤더와 STL을 쓰지 않고 [공통 라이브러리](https://h.readiz.com/learn/cpp-common-library)의 `queue`, `min-heap` 블록만 씁니다.
 
+> **이 사례가 보여 주는 기법:** [정보가 부분적일 때 결정하기](https://h.readiz.com/learn/partial-information)의 관측을 쌓아 지도 만들기, [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)의 스캔 비용과 헛걸음 비용의 실측. 일반 원리는 그 강의에서, 이 문제에 맞춘 구현과 측정은 아래에서 봅니다.
+
 ## 이 강의에서 다루는 것
 
 - 지도와 자기 위치를 모를 때 `scan`과 `move`의 결과를 내 지도와 자세로 옮기는 좌표 변환.

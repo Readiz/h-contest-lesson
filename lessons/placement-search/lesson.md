@@ -2,6 +2,8 @@
 
 [우주선 착륙](/practice/LANDINGX)은 `1000 x 1000` 고도 지도에 직사각형 우주선 10000척을 놓는 문제입니다. 지도 안에 있어야 하고, 겹치면 안 되고, 네 꼭짓점의 고도 차가 6 이하여야 합니다. [광고판 도시 배치](https://h.readiz.com/learn/heuristic-case-studies/placement-and-repair)는 destroy/repair를 서술로 다뤘습니다. 이 강의는 한 문제에서 **탐욕, 국소 이동, destroy/repair를 같은 후보 검사 수로 실제 비교**하고, 무효 후보를 어디서 걸러야 하는지 실패를 재현해 확인합니다. [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)와 [초기해와 지역 탐색](https://h.readiz.com/learn/heuristic-case-studies/search-strategies)을 읽었다고 가정하며, 난수와 정렬은 [공통 코드의 `random`, `sort` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다.
 
+> **이 사례가 보여 주는 기법:** [크게 부수고 다시 짓기](https://h.readiz.com/learn/destroy-and-repair)의 영역을 빼고 다시 채우기, [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)의 같은 후보 검사 수로 하는 비교. 일반 원리는 그 강의에서, 이 문제에 맞춘 구현과 측정은 아래에서 봅니다.
+
 ## 이 강의에서 다루는 것
 
 - 고도 차와 겹침, 종류별 한도를 한 함수로 검사해 무효 후보를 어디서 거를지 정하는 설계.

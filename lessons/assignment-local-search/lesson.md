@@ -2,6 +2,8 @@
 
 [SCHEDULX](/practice/SCHEDULX)는 작업을 기계에 배정해 가장 늦게 끝나는 기계의 시간을 줄이는 문제입니다. [배송 순서 개선](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement)의 2-opt와 [초기해와 지역 탐색](https://h.readiz.com/learn/heuristic-case-studies/search-strategies)의 SA를 같은 틀로 다시 쓰되, 이번에는 점수가 합이 아니라 **최댓값**이고 상태가 순열이 아니라 **작업 → 기계 배정**입니다. 이 두 차이가 차분 평가와 온도 설정을 어떻게 바꾸는지를 실제 점수로 확인합니다.
 
+> **이 사례가 보여 주는 기법:** [근방 설계와 차분 평가](https://h.readiz.com/learn/neighborhood-and-delta)의 최댓값 점수의 차분 평가, [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing)의 시작 온도 설정. 일반 원리는 그 강의에서, 이 문제에 맞춘 구현과 측정은 아래에서 봅니다.
+
 앞의 두 강의와 [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)를 읽었다고 가정합니다. 난수는 [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다.
 
 ## 이 강의에서 다루는 것

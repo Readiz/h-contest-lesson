@@ -2,6 +2,8 @@
 
 [광산 탐사](/practice/MINEEXPLORE)는 지도 전체를 `process`의 인자로 줍니다. 그런데도 풀이가 틀리는 이유는 지도가 아니라 **채점기 안의 상태**에 있습니다. 어느 칸을 이미 밟았는지, 오늘 몇 번 움직였는지, 지금 날짜가 며칠인지는 어떤 API로도 물을 수 없고 `move`도 아무 값을 돌려주지 않습니다. 제출 코드가 믿을 수 있는 것은 **내가 호출한 행동의 기록**뿐입니다. 이 강의는 그 기록(관측)을 만들고, 기록을 읽기만 하는 계획 코드와 기록을 바꾸는 행동 코드를 나누어 풀이를 세 단계로 키웁니다.
 
+> **이 사례가 보여 주는 기법:** [정보가 부분적일 때 결정하기](https://h.readiz.com/learn/partial-information)의 관측 기록과 행동의 분리, [문제를 상태·행동·점수로 옮기기](https://h.readiz.com/learn/problem-modeling)의 채점기 상태의 거울. 일반 원리는 그 강의에서, 이 문제에 맞춘 구현과 측정은 아래에서 봅니다.
+
 ![5×5 예시 지도에서 두 번 이동한 상태입니다. 채점기는 방문 3칸과 위치와 오늘 이동 2회와 점수 22를 알지만 제출 코드는 읽지 못합니다. 내 관측 기록은 seen 3칸과 위치와 남은 98회와 mirrorScore 22입니다. 추정은 목표 (0,3)까지 이동 2회와 경로 이득 71이며 주변 값은 불확실합니다.](lesson-assets/mirror-states.svg)
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/observe-and-act/lesson-assets/mirror-states.svg)
