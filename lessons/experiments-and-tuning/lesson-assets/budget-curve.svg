@@ -3,6 +3,15 @@
 <desc id="desc">순서 틀에서 평가 횟수(로그 눈금) 30,000, 100,000, 300,000, 1,000,000번일 때 시드 20개의 최고 비용 중앙값입니다. 거의 0도는 17,863, 14,757, 14,321, 14,321로 300,000번 뒤 멈추고, 일정 온도는 18,088, 14,935, 13,950, 13,623, 고른 설정은 17,869, 14,582, 13,673, 13,385로 예산이 늘수록 계속 내려가 1,000,000번에서 가장 낮습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="525" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="387" x2="680" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="317" x2="680" y2="317" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="247" x2="680" y2="247" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="130.8" y1="177" x2="130.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="306.3" y1="177" x2="306.3" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="466.5" y1="177" x2="466.5" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">예산을 늘릴 때의 최고 비용</text>
 <text x="28" y="84" font-size="19" fill="#53657d">순서 틀, 시드 20개 중 10번째로 작은 값(중앙값). 한 예산의 순위가</text>
@@ -17,23 +26,14 @@
 <circle cx="317.7" cy="132" r="4.5" fill="#ae5515"/>
 <text x="335.7" y="137" font-size="18" fill="#172b45">고른 설정</text>
 <text x="28" y="163" font-size="17" fill="#53657d">최고 비용 중앙값 ↓ (작을수록 좋음)</text>
-<line x1="92.8" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="462" font-size="16" fill="#53657d" text-anchor="end">12,500</text>
-<line x1="92.8" y1="387" x2="680" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="392" font-size="16" fill="#53657d" text-anchor="end">14,000</text>
-<line x1="92.8" y1="317" x2="680" y2="317" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="322" font-size="16" fill="#53657d" text-anchor="end">15,500</text>
-<line x1="92.8" y1="247" x2="680" y2="247" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="252" font-size="16" fill="#53657d" text-anchor="end">17,000</text>
-<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="182" font-size="16" fill="#53657d" text-anchor="end">18,500</text>
-<line x1="130.8" y1="177" x2="130.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="130.8" y="481" font-size="16" fill="#53657d" text-anchor="middle">30,000</text>
-<line x1="306.3" y1="177" x2="306.3" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="306.3" y="481" font-size="16" fill="#53657d" text-anchor="middle">100,000</text>
-<line x1="466.5" y1="177" x2="466.5" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="466.5" y="481" font-size="16" fill="#53657d" text-anchor="middle">300,000</text>
-<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="642" y="481" font-size="16" fill="#53657d" text-anchor="middle">1,000,000</text>
 <line x1="92.8" y1="457" x2="680" y2="457" stroke="#53657d" stroke-width="1.5"/>
 <line x1="92.8" y1="177" x2="92.8" y2="457" stroke="#53657d" stroke-width="1.5"/>

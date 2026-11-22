@@ -3,6 +3,12 @@
 <desc id="desc">다시 채울 때 점수에 곱하는 무작위 배율을 바꿨을 때 solver seed 9개의 합과 중앙값입니다. 중앙값은 없음 (점수 순서 그대로) 2,993,803, 1배 ~ 1.3배 2,999,169, 1배 ~ 2배 3,000,611, 1배 ~ 3배 3,001,090, 1배 ~ 5배 3,001,242이며 배율이 없으면 탐욕과 같은 값이고, 넓힐수록 오르다가 3배와 5배는 분포가 겹칩니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="451" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="265.2" y1="167" x2="265.2" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="331.4" y1="167" x2="331.4" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="397.5" y1="167" x2="397.5" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="463.6" y1="167" x2="463.6" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="529.7" y1="167" x2="529.7" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="595.9" y1="167" x2="595.9" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">다시 채울 때의 무작위 배율별 합의 분포</text>
 <text x="28" y="84" font-size="19" fill="#53657d">후보 검사 100,000회, solver seed 9개. 점은 시드 하나, 눈금은</text>
@@ -12,15 +18,9 @@
 <line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
 <circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
 <text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
-<line x1="265.2" y1="167" x2="265.2" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="265.2" y="409" font-size="16" fill="#53657d" text-anchor="middle">2,992,000</text>
-<line x1="331.4" y1="167" x2="331.4" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
-<line x1="397.5" y1="167" x2="397.5" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="397.5" y="409" font-size="16" fill="#53657d" text-anchor="middle">2,996,000</text>
-<line x1="463.6" y1="167" x2="463.6" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
-<line x1="529.7" y1="167" x2="529.7" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="529.7" y="409" font-size="16" fill="#53657d" text-anchor="middle">3,000,000</text>
-<line x1="595.9" y1="167" x2="595.9" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="28" y="195" font-size="19" fill="#172b45">없음 (점수 순서 그대로)</text>
 <circle cx="324.9" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
 <circle cx="324.9" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>

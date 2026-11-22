@@ -3,6 +3,17 @@
 <desc id="desc">순서 틀에서 구성에 쓴 평가 횟수(로그 눈금)와 경로 길이 중앙값의 관계입니다. NN을 첫 점 무작위로 1, 4, 16, 64번 만들면 16,051, 15,534, 15,312.5, 15,124.5로 줄지만 NN 64번(평가 1,273,600번)도 후회 삽입 한 번(14,302.5, 평가 1,353,200번)보다 깁니다. 후회 삽입에 25% 흔들기를 5번 하면 13,981입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="601" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="533" x2="680" y2="533" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="483" x2="680" y2="483" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="433" x2="680" y2="433" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="383" x2="680" y2="383" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="333" x2="680" y2="333" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="283" x2="680" y2="283" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="233" x2="680" y2="233" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="130.8" y1="233" x2="130.8" y2="533" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="301.2" y1="233" x2="301.2" y2="533" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="471.6" y1="233" x2="471.6" y2="533" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="642" y1="233" x2="642" y2="533" stroke="#d8e1ed" stroke-width="1"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">평가를 더 쓰면 얼마나 짧아지나</text>
 <text x="28" y="84" font-size="19" fill="#53657d">순서 틀, 시드 20개의 중앙값. 가로는 구성에 쓴 평가 횟수(로그</text>
@@ -17,27 +28,16 @@
 <circle cx="35" cy="188" r="6" fill="#e1a56f"/>
 <text x="50" y="193" font-size="18" fill="#172b45">후회 삽입 + 25% 흔들기 5번</text>
 <text x="28" y="219" font-size="17" fill="#53657d">경로 길이 중앙값 ↓ (작을수록 좋음)</text>
-<line x1="92.8" y1="533" x2="680" y2="533" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="538" font-size="16" fill="#53657d" text-anchor="end">13,500</text>
-<line x1="92.8" y1="483" x2="680" y2="483" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="488" font-size="16" fill="#53657d" text-anchor="end">14,000</text>
-<line x1="92.8" y1="433" x2="680" y2="433" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="438" font-size="16" fill="#53657d" text-anchor="end">14,500</text>
-<line x1="92.8" y1="383" x2="680" y2="383" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="388" font-size="16" fill="#53657d" text-anchor="end">15,000</text>
-<line x1="92.8" y1="333" x2="680" y2="333" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="338" font-size="16" fill="#53657d" text-anchor="end">15,500</text>
-<line x1="92.8" y1="283" x2="680" y2="283" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="288" font-size="16" fill="#53657d" text-anchor="end">16,000</text>
-<line x1="92.8" y1="233" x2="680" y2="233" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="238" font-size="16" fill="#53657d" text-anchor="end">16,500</text>
-<line x1="130.8" y1="233" x2="130.8" y2="533" stroke="#d8e1ed" stroke-width="1"/>
 <text x="130.8" y="557" font-size="16" fill="#53657d" text-anchor="middle">10,000</text>
-<line x1="301.2" y1="233" x2="301.2" y2="533" stroke="#d8e1ed" stroke-width="1"/>
 <text x="301.2" y="557" font-size="16" fill="#53657d" text-anchor="middle">100,000</text>
-<line x1="471.6" y1="233" x2="471.6" y2="533" stroke="#d8e1ed" stroke-width="1"/>
 <text x="471.6" y="557" font-size="16" fill="#53657d" text-anchor="middle">1,000,000</text>
-<line x1="642" y1="233" x2="642" y2="533" stroke="#d8e1ed" stroke-width="1"/>
 <text x="642" y="557" font-size="16" fill="#53657d" text-anchor="middle">10,000,000</text>
 <line x1="92.8" y1="533" x2="680" y2="533" stroke="#53657d" stroke-width="1.5"/>
 <line x1="92.8" y1="233" x2="92.8" y2="533" stroke="#53657d" stroke-width="1.5"/>

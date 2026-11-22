@@ -3,6 +3,11 @@
 <desc id="desc">단계별 10개 TC 점수 합입니다. 0단계 기준선 73,687, 1단계 중앙으로 밀기 609,779, 2단계 차분 탐욕 1,756,585, 3단계 큰 이득부터 1,776,636, 4단계 빈 칸 경로 1,908,789, 5단계 목표 짝짓기 1,918,179, 통과 기준 1,917,000입니다. 4단계는 통과 기준에 8,211점 모자라고 5단계는 1,179점 넘습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="483" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="225.3" y1="139" x2="225.3" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="318.5" y1="139" x2="318.5" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="411.6" y1="139" x2="411.6" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="504.7" y1="139" x2="504.7" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="597.9" y1="139" x2="597.9" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">단계별 점수 합</text>
 <text x="28" y="84" font-size="19" fill="#53657d">공개 채점기 10개 TC의 점수 합입니다. 점수는 같은 입력에서 항상 같고,</text>
@@ -28,13 +33,8 @@
 <text x="28" y="405" font-size="19" fill="#172b45">통과 기준</text>
 <rect x="225.3" y="385" width="357" height="26" fill="#c3cddb"/>
 <text x="590.4" y="405" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1,917,000</text>
-<line x1="225.3" y1="139" x2="225.3" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="225.3" y="441" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="318.5" y1="139" x2="318.5" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
-<line x1="411.6" y1="139" x2="411.6" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="411.6" y="441" font-size="16" fill="#53657d" text-anchor="middle">1,000,000</text>
-<line x1="504.7" y1="139" x2="504.7" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
-<line x1="597.9" y1="139" x2="597.9" y2="419" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="597.9" y="441" font-size="16" fill="#53657d" text-anchor="middle">2,000,000</text>
 <line x1="225.3" y1="139" x2="225.3" y2="419" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="469" font-size="17" fill="#53657d" text-anchor="middle">점수 합 ↑ (클수록 좋음)</text>

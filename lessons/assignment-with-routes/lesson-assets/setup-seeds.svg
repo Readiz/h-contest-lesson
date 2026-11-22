@@ -3,6 +3,10 @@
 <desc id="desc">결합 탐욕에서 시작한 탐색의 설정별 TC 5개 합을 solver seed 9개의 점과 중앙값 눈금으로 보인 그림입니다. 중앙값은 본문 설정 429,489,414, 교환 없이 이동만 429,506,756, 무작위로만 고름 431,737,879, 가중치 0 433,637,574, 가중치 16 429,611,029, 기사 후보 1명 430,147,324, 제안 100,000개 429,942,865, 제안 2,000,000개 429,119,890입니다. 가중치 0이 가장 나쁘고 무작위로만 고르는 설정이 그다음이며 교환을 빼거나 가중치를 16으로 바꾼 설정은 본문과 시드 폭 안에서 겹칩니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="608" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="203.5" y1="192" x2="203.5" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="328.1" y1="192" x2="328.1" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="452.6" y1="192" x2="452.6" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="577.1" y1="192" x2="577.1" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">설정별 합의 분포</text>
 <text x="28" y="84" font-size="19" fill="#53657d">결합 탐욕에서 시작, solver seed 9개. 점은 시드 하나, 눈금은</text>
@@ -13,13 +17,9 @@
 <line x1="165.9" y1="157" x2="185.9" y2="157" stroke="#172b45" stroke-width="3.5"/>
 <circle cx="175.9" cy="157" r="4.5" fill="#172b45"/>
 <text x="193.9" y="162" font-size="18" fill="#172b45">중앙값</text>
-<line x1="203.5" y1="192" x2="203.5" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="203.5" y="566" font-size="16" fill="#53657d" text-anchor="middle">428,000,000</text>
-<line x1="328.1" y1="192" x2="328.1" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="328.1" y="566" font-size="16" fill="#53657d" text-anchor="middle">430,000,000</text>
-<line x1="452.6" y1="192" x2="452.6" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="452.6" y="566" font-size="16" fill="#53657d" text-anchor="middle">432,000,000</text>
-<line x1="577.1" y1="192" x2="577.1" y2="544" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="577.1" y="566" font-size="16" fill="#53657d" text-anchor="middle">434,000,000</text>
 <text x="28" y="220" font-size="19" fill="#172b45">본문 설정</text>
 <circle cx="296.3" cy="214" r="5.5" fill="#ae5515" fill-opacity="0.6"/>

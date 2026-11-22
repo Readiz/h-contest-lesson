@@ -3,6 +3,10 @@
 <desc id="desc">탐욕 초기해의 6개 TC 합 263,314보다 각 방식이 얼마나 낮아졌는지 보인 그림입니다. 후보 수는 모두 2,000,000개입니다. HC, 점수만 8.3% (합 241,494), HC + 평균 항 9.3% (합 238,884), SA, 점수만 4.2% (합 252,177), SA + 평균 항 10.6% (합 235,380)이고, 실제 점수만 쓴 SA는 hill climbing보다 적게 줄어듭니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="388" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="161.7" y1="164" x2="161.7" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="279.6" y1="164" x2="279.6" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="397.5" y1="164" x2="397.5" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="515.4" y1="164" x2="515.4" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">탐욕 초기해보다 얼마나 낮아졌나</text>
 <text x="28" y="84" font-size="19" fill="#53657d">TC 6개 합 기준, 후보 수 2,000,000개로 같게 맞춘 비교입니다. 기준은</text>
@@ -20,13 +24,9 @@
 <text x="28" y="310" font-size="19" fill="#172b45" font-weight="700">SA + 평균 항</text>
 <rect x="161.7" y="290" width="250.2" height="26" fill="#ae5515"/>
 <text x="419.9" y="310" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">10.6% (합 235,380)</text>
-<line x1="161.7" y1="164" x2="161.7" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="161.7" y="346" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="279.6" y1="164" x2="279.6" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="279.6" y="346" font-size="16" fill="#53657d" text-anchor="middle">5</text>
-<line x1="397.5" y1="164" x2="397.5" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="397.5" y="346" font-size="16" fill="#53657d" text-anchor="middle">10</text>
-<line x1="515.4" y1="164" x2="515.4" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="515.4" y="346" font-size="16" fill="#53657d" text-anchor="middle">15</text>
 <line x1="161.7" y1="164" x2="161.7" y2="324" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="374" font-size="17" fill="#53657d" text-anchor="middle">탐욕 대비 합의 감소율 (%) ↑ (클수록 좋음)</text>

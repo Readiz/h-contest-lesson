@@ -3,6 +3,10 @@
 <desc id="desc">5단계 전체에서 한 가지씩 바꿨을 때 TC별 점수가 5단계보다 평균 얼마나 낮아졌는지입니다. ROUNDS 1 1,476.5, 빈 칸 순서대로 757.3, 3단계를 먼저 252.8, 문턱 켬 0.0, 4단계 TC별 문턱 624.1이고 문턱을 켠 변형은 걸러지는 짝이 없어 0으로 5단계와 같습니다. 어느 변형도 5단계보다 높은 TC가 없어 값이 클수록 5단계보다 못합니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="403" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="189.2" y1="139" x2="189.2" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="331.7" y1="139" x2="331.7" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="474.1" y1="139" x2="474.1" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="616.5" y1="139" x2="616.5" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">5단계에서 하나씩 바꾸면</text>
 <text x="28" y="84" font-size="19" fill="#53657d">10개 TC에서 5단계 점수보다 평균 얼마나 낮아졌는지입니다. 모든 변형이</text>
@@ -22,13 +26,9 @@
 <text x="28" y="325" font-size="19" fill="#172b45">4단계 TC별 문턱</text>
 <rect x="189.2" y="305" width="177.8" height="26" fill="#2664ce"/>
 <text x="375" y="325" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">624.1</text>
-<line x1="189.2" y1="139" x2="189.2" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="189.2" y="361" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="331.7" y1="139" x2="331.7" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="331.7" y="361" font-size="16" fill="#53657d" text-anchor="middle">500</text>
-<line x1="474.1" y1="139" x2="474.1" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="474.1" y="361" font-size="16" fill="#53657d" text-anchor="middle">1,000</text>
-<line x1="616.5" y1="139" x2="616.5" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="616.5" y="361" font-size="16" fill="#53657d" text-anchor="middle">1,500</text>
 <line x1="189.2" y1="139" x2="189.2" y2="339" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="389" font-size="17" fill="#53657d" text-anchor="middle">5단계보다 낮아진 점수 (TC 평균) ↓ (작을수록 5단계에 가까움)</text>

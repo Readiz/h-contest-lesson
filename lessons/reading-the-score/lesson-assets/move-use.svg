@@ -3,6 +3,10 @@
 <desc id="desc">단계별로 쓴 이동 횟수의 10개 TC 합이고 한도는 7,369,200입니다. 1단계 중앙으로 밀기 1,045,253, 2단계 차분 탐욕 1,897,595, 3단계 큰 이득부터 1,891,384, 4단계 빈 칸 경로 2,950,637, 5단계 목표 짝짓기 2,012,064입니다. 4단계가 가장 많이 쓰고 5단계는 같은 엔트로피에서 이동을 938,573번 줄였으며 이동마다 보너스가 깎이므로 그만큼 점수가 오릅니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="403" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="225.3" y1="139" x2="225.3" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="349.5" y1="139" x2="349.5" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="473.7" y1="139" x2="473.7" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="597.9" y1="139" x2="597.9" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">단계별 사용한 이동 수</text>
 <text x="28" y="84" font-size="19" fill="#53657d">10개 TC 합이고 이동 한도 합은 7,369,200입니다. 이동이 많을수록</text>
@@ -22,13 +26,9 @@
 <text x="28" y="325" font-size="19" fill="#172b45">5단계 목표 짝짓기</text>
 <rect x="225.3" y="305" width="249.8" height="26" fill="#2664ce"/>
 <text x="483.2" y="325" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">2,012,064</text>
-<line x1="225.3" y1="139" x2="225.3" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="225.3" y="361" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="349.5" y1="139" x2="349.5" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="349.5" y="361" font-size="16" fill="#53657d" text-anchor="middle">1,000,000</text>
-<line x1="473.7" y1="139" x2="473.7" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="473.7" y="361" font-size="16" fill="#53657d" text-anchor="middle">2,000,000</text>
-<line x1="597.9" y1="139" x2="597.9" y2="339" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="597.9" y="361" font-size="16" fill="#53657d" text-anchor="middle">3,000,000</text>
 <line x1="225.3" y1="139" x2="225.3" y2="339" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="389" font-size="17" fill="#53657d" text-anchor="middle">이동 횟수 ↓ (적을수록 좋음)</text>

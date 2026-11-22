@@ -3,6 +3,24 @@
 <desc id="desc">SCAN_MIN을 0에서 9까지 바꿨을 때 정책 2의 10개 TC 비용 합입니다. 공식 입력은 11,413,135, 8,934,475, 7,849,280, 7,170,820, 6,209,985, 6,025,790, 5,847,540, 5,969,445, 7,390,140, 7,391,610이고 홀드아웃 지도는 10,528,470, 8,638,470, 7,673,780, 7,113,545, 6,281,895, 6,220,435, 6,163,340, 6,400,590, 7,881,660, 7,891,220입니다. 두 입력 모두 6에서 가장 낮고 7부터 오르며 8 이상에서는 스캔을 거의 안 해 막힘과 회전이 늘어 크게 높아집니다. 통과 기준은 6,500,000입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="545" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="477" x2="680" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="434.1" x2="680" y2="434.1" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="391.3" x2="680" y2="391.3" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="348.4" x2="680" y2="348.4" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="305.6" x2="680" y2="305.6" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="262.7" x2="680" y2="262.7" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="219.9" x2="680" y2="219.9" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="166" y1="177" x2="166" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="218.9" y1="177" x2="218.9" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="271.8" y1="177" x2="271.8" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="324.7" y1="177" x2="324.7" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="377.6" y1="177" x2="377.6" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="430.4" y1="177" x2="430.4" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="483.3" y1="177" x2="483.3" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="536.2" y1="177" x2="536.2" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="589.1" y1="177" x2="589.1" y2="477" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="642" y1="177" x2="642" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">SCAN_MIN에 따른 총 비용</text>
 <text x="28" y="84" font-size="19" fill="#53657d">정책 2, TURN_W 15, UNK_PEN 0. 한 번에 SCAN_MIN만 바꿨고 가장 낮은</text>
@@ -14,41 +32,23 @@
 <circle cx="181.9" cy="132" r="4.5" fill="#ae5515"/>
 <text x="199.9" y="137" font-size="18" fill="#172b45">홀드아웃 지도</text>
 <text x="28" y="163" font-size="17" fill="#53657d">총 비용 ↓ (작을수록 좋음)</text>
-<line x1="128" y1="477" x2="680" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="482" font-size="16" fill="#53657d" text-anchor="end">5,000,000</text>
-<line x1="128" y1="434.1" x2="680" y2="434.1" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="439.1" font-size="16" fill="#53657d" text-anchor="end">6,000,000</text>
-<line x1="128" y1="391.3" x2="680" y2="391.3" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="396.3" font-size="16" fill="#53657d" text-anchor="end">7,000,000</text>
-<line x1="128" y1="348.4" x2="680" y2="348.4" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="353.4" font-size="16" fill="#53657d" text-anchor="end">8,000,000</text>
-<line x1="128" y1="305.6" x2="680" y2="305.6" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="310.6" font-size="16" fill="#53657d" text-anchor="end">9,000,000</text>
-<line x1="128" y1="262.7" x2="680" y2="262.7" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="267.7" font-size="16" fill="#53657d" text-anchor="end">10,000,000</text>
-<line x1="128" y1="219.9" x2="680" y2="219.9" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="224.9" font-size="16" fill="#53657d" text-anchor="end">11,000,000</text>
-<line x1="128" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="120" y="182" font-size="16" fill="#53657d" text-anchor="end">12,000,000</text>
-<line x1="166" y1="177" x2="166" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="166" y="501" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="218.9" y1="177" x2="218.9" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="218.9" y="501" font-size="16" fill="#53657d" text-anchor="middle">1</text>
-<line x1="271.8" y1="177" x2="271.8" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="271.8" y="501" font-size="16" fill="#53657d" text-anchor="middle">2</text>
-<line x1="324.7" y1="177" x2="324.7" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="324.7" y="501" font-size="16" fill="#53657d" text-anchor="middle">3</text>
-<line x1="377.6" y1="177" x2="377.6" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="377.6" y="501" font-size="16" fill="#53657d" text-anchor="middle">4</text>
-<line x1="430.4" y1="177" x2="430.4" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="430.4" y="501" font-size="16" fill="#53657d" text-anchor="middle">5</text>
-<line x1="483.3" y1="177" x2="483.3" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="483.3" y="501" font-size="16" fill="#53657d" text-anchor="middle">6</text>
-<line x1="536.2" y1="177" x2="536.2" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="536.2" y="501" font-size="16" fill="#53657d" text-anchor="middle">7</text>
-<line x1="589.1" y1="177" x2="589.1" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="589.1" y="501" font-size="16" fill="#53657d" text-anchor="middle">8</text>
-<line x1="642" y1="177" x2="642" y2="477" stroke="#d8e1ed" stroke-width="1"/>
 <text x="642" y="501" font-size="16" fill="#53657d" text-anchor="middle">9</text>
 <line x1="128" y1="477" x2="680" y2="477" stroke="#53657d" stroke-width="1.5"/>
 <line x1="128" y1="177" x2="128" y2="477" stroke="#53657d" stroke-width="1.5"/>

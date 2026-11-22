@@ -3,6 +3,16 @@
 <desc id="desc">순서 틀 N = 2,000에서 후보 수 k를 바꿀 때 시드 20개 중앙값 비용입니다. 예산 400,000(빠듯)에서는 63,963, 49,209, 47,554, 48,268, 57,565, 64,752로 k = 4에서 가장 낮고 k가 커지면 다시 올라갑니다. 예산 2,000,000(넉넉)에서는 60,722, 49,209, 47,286, 47,113, 46,407, 46,616로 k = 16에서 가장 낮습니다. 후보 없이 무작위로 고르면 두 예산 모두 가장 높은 쪽입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="525" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="363.7" x2="680" y2="363.7" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="270.3" x2="680" y2="270.3" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="130.8" y1="177" x2="130.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="233" y1="177" x2="233" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="335.3" y1="177" x2="335.3" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="437.5" y1="177" x2="437.5" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="539.8" y1="177" x2="539.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">후보 수에 따른 비용 (N = 2,000)</text>
 <text x="28" y="84" font-size="19" fill="#53657d">순서 틀, 시드 20개의 중앙값. 예산이 빠듯하면 작은 k가, 넉넉하면 큰</text>
@@ -14,25 +24,15 @@
 <circle cx="280.9" cy="132" r="4.5" fill="#2664ce"/>
 <text x="298.9" y="137" font-size="18" fill="#172b45">예산 2,000,000 (넉넉)</text>
 <text x="28" y="163" font-size="17" fill="#53657d">최종 비용 중앙값 ↓ (작을수록 좋음)</text>
-<line x1="92.8" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="462" font-size="16" fill="#53657d" text-anchor="end">40,000</text>
-<line x1="92.8" y1="363.7" x2="680" y2="363.7" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="368.7" font-size="16" fill="#53657d" text-anchor="end">50,000</text>
-<line x1="92.8" y1="270.3" x2="680" y2="270.3" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="275.3" font-size="16" fill="#53657d" text-anchor="end">60,000</text>
-<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="182" font-size="16" fill="#53657d" text-anchor="end">70,000</text>
-<line x1="130.8" y1="177" x2="130.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="130.8" y="481" font-size="16" fill="#53657d" text-anchor="middle">없이</text>
-<line x1="233" y1="177" x2="233" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="233" y="481" font-size="16" fill="#53657d" text-anchor="middle">2</text>
-<line x1="335.3" y1="177" x2="335.3" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="335.3" y="481" font-size="16" fill="#53657d" text-anchor="middle">4</text>
-<line x1="437.5" y1="177" x2="437.5" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="437.5" y="481" font-size="16" fill="#53657d" text-anchor="middle">8</text>
-<line x1="539.8" y1="177" x2="539.8" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="539.8" y="481" font-size="16" fill="#53657d" text-anchor="middle">16</text>
-<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
 <text x="642" y="481" font-size="16" fill="#53657d" text-anchor="middle">32</text>
 <line x1="92.8" y1="457" x2="680" y2="457" stroke="#53657d" stroke-width="1.5"/>
 <line x1="92.8" y1="177" x2="92.8" y2="457" stroke="#53657d" stroke-width="1.5"/>

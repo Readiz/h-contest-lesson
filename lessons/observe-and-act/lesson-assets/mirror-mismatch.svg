@@ -3,6 +3,11 @@
 <desc id="desc">정책 2 코드에서 한 줄씩 고친 세 실수의 채점기 점수 합과 거울 점수 합입니다. 정상은 둘 다 131,259입니다. seen 초기화 누락은 채점기 113,322, 거울 98,848이고 seen 갱신 누락은 채점기 20,030, 거울 161,665이고 nextDay 누락은 채점기 0, 거울 131,259이고 모두 두 값이 어긋나 점수 대조로 잡히며 거절 요청은 세 경우 모두 0입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="541" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="199.7" y1="165" x2="199.7" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="303.9" y1="165" x2="303.9" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="408.1" y1="165" x2="408.1" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="512.3" y1="165" x2="512.3" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="616.5" y1="165" x2="616.5" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">실수하면 두 점수가 어긋난다</text>
 <text x="28" y="84" font-size="19" fill="#53657d">정책 2 코드에서 한 줄씩 고친 변형의 10개 TC 점수 합입니다. 정상은 두</text>
@@ -31,15 +36,10 @@
 <text x="209.2" y="424" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">0</text>
 <rect x="199.7" y="433" width="273.6" height="24" fill="#ae5515"/>
 <text x="481.3" y="452" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">131,259</text>
-<line x1="199.7" y1="165" x2="199.7" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="199.7" y="499" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="303.9" y1="165" x2="303.9" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="303.9" y="499" font-size="16" fill="#53657d" text-anchor="middle">50,000</text>
-<line x1="408.1" y1="165" x2="408.1" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="408.1" y="499" font-size="16" fill="#53657d" text-anchor="middle">100,000</text>
-<line x1="512.3" y1="165" x2="512.3" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="512.3" y="499" font-size="16" fill="#53657d" text-anchor="middle">150,000</text>
-<line x1="616.5" y1="165" x2="616.5" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="616.5" y="499" font-size="16" fill="#53657d" text-anchor="middle">200,000</text>
 <line x1="199.7" y1="165" x2="199.7" y2="477" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="527" font-size="17" fill="#53657d" text-anchor="middle">10개 TC 점수 합 ↑ (클수록 좋음, 어긋남이 문제)</text>

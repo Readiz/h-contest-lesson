@@ -3,6 +3,11 @@
 <desc id="desc">1단계와 2단계의 구간별 호출 합(10개 TC)입니다. 높이 재기은 1단계 730,328, 2단계 730,328이고. 비우기은 1단계 194,047,598, 2단계 194,047,598이고. 정렬은 1단계 130,584,356, 2단계 40,458,584이고. 비우기 구간은 두 단계가 같고 2단계는 정렬 구간만 줄입니다. 기준선은 정렬 구간이 2,288,052,358이라 눈금 밖이라 뺐습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="463" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="128.4" y1="165" x2="128.4" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="241.1" y1="165" x2="241.1" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="353.8" y1="165" x2="353.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="466.5" y1="165" x2="466.5" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="579.1" y1="165" x2="579.1" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">구간별 호출 합, 1단계와 2단계</text>
 <text x="28" y="84" font-size="19" fill="#53657d">10개 TC 합입니다. 두 단계는 높이 재기와 비우기가 같고 정렬 구간만</text>
@@ -26,15 +31,10 @@
 <text x="430.7" y="346" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">130,584,356</text>
 <rect x="128.4" y="355" width="91.2" height="24" fill="#ae5515"/>
 <text x="227.6" y="374" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">40,458,584</text>
-<line x1="128.4" y1="165" x2="128.4" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="128.4" y="421" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="241.1" y1="165" x2="241.1" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="241.1" y="421" font-size="16" fill="#53657d" text-anchor="middle">50,000,000</text>
-<line x1="353.8" y1="165" x2="353.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="353.8" y="421" font-size="16" fill="#53657d" text-anchor="middle">100,000,000</text>
-<line x1="466.5" y1="165" x2="466.5" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="466.5" y="421" font-size="16" fill="#53657d" text-anchor="middle">150,000,000</text>
-<line x1="579.1" y1="165" x2="579.1" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="579.1" y="421" font-size="16" fill="#53657d" text-anchor="middle">200,000,000</text>
 <line x1="128.4" y1="165" x2="128.4" y2="399" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="449" font-size="17" fill="#53657d" text-anchor="middle">호출 수 ↓ (적을수록 좋음)</text>

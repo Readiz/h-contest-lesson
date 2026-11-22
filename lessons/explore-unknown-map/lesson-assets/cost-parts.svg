@@ -3,6 +3,10 @@
 <desc id="desc">정책 2(SCAN_MIN 6)의 총 비용을 행동별로 나눈 그림입니다. 공식 입력은 스캔 561,360, 이동 4,196,090, 막힘 170,770, 회전 919,320, 직접 만든 홀드아웃 지도는 스캔 536,920, 이동 4,001,310, 막힘 276,280, 회전 1,348,830입니다. 이동이 가장 크고 회전, 스캔, 막힘 순이며 이동의 하한은 공식 입력 3,403,100입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="541" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="180.7" y1="165" x2="180.7" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="319.8" y1="165" x2="319.8" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="458.8" y1="165" x2="458.8" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="597.9" y1="165" x2="597.9" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">행동별 비용 구성</text>
 <text x="28" y="84" font-size="19" fill="#53657d">정책 2, SCAN_MIN 6의 10개 TC 비용 합을 행동별로 나눴습니다. 괄호는</text>
@@ -31,13 +35,9 @@
 <text x="252.6" y="424" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">919,320</text>
 <rect x="180.7" y="433" width="93.8" height="24" fill="#ae5515"/>
 <text x="282.5" y="452" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1,348,830</text>
-<line x1="180.7" y1="165" x2="180.7" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="180.7" y="499" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="319.8" y1="165" x2="319.8" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="319.8" y="499" font-size="16" fill="#53657d" text-anchor="middle">2,000,000</text>
-<line x1="458.8" y1="165" x2="458.8" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="458.8" y="499" font-size="16" fill="#53657d" text-anchor="middle">4,000,000</text>
-<line x1="597.9" y1="165" x2="597.9" y2="477" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="597.9" y="499" font-size="16" fill="#53657d" text-anchor="middle">6,000,000</text>
 <line x1="180.7" y1="165" x2="180.7" y2="477" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="527" font-size="17" fill="#53657d" text-anchor="middle">행동별 비용 합 ↓ (작을수록 좋음)</text>

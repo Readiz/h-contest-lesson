@@ -3,6 +3,11 @@
 <desc id="desc">정책 2 기본값으로 10개 TC의 결정 318개에서 주변 값 h의 합은 718,017, 다음 결정에서 얻은 이득 합은 112,550입니다. 비율은 0.1568로 주변 값 1점이 평균 0.16점만 실현됩니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="258" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="248.2" y1="114" x2="248.2" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="340.2" y1="114" x2="340.2" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="432.4" y1="114" x2="432.4" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="524.5" y1="114" x2="524.5" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="616.5" y1="114" x2="616.5" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">예측한 주변 값과 실제 이득</text>
 <text x="28" y="84" font-size="19" fill="#53657d">정책 2 기본값, 결정 318개의 합입니다. 실제는 예측의 0.1568배입니다</text>
@@ -12,15 +17,10 @@
 <text x="28" y="180" font-size="19" fill="#172b45" font-weight="700">다음 이득 합 (실제)</text>
 <rect x="248.2" y="160" width="51.8" height="26" fill="#ae5515"/>
 <text x="308" y="180" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">112,550</text>
-<line x1="248.2" y1="114" x2="248.2" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="248.2" y="216" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="340.2" y1="114" x2="340.2" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="340.2" y="216" font-size="16" fill="#53657d" text-anchor="middle">200,000</text>
-<line x1="432.4" y1="114" x2="432.4" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="432.4" y="216" font-size="16" fill="#53657d" text-anchor="middle">400,000</text>
-<line x1="524.5" y1="114" x2="524.5" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="524.5" y="216" font-size="16" fill="#53657d" text-anchor="middle">600,000</text>
-<line x1="616.5" y1="114" x2="616.5" y2="194" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="616.5" y="216" font-size="16" fill="#53657d" text-anchor="middle">800,000</text>
 <line x1="248.2" y1="114" x2="248.2" y2="194" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="244" font-size="17" fill="#53657d" text-anchor="middle">점수 합 (두 막대의 비율이 핵심)</text>

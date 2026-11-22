@@ -3,17 +3,17 @@
 <desc id="desc">본문 제출 코드가 쓴 비용을 처리한 배송 수 10% 구간마다 나눈 비중입니다. 비중은 3.4%, 4.8%, 5.8%, 6.7%, 7.6%, 8.7%, 10.2%, 12.3%, 15.6%, 24.9%이며 마지막 10% 구간이 전체의 24.9%를 써 가장 큽니다. 남은 배송이 드물어져 배송 간격이 넓어지기 때문입니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="509" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="57.6" y1="441" x2="692" y2="441" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="57.6" y1="347.7" x2="692" y2="347.7" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="57.6" y1="254.3" x2="692" y2="254.3" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="57.6" y1="161" x2="692" y2="161" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">처리한 배송 10% 구간별 비용 비중</text>
 <text x="28" y="84" font-size="19" fill="#53657d">본문 제출 코드(적재 20, 밀도 가중치 25, 순서 개선 3회)의 총 비용</text>
 <text x="28" y="109" font-size="19" fill="#53657d">9,306,067,620을 구간별로 나눴습니다. 마지막 구간을 강조했습니다</text>
-<line x1="57.6" y1="441" x2="692" y2="441" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="49.6" y="446" font-size="16" fill="#53657d" text-anchor="end">0</text>
-<line x1="57.6" y1="347.7" x2="692" y2="347.7" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="49.6" y="352.7" font-size="16" fill="#53657d" text-anchor="end">10</text>
-<line x1="57.6" y1="254.3" x2="692" y2="254.3" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="49.6" y="259.3" font-size="16" fill="#53657d" text-anchor="end">20</text>
-<line x1="57.6" y1="161" x2="692" y2="161" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="49.6" y="166" font-size="16" fill="#53657d" text-anchor="end">30</text>
 <rect x="69.7" y="408.9" width="39.3" height="32.1" fill="#2664ce"/>
 <text x="89.3" y="400.9" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">3.4</text>

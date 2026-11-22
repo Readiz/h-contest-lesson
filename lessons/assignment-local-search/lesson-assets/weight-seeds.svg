@@ -3,6 +3,11 @@
 <desc id="desc">평균 부하 항의 가중치를 바꿨을 때 solver seed 9개의 합과 중앙값입니다. 중앙값은 가중치 0 251,448, 가중치 1 235,964, 가중치 2 235,248, 가중치 4 235,846, 가중치 8 243,667이며 가중치 2에서 가장 낮고 0과 8에서 크게 높아집니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="451" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="119.9" y1="167" x2="119.9" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="243.6" y1="167" x2="243.6" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="367.2" y1="167" x2="367.2" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="490.9" y1="167" x2="490.9" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="614.5" y1="167" x2="614.5" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">평균 부하 항 가중치별 합의 분포</text>
 <text x="28" y="84" font-size="19" fill="#53657d">SA 시작 온도 0.1배, solver seed 9개. 점은 시드 하나, 눈금은</text>
@@ -12,15 +17,10 @@
 <line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
 <circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
 <text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
-<line x1="119.9" y1="167" x2="119.9" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="119.9" y="409" font-size="16" fill="#53657d" text-anchor="middle">235,000</text>
-<line x1="243.6" y1="167" x2="243.6" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="243.6" y="409" font-size="16" fill="#53657d" text-anchor="middle">240,000</text>
-<line x1="367.2" y1="167" x2="367.2" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="367.2" y="409" font-size="16" fill="#53657d" text-anchor="middle">245,000</text>
-<line x1="490.9" y1="167" x2="490.9" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="490.9" y="409" font-size="16" fill="#53657d" text-anchor="middle">250,000</text>
-<line x1="614.5" y1="167" x2="614.5" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="614.5" y="409" font-size="16" fill="#53657d" text-anchor="middle">255,000</text>
 <text x="28" y="195" font-size="19" fill="#172b45">가중치 0</text>
 <circle cx="541.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>

@@ -3,6 +3,11 @@
 <desc id="desc">시작 온도를 바꿨을 때 solver seed 9개의 6개 TC 합을 점으로, 중앙값을 세로 눈금으로 보인 그림입니다. 중앙값은 0 (나쁜 이동 거절) 239,031, 중앙 손해의 0.03배 235,605, 중앙 손해의 0.1배 235,248, 중앙 손해의 0.3배 235,291, 중앙 손해의 1배 237,510, 중앙 손해의 3배 242,215입니다. 0.03배에서 0.3배까지는 235,000대로 겹치고 1배 이상에서 나빠집니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="495" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="218.7" y1="167" x2="218.7" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="317.7" y1="167" x2="317.7" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="416.6" y1="167" x2="416.6" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="515.6" y1="167" x2="515.6" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="614.5" y1="167" x2="614.5" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">시작 온도별 합의 분포</text>
 <text x="28" y="84" font-size="19" fill="#53657d">SA, solver seed 9개. 점은 시드 하나, 눈금은 중앙값이며 본문이 쓰는</text>
@@ -12,15 +17,10 @@
 <line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
 <circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
 <text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
-<line x1="218.7" y1="167" x2="218.7" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="218.7" y="453" font-size="16" fill="#53657d" text-anchor="middle">235,000</text>
-<line x1="317.7" y1="167" x2="317.7" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="317.7" y="453" font-size="16" fill="#53657d" text-anchor="middle">237,500</text>
-<line x1="416.6" y1="167" x2="416.6" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="416.6" y="453" font-size="16" fill="#53657d" text-anchor="middle">240,000</text>
-<line x1="515.6" y1="167" x2="515.6" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="515.6" y="453" font-size="16" fill="#53657d" text-anchor="middle">242,500</text>
-<line x1="614.5" y1="167" x2="614.5" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="614.5" y="453" font-size="16" fill="#53657d" text-anchor="middle">245,000</text>
 <text x="28" y="195" font-size="19" fill="#172b45">0 (나쁜 이동 거절)</text>
 <circle cx="378.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>

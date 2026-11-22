@@ -3,6 +3,10 @@
 <desc id="desc">순서 틀에서 구성법마다 입력 시드 20개의 구성 직후 경로 길이를 점으로 찍고 중앙값을 세로 눈금으로 보인 그림입니다. 세로 띠 8개 16,396, 가장 가까운 점(NN) 16,051, 가장 싼 삽입 15,366.5, 가장 먼 점 삽입 14,766.5, 후회 삽입 14,302.5이며 후회 삽입이 가장 짧고 분포도 다른 구성법과 거의 겹치지 않습니다. 번호 순서(중앙값 131,664)는 눈금 밖이라 그리지 않았습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="451" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="218.7" y1="167" x2="218.7" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="347.5" y1="167" x2="347.5" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="476.4" y1="167" x2="476.4" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="605.2" y1="167" x2="605.2" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">구성법별 구성 직후 경로 길이</text>
 <text x="28" y="84" font-size="19" fill="#53657d">순서 틀(점 200개), 시드 20개. 점은 시드 하나, 눈금은 중앙값입니다.</text>
@@ -12,13 +16,9 @@
 <line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
 <circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
 <text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
-<line x1="218.7" y1="167" x2="218.7" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="218.7" y="409" font-size="16" fill="#53657d" text-anchor="middle">12,000</text>
-<line x1="347.5" y1="167" x2="347.5" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="347.5" y="409" font-size="16" fill="#53657d" text-anchor="middle">14,000</text>
-<line x1="476.4" y1="167" x2="476.4" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="476.4" y="409" font-size="16" fill="#53657d" text-anchor="middle">16,000</text>
-<line x1="605.2" y1="167" x2="605.2" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="605.2" y="409" font-size="16" fill="#53657d" text-anchor="middle">18,000</text>
 <text x="28" y="195" font-size="19" fill="#172b45">세로 띠 8개</text>
 <circle cx="544.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
