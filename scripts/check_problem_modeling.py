@@ -72,8 +72,10 @@ def gen_route(seed, n):
 
 def gen_assign(seed, n, m, k):
     r = Lcg(seed)
-    d = [1 + r.below(100) for _ in range(n)]
-    c = [[r.below(51) for _ in range(m)] for _ in range(n)]
+    d, c = [], []
+    for _ in range(n):
+        d.append(1 + r.below(100))
+        c.append([r.below(51) for _ in range(m)])
     return {"n": n, "m": m, "k": k, "d": d, "c": c}
 
 
@@ -246,8 +248,10 @@ static void genRoute(Route::Case& c, uint64_t seed, int n) {
 static void genAssign(Assign::Case& c, uint64_t seed, int n, int m, int k) {
     Rng r(seed);
     c.n = n; c.m = m; c.k = k;
-    for (int i = 0; i < n; ++i) c.d[i] = 1 + r.below(100);
-    for (int i = 0; i < n; ++i) for (int q = 0; q < m; ++q) c.c[i][q] = r.below(51);
+    for (int i = 0; i < n; ++i) {
+        c.d[i] = 1 + r.below(100);
+        for (int q = 0; q < m; ++q) c.c[i][q] = r.below(51);
+    }
 }
 static void genGrid(Grid::Case& c, uint64_t seed, int h, int w, int t) {
     Rng r(seed);

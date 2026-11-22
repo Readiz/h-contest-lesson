@@ -64,8 +64,10 @@ def make_path(n: int, seed: int) -> list[tuple[int, int]]:
 
 def make_jobs(n: int, m: int, seed: int) -> tuple[list[int], list[list[int]]]:
     g = Gen(seed)
-    d = [1 + g.next(100) for _ in range(n)]
-    c = [[g.next(51) for _ in range(m)] for _ in range(n)]
+    d, c = [], []
+    for _ in range(n):
+        d.append(1 + g.next(100))
+        c.append([g.next(51) for _ in range(m)])
     return d, c
 
 
