@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390" role="img" aria-labelledby="title desc">
+<title id="title">경로 선택과 임시 칸 수별 점수</title>
+<desc id="desc">생성기 seed를 5, 101, 202, 303, 404로 바꾼 입력 5개에서 설정별 10개 TC 점수 합을 점으로, 중앙값을 눈금으로 보인 그림입니다. 중앙값은 2단계 (본문) 235,134,729, 경로: x 먼저만 247,900,703, 임시 칸 4개 293,033,959이고 세 설정의 분포가 겹치지 않으며 임시 칸을 4개로 줄이면 가장 많이 나빠집니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="388" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="178.8" y1="192" x2="178.8" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="278.4" y1="192" x2="278.4" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="378" y1="192" x2="378" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="477.6" y1="192" x2="477.6" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="577.1" y1="192" x2="577.1" y2="324" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">경로 선택과 임시 칸 수별 점수</text>
+<text x="28" y="84" font-size="19" fill="#53657d">입력 5개(생성기 seed 5, 101, 202, 303, 404), 10개 TC 점수</text>
+<text x="28" y="109" font-size="19" fill="#53657d">합입니다. 점은 입력 하나, 눈금은 5개 중 3번째로 작은</text>
+<text x="28" y="134" font-size="19" fill="#53657d">값(중앙값)입니다</text>
+<circle cx="35" cy="157" r="6" fill="#2664ce"/>
+<text x="50" y="162" font-size="18" fill="#172b45">시드 하나</text>
+<line x1="165.9" y1="157" x2="185.9" y2="157" stroke="#172b45" stroke-width="3.5"/>
+<circle cx="175.9" cy="157" r="4.5" fill="#172b45"/>
+<text x="193.9" y="162" font-size="18" fill="#172b45">중앙값</text>
+<text x="178.8" y="346" font-size="16" fill="#53657d" text-anchor="middle">220,000,000</text>
+<text x="378" y="346" font-size="16" fill="#53657d" text-anchor="middle">260,000,000</text>
+<text x="577.1" y="346" font-size="16" fill="#53657d" text-anchor="middle">300,000,000</text>
+<text x="28" y="220" font-size="19" fill="#172b45">2단계 (본문)</text>
+<circle cx="254.7" cy="214" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="253.2" cy="214" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="253.4" cy="214" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="254.2" cy="214" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="254.9" cy="214" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<line x1="254.2" y1="199" x2="254.2" y2="229" stroke="#172b45" stroke-width="3.5"/>
+<text x="589.1" y="220" font-size="17" fill="#172b45">235,134,729</text>
+<text x="28" y="264" font-size="19" fill="#172b45">경로: x 먼저만</text>
+<circle cx="318.3" cy="258" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="317" cy="258" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="316.8" cy="258" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="317.7" cy="258" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="318.2" cy="258" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="317.7" y1="243" x2="317.7" y2="273" stroke="#172b45" stroke-width="3.5"/>
+<text x="589.1" y="264" font-size="17" fill="#172b45">247,900,703</text>
+<text x="28" y="308" font-size="19" fill="#172b45">임시 칸 4개</text>
+<circle cx="543" cy="302" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539.3" cy="302" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="541.1" cy="302" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="543.9" cy="302" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="542.5" cy="302" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="542.5" y1="287" x2="542.5" y2="317" stroke="#172b45" stroke-width="3.5"/>
+<text x="589.1" y="308" font-size="17" fill="#172b45">293,033,959</text>
+<line x1="178.8" y1="192" x2="178.8" y2="324" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="374" font-size="17" fill="#53657d" text-anchor="middle">10개 TC 점수 합 ↓ (작을수록 좋음)</text>
+</svg>

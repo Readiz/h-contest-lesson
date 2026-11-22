@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 467" role="img" aria-labelledby="title desc">
+<title id="title">기사 한 명의 부하와 점수의 하한</title>
+<desc id="desc">위에는 한 기사가 처음 위치에서 승객 0의 출발지, 도착지, 승객 1의 출발지, 도착지로 움직이는 순서를 보입니다. 탑승 구간은 순서와 무관한 상수이고 빈 차 구간은 앞 승객에 따라 달라집니다. 아래에는 TC 5개 합으로 하한 412,143,544, 번호 순서 기준선 894,481,017, 결합 탐욕과 이웃 탐색 429,430,581을 비교합니다. 점수는 낮을수록 좋고 하한을 넘는 부분이 빈 차 구간과 불균형입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="465" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">기사 한 명의 부하와 점수의 하한</text>
+<text x="28" y="84" font-size="19" fill="#53657d">탑승 거리는 순서와 무관한 상수이고, 빈 차 구간은 앞 승객이</text>
+<text x="28" y="109" font-size="19" fill="#53657d">누구인지에 따라 달라집니다</text>
+<text x="28" y="139" font-size="19" fill="#172b45" font-weight="700">한 기사의 이동 순서 (예시)</text>
+<line x1="72" y1="221" x2="214" y2="221" stroke="#ae5515" stroke-width="4" stroke-dasharray="10 7"/>
+<text x="143" y="207" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">빈 차 (순서에 따름)</text>
+<line x1="214" y1="221" x2="356" y2="221" stroke="#2664ce" stroke-width="6"/>
+<text x="285" y="207" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">탑승 (상수)</text>
+<line x1="356" y1="221" x2="498" y2="221" stroke="#ae5515" stroke-width="4" stroke-dasharray="10 7"/>
+<text x="427" y="207" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">빈 차 (순서에 따름)</text>
+<line x1="498" y1="221" x2="640" y2="221" stroke="#2664ce" stroke-width="6"/>
+<text x="569" y="207" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">탑승 (상수)</text>
+<circle cx="72" cy="221" r="9" fill="#172b45" stroke="#f6f8fc" stroke-width="2"/>
+<text x="72" y="255" font-size="17" fill="#172b45" text-anchor="middle">처음 위치</text>
+<circle cx="214" cy="221" r="9" fill="#172b45" stroke="#f6f8fc" stroke-width="2"/>
+<text x="214" y="255" font-size="17" fill="#172b45" text-anchor="middle">승객 0 출발</text>
+<circle cx="356" cy="221" r="9" fill="#172b45" stroke="#f6f8fc" stroke-width="2"/>
+<text x="356" y="255" font-size="17" fill="#172b45" text-anchor="middle">승객 0 도착</text>
+<circle cx="498" cy="221" r="9" fill="#172b45" stroke="#f6f8fc" stroke-width="2"/>
+<text x="498" y="255" font-size="17" fill="#172b45" text-anchor="middle">승객 1 출발</text>
+<circle cx="640" cy="221" r="9" fill="#172b45" stroke="#f6f8fc" stroke-width="2"/>
+<text x="640" y="255" font-size="17" fill="#172b45" text-anchor="middle">승객 1 도착</text>
+<text x="28" y="297" font-size="19" fill="#172b45" font-weight="700">TC 5개 합으로 본 점수의 구성</text>
+<text x="28" y="336" font-size="19" fill="#172b45">탑승 거리 합 ÷ 기사 수 (하한)</text>
+<rect x="292" y="316" width="129" height="26" fill="#2664ce"/>
+<text x="429" y="336" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">412,143,544</text>
+<text x="28" y="376" font-size="19" fill="#172b45">번호 순서 기준선</text>
+<rect x="292" y="356" width="129" height="26" fill="#2664ce"/>
+<rect x="421" y="356" width="151" height="26" fill="#ae5515"/>
+<text x="580" y="376" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">894,481,017</text>
+<text x="28" y="416" font-size="19" fill="#172b45">결합 탐욕 + 이웃 탐색</text>
+<rect x="292" y="396" width="129" height="26" fill="#2664ce"/>
+<rect x="421" y="396" width="5.4" height="26" fill="#ae5515"/>
+<text x="434.4" y="416" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">429,430,581</text>
+<text x="28" y="453" font-size="17" fill="#53657d">파랑: 하한, 주황: 하한 위의 빈 차 구간과 기사 간 불균형</text>
+</svg>

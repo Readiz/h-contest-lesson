@@ -3,6 +3,10 @@
 <desc id="desc">격자 수집에서 모르는 칸의 값을 얼마로 칠하느냐에 따른 점수(10번째로 작은 값)입니다. 비관(0) 229, 1 238, 평균 259, 3 258, 5 258, 낙관(9) 250이고 평균 추정이 259로 가장 높습니다. 끝난 뒤 아는 칸은 비관 138칸에서 낙관 212칸으로 늘지만 점수는 오르지 않습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="443" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="172.2" y1="139" x2="172.2" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="290.8" y1="139" x2="290.8" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="409.5" y1="139" x2="409.5" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="528.1" y1="139" x2="528.1" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">모르는 칸을 얼마로 칠하나</text>
 <text x="28" y="84" font-size="19" fill="#53657d">격자 수집, 보이는 거리 2, 시드 20개 점수의 10번째로 작은 값. 칸 =</text>
@@ -25,13 +29,9 @@
 <text x="28" y="365" font-size="19" fill="#172b45">낙관 (칸 = 9)</text>
 <rect x="172.2" y="345" width="296.7" height="26" fill="#2664ce"/>
 <text x="476.8" y="365" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">250 (아는 칸 212)</text>
-<line x1="172.2" y1="139" x2="172.2" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="172.2" y="401" font-size="16" fill="#53657d" text-anchor="middle">0</text>
-<line x1="290.8" y1="139" x2="290.8" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="290.8" y="401" font-size="16" fill="#53657d" text-anchor="middle">100</text>
-<line x1="409.5" y1="139" x2="409.5" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="409.5" y="401" font-size="16" fill="#53657d" text-anchor="middle">200</text>
-<line x1="528.1" y1="139" x2="528.1" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="528.1" y="401" font-size="16" fill="#53657d" text-anchor="middle">300</text>
 <line x1="172.2" y1="139" x2="172.2" y2="379" stroke="#53657d" stroke-width="1.5"/>
 <text x="360" y="429" font-size="17" fill="#53657d" text-anchor="middle">점수 ↑ (클수록 좋음)</text>

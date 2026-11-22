@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 519" role="img" aria-labelledby="title desc">
+<title id="title">채점기는 act 하나를 거쳐서만 부른다</title>
+<desc id="desc">계획, act, 채점기 세 상자를 화살표로 잇습니다. 계획은 거울만 읽어 다음 방향을 정하고, act가 규칙 검사, 오늘 10번이면 nextDay, move, 거울 갱신을 차례로 하며 채점기를 부르는 유일한 통로입니다. 아래에는 하루 최대 10번씩 10일, 모두 100번의 이동 구조를 보이고, 날짜 경계는 점수와 무관해 act가 넘깁니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="517" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">채점기는 act 하나를 거쳐서만 부른다</text>
+<text x="28" y="84" font-size="19" fill="#53657d">계획은 거울만 읽고, 규칙 검사와 날짜 넘김과 거울 갱신은 act 안에서</text>
+<text x="28" y="109" font-size="19" fill="#53657d">한 번에 합니다</text>
+<rect x="28" y="145" width="186" height="188" rx="10" fill="#dbe6f7"/>
+<text x="121" y="177" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">계획</text>
+<text x="42" y="213" font-size="17" fill="#172b45">거울 M만 읽고</text>
+<text x="42" y="241" font-size="17" fill="#172b45">BFS로 목표를 고름</text>
+<text x="42" y="269" font-size="17" fill="#172b45">다음 방향 dir 결정</text>
+<text x="42" y="297" font-size="17" fill="#172b45">(채점기를 직접</text>
+<text x="42" y="325" font-size="17" fill="#172b45">부르지 않음)</text>
+<rect x="246" y="145" width="250" height="188" rx="10" fill="#f6e1cb"/>
+<text x="371" y="177" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">act(dir)</text>
+<text x="260" y="213" font-size="17" fill="#172b45">① canStep: 규칙 검사</text>
+<text x="260" y="241" font-size="17" fill="#172b45">② 오늘 10번이면 nextDay</text>
+<text x="260" y="269" font-size="17" fill="#172b45">③ move(dir)</text>
+<text x="260" y="297" font-size="17" fill="#172b45">④ 거울 갱신 (위치, seen,</text>
+<text x="260" y="325" font-size="17" fill="#172b45">    mirrorScore)</text>
+<rect x="528" y="145" width="164" height="188" rx="10" fill="#e7edf7"/>
+<text x="610" y="177" font-size="19" fill="#172b45" text-anchor="middle" font-weight="700">채점기</text>
+<text x="542" y="213" font-size="17" fill="#172b45">move, nextDay</text>
+<text x="542" y="241" font-size="17" fill="#172b45">이동 횟수 검사</text>
+<text x="542" y="269" font-size="17" fill="#172b45">실제 점수 계산</text>
+<text x="542" y="297" font-size="17" fill="#172b45">(내용은 못 읽음)</text>
+<line x1="216" y1="239" x2="238" y2="239" stroke="#172b45" stroke-width="3"/>
+<polyline points="228,231 240,239 228,247" fill="none" stroke="#172b45" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="498" y1="239" x2="520" y2="239" stroke="#172b45" stroke-width="3"/>
+<polyline points="510,231 522,239 510,247" fill="none" stroke="#172b45" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="28" y="363" font-size="18" fill="#53657d">채점 결과와 비교할 값은 거울의 mirrorScore 하나입니다</text>
+<text x="28" y="399" font-size="19" fill="#172b45" font-weight="700">이동 100번의 구조: 하루 최대 10번 × 10일</text>
+<rect x="28" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="59.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">1일</text>
+<text x="59.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="94" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="125.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">2일</text>
+<text x="125.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="160" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="191.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">3일</text>
+<text x="191.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="226" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="257.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">4일</text>
+<text x="257.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="292" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="323.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">5일</text>
+<text x="323.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="358" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="389.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">6일</text>
+<text x="389.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="424" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="455.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">7일</text>
+<text x="455.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="490" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="521.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">8일</text>
+<text x="521.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="556" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="587.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">9일</text>
+<text x="587.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<rect x="622" y="413" width="63" height="54" fill="#9db6e0"/>
+<text x="653.5" y="437" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">10일</text>
+<text x="653.5" y="459" font-size="16" fill="#172b45" text-anchor="middle">10번</text>
+<text x="28" y="497" font-size="17" fill="#53657d">날짜 경계는 점수와 무관해 계획은 날짜를 모르고 act가 넘깁니다</text>
+</svg>

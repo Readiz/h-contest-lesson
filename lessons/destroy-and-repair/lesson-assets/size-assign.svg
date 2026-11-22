@@ -3,6 +3,20 @@
 <desc id="desc">배정 틀에서 떼어 내는 작업 수(로그 눈금)를 바꿨을 때 시드 20개 중 10번째로 작은 비용입니다. 작업 8개에서 가장 낮은 43,957이고 나머지 크기에서는 작은 이동만과 같은 43,990 근처입니다. 점선은 작은 이동만입니다. 점선보다 낮은 것은 작업 8개와 16개뿐이고 이득은 작습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="505" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="437" x2="680" y2="437" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="385" x2="680" y2="385" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="333" x2="680" y2="333" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="281" x2="680" y2="281" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="229" x2="680" y2="229" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="130.8" y1="177" x2="130.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="204.8" y1="177" x2="204.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="278.8" y1="177" x2="278.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="352.8" y1="177" x2="352.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="426.9" y1="177" x2="426.9" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="500.9" y1="177" x2="500.9" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="574.9" y1="177" x2="574.9" y2="437" stroke="#d8e1ed" stroke-width="1"/>
+<line x1="642" y1="177" x2="642" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">떼어 내는 크기별 비용 (배정 틀)</text>
 <text x="28" y="84" font-size="19" fill="#53657d">예산 2,000,000, 시드 20개 중 10번째로 작은 비용. 작을수록 좋습니다.</text>
@@ -14,33 +28,19 @@
 <circle cx="367.3" cy="132" r="4.5" fill="#ae5515"/>
 <text x="385.3" y="137" font-size="18" fill="#172b45">작은 이동만 43,990 (같은 예산)</text>
 <text x="28" y="163" font-size="17" fill="#53657d">최종 비용 ↓ (작을수록 좋음)</text>
-<line x1="92.8" y1="437" x2="680" y2="437" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="442" font-size="16" fill="#53657d" text-anchor="end">43,950</text>
-<line x1="92.8" y1="385" x2="680" y2="385" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="390" font-size="16" fill="#53657d" text-anchor="end">43,960</text>
-<line x1="92.8" y1="333" x2="680" y2="333" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="338" font-size="16" fill="#53657d" text-anchor="end">43,970</text>
-<line x1="92.8" y1="281" x2="680" y2="281" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="286" font-size="16" fill="#53657d" text-anchor="end">43,980</text>
-<line x1="92.8" y1="229" x2="680" y2="229" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="234" font-size="16" fill="#53657d" text-anchor="end">43,990</text>
-<line x1="92.8" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="182" font-size="16" fill="#53657d" text-anchor="end">44,000</text>
-<line x1="130.8" y1="177" x2="130.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="130.8" y="461" font-size="16" fill="#53657d" text-anchor="middle">1</text>
-<line x1="204.8" y1="177" x2="204.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="204.8" y="461" font-size="16" fill="#53657d" text-anchor="middle">2</text>
-<line x1="278.8" y1="177" x2="278.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="278.8" y="461" font-size="16" fill="#53657d" text-anchor="middle">4</text>
-<line x1="352.8" y1="177" x2="352.8" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="352.8" y="461" font-size="16" fill="#53657d" text-anchor="middle">8</text>
-<line x1="426.9" y1="177" x2="426.9" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="426.9" y="461" font-size="16" fill="#53657d" text-anchor="middle">16</text>
-<line x1="500.9" y1="177" x2="500.9" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="500.9" y="461" font-size="16" fill="#53657d" text-anchor="middle">32</text>
-<line x1="574.9" y1="177" x2="574.9" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="574.9" y="461" font-size="16" fill="#53657d" text-anchor="middle">64</text>
-<line x1="642" y1="177" x2="642" y2="437" stroke="#d8e1ed" stroke-width="1"/>
 <text x="642" y="461" font-size="16" fill="#53657d" text-anchor="middle">120</text>
 <line x1="92.8" y1="437" x2="680" y2="437" stroke="#53657d" stroke-width="1.5"/>
 <line x1="92.8" y1="177" x2="92.8" y2="437" stroke="#53657d" stroke-width="1.5"/>

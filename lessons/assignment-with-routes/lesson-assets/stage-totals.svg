@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 525" role="img" aria-labelledby="title desc">
+<title id="title">단계별 TC 5개 합</title>
+<desc id="desc">TC 5개 점수 합을 단계별로 비교한 그림입니다. 번호 % 기사 수 894,481,017, 배정만 890,342,251, + 경로만 544,026,396, + 번갈아 521,416,623, 결합 탐욕 436,514,178, 번갈아 + 이웃 탐색 496,721,482, 결합 탐욕 + 탐색 429,430,581, 하한 412,143,544입니다. 경로만 고쳐도 크게 줄고 결합 탐욕이 가장 큰 한 번의 개선이며 결합 탐욕에서 시작한 이웃 탐색이 통과 기준 431,000,000보다 낮은 합을 냅니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="523" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="216.8" y1="139" x2="216.8" y2="459" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="307.4" y1="139" x2="307.4" y2="459" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="398" y1="139" x2="398" y2="459" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="488.6" y1="139" x2="488.6" y2="459" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="579.1" y1="139" x2="579.1" y2="459" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">단계별 TC 5개 합</text>
+<text x="28" y="84" font-size="19" fill="#53657d">낮을수록 좋습니다. 통과 기준은 431,000,000이고, 탐색이 있는 행은</text>
+<text x="28" y="109" font-size="19" fill="#53657d">TC마다 제안 400,000개입니다</text>
+<text x="28" y="165" font-size="19" fill="#172b45">번호 % 기사 수</text>
+<rect x="216.8" y="145" width="324.1" height="26" fill="#c3cddb"/>
+<text x="548.9" y="165" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">894,481,017</text>
+<text x="28" y="205" font-size="19" fill="#172b45">배정만</text>
+<rect x="216.8" y="185" width="322.6" height="26" fill="#9db6e0"/>
+<text x="547.4" y="205" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">890,342,251</text>
+<text x="28" y="245" font-size="19" fill="#172b45">+ 경로만</text>
+<rect x="216.8" y="225" width="197.1" height="26" fill="#9db6e0"/>
+<text x="421.9" y="245" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">544,026,396</text>
+<text x="28" y="285" font-size="19" fill="#172b45">+ 번갈아</text>
+<rect x="216.8" y="265" width="188.9" height="26" fill="#9db6e0"/>
+<text x="413.7" y="285" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">521,416,623</text>
+<text x="28" y="325" font-size="19" fill="#172b45">결합 탐욕</text>
+<rect x="216.8" y="305" width="158.2" height="26" fill="#2664ce"/>
+<text x="383" y="325" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">436,514,178</text>
+<text x="28" y="365" font-size="19" fill="#172b45">번갈아 + 이웃 탐색</text>
+<rect x="216.8" y="345" width="180" height="26" fill="#9db6e0"/>
+<text x="404.8" y="365" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">496,721,482</text>
+<text x="28" y="405" font-size="19" fill="#172b45" font-weight="700">결합 탐욕 + 탐색</text>
+<rect x="216.8" y="385" width="155.6" height="26" fill="#ae5515"/>
+<text x="380.4" y="405" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">429,430,581</text>
+<text x="28" y="445" font-size="19" fill="#172b45">하한 (참고)</text>
+<rect x="216.8" y="425" width="149.3" height="26" fill="#c3cddb"/>
+<text x="374.1" y="445" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">412,143,544</text>
+<text x="216.8" y="481" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<text x="398" y="481" font-size="16" fill="#53657d" text-anchor="middle">500,000,000</text>
+<text x="579.1" y="481" font-size="16" fill="#53657d" text-anchor="middle">1,000,000,000</text>
+<line x1="216.8" y1="139" x2="216.8" y2="459" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="509" font-size="17" fill="#53657d" text-anchor="middle">TC 5개 합 ↓ (작을수록 좋음)</text>
+</svg>

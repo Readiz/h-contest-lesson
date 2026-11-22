@@ -4,7 +4,7 @@
     python3 scripts/generate_charts.py --check    # 저장된 SVG와 바이트 비교(다르면 실패). validate_lessons.py가 호출한다
 
 새 강의에 차트를 더하는 법 (설정 한 덩어리만 더하면 된다):
-  1. `scripts/charts_<강의 id를 밑줄로>.py` 파일을 새로 만들고 `def charts(m: dict) -> dict[str, str]:` 를 쓴다
+  1. `scripts/charts_<강의 id를 밑줄로>.py` 파일을 새로 만들고(측정 원본 이름이 다르면 그 파일에 `SOURCE = "x-benchmark.json"`) `def charts(m: dict) -> dict[str, str]:` 를 쓴다
      (예: scripts/charts_hill_climbing_and_annealing.py). m은 그 강의의 measurements.json,
      반환값은 {"파일이름.svg": svg 문자열}. svg는 scripts/charts.py의 bar_chart · grouped_hbar · line_chart ·
      strip_chart · winloss_chart 중 하나로 만든다(숫자는 모두 m에서 읽는다. 손으로 옮기지 않는다).
@@ -29,8 +29,8 @@ import charts as ch  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def load(lesson_id: str) -> dict:
-    return json.loads((ROOT / "lessons" / lesson_id / "lesson-assets" / "measurements.json").read_text(encoding="utf-8"))
+def load(lesson_id: str, source: str = "measurements.json") -> dict:
+    return json.loads((ROOT / "lessons" / lesson_id / "lesson-assets" / source).read_text(encoding="utf-8"))
 
 
 def discover() -> dict:
@@ -38,7 +38,8 @@ def discover() -> dict:
     for path in sorted((ROOT / "scripts").glob("charts_*.py")):
         mod = importlib.import_module(path.stem)
         lesson_id = path.stem[len("charts_"):].replace("_", "-")
-        out[lesson_id] = mod.charts
+        # 측정 원본 이름이 measurements.json이 아니면 설정 파일에 SOURCE = "<파일 이름>"을 둔다.
+        out[lesson_id] = (mod.charts, getattr(mod, "SOURCE", "measurements.json"))
     return out
 
 
@@ -78,8 +79,8 @@ def main() -> None:
     args = ap.parse_args()
     bad: list[str] = []
     total = 0
-    for lesson_id, fn in discover().items():
-        for name, svg in fn(load(lesson_id)).items():
+    for lesson_id, (fn, source) in discover().items():
+        for name, svg in fn(load(lesson_id, source)).items():
             path = ROOT / "lessons" / lesson_id / "lesson-assets" / name
             total += 1
             if args.check:

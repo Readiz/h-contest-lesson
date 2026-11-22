@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 449" role="img" aria-labelledby="title desc">
+<title id="title">상자 하나를 옮기는 데 드는 호출</title>
+<desc id="desc">상자 하나를 옮길 때의 호출을 순서대로 나눈 모식도입니다. 빈 손 이동과 수직 이동, pick, 상자를 든 채 수평 이동, 수직 이동, drop 순이고, pick과 drop과 든 채 수평 이동만 센 값이 하한(거리 + 2)이며 빈 손 이동과 수직 이동은 그 위에 더 쌓입니다. 아래는 10개 TC 합으로 하한 68,653,459와 통과 기준 250,000,000를 비교하고 통과 기준은 하한의 3.6배입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="447" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">상자 하나를 옮기는 데 드는 호출</text>
+<text x="28" y="84" font-size="19" fill="#53657d">하한은 pick, drop, 상자를 든 수평 이동만 센 값이고, 빈 손 이동과</text>
+<text x="28" y="109" font-size="19" fill="#53657d">수직 이동이 그 위에 쌓입니다 (길이는 모식도)</text>
+<rect x="28" y="171" width="117.3" height="56" fill="#e1a56f"/>
+<rect x="148.3" y="171" width="91.2" height="56" fill="#e1a56f"/>
+<rect x="242.5" y="171" width="44.3" height="56" fill="#2664ce"/>
+<rect x="289.8" y="171" width="260.6" height="56" fill="#2664ce"/>
+<rect x="553.5" y="171" width="91.2" height="56" fill="#e1a56f"/>
+<rect x="647.7" y="171" width="44.3" height="56" fill="#2664ce"/>
+<text x="86.6" y="205" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">빈 손 이동</text>
+<text x="193.9" y="275" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">수직</text>
+<line x1="193.9" y1="227" x2="193.9" y2="253" stroke="#53657d" stroke-width="1.5"/>
+<text x="264.7" y="251" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">pick</text>
+<line x1="264.7" y1="227" x2="264.7" y2="229" stroke="#53657d" stroke-width="1.5"/>
+<text x="420.1" y="205" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">든 채 수평 이동</text>
+<text x="599.1" y="251" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">수직</text>
+<line x1="599.1" y1="227" x2="599.1" y2="229" stroke="#53657d" stroke-width="1.5"/>
+<text x="669.8" y="275" font-size="17" fill="#172b45" text-anchor="middle" font-weight="700">drop</text>
+<line x1="669.8" y1="227" x2="669.8" y2="253" stroke="#53657d" stroke-width="1.5"/>
+<line x1="242.5" y1="159" x2="692" y2="159" stroke="#2664ce" stroke-width="3"/>
+<text x="467.3" y="151" font-size="18" fill="#2664ce" text-anchor="middle" font-weight="700">하한: 거리 + 2</text>
+<line x1="28" y1="159" x2="239.5" y2="159" stroke="#ae5515" stroke-width="3"/>
+<text x="133.8" y="151" font-size="18" fill="#ae5515" text-anchor="middle" font-weight="700">더 쌓이는 호출</text>
+<line x1="553.5" y1="159" x2="644.7" y2="159" stroke="#ae5515" stroke-width="3"/>
+<text x="28" y="321" font-size="19" fill="#172b45" font-weight="700">10개 TC 합으로 본 하한과 통과 기준</text>
+<text x="28" y="358" font-size="19" fill="#172b45">하한 (거리 + 2의 합)</text>
+<rect x="262" y="338" width="91.7" height="26" fill="#2664ce"/>
+<text x="361.7" y="358" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">68,653,459</text>
+<text x="28" y="398" font-size="19" fill="#172b45" font-weight="700">통과 기준</text>
+<rect x="262" y="378" width="334" height="26" fill="#ae5515"/>
+<text x="604" y="398" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">250,000,000</text>
+<text x="28" y="433" font-size="17" fill="#53657d">통과 기준은 하한의 3.6배입니다</text>
+</svg>

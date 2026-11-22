@@ -38,6 +38,10 @@ void schedule_jobs(int job_count, int machine_count, const int processing_time[]
 | SA, 실제 점수만 | 12392 | 21488 | 29876 | 48166 | 61679 | 78576 | 252177 | -4.2% | 635.6 |
 | SA, 평균 부하 항 포함 | 12364 | 21010 | 28980 | 45137 | 56124 | 71765 | 235380 | -10.6% | 502.4 |
 
+![탐욕 초기해의 6개 TC 합 263,314보다 각 방식이 얼마나 낮아졌는지 보인 그림입니다. 후보 수는 모두 2,000,000개입니다. HC, 점수만 8.3% (합 241,494), HC + 평균 항 9.3% (합 238,884), SA, 점수만 4.2% (합 252,177), SA + 평균 항 10.6% (합 235,380)이고, 실제 점수만 쓴 SA는 hill climbing보다 적게 줄어듭니다.](../lesson-assets/stage-gain.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-local-search/lesson-assets/stage-gain.svg)
+
 - 같은 후보 수에서 SA(평균 부하 항 포함)가 가장 낮은 235380로, 탐욕보다 10.6% 낮습니다. 본문의 제출 코드를 채점기에 그대로 연결한 결과도 같은 TC별 비용입니다(검사 스크립트가 비교).
 - 실제 점수만 쓴 SA는 hill climbing보다도 **나쁩니다**(252177 대 241494). 이 실험이 원인을 증명하지는 않지만, 평지가 넓고 합계를 줄이는 방향을 알려 주는 항이 없다는 점과 일치합니다.
 - 평균 부하 항은 hill climbing에도 도움이 되지만(241494 → 238884) 그 격차보다 SA와의 결합 효과가 훨씬 큽니다.
@@ -72,6 +76,10 @@ void schedule_jobs(int job_count, int machine_count, const int processing_time[]
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-local-search/lesson-assets/acceptance-by-temperature.svg)
 
+![시작 온도를 바꿨을 때 solver seed 9개의 6개 TC 합을 점으로, 중앙값을 세로 눈금으로 보인 그림입니다. 중앙값은 0 (나쁜 이동 거절) 239,031, 중앙 손해의 0.03배 235,605, 중앙 손해의 0.1배 235,248, 중앙 손해의 0.3배 235,291, 중앙 손해의 1배 237,510, 중앙 손해의 3배 242,215입니다. 0.03배에서 0.3배까지는 235,000대로 겹치고 1배 이상에서 나빠집니다.](../lesson-assets/temperature-seeds.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-local-search/lesson-assets/temperature-seeds.svg)
+
 - 0.1배와 0.3배의 합 중앙값 차이(43)는 0.1배 한 설정의 seed 9개 최소~최대 폭(358)보다 작으므로 **둘 사이의 우열은 이 실험으로 정하지 않습니다**. 본문 코드는 합의 중앙값이 가장 낮았던 0.1배를 씁니다.
 - 1배 이상은 시작 구간에서 나쁜 이동을 31% 이상 받아들여 후반에 되돌아오지 못합니다. 3배는 시작 온도 0 행(239031)보다도 나쁩니다.
 - 0.03배는 거의 아무것도 받아들이지 않아(첫 구간 0.7%) hill climbing에 가깝지만 그래도 SA가 낫습니다.
@@ -87,6 +95,10 @@ void schedule_jobs(int job_count, int machine_count, const int processing_time[]
 | 2 | 235248 | 235105~235463 |
 | 4 | 235846 | 235743~236451 |
 | 8 | 243667 | 243051~244163 |
+
+![평균 부하 항의 가중치를 바꿨을 때 solver seed 9개의 합과 중앙값입니다. 중앙값은 가중치 0 251,448, 가중치 1 235,964, 가중치 2 235,248, 가중치 4 235,846, 가중치 8 243,667이며 가중치 2에서 가장 낮고 0과 8에서 크게 높아집니다.](../lesson-assets/weight-seeds.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-local-search/lesson-assets/weight-seeds.svg)
 
 0은 [앞에서 본](solution.md) 평지 문제이고, 8은 합계를 줄이는 쪽이 최대 부하 감소보다 커져서 균형이 무너집니다. 본문은 2를 씁니다.
 

@@ -109,6 +109,7 @@ def thin(ticks: Sequence[float], x0: float, x1: float, lo: float, hi: float, siz
 class Canvas:
     def __init__(self) -> None:
         self.parts: list[str] = []
+        self.grid: list[str] = []  # 눈금선은 맨 아래 층에 그려 막대와 값 글자를 가리지 않게 한다
 
     def text(self, x: float, y: float, size: int, body: str, fill: str = INK, anchor: str = "start",
              weight: str = "", halo: bool = False) -> None:
@@ -123,7 +124,8 @@ class Canvas:
 
     def line(self, x1: float, y1: float, x2: float, y2: float, stroke: str = GRID, width: float = 1.5, dash: str = "") -> None:
         d = f' stroke-dasharray="{dash}"' if dash else ""
-        self.parts.append(f'<line x1="{num(x1)}" y1="{num(y1)}" x2="{num(x2)}" y2="{num(y2)}" stroke="{stroke}" stroke-width="{num(width)}"{d}/>')
+        target = self.grid if stroke == GRID and not dash else self.parts
+        target.append(f'<line x1="{num(x1)}" y1="{num(y1)}" x2="{num(x2)}" y2="{num(y2)}" stroke="{stroke}" stroke-width="{num(width)}"{d}/>')
 
     def circle(self, x: float, y: float, r: float, fill: str, opacity: float = 1.0, ring: bool = False) -> None:
         o = f' fill-opacity="{num(opacity)}"' if opacity != 1.0 else ""
@@ -174,7 +176,7 @@ def _finish(c: Canvas, title: str, desc: str, height: float) -> str:
             f'<title id="title">{esc(title)}</title>\n<desc id="desc">{esc(desc)}</desc>\n'
             '<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>\n'
             f'<rect x="1" y="1" width="{W - 2}" height="{h - 2}" rx="20" fill="{BG}" stroke="{GRID}" stroke-width="1.5"/>\n')
-    return head + "\n".join(c.parts) + "\n</svg>\n"
+    return head + "\n".join(c.grid + c.parts) + "\n</svg>\n"
 
 
 def _axis_title(c: Canvas, y: float, text: str) -> None:

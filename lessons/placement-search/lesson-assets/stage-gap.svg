@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 325" role="img" aria-labelledby="title desc">
+<title id="title">통과 기준까지 모자란 점수</title>
+<desc id="desc">통과 기준 3,001,673에서 각 방식의 합을 뺀 모자란 점수입니다. 점수 큰 순 탐욕 7,870, 국소 이동 2,650, destroy/repair 0 (통과 기준 도달)이고 destroy/repair가 기준에 닿습니다. 후보 번호 순 기준선은 427,465 모자라 눈금 밖이라 뺐습니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="323" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="188.3" y1="139" x2="188.3" y2="259" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="272.2" y1="139" x2="272.2" y2="259" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="356.1" y1="139" x2="356.1" y2="259" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="440" y1="139" x2="440" y2="259" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="523.9" y1="139" x2="523.9" y2="259" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">통과 기준까지 모자란 점수</text>
+<text x="28" y="84" font-size="19" fill="#53657d">10개 TC 합, 후보 검사 1,000,000회로 맞춘 비교입니다. 후보 번호 순</text>
+<text x="28" y="109" font-size="19" fill="#53657d">기준선(427,465 모자람)은 눈금 밖이라 뺐습니다</text>
+<text x="28" y="165" font-size="19" fill="#172b45">점수 큰 순 탐욕</text>
+<rect x="188.3" y="145" width="330.1" height="26" fill="#2664ce"/>
+<text x="526.4" y="165" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">7,870</text>
+<text x="28" y="205" font-size="19" fill="#172b45">국소 이동</text>
+<rect x="188.3" y="185" width="111.2" height="26" fill="#9db6e0"/>
+<text x="307.5" y="205" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">2,650</text>
+<text x="28" y="245" font-size="19" fill="#172b45" font-weight="700">destroy/repair</text>
+<rect x="188.3" y="225" width="0" height="26" fill="#ae5515"/>
+<text x="196.3" y="245" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">0 (통과 기준 도달)</text>
+<text x="188.3" y="281" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<text x="272.2" y="281" font-size="16" fill="#53657d" text-anchor="middle">2,000</text>
+<text x="356.1" y="281" font-size="16" fill="#53657d" text-anchor="middle">4,000</text>
+<text x="440" y="281" font-size="16" fill="#53657d" text-anchor="middle">6,000</text>
+<text x="523.9" y="281" font-size="16" fill="#53657d" text-anchor="middle">8,000</text>
+<line x1="188.3" y1="139" x2="188.3" y2="259" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="309" font-size="17" fill="#53657d" text-anchor="middle">통과 기준 대비 모자란 점수 ↓ (작을수록 좋음)</text>
+</svg>

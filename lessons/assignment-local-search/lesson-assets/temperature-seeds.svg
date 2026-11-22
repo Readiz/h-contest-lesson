@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 497" role="img" aria-labelledby="title desc">
+<title id="title">시작 온도별 합의 분포</title>
+<desc id="desc">시작 온도를 바꿨을 때 solver seed 9개의 6개 TC 합을 점으로, 중앙값을 세로 눈금으로 보인 그림입니다. 중앙값은 0 (나쁜 이동 거절) 239,031, 중앙 손해의 0.03배 235,605, 중앙 손해의 0.1배 235,248, 중앙 손해의 0.3배 235,291, 중앙 손해의 1배 237,510, 중앙 손해의 3배 242,215입니다. 0.03배에서 0.3배까지는 235,000대로 겹치고 1배 이상에서 나빠집니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="495" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="218.7" y1="167" x2="218.7" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="317.7" y1="167" x2="317.7" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="416.6" y1="167" x2="416.6" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="515.6" y1="167" x2="515.6" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="614.5" y1="167" x2="614.5" y2="431" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">시작 온도별 합의 분포</text>
+<text x="28" y="84" font-size="19" fill="#53657d">SA, solver seed 9개. 점은 시드 하나, 눈금은 중앙값이며 본문이 쓰는</text>
+<text x="28" y="109" font-size="19" fill="#53657d">0.1배를 강조했습니다</text>
+<circle cx="35" cy="132" r="6" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">시드 하나</text>
+<line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
+<circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
+<text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
+<text x="218.7" y="453" font-size="16" fill="#53657d" text-anchor="middle">235,000</text>
+<text x="317.7" y="453" font-size="16" fill="#53657d" text-anchor="middle">237,500</text>
+<text x="416.6" y="453" font-size="16" fill="#53657d" text-anchor="middle">240,000</text>
+<text x="515.6" y="453" font-size="16" fill="#53657d" text-anchor="middle">242,500</text>
+<text x="614.5" y="453" font-size="16" fill="#53657d" text-anchor="middle">245,000</text>
+<text x="28" y="195" font-size="19" fill="#172b45">0 (나쁜 이동 거절)</text>
+<circle cx="378.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="384" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="378.8" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="376.6" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="364" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="376.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="403.4" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="396.5" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="362.2" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="378.3" y1="174" x2="378.3" y2="204" stroke="#172b45" stroke-width="3.5"/>
+<text x="626.5" y="195" font-size="17" fill="#172b45">239,031</text>
+<text x="28" y="239" font-size="19" fill="#172b45">중앙 손해의 0.03배</text>
+<circle cx="252.6" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="240.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="236.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="243.4" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="251.8" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="242.6" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="232.6" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="242.6" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="247.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="242.6" y1="218" x2="242.6" y2="248" stroke="#172b45" stroke-width="3.5"/>
+<text x="626.5" y="239" font-size="17" fill="#172b45">235,605</text>
+<text x="28" y="283" font-size="19" fill="#172b45">중앙 손해의 0.1배</text>
+<circle cx="224.5" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="228.2" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="231.1" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="228.5" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="222.9" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="235.7" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="232.3" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="224.5" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="237" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<line x1="228.5" y1="262" x2="228.5" y2="292" stroke="#172b45" stroke-width="3.5"/>
+<text x="626.5" y="283" font-size="17" fill="#172b45">235,248</text>
+<text x="28" y="327" font-size="19" fill="#172b45">중앙 손해의 0.3배</text>
+<circle cx="226.1" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="238.1" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="232.3" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="239.7" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="229.5" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="238.7" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="225.5" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="230.2" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="228.4" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="230.2" y1="306" x2="230.2" y2="336" stroke="#172b45" stroke-width="3.5"/>
+<text x="626.5" y="327" font-size="17" fill="#172b45">235,291</text>
+<text x="28" y="371" font-size="19" fill="#172b45">중앙 손해의 1배</text>
+<circle cx="307.6" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="326.8" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="324.6" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="318.1" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="312.2" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="328.2" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="320.8" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="306.9" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="311.6" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="318.1" y1="350" x2="318.1" y2="380" stroke="#172b45" stroke-width="3.5"/>
+<text x="626.5" y="371" font-size="17" fill="#172b45">237,510</text>
+<text x="28" y="415" font-size="19" fill="#172b45">중앙 손해의 3배</text>
+<circle cx="484.2" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="534.4" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="532" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="504.3" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="501.5" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="544.2" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="519.5" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="492.6" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="487.8" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="504.3" y1="394" x2="504.3" y2="424" stroke="#172b45" stroke-width="3.5"/>
+<text x="626.5" y="415" font-size="17" fill="#172b45">242,215</text>
+<line x1="218.7" y1="167" x2="218.7" y2="431" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="481" font-size="17" fill="#53657d" text-anchor="middle">TC 6개 합 ↓ (작을수록 좋음)</text>
+</svg>

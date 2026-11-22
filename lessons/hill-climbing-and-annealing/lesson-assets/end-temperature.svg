@@ -3,17 +3,17 @@
 <desc id="desc">순서 틀에서 끝 온도를 기본값의 6%, 25%, 100%, 400%, 1600%로 바꿨을 때 시드 20개 중앙값 비용입니다. 13,589, 13,628, 13,524, 13,908, 21,968이며 기본값(100%)이 가장 낮고 1600%에서는 끝 온도가 너무 높아 크게 나빠집니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="509" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="441" x2="692" y2="441" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="347.7" x2="692" y2="347.7" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="254.3" x2="692" y2="254.3" stroke="#d8e1ed" stroke-width="1.5"/>
+<line x1="92.8" y1="161" x2="692" y2="161" stroke="#d8e1ed" stroke-width="1.5"/>
 <rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
 <text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">끝 온도를 바꾸면</text>
 <text x="28" y="84" font-size="19" fill="#53657d">순서 틀, 시작 온도와 예산(1,000,000번)은 그대로, 시드 20개의</text>
 <text x="28" y="109" font-size="19" fill="#53657d">중앙값입니다. 기본값을 강조했습니다</text>
-<line x1="92.8" y1="441" x2="692" y2="441" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="446" font-size="16" fill="#53657d" text-anchor="end">0</text>
-<line x1="92.8" y1="347.7" x2="692" y2="347.7" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="352.7" font-size="16" fill="#53657d" text-anchor="end">10,000</text>
-<line x1="92.8" y1="254.3" x2="692" y2="254.3" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="259.3" font-size="16" fill="#53657d" text-anchor="end">20,000</text>
-<line x1="92.8" y1="161" x2="692" y2="161" stroke="#d8e1ed" stroke-width="1.5"/>
 <text x="84.8" y="166" font-size="16" fill="#53657d" text-anchor="end">30,000</text>
 <rect x="124.7" y="314.2" width="56" height="126.8" fill="#2664ce"/>
 <text x="152.7" y="306.2" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">13,589</text>
