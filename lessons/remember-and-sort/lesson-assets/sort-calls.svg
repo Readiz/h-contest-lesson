@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 465" role="img" aria-labelledby="title desc">
+<title id="title">정렬 구간의 호출 종류</title>
+<desc id="desc">정렬 구간의 호출을 종류별로 나눈 그림입니다(10개 TC 합). 수평 이동은 1단계 13,406,920, 2단계 6,126,110이고. 수직 이동은 1단계 103,871,496, 2단계 30,178,794이고. pick + drop은 1단계 13,305,940, 2단계 4,153,680이고. 2단계의 인내 정렬은 상자를 두 번만 옮겨 모든 종류가 줄고 특히 수직 이동이 크게 줄어듭니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="463" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">정렬 구간의 호출 종류</text>
+<text x="28" y="84" font-size="19" fill="#53657d">10개 TC 합입니다. 2단계는 정렬에서 상자를 두 번만 옮겨 호출이</text>
+<text x="28" y="109" font-size="19" fill="#53657d">줄어듭니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#9db6e0"/>
+<text x="50" y="137" font-size="18" fill="#172b45">1단계</text>
+<rect x="129.9" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="151.9" y="137" font-size="18" fill="#172b45">2단계</text>
+<text x="28" y="201" font-size="19" fill="#172b45" font-weight="700">수평 이동</text>
+<rect x="157" y="171" width="37.7" height="24" fill="#9db6e0"/>
+<text x="202.7" y="190" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">13,406,920</text>
+<rect x="157" y="199" width="17.2" height="24" fill="#ae5515"/>
+<text x="182.2" y="218" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">6,126,110</text>
+<text x="28" y="279" font-size="19" fill="#172b45" font-weight="700">수직 이동</text>
+<rect x="157" y="249" width="292.4" height="24" fill="#9db6e0"/>
+<text x="457.3" y="268" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">103,871,496</text>
+<rect x="157" y="277" width="84.9" height="24" fill="#ae5515"/>
+<text x="249.9" y="296" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">30,178,794</text>
+<text x="28" y="357" font-size="19" fill="#172b45" font-weight="700">pick + drop</text>
+<rect x="157" y="327" width="37.5" height="24" fill="#9db6e0"/>
+<text x="202.4" y="346" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">13,305,940</text>
+<rect x="157" y="355" width="11.7" height="24" fill="#ae5515"/>
+<text x="176.6" y="374" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">4,153,680</text>
+<line x1="157" y1="165" x2="157" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="157" y="421" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="297.7" y1="165" x2="297.7" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="297.7" y="421" font-size="16" fill="#53657d" text-anchor="middle">50,000,000</text>
+<line x1="438.4" y1="165" x2="438.4" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="438.4" y="421" font-size="16" fill="#53657d" text-anchor="middle">100,000,000</text>
+<line x1="579.1" y1="165" x2="579.1" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="579.1" y="421" font-size="16" fill="#53657d" text-anchor="middle">150,000,000</text>
+<line x1="157" y1="165" x2="157" y2="399" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="449" font-size="17" fill="#53657d" text-anchor="middle">호출 수 ↓ (적을수록 좋음)</text>
+</svg>

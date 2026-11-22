@@ -622,7 +622,7 @@ def check_tables(data: dict, hand: dict, ref: dict) -> None:
 
 def check_svgs() -> None:
     text = read_lesson_text(LESSON_ID)
-    svgs = sorted((ROOT / "lessons/remember-and-sort/lesson-assets").glob("*.svg"))
+    svgs = sorted(p for p in (ROOT / "lessons/remember-and-sort/lesson-assets").glob("*.svg") if p.name in ("stage-scores.svg", "state-layers.svg"))  # 손으로 쓴 그림. 차트는 generate_charts.py --check가 검사
     assert len(svgs) == 2, svgs
     for svg in svgs:
         body = svg.read_text()
