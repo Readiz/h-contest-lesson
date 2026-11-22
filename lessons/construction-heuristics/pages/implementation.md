@@ -1,10 +1,10 @@
 # 코드 틀과 두 문제 유형 적용
 
-구성 틀은 문제와 무관한 고정 부분과 문제마다 채우는 부분으로 나뉩니다. 이 페이지는 고정 부분을 먼저 보이고, 같은 틀에 순서 틀과 배정 틀을 각각 채워 넣습니다.
+구성 틀은 문제와 무관한 고정 부분과 문제마다 채우는 부분으로 나뉩니다. 고정 부분을 먼저 보이고, 같은 틀에 순서 틀과 배정 틀을 각각 채워 넣습니다.
 
 | 구분 | 내용 | 코드 |
 | --- | --- | --- |
-| 고정 | 후보 요약 `Cand`, 선택 기준 `ruleKey`와 동률 규칙 `better`, 흔들기를 포함한 `pick`, 구성 반복 `construct`, 여러 번 만들기 `bestOf`, 입력 생성기 `Gen` | `cons-core` |
+| 고정 | 후보 요약 `Cand`, 선택 기준 `ruleKey`와 동률 규칙 `better`, 흔들기를 포함한 `pick`, 구성 반복 `construct`, 여러 번 만들기 `bestOf`(연습용 입력 생성기 `Gen`도 같은 블록에 둠) | `cons-core` |
 | 채움 | `begin`, `remaining`, `candidates`, `place`, `score`, `solution`과 해당 문제의 상태 | `cons-path`, `cons-jobs` |
 | 문제에 맞춘 고정 개선 | 구성 뒤에 붙이는 가장 단순한 개선 | `cons-improve` |
 
@@ -12,7 +12,11 @@
 
 ## 고정 부분: 구성 틀
 
-`construct`는 `begin(first)`, `remaining()`, `candidates(cand, rule)`, `place(item, slot)`만 부릅니다. `candidates`는 남은 항목마다 가장 싼 자리와 그 비용, 두 번째로 싼 자리의 비용, 항목의 "큰 정도"(`weight`)를 채웁니다. 선택은 `pick`이 `Plan`에 따라 합니다. `Plan`의 `width`와 `percent`가 흔드는 정도이고 `width == 1`이면 난수를 쓰지 않으므로 같은 입력에서 같은 해가 나옵니다. 동률은 항상 같은 순서로 풀어야 결과를 재현할 수 있어서 `better`가 키, `best`, 항목 번호 순으로 정합니다.
+`construct`는 문제마다 채우는 `begin(first)`, `remaining()`, `candidates(cand, rule)`, `place(item, slot)` 네 함수만 부릅니다. `candidates`는 남은 항목마다 가장 싼 자리와 그 비용, 두 번째로 싼 자리의 비용, 항목의 "큰 정도"(`weight`)를 채웁니다.
+
+선택은 `pick`이 `Plan`에 따라 합니다. `Plan`의 `width`와 `percent`가 흔드는 정도이고, `width == 1`이면 난수를 쓰지 않으므로 같은 입력에서 같은 해가 나옵니다. 동률은 항상 같은 순서로 풀어야 결과를 재현할 수 있어서 `better`가 키, `best`, 항목 번호 순으로 정합니다.
+
+아래 그림은 왼쪽의 고정 부분이 오른쪽 함수를 이름으로만 부르고, 순서 틀과 배정 틀이 각자 그 함수를 채운다는 뜻입니다.
 
 ![구성 틀의 고정 부분(construct의 반복, pick, Cand, better, bestOf)과 문제마다 채우는 함수 begin, remaining, candidates, place, score가 순서 틀과 배정 틀에서 각각 무엇을 하는지 보인 표 모양의 그림.](../lesson-assets/construction-frame.svg)
 
@@ -110,13 +114,19 @@ inline int iabs(int v) { return v < 0 ? -v : v; }
 }
 ```
 
-`construct` 안의 `static Cand cand[P::MAXN]`은 후보 요약을 담는 배열로, 구성을 시작할 때마다 `candidates`가 앞에서부터 다시 채웁니다. `bestOf`는 가장 좋은 해를 **복사해서** 남깁니다. 점수만 갱신하고 해를 복사하지 않으면 마지막에 만든 해가 반환되므로 [흔한 실수](practice.md)에서 이 경우를 검사합니다.
+`bestOf`는 가장 좋은 해를 **복사해서** 남깁니다. 점수만 갱신하고 해를 복사하지 않으면 마지막에 만든 해가 반환되므로 [흔한 실수](practice.md)에서 이 경우를 검사합니다.
+
+:::hint `construct`의 후보 배열
+`construct` 안의 `static Cand cand[P::MAXN]`은 후보 요약을 담는 배열로, 구성을 시작할 때마다 `candidates`가 앞에서부터 다시 채웁니다.
+:::
 
 ## 채움 1: 순서 틀
 
-상태는 지금까지 만든 경로 `order[0..len-1]`와 길이 `length`입니다. `place`가 길이를 증분으로 갱신하고, 전체를 다시 계산한 값과 같은지는 검사 스크립트가 매 단계 확인합니다. `anySlot`이 `false`이면 끝에만 붙이는 가장 가까운 점 잇기, `true`이면 모든 자리를 보는 삽입입니다. 가장 먼 점 삽입(`RULE_HEAVIEST`)은 `weight`에 경로의 가장 가까운 점까지의 거리를 채웁니다. 이 계산도 평가 횟수에 넣습니다.
+상태는 지금까지 만든 경로 `order[0..len-1]`와 길이 `length`입니다. `place`가 길이를 증분으로 갱신합니다. `anySlot`이 `false`이면 끝에만 붙이는 가장 가까운 점 잇기, `true`이면 모든 자리를 보는 삽입입니다. 가장 먼 점 삽입(`RULE_HEAVIEST`)은 `weight`에 경로의 가장 가까운 점까지의 거리를 채웁니다. 이 계산도 평가 횟수에 넣습니다. 정렬 기준만으로 한 번에 만드는 구성법은 `stripOrder`로, 점을 세로 띠로 나누고 띠 안에서 `y`를 오름·내림으로 번갈아 잇습니다. `construct`를 거치지 않고 `sort` 블록의 `sortIds`로 순서를 정한 뒤 `setOrder`로 경로를 만듭니다.
 
-정렬 기준만으로 한 번에 만드는 구성법은 `stripOrder`입니다. 점을 세로 띠로 나누고 띠 안에서 `y`를 오름·내림으로 번갈아 잇습니다. `construct`를 거치지 않고 `sort` 블록의 `sortIds`로 순서를 정한 뒤 `setOrder`로 경로를 만듭니다.
+:::hint 증분 길이 검사
+`place`가 증분으로 갱신한 길이가 경로 전체를 다시 계산한 값과 같은지는 검사 스크립트가 확인합니다.
+:::
 
 ```cpp snippet=cons-path
 namespace cons {
@@ -212,7 +222,7 @@ void stripOrder(Path& p, int strips) {
 
 상태는 작업별 기계 `assign`, 기계별 부하 `load`와 개수 `cnt`입니다. 기계가 가득 차면(`cnt >= k`) 그 기계를 후보 자리에서 뺍니다. 이것이 개수 제한을 지키는 부분이며, 두 번째 자리가 없으면 `second`가 `BIG`으로 남아 후회가 매우 큰 항목으로 취급됩니다. 비교에는 부하 제곱의 변화에 100을 곱한 정수 값을 써서 실수 연산과 나눗셈을 피하고, 점수 `score()`에서만 합에 대해 한 번 나눕니다.
 
-`N ≤ M × K`가 전제입니다. 이 전제가 깨지면 후보가 없는 항목이 생기고 `place(j, -1)`이 배열 범위를 벗어납니다.
+`N ≤ M × K`가 전제입니다. 깨지면 후보가 없는 항목이 생기고 `place(j, -1)`이 배열 범위를 벗어납니다.
 
 ```cpp snippet=cons-jobs
 namespace cons {
@@ -334,7 +344,7 @@ long long improveMove(Jobs& q) {
 
 ## 사용 예
 
-아래 두 함수는 구성과 개선을 이어 붙인 가장 짧은 사용 예입니다. 구성 틀은 그대로이고 문제 구조체와 규칙만 다릅니다.
+구성과 개선을 이어 붙인 가장 짧은 사용 예입니다. 구성 틀은 그대로이고 문제 구조체와 규칙만 다릅니다.
 
 ```cpp snippet=cons-entry
 namespace cons {
@@ -359,4 +369,8 @@ long long solveJobs(Jobs& q) {
 }
 ```
 
-입력을 만드는 방법은 `makePath(p, n, seed)`와 `makeJobs(q, n, m, k, seed)`입니다. 난수는 `x = x * 6364136223846793005 + 1442695040888963407`(64비트)에서 `(x >> 33) % 범위`를 쓰며 시드를 `x`의 처음 값으로 둡니다. 순서 틀은 점마다 `x`, `y` 순으로 `0..999`, 배정 틀은 모든 작업의 길이 `d`(`1..100`)를 먼저, 그다음 추가 비용 `c[작업][기계]`(`0..50`)를 작업 순서대로 뽑습니다.
+입력은 `makePath(p, n, seed)`와 `makeJobs(q, n, m, k, seed)`로 만들며, 이 입력 생성기 `Gen`의 난수는 구성 중 흔들기에 쓰는 `hc::Random`과 따로입니다.
+
+:::hint 입력 생성 규칙
+난수는 `x = x * 6364136223846793005 + 1442695040888963407`(64비트)에서 `(x >> 33) % 범위`를 쓰며 시드를 `x`의 처음 값으로 둡니다. 순서 틀은 점마다 `x`, `y` 순으로 `0..999`, 배정 틀은 작업마다 길이 `d`(`1..100`)와 추가 비용 `c[작업][기계]`(`0..50`)를 작업 순서대로 뽑습니다.
+:::
