@@ -44,4 +44,4 @@ x축 좌표가 `0=0, A=1, B=9, C=8, D=2`이고 순서가 `0,A,B,C,D`라면 꼬�
 
 최대 입력의 시간 측정에는 초기화, 입력 처리, 점수 재계산, 최종 답 생성도 포함합니다. 스트레스 반복문과 검증용 출력은 로컬 하네스에 두고 제출 함수에는 넣지 않습니다.
 
-두 풀이의 점수 차이를 신뢰구간으로 판단하는 방법은 [실험 비교와 평가](https://h.readiz.com/learn/testing-and-stress/experiment-evaluation)에서 다룹니다.
+두 풀이의 점수를 비교하는 실험은 [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)에서 다룹니다.

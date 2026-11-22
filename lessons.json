@@ -293,15 +293,7 @@
         "dynamic-programming",
         "cpp-common-library"
       ],
-      "pages": [
-        {
-          "pageId": "experiment-evaluation",
-          "title": "실험 비교와 평가",
-          "description": "같은 입력 묶음 비교, 신뢰구간, 튜닝/검증 입력 분리를 정리합니다.",
-          "order": 1,
-          "file": "pages/experiment-evaluation.md"
-        }
-      ],
+      "pages": [],
       "lessonType": "core",
       "practiceStatus": "linked",
       "implementationStatus": "concept-only",
@@ -1475,7 +1467,7 @@
         {
           "pageId": "search-strategies",
           "title": "초기해와 지역 탐색",
-          "description": "ORDERING의 개선 연산에서 지역 최적, SA의 수락 확률, 재시도와 예산 비교로 이어집니다.",
+          "description": "ORDERING의 2-opt 초기해에 SA를 붙이는 구현과 단계별 측정을 봅니다.",
           "order": 20,
           "file": "pages/search-strategies.md"
         },

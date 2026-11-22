@@ -2,7 +2,7 @@
 
 [물류 상품 배송 1](/practice/COUPANG1)은 물류센터 1,000곳의 재고와 배송 요청 1,000,000건, 트럭 한 대가 주어지는 문제입니다. 앞의 [택시 배정](https://h.readiz.com/learn/assignment-with-routes)과 [격자 배치](https://h.readiz.com/learn/placement-search)는 후보가 수천~수만 개라서 "남은 것을 전부 훑어 가장 좋은 것을 고른다"를 그대로 써도 TC당 1억 번 안쪽이었습니다. 이 문제에서는 같은 문장이 5.0×10^11번이 됩니다. 이 강의는 상한에서 연산 수를 먼저 계산하고, 후보를 줄이는 자료구조(좌표 칸)를 만들고, 남은 시간을 어디에 쓸지 실측으로 정하는 과정을 따라갑니다.
 
-[복잡도와 입력 크기 감각](https://h.readiz.com/learn/complexity-input-size)과 [휴리스틱 입문](https://h.readiz.com/learn/heuristic)을 읽었다고 가정합니다. 칸으로 나누는 발상은 [Sqrt Decomposition](https://h.readiz.com/learn/sqrt-decomposition)의 "휴리스틱 풀이에서 쓰는 곳"에서 소개한 것이고, 측정은 [실험 비교와 평가](https://h.readiz.com/learn/testing-and-stress/experiment-evaluation)를 따릅니다.
+[복잡도와 입력 크기 감각](https://h.readiz.com/learn/complexity-input-size)과 [휴리스틱 입문](https://h.readiz.com/learn/heuristic)을 읽었다고 가정합니다. 칸으로 나누는 발상은 [Sqrt Decomposition](https://h.readiz.com/learn/sqrt-decomposition)의 "휴리스틱 풀이에서 쓰는 곳"에서 소개한 것이고, 측정은 [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)를 따릅니다.
 
 ## 이 강의에서 다루는 것
 

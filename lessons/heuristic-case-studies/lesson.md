@@ -9,7 +9,7 @@
 | 쪽 | 문제 | 보여 주는 기법 | 방법론 강의 |
 | --- | --- | --- | --- |
 | [배송 순서 개선](pages/ordering-route-improvement.md) | ORDERING | 유효한 번호 순서 기준선, nearest neighbor 초기해, 열린 경로 2-opt의 경계 간선 차분 | [초기해 만들기](https://h.readiz.com/learn/construction-heuristics), [근방 설계와 차분 평가](https://h.readiz.com/learn/neighborhood-and-delta) |
-| [초기해와 지역 탐색](pages/search-strategies.md) | ORDERING | 지역 최적 반례, SA의 수락 확률, 현재해와 최선해 분리, 같은 후보 수의 비용 비교 | [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing) |
+| [초기해와 지역 탐색](pages/search-strategies.md) | ORDERING | ORDERING에 붙이는 SA 구현, 같은 후보 수의 단계별 비용 비교 | [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing) |
 | [광고판 도시 배치](pages/placement-and-repair.md) | BILLCITY | 행 bitmask 점유 검사, 위치 평가식, 큰 제거 뒤 다시 채우기 | [크게 부수고 다시 짓기](https://h.readiz.com/learn/destroy-and-repair) |
 | [31일 설치 일정 Beam Search](pages/aircontech-beam-search.md) | AIRCONTECH | 행동 후보와 경로 후보를 따로 줄이는 두 단계 가지치기, 탐색 평가값과 실제 점수의 분리 | [빔 서치와 평가 함수](https://h.readiz.com/learn/beam-search) |
 

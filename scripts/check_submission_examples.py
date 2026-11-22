@@ -25,8 +25,7 @@ PROTECTED = {"cpp-contest-basics", "cpp-common-library", "sorting", "greedy",
              "dynamic-programming", "tsp-hamiltonian", "hungarian-algorithm",
              "meldable-heap", "treap", "problem-modeling", "partial-information", "destroy-and-repair", "beam-search", "neighborhood-and-delta", "construction-heuristics", "hill-climbing-and-annealing", "candidate-and-time-budget", "experiments-and-tuning"}
 # Local-harness pages that explicitly declare general C++17 (STL allowed).
-GENERAL_CPP_PAGES = {"lessons/testing-and-stress/pages/experiment-evaluation.md",
-                     "lessons/candidate-and-time-budget/pages/practice.md"}
+GENERAL_CPP_PAGES = {"lessons/candidate-and-time-budget/pages/practice.md"}
 CPP = re.compile(r"```(?:cpp|c\+\+)(?:[^\n]*)\n(.*?)\n```", re.S)
 
 

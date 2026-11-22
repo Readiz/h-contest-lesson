@@ -48,7 +48,7 @@
 
 ## 실험: 문턱과 줄이는 비율
 
-4단계에서 한 번에 하나씩 바꿉니다(`MINPER`는 이동 한 번당 최소 감소량, `KEEP`은 3단계 문턱의 감소 비율 KEEP/8). 기본값은 `MINPER 10`, `KEEP 6`이고 시간은 1회 측정이라 잡음이 있습니다. 점수는 같은 10개 입력의 TC별 차이로 비교합니다([실험 비교와 평가](https://h.readiz.com/learn/testing-and-stress/experiment-evaluation)).
+4단계에서 한 번에 하나씩 바꿉니다(`MINPER`는 이동 한 번당 최소 감소량, `KEEP`은 3단계 문턱의 감소 비율 KEEP/8). 기본값은 `MINPER 10`, `KEEP 6`이고 시간은 1회 측정이라 잡음이 있습니다. 점수는 같은 10개 입력의 TC별 차이로 비교합니다([실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)).
 
 | 바꾼 값 | 점수 합 | 시간 ms |
 | --- | --- | --- |
