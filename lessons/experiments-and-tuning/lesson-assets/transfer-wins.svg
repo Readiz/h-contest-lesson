@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 477" role="img" aria-labelledby="title desc">
+<title id="title">고른 설정은 어디서 이기나</title>
+<desc id="desc">고른 설정을 일정 온도와 같은 시드끼리 비교한 결과입니다. 확인 시드 21~40 14 대 6, 점 100개 10 대 10, 점 400개 20 대 0, 8개 뭉치 분포 20 대 0, 배정 틀 20 대 0, 예산 100,000 16 대 4, 예산 1,000,000 18 대 2입니다. 점 400개, 뭉친 분포, 배정 틀, 두 예산에서는 고른 설정이 낫고 확인 시드와 점 100개에서는 결정 못 함입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="475" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">고른 설정은 어디서 이기나</text>
+<text x="28" y="84" font-size="19" fill="#53657d">일정 온도와 같은 시드끼리 비교(시드 20개). 확인 시드 외의 행은 시드</text>
+<text x="28" y="109" font-size="19" fill="#53657d">1~20에서 입력 가족이나 예산을 바꾼 것입니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">고른 설정이 나은 시드</text>
+<rect x="275.7" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="297.7" y="137" font-size="18" fill="#172b45">고른 설정이 못한 시드</text>
+<text x="28" y="193" font-size="19" fill="#172b45">확인 시드 21~40</text>
+<rect x="191.2" y="174" width="230.5" height="24" fill="#2664ce"/>
+<text x="306.4" y="193" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">14</text>
+<rect x="421.7" y="174" width="98.8" height="24" fill="#ae5515"/>
+<text x="471.1" y="193" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">6</text>
+<line x1="421.7" y1="174" x2="421.7" y2="198" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="421.7" y1="174" x2="421.7" y2="198" stroke="#f6f8fc" stroke-width="2"/>
+<text x="532.5" y="193" font-size="17" fill="#172b45">14 / 6 결정 못 함</text>
+<text x="28" y="231" font-size="19" fill="#172b45">점 100개</text>
+<rect x="191.2" y="212" width="164.7" height="24" fill="#2664ce"/>
+<text x="273.5" y="231" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">10</text>
+<rect x="355.8" y="212" width="164.7" height="24" fill="#ae5515"/>
+<text x="438.2" y="231" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">10</text>
+<line x1="355.8" y1="212" x2="355.8" y2="236" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="355.8" y1="212" x2="355.8" y2="236" stroke="#f6f8fc" stroke-width="2"/>
+<text x="532.5" y="231" font-size="17" fill="#172b45">10 / 10 결정 못 함</text>
+<text x="28" y="269" font-size="19" fill="#172b45">점 400개</text>
+<rect x="191.2" y="250" width="329.4" height="24" fill="#2664ce"/>
+<text x="355.8" y="269" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">20</text>
+<text x="532.5" y="269" font-size="17" fill="#172b45">20 / 0 더 좋음</text>
+<text x="28" y="307" font-size="19" fill="#172b45">8개 뭉치 분포</text>
+<rect x="191.2" y="288" width="329.4" height="24" fill="#2664ce"/>
+<text x="355.8" y="307" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">20</text>
+<text x="532.5" y="307" font-size="17" fill="#172b45">20 / 0 더 좋음</text>
+<text x="28" y="345" font-size="19" fill="#172b45">배정 틀</text>
+<rect x="191.2" y="326" width="329.4" height="24" fill="#2664ce"/>
+<text x="355.8" y="345" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">20</text>
+<text x="532.5" y="345" font-size="17" fill="#172b45">20 / 0 더 좋음</text>
+<text x="28" y="383" font-size="19" fill="#172b45">예산 100,000</text>
+<rect x="191.2" y="364" width="263.5" height="24" fill="#2664ce"/>
+<text x="322.9" y="383" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">16</text>
+<rect x="454.6" y="364" width="65.9" height="24" fill="#ae5515"/>
+<text x="487.6" y="383" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">4</text>
+<line x1="454.6" y1="364" x2="454.6" y2="388" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="454.6" y1="364" x2="454.6" y2="388" stroke="#f6f8fc" stroke-width="2"/>
+<text x="532.5" y="383" font-size="17" fill="#172b45">16 / 4 더 좋음</text>
+<text x="28" y="421" font-size="19" fill="#172b45">예산 1,000,000</text>
+<rect x="191.2" y="402" width="296.4" height="24" fill="#2664ce"/>
+<text x="339.4" y="421" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="700">18</text>
+<rect x="487.6" y="402" width="32.9" height="24" fill="#ae5515"/>
+<line x1="487.6" y1="402" x2="487.6" y2="426" stroke="#f6f8fc" stroke-width="2"/>
+<line x1="487.6" y1="402" x2="487.6" y2="426" stroke="#f6f8fc" stroke-width="2"/>
+<text x="532.5" y="421" font-size="17" fill="#172b45">18 / 2 더 좋음</text>
+<line x1="191.2" y1="167" x2="191.2" y2="433" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="461" font-size="17" fill="#53657d" text-anchor="middle">시드 20개 중 고른 설정이 나은 / 못한 시드 수 (15개 이상이면 차이 있음)</text>
+</svg>

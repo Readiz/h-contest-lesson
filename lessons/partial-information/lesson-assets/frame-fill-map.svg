@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 616" role="img" aria-labelledby="title desc">
+<title id="title">격자 수집과 온라인 배정이 같은 역할을 채우는 코드 이름</title>
+<desc id="desc">표 모양의 구조 그림이다. 행은 채점기, 거울, 결정, 검사, 기준선의 다섯 역할이고 열은 격자 수집과 온라인 배정이다. 채점기는 GridJudge와 OnlineJudge, 거울은 GridMirror와 OnlineMirror, 결정은 GridPolicy와 OnlinePolicy, 검사는 gridMirrorOk, gridMapOk, gridNoPeek와 onlineNoPeek, 기준선은 planFull과 offlineGreedy, lowerBound이다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#53657d"/></marker></defs>
+<rect x="1" y="1" width="718" height="614" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">같은 틀, 다른 채움</text>
+<text x="28" y="84" font-size="20" fill="#53657d">한 판의 역할은 같고 이름과 내용이 문제마다 다릅니다</text>
+<text x="284" y="126" font-size="20" fill="#2664ce" text-anchor="middle" font-weight="700">격자 수집</text>
+<text x="561" y="126" font-size="20" fill="#ae5515" text-anchor="middle" font-weight="700">온라인 배정</text>
+<text x="284" y="148" font-size="16" fill="#53657d" text-anchor="middle">pi-grid, pi-plan, pi-policy</text>
+<text x="561" y="148" font-size="16" fill="#53657d" text-anchor="middle">pi-online</text>
+<text x="28" y="210" font-size="19" fill="#172b45" font-weight="700">채점기</text>
+<rect x="150" y="164" width="268" height="76" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="164" y="192" font-size="19" fill="#172b45" font-weight="700">GridJudge</text>
+<text x="164" y="220" font-size="18" fill="#172b45">진짜 격자 v[]를 가진다</text>
+<rect x="432" y="164" width="260" height="76" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="446" y="192" font-size="19" fill="#172b45" font-weight="700">OnlineJudge</text>
+<text x="446" y="220" font-size="18" fill="#172b45">오지 않은 작업을 가진다</text>
+<text x="28" y="298" font-size="19" fill="#172b45" font-weight="700">거울</text>
+<rect x="150" y="252" width="268" height="76" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="164" y="280" font-size="19" fill="#172b45" font-weight="700">GridMirror</text>
+<text x="164" y="308" font-size="18" fill="#172b45">val[], seenAt[], nSeen</text>
+<rect x="432" y="252" width="260" height="76" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="446" y="280" font-size="19" fill="#172b45" font-weight="700">OnlineMirror</text>
+<text x="446" y="308" font-size="18" fill="#172b45">작업 길이 합, 내 배정</text>
+<text x="28" y="386" font-size="19" fill="#172b45" font-weight="700">결정</text>
+<rect x="150" y="340" width="268" height="76" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="164" y="368" font-size="19" fill="#172b45" font-weight="700">GridPolicy</text>
+<text x="164" y="396" font-size="18" fill="#172b45">추정 지도에서 계획</text>
+<rect x="432" y="340" width="260" height="76" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="446" y="368" font-size="19" fill="#172b45" font-weight="700">OnlinePolicy</text>
+<text x="446" y="396" font-size="18" fill="#172b45">chooseMachine(lam)</text>
+<text x="28" y="474" font-size="19" fill="#172b45" font-weight="700">검사</text>
+<rect x="150" y="428" width="268" height="76" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="164" y="456" font-size="19" fill="#172b45" font-weight="700">gridMirrorOk</text>
+<text x="164" y="484" font-size="18" fill="#172b45">gridMapOk · gridNoPeek</text>
+<rect x="432" y="428" width="260" height="76" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="446" y="456" font-size="19" fill="#172b45" font-weight="700">onlineNoPeek</text>
+<text x="446" y="484" font-size="18" fill="#172b45">못 본 값을 바꿔 본다</text>
+<text x="28" y="562" font-size="19" fill="#172b45" font-weight="700">기준선</text>
+<rect x="150" y="516" width="268" height="76" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="164" y="544" font-size="19" fill="#172b45" font-weight="700">planFull</text>
+<text x="164" y="572" font-size="18" fill="#172b45">진짜 지도로 한 번에 계획</text>
+<rect x="432" y="516" width="260" height="76" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="446" y="544" font-size="19" fill="#172b45" font-weight="700">offlineGreedy</text>
+<text x="446" y="572" font-size="18" fill="#172b45">lowerBound는 하한</text>
+</svg>

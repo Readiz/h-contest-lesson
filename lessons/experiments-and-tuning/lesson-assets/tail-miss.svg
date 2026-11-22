@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 655" role="img" aria-labelledby="title desc">
+<title id="title">목표에 못 닿은 시드 수</title>
+<desc id="desc">순서 틀에서 최고 비용이 14,000 이하 목표에 닿지 못한 시드의 수입니다(시드 20개 중). 거의 0도, 일정 온도, 고른 설정 순으로 평가 30,000번에서 20, 20, 20개, 평가 100,000번에서 20, 20, 19개, 평가 300,000번에서 15, 8, 4개, 평가 1,000,000번에서 15, 2, 1개입니다. 300,000번에서 중앙값은 모두 14,000 근처인데 미달 시드는 15, 8, 4개로 갈립니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="653" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">목표에 못 닿은 시드 수</text>
+<text x="28" y="84" font-size="19" fill="#53657d">순서 틀, 최고 비용 14,000 이하를 목표로 했을 때 못 닿은 시드</text>
+<text x="28" y="109" font-size="19" fill="#53657d">수(시드 20개 중)입니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#9db6e0"/>
+<text x="50" y="137" font-size="18" fill="#172b45">거의 0도</text>
+<rect x="157.8" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="179.8" y="137" font-size="18" fill="#172b45">일정 온도</text>
+<rect x="295.7" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="317.7" y="137" font-size="18" fill="#172b45">고른 설정</text>
+<text x="28" y="201" font-size="19" fill="#172b45" font-weight="700">평가 30,000번</text>
+<rect x="203.5" y="171" width="413.1" height="24" fill="#9db6e0"/>
+<text x="624.5" y="190" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">20 / 20</text>
+<rect x="203.5" y="199" width="413.1" height="24" fill="#2664ce"/>
+<text x="624.5" y="218" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">20 / 20</text>
+<rect x="203.5" y="227" width="413.1" height="24" fill="#ae5515"/>
+<text x="624.5" y="246" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">20 / 20</text>
+<text x="28" y="307" font-size="19" fill="#172b45" font-weight="700">평가 100,000번</text>
+<rect x="203.5" y="277" width="413.1" height="24" fill="#9db6e0"/>
+<text x="624.5" y="296" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">20 / 20</text>
+<rect x="203.5" y="305" width="413.1" height="24" fill="#2664ce"/>
+<text x="624.5" y="324" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">20 / 20</text>
+<rect x="203.5" y="333" width="392.4" height="24" fill="#ae5515"/>
+<text x="603.9" y="352" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">19 / 20</text>
+<text x="28" y="413" font-size="19" fill="#172b45" font-weight="700">평가 300,000번</text>
+<rect x="203.5" y="383" width="309.8" height="24" fill="#9db6e0"/>
+<text x="521.3" y="402" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">15 / 20</text>
+<rect x="203.5" y="411" width="165.2" height="24" fill="#2664ce"/>
+<text x="376.7" y="430" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">8 / 20</text>
+<rect x="203.5" y="439" width="82.6" height="24" fill="#ae5515"/>
+<text x="294.1" y="458" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">4 / 20</text>
+<text x="28" y="519" font-size="19" fill="#172b45" font-weight="700">평가 1,000,000번</text>
+<rect x="203.5" y="489" width="309.8" height="24" fill="#9db6e0"/>
+<text x="521.3" y="508" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">15 / 20</text>
+<rect x="203.5" y="517" width="41.3" height="24" fill="#2664ce"/>
+<text x="252.8" y="536" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">2 / 20</text>
+<rect x="203.5" y="545" width="20.7" height="24" fill="#ae5515"/>
+<text x="232.2" y="564" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1 / 20</text>
+<line x1="203.5" y1="165" x2="203.5" y2="589" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="203.5" y="611" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="306.8" y1="165" x2="306.8" y2="589" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="306.8" y="611" font-size="16" fill="#53657d" text-anchor="middle">5</text>
+<line x1="410" y1="165" x2="410" y2="589" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="410" y="611" font-size="16" fill="#53657d" text-anchor="middle">10</text>
+<line x1="513.3" y1="165" x2="513.3" y2="589" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="513.3" y="611" font-size="16" fill="#53657d" text-anchor="middle">15</text>
+<line x1="616.5" y1="165" x2="616.5" y2="589" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="616.5" y="611" font-size="16" fill="#53657d" text-anchor="middle">20</text>
+<line x1="203.5" y1="165" x2="203.5" y2="589" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="639" font-size="17" fill="#53657d" text-anchor="middle">목표 미달 시드 수 ↓ (작을수록 좋음, 최대 20)</text>
+</svg>

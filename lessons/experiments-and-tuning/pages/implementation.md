@@ -15,6 +15,10 @@
 - **이항 꼬리:** 두 설정이 실제로 같을 때 시드마다 이길 확률은 1/2입니다. `n`번 중 `k`번 이상 이기는 경우의 수 `tailCount(n, k)`를 파스칼의 삼각형으로 정수로 셉니다. 확률은 이 수를 `2^n`으로 나눈 값이라 분수로 정확하며 플랫폼에 따라 달라지지 않습니다.
 - **판정 기준:** `needWins(n, den)`은 양쪽 꼬리의 확률 `2 · tail / 2^n`이 `1/den` 이하가 되는 가장 작은 `k`입니다. `den = 20`(한도 0.05)이면 `n = 20`에서 15가 나옵니다. 비교를 `m`번 하면 `den = 20 · m`으로 엄하게 합니다.
 
+![설정 A와 B를 같은 시드에서 cost로 돌려 a와 b를 얻고, paired가 같은 시드끼리 견줘 Tally를 만들고, needWins가 정한 need와 함께 verdict가 A가 낫다, B가 낫다, 결정 못 함을 돌려주는 흐름.](../lesson-assets/compare-flow.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/experiments-and-tuning/lesson-assets/compare-flow.svg)
+
 ```cpp snippet=et-stats
 const int MAXS = 64;                     // 한 번에 다루는 시드 수의 상한
 
@@ -352,6 +356,10 @@ long long runAssign(const Cfg& cfg, unsigned long long inputSeed, unsigned searc
 `stepOnce`가 한 번에 하나씩 튜닝하는 한 걸음입니다. 현재 설정에서 매개변수 하나만 바꾼 후보(최대 6개)를 모두 같은 시드로 돌려 현재 설정과 짝지어 비교하고, 이긴 시드가 가장 많은 후보가 `need`개 이상 이기면 옮깁니다. `need = 15`가 [원리](idea.md)의 판정 규칙이고, `need = 11`은 "이긴 시드가 더 많으면 옮긴다"는 느슨한 규칙입니다. 둘의 차이는 [실험과 점검](practice.md)에서 봅니다.
 
 격자 탐색과 무작위 탐색은 같은 후보 공간 `t0 = 64 << i`, `t1 = 4 << j`(`i`, `j`는 0..6, `t1 ≤ t0`인 46점)에서 합니다. 무작위 탐색은 `drawWithoutRepeat`로 46점에서 `k`개를 겹치지 않게 뽑습니다.
+
+![튜닝 한 걸음 stepOnce의 다섯 단계. 현재 설정을 돌리고, nudge로 매개변수 하나만 바꾼 후보를 만들고, 같은 시드로 돌려 paired로 짝지어 후보가 나은 시드를 세고, 가장 많이 이긴 후보를 기억해, 그 승 수가 need 이상이면 옮깁니다.](../lesson-assets/step-once.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/experiments-and-tuning/lesson-assets/step-once.svg)
 
 ```cpp snippet=et-tune
 // 한 번에 하나만 바꾼 후보. which 0..5: t0 두 배, t0 절반, t1 두 배, t1 절반, ins + 25, ins - 25. 범위 밖이면 false.

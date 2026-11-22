@@ -19,7 +19,15 @@
 | `void apply(mv)` | 해와 캐시를 바꾼다 | 위치 역배열(`pos`) 같은 캐시도 함께 |
 | `long long ops, props, reads` | 연산 계수기, 제안 수, 시계를 읽은 횟수 | 예산의 단위(연산 수 모형). 시계 버전에서는 `ops`가 필요 없다 |
 
+![왼쪽의 틀(proposeCand, climbPlan과 sweepAll, Plan과 byRemaining)은 문제가 바뀌어도 그대로이고 오른쪽의 items·cand·any, delta·apply, ops·props·reads를 순서 틀과 배정 틀이 각자 채웁니다.](../lesson-assets/frame-and-fill.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/candidate-and-time-budget/lesson-assets/frame-and-fill.svg)
+
 `Plan`은 한 번의 실행 계획입니다. 상한 `limit`은 초기해와 후보 목록을 만드는 데 쓴 연산도 포함하며, `finish`만큼은 마무리 단계에 남겨 둡니다. 탐색 단계에서 후보 수는 `byRemaining`으로 남은 비율에 묶여 `kFirst`에서 `kLast`로 줄거나 늘고, 둘이 같으면 고정입니다. `every`와 `clockCost`는 시계를 읽는 간격과 한 번 읽는 비용입니다(연산 수 모형이며, 제출에서는 실제 시계 읽기가 이 자리에 들어갑니다).
+
+![탐색 루프 한 반복의 순서. 시계를 읽을 차례이면 비용을 더하고 한도를 확인한 뒤 k를 다시 정하고, 제안 한 번을 세고, k가 0이면 any로 아니면 항목과 순번을 뽑아 cand로 이동을 만들고, delta가 0보다 작을 때만 apply로 받습니다.](../lesson-assets/proposal-order.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/candidate-and-time-budget/lesson-assets/proposal-order.svg)
 
 ```cpp snippet=tb-frame
 struct Move { int kind, a, b, old; };

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 855" role="img" aria-labelledby="title desc">
+<title id="title">하한을 넘는 비용</title>
+<desc id="desc">온라인 배정에서 비용 중앙값이 하한을 얼마나 넘는지입니다. 작업 길이 1에서 100일 때 평균 추정은 230로 탐욕 963보다 작고, 작업 길이 1에서 20으로 바꾼 입력에서는 평균 추정 132보다 탐욕 73이 작아 순위가 뒤집힙니다. 라운드 로빈은 두 입력에서 각각 3,384과 2,344로 가장 큽니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="853" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">하한을 넘는 비용</text>
+<text x="28" y="84" font-size="19" fill="#53657d">온라인 배정, 시드 20개의 비용 중앙값에서 하한의 중앙값을 뺀</text>
+<text x="28" y="109" font-size="19" fill="#53657d">값입니다. 작을수록 좋고 하한은 달성할 수 없는 값입니다</text>
+<rect x="28" y="125" width="14" height="14" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">작업 길이 1..100</text>
+<rect x="235.2" y="125" width="14" height="14" fill="#ae5515"/>
+<text x="257.2" y="137" font-size="18" fill="#172b45">작업 길이 1..20</text>
+<text x="28" y="201" font-size="19" fill="#172b45" font-weight="700">탐욕: 앞일 안 봄</text>
+<rect x="206.3" y="171" width="103.3" height="24" fill="#2664ce"/>
+<text x="317.6" y="190" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">963</text>
+<rect x="206.3" y="199" width="7.8" height="24" fill="#ae5515"/>
+<text x="222.2" y="218" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">73</text>
+<text x="28" y="279" font-size="19" fill="#172b45" font-weight="700">앞 작업 길이 0</text>
+<rect x="206.3" y="249" width="204.9" height="24" fill="#2664ce"/>
+<text x="419.3" y="268" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1,911</text>
+<rect x="206.3" y="277" width="31.7" height="24" fill="#ae5515"/>
+<text x="246.1" y="296" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">296</text>
+<text x="28" y="357" font-size="19" fill="#172b45" font-weight="700">앞 작업 길이 1</text>
+<rect x="206.3" y="327" width="164.9" height="24" fill="#2664ce"/>
+<text x="379.3" y="346" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1,538</text>
+<rect x="206.3" y="355" width="29.3" height="24" fill="#ae5515"/>
+<text x="243.6" y="374" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">273</text>
+<text x="28" y="435" font-size="19" fill="#172b45" font-weight="700">평균 (기준)</text>
+<rect x="206.3" y="405" width="24.7" height="24" fill="#2664ce"/>
+<text x="239" y="424" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">230</text>
+<rect x="206.3" y="433" width="14.2" height="24" fill="#ae5515"/>
+<text x="228.5" y="452" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">132</text>
+<text x="28" y="513" font-size="19" fill="#172b45" font-weight="700">앞 작업 길이 100</text>
+<rect x="206.3" y="483" width="158.6" height="24" fill="#2664ce"/>
+<text x="372.9" y="502" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">1,479</text>
+<rect x="206.3" y="511" width="14.9" height="24" fill="#ae5515"/>
+<text x="229.3" y="530" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">139</text>
+<text x="28" y="591" font-size="19" fill="#172b45" font-weight="700">라운드 로빈</text>
+<rect x="206.3" y="561" width="362.8" height="24" fill="#2664ce"/>
+<text x="577.2" y="580" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">3,384</text>
+<rect x="206.3" y="589" width="251.3" height="24" fill="#ae5515"/>
+<text x="465.7" y="608" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">2,344</text>
+<text x="28" y="669" font-size="19" fill="#172b45" font-weight="700">전체: 도착 순서</text>
+<rect x="206.3" y="639" width="18" height="24" fill="#2664ce"/>
+<text x="232.4" y="658" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">168</text>
+<rect x="206.3" y="667" width="11.4" height="24" fill="#ae5515"/>
+<text x="225.7" y="686" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">106</text>
+<text x="28" y="747" font-size="19" fill="#172b45" font-weight="700">전체: 긴 작업부터</text>
+<rect x="206.3" y="717" width="51.6" height="24" fill="#2664ce"/>
+<text x="265.9" y="736" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">481</text>
+<rect x="206.3" y="745" width="17.2" height="24" fill="#ae5515"/>
+<text x="231.5" y="764" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">160</text>
+<line x1="206.3" y1="165" x2="206.3" y2="789" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="206.3" y="811" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="313.6" y1="165" x2="313.6" y2="789" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="313.6" y="811" font-size="16" fill="#53657d" text-anchor="middle">1,000</text>
+<line x1="420.8" y1="165" x2="420.8" y2="789" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="420.8" y="811" font-size="16" fill="#53657d" text-anchor="middle">2,000</text>
+<line x1="528" y1="165" x2="528" y2="789" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="528" y="811" font-size="16" fill="#53657d" text-anchor="middle">3,000</text>
+<line x1="635.2" y1="165" x2="635.2" y2="789" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="635.2" y="811" font-size="16" fill="#53657d" text-anchor="middle">4,000</text>
+<line x1="206.3" y1="165" x2="206.3" y2="789" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="839" font-size="17" fill="#53657d" text-anchor="middle">하한을 넘는 비용 ↓ (작을수록 좋음)</text>
+</svg>

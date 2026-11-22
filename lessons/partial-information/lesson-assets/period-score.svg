@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 445" role="img" aria-labelledby="title desc">
+<title id="title">재계획 주기를 늘리면</title>
+<desc id="desc">재계획 주기를 1, 2, 3, 4, 6, 12걸음으로 늘릴 때 점수(10번째로 작은 값)입니다. 259, 241, 232, 223, 227, 195로 걸음마다 다시 계획하는 기준이 가장 높고, 주기 12에서는 195까지 내려갑니다. 평가 횟수는 34,788에서 3,189으로 줄어듭니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="443" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">재계획 주기를 늘리면</text>
+<text x="28" y="84" font-size="19" fill="#53657d">격자 수집, 시드 20개 점수의 10번째로 작은 값. 괄호는 한 판에서</text>
+<text x="28" y="109" font-size="19" fill="#53657d">평가한 후보 수입니다. 기준(1걸음마다)을 강조했습니다</text>
+<text x="28" y="165" font-size="19" fill="#172b45" font-weight="700">1걸음마다</text>
+<rect x="138.9" y="145" width="319.9" height="26" fill="#ae5515"/>
+<text x="466.8" y="165" font-size="17" fill="#172b45" font-weight="700" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">259 (34,788번 평가)</text>
+<text x="28" y="205" font-size="19" fill="#172b45">2걸음마다</text>
+<rect x="138.9" y="185" width="297.7" height="26" fill="#2664ce"/>
+<text x="444.6" y="205" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">241 (17,511번 평가)</text>
+<text x="28" y="245" font-size="19" fill="#172b45">3걸음마다</text>
+<rect x="138.9" y="225" width="286.6" height="26" fill="#2664ce"/>
+<text x="433.5" y="245" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">232 (11,779번 평가)</text>
+<text x="28" y="285" font-size="19" fill="#172b45">4걸음마다</text>
+<rect x="138.9" y="265" width="275.4" height="26" fill="#2664ce"/>
+<text x="422.3" y="285" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">223 (8,947번 평가)</text>
+<text x="28" y="325" font-size="19" fill="#172b45">6걸음마다</text>
+<rect x="138.9" y="305" width="280.4" height="26" fill="#2664ce"/>
+<text x="427.3" y="325" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">227 (6,097번 평가)</text>
+<text x="28" y="365" font-size="19" fill="#172b45">12걸음마다</text>
+<rect x="138.9" y="345" width="240.9" height="26" fill="#2664ce"/>
+<text x="387.8" y="365" font-size="17" fill="#172b45" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">195 (3,189번 평가)</text>
+<line x1="138.9" y1="139" x2="138.9" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="138.9" y="401" font-size="16" fill="#53657d" text-anchor="middle">0</text>
+<line x1="262.4" y1="139" x2="262.4" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="262.4" y="401" font-size="16" fill="#53657d" text-anchor="middle">100</text>
+<line x1="385.9" y1="139" x2="385.9" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="385.9" y="401" font-size="16" fill="#53657d" text-anchor="middle">200</text>
+<line x1="509.4" y1="139" x2="509.4" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="509.4" y="401" font-size="16" fill="#53657d" text-anchor="middle">300</text>
+<line x1="138.9" y1="139" x2="138.9" y2="379" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="429" font-size="17" fill="#53657d" text-anchor="middle">점수 ↑ (클수록 좋음)</text>
+</svg>
