@@ -88,4 +88,14 @@ def charts(m: dict) -> dict[str, str]:
         "고른 설정은 어디서 이기나", f"일정 온도와 같은 시드끼리 비교(시드 {n}개). 확인 시드 외의 행은 시드 1~20에서 입력 가족이나 예산을 바꾼 것입니다",
         desc, trows, n, f"시드 {n}개 중 고른 설정이 나은 / 못한 시드 수 (15개 이상이면 차이 있음)",
         names=("고른 설정이 나은 시드", None, "고른 설정이 못한 시드"))
+    hrows = []
+    for e in tr:
+        b, w = e["c1VsHot"][0], e["c1VsHot"][1]
+        hrows.append({"label": short[e["case"]], "better": b, "worse": w, "text": f"{b} / {w} {verdict(b, w)}"})
+    hdesc = ("고른 설정을 거의 0도와 같은 시드끼리 비교한 결과입니다. " + ", ".join(f"{r['label']} {r['better']} 대 {r['worse']}" for r in hrows)
+             + "입니다. 배정 틀에서는 모든 시드에서 고른 설정이 나쁩니다.")
+    out["transfer-wins-hot.svg"] = ch.winloss_chart(
+        "거의 0도와 비교하면", f"같은 행을 거의 0도(온도가 거의 없는 탐색)와 비교(시드 {n}개). 튜닝한 입력 가족 밖에서는 이기지 못하는 곳이 생깁니다",
+        hdesc, hrows, n, f"시드 {n}개 중 고른 설정이 나은 / 못한 시드 수 (15개 이상이면 차이 있음)",
+        names=("고른 설정이 나은 시드", None, "고른 설정이 못한 시드"))
     return out
