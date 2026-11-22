@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 585" role="img" aria-labelledby="title desc">
+<title id="title">destroy 방식과 크기별 합의 분포</title>
+<desc id="desc">후보 검사 100,000회로 고정해 destroy 방식과 크기를 바꿨을 때 solver seed 9개의 합을 점으로, 중앙값을 눈금으로 보인 그림입니다. 중앙값은 한 영역, 여백 1칸 3,001,084, 한 영역, 여백 4칸 3,001,020, 한 영역, 여백 16칸 3,001,274, 무작위 1개 3,001,105, 무작위 4개 3,001,035, 무작위 16개 3,000,986, 낮은 점수 2개 2,996,922, 낮은 점수 8개 2,996,930입니다. 낮은 점수의 후보를 빼는 방식은 다른 방식보다 눈에 띄게 낮고 나머지는 분포가 많이 겹칩니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="583" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">destroy 방식과 크기별 합의 분포</text>
+<text x="28" y="84" font-size="19" fill="#53657d">후보 검사 100,000회, solver seed 9개. 점은 시드 하나, 눈금은</text>
+<text x="28" y="109" font-size="19" fill="#53657d">중앙값이며 중앙값이 가장 높은 행을 강조했습니다</text>
+<circle cx="35" cy="132" r="6" fill="#2664ce"/>
+<text x="50" y="137" font-size="18" fill="#172b45">시드 하나</text>
+<line x1="165.9" y1="132" x2="185.9" y2="132" stroke="#172b45" stroke-width="3.5"/>
+<circle cx="175.9" cy="132" r="4.5" fill="#172b45"/>
+<text x="193.9" y="137" font-size="18" fill="#172b45">중앙값</text>
+<line x1="218.7" y1="167" x2="218.7" y2="519" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="218.7" y="541" font-size="16" fill="#53657d" text-anchor="middle">2,996,000</text>
+<line x1="344.4" y1="167" x2="344.4" y2="519" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="344.4" y="541" font-size="16" fill="#53657d" text-anchor="middle">2,998,000</text>
+<line x1="470.1" y1="167" x2="470.1" y2="519" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="470.1" y="541" font-size="16" fill="#53657d" text-anchor="middle">3,000,000</text>
+<line x1="595.9" y1="167" x2="595.9" y2="519" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="595.9" y="541" font-size="16" fill="#53657d" text-anchor="middle">3,002,000</text>
+<text x="28" y="195" font-size="19" fill="#172b45">한 영역, 여백 1칸</text>
+<circle cx="538.1" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539.7" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="533.8" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="531.7" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="543.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="541.8" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="532.4" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="538.3" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="540.1" cy="189" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="538.3" y1="174" x2="538.3" y2="204" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="195" font-size="17" fill="#172b45">3,001,084</text>
+<text x="28" y="239" font-size="19" fill="#172b45">한 영역, 여백 4칸</text>
+<circle cx="532" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="544.8" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="525.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="541.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="531.2" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="538.7" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="528.3" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="534.2" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539.5" cy="233" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="534.2" y1="218" x2="534.2" y2="248" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="239" font-size="17" fill="#172b45">3,001,020</text>
+<text x="28" y="283" font-size="19" fill="#172b45">한 영역, 여백 16칸</text>
+<circle cx="562" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="549.5" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="559.1" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="559.4" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="549.1" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="550.2" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="547.4" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="544.4" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<circle cx="552.2" cy="277" r="5.5" fill="#ae5515" fill-opacity="0.6"/>
+<line x1="550.2" y1="262" x2="550.2" y2="292" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="283" font-size="17" fill="#172b45">3,001,274</text>
+<text x="28" y="327" font-size="19" fill="#172b45">무작위 1개</text>
+<circle cx="543.1" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539.6" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="541.3" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="540" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="536.6" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="541.9" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539.2" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="534" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="536.8" cy="321" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="539.6" y1="306" x2="539.6" y2="336" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="327" font-size="17" fill="#172b45">3,001,105</text>
+<text x="28" y="371" font-size="19" fill="#172b45">무작위 4개</text>
+<circle cx="535.2" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="530.4" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="540.2" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="538.8" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539.5" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="531.7" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="529" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="534.7" cy="365" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="535.2" y1="350" x2="535.2" y2="380" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="371" font-size="17" fill="#172b45">3,001,035</text>
+<text x="28" y="415" font-size="19" fill="#172b45">무작위 16개</text>
+<circle cx="532.1" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="530.4" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="536.8" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="535.3" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="529.2" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="530.1" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="539.2" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="526.3" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="538.4" cy="409" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="532.1" y1="394" x2="532.1" y2="424" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="415" font-size="17" fill="#172b45">3,000,986</text>
+<text x="28" y="459" font-size="19" fill="#172b45">낮은 점수 2개</text>
+<circle cx="281.4" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="245.5" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="282.6" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="276.7" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="260.9" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="284.9" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="285" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="261.2" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="266.1" cy="453" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="276.7" y1="438" x2="276.7" y2="468" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="459" font-size="17" fill="#172b45">2,996,922</text>
+<text x="28" y="503" font-size="19" fill="#172b45">낮은 점수 8개</text>
+<circle cx="267.2" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="269.4" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="293.1" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="272.4" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="277.2" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="285.6" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="264" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="290.1" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<circle cx="286.6" cy="497" r="5.5" fill="#2664ce" fill-opacity="0.6"/>
+<line x1="277.2" y1="482" x2="277.2" y2="512" stroke="#172b45" stroke-width="3.5"/>
+<text x="607.9" y="503" font-size="17" fill="#172b45">2,996,930</text>
+<line x1="218.7" y1="167" x2="218.7" y2="519" stroke="#53657d" stroke-width="1.5"/>
+<text x="360" y="569" font-size="17" fill="#53657d" text-anchor="middle">10개 TC 합 ↑ (클수록 좋음)</text>
+</svg>
