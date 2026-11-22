@@ -18,6 +18,10 @@
 | 결정 `act` | 거울과 추정만으로 행동을 정한다 | 채점기의 감춰진 필드를 읽지 않는다 |
 | `...MirrorOk`, `...NoPeek` | 검사 | 감춰진 값을 읽는 곳은 검사뿐이다 |
 
+![격자 수집과 온라인 배정이 같은 다섯 역할을 채우는 코드 이름. 채점기는 GridJudge와 OnlineJudge, 거울은 GridMirror와 OnlineMirror, 결정은 GridPolicy와 OnlinePolicy, 검사는 gridMirrorOk, gridMapOk, gridNoPeek와 onlineNoPeek, 기준선은 planFull과 offlineGreedy입니다.](../lesson-assets/frame-fill-map.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/partial-information/lesson-assets/frame-fill-map.svg)
+
 ## 격자 수집 채우기 1: 채점기와 거울
 
 `GridJudge`는 진짜 격자를 가지고 `look()`으로 현재 칸에서 거리 `rad` 이내인 칸의 값만 내줍니다. 보여 준 칸을 `shown`에 적어 두는 것은 검사용입니다. `GridMirror`가 이 강의의 핵심 자료구조입니다. 값 `val`과 "마지막으로 본 걸음 번호" `seenAt`을 따로 두고, `seenAt`이 `-1`이면 값을 모르는 칸입니다. 값 `0`을 모름의 표시로 쓰면 "본 0"과 "못 본 칸"이 섞입니다([실험과 점검](practice.md)의 흔한 실수 1). 이 격자의 값은 변하지 않으므로 `seenAt`은 앎 여부를 나타내는 데만 쓰입니다. 값이 바뀌는 환경이라면 이 시점이 "기억한 값이 얼마나 낡았는가"를 알려 줍니다.
@@ -88,6 +92,10 @@ struct GridMirror {                        // 내 쪽의 거울: 규칙(아는 �
 ## 격자 수집 채우기 2: 계획기
 
 추정 지도 위에서 앞 몇 걸음을 계획하는 `planBeam`입니다. [빔 서치](https://h.readiz.com/learn/beam-search)의 `Beam`에서 같은 상태 합치기와 (부모, 행동) 기록을 빼고 상태에 경로를 직접 넣은 압축판이라, 같은 경로를 여러 번 세는 후보가 남습니다. 평가값은 5번 강의의 추정 1(`얻은 값 × 8 +` 거리 3 이내 안 밟은 칸의 값 `× (4 − 거리)`의 합)을 씁니다. 입력은 값 지도 `val100`(값의 100배)과 밟은 칸 `stepped`이며 계획기는 이 지도가 진짜인지 추정인지 모릅니다. 진짜 지도를 넣으면 전체 정보 기준선이고, 거울에서 만든 추정 지도를 넣으면 부분 정보의 계획입니다. 폭은 `BW`(128) 이하, 깊이는 `BD`(64) 이하여야 합니다.
+
+![planBeam에 두 가지 지도를 넣는 경우. 채점기의 진짜 값 지도를 넣고 planFull이 한 번에 계획하면 전체 정보 기준선이고, 거울에서 buildMap이 만든 추정 지도를 넣고 replan이 계획하면 부분 정보의 계획입니다. planBeam은 지도가 진짜인지 추정인지 모릅니다.](../lesson-assets/planner-input.svg)
+
+[그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/partial-information/lesson-assets/planner-input.svg)
 
 ```cpp snippet=pi-plan
 // 계획기: 값 지도 val100[](x100)와 밟은 칸 stepped[] 위에서 pos에서 출발하는 depth걸음 경로를 빔 서치로 찾는다.

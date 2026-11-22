@@ -895,12 +895,29 @@ def diff_keys(a, b, path="") -> list[str]:
 
 
 # ------------------------------------------------------------------ main
+STATIC_FIGURES = ["frame-and-fill.svg", "proposal-order.svg"]  # 손으로 쓴 구조 그림(차트는 generate_charts.py --check가 본다)
+
+
+def check_static_figures() -> int:
+    """손으로 쓴 구조 그림의 규격(폭 720, 글자 16~28, 제목 27, role·title·desc)과 본문 삽입을 확인한다."""
+    pages = "\n".join(p.read_text(encoding="utf-8") for p in (ROOT / "lessons" / LESSON_ID / "pages").glob("*.md"))
+    for name in STATIC_FIGURES:
+        svg = (ROOT / "lessons" / LESSON_ID / "lesson-assets" / name).read_text(encoding="utf-8")
+        assert re.search(r'viewBox="0 0 720 \d+"', svg) and 'role="img"' in svg and "<title" in svg and "<desc" in svg, name
+        sizes = [int(v) for v in re.findall(r'font-size="(\d+)"', svg)]
+        assert sizes and min(sizes) >= 16 and max(sizes) <= 28 and 27 in sizes, (name, sorted(set(sizes)))
+        link = f"https://git.readiz.com/h-contest-lesson/lessons/{LESSON_ID}/lesson-assets/{name}"
+        assert re.search(r"!\[[^\]\[]+\]\(\.\./lesson-assets/" + re.escape(name) + r"\)\n\n\[그림 크게 보기\]\(" + re.escape(link) + r"\)", pages), name
+    return len(STATIC_FIGURES)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", action="store_true", help="write lesson-assets/measurements.json from a fresh run")
     ap.add_argument("--print-tables", action="store_true")
     args = ap.parse_args()
 
+    check_static_figures()
     sn = snippets()
     code = assemble(sn)
     with tempfile.TemporaryDirectory() as tmp:

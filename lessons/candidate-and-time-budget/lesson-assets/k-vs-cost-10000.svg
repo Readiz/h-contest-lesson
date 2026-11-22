@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 527" role="img" aria-labelledby="title desc">
+<title id="title">후보 수에 따른 비용 (N = 10,000)</title>
+<desc id="desc">순서 틀 N = 10,000에서 후보 수 k를 바꿀 때 시드 20개 중앙값 비용입니다. 예산 3,000,000(빠듯)에서는 143,410, 109,059, 105,732, 106,174, 114,852, 144,042로 k = 4에서 가장 낮고 k가 커지면 다시 올라갑니다. 예산 12,000,000(넉넉)에서는 141,626, 109,059, 105,482, 104,347, 104,001, 103,535로 k = 32에서 가장 낮습니다. 후보 없이 무작위로 고르면 두 예산 모두 가장 높은 쪽입니다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
+<rect x="1" y="1" width="718" height="525" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">후보 수에 따른 비용 (N = 10,000)</text>
+<text x="28" y="84" font-size="19" fill="#53657d">순서 틀, 시드 20개의 중앙값. 예산이 빠듯하면 작은 k가, 넉넉하면 큰</text>
+<text x="28" y="109" font-size="19" fill="#53657d">k가 낫습니다</text>
+<line x1="28" y1="132" x2="48" y2="132" stroke="#ae5515" stroke-width="3.5"/>
+<circle cx="38" cy="132" r="4.5" fill="#ae5515"/>
+<text x="56" y="137" font-size="18" fill="#172b45">예산 3,000,000 (빠듯)</text>
+<line x1="290.7" y1="132" x2="310.7" y2="132" stroke="#2664ce" stroke-width="3.5"/>
+<circle cx="300.7" cy="132" r="4.5" fill="#2664ce"/>
+<text x="318.7" y="137" font-size="18" fill="#172b45">예산 12,000,000 (넉넉)</text>
+<text x="28" y="163" font-size="17" fill="#53657d">최종 비용 중앙값 ↓ (작을수록 좋음)</text>
+<line x1="101.6" y1="457" x2="680" y2="457" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="462" font-size="16" fill="#53657d" text-anchor="end">90,000</text>
+<line x1="101.6" y1="387" x2="680" y2="387" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="392" font-size="16" fill="#53657d" text-anchor="end">105,000</text>
+<line x1="101.6" y1="317" x2="680" y2="317" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="322" font-size="16" fill="#53657d" text-anchor="end">120,000</text>
+<line x1="101.6" y1="247" x2="680" y2="247" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="252" font-size="16" fill="#53657d" text-anchor="end">135,000</text>
+<line x1="101.6" y1="177" x2="680" y2="177" stroke="#d8e1ed" stroke-width="1.5"/>
+<text x="93.6" y="182" font-size="16" fill="#53657d" text-anchor="end">150,000</text>
+<line x1="139.6" y1="177" x2="139.6" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="139.6" y="481" font-size="16" fill="#53657d" text-anchor="middle">없이</text>
+<line x1="240.1" y1="177" x2="240.1" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="240.1" y="481" font-size="16" fill="#53657d" text-anchor="middle">2</text>
+<line x1="340.6" y1="177" x2="340.6" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="340.6" y="481" font-size="16" fill="#53657d" text-anchor="middle">4</text>
+<line x1="441" y1="177" x2="441" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="441" y="481" font-size="16" fill="#53657d" text-anchor="middle">8</text>
+<line x1="541.5" y1="177" x2="541.5" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="541.5" y="481" font-size="16" fill="#53657d" text-anchor="middle">16</text>
+<line x1="642" y1="177" x2="642" y2="457" stroke="#d8e1ed" stroke-width="1"/>
+<text x="642" y="481" font-size="16" fill="#53657d" text-anchor="middle">32</text>
+<line x1="101.6" y1="457" x2="680" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<line x1="101.6" y1="177" x2="101.6" y2="457" stroke="#53657d" stroke-width="1.5"/>
+<polyline points="139.6,207.8 240.1,368.1 340.6,383.6 441,381.5 541.5,341 642,204.8" fill="none" stroke="#ae5515" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="139.6" cy="207.8" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="240.1" cy="368.1" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="340.6" cy="383.6" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="441" cy="381.5" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="541.5" cy="341" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="204.8" r="5" fill="#ae5515" stroke="#f6f8fc" stroke-width="2"/>
+<text x="139.6" y="194.8" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">143,410</text>
+<text x="340.6" y="370.6" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">105,732</text>
+<text x="642" y="191.8" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">144,042</text>
+<polyline points="139.6,216.1 240.1,368.1 340.6,384.8 441,390 541.5,391.7 642,393.8" fill="none" stroke="#2664ce" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="139.6" cy="216.1" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="240.1" cy="368.1" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="340.6" cy="384.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="441" cy="390" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="541.5" cy="391.7" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<circle cx="642" cy="393.8" r="5" fill="#2664ce" stroke="#f6f8fc" stroke-width="2"/>
+<text x="139.6" y="242.1" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">141,626</text>
+<text x="441" y="416" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">104,347</text>
+<text x="642" y="419.8" font-size="17" fill="#172b45" text-anchor="middle" stroke="#f6f8fc" stroke-width="4" paint-order="stroke" stroke-linejoin="round">103,535</text>
+<text x="360" y="511" font-size="17" fill="#53657d" text-anchor="middle">후보 수 k (없이 = 후보 목록 없이 무작위)</text>
+</svg>

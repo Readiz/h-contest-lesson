@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" role="img" aria-labelledby="title desc">
+<title id="title">문제와 무관한 틀과 문제마다 채우는 멤버의 관계</title>
+<desc id="desc">왼쪽에는 문제와 무관한 틀이 있고 오른쪽에는 문제마다 채우는 멤버가 있다. proposeCand는 items, cand, any를 부르고, climbPlan과 sweepAll은 delta와 apply를 부르며, Plan과 byRemaining은 한도와 시계 간격과 남은 비율로 후보 수를 정해 ops, props, reads 계수기와 맞물린다. 순서 틀 Route와 배정 틀 Assign이 같은 오른쪽 멤버를 각자 채운다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#53657d"/></marker></defs>
+<rect x="1" y="1" width="718" height="578" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">고정 틀과 문제마다 채우는 곳</text>
+<text x="28" y="84" font-size="20" fill="#53657d">왼쪽 코드는 문제가 바뀌어도 한 글자도 고치지 않습니다</text>
+<text x="28" y="124" font-size="20" fill="#2664ce" font-weight="700">그대로 쓰는 틀</text>
+<text x="392" y="124" font-size="20" fill="#ae5515" font-weight="700">문제마다 채우는 곳</text>
+<rect x="28" y="142" width="300" height="110" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="170" font-size="19" fill="#172b45" font-weight="700">proposeCand</text>
+<text x="42" y="198" font-size="18" fill="#172b45">항목과 후보 순번을 뽑아</text>
+<text x="42" y="224" font-size="18" fill="#172b45">이동 하나를 만든다</text>
+<rect x="392" y="142" width="300" height="110" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="406" y="170" font-size="19" fill="#172b45" font-weight="700">items · cand · any</text>
+<text x="406" y="198" font-size="18" fill="#172b45">항목 수, r번째 후보 이동,</text>
+<text x="406" y="224" font-size="18" fill="#172b45">후보 없이 무작위 이동</text>
+<line x1="332" y1="197" x2="388" y2="197" stroke="#53657d" stroke-width="2.5" marker-end="url(#ar)"/>
+<rect x="28" y="276" width="300" height="110" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="304" font-size="19" fill="#172b45" font-weight="700">climbPlan · sweepAll</text>
+<text x="42" y="332" font-size="18" fill="#172b45">탐색 루프와 마무리 훑기</text>
+<text x="42" y="358" font-size="18" fill="#172b45">좋아질 때만 받는다</text>
+<rect x="392" y="276" width="300" height="110" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="406" y="304" font-size="19" fill="#172b45" font-weight="700">delta · apply</text>
+<text x="406" y="332" font-size="18" fill="#172b45">적용하지 않고 변화량 계산,</text>
+<text x="406" y="358" font-size="18" fill="#172b45">해와 캐시(pos 등) 갱신</text>
+<line x1="332" y1="331" x2="388" y2="331" stroke="#53657d" stroke-width="2.5" marker-end="url(#ar)"/>
+<rect x="28" y="410" width="300" height="110" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="438" font-size="19" fill="#172b45" font-weight="700">Plan · byRemaining</text>
+<text x="42" y="466" font-size="18" fill="#172b45">한도, 시계 간격, 남은</text>
+<text x="42" y="492" font-size="18" fill="#172b45">비율로 후보 수 k 정하기</text>
+<rect x="392" y="410" width="300" height="110" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="406" y="438" font-size="19" fill="#172b45" font-weight="700">ops · props · reads</text>
+<text x="406" y="466" font-size="18" fill="#172b45">연산, 제안, 시계 읽은 횟수</text>
+<text x="406" y="492" font-size="18" fill="#172b45">(예산의 단위)</text>
+<line x1="332" y1="465" x2="388" y2="465" stroke="#53657d" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="360" y="546" font-size="18" fill="#53657d" text-anchor="middle">같은 이름의 멤버를 두면 두 문제가 같은 틀에 들어갑니다</text>
+</svg>

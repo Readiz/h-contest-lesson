@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-labelledby="title desc">
+<title id="title">설정 두 개를 같은 시드로 돌려 짝지어 판정하는 코드의 흐름</title>
+<desc id="desc">설정 A와 설정 B를 같은 시드 n개에서 각각 cost로 한 번씩 돌려 비용 배열 a와 b를 얻는다. paired(a, b, n)가 같은 시드끼리 견줘 a가 나은 시드 수 win, b가 나은 시드 수 lose, 같은 시드 수 tie를 담은 Tally를 돌려준다. needWins(n, den)은 양쪽 꼬리 확률이 1/den 이하가 되는 가장 작은 승 수 need를 구하고, n이 20이고 den이 20이면 15이다. verdict(t, need)는 win이 need 이상이면 A가 낫다, lose가 need 이상이면 B가 낫다, 그 밖이면 결정 못 함을 돌려준다.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}</style>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#53657d"/></marker></defs>
+<rect x="1" y="1" width="718" height="518" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
+<rect x="28" y="29" width="6" height="29" rx="3" fill="#2664ce"/>
+<text x="47" y="53" font-size="27" fill="#172b45" font-weight="750">두 설정을 비교하는 흐름</text>
+<text x="28" y="84" font-size="20" fill="#53657d">비용이 작을수록 좋은 문제에서 코드 이름을 따라간 그림입니다</text>
+<rect x="28" y="112" width="324" height="100" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="140" font-size="19" fill="#172b45" font-weight="700">설정 A</text>
+<text x="42" y="168" font-size="18" fill="#172b45">cost(A, 시드 i)</text>
+<text x="42" y="194" font-size="18" fill="#172b45">→ a[0..n): 시드마다 최고 비용</text>
+<rect x="368" y="112" width="324" height="100" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="382" y="140" font-size="19" fill="#172b45" font-weight="700">설정 B</text>
+<text x="382" y="168" font-size="18" fill="#172b45">cost(B, 시드 i)</text>
+<text x="382" y="194" font-size="18" fill="#172b45">→ b[0..n): 같은 시드, 같은 입력</text>
+<line x1="190" y1="214" x2="190" y2="242" stroke="#53657d" stroke-width="2.5" marker-end="url(#ar)"/>
+<line x1="530" y1="214" x2="530" y2="242" stroke="#53657d" stroke-width="2.5" marker-end="url(#ar)"/>
+<rect x="28" y="244" width="664" height="98" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="272" font-size="19" fill="#172b45" font-weight="700">paired(a, b, n)</text>
+<text x="42" y="300" font-size="18" fill="#172b45">같은 시드끼리 견준다: a &lt; b이면 win, a &gt; b이면 lose</text>
+<text x="42" y="326" font-size="18" fill="#172b45">→ Tally {win, lose, tie}</text>
+<line x1="190" y1="344" x2="190" y2="372" stroke="#53657d" stroke-width="2.5" marker-end="url(#ar)"/>
+<rect x="28" y="374" width="310" height="124" rx="10" fill="#2664ce" fill-opacity="0.12" stroke="#2664ce" stroke-width="2"/>
+<text x="42" y="402" font-size="19" fill="#172b45" font-weight="700">verdict(t, need)</text>
+<text x="42" y="430" font-size="18" fill="#172b45">win ≥ need이면 A가 낫다</text>
+<text x="42" y="456" font-size="18" fill="#172b45">lose ≥ need이면 B가 낫다</text>
+<text x="42" y="482" font-size="18" fill="#172b45">그 밖은 결정 못 함</text>
+<rect x="382" y="374" width="310" height="124" rx="10" fill="#ae5515" fill-opacity="0.12" stroke="#ae5515" stroke-width="2"/>
+<text x="396" y="402" font-size="19" fill="#172b45" font-weight="700">needWins(n, den)</text>
+<text x="396" y="430" font-size="18" fill="#172b45">양쪽 꼬리 확률이 1/den</text>
+<text x="396" y="456" font-size="18" fill="#172b45">이하인 가장 작은 승 수</text>
+<text x="396" y="482" font-size="18" fill="#172b45">n = 20, den = 20이면 15</text>
+<line x1="380" y1="436" x2="340" y2="436" stroke="#53657d" stroke-width="2.5" marker-end="url(#ar)"/>
+</svg>
