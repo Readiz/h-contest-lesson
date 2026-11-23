@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 445" role="img" aria-labelledby="title desc">
 <title id="title">방법별 연산 수와 예산</title>
-<desc id="desc">방법별 연산 수를 로그 눈금 막대로 비교하고 시간 제한의 절반에 해당하는 예산 5×10^9에 선을 그은 그림입니다. 센터 목록에서 고르기 5×10^6, 운행 안 순서 개선 약 10^9, 배송마다 센터 전부 10^9는 예산 안이고, 칸으로 후보 줄이기 6.4×10^9는 예산을 조금 넘지만 측정으로 가능했으며, 남은 배송 전부 훑기와 배송 쌍 거리 전부는 5×10^11로 예산의 백 배가 넘어 불가능합니다.</desc>
+<desc id="desc">방법별 연산 수를 로그 눈금 막대로 비교하고 시간 제한의 절반에 해당하는 예산 5×10^9에 선을 그은 그림입니다. 센터 목록에서 고르기 5×10^6, 운행 안 순서 개선 약 10^8~10^9(막대는 위쪽 값), 배송마다 센터 전부 10^9는 예산 안이고, 칸으로 후보 줄이기 6.4×10^9는 예산을 조금 넘지만 측정으로 가능했으며, 남은 배송 전부 훑기와 배송 쌍 거리 전부는 5×10^11로 예산의 백 배가 넘어 불가능합니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="443" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <line x1="272" y1="139" x2="272" y2="379" stroke="#d8e1ed" stroke-width="1.5"/>
@@ -20,7 +20,7 @@
 <text x="594" y="165" font-size="17" fill="#172b45">5×10^6</text>
 <text x="28" y="205" font-size="19" fill="#172b45">운행 안 순서 개선</text>
 <rect x="272" y="185" width="155" height="26" fill="#2664ce"/>
-<text x="594" y="205" font-size="17" fill="#172b45">약 10^9</text>
+<text x="594" y="205" font-size="17" fill="#172b45">약 10^8~10^9</text>
 <text x="28" y="245" font-size="19" fill="#172b45">배송마다 센터 전부</text>
 <rect x="272" y="225" width="155" height="26" fill="#2664ce"/>
 <text x="594" y="245" font-size="17" fill="#172b45">10^9</text>
