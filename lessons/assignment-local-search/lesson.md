@@ -4,14 +4,14 @@
 
 > **이 사례가 보여 주는 기법:** [근방 설계와 차분 평가](https://h.readiz.com/learn/neighborhood-and-delta)의 최댓값 점수의 차분 평가, [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing)의 시작 온도 설정. 일반 원리는 그 강의에서, 이 문제에 맞춘 구현과 측정은 아래에서 봅니다.
 
-앞의 두 강의와 [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)를 읽었다고 가정합니다. 난수는 [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다.
+위 두 방법론 강의와 [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)를 읽었다고 가정합니다. 난수는 [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다.
 
 ## 이 강의에서 다루는 것
 
 - 점수가 합이 아니라 최댓값일 때, 이동 한 번의 새 최댓값을 어떻게 차분으로 구하는지.
 - 작업 → 기계 배정 상태와 이동·교환 이웃을 `rebuild()` 전체 재계산과 대조하는 검사.
 - hill climbing이 멈추는 작은 예를 손으로 따라가고 SA로 빠져나오는 과정.
-- 시작 온도와 평균 부하 항을 점수로 정하는 실험, 최댓값 차분을 틀렸을 때의 실패.
+- 시작 온도와 평균 부하 항(부하 합의 변화를 탐색용 에너지에 더하는 항)을 점수로 정하는 실험, 최댓값 차분을 틀렸을 때의 실패.
 
 ## 단계별 결과
 
