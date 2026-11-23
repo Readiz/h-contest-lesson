@@ -1,21 +1,14 @@
 # 입력이 클 때: 공간 칸으로 후보를 줄이고 시간 예산 나누기
 
-[물류 상품 배송 1](/practice/COUPANG1)은 물류센터 1,000곳의 재고와 배송 요청 1,000,000건, 트럭 한 대가 주어지는 문제입니다. 앞의 [택시 배정](https://h.readiz.com/learn/assignment-with-routes)과 [격자 배치](https://h.readiz.com/learn/placement-search)는 후보가 수천~수만 개라서 "남은 것을 전부 훑어 가장 좋은 것을 고른다"를 그대로 써도 TC당 1억 번 안쪽이었습니다. 이 문제에서는 같은 문장이 5.0×10^11번이 됩니다. 이 강의는 상한에서 연산 수를 먼저 계산하고, 후보를 줄이는 자료구조(좌표 칸)를 만들고, 남은 시간을 어디에 쓸지 실측으로 정하는 과정을 따라갑니다.
+[물류 상품 배송 1](/practice/COUPANG1)은 물류센터 1,000곳의 재고와 배송 요청 1,000,000건, 트럭 한 대가 주어지는 문제입니다. [택시 배정](https://h.readiz.com/learn/assignment-with-routes)과 [격자 배치](https://h.readiz.com/learn/placement-search) 사례는 후보가 수천~수만 개라서 "남은 것을 전부 훑어 가장 좋은 것을 고른다"를 그대로 써도 TC당 1억 번 안쪽이었습니다. 이 문제에서는 같은 문장이 5.0×10^11번이 됩니다. 이 강의는 상한에서 연산 수를 먼저 계산하고, 후보를 줄이는 자료구조(좌표 칸)를 만들고, 남은 시간을 어디에 쓸지 실측으로 정하는 과정을 따라갑니다.
 
 > **이 사례가 보여 주는 기법:** [후보 줄이기와 시간 예산](https://h.readiz.com/learn/candidate-and-time-budget)의 좌표 칸으로 후보 줄이기와 시간 배분, [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)의 칸 크기와 시간 배분의 실측. 일반 원리는 그 강의에서, 이 문제에 맞춘 구현과 측정은 아래에서 봅니다.
 
-[복잡도와 입력 크기 감각](https://h.readiz.com/learn/complexity-input-size)과 [휴리스틱 입문](https://h.readiz.com/learn/heuristic)을 읽었다고 가정합니다. 칸으로 나누는 발상은 [Sqrt Decomposition](https://h.readiz.com/learn/sqrt-decomposition)의 "휴리스틱 풀이에서 쓰는 곳"에서 소개한 것이고, 측정은 [실험과 튜닝](https://h.readiz.com/learn/experiments-and-tuning)를 따릅니다.
-
-## 이 강의에서 다루는 것
-
-- 입력 상한에서 전수 탐색의 연산 수를 먼저 계산해 쓸 수 있는 방법을 고르는 예산표.
-- 좌표 칸으로 후보를 줄이는 링 확장과 O(1) 삭제, 전수 탐색과 같은 답이 나오는지의 대조.
-- 운행 단위로 싣고, 후보 밀도로 센터를 고르고, 운행 안 순서를 개선하는 풀이.
-- 칸 크기와 남은 시간의 배분을 실측으로 정하고, 종료 조건을 틀린 실패를 재현하는 방법.
+[복잡도와 입력 크기 감각](https://h.readiz.com/learn/complexity-input-size)과 [휴리스틱 입문](https://h.readiz.com/learn/heuristic)을 읽었다고 가정합니다. 칸으로 나누는 발상은 [Sqrt Decomposition](https://h.readiz.com/learn/sqrt-decomposition)의 "휴리스틱 풀이에서 쓰는 곳"에서 소개했습니다.
 
 ## 단계별 결과
 
-COUPANG1 공개 입력의 점수입니다(작을수록 좋고 통과 기준은 15,000,000,000입니다). 운행 수와 시간, 칸 크기와 설정별 비교는 [실측과 실패 사례](pages/experiments-and-failures.md)에 있습니다.
+COUPANG1 공개 입력의 점수입니다(작을수록 좋고 통과 기준은 15,000,000,000입니다). 운행 수·시간과 설정별 비교는 [실측과 실패 사례](pages/experiments-and-failures.md), 칸 크기 비교는 [풀이](pages/solution.md)에 있습니다.
 
 <!-- check:hub-summary -->
 | 단계 | 점수 ↓ |
