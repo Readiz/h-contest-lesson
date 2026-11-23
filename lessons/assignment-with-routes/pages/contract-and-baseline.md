@@ -25,7 +25,7 @@ load(d) = Σ ride(p)                                          … 배정만 정�
 
 [그림 크게 보기](https://git.readiz.com/h-contest-lesson/lessons/assignment-with-routes/lesson-assets/contract-bound.svg)
 
-> **코드 환경: h-contest 제출용.** 이 강의의 코드 블록은 `3단계` 블록(실험용 확장)과 실패 사례 조각을 빼고 `random` 블록 뒤에 순서대로 붙여 제출합니다. 기사 100명·승객 10,000명 상한의 `Plan`은 4MB가 넘으므로 `static`으로 둡니다. 첫 블록은 문제가 주는 선언과 이 강의 전체의 상태입니다.
+> **코드 환경: h-contest 제출용.** 이 강의의 코드 블록은 `1~3단계` 블록(실험 단계용)과 실패 사례 조각을 빼고 `random` 블록 뒤에 순서대로 붙여 제출합니다. 기사 100명·승객 10,000명 상한의 `Plan`은 4MB가 넘으므로 `static`으로 둡니다. 첫 블록은 문제가 주는 선언과 이 강의 전체의 상태입니다.
 
 ```cpp snippet=taxi-plan
 struct Coordinate {

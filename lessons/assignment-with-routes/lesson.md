@@ -4,7 +4,7 @@
 
 > **이 사례가 보여 주는 기법:** [근방 설계와 차분 평가](https://h.readiz.com/learn/neighborhood-and-delta)의 담당자와 삽입 위치를 함께 고르는 이웃과 최대 부하 차분, [초기해 만들기](https://h.readiz.com/learn/construction-heuristics)의 결합 탐욕 초기해. 일반 원리는 그 강의에서, 이 문제에 맞춘 구현과 측정은 아래에서 봅니다.
 
-앞의 두 강의와 [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)를 읽었다고 가정합니다. 난수는 [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다. 승객과 기사를 1:1로 정확히 짝지어야 하는 문제라면 [Hungarian 알고리즘](https://h.readiz.com/learn/hungarian-algorithm)을 선택할 수 있지만, 여기서는 기사 한 명이 여러 승객을 순서대로 맡습니다.
+위 두 방법론 강의와 [Testing과 Stress Test](https://h.readiz.com/learn/testing-and-stress)를 읽었다고 가정합니다. 난수는 [공통 코드의 `random` 블록](https://h.readiz.com/learn/cpp-common-library)을 먼저 붙여 씁니다. 승객과 기사를 1:1로 정확히 짝지어야 하는 문제라면 [Hungarian 알고리즘](https://h.readiz.com/learn/hungarian-algorithm)을 선택할 수 있지만, 여기서는 기사 한 명이 여러 승객을 순서대로 맡습니다.
 
 ## 이 강의에서 다루는 것
 
@@ -32,7 +32,7 @@ TAXIASSIGN 공개 TC 5개의 최대 이동 거리 합입니다(작을수록 좋�
 ## 본문
 
 1. [문제 계약과 기준선](pages/contract-and-baseline.md): 기사별 처리 순서 계약, 탑승 거리와 빈 차 이동으로 나뉘는 부하, 하한, `Plan` 상태와 기준선.
-2. [풀이: 옮겨 끼우기·교환 이웃과 결합 탐욕](pages/solution.md): 옮겨 끼우기와 자리 바꾸기의 최대 부하 차분, 두 모형의 최적이 갈라지는 손계산, 배정만·경로만·번갈아, 결합 탐욕과 이웃 탐색.
+2. [풀이: 옮겨 끼우기·자리 바꾸기 이웃과 결합 탐욕](pages/solution.md): 옮겨 끼우기와 자리 바꾸기의 최대 부하 차분, 두 모형의 최적이 갈라지는 손계산, 배정만·경로만·번갈아, 결합 탐욕과 이웃 탐색.
 3. [실측과 실패 사례](pages/experiments-and-failures.md): 단계별 점수와 시간, 교환·가중치·대상 기사 선택 실험, 삽입 위치를 틀린 두 변형.
 
 ## 연습: TAXIASSIGN
