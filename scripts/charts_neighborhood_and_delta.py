@@ -36,7 +36,7 @@ def charts(m: dict) -> dict[str, str]:
         groups.append({"label": label, "values": [d["total"], f["total"]],
                        "texts": [ch.comma(d["total"]), f"{ch.comma(f['total'])} (×{f['total'] / d['total']:.0f})"]})
     desc = ("제안 5,000번을 처리하는 데 든 연산 합계입니다. " + " ".join(
-        f"{g['label']}은 차분 {ch.comma(g['values'][0])}, 적용 후 복구 {ch.comma(g['values'][1])}이고." for g in groups)
+        f"{g['label']}: 차분 {ch.comma(g['values'][0])}, 적용 후 복구 {ch.comma(g['values'][1])}." for g in groups)
         + " 적용 후 복구가 열여섯 배에서 서른두 배 많습니다.")
     out["ops-split.svg"] = ch.grouped_hbar(
         "제안 5,000번에 드는 연산", "같은 제안을 같은 순서로 받는 두 루프의 연산 합계입니다. 괄호는 차분 대비 배수입니다",

@@ -62,7 +62,7 @@ def charts(m: dict) -> dict[str, str]:
     # 1. 1단계 대 2단계: 구간별 호출 합(기준선은 정렬·비우기 비중이 달라 눈금 밖)
     names = ["높이 재기", "비우기", "정렬"]
     groups = [{"label": nm, "values": [sum(st["1단계"]["phase"][i]), sum(st["2단계"]["phase"][i])]} for i, nm in enumerate(names)]
-    desc = ("1단계와 2단계의 구간별 호출 합(10개 TC)입니다. " + " ".join(f"{g['label']}은 1단계 {ch.comma(g['values'][0])}, 2단계 {ch.comma(g['values'][1])}이고." for g in groups)
+    desc = ("1단계와 2단계의 구간별 호출 합(10개 TC)입니다. " + " ".join(f"{g['label']}: 1단계 {ch.comma(g['values'][0])}, 2단계 {ch.comma(g['values'][1])}." for g in groups)
             + " 비우기 구간은 두 단계가 같고 2단계는 정렬 구간만 줄입니다. 기준선은 정렬 구간이 " + ch.comma(sum(st["기준선"]["phase"][2])) + "이라 눈금 밖이라 뺐습니다.")
     out["phase-calls.svg"] = ch.grouped_hbar(
         "구간별 호출 합, 1단계와 2단계", "10개 TC 합입니다. 두 단계는 높이 재기와 비우기가 같고 정렬 구간만 다릅니다. 기준선은 눈금 밖이라 뺐습니다",
@@ -71,7 +71,7 @@ def charts(m: dict) -> dict[str, str]:
     # 2. 정렬 구간의 호출 종류
     kinds = [("수평 이동", lambda p: p[0]), ("수직 이동", lambda p: p[1]), ("pick + drop", lambda p: p[2] + p[3])]
     groups = [{"label": k, "values": [f(st["1단계"]["phase"][2]), f(st["2단계"]["phase"][2])]} for k, f in kinds]
-    desc = ("정렬 구간의 호출을 종류별로 나눈 그림입니다(10개 TC 합). " + " ".join(f"{g['label']}은 1단계 {ch.comma(g['values'][0])}, 2단계 {ch.comma(g['values'][1])}이고." for g in groups)
+    desc = ("정렬 구간의 호출을 종류별로 나눈 그림입니다(10개 TC 합). " + " ".join(f"{g['label']}: 1단계 {ch.comma(g['values'][0])}, 2단계 {ch.comma(g['values'][1])}." for g in groups)
             + " 2단계의 인내 정렬은 상자를 두 번만 옮겨 모든 종류가 줄고 특히 수직 이동이 크게 줄어듭니다.")
     out["sort-calls.svg"] = ch.grouped_hbar(
         "정렬 구간의 호출 종류", "10개 TC 합입니다. 2단계는 정렬에서 상자를 두 번만 옮겨 호출이 줄어듭니다",

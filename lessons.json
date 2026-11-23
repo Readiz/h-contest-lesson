@@ -1435,7 +1435,7 @@
     {
       "lessonId": "heuristic-case-studies",
       "title": "적용 사례 모음: 경로 개선·SA·배치 수리·일정 빔",
-      "description": "방법론 강의의 기법을 문제 하나에 적용한 예 4개입니다. 배송 순서의 초기해와 2-opt 차분, 같은 문제의 SA와 후보 수 비교, 광고판 배치의 bitmask 점유 검사와 부수고 다시 채우기, 설치 일정의 두 단계 빔 서치를 공개 채점기의 값과 함께 따라갑니다.",
+      "description": "방법론 강의의 기법을 문제 하나에 적용한 예 4개입니다. 배송 순서의 초기해와 2-opt 차분, 같은 문제에 SA를 붙인 구현과 측정, 광고판 배치의 bitmask 점유 검사와 부수고 다시 채우기, 설치 일정의 두 단계 빔 서치를 따라갑니다. 공개 채점기로 잰 수치는 SA 쪽에만 있고 나머지는 설계 설명입니다.",
       "summary": "ORDERING의 열린 경로 개선과 SA, BILLCITY의 배치·복구, AIRCONTECH의 빔 탐색을 방법론 강의의 기법별 적용 예로 연결",
       "order": 38,
       "folderId": "heuristic-notes",
@@ -1481,7 +1481,7 @@
         },
         {
           "pageId": "search-strategies",
-          "title": "초기해와 지역 탐색",
+          "title": "ORDERING에 SA 붙이기",
           "description": "ORDERING의 2-opt 초기해에 SA를 붙이는 구현과 단계별 측정을 봅니다.",
           "order": 20,
           "file": "pages/search-strategies.md"

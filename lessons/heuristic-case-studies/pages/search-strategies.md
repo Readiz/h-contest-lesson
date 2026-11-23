@@ -1,4 +1,4 @@
-# 적용 사례: 초기해와 지역 탐색
+# 적용 사례: ORDERING에 SA 붙이기
 
 [배송 순서 개선](ordering-route-improvement.md)의 가장 가까운 점 잇기 + 2-opt 초기해에 SA(담금질)를 붙이고 같은 입력에서 단계별로 측정합니다. 원리는 [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing)에서 다룹니다.
 

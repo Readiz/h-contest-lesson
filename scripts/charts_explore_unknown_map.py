@@ -24,7 +24,7 @@ def charts(m: dict) -> dict[str, str]:
     # 2. 비용 구성: 정책 2 (SCAN_MIN 6)를 공식 입력과 홀드아웃에서
     off, hold = rows_m[5], m["holdout_rows"][5]
     unit = {"스캔": ("scans", 20), "이동": ("moves", 10), "막힘": ("bumps", 10), "회전": ("turns", 15)}
-    groups = [{"label": f"{k} (칸당 {w})", "values": [off[key] * w, hold[key] * w]} for k, (key, w) in unit.items()]
+    groups = [{"label": f"{k} (한 번에 {w})", "values": [off[key] * w, hold[key] * w]} for k, (key, w) in unit.items()]
     desc = ("정책 2(SCAN_MIN 6)의 총 비용을 행동별로 나눈 그림입니다. 공식 입력은 " + ", ".join(f"{k} {ch.comma(off[key] * w)}" for k, (key, w) in unit.items())
             + ", 직접 만든 홀드아웃 지도는 " + ", ".join(f"{k} {ch.comma(hold[key] * w)}" for k, (key, w) in unit.items())
             + "입니다. 이동이 가장 크고 회전, 스캔, 막힘 순이며 이동의 하한은 공식 입력 " + ch.comma(m["move_floor"]["official"]) + "입니다.")

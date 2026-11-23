@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 465" role="img" aria-labelledby="title desc">
 <title id="title">구간별 호출 합, 1단계와 2단계</title>
-<desc id="desc">1단계와 2단계의 구간별 호출 합(10개 TC)입니다. 높이 재기은 1단계 730,328, 2단계 730,328이고. 비우기은 1단계 194,047,598, 2단계 194,047,598이고. 정렬은 1단계 130,584,356, 2단계 40,458,584이고. 비우기 구간은 두 단계가 같고 2단계는 정렬 구간만 줄입니다. 기준선은 정렬 구간이 2,288,052,358이라 눈금 밖이라 뺐습니다.</desc>
+<desc id="desc">1단계와 2단계의 구간별 호출 합(10개 TC)입니다. 높이 재기: 1단계 730,328, 2단계 730,328. 비우기: 1단계 194,047,598, 2단계 194,047,598. 정렬: 1단계 130,584,356, 2단계 40,458,584. 비우기 구간은 두 단계가 같고 2단계는 정렬 구간만 줄입니다. 기준선은 정렬 구간이 2,288,052,358이라 눈금 밖이라 뺐습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="463" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <line x1="128.4" y1="165" x2="128.4" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>

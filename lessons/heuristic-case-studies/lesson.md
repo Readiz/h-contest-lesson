@@ -2,14 +2,14 @@
 
 이 모음은 [방법론 강의](https://h.readiz.com/learn/heuristic)의 기법을 실제 문제 하나에 적용해 본 예 4개입니다. 새 기법을 처음 가르치는 곳이 아니라, 배운 기법이 문제의 계약과 채점 안에서 어떻게 쓰이는지를 따라가는 곳입니다. 기법 자체가 궁금하면 아래 표의 방법론 강의로 돌아가면 됩니다.
 
-쪽의 본문은 문제 하나를 따라가므로 문제 이름과 제출 형식이 그대로 나옵니다. 공개 채점기로 잰 수치가 있는 쪽은 초기해와 지역 탐색(ORDERING)뿐이고, 광고판 도시 배치(BILLCITY)와 31일 설치 일정(AIRCONTECH)은 설계 설명입니다.
+쪽의 본문은 문제 하나를 따라가므로 문제 이름과 제출 형식이 그대로 나옵니다. 공개 채점기로 잰 수치가 있는 쪽은 ORDERING에 SA 붙이기(ORDERING)뿐이고, 광고판 도시 배치(BILLCITY)와 31일 설치 일정(AIRCONTECH)은 설계 설명입니다.
 
 ## 쪽마다 보여 주는 기법
 
 | 쪽 | 문제 | 보여 주는 기법 | 방법론 강의 |
 | --- | --- | --- | --- |
 | [배송 순서 개선](pages/ordering-route-improvement.md) | ORDERING | 유효한 번호 순서 기준선, nearest neighbor 초기해, 열린 경로 2-opt의 경계 간선 차분 | [초기해 만들기](https://h.readiz.com/learn/construction-heuristics), [근방 설계와 차분 평가](https://h.readiz.com/learn/neighborhood-and-delta) |
-| [초기해와 지역 탐색](pages/search-strategies.md) | ORDERING | ORDERING에 붙이는 SA 구현, 같은 후보 수의 단계별 비용 비교 | [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing) |
+| [ORDERING에 SA 붙이기](pages/search-strategies.md) | ORDERING | ORDERING에 붙이는 SA 구현, 같은 후보 수의 단계별 비용 비교 | [언덕 오르기와 담금질](https://h.readiz.com/learn/hill-climbing-and-annealing) |
 | [광고판 도시 배치](pages/placement-and-repair.md) | BILLCITY | 행 bitmask 점유 검사, 위치 평가식, 큰 제거 뒤 다시 채우기 | [크게 부수고 다시 짓기](https://h.readiz.com/learn/destroy-and-repair) |
 | [31일 설치 일정 Beam Search](pages/aircontech-beam-search.md) | AIRCONTECH | 행동 후보와 경로 후보를 따로 줄이는 두 단계 가지치기, 탐색 평가값과 실제 점수의 분리 | [빔 서치와 평가 함수](https://h.readiz.com/learn/beam-search) |
 
@@ -22,7 +22,7 @@
 ## 읽는 순서
 
 1. [배송 순서 개선](pages/ordering-route-improvement.md): 열린 경로의 유효한 초기해와 2-opt를 직접 실행할 수 있는 코드까지 따라갑니다. 2쪽의 바탕입니다.
-2. [초기해와 지역 탐색](pages/search-strategies.md): 같은 문제에 SA를 붙이고 후보 수·비용·실행 시간을 비교합니다.
+2. [ORDERING에 SA 붙이기](pages/search-strategies.md): 같은 문제에 SA를 붙이고 후보 수·비용·실행 시간을 비교합니다.
 3. [광고판 도시 배치](pages/placement-and-repair.md): 작은 이동으로 풀리지 않는 배치를 부수고 다시 채웁니다.
 4. [31일 설치 일정 Beam Search](pages/aircontech-beam-search.md): 순차 결정 문제에서 상태를 폭만큼만 남깁니다.
 

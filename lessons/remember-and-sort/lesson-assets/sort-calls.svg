@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 465" role="img" aria-labelledby="title desc">
 <title id="title">정렬 구간의 호출 종류</title>
-<desc id="desc">정렬 구간의 호출을 종류별로 나눈 그림입니다(10개 TC 합). 수평 이동은 1단계 13,406,920, 2단계 6,126,110이고. 수직 이동은 1단계 103,871,496, 2단계 30,178,794이고. pick + drop은 1단계 13,305,940, 2단계 4,153,680이고. 2단계의 인내 정렬은 상자를 두 번만 옮겨 모든 종류가 줄고 특히 수직 이동이 크게 줄어듭니다.</desc>
+<desc id="desc">정렬 구간의 호출을 종류별로 나눈 그림입니다(10개 TC 합). 수평 이동: 1단계 13,406,920, 2단계 6,126,110. 수직 이동: 1단계 103,871,496, 2단계 30,178,794. pick + drop: 1단계 13,305,940, 2단계 4,153,680. 2단계의 인내 정렬은 상자를 두 번만 옮겨 모든 종류가 줄고 특히 수직 이동이 크게 줄어듭니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="463" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <line x1="157" y1="165" x2="157" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 465" role="img" aria-labelledby="title desc">
 <title id="title">제안 5,000번에 드는 연산</title>
-<desc id="desc">제안 5,000번을 처리하는 데 든 연산 합계입니다. 배정 틀: 옮기기·맞바꾸기은 차분 35,047, 적용 후 복구 558,571이고. 순서 틀: 두 점 교환은 차분 45,044, 적용 후 복구 1,014,255이고. 순서 틀: 구간 뒤집기은 차분 51,276, 적용 후 복구 1,645,186이고. 적용 후 복구가 열여섯 배에서 서른두 배 많습니다.</desc>
+<desc id="desc">제안 5,000번을 처리하는 데 든 연산 합계입니다. 배정 틀: 옮기기·맞바꾸기: 차분 35,047, 적용 후 복구 558,571. 순서 틀: 두 점 교환: 차분 45,044, 적용 후 복구 1,014,255. 순서 틀: 구간 뒤집기: 차분 51,276, 적용 후 복구 1,645,186. 적용 후 복구가 열여섯 배에서 서른두 배 많습니다.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}*{box-sizing:border-box}</style>
 <rect x="1" y="1" width="718" height="463" rx="20" fill="#f6f8fc" stroke="#d8e1ed" stroke-width="1.5"/>
 <line x1="273.8" y1="165" x2="273.8" y2="399" stroke="#d8e1ed" stroke-width="1.5"/>

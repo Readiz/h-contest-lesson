@@ -194,7 +194,7 @@
 
 이 강의의 틀이 이 사이트에서 쓰인 곳입니다. 각 강의는 해당 문제 하나를 끝까지 푸는 방식이라 이 강의와 설명의 순서가 다릅니다.
 
-- [적용 사례: 초기해와 지역 탐색](https://h.readiz.com/learn/heuristic-case-studies/search-strategies): 담금질을 배송 순서 개선(ORDERING) 한 문제에 붙인 판입니다. 그쪽은 `double`과 직접 만든 `exp` 근사를, 이 강의는 정수 표를 씁니다.
+- [적용 사례: ORDERING에 SA 붙이기](https://h.readiz.com/learn/heuristic-case-studies/search-strategies): 담금질을 배송 순서 개선(ORDERING) 한 문제에 붙인 판입니다. 그쪽은 `double`과 직접 만든 `exp` 근사를, 이 강의는 정수 표를 씁니다.
 - [배정 문제의 지역 탐색과 SA(SCHEDULX)](https://h.readiz.com/learn/assignment-local-search): 평균 부하 항을 더한 에너지, 중앙 손해에서 정하는 시작 온도, 온도 구간별 수락률을 solver seed 9개의 중앙값으로 비교한 사례입니다.
 - [배송 순서 개선(ORDERING)](https://h.readiz.com/learn/heuristic-case-studies/ordering-route-improvement): 이 강의의 첫 개선 언덕 오르기(구간 뒤집기 2-opt)가 나오는 곳입니다.
 
